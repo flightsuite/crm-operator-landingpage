@@ -1,43 +1,35 @@
-// Airtable Configuration for FlightSuite Landing Page
-// Using Airtable Webhook - Simple, secure, no API keys needed!
+// Form Submission Configuration for FlightSuite Landing Page
+// Using Google Sheets via Apps Script - Simple, free, no CORS issues!
 
-const AIRTABLE_CONFIG = {
-    // Airtable Webhook URLs (no authentication needed!)
-    crmWaitlistWebhook: 'https://hooks.airtable.com/workflows/v1/genericWebhook/app46JHq6Rm3TpbpT/wflTT6C1culC8Nuad/wtrpYgynXs2c9Ph1o',
-    mobileEmailWebhook: 'https://hooks.airtable.com/workflows/v1/genericWebhook/app46JHq6Rm3TpbpT/wfls4xvfoLew9VHxF/wtrsgZw4yLpGXnxgD'
+const FORM_CONFIG = {
+    // Google Apps Script Web App URL
+    googleSheetsUrl: 'https://script.google.com/macros/s/AKfycbzKH1boDb5YFJu5MqEn38_nYn48wss5feOSpucoPyn-2mKIdgzOqzs_ix2f9ZbMtR88/exec'
 };
 
 /**
- * Submit data to Airtable via Webhook
- * @param {string} webhookUrl - Webhook URL to submit to
+ * Submit data to Google Sheets via Apps Script
  * @param {object} data - Form data to submit
- * @returns {Promise} - Response from webhook
+ * @returns {Promise} - Response from Google Sheets
  */
-async function submitToAirtable(webhookUrl, data) {
+async function submitToGoogleSheets(data) {
     try {
-        console.log('📤 Submitting to Airtable webhook:', data);
+        console.log('📤 Submitting to Google Sheets:', data);
 
-        const response = await fetch(webhookUrl, {
+        await fetch(FORM_CONFIG.googleSheetsUrl, {
             method: 'POST',
+            mode: 'no-cors', // Google Apps Script handles CORS differently
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         });
 
-        // Airtable webhooks return 200 even on success with no body
-        // So we just check if the request succeeded
-        if (response.ok) {
-            console.log('✅ Successfully submitted to Airtable!');
-            return { success: true, message: 'Data saved successfully' };
-        } else {
-            const errorText = await response.text();
-            console.error('❌ Webhook error:', response.status, errorText);
-            throw new Error(`Failed to save: ${response.status} ${errorText || 'Unknown error'}`);
-        }
+        // With no-cors mode, we can't read the response, but if it doesn't throw an error, it worked
+        console.log('✅ Successfully submitted to Google Sheets!');
+        return { success: true, message: 'Data saved successfully' };
 
     } catch (error) {
-        console.error('❌ Failed to submit to Airtable:', error);
+        console.error('❌ Failed to submit to Google Sheets:', error);
 
         // Check for network errors
         if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
@@ -63,7 +55,7 @@ async function submitCrmWaitlist(formData) {
         formType: 'CRM Waitlist'
     };
 
-    return await submitToAirtable(AIRTABLE_CONFIG.crmWaitlistWebhook, data);
+    return await submitToGoogleSheets(data);
 }
 
 /**
@@ -79,12 +71,11 @@ async function submitMobileEmailCapture(formData) {
         formType: 'Mobile Email Capture'
     };
 
-    return await submitToAirtable(AIRTABLE_CONFIG.mobileEmailWebhook, data);
+    return await submitToGoogleSheets(data);
 }
 
 /**
  * Track install button clicks (optional)
- * Note: You may want to create a separate webhook for install click tracking
  * @param {object} clickData - { timestamp, userAgent, referrer }
  */
 async function trackInstallClick(clickData) {
@@ -96,6 +87,5 @@ async function trackInstallClick(clickData) {
         formType: 'Install Click'
     };
 
-    // Using CRM webhook for now - create separate webhook if needed
-    return await submitToAirtable(AIRTABLE_CONFIG.crmWaitlistWebhook, data);
+    return await submitToGoogleSheets(data);
 }
