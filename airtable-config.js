@@ -1,68 +1,46 @@
 // Airtable Configuration for FlightSuite Landing Page
-// Using Netlify Functions for secure backend API calls
+// Using Airtable Webhook - Simple, secure, no API keys needed!
 
 const AIRTABLE_CONFIG = {
-    // Netlify Function endpoint (API key is now secure on backend)
-    functionEndpoint: '/.netlify/functions/submit-to-airtable',
-
-    // For local development
-    isDevelopment: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1',
-
-    // Table names
-    tables: {
-        crmWaitlist: 'CRM Waitlist',
-        mobileEmailCapture: 'Mobile Email Capture',
-        installClicks: 'Install Clicks'
-    }
+    // Airtable Webhook URL (no authentication needed!)
+    webhookUrl: 'https://hooks.airtable.com/workflows/v1/genericWebhook/app46JHq6Rm3TpbpT/wflTT6C1culC8Nuad/wtrpYgynXs2c9Ph1o'
 };
 
 /**
- * Submit data to Airtable via Netlify Function
- * @param {string} formType - Type of form ('crmWaitlist' or 'mobileEmail')
- * @param {object} fields - Data fields to submit
- * @returns {Promise} - Response from the backend
+ * Submit data to Airtable via Webhook
+ * @param {object} data - Form data to submit
+ * @returns {Promise} - Response from webhook
  */
-async function submitToAirtable(formType, fields) {
-    const url = AIRTABLE_CONFIG.functionEndpoint;
-
+async function submitToAirtable(data) {
     try {
-        console.log('📤 Submitting to Netlify function:', formType, fields);
+        console.log('📤 Submitting to Airtable webhook:', data);
 
-        const response = await fetch(url, {
+        const response = await fetch(AIRTABLE_CONFIG.webhookUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                formType: formType,
-                fields: fields
-            })
+            body: JSON.stringify(data)
         });
 
-        if (!response.ok) {
-            const error = await response.json();
-            console.error('❌ Backend API Error:', error);
-
-            // User-friendly error messages
-            let userMessage = error.message || 'Failed to save to Airtable. ';
-            if (error.type === 'TABLE_NOT_FOUND') {
-                userMessage += `Table not found. Please check your Airtable setup.`;
-            } else if (error.type === 'INVALID_PERMISSIONS') {
-                userMessage += 'Permission denied. Check API key settings.';
-            }
-
-            throw new Error(userMessage);
+        // Airtable webhooks return 200 even on success with no body
+        // So we just check if the request succeeded
+        if (response.ok) {
+            console.log('✅ Successfully submitted to Airtable!');
+            return { success: true, message: 'Data saved successfully' };
+        } else {
+            const errorText = await response.text();
+            console.error('❌ Webhook error:', response.status, errorText);
+            throw new Error(`Failed to save: ${response.status} ${errorText || 'Unknown error'}`);
         }
 
-        const data = await response.json();
-        console.log('✅ Successfully submitted:', data);
-        return data;
     } catch (error) {
-        console.error('❌ Failed to submit:', error);
+        console.error('❌ Failed to submit to Airtable:', error);
 
-        // Check if it's a network error
-        if (error.message.includes('fetch') || error.message.includes('NetworkError')) {
-            console.error('💡 Network error - make sure you\'re running on Netlify or using `netlify dev`');
+        // Check for network errors
+        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+            console.error('💡 Network error - check your internet connection');
+            throw new Error('Network error. Please check your connection and try again.');
         }
 
         throw error;
@@ -74,16 +52,16 @@ async function submitToAirtable(formType, fields) {
  * @param {object} formData - { name, email, crm, timestamp }
  */
 async function submitCrmWaitlist(formData) {
-    const fields = {
-        'Name': formData.name,
-        'Email': formData.email,
-        'CRM Type': formData.crm,
-        'Submission Date': formData.timestamp || new Date().toISOString(),
-        'Source': 'Landing Page',
-        'Status': 'New'
+    const data = {
+        name: formData.name,
+        email: formData.email,
+        crmType: formData.crm,
+        submissionDate: formData.timestamp || new Date().toISOString(),
+        source: 'Landing Page',
+        formType: 'CRM Waitlist'
     };
 
-    return await submitToAirtable('crmWaitlist', fields);
+    return await submitToAirtable(data);
 }
 
 /**
@@ -91,28 +69,29 @@ async function submitCrmWaitlist(formData) {
  * @param {object} formData - { name, email, timestamp }
  */
 async function submitMobileEmailCapture(formData) {
-    const fields = {
-        'Name': formData.name,
-        'Email': formData.email,
-        'Submission Date': formData.timestamp || new Date().toISOString(),
-        'Source': 'Landing Page - Mobile',
-        'Status': 'New'
+    const data = {
+        name: formData.name,
+        email: formData.email,
+        submissionDate: formData.timestamp || new Date().toISOString(),
+        source: 'Landing Page - Mobile',
+        formType: 'Mobile Email Capture'
     };
 
-    return await submitToAirtable('mobileEmail', fields);
+    return await submitToAirtable(data);
 }
 
 /**
  * Track install button clicks (optional)
- * @param {object} data - { timestamp, userAgent, referrer }
+ * @param {object} clickData - { timestamp, userAgent, referrer }
  */
-async function trackInstallClick(data) {
-    const fields = {
-        'Timestamp': data.timestamp || new Date().toISOString(),
-        'User Agent': data.userAgent || navigator.userAgent,
-        'Referrer': data.referrer || document.referrer || 'Direct',
-        'Page URL': window.location.href
+async function trackInstallClick(clickData) {
+    const data = {
+        timestamp: clickData.timestamp || new Date().toISOString(),
+        userAgent: clickData.userAgent || navigator.userAgent,
+        referrer: clickData.referrer || document.referrer || 'Direct',
+        pageUrl: window.location.href,
+        formType: 'Install Click'
     };
 
-    return await submitToAirtable(AIRTABLE_CONFIG.tables.installClicks, fields);
+    return await submitToAirtable(data);
 }
