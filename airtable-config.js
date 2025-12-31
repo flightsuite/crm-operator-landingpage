@@ -2,20 +2,22 @@
 // Using Airtable Webhook - Simple, secure, no API keys needed!
 
 const AIRTABLE_CONFIG = {
-    // Airtable Webhook URL (no authentication needed!)
-    webhookUrl: 'https://hooks.airtable.com/workflows/v1/genericWebhook/app46JHq6Rm3TpbpT/wflTT6C1culC8Nuad/wtrpYgynXs2c9Ph1o'
+    // Airtable Webhook URLs (no authentication needed!)
+    crmWaitlistWebhook: 'https://hooks.airtable.com/workflows/v1/genericWebhook/app46JHq6Rm3TpbpT/wflTT6C1culC8Nuad/wtrpYgynXs2c9Ph1o',
+    mobileEmailWebhook: 'https://hooks.airtable.com/workflows/v1/genericWebhook/app46JHq6Rm3TpbpT/wfls4xvfoLew9VHxF/wtrsgZw4yLpGXnxgD'
 };
 
 /**
  * Submit data to Airtable via Webhook
+ * @param {string} webhookUrl - Webhook URL to submit to
  * @param {object} data - Form data to submit
  * @returns {Promise} - Response from webhook
  */
-async function submitToAirtable(data) {
+async function submitToAirtable(webhookUrl, data) {
     try {
         console.log('📤 Submitting to Airtable webhook:', data);
 
-        const response = await fetch(AIRTABLE_CONFIG.webhookUrl, {
+        const response = await fetch(webhookUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -61,7 +63,7 @@ async function submitCrmWaitlist(formData) {
         formType: 'CRM Waitlist'
     };
 
-    return await submitToAirtable(data);
+    return await submitToAirtable(AIRTABLE_CONFIG.crmWaitlistWebhook, data);
 }
 
 /**
@@ -77,11 +79,12 @@ async function submitMobileEmailCapture(formData) {
         formType: 'Mobile Email Capture'
     };
 
-    return await submitToAirtable(data);
+    return await submitToAirtable(AIRTABLE_CONFIG.mobileEmailWebhook, data);
 }
 
 /**
  * Track install button clicks (optional)
+ * Note: You may want to create a separate webhook for install click tracking
  * @param {object} clickData - { timestamp, userAgent, referrer }
  */
 async function trackInstallClick(clickData) {
@@ -93,5 +96,6 @@ async function trackInstallClick(clickData) {
         formType: 'Install Click'
     };
 
-    return await submitToAirtable(data);
+    // Using CRM webhook for now - create separate webhook if needed
+    return await submitToAirtable(AIRTABLE_CONFIG.crmWaitlistWebhook, data);
 }
