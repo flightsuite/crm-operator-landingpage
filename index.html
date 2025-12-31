@@ -2196,15 +2196,7 @@
             <nav class="header-nav">
                 <a href="#demo" class="nav-link">Demo</a>
                 <a href="#faq" class="nav-link">FAQ</a>
-                <button class="nav-link info-button" onclick="openModal('crmInfoModal')" style="border: none; background: none; cursor: pointer; padding: 0; font-family: inherit; display: inline-flex; align-items: center; gap: 6px;" aria-label="What's a CRM?">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                    </svg>
-                    What's a CRM?
-                </button>
-                <a href="https://crm.flightsuite.ai" class="nav-link" target="_blank" rel="noopener noreferrer">Our CRM</a>
+                <a href="https://crm.flightsuite.ai" class="nav-link" target="_blank" rel="noopener noreferrer">Need a CRM?</a>
                 <button class="cta-header" onclick="openInstallModal()" data-event="install_click">Install for Chrome</button>
             </nav>
         </div>
@@ -2230,6 +2222,11 @@
             </div>
             <h1 class="hero-title">Your AI CRM operator</h1>
             <p class="hero-subtitle">Type what you want to record, FlightSuite logs it to GoHighLevel. A Chrome extension that turns natural language into perfect CRM data instantly.</p>
+            <div style="text-align: center; margin-bottom: clamp(20px, 3vw, 24px);">
+                <button onclick="openModal('crmInfoModal')" style="border: none; background: none; color: var(--color-apple-blue); text-decoration: underline; cursor: pointer; font-size: clamp(13px, 1.8vw, 14px); font-family: inherit; padding: 0; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">
+                    What's a CRM?
+                </button>
+            </div>
             <div class="hero-cta-group">
                 <button class="cta-primary" onclick="openInstallModal()" data-event="install_click">
                     Add to Chrome - It's Free
@@ -2635,15 +2632,15 @@
         </div>
     </section>
 
-    <!-- CRM Solution Promo Section -->
+    <!-- CRM Services Promo Section -->
     <section class="crm-promo-section">
         <div class="crm-promo-container">
             <div class="crm-promo-content">
                 <div class="crm-promo-badge">Need a CRM?</div>
-                <h2 class="crm-promo-title">Automated CRM Solution</h2>
+                <h2 class="crm-promo-title">FlightSuite CRM Services</h2>
                 <p class="crm-promo-description">
-                    View our fully automated CRM built on GoHighLevel with custom prospecting tools,
-                    conversational AI add-ons, and 24/7 support to power your sales team.
+                    Don't have a CRM yet? Our AI agency builds and manages fully automated CRM solutions on GoHighLevel
+                    with custom prospecting, conversational AI, and 24/7 support. <em style="color: var(--color-text-tertiary); font-size: 0.9em;">Separate from the FlightSuite extension above.</em>
                 </p>
                 <div class="crm-promo-features">
                     <div class="crm-promo-feature">
@@ -2656,17 +2653,17 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
-                        <span>Conversational AI</span>
+                        <span>Conversational AI Add-ons</span>
                     </div>
                     <div class="crm-promo-feature">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
-                        <span>24/7 Support</span>
+                        <span>24/7 Agency Support</span>
                     </div>
                 </div>
                 <a href="https://crm.flightsuite.ai" class="crm-promo-button" target="_blank" rel="noopener noreferrer">
-                    Explore Our CRM
+                    Explore CRM Services
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
@@ -2936,11 +2933,11 @@
                         Don't have a CRM yet?
                     </h3>
                     <p style="font-size: clamp(13px, 1.8vw, 14px); line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 16px;">
-                        We recommend starting with FlightSuite's automated CRM solution - built on GoHighLevel
-                        with AI-powered features, custom prospecting tools, and 24/7 support.
+                        Check out FlightSuite CRM Services - our AI agency that builds and manages automated CRM solutions
+                        on GoHighLevel with custom prospecting and conversational AI. <em style="font-size: 0.9em; color: var(--color-text-tertiary);">(Separate from the FlightSuite extension.)</em>
                     </p>
-                    <a href="https://crm.flightsuite.ai" target="_blank" rel="noopener noreferrer" class="form-submit" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; margin-top: 8px;">
-                        View Our CRM Solution
+                    <a href="https://crm.flightsuite.ai" target="_blank" rel="noopener noreferrer" class="form-submit" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; margin-top: 8px;" onclick="closeModal('crmInfoModal')">
+                        View CRM Services
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                             <polyline points="12 5 19 12 12 19"></polyline>
@@ -3150,6 +3147,12 @@
             playClickSound();
             document.getElementById(modalId).classList.remove('active');
             document.body.style.overflow = '';
+        }
+
+        function openModal(modalId) {
+            playClickSound();
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         // Mobile Detection & Email Capture
