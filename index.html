@@ -665,6 +665,23 @@
             cursor: not-allowed;
         }
 
+        /* Demo guidance - subtle pulse for next clickable button */
+        .suggestion-chip.demo-hint {
+            animation: gentlePulse 2s ease-in-out infinite;
+            box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.4);
+        }
+
+        @keyframes gentlePulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.4);
+                border-color: var(--color-apple-blue);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(0, 113, 227, 0);
+                border-color: var(--color-apple-blue);
+            }
+        }
+
         /* CRM Panel */
         .crm-panel {
             flex: 1;
@@ -3004,6 +3021,28 @@
             }
         }
 
+        // Set large font as default for mobile devices
+        function initMobileFontSize() {
+            if (isMobile()) {
+                document.body.classList.add('large-font');
+                const toggle = document.getElementById('fontToggle');
+                if (toggle) {
+                    toggle.classList.add('active');
+                }
+            }
+        }
+
+        // Initialize mobile font size on page load
+        window.addEventListener('DOMContentLoaded', initMobileFontSize);
+
+        // Add demo hint to first button on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const firstButton = document.querySelector('.suggestion-chip:not(:disabled)');
+            if (firstButton) {
+                firstButton.classList.add('demo-hint');
+            }
+        });
+
         // Subtle Click Sound (General buttons) - Soft tap
         function playClickSound() {
             if (!soundEnabled || !audioContext) return;
@@ -3520,11 +3559,13 @@
 
             currentDemoStep++;
 
-            // Enable next button, disable current
+            // Enable next button, disable current, and move demo hint
             const buttons = document.querySelectorAll('.suggestion-chip');
             buttons[index].disabled = true;
+            buttons[index].classList.remove('demo-hint');
             if (buttons[index + 1]) {
                 buttons[index + 1].disabled = false;
+                buttons[index + 1].classList.add('demo-hint');
             }
 
             setTimeout(() => {
