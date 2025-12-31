@@ -2766,6 +2766,23 @@
             document.getElementById(errorId).classList.remove('show');
         }
 
+        // Enable Enter key to submit forms
+        function enableEnterKeySubmit(inputId, submitFunction) {
+            setTimeout(() => {
+                const input = document.getElementById(inputId);
+                if (input) {
+                    input.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            submitFunction();
+                        }
+                    });
+                    // Auto-focus the input for better UX
+                    input.focus();
+                }
+            }, 100); // Small delay to ensure DOM is updated
+        }
+
         // Header scroll effect
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
@@ -2852,6 +2869,7 @@
                 <div class="form-error" id="mobileNameError">Please enter your name</div>
                 <button class="form-submit" onclick="submitMobileName()">Continue</button>
             `;
+            enableEnterKeySubmit('mobileName', submitMobileName);
         }
 
         // Mobile Email Form Logic
@@ -2897,6 +2915,7 @@
                 <div class="form-error" id="mobileEmailError">Please enter a valid email</div>
                 <button class="form-submit" onclick="submitMobileEmail()">Send Link</button>
             `;
+            enableEnterKeySubmit('mobileEmail', submitMobileEmail);
         }
 
         function submitMobileEmail() {
@@ -2943,9 +2962,14 @@
                 <button class="form-submit" onclick="closeModal('mobileEmailModal')">Close</button>
             `;
 
-            // Send email via backend
+            // Submit to Airtable
             console.log('Mobile Email Capture:', mobileEmailData);
-            // TODO: Integrate with email service
+            mobileEmailData.timestamp = new Date().toISOString();
+
+            // Send to Airtable
+            submitMobileEmailCapture(mobileEmailData)
+                .then(() => console.log('✅ Mobile Email submission successful'))
+                .catch(error => console.error('❌ Mobile Email submission failed:', error));
         }
 
         // CRM Request Form Logic
@@ -2970,6 +2994,7 @@
                 <div class="form-error" id="crmNameError">Please enter your name</div>
                 <button class="form-submit" onclick="submitCrmName()">Continue</button>
             `;
+            enableEnterKeySubmit('crmName', submitCrmName);
         }
 
         function submitCrmName() {
@@ -3011,6 +3036,7 @@
                 <div class="form-error" id="crmEmailError">Please enter a valid email</div>
                 <button class="form-submit" onclick="submitCrmEmail()">Continue</button>
             `;
+            enableEnterKeySubmit('crmEmail', submitCrmEmail);
         }
 
         function submitCrmEmail() {
@@ -3052,6 +3078,7 @@
                 <div class="form-error" id="crmTypeError">Please enter your CRM name</div>
                 <button class="form-submit" onclick="submitCrmType()">Submit</button>
             `;
+            enableEnterKeySubmit('crmType', submitCrmType);
         }
 
         function submitCrmType() {
@@ -3098,9 +3125,14 @@
                 <button class="form-submit" onclick="closeModal('crmRequestModal')">Close</button>
             `;
 
-            // Submit to backend
+            // Submit to Airtable
             console.log('CRM Request:', crmFormData);
-            // TODO: Integrate with backend API
+            crmFormData.timestamp = new Date().toISOString();
+
+            // Send to Airtable
+            submitCrmWaitlist(crmFormData)
+                .then(() => console.log('✅ CRM Waitlist submission successful'))
+                .catch(error => console.error('❌ CRM Waitlist submission failed:', error));
         }
 
         // Demo Functionality - Simplified
@@ -3550,5 +3582,8 @@
 
         console.log('✅ FlightSuite script fully loaded - All systems ready!');
     </script>
+
+    <!-- Airtable Integration -->
+    <script src="airtable-config.js"></script>
 </body>
 </html>

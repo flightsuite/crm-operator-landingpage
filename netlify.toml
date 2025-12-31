@@ -1,0 +1,18 @@
+# Netlify Configuration File
+
+[build]
+  # Publish directory (where your index.html is)
+  publish = "."
+
+  # Functions directory
+  functions = "netlify/functions"
+
+# Redirect rules (optional)
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Environment variables (set these in Netlify UI)
+# AIRTABLE_API_KEY = your_personal_access_token
+# AIRTABLE_BASE_ID = app46JHq6Rm3TpbpT
