@@ -1,0 +1,3558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlightSuite | AI CRM Operator for Automated Data Entry</title>
+    <meta name="description" content="FlightSuite is your AI CRM operator. Natural language commands automatically update your CRM - no manual data entry required.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="FlightSuite | AI CRM Operator for Automated Data Entry">
+    <meta property="og:description" content="AI-powered CRM operator that handles data entry automatically. Try the interactive demo.">
+
+    <style>
+        :root {
+            --color-apple-blue: #0071E3;
+            --color-ios-purple: #5E5CE6;
+            --color-success: #34C759;
+            --color-error: #FF3B30;
+            --color-text-primary: #1D1D1F;
+            --color-text-secondary: #6E6E73;
+            --color-text-tertiary: #86868B;
+            --color-bg-primary: #FFFFFF;
+            --color-bg-secondary: #F5F5F7;
+            --color-bg-dark: #000000;
+            --color-border: #D2D2D7;
+            --color-border-light: #E8E8ED;
+            --gradient-primary: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --section-spacing: clamp(40px, 6vw, 80px);
+            --container-padding: clamp(20px, 5vw, 40px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-primary);
+            background: var(--color-bg-primary);
+            font-size: clamp(15px, 1.5vw, 17px);
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F7 50%, #FFFFFF 100%);
+            overflow: hidden;
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .gradient-orb:nth-child(1) {
+            width: min(600px, 50vw);
+            height: min(600px, 50vw);
+            background: radial-gradient(circle, rgba(94, 92, 230, 0.15) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+            animation-duration: 25s;
+        }
+
+        .gradient-orb:nth-child(2) {
+            width: min(500px, 40vw);
+            height: min(500px, 40vw);
+            background: radial-gradient(circle, rgba(0, 113, 227, 0.12) 0%, transparent 70%);
+            top: 50%;
+            right: -150px;
+            animation-duration: 30s;
+            animation-delay: -10s;
+        }
+
+        .gradient-orb:nth-child(3) {
+            width: min(400px, 35vw);
+            height: min(400px, 35vw);
+            background: radial-gradient(circle, rgba(52, 199, 89, 0.08) 0%, transparent 70%);
+            bottom: -100px;
+            left: 20%;
+            animation-duration: 35s;
+            animation-delay: -20s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.82);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .header-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+            height: clamp(48px, 8vw, 52px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: clamp(20px, 3vw, 24px);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            text-decoration: none;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: transform 0.3s var(--ease-spring);
+        }
+
+        .logo-text:hover {
+            transform: scale(1.02);
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: clamp(16px, 3vw, 32px);
+        }
+
+        .nav-link {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            font-size: clamp(13px, 1.5vw, 14px);
+            font-weight: 400;
+            transition: opacity 0.2s;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-link:hover {
+            opacity: 0.6;
+        }
+
+        .cta-header {
+            background: var(--color-apple-blue);
+            color: white;
+            border: none;
+            padding: clamp(6px, 1vw, 8px) clamp(12px, 2vw, 16px);
+            border-radius: 980px;
+            font-size: clamp(13px, 1.5vw, 14px);
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-smooth);
+            white-space: nowrap;
+        }
+
+        .cta-header:hover {
+            background: #0077ED;
+            transform: scale(1.02);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: clamp(100px, 15vw, 140px) var(--container-padding) var(--section-spacing);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 980px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 980px;
+            font-size: clamp(12px, 1.5vw, 14px);
+            font-weight: 500;
+            margin-bottom: clamp(16px, 3vw, 24px);
+            opacity: 0;
+            animation: fadeInUp 0.8s var(--ease-out) 0.2s forwards;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 8vw, 80px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.015em;
+            margin-bottom: clamp(16px, 3vw, 24px);
+            opacity: 0;
+            animation: fadeInUp 0.8s var(--ease-out) 0.3s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 28px);
+            line-height: 1.35;
+            color: var(--color-text-secondary);
+            margin-bottom: clamp(24px, 5vw, 40px);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            animation: fadeInUp 0.8s var(--ease-out) 0.4s forwards;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: clamp(12px, 2vw, 16px);
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.8s var(--ease-out) 0.5s forwards;
+        }
+
+        .cta-primary {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: clamp(12px, 2vw, 16px) clamp(24px, 4vw, 32px);
+            border-radius: 980px;
+            font-size: clamp(15px, 2vw, 17px);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-smooth);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(94, 92, 230, 0.3);
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 16px 48px rgba(94, 92, 230, 0.35), 0 8px 16px rgba(94, 92, 230, 0.2);
+            filter: brightness(1.08);
+        }
+
+        .cta-primary:active {
+            transform: translateY(-1px) scale(0.99);
+            transition-duration: 0.1s;
+        }
+
+        .cta-primary:hover::before {
+            opacity: 1;
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--color-apple-blue);
+            border: 1.5px solid var(--color-apple-blue);
+            padding: clamp(12px, 2vw, 16px) clamp(24px, 4vw, 32px);
+            border-radius: 980px;
+            font-size: clamp(15px, 2vw, 17px);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-smooth);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-secondary:hover {
+            background: var(--color-apple-blue);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Spacing */
+        section {
+            padding: var(--section-spacing) var(--container-padding);
+        }
+
+        /* Demo Section */
+        .demo-section {
+            background: transparent;
+        }
+
+        /* Reduce spacing between Interactive Demo and Product Walkthrough */
+        .demo-section + .demo-section {
+            padding-top: clamp(20px, 3vw, 40px);
+        }
+
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: clamp(40px, 8vw, 60px);
+        }
+
+        .demo-label {
+            font-size: clamp(12px, 1.5vw, 14px);
+            font-weight: 600;
+            color: var(--color-ios-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: clamp(8px, 1.5vw, 12px);
+        }
+
+        .demo-title {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.015em;
+            margin-bottom: clamp(12px, 2vw, 16px);
+        }
+
+        .demo-description {
+            font-size: clamp(17px, 2.5vw, 21px);
+            line-height: 1.4;
+            color: var(--color-text-secondary);
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* Mac Frame */
+        .mac-frame {
+            background: #1D1D1F;
+            border-radius: clamp(8px, 1.5vw, 12px);
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.25),
+                        0 20px 60px rgba(0, 0, 0, 0.15),
+                        0 0 0 0.5px rgba(255, 255, 255, 0.1) inset;
+            overflow: hidden;
+        }
+
+        .mac-titlebar {
+            height: clamp(32px, 5vw, 40px);
+            background: linear-gradient(to bottom, #E8E8ED 0%, #D2D2D7 100%);
+            display: flex;
+            align-items: center;
+            padding: 0 clamp(12px, 2vw, 16px);
+            border-bottom: 1px solid #C7C7CC;
+        }
+
+        .mac-controls {
+            display: flex;
+            gap: clamp(6px, 1vw, 8px);
+        }
+
+        .mac-control {
+            width: clamp(10px, 1.5vw, 12px);
+            height: clamp(10px, 1.5vw, 12px);
+            border-radius: 50%;
+            border: 0.5px solid rgba(0, 0, 0, 0.15);
+        }
+
+        .mac-control.close {
+            background: linear-gradient(to bottom, #FF6159 0%, #FF5F57 100%);
+        }
+
+        .mac-control.minimize {
+            background: linear-gradient(to bottom, #FFBD2E 0%, #FFBC2D 100%);
+        }
+
+        .mac-control.maximize {
+            background: linear-gradient(to bottom, #28CA42 0%, #27C93F 100%);
+        }
+
+        .mac-content {
+            background: white;
+            display: flex;
+            min-height: clamp(350px, 50vw, 500px);
+        }
+
+        /* Chat Interface */
+        .chat-panel {
+            flex: 0 0 45%;
+            border-right: 1px solid var(--color-border-light);
+            display: flex;
+            flex-direction: column;
+            background: #FAFAFA;
+        }
+
+        .chat-header {
+            padding: clamp(16px, 2.5vw, 20px) clamp(20px, 3vw, 24px);
+            border-bottom: 1px solid var(--color-border-light);
+            background: white;
+        }
+
+        .chat-title {
+            font-size: clamp(15px, 2vw, 17px);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .chat-subtitle {
+            font-size: clamp(12px, 1.5vw, 13px);
+            color: var(--color-text-secondary);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: clamp(20px, 3vw, 24px);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(12px, 2vw, 16px);
+        }
+
+        .message {
+            display: flex;
+            gap: clamp(10px, 1.5vw, 12px);
+            animation: messageSlideIn 0.4s var(--ease-out);
+        }
+
+        .message-avatar {
+            width: clamp(28px, 4vw, 32px);
+            height: clamp(28px, 4vw, 32px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(11px, 1.5vw, 12px);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .message.user .message-avatar {
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+            color: white;
+        }
+
+        .message.ai .message-avatar {
+            background: var(--color-text-primary);
+            color: white;
+        }
+
+        .message-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .message-bubble {
+            padding: clamp(10px, 1.5vw, 12px) clamp(14px, 2vw, 16px);
+            border-radius: 16px;
+            font-size: clamp(14px, 1.8vw, 15px);
+            line-height: 1.4;
+        }
+
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            color: white;
+            border-radius: 16px 16px 16px 4px;
+        }
+
+        .message.ai .message-bubble {
+            background: white;
+            color: var(--color-text-primary);
+            border: 1px solid var(--color-border-light);
+            border-radius: 16px 16px 16px 4px;
+        }
+
+        .message-check {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(52, 199, 89, 0.1);
+            border-radius: 12px;
+            font-size: clamp(12px, 1.5vw, 13px);
+            font-weight: 600;
+            color: var(--color-success);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 16px;
+            width: fit-content;
+            border: 1px solid var(--color-border-light);
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--color-text-tertiary);
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-8px); }
+        }
+
+        .chat-input {
+            padding: clamp(16px, 2.5vw, 20px) clamp(20px, 3vw, 24px);
+            border-top: 1px solid var(--color-border-light);
+            background: white;
+            display: block;
+            width: 100%;
+        }
+
+        .suggestions {
+            display: flex !important;
+            flex-direction: column;
+            gap: clamp(6px, 1vw, 8px);
+            width: 100%;
+        }
+
+        .suggestion-chip {
+            display: block !important;
+            background: white;
+            border: 1.5px solid var(--color-border);
+            padding: clamp(10px, 1.5vw, 12px) clamp(14px, 2vw, 16px);
+            border-radius: 12px;
+            font-size: clamp(13px, 1.8vw, 14px);
+            color: var(--color-text-primary);
+            cursor: pointer;
+            transition: all 0.2s var(--ease-smooth);
+            text-align: left;
+            line-height: 1.4;
+            width: 100%;
+        }
+
+        .suggestion-chip:not(:disabled):hover {
+            border-color: var(--color-apple-blue);
+            background: rgba(0, 113, 227, 0.05);
+            transform: translateY(-1px);
+        }
+
+        .suggestion-chip:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* CRM Panel */
+        .crm-panel {
+            flex: 1;
+            background: #FAFAFA;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .crm-header {
+            padding: clamp(16px, 2.5vw, 20px) clamp(20px, 3vw, 24px);
+            border-bottom: 1px solid var(--color-border-light);
+            background: white;
+        }
+
+        .crm-title {
+            font-size: clamp(15px, 2vw, 17px);
+            font-weight: 600;
+        }
+
+        .crm-content {
+            flex: 1;
+            padding: clamp(20px, 3vw, 24px);
+            overflow-y: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .crm-empty {
+            text-align: center;
+            color: var(--color-text-tertiary);
+        }
+
+        .crm-empty-text {
+            font-size: clamp(14px, 1.8vw, 15px);
+            margin-top: 12px;
+        }
+
+        /* Contact Card */
+        .contact-card {
+            background: white;
+            border: 1px solid var(--color-border-light);
+            border-radius: 16px;
+            padding: clamp(20px, 3vw, 24px);
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            animation: cardSlideIn 0.5s var(--ease-out);
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes cardSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .contact-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .contact-name {
+            font-size: clamp(18px, 2.5vw, 20px);
+            font-weight: 600;
+        }
+
+        .contact-stage {
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            font-size: clamp(12px, 1.5vw, 13px);
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            transition: all 0.3s;
+        }
+
+        .contact-stage.discovery {
+            background: rgba(0, 113, 227, 0.1);
+            color: var(--color-apple-blue);
+        }
+
+        .contact-field {
+            margin-bottom: 16px;
+            transition: all 0.3s;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .contact-field.highlighted {
+            background: rgba(52, 199, 89, 0.1);
+        }
+
+        .field-label {
+            font-size: clamp(11px, 1.5vw, 12px);
+            font-weight: 600;
+            color: var(--color-text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .field-value {
+            font-size: clamp(14px, 1.8vw, 15px);
+        }
+
+        .contact-notes {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border-light);
+        }
+
+        .notes-header {
+            font-size: clamp(11px, 1.5vw, 12px);
+            font-weight: 600;
+            color: var(--color-text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .note-item {
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 8px;
+            font-size: clamp(13px, 1.8vw, 14px);
+            line-height: 1.5;
+        }
+
+        /* Contact List */
+        .contact-list {
+            width: 100%;
+        }
+
+        .contact-list-item {
+            background: white;
+            border: 1px solid var(--color-border-light);
+            border-radius: 12px;
+            padding: clamp(14px, 2vw, 16px);
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .contact-list-item:hover {
+            border-color: var(--color-apple-blue);
+            transform: translateX(4px);
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-list-name {
+            font-size: clamp(15px, 2vw, 16px);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .contact-list-email {
+            font-size: clamp(13px, 1.8vw, 14px);
+            color: var(--color-text-secondary);
+        }
+
+        .contact-list-stage {
+            padding: 4px 10px;
+            background: rgba(0, 113, 227, 0.1);
+            color: var(--color-apple-blue);
+            border-radius: 6px;
+            font-size: clamp(11px, 1.5vw, 12px);
+            font-weight: 600;
+        }
+
+        /* Demo CTA */
+        .demo-cta {
+            margin-top: clamp(32px, 5vw, 40px);
+            text-align: center;
+            padding: clamp(32px, 5vw, 40px);
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .demo-cta-title {
+            font-size: clamp(24px, 4vw, 28px);
+            font-weight: 600;
+            margin-bottom: clamp(12px, 2vw, 16px);
+        }
+
+        .demo-cta-description {
+            font-size: clamp(15px, 2vw, 17px);
+            color: var(--color-text-secondary);
+            margin-bottom: clamp(20px, 3vw, 24px);
+        }
+
+        .demo-cta-link {
+            display: inline-block;
+            margin-top: clamp(12px, 2vw, 16px);
+            color: var(--color-apple-blue);
+            text-decoration: none;
+            font-size: clamp(14px, 1.8vw, 15px);
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .demo-cta-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            background: transparent;
+            text-align: center;
+        }
+
+        .trust-label {
+            font-size: clamp(11px, 1.5vw, 12px);
+            font-weight: 600;
+            color: var(--color-text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: clamp(24px, 4vw, 32px);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: clamp(20px, 3vw, 32px);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .trust-logo {
+            font-size: clamp(16px, 2.5vw, 18px);
+            font-weight: 600;
+            color: var(--color-text-tertiary);
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        .trust-logo:hover {
+            opacity: 0.8;
+        }
+
+        /* Tech-Forward Stats Section */
+        .stats-section {
+            background: transparent;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(24px, 4vw, 40px);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            position: relative;
+            padding: clamp(48px, 8vw, 60px) clamp(32px, 5vw, 40px);
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(94, 92, 230, 0.1);
+            border-radius: 24px;
+            text-align: center;
+            transition: all 0.4s var(--ease-out);
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s var(--ease-out);
+        }
+
+        .stat-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(94, 92, 230, 0.3);
+            box-shadow: 0 20px 60px rgba(94, 92, 230, 0.15);
+        }
+
+        .stat-icon {
+            width: clamp(40px, 6vw, 48px);
+            height: clamp(40px, 6vw, 48px);
+            margin: 0 auto clamp(20px, 3vw, 24px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(94, 92, 230, 0.3);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: clamp(48px, 8vw, 64px);
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: clamp(12px, 2vw, 16px);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: clamp(15px, 2vw, 17px);
+            color: var(--color-text-secondary);
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: transparent;
+        }
+
+        /* CRM Roadmap Section */
+        .roadmap-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roadmap-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .roadmap-header {
+            text-align: center;
+            margin-bottom: clamp(60px, 10vw, 80px);
+        }
+
+        .roadmap-label {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            font-size: clamp(12px, 1.5vw, 14px);
+            font-weight: 600;
+            color: white;
+            margin-bottom: clamp(16px, 3vw, 20px);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .roadmap-title {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 700;
+            color: white;
+            margin-bottom: clamp(16px, 3vw, 20px);
+            line-height: 1.1;
+        }
+
+        .roadmap-description {
+            font-size: clamp(18px, 2.5vw, 21px);
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .roadmap-journey {
+            position: relative;
+            margin: clamp(60px, 10vw, 100px) 0;
+            padding: clamp(40px, 6vw, 60px) 0;
+        }
+
+        /* Winding Road */
+        .road-path {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 120px;
+            transform: translateY(-50%);
+            overflow: visible;
+        }
+
+        .road-line {
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .road-dashes {
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-image: repeating-linear-gradient(
+                to right,
+                white 0px,
+                white 30px,
+                transparent 30px,
+                transparent 60px
+            );
+            opacity: 0.4;
+        }
+
+        /* Stations */
+        .stations-container {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: clamp(20px, 4vw, 40px);
+            z-index: 3;
+        }
+
+        .station {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s var(--ease-smooth);
+        }
+
+        .station:hover {
+            transform: translateY(-8px);
+        }
+
+        .station-marker {
+            width: clamp(80px, 12vw, 100px);
+            height: clamp(80px, 12vw, 100px);
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: clamp(16px, 3vw, 20px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .station:hover .station-marker {
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .station-marker.active {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .station-marker.coming-soon {
+            background: linear-gradient(135deg, #5E5CE6 0%, #4A4AE0 100%);
+        }
+
+        .station-marker.future {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .station-icon {
+            font-size: clamp(32px, 5vw, 40px);
+        }
+
+        .station-name {
+            font-size: clamp(16px, 2.2vw, 20px);
+            font-weight: 700;
+            color: white;
+            margin-bottom: clamp(4px, 1vw, 8px);
+        }
+
+        .station-status {
+            font-size: clamp(13px, 1.8vw, 15px);
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .station-status.live {
+            background: rgba(76, 217, 100, 0.2);
+            color: #4CD964;
+            font-weight: 600;
+        }
+
+        .station-status.arriving {
+            background: rgba(94, 92, 230, 0.2);
+            color: #8B8BFF;
+            font-weight: 600;
+        }
+
+        /* Animated Bus */
+        .bus {
+            position: absolute;
+            left: 8%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: clamp(60px, 10vw, 80px);
+            height: clamp(40px, 6.5vw, 55px);
+            z-index: 4;
+            animation: busIdle 3s ease-in-out infinite;
+        }
+
+        @keyframes busIdle {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(4px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 32px rgba(255, 215, 0, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 48px rgba(255, 215, 0, 0.5); }
+        }
+
+        .bus-body {
+            fill: #FFD700;
+        }
+
+        .bus-window {
+            fill: #1E3A8A;
+            opacity: 0.8;
+        }
+
+        .bus-wheel {
+            fill: #1F2937;
+        }
+
+        .bus-exhaust {
+            position: absolute;
+            left: -10px;
+            top: 60%;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: exhaust 2s ease-out infinite;
+        }
+
+        @keyframes exhaust {
+            0% { transform: translateX(0) scale(1); opacity: 0.4; }
+            100% { transform: translateX(-30px) scale(2); opacity: 0; }
+        }
+
+        /* Roadmap CTA */
+        .roadmap-cta {
+            text-align: center;
+            margin-top: clamp(60px, 10vw, 80px);
+        }
+
+        .roadmap-cta-title {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 700;
+            color: white;
+            margin-bottom: clamp(16px, 3vw, 20px);
+        }
+
+        .roadmap-cta-description {
+            font-size: clamp(16px, 2vw, 18px);
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: clamp(24px, 4vw, 32px);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 768px) {
+            .stations-container {
+                flex-direction: column;
+                gap: clamp(40px, 8vw, 60px);
+            }
+
+            .road-path {
+                display: none;
+            }
+
+            .bus {
+                display: none;
+            }
+
+            .station {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            /* Optimize fireworks for mobile performance */
+            .fireworks-container {
+                pointer-events: none;
+            }
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: clamp(48px, 8vw, 60px);
+        }
+
+        .faq-label {
+            font-size: clamp(12px, 1.5vw, 14px);
+            font-weight: 600;
+            color: var(--color-ios-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: clamp(8px, 1.5vw, 12px);
+        }
+
+        .faq-title {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: clamp(20px, 3vw, 24px) 0;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: opacity 0.2s;
+        }
+
+        .faq-question:hover {
+            opacity: 0.7;
+        }
+
+        .faq-icon {
+            font-size: clamp(18px, 2.5vw, 20px);
+            color: var(--color-text-tertiary);
+            transition: transform 0.3s var(--ease-smooth);
+        }
+
+        .faq-question[aria-expanded="true"] .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s var(--ease-smooth);
+        }
+
+        .faq-answer.open {
+            max-height: 300px;
+        }
+
+        .faq-answer-content {
+            padding-bottom: clamp(20px, 3vw, 24px);
+            font-size: clamp(15px, 2vw, 17px);
+            line-height: 1.5;
+            color: var(--color-text-secondary);
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: var(--color-bg-dark);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(94, 92, 230, 0.15) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .final-cta-label {
+            font-size: clamp(12px, 1.5vw, 14px);
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: clamp(16px, 2.5vw, 20px);
+        }
+
+        .final-cta-title {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 8vw, 72px);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: clamp(20px, 3vw, 24px);
+            background: linear-gradient(135deg, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .final-cta-description {
+            font-size: clamp(18px, 2.5vw, 21px);
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: clamp(32px, 5vw, 40px);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .final-cta-buttons {
+            display: flex;
+            gap: clamp(12px, 2vw, 16px);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-large {
+            background: white;
+            color: var(--color-text-primary);
+            border: none;
+            padding: clamp(16px, 2.5vw, 20px) clamp(32px, 5vw, 40px);
+            border-radius: 980px;
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-smooth);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-large:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 48px rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-trust {
+            margin-top: clamp(24px, 4vw, 32px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(16px, 3vw, 24px);
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: clamp(13px, 1.8vw, 14px);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Footer */
+        .footer {
+            padding: clamp(48px, 8vw, 60px) var(--container-padding) clamp(32px, 5vw, 40px);
+            background: var(--color-bg-secondary);
+            border-top: 1px solid var(--color-border-light);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: clamp(40px, 6vw, 60px);
+            margin-bottom: clamp(48px, 8vw, 60px);
+        }
+
+        .footer-brand {
+            grid-column: span 1;
+        }
+
+        .footer-brand-name {
+            font-family: var(--font-display);
+            font-size: clamp(18px, 2.5vw, 20px);
+            font-weight: 700;
+            margin-bottom: clamp(12px, 2vw, 16px);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-description {
+            font-size: clamp(13px, 1.8vw, 14px);
+            line-height: 1.5;
+            color: var(--color-text-secondary);
+        }
+
+        .footer-column h4 {
+            font-size: clamp(11px, 1.5vw, 12px);
+            font-weight: 600;
+            color: var(--color-text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: clamp(12px, 2vw, 16px);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(10px, 1.5vw, 12px);
+        }
+
+        .footer-link {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            font-size: clamp(13px, 1.8vw, 14px);
+            transition: opacity 0.2s;
+        }
+
+        .footer-link:hover {
+            opacity: 0.6;
+        }
+
+        .footer-bottom {
+            padding-top: clamp(32px, 5vw, 40px);
+            border-top: 1px solid var(--color-border-light);
+            text-align: center;
+            font-size: clamp(11px, 1.5vw, 12px);
+            color: var(--color-text-secondary);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.4s var(--ease-out);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: clamp(24px, 4vw, 32px) clamp(32px, 5vw, 40px) clamp(20px, 3vw, 24px);
+            border-bottom: 1px solid var(--color-border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: clamp(20px, 3vw, 24px);
+            font-weight: 700;
+        }
+
+        .modal-close {
+            width: clamp(28px, 4vw, 32px);
+            height: clamp(28px, 4vw, 32px);
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(18px, 2.5vw, 20px);
+            color: var(--color-text-secondary);
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-body {
+            padding: clamp(32px, 5vw, 40px);
+        }
+
+        .installation-step {
+            margin-bottom: clamp(32px, 5vw, 40px);
+        }
+
+        .installation-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: clamp(28px, 4vw, 32px);
+            height: clamp(28px, 4vw, 32px);
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            font-size: clamp(13px, 1.8vw, 14px);
+            font-weight: 700;
+            margin-bottom: clamp(10px, 1.5vw, 12px);
+        }
+
+        .step-title {
+            font-size: clamp(18px, 2.5vw, 20px);
+            font-weight: 600;
+            margin-bottom: clamp(10px, 1.5vw, 12px);
+        }
+
+        .step-content {
+            font-size: clamp(15px, 2vw, 16px);
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+        }
+
+        .step-list {
+            list-style: none;
+            margin-top: clamp(12px, 2vw, 16px);
+        }
+
+        .step-list li {
+            padding-left: 28px;
+            position: relative;
+            margin-bottom: clamp(10px, 1.5vw, 12px);
+            font-size: clamp(14px, 1.8vw, 15px);
+            line-height: 1.5;
+            color: var(--color-text-secondary);
+        }
+
+        .step-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-apple-blue);
+            font-weight: 600;
+        }
+
+        .step-link {
+            color: var(--color-apple-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .step-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Form Styles */
+        .form-input {
+            width: 100%;
+            padding: clamp(14px, 2vw, 16px);
+            border: 1.5px solid var(--color-border);
+            border-radius: 12px;
+            font-size: clamp(15px, 2vw, 16px);
+            font-family: var(--font-body);
+            transition: all 0.2s;
+            margin-bottom: clamp(12px, 2vw, 16px);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-apple-blue);
+            background: rgba(0, 113, 227, 0.02);
+        }
+
+        .form-input.error {
+            border-color: var(--color-error);
+        }
+
+        .form-error {
+            color: var(--color-error);
+            font-size: clamp(12px, 1.5vw, 13px);
+            margin-top: -8px;
+            margin-bottom: clamp(12px, 2vw, 16px);
+            display: none;
+        }
+
+        .form-error.show {
+            display: block;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: clamp(14px, 2vw, 16px);
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: clamp(15px, 2vw, 17px);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .form-submit:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(94, 92, 230, 0.3);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Installation Demo Animation */
+        .install-demo {
+            background: #FAFAFA;
+            border-radius: 16px;
+            padding: clamp(24px, 4vw, 32px);
+            margin-top: clamp(24px, 4vw, 32px);
+        }
+
+        .demo-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: clamp(16px, 3vw, 24px);
+        }
+
+        .demo-step {
+            text-align: center;
+            padding: clamp(20px, 3vw, 24px);
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--color-border-light);
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .demo-step:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .demo-step-icon {
+            width: clamp(40px, 6vw, 48px);
+            height: clamp(40px, 6vw, 48px);
+            margin: 0 auto clamp(12px, 2vw, 16px);
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: clamp(20px, 3vw, 24px);
+            font-weight: 700;
+        }
+
+        .demo-step-text {
+            font-size: clamp(13px, 1.8vw, 14px);
+            color: var(--color-text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 1024px) {
+            .mac-content {
+                flex-direction: column;
+            }
+
+            .chat-panel {
+                flex: 1;
+                border-right: none;
+                border-bottom: 1px solid var(--color-border-light);
+                min-height: 300px;
+            }
+
+            .crm-panel {
+                min-height: 300px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-brand {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-link {
+                display: none;
+            }
+
+            .hero-cta-group,
+            .final-cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-primary,
+            .cta-secondary,
+            .cta-large {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* Premium Mobile Footer Design */
+            .footer {
+                padding: clamp(40px, 8vw, 48px) var(--container-padding) clamp(24px, 5vw, 32px);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: clamp(32px, 6vw, 40px);
+                margin-bottom: clamp(32px, 6vw, 40px);
+            }
+
+            .footer-brand {
+                grid-column: span 1;
+                text-align: center;
+                padding-bottom: clamp(24px, 4vw, 32px);
+                border-bottom: 1px solid var(--color-border-light);
+            }
+
+            .footer-column {
+                text-align: center;
+            }
+
+            .footer-column h4 {
+                margin-bottom: clamp(16px, 3vw, 20px);
+            }
+
+            .footer-links {
+                align-items: center;
+                gap: clamp(12px, 2vw, 16px);
+            }
+
+            .footer-bottom {
+                padding-top: clamp(24px, 4vw, 32px);
+            }
+        }
+
+        /* Smooth scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Happy New Year 2026 Interactive Fireworks */
+        .nye-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .nye-text {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-display);
+            font-size: clamp(14px, 2vw, 18px);
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B9D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: fadeInUp 0.8s var(--ease-out) 0.1s forwards, glow 2s ease-in-out infinite;
+            letter-spacing: 0.05em;
+            z-index: 2;
+        }
+
+        .firework-trail {
+            position: absolute;
+            width: 3px;
+            height: 60px;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .firework-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.5)); }
+            50% { filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8)); }
+        }
+
+        /* Floating Control Buttons */
+        .floating-controls {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .control-button {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-spring);
+            opacity: 0.7;
+        }
+
+        .control-button:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            box-shadow: 0 12px 48px rgba(94, 92, 230, 0.2);
+        }
+
+        .control-button svg {
+            width: 24px;
+            height: 24px;
+            color: var(--color-text-primary);
+            transition: all 0.3s;
+        }
+
+        .control-button.active svg {
+            color: var(--color-ios-purple);
+        }
+
+        .control-button.muted svg {
+            color: var(--color-text-tertiary);
+        }
+
+        /* Large Font Mode - Accessibility for Hard of Seeing */
+        body.large-font {
+            font-size: clamp(19px, 2.2vw, 22px);
+        }
+
+        body.large-font .hero-subtitle,
+        body.large-font .demo-description,
+        body.large-font .faq-answer-content,
+        body.large-font p,
+        body.large-font .stat-label,
+        body.large-font .trust-label,
+        body.large-font .demo-label,
+        body.large-font .faq-label,
+        body.large-font .final-cta-label {
+            font-size: clamp(20px, 2.5vw, 24px) !important;
+            line-height: 1.6 !important;
+        }
+
+        body.large-font .message-bubble,
+        body.large-font .suggestion-chip,
+        body.large-font .field-label,
+        body.large-font .field-value,
+        body.large-font .contact-list-email {
+            font-size: clamp(17px, 2vw, 20px) !important;
+        }
+
+        body.large-font .faq-question span {
+            font-size: clamp(19px, 2.3vw, 22px) !important;
+        }
+
+        body.large-font .footer-link,
+        body.large-font .nav-link {
+            font-size: clamp(17px, 2vw, 19px) !important;
+        }
+
+        @media (max-width: 768px) {
+            .floating-controls {
+                bottom: 24px;
+                right: 24px;
+                gap: 10px;
+            }
+
+            .control-button {
+                width: 48px;
+                height: 48px;
+            }
+
+            .control-button svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb"></div>
+        <div class="gradient-orb"></div>
+        <div class="gradient-orb"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#" class="logo-text">FlightSuite</a>
+            <nav class="header-nav">
+                <a href="#demo" class="nav-link">Demo</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <button class="cta-header" onclick="openInstallModal()" data-event="install_click">Install for Chrome</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Happy New Year 2026 Interactive Fireworks -->
+        <div class="nye-container" id="fireworksContainer">
+            <div class="nye-text">Happy New Year 2026 🎆</div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="url(#goldGradient)" stroke="none">
+                    <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#DAA520;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/>
+                </svg>
+                Available Now for GoHighLevel
+            </div>
+            <h1 class="hero-title">Your AI CRM operator</h1>
+            <p class="hero-subtitle">Type what you want to record, FlightSuite logs it to GoHighLevel. A Chrome extension that turns natural language into perfect CRM data instantly.</p>
+            <div class="hero-cta-group">
+                <button class="cta-primary" onclick="openInstallModal()" data-event="install_click">
+                    Add to Chrome - It's Free
+                    <span>→</span>
+                </button>
+                <button class="cta-secondary" onclick="openCrmRequestModal()" data-event="crm_waitlist_click">
+                    Join Waitlist for Your CRM
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="demo-container">
+            <div class="demo-header">
+                <div class="demo-label">Interactive Demo</div>
+                <h2 class="demo-title">See FlightSuite in action</h2>
+                <p class="demo-description">Click commands to watch AI orchestrate your CRM data entry automatically.</p>
+            </div>
+
+            <!-- Mac Frame -->
+            <div class="mac-frame">
+                <div class="mac-titlebar">
+                    <div class="mac-controls">
+                        <div class="mac-control close"></div>
+                        <div class="mac-control minimize"></div>
+                        <div class="mac-control maximize"></div>
+                    </div>
+                </div>
+                <div class="mac-content">
+                    <!-- Chat Panel -->
+                    <div class="chat-panel">
+                        <div class="chat-header">
+                            <div class="chat-title">FlightSuite CRM Operator</div>
+                            <div class="chat-subtitle">Natural language commands</div>
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message ai">
+                                <div class="message-avatar">FS</div>
+                                <div class="message-content">
+                                    <div class="message-bubble">
+                                        I'm your AI CRM operator. Try the commands below to see how I handle data entry for you.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <div class="suggestions" id="suggestions">
+                                <button class="suggestion-chip" onclick="runDemoCommand(0)">Add Jane Doe as a new contact with email jane@company.com</button>
+                                <button class="suggestion-chip" onclick="runDemoCommand(1)" disabled>Log a note for Jane: Discussed pricing for enterprise plan</button>
+                                <button class="suggestion-chip" onclick="runDemoCommand(2)" disabled>Move Jane to Discovery stage</button>
+                                <button class="suggestion-chip" onclick="runDemoCommand(3)" disabled>What's Jane's email address?</button>
+                                <button class="suggestion-chip" onclick="runDemoCommand(4)" disabled>Show all my contacts</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CRM Panel -->
+                    <div class="crm-panel">
+                        <div class="crm-header">
+                            <div class="crm-title">GoHighLevel CRM</div>
+                        </div>
+                        <div class="crm-content" id="crmContent">
+                            <div class="crm-empty">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                    <path d="M3 9h18M9 21V9"/>
+                                </svg>
+                                <div class="crm-empty-text">CRM updates appear here</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Installation Demo -->
+            <div class="install-demo">
+                <div class="demo-steps">
+                    <div class="demo-step">
+                        <div class="demo-step-icon">1</div>
+                        <div class="demo-step-text">Click "Add to Chrome"</div>
+                    </div>
+                    <div class="demo-step">
+                        <div class="demo-step-icon">2</div>
+                        <div class="demo-step-text">Install in 30 seconds</div>
+                    </div>
+                    <div class="demo-step">
+                        <div class="demo-step-icon">3</div>
+                        <div class="demo-step-text">Connect your CRM</div>
+                    </div>
+                    <div class="demo-step">
+                        <div class="demo-step-icon">✓</div>
+                        <div class="demo-step-text">Start saving time</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo CTA -->
+            <div class="demo-cta" id="demoCta">
+                <h3 class="demo-cta-title">Let FlightSuite handle the boring CRM updates</h3>
+                <p class="demo-cta-description">Sales teams save 5-10 hours weekly. FlightSuite works inside your CRM so you never touch it again.</p>
+                <button class="cta-primary" onclick="openInstallModal()" data-event="install_click">
+                    Add to Chrome - It's Free
+                    <span>→</span>
+                </button>
+                <a href="#" class="demo-cta-link" onclick="openCrmRequestModal(); return false;">Join the waitlist for your CRM</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="demo-section">
+        <div class="demo-container">
+            <div class="demo-header">
+                <div class="demo-label">Product Walkthrough</div>
+                <h2 class="demo-title">See FlightSuite in your workflow</h2>
+                <p class="demo-description">Watch how sales teams use FlightSuite to eliminate CRM busywork.</p>
+            </div>
+
+            <!-- Video Mac Frame -->
+            <div class="mac-frame" style="background: #000;">
+                <div class="mac-titlebar" style="background: linear-gradient(to bottom, #2D2D2F 0%, #1C1C1E 100%); border-bottom: 1px solid #000;">
+                    <div class="mac-controls">
+                        <div class="mac-control close"></div>
+                        <div class="mac-control minimize"></div>
+                        <div class="mac-control maximize"></div>
+                    </div>
+                    <div style="flex: 1; text-align: center; padding: 0 40px;">
+                        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); padding: 4px 12px; border-radius: 6px; font-size: clamp(11px, 1.5vw, 12px); color: rgba(255,255,255,0.7);">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color: #34C759;">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                            </svg>
+                            loom.com
+                        </div>
+                    </div>
+                </div>
+                <div style="position: relative; padding-bottom: 56.25%; background: #000;">
+                    <iframe
+                        src="https://www.loom.com/embed/56f02ca55d0d4254b45353c90d1be254"
+                        frameborder="0"
+                        webkitallowfullscreen
+                        mozallowfullscreen
+                        allowfullscreen
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="trust-label">Trusted by teams at</div>
+        <div class="trust-grid">
+            <div class="trust-logo">Propane Ninja</div>
+            <div class="trust-logo">The Executive Club</div>
+            <div class="trust-logo">Refine Mortgage</div>
+            <div class="trust-logo">S&A Properties</div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <div class="stat-number">5-10h</div>
+                <div class="stat-label">Saved per rep per week</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <rect x="5" y="11" width="14" height="10" rx="2"/>
+                        <circle cx="12" cy="16" r="1"/>
+                        <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+                    </svg>
+                </div>
+                <div class="stat-number">0</div>
+                <div class="stat-label">Manual CRM updates</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/>
+                    </svg>
+                </div>
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Automated data entry</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="faq-container">
+            <div class="faq-header">
+                <div class="faq-label">Frequently Asked</div>
+                <h2 class="faq-title">Common questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+                        <span>What CRMs does FlightSuite work with?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            FlightSuite currently works with GoHighLevel. HubSpot integration is coming soon - join the waitlist for early access.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+                        <span>How much does FlightSuite cost?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            FlightSuite is currently free to install and use. Pricing for premium features will be announced soon.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+                        <span>How does FlightSuite handle my data?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            FlightSuite only accesses your CRM data with explicit permission. We never share your data with third parties.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+                        <span>How long does setup take?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            30 seconds to install. Your first CRM update happens in under 10 minutes.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+                        <span>Can I uninstall anytime?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, uninstall with one click from Chrome extensions. No cancellation process.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CRM Roadmap Section -->
+    <section class="roadmap-section">
+        <div class="roadmap-container">
+            <div class="roadmap-header">
+                <div class="roadmap-label">CRM Integration Roadmap</div>
+                <h2 class="roadmap-title">Next Stop: Your CRM</h2>
+                <p class="roadmap-description">Join us on our journey to support every CRM platform. Currently serving GoHighLevel, with HubSpot arriving soon!</p>
+            </div>
+
+            <div class="roadmap-journey">
+                <!-- Animated Road -->
+                <div class="road-path">
+                    <div class="road-line"></div>
+                    <div class="road-dashes"></div>
+                </div>
+
+                <!-- Animated Bus -->
+                <div class="bus">
+                    <svg viewBox="0 0 100 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Bus Body -->
+                        <rect x="10" y="15" width="80" height="35" rx="8" class="bus-body"/>
+                        <!-- Windows -->
+                        <rect x="18" y="22" width="15" height="12" rx="2" class="bus-window"/>
+                        <rect x="38" y="22" width="15" height="12" rx="2" class="bus-window"/>
+                        <rect x="58" y="22" width="15" height="12" rx="2" class="bus-window"/>
+                        <!-- Wheels -->
+                        <circle cx="25" cy="50" r="8" class="bus-wheel"/>
+                        <circle cx="75" cy="50" r="8" class="bus-wheel"/>
+                        <!-- Headlight -->
+                        <circle cx="88" cy="30" r="3" fill="#FFF" opacity="0.8"/>
+                    </svg>
+                    <div class="bus-exhaust"></div>
+                    <div class="bus-exhaust" style="animation-delay: 0.5s;"></div>
+                    <div class="bus-exhaust" style="animation-delay: 1s;"></div>
+                </div>
+
+                <!-- Stations -->
+                <div class="stations-container">
+                    <!-- GoHighLevel Station - Active -->
+                    <div class="station">
+                        <div class="station-marker active">
+                            <div class="station-icon">🚀</div>
+                        </div>
+                        <div class="station-name">GoHighLevel</div>
+                        <div class="station-status live">● Live Now</div>
+                    </div>
+
+                    <!-- HubSpot Station - Coming Soon -->
+                    <div class="station">
+                        <div class="station-marker coming-soon">
+                            <div class="station-icon">📍</div>
+                        </div>
+                        <div class="station-name">HubSpot</div>
+                        <div class="station-status arriving">Arriving Jan 2026</div>
+                    </div>
+
+                    <!-- Salesforce Station - Future -->
+                    <div class="station">
+                        <div class="station-marker future">
+                            <div class="station-icon">☁️</div>
+                        </div>
+                        <div class="station-name">Salesforce</div>
+                        <div class="station-status">Coming 2026</div>
+                    </div>
+
+                    <!-- Pipedrive Station - Future -->
+                    <div class="station">
+                        <div class="station-marker future">
+                            <div class="station-icon">📊</div>
+                        </div>
+                        <div class="station-name">Pipedrive</div>
+                        <div class="station-status">Coming 2026</div>
+                    </div>
+
+                    <!-- More CRMs Station - Future -->
+                    <div class="station">
+                        <div class="station-marker future">
+                            <div class="station-icon">✨</div>
+                        </div>
+                        <div class="station-name">More CRMs</div>
+                        <div class="station-status">2026 & Beyond</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Roadmap CTA -->
+            <div class="roadmap-cta">
+                <h3 class="roadmap-cta-title">Don't see your CRM?</h3>
+                <p class="roadmap-cta-description">Join the waitlist and we'll notify you when FlightSuite supports your platform.</p>
+                <button class="cta-large" onclick="openCrmRequestModal()" data-event="roadmap_waitlist_click" style="background: white; color: var(--color-text-primary);">
+                    Join the Waitlist
+                    <span>→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="final-cta-content">
+            <div class="final-cta-label">AI CRM Operator</div>
+            <h2 class="final-cta-title">Never do data entry again</h2>
+            <p class="final-cta-description">Let AI orchestrate your CRM updates. Save 5-10 hours every week.</p>
+            <div class="final-cta-buttons">
+                <button class="cta-large" onclick="openInstallModal()" data-event="install_click">
+                    Add to Chrome - It's Free
+                    <span>→</span>
+                </button>
+                <button class="cta-secondary" onclick="openCrmRequestModal()" data-event="crm_waitlist_click" style="background: rgba(255, 255, 255, 0.1); border: 1.5px solid rgba(255, 255, 255, 0.3); color: white;">
+                    Join Waitlist for Your CRM
+                </button>
+            </div>
+            <div class="cta-trust">
+                <div class="trust-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-success);">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Free to start
+                </div>
+                <div class="trust-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-success);">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    No credit card
+                </div>
+                <div class="trust-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-success);">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    30-second install
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-name">FlightSuite</div>
+                    <p class="footer-description">AI CRM operator that handles data entry automatically.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="#demo" class="footer-link">Demo</a></li>
+                        <li><a href="#faq" class="footer-link">FAQ</a></li>
+                        <li><a href="https://www.loom.com/share/56f02ca55d0d4254b45353c90d1be254" class="footer-link">Product Demo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://flightsuite.ai/privacy-policy" class="footer-link">Privacy</a></li>
+                        <li><a href="#" class="footer-link">Terms</a></li>
+                        <li><a href="https://forms.gle/4wQhEo9hgp1eJKqL7" class="footer-link">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb?hl=en-US" class="footer-link">Chrome Store</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <ul class="footer-links">
+                        <li>
+                            <a href="https://www.linkedin.com/company/flight-suite-ai" class="footer-link" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/flightsuite.ai/" class="footer-link" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                                Instagram
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2025 Light Estate Enterprises LLC dba FlightSuite. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Controls -->
+    <div class="floating-controls">
+        <!-- Font Size Toggle -->
+        <button class="control-button" id="fontToggle" onclick="toggleFontSize()" aria-label="Increase text size for readability" title="Larger Text">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="M21 21l-4.35-4.35"></path>
+                <path d="M11 8v6M8 11h6"></path>
+            </svg>
+        </button>
+        <!-- Sound Toggle -->
+        <button class="control-button" id="soundToggle" onclick="toggleSound()" aria-label="Toggle sound effects" title="Sound">
+            <svg id="soundIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Installation Instructions Modal -->
+    <div class="modal-overlay" id="installModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Installation Guide</h2>
+                <button class="modal-close" onclick="closeModal('installModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="installation-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Install Extension</h3>
+                    <div class="step-content">
+                        <p>Click the button below to install FlightSuite from the Chrome Web Store.</p>
+                        <a href="https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb?hl=en-US" class="step-link" target="_blank">Open Chrome Web Store →</a>
+                    </div>
+                </div>
+
+                <div class="installation-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Get Your Location ID</h3>
+                    <div class="step-content">
+                        <p>Find your GoHighLevel Location ID:</p>
+                        <ul class="step-list">
+                            <li>Log in to your GoHighLevel account</li>
+                            <li>Go to Settings > Business Profile</li>
+                            <li>Copy your Location ID</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="installation-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Create PAT Token</h3>
+                    <div class="step-content">
+                        <p>Generate a Personal Access Token (PAT) in GoHighLevel:</p>
+                        <ul class="step-list">
+                            <li>Navigate to Settings > Integrations</li>
+                            <li>Click on "API" or "Developer"</li>
+                            <li>Select "Create New PAT Token"</li>
+                            <li>Name it "FlightSuite"</li>
+                            <li>Select required permissions (Contacts, Notes, Opportunities)</li>
+                            <li>Copy the generated token immediately</li>
+                        </ul>
+                        <p style="margin-top: 12px; color: var(--color-text-tertiary); font-size: 14px;">⚠️ Save your PAT token securely. It won't be shown again.</p>
+                    </div>
+                </div>
+
+                <div class="installation-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Enter Credentials</h3>
+                    <div class="step-content">
+                        <p>In the FlightSuite extension:</p>
+                        <ul class="step-list">
+                            <li>Click the FlightSuite icon in Chrome</li>
+                            <li>Paste your Location ID</li>
+                            <li>Paste your PAT Token</li>
+                            <li>Click "Connect" and start using FlightSuite!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRM Waitlist Modal -->
+    <div class="modal-overlay" id="crmRequestModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2 class="modal-title">Join the Waitlist</h2>
+                <button class="modal-close" onclick="closeModal('crmRequestModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="chat-messages" id="crmChatMessages" style="min-height: 200px; max-height: 400px; overflow-y: auto; padding: 0; margin-bottom: 24px; background: #FAFAFA; border-radius: 12px; padding: 20px;">
+                    <div class="message ai" style="margin-bottom: 16px;">
+                        <div class="message-avatar">FS</div>
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                We're adding support for more CRMs! What's your name?
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="crmRequestForm">
+                    <input type="text" class="form-input" id="crmName" placeholder="Your name">
+                    <div class="form-error" id="crmNameError">Please enter your name</div>
+                    <button class="form-submit" onclick="submitCrmName()">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Email Capture Modal -->
+    <div class="modal-overlay" id="mobileEmailModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2 class="modal-title">Get FlightSuite on Desktop</h2>
+                <button class="modal-close" onclick="closeModal('mobileEmailModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="chat-messages" id="mobileEmailChat" style="min-height: 200px; max-height: 400px; overflow-y: auto; padding: 0; margin-bottom: 24px; background: #FAFAFA; border-radius: 12px; padding: 20px;">
+                    <div class="message ai" style="margin-bottom: 16px;">
+                        <div class="message-avatar">FS</div>
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                FlightSuite is a Chrome extension that works best on desktop. I can email you the installation link! What's your name?
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="mobileEmailForm">
+                    <input type="text" class="form-input" id="mobileName" placeholder="Your name">
+                    <div class="form-error" id="mobileNameError">Please enter your name</div>
+                    <button class="form-submit" onclick="submitMobileName()">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        console.log('✅ FlightSuite script loading...');
+
+        // Web Audio API - Premium Sound Effects (with error handling)
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioContext = null;
+        let soundEnabled = true;
+
+        try {
+            audioContext = new AudioContext();
+            console.log('✅ Audio context initialized');
+        } catch (e) {
+            console.warn('Audio context failed:', e);
+            soundEnabled = false;
+        }
+
+        // Toggle Sound
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const toggle = document.getElementById('soundToggle');
+            const icon = document.getElementById('soundIcon');
+
+            if (soundEnabled) {
+                toggle.classList.remove('muted');
+                icon.innerHTML = `
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                `;
+                playSuccessSound();
+            } else {
+                toggle.classList.add('muted');
+                icon.innerHTML = `
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                `;
+            }
+        }
+
+        // Toggle Font Size
+        function toggleFontSize() {
+            playClickSound();
+            const body = document.body;
+            const toggle = document.getElementById('fontToggle');
+
+            body.classList.toggle('large-font');
+
+            if (body.classList.contains('large-font')) {
+                toggle.classList.add('active');
+            } else {
+                toggle.classList.remove('active');
+            }
+        }
+
+        // Subtle Click Sound (General buttons) - Soft tap
+        function playClickSound() {
+            if (!soundEnabled || !audioContext) return;
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.type = 'sine';
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            osc.frequency.setValueAtTime(520, audioContext.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(260, audioContext.currentTime + 0.05);
+            gain.gain.setValueAtTime(0.04, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.05);
+            osc.start(audioContext.currentTime);
+            osc.stop(audioContext.currentTime + 0.05);
+        }
+
+        // Success Sound (Form submissions) - Gentle chime
+        function playSuccessSound() {
+            if (!soundEnabled || !audioContext) return;
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.type = 'sine';
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            osc.frequency.setValueAtTime(659.25, audioContext.currentTime); // E5
+            osc.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.08); // G5
+            gain.gain.setValueAtTime(0.05, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.2);
+            osc.start(audioContext.currentTime);
+            osc.stop(audioContext.currentTime + 0.2);
+        }
+
+        // Select Sound (Demo commands) - Satisfying bloop
+        function playSelectSound() {
+            if (!soundEnabled || !audioContext) return;
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.type = 'sine';
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            osc.frequency.setValueAtTime(440, audioContext.currentTime); // A4
+            osc.frequency.exponentialRampToValueAtTime(880, audioContext.currentTime + 0.04); // A5
+            osc.frequency.exponentialRampToValueAtTime(440, audioContext.currentTime + 0.08);
+            gain.gain.setValueAtTime(0.06, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+            osc.start(audioContext.currentTime);
+            osc.stop(audioContext.currentTime + 0.1);
+        }
+
+        // Modal Sound (Opening modals) - Warm rise
+        function playModalSound() {
+            if (!soundEnabled || !audioContext) return;
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.type = 'triangle';
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            osc.frequency.setValueAtTime(330, audioContext.currentTime); // E4
+            osc.frequency.exponentialRampToValueAtTime(494, audioContext.currentTime + 0.08); // B4
+            gain.gain.setValueAtTime(0.04, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.12);
+            osc.start(audioContext.currentTime);
+            osc.stop(audioContext.currentTime + 0.12);
+        }
+
+        // Form Validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validateRequired(value) {
+            return value.trim().length > 0;
+        }
+
+        function showError(errorId) {
+            document.getElementById(errorId).classList.add('show');
+        }
+
+        function hideError(errorId) {
+            document.getElementById(errorId).classList.remove('show');
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // FAQ Toggle
+        function toggleFaq(button) {
+            const answer = button.nextElementSibling;
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+            document.querySelectorAll('.faq-question').forEach(q => {
+                if (q !== button) {
+                    q.setAttribute('aria-expanded', 'false');
+                    q.nextElementSibling.classList.remove('open');
+                }
+            });
+
+            button.setAttribute('aria-expanded', !isExpanded);
+            answer.classList.toggle('open');
+        }
+
+        // Modal Functions
+        function openInstallModal() {
+            playModalSound();
+            document.getElementById('installModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openCrmRequestModal() {
+            playModalSound();
+            document.getElementById('crmRequestModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            resetCrmRequestForm();
+        }
+
+        function closeModal(modalId) {
+            playClickSound();
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Mobile Detection & Email Capture
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+        }
+
+        // Show mobile email capture on CTA clicks for mobile users
+        const originalOpenInstallModal = openInstallModal;
+        openInstallModal = function() {
+            if (isMobile()) {
+                openMobileEmailModal();
+            } else {
+                originalOpenInstallModal();
+            }
+        };
+
+        function openMobileEmailModal() {
+            playClickSound();
+            document.getElementById('mobileEmailModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            resetMobileEmailForm();
+        }
+
+        function resetMobileEmailForm() {
+            mobileEmailStep = 0;
+            mobileEmailData = {};
+            document.getElementById('mobileEmailChat').innerHTML = `
+                <div class="message ai" style="margin-bottom: 16px;">
+                    <div class="message-avatar">FS</div>
+                    <div class="message-content">
+                        <div class="message-bubble">
+                            FlightSuite is a Chrome extension that works best on desktop. I can email you the installation link! What's your name?
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('mobileEmailForm').innerHTML = `
+                <input type="text" class="form-input" id="mobileName" placeholder="Your name">
+                <div class="form-error" id="mobileNameError">Please enter your name</div>
+                <button class="form-submit" onclick="submitMobileName()">Continue</button>
+            `;
+        }
+
+        // Mobile Email Form Logic
+        let mobileEmailStep = 0;
+        let mobileEmailData = {};
+
+        function submitMobileName() {
+            const name = document.getElementById('mobileName').value.trim();
+            const nameInput = document.getElementById('mobileName');
+
+            if (!validateRequired(name)) {
+                nameInput.classList.add('error');
+                showError('mobileNameError');
+                return;
+            }
+
+            nameInput.classList.remove('error');
+            hideError('mobileNameError');
+            playSuccessSound();
+            mobileEmailData.name = name;
+
+            const chatMessages = document.getElementById('mobileEmailChat');
+            chatMessages.innerHTML += `
+                <div class="message user" style="margin-bottom: 16px;">
+                    <div class="message-avatar">You</div>
+                    <div class="message-content">
+                        <div class="message-bubble">${name}</div>
+                    </div>
+                </div>
+                <div class="message ai" style="margin-bottom: 16px;">
+                    <div class="message-avatar">FS</div>
+                    <div class="message-content">
+                        <div class="message-bubble">
+                            Great! What's your email address?
+                        </div>
+                    </div>
+                </div>
+            `;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            document.getElementById('mobileEmailForm').innerHTML = `
+                <input type="email" class="form-input" id="mobileEmail" placeholder="your@email.com">
+                <div class="form-error" id="mobileEmailError">Please enter a valid email</div>
+                <button class="form-submit" onclick="submitMobileEmail()">Send Link</button>
+            `;
+        }
+
+        function submitMobileEmail() {
+            const email = document.getElementById('mobileEmail').value.trim();
+            const emailInput = document.getElementById('mobileEmail');
+
+            if (!validateEmail(email)) {
+                emailInput.classList.add('error');
+                showError('mobileEmailError');
+                return;
+            }
+
+            emailInput.classList.remove('error');
+            hideError('mobileEmailError');
+            playSuccessSound();
+            mobileEmailData.email = email;
+
+            const chatMessages = document.getElementById('mobileEmailChat');
+            chatMessages.innerHTML += `
+                <div class="message user" style="margin-bottom: 16px;">
+                    <div class="message-avatar">You</div>
+                    <div class="message-content">
+                        <div class="message-bubble">${email}</div>
+                    </div>
+                </div>
+                <div class="message ai" style="margin-bottom: 16px;">
+                    <div class="message-avatar">FS</div>
+                    <div class="message-content">
+                        <div class="message-bubble">
+                            Perfect! I've sent the installation link to ${email}. Check your inbox!
+                        </div>
+                        <div class="message-check">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-success);">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Email sent
+                        </div>
+                    </div>
+                </div>
+            `;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            document.getElementById('mobileEmailForm').innerHTML = `
+                <button class="form-submit" onclick="closeModal('mobileEmailModal')">Close</button>
+            `;
+
+            // Send email via backend
+            console.log('Mobile Email Capture:', mobileEmailData);
+            // TODO: Integrate with email service
+        }
+
+        // CRM Request Form Logic
+        let crmFormStep = 0;
+        let crmFormData = {};
+
+        function resetCrmRequestForm() {
+            crmFormStep = 0;
+            crmFormData = {};
+            document.getElementById('crmChatMessages').innerHTML = `
+                <div class="message ai" style="margin-bottom: 16px;">
+                    <div class="message-avatar">FS</div>
+                    <div class="message-content">
+                        <div class="message-bubble">
+                            We're adding support for more CRMs! What's your name?
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('crmRequestForm').innerHTML = `
+                <input type="text" class="form-input" id="crmName" placeholder="Your name">
+                <div class="form-error" id="crmNameError">Please enter your name</div>
+                <button class="form-submit" onclick="submitCrmName()">Continue</button>
+            `;
+        }
+
+        function submitCrmName() {
+            const name = document.getElementById('crmName').value.trim();
+            const nameInput = document.getElementById('crmName');
+
+            if (!validateRequired(name)) {
+                nameInput.classList.add('error');
+                showError('crmNameError');
+                return;
+            }
+
+            nameInput.classList.remove('error');
+            hideError('crmNameError');
+            playSuccessSound();
+            crmFormData.name = name;
+
+            const chatMessages = document.getElementById('crmChatMessages');
+            chatMessages.innerHTML += `
+                <div class="message user" style="margin-bottom: 16px;">
+                    <div class="message-avatar">You</div>
+                    <div class="message-content">
+                        <div class="message-bubble">${name}</div>
+                    </div>
+                </div>
+                <div class="message ai" style="margin-bottom: 16px;">
+                    <div class="message-avatar">FS</div>
+                    <div class="message-content">
+                        <div class="message-bubble">
+                            Great! What's your email?
+                        </div>
+                    </div>
+                </div>
+            `;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            document.getElementById('crmRequestForm').innerHTML = `
+                <input type="email" class="form-input" id="crmEmail" placeholder="your@email.com">
+                <div class="form-error" id="crmEmailError">Please enter a valid email</div>
+                <button class="form-submit" onclick="submitCrmEmail()">Continue</button>
+            `;
+        }
+
+        function submitCrmEmail() {
+            const email = document.getElementById('crmEmail').value.trim();
+            const emailInput = document.getElementById('crmEmail');
+
+            if (!validateEmail(email)) {
+                emailInput.classList.add('error');
+                showError('crmEmailError');
+                return;
+            }
+
+            emailInput.classList.remove('error');
+            hideError('crmEmailError');
+            playSuccessSound();
+            crmFormData.email = email;
+
+            const chatMessages = document.getElementById('crmChatMessages');
+            chatMessages.innerHTML += `
+                <div class="message user" style="margin-bottom: 16px;">
+                    <div class="message-avatar">You</div>
+                    <div class="message-content">
+                        <div class="message-bubble">${email}</div>
+                    </div>
+                </div>
+                <div class="message ai" style="margin-bottom: 16px;">
+                    <div class="message-avatar">FS</div>
+                    <div class="message-content">
+                        <div class="message-bubble">
+                            Which CRM do you use?
+                        </div>
+                    </div>
+                </div>
+            `;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            document.getElementById('crmRequestForm').innerHTML = `
+                <input type="text" class="form-input" id="crmType" placeholder="e.g., Salesforce, HubSpot">
+                <div class="form-error" id="crmTypeError">Please enter your CRM name</div>
+                <button class="form-submit" onclick="submitCrmType()">Submit</button>
+            `;
+        }
+
+        function submitCrmType() {
+            const crm = document.getElementById('crmType').value.trim();
+            const crmInput = document.getElementById('crmType');
+
+            if (!validateRequired(crm)) {
+                crmInput.classList.add('error');
+                showError('crmTypeError');
+                return;
+            }
+
+            crmInput.classList.remove('error');
+            hideError('crmTypeError');
+            playSuccessSound();
+            crmFormData.crm = crm;
+
+            const chatMessages = document.getElementById('crmChatMessages');
+            chatMessages.innerHTML += `
+                <div class="message user" style="margin-bottom: 16px;">
+                    <div class="message-avatar">You</div>
+                    <div class="message-content">
+                        <div class="message-bubble">${crm}</div>
+                    </div>
+                </div>
+                <div class="message ai" style="margin-bottom: 16px;">
+                    <div class="message-avatar">FS</div>
+                    <div class="message-content">
+                        <div class="message-bubble">
+                            Thanks ${crmFormData.name}! We'll reach out about adding ${crm} support.
+                        </div>
+                        <div class="message-check">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-success);">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Request submitted
+                        </div>
+                    </div>
+                </div>
+            `;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            document.getElementById('crmRequestForm').innerHTML = `
+                <button class="form-submit" onclick="closeModal('crmRequestModal')">Close</button>
+            `;
+
+            // Submit to backend
+            console.log('CRM Request:', crmFormData);
+            // TODO: Integrate with backend API
+        }
+
+        // Demo Functionality - Simplified
+        let currentDemoStep = 0;
+
+        const demoData = [
+            {
+                user: "Add Jane Doe as a new contact with email jane@company.com",
+                ai: "Done. I've added Jane Doe to your CRM.",
+                confirmation: "Contact created",
+                action: () => showContact()
+            },
+            {
+                user: "Log a note for Jane: Discussed pricing for enterprise plan",
+                ai: "Logged. Note added to Jane's contact.",
+                confirmation: "Note added",
+                action: () => addNote()
+            },
+            {
+                user: "Move Jane to Discovery stage",
+                ai: "Updated. Jane is now in Discovery.",
+                confirmation: "Stage updated",
+                action: () => updateStage()
+            },
+            {
+                user: "What's Jane's email address?",
+                ai: "Jane's email is jane@company.com",
+                confirmation: null,
+                action: () => highlightEmail()
+            },
+            {
+                user: "Show all my contacts",
+                ai: "Here are your contacts:",
+                confirmation: "3 contacts found",
+                action: () => showAllContacts()
+            }
+        ];
+
+        async function runDemoCommand(index) {
+            if (index !== currentDemoStep) return;
+
+            const cmd = demoData[index];
+            playSelectSound();
+
+            const messagesContainer = document.getElementById('chatMessages');
+            messagesContainer.innerHTML = '';
+
+            addMessage('user', cmd.user);
+
+            await showTypingIndicator();
+
+            playSuccessSound();
+            addMessage('ai', cmd.ai, cmd.confirmation);
+
+            if (cmd.action) {
+                setTimeout(() => cmd.action(), 600);
+            }
+
+            currentDemoStep++;
+
+            // Enable next button, disable current
+            const buttons = document.querySelectorAll('.suggestion-chip');
+            buttons[index].disabled = true;
+            if (buttons[index + 1]) {
+                buttons[index + 1].disabled = false;
+            }
+
+            setTimeout(() => {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 200);
+        }
+
+        function addMessage(type, text, confirmation) {
+            const messagesContainer = document.getElementById('chatMessages');
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = type === 'ai' ? 'FS' : 'You';
+
+            const content = document.createElement('div');
+            content.className = 'message-content';
+
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble';
+            bubble.textContent = text;
+
+            content.appendChild(bubble);
+
+            if (confirmation) {
+                const check = document.createElement('div');
+                check.className = 'message-check';
+                check.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-success);">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    ${confirmation}
+                `;
+                content.appendChild(check);
+            }
+
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(content);
+            messagesContainer.appendChild(messageDiv);
+        }
+
+        function showTypingIndicator() {
+            return new Promise((resolve) => {
+                const messagesContainer = document.getElementById('chatMessages');
+
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message ai';
+                messageDiv.id = 'typingIndicator';
+
+                const avatar = document.createElement('div');
+                avatar.className = 'message-avatar';
+                avatar.textContent = 'FS';
+
+                const content = document.createElement('div');
+                content.className = 'message-content';
+
+                const typing = document.createElement('div');
+                typing.className = 'typing-indicator';
+                typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+
+                content.appendChild(typing);
+                messageDiv.appendChild(avatar);
+                messageDiv.appendChild(content);
+
+                messagesContainer.appendChild(messageDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+                setTimeout(() => {
+                    const indicator = document.getElementById('typingIndicator');
+                    if (indicator) {
+                        indicator.remove();
+                    }
+                    resolve();
+                }, 1500);
+            });
+        }
+
+        // CRM Actions
+        function showContact() {
+            const crmContent = document.getElementById('crmContent');
+            crmContent.innerHTML = `
+                <div class="contact-card">
+                    <div class="contact-header">
+                        <div>
+                            <div class="contact-name">Jane Doe</div>
+                        </div>
+                        <div class="contact-stage" id="contactStage">New Lead</div>
+                    </div>
+                    <div class="contact-field" id="emailField">
+                        <div class="field-label">Email</div>
+                        <div class="field-value">jane@company.com</div>
+                    </div>
+                    <div class="contact-field">
+                        <div class="field-label">Phone</div>
+                        <div class="field-value">Not provided</div>
+                    </div>
+                    <div class="contact-notes" id="contactNotes" style="display: none;">
+                        <div class="notes-header">Notes</div>
+                        <div id="notesList"></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function addNote() {
+            const notesSection = document.getElementById('contactNotes');
+            const notesList = document.getElementById('notesList');
+            notesSection.style.display = 'block';
+            const note = document.createElement('div');
+            note.className = 'note-item';
+            note.textContent = 'Discussed pricing for enterprise plan';
+            notesList.appendChild(note);
+        }
+
+        function updateStage() {
+            const stageEl = document.getElementById('contactStage');
+            if (stageEl) {
+                stageEl.textContent = 'Discovery';
+                stageEl.classList.add('discovery');
+            }
+        }
+
+        function highlightEmail() {
+            const emailField = document.getElementById('emailField');
+            if (emailField) {
+                emailField.classList.add('highlighted');
+                setTimeout(() => {
+                    emailField.classList.remove('highlighted');
+                }, 2000);
+            }
+        }
+
+        function showAllContacts() {
+            const crmContent = document.getElementById('crmContent');
+            crmContent.innerHTML = `
+                <div class="contact-list">
+                    <div class="contact-list-item">
+                        <div class="contact-info">
+                            <div class="contact-list-name">Jane Doe</div>
+                            <div class="contact-list-email">jane@company.com</div>
+                        </div>
+                        <div class="contact-list-stage">Discovery</div>
+                    </div>
+                    <div class="contact-list-item">
+                        <div class="contact-info">
+                            <div class="contact-list-name">John Smith</div>
+                            <div class="contact-list-email">john@acme.com</div>
+                        </div>
+                        <div class="contact-list-stage">Proposal</div>
+                    </div>
+                    <div class="contact-list-item">
+                        <div class="contact-info">
+                            <div class="contact-list-name">Sarah Johnson</div>
+                            <div class="contact-list-email">sarah@techcorp.com</div>
+                        </div>
+                        <div class="contact-list-stage">New Lead</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Ultra-Luxury Fireworks - Tiffany & Co Inspired
+        const fireworksContainer = document.getElementById('fireworksContainer');
+        const tiffanyColors = [
+            { main: '#FFD700', glow: 'rgba(255, 215, 0, 0.7)', trail: 'rgba(255, 215, 0, 0.4)' },      // 24K Gold
+            { main: '#F4E4C1', glow: 'rgba(244, 228, 193, 0.6)', trail: 'rgba(244, 228, 193, 0.3)' },  // Champagne Diamond
+            { main: '#FFFAF0', glow: 'rgba(255, 250, 240, 0.9)', trail: 'rgba(255, 250, 240, 0.5)' },  // Flawless White
+            { main: '#E8E8E8', glow: 'rgba(232, 232, 232, 0.7)', trail: 'rgba(232, 232, 232, 0.4)' },  // Platinum Shimmer
+            { main: '#FFEAA7', glow: 'rgba(255, 234, 167, 0.6)', trail: 'rgba(255, 234, 167, 0.3)' }   // Yellow Diamond
+        ];
+
+        function launchPremiumFirework() {
+            const startX = Math.random() * window.innerWidth;
+            const startY = fireworksContainer.offsetHeight;
+            const endY = Math.random() * (fireworksContainer.offsetHeight * 0.2) + 40;
+            const colorScheme = tiffanyColors[Math.floor(Math.random() * tiffanyColors.length)];
+
+            // Elegant ascending trail with shimmer
+            const trail = document.createElement('div');
+            trail.className = 'firework-trail';
+            trail.style.left = startX + 'px';
+            trail.style.top = startY + 'px';
+            trail.style.width = '1.5px';
+            trail.style.height = '100px';
+            trail.style.background = `linear-gradient(to top, ${colorScheme.trail}, transparent)`;
+            trail.style.boxShadow = `0 0 25px ${colorScheme.glow}, 0 0 40px ${colorScheme.glow}`;
+            trail.style.filter = 'blur(0.3px)';
+            trail.style.opacity = '0.9';
+            fireworksContainer.appendChild(trail);
+
+            // Graceful upward animation
+            const duration = 1600;
+            const start = performance.now();
+
+            function animateTrail(currentTime) {
+                const elapsed = currentTime - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 5);
+
+                const currentY = startY - (startY - endY) * easeOut;
+                trail.style.top = currentY + 'px';
+                trail.style.opacity = 0.9 - progress * 0.4;
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateTrail);
+                } else {
+                    tiffanyExplode(startX, endY, colorScheme);
+                    setTimeout(() => trail.remove(), 600);
+                }
+            }
+
+            requestAnimationFrame(animateTrail);
+        }
+
+        function tiffanyExplode(x, y, colorScheme) {
+            // Ultra-Vivid Multi-layer bloom effect - LARGER & MORE INTENSE
+            // Optimize for mobile: reduce particles on smaller screens
+            const isMobile = window.innerWidth < 768;
+            const layers = 3;
+            const particlesPerLayer = isMobile ? [20, 15, 10] : [32, 24, 16]; // Reduced on mobile
+            const shimmerCount = isMobile ? 15 : 30; // Half on mobile
+
+            // Staggered bloom layers
+            for (let layer = 0; layer < layers; layer++) {
+                setTimeout(() => {
+                    const count = particlesPerLayer[layer];
+                    for (let i = 0; i < count; i++) {
+                        createDiamondParticle(x, y, i, count, colorScheme, layer);
+                    }
+                }, layer * 120);
+            }
+
+            // Add trailing sparkles - optimized for mobile
+            for (let i = 0; i < shimmerCount; i++) {
+                setTimeout(() => createShimmer(x, y, colorScheme), Math.random() * 400);
+            }
+
+            // Center bloom flash - LARGER
+            createBloomCenter(x, y, colorScheme);
+        }
+
+        function createBloomCenter(x, y, colorScheme) {
+            const bloom = document.createElement('div');
+            bloom.className = 'firework-particle';
+            bloom.style.left = x + 'px';
+            bloom.style.top = y + 'px';
+            bloom.style.width = '12px';
+            bloom.style.height = '12px';
+            bloom.style.background = colorScheme.main;
+            bloom.style.borderRadius = '50%';
+            bloom.style.boxShadow = `0 0 60px ${colorScheme.glow}, 0 0 90px ${colorScheme.glow}, 0 0 120px ${colorScheme.trail}`;
+            bloom.style.opacity = '1';
+            fireworksContainer.appendChild(bloom);
+
+            const duration = 600;
+            const start = performance.now();
+
+            function animate(currentTime) {
+                const elapsed = currentTime - start;
+                const progress = Math.min(elapsed / duration, 1);
+
+                bloom.style.opacity = 1 - progress;
+                bloom.style.transform = `scale(${1 + progress * 3})`;
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    bloom.remove();
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        function createDiamondParticle(x, y, index, total, colorScheme, layer) {
+            const particle = document.createElement('div');
+            particle.className = 'firework-particle';
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+
+            const size = layer === 0 ? 8 : layer === 1 ? 6 : 5;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.background = colorScheme.main;
+            particle.style.borderRadius = '50%';
+
+            const glowIntensity = layer === 0 ? 30 : layer === 1 ? 25 : 20;
+            particle.style.boxShadow = `
+                0 0 ${glowIntensity}px ${colorScheme.glow},
+                0 0 ${glowIntensity * 2}px ${colorScheme.glow},
+                0 0 ${glowIntensity * 3}px ${colorScheme.trail}
+            `;
+            fireworksContainer.appendChild(particle);
+
+            const angle = (Math.PI * 2 * index) / total + (Math.random() * 0.2 - 0.1);
+            const baseVelocity = layer === 0 ? 130 : layer === 1 ? 100 : 70;
+            const velocity = baseVelocity + Math.random() * 30;
+            const vx = Math.cos(angle) * velocity;
+            const vy = Math.sin(angle) * velocity;
+
+            animateDiamondParticle(particle, x, y, vx, vy, layer);
+        }
+
+        function createShimmer(x, y, colorScheme) {
+            const shimmer = document.createElement('div');
+            shimmer.className = 'firework-particle';
+            shimmer.style.left = x + 'px';
+            shimmer.style.top = y + 'px';
+            shimmer.style.width = '3.5px';
+            shimmer.style.height = '3.5px';
+            shimmer.style.background = '#FFFAF0';
+            shimmer.style.borderRadius = '50%';
+            shimmer.style.boxShadow = '0 0 15px rgba(255, 250, 240, 1), 0 0 30px rgba(255, 215, 0, 0.8), 0 0 45px rgba(255, 215, 0, 0.5)';
+            fireworksContainer.appendChild(shimmer);
+
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = 30 + Math.random() * 70;
+            const vx = Math.cos(angle) * velocity;
+            const vy = Math.sin(angle) * velocity;
+
+            animateDiamondParticle(shimmer, x, y, vx, vy, 0, 1000);
+        }
+
+        function animateDiamondParticle(particle, startX, startY, vx, vy, layer, customDuration) {
+            const duration = customDuration || 2200;
+            const start = performance.now();
+
+            function animate(currentTime) {
+                const elapsed = currentTime - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 1.5);
+
+                const currentX = startX + vx * easeOut;
+                const currentY = startY + vy * easeOut + (progress * progress * 60); // Delicate gravity
+                const opacity = Math.pow(1 - progress, 2);
+
+                particle.style.left = currentX + 'px';
+                particle.style.top = currentY + 'px';
+                particle.style.opacity = opacity;
+                particle.style.transform = `scale(${1 - progress * 0.6}) rotate(${progress * 360}deg)`;
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    particle.remove();
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        // Launch premium fireworks with elegant timing - MORE VIVID
+        function scheduleFireworks() {
+            const isMobile = window.innerWidth < 768;
+            const fireworkCount = isMobile ? 3 : 5; // Fewer on mobile
+
+            for (let i = 0; i < fireworkCount; i++) {
+                setTimeout(() => launchPremiumFirework(), i * 500);
+            }
+        }
+
+        // Initial launch
+        setTimeout(scheduleFireworks, 800);
+
+        // Periodic launches - optimized interval for mobile
+        const launchInterval = window.innerWidth < 768 ? 4500 : 3500;
+        setInterval(scheduleFireworks, launchInterval);
+
+        // Demo buttons are now in HTML - no initialization needed
+        console.log('✅ Demo initialized with hardcoded buttons');
+
+        // Close modals when clicking outside
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        });
+
+        console.log('✅ FlightSuite script fully loaded - All systems ready!');
+    </script>
+</body>
+</html>

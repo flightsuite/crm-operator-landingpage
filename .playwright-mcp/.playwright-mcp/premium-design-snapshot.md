@@ -1,0 +1,173 @@
+### Open tabs
+- 0: (current) [FlightSuite CRM Operator | Automate GoHighLevel Data Entry | Save 5-10 Hours/Week] (file:///Users/fitzlight/Desktop/CRM%20Operator%20Landing%20Page/index.html)
+- 1: [New Tab] (chrome://new-tab-page/)
+- 2: [] (https://insight.adsrvr.org/track/cei?advertiser_id=h4ebcn2&cookie_sync=1&upv=3.0.0&upid=k03oi77&ref=https://www.grammarly.com/)
+- 3: [] (https://www.googletagmanager.com/static/service_worker/5c20/sw_iframe.html?origin=https%3A%2F%2Fwww.typeform.com)
+
+### Page state
+- Page URL: file:///Users/fitzlight/Desktop/CRM%20Operator%20Landing%20Page/index.html
+- Page Title: FlightSuite CRM Operator | Automate GoHighLevel Data Entry | Save 5-10 Hours/Week
+- Page Snapshot:
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "FlightSuite" [ref=e5] [cursor=pointer]:
+        - /url: "#"
+        - img "FlightSuite" [ref=e6]
+      - navigation [ref=e7]:
+        - link "Features" [ref=e8] [cursor=pointer]:
+          - /url: "#features"
+        - link "Demo" [ref=e9] [cursor=pointer]:
+          - /url: "#demo"
+        - link "FAQ" [ref=e10] [cursor=pointer]:
+          - /url: "#faq"
+        - link "Install for Chrome" [ref=e11] [cursor=pointer]:
+          - /url: https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb?hl=en-US
+  - generic [ref=e14]:
+    - generic [ref=e15]:
+      - generic [ref=e16]:
+        - img [ref=e17]
+        - text: Works with GoHighLevel
+      - heading "Save 5-10 hours every week on CRM data entry" [level=1] [ref=e19]
+      - paragraph [ref=e20]: FlightSuite automatically updates your GoHighLevel CRM using natural language. No dashboards, no clicking, no workflow babysitting—just clean data and more time to sell.
+      - generic [ref=e21]:
+        - link "Add to Chrome—It's Free" [ref=e22] [cursor=pointer]:
+          - /url: https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb?hl=en-US
+        - button "Join HubSpot Waitlist" [ref=e23] [cursor=pointer]
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e33]: Name
+        - generic [ref=e34]: John Anderson
+      - generic [ref=e35]:
+        - generic [ref=e36]: Email
+        - generic [ref=e37]: john@company.com
+      - generic [ref=e38]:
+        - generic [ref=e39]: Pipeline
+        - generic [ref=e40]: Discovery
+      - generic [ref=e41]:
+        - img [ref=e42]
+        - text: FlightSuite auto-updating from your conversation...
+  - generic [ref=e45]:
+    - generic [ref=e46]: Trusted by sales teams at
+    - generic [ref=e47]:
+      - img [ref=e48]
+      - img [ref=e50]
+      - img [ref=e52]
+      - img [ref=e54]
+  - generic [ref=e58]:
+    - generic [ref=e59]:
+      - generic [ref=e60]: 5-10h
+      - generic [ref=e61]: Saved per rep per week
+    - generic [ref=e62]:
+      - generic [ref=e63]: "0"
+      - generic [ref=e64]: CRM logins required
+    - generic [ref=e65]:
+      - generic [ref=e66]: 100%
+      - generic [ref=e67]: Automated data entry
+  - generic [ref=e69]:
+    - generic [ref=e70]:
+      - generic [ref=e71]: Features
+      - heading "Focus on selling, not admin work" [level=2] [ref=e72]
+      - paragraph [ref=e73]: "FlightSuite handles the busywork so you can focus on what matters: closing deals and building relationships."
+    - generic [ref=e74]:
+      - generic [ref=e75]:
+        - img [ref=e77]
+        - heading "Save 5-10 Hours Per Week" [level=3] [ref=e80]
+        - paragraph [ref=e81]: Stop wasting time on manual data entry. FlightSuite logs everything automatically so you can focus on closing deals.
+      - generic [ref=e82]:
+        - img [ref=e84]
+        - heading "Keep Your CRM Clean" [level=3] [ref=e87]
+        - paragraph [ref=e88]: Accurate data, trusted pipeline, happy managers. No more end-of-week cleanup or forgotten notes.
+      - generic [ref=e89]:
+        - img [ref=e91]
+        - heading "No Dashboards, No Clicking" [level=3] [ref=e94]
+        - paragraph [ref=e95]: Update your CRM without ever logging in. FlightSuite works in the background while you work.
+      - generic [ref=e96]:
+        - img [ref=e98]
+        - heading "Works Where You Work" [level=3] [ref=e101]
+        - paragraph [ref=e102]: Browser side panel integration. No tab switching, no context switching, no interruptions.
+  - generic [ref=e105]:
+    - generic [ref=e106]:
+      - generic [ref=e107]: See It In Action
+      - heading "Watch FlightSuite automate your CRM" [level=2] [ref=e108]
+      - paragraph [ref=e109]: See a 2-minute demo of FlightSuite automating CRM updates in real-time.
+    - img [ref=e113] [cursor=pointer]
+  - generic [ref=e117]:
+    - generic [ref=e118]:
+      - generic [ref=e119]: FAQ
+      - heading "Common questions" [level=2] [ref=e120]
+    - generic [ref=e121]:
+      - generic [ref=e122]:
+        - button "What CRMs does FlightSuite work with? +" [ref=e123] [cursor=pointer]:
+          - text: What CRMs does FlightSuite work with?
+          - generic [ref=e124]: +
+        - generic [ref=e125]: FlightSuite currently works with GoHighLevel (live now). HubSpot integration is coming soon—join the waitlist to get early access.
+      - generic [ref=e126]:
+        - button "Is FlightSuite free? +" [ref=e127] [cursor=pointer]:
+          - text: Is FlightSuite free?
+          - generic [ref=e128]: +
+        - generic [ref=e129]: Yes, FlightSuite is free to install and use. No credit card required, no hidden fees.
+      - generic [ref=e130]:
+        - button "What data does FlightSuite access? +" [ref=e131] [cursor=pointer]:
+          - text: What data does FlightSuite access?
+          - generic [ref=e132]: +
+        - generic [ref=e133]: FlightSuite only accesses your CRM data, and only with your explicit permission. We follow strict privacy guidelines and never share your data with third parties.
+      - generic [ref=e134]:
+        - button "How long does setup take? +" [ref=e135] [cursor=pointer]:
+          - text: How long does setup take?
+          - generic [ref=e136]: +
+        - generic [ref=e137]: Installation takes 30 seconds. You'll make your first CRM update in under 10 minutes. No complex configuration or training required.
+      - generic [ref=e138]:
+        - button "Can I uninstall anytime? +" [ref=e139] [cursor=pointer]:
+          - text: Can I uninstall anytime?
+          - generic [ref=e140]: +
+        - generic [ref=e141]: Yes, you can uninstall FlightSuite anytime with one click from your Chrome extensions. No cancellation process, no hassle.
+  - generic [ref=e144]:
+    - heading "Ready to save 5-10 hours every week?" [level=2] [ref=e145]
+    - paragraph [ref=e146]: Install FlightSuite for Chrome—free, no credit card required.
+    - generic [ref=e147]:
+      - link "Add to Chrome—It's Free" [ref=e148] [cursor=pointer]:
+        - /url: https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb?hl=en-US
+      - button "Join HubSpot Waitlist" [ref=e149] [cursor=pointer]
+  - contentinfo [ref=e150]:
+    - generic [ref=e151]:
+      - generic [ref=e152]:
+        - generic [ref=e153]:
+          - img "FlightSuite" [ref=e154]
+          - paragraph [ref=e155]: The CRM operator that logs your sales activity for you.
+        - generic [ref=e156]:
+          - heading "Product" [level=4] [ref=e157]
+          - list [ref=e158]:
+            - listitem [ref=e159]:
+              - link "Features" [ref=e160] [cursor=pointer]:
+                - /url: "#features"
+            - listitem [ref=e161]:
+              - link "Demo" [ref=e162] [cursor=pointer]:
+                - /url: "#demo"
+            - listitem [ref=e163]:
+              - link "FAQ" [ref=e164] [cursor=pointer]:
+                - /url: "#faq"
+        - generic [ref=e165]:
+          - heading "Company" [level=4] [ref=e166]
+          - list [ref=e167]:
+            - listitem [ref=e168]:
+              - link "Privacy" [ref=e169] [cursor=pointer]:
+                - /url: https://flightsuite.ai/privacy-policy
+            - listitem [ref=e170]:
+              - link "Terms" [ref=e171] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e172]:
+              - link "Support" [ref=e173] [cursor=pointer]:
+                - /url: https://forms.gle/4wQhEo9hgp1eJKqL7
+        - generic [ref=e174]:
+          - heading "Resources" [level=4] [ref=e175]
+          - list [ref=e176]:
+            - listitem [ref=e177]:
+              - link "Product Demo" [ref=e178] [cursor=pointer]:
+                - /url: https://www.loom.com/share/56f02ca55d0d4254b45353c90d1be254
+            - listitem [ref=e179]:
+              - link "Chrome Store" [ref=e180] [cursor=pointer]:
+                - /url: https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb?hl=en-US
+      - paragraph [ref=e182]: © 2025 Light Estate Enterprises LLC dba FlightSuite. All rights reserved.
+```
