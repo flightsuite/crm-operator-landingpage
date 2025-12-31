@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlightSuite Social Preview - Screenshot at 1200x630</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f5f5f5;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+        }
+
+        .preview-container {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #5E5CE6 0%, #0071E3 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Gradient orbs for depth */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+        }
+
+        .orb1 {
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.2);
+            top: -200px;
+            right: -200px;
+        }
+
+        .orb2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(0, 113, 227, 0.3);
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 100px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+        }
+
+        .title {
+            font-size: 72px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 1.4;
+            opacity: 0.95;
+            max-width: 900px;
+        }
+
+        .badge {
+            position: absolute;
+            bottom: 60px;
+            right: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 16px 32px;
+            border-radius: 100px;
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .badge svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .instructions {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .instructions h3 {
+            margin: 0 0 12px 0;
+            font-size: 16px;
+            color: #5E5CE6;
+        }
+
+        .instructions ol {
+            margin: 12px 0;
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        .instructions code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <h3>📸 Create Social Preview Image</h3>
+        <ol>
+            <li>Press <code>Cmd/Ctrl + Shift + P</code></li>
+            <li>Set browser to exactly <strong>1200x630</strong> window size</li>
+            <li>Take a screenshot of just the purple gradient card</li>
+            <li>Save as <code>social-preview.png</code> in the Assets folder</li>
+            <li>Or use a screenshot tool to capture at 1200x630px</li>
+        </ol>
+        <p style="margin: 12px 0 0 0; font-size: 13px; color: #666;">
+            Once saved, I'll update the meta tags to use this image for social sharing.
+        </p>
+    </div>
+
+    <div class="preview-container">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+
+        <div class="content">
+            <div class="logo">FlightSuite</div>
+            <h1 class="title">Your AI CRM operator</h1>
+            <p class="subtitle">Turn natural language into perfect CRM data instantly.</p>
+        </div>
+
+        <div class="badge">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Free Chrome Extension
+        </div>
+    </div>
+</body>
+</html>
