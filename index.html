@@ -1493,6 +1493,133 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
+        /* CRM Promo Section */
+        .crm-promo-section {
+            padding: clamp(60px, 10vw, 100px) var(--container-padding);
+            background: linear-gradient(180deg, rgba(94, 92, 230, 0.03) 0%, rgba(0, 113, 227, 0.03) 100%);
+            border-top: 1px solid var(--color-border-light);
+        }
+
+        .crm-promo-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .crm-promo-content {
+            text-align: center;
+        }
+
+        .crm-promo-badge {
+            display: inline-block;
+            padding: clamp(6px, 1vw, 8px) clamp(14px, 2vw, 18px);
+            background: linear-gradient(135deg, rgba(94, 92, 230, 0.1) 0%, rgba(0, 113, 227, 0.1) 100%);
+            border: 1px solid rgba(94, 92, 230, 0.2);
+            border-radius: 100px;
+            font-size: clamp(11px, 1.5vw, 12px);
+            font-weight: 600;
+            color: var(--color-ios-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: clamp(16px, 3vw, 20px);
+        }
+
+        .crm-promo-title {
+            font-family: var(--font-display);
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: clamp(16px, 3vw, 20px);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .crm-promo-description {
+            font-size: clamp(15px, 2vw, 17px);
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+            max-width: 700px;
+            margin: 0 auto clamp(32px, 5vw, 40px);
+        }
+
+        .crm-promo-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: clamp(16px, 3vw, 24px);
+            margin-bottom: clamp(32px, 5vw, 40px);
+        }
+
+        .crm-promo-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: clamp(10px, 2vw, 12px) clamp(16px, 3vw, 20px);
+            background: white;
+            border: 1px solid var(--color-border-light);
+            border-radius: 12px;
+            font-size: clamp(13px, 1.8vw, 14px);
+            font-weight: 500;
+            color: var(--color-text-primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .crm-promo-feature svg {
+            color: var(--color-success);
+            flex-shrink: 0;
+        }
+
+        .crm-promo-feature:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .crm-promo-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: clamp(14px, 2.5vw, 16px) clamp(28px, 4vw, 36px);
+            background: var(--color-apple-blue);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: clamp(15px, 2vw, 16px);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-smooth);
+            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);
+        }
+
+        .crm-promo-button:hover {
+            background: #0077ED;
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 113, 227, 0.35);
+        }
+
+        .crm-promo-button svg {
+            transition: transform 0.3s var(--ease-smooth);
+        }
+
+        .crm-promo-button:hover svg {
+            transform: translateX(3px);
+        }
+
+        @media (max-width: 768px) {
+            .crm-promo-features {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .crm-promo-feature {
+                justify-content: center;
+            }
+        }
+
         /* Footer */
         .footer {
             padding: clamp(48px, 8vw, 60px) var(--container-padding) clamp(32px, 5vw, 40px);
@@ -2069,6 +2196,15 @@
             <nav class="header-nav">
                 <a href="#demo" class="nav-link">Demo</a>
                 <a href="#faq" class="nav-link">FAQ</a>
+                <button class="nav-link info-button" onclick="openModal('crmInfoModal')" style="border: none; background: none; cursor: pointer; padding: 0; font-family: inherit; display: inline-flex; align-items: center; gap: 6px;" aria-label="What's a CRM?">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    What's a CRM?
+                </button>
+                <a href="https://crm.flightsuite.ai" class="nav-link" target="_blank" rel="noopener noreferrer">Our CRM</a>
                 <button class="cta-header" onclick="openInstallModal()" data-event="install_click">Install for Chrome</button>
             </nav>
         </div>
@@ -2499,6 +2635,47 @@
         </div>
     </section>
 
+    <!-- CRM Solution Promo Section -->
+    <section class="crm-promo-section">
+        <div class="crm-promo-container">
+            <div class="crm-promo-content">
+                <div class="crm-promo-badge">Need a CRM?</div>
+                <h2 class="crm-promo-title">Automated CRM Solution</h2>
+                <p class="crm-promo-description">
+                    View our fully automated CRM built on GoHighLevel with custom prospecting tools,
+                    conversational AI add-ons, and 24/7 support to power your sales team.
+                </p>
+                <div class="crm-promo-features">
+                    <div class="crm-promo-feature">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>Custom Prospecting Tools</span>
+                    </div>
+                    <div class="crm-promo-feature">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>Conversational AI</span>
+                    </div>
+                    <div class="crm-promo-feature">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
+                <a href="https://crm.flightsuite.ai" class="crm-promo-button" target="_blank" rel="noopener noreferrer">
+                    Explore Our CRM
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -2690,6 +2867,85 @@
                     <input type="text" class="form-input" id="mobileName" placeholder="Your name">
                     <div class="form-error" id="mobileNameError">Please enter your name</div>
                     <button class="form-submit" onclick="submitMobileName()">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- What's a CRM? Info Modal -->
+    <div class="modal-overlay" id="crmInfoModal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2 class="modal-title">What's a CRM?</h2>
+                <button class="modal-close" onclick="closeModal('crmInfoModal')">×</button>
+            </div>
+            <div class="modal-body" style="padding: clamp(24px, 4vw, 32px) clamp(32px, 5vw, 40px);">
+                <div style="margin-bottom: 24px;">
+                    <h3 style="font-size: clamp(16px, 2vw, 18px); font-weight: 600; margin-bottom: 12px; color: var(--color-text-primary);">
+                        Customer Relationship Management (CRM)
+                    </h3>
+                    <p style="font-size: clamp(14px, 1.8vw, 15px); line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 20px;">
+                        A CRM is software that helps businesses manage their customer relationships, track sales activities,
+                        and organize contact information. Think of it as a central hub for all your customer interactions,
+                        sales pipeline, and business data.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h3 style="font-size: clamp(16px, 2vw, 18px); font-weight: 600; margin-bottom: 12px; color: var(--color-text-primary);">
+                        Who needs a CRM?
+                    </h3>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; align-items: start; gap: 12px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span style="font-size: clamp(14px, 1.8vw, 15px); color: var(--color-text-secondary);">
+                                <strong>Sales Teams</strong> tracking leads and closing deals
+                            </span>
+                        </div>
+                        <div style="display: flex; align-items: start; gap: 12px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span style="font-size: clamp(14px, 1.8vw, 15px); color: var(--color-text-secondary);">
+                                <strong>Small Businesses</strong> managing customer relationships
+                            </span>
+                        </div>
+                        <div style="display: flex; align-items: start; gap: 12px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span style="font-size: clamp(14px, 1.8vw, 15px); color: var(--color-text-secondary);">
+                                <strong>Service Providers</strong> organizing client communications
+                            </span>
+                        </div>
+                        <div style="display: flex; align-items: start; gap: 12px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span style="font-size: clamp(14px, 1.8vw, 15px); color: var(--color-text-secondary);">
+                                <strong>Marketing Teams</strong> tracking campaign engagement
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #F0F0FF 0%, #E8F4FF 100%); padding: clamp(20px, 3vw, 24px); border-radius: 12px; margin-top: 24px;">
+                    <h3 style="font-size: clamp(15px, 2vw, 16px); font-weight: 600; margin-bottom: 8px; color: var(--color-ios-purple);">
+                        Don't have a CRM yet?
+                    </h3>
+                    <p style="font-size: clamp(13px, 1.8vw, 14px); line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 16px;">
+                        We recommend starting with FlightSuite's automated CRM solution - built on GoHighLevel
+                        with AI-powered features, custom prospecting tools, and 24/7 support.
+                    </p>
+                    <a href="https://crm.flightsuite.ai" target="_blank" rel="noopener noreferrer" class="form-submit" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; margin-top: 8px;">
+                        View Our CRM Solution
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
