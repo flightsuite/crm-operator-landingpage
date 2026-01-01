@@ -1,0 +1,60 @@
+# robots.txt for FlightSuite
+# https://flightsuite.ai/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://flightsuite.ai/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+# Uncomment if needed:
+# Crawl-delay: 1
+
+# Block specific bots if needed (uncomment to use)
+# User-agent: BadBot
+# Disallow: /
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# AI Search Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Disallow common directories that shouldn't be indexed
+Disallow: /Assets/*.svg$
+Disallow: /.git/
+Disallow: /.DS_Store
+Disallow: /.playwright-mcp/

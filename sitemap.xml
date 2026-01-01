@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- Homepage -->
+    <url>
+        <loc>https://flightsuite.ai/</loc>
+        <lastmod>2025-12-31</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Blog Landing Page -->
+    <url>
+        <loc>https://flightsuite.ai/blog.html</loc>
+        <lastmod>2025-12-31</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Blog Post: HubSpot vs Salesforce -->
+    <url>
+        <loc>https://flightsuite.ai/blog/hubspot-vs-salesforce-small-teams.html</loc>
+        <lastmod>2025-12-31</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Blog Post: Eliminate Manual CRM Data Entry -->
+    <url>
+        <loc>https://flightsuite.ai/blog/eliminate-manual-crm-data-entry.html</loc>
+        <lastmod>2025-12-31</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Blog Post: AI CRM Automation Guide -->
+    <url>
+        <loc>https://flightsuite.ai/blog/ai-crm-automation-guide.html</loc>
+        <lastmod>2025-12-31</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Blog Post: Why Sales Reps Hate Data Entry -->
+    <url>
+        <loc>https://flightsuite.ai/blog/why-sales-reps-hate-data-entry.html</loc>
+        <lastmod>2025-12-31</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+</urlset>
