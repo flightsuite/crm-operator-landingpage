@@ -181,8 +181,6 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
-            font-weight: 700;
             position: relative;
             overflow: hidden;
         }
@@ -195,6 +193,14 @@
             background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
             top: -50%;
             left: -50%;
+        }
+
+        .blog-card-image svg {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
         }
 
         .blog-card-content {
@@ -308,10 +314,50 @@
         @media (max-width: 768px) {
             .nav-links {
                 gap: 1rem;
+                font-size: 0.875rem;
             }
 
             .blog-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .blog-card-image {
+                height: 200px;
+            }
+
+            .blog-card-image svg {
+                width: 64px;
+                height: 64px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .blog-card-image {
+                height: 180px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
     </style>
@@ -341,7 +387,11 @@
             <!-- Blog Post 1 -->
             <a href="/blog/hubspot-vs-salesforce-small-teams.html" class="blog-card">
                 <div class="blog-card-image">
-                    <span style="font-size: 4rem;">⚖️</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3v18M18 7.5l-6-4.5-6 4.5M6 20.5l6-4.5 6 4.5M9 12h6M9 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM15 18a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        <circle cx="9" cy="9" r="2" fill="white" opacity="0.2"/>
+                        <circle cx="15" cy="15" r="2" fill="white" opacity="0.2"/>
+                    </svg>
                 </div>
                 <div class="blog-card-content">
                     <div class="blog-card-meta">
@@ -362,7 +412,10 @@
             <!-- Blog Post 2 -->
             <a href="/blog/eliminate-manual-crm-data-entry.html" class="blog-card">
                 <div class="blog-card-image">
-                    <span style="font-size: 4rem;">⚡</span>
+                    <svg viewBox="0 0 24 24" fill="white" stroke="none">
+                        <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" opacity="0.9"/>
+                        <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" fill="none" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+                    </svg>
                 </div>
                 <div class="blog-card-content">
                     <div class="blog-card-meta">
@@ -383,7 +436,15 @@
             <!-- Blog Post 3 -->
             <a href="/blog/ai-crm-automation-guide.html" class="blog-card">
                 <div class="blog-card-image">
-                    <span style="font-size: 4rem;">🤖</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" opacity="0.2" fill="white"/>
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 8v8M8 12h8"/>
+                        <circle cx="9" cy="10" r="1" fill="white"/>
+                        <circle cx="15" cy="10" r="1" fill="white"/>
+                        <path d="M9 15c0 1 1.5 2 3 2s3-1 3-2"/>
+                        <rect x="10" y="2" width="4" height="2" rx="1" fill="white" opacity="0.8"/>
+                    </svg>
                 </div>
                 <div class="blog-card-content">
                     <div class="blog-card-meta">
@@ -404,7 +465,16 @@
             <!-- Blog Post 4 -->
             <a href="/blog/why-sales-reps-hate-data-entry.html" class="blog-card">
                 <div class="blog-card-image">
-                    <span style="font-size: 4rem;">😤</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 3v18h18" opacity="0.3" stroke-width="2"/>
+                        <path d="M3 3v18h18"/>
+                        <path d="M7 15l4-6 3 3 4-5" stroke-width="2"/>
+                        <circle cx="7" cy="15" r="1.5" fill="white"/>
+                        <circle cx="11" cy="9" r="1.5" fill="white"/>
+                        <circle cx="14" cy="12" r="1.5" fill="white"/>
+                        <circle cx="18" cy="7" r="1.5" fill="white"/>
+                        <path d="M20 4l-2 2M20 8l-2-2" stroke-width="2" opacity="0.8"/>
+                    </svg>
                 </div>
                 <div class="blog-card-content">
                     <div class="blog-card-meta">

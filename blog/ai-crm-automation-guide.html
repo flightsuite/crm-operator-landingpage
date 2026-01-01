@@ -360,11 +360,16 @@
         @media (max-width: 768px) {
             .nav-links {
                 gap: 1rem;
+                font-size: 0.875rem;
             }
 
             .article-meta {
                 flex-direction: column;
                 gap: 0.5rem;
+            }
+
+            .article-header h1 {
+                font-size: 1.75rem;
             }
 
             .stat-grid {
@@ -373,6 +378,36 @@
 
             .feature-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .callout {
+                padding: 1.25rem 1.5rem;
+            }
+
+            .cta-box {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .article-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
     </style>
