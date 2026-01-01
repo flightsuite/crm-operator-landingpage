@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Sales Reps Hate Data Entry (And How to Fix It)</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="CRM data entry is the #1 complaint among sales reps. Explore the psychology behind why reps avoid it and discover solutions that actually improve adoption.">
+    <meta name="keywords" content="sales rep productivity, CRM adoption, data entry pain points, sales motivation, CRM compliance, sales team morale">
+    <link rel="canonical" href="https://flightsuite.ai/blog/why-sales-reps-hate-data-entry">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://flightsuite.ai/blog/why-sales-reps-hate-data-entry">
+    <meta property="og:title" content="Why Sales Reps Hate Data Entry (And How to Fix It)">
+    <meta property="og:description" content="CRM data entry causes 4% error rates and kills motivation. Explore the psychology and real solutions.">
+    <meta property="og:image" content="https://flightsuite.ai/Assets/social-preview.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Why Sales Reps Hate Data Entry (And How to Fix It)">
+    <meta name="twitter:description" content="CRM data entry causes 4% error rates and kills motivation. Explore the psychology and real solutions.">
+    <meta name="twitter:image" content="https://flightsuite.ai/Assets/social-preview.png">
+
+    <style>
+        /* ===== CSS RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-apple-blue: #0071E3;
+            --color-ios-purple: #5E5CE6;
+            --color-bg-primary: #FFFFFF;
+            --color-bg-secondary: #F5F5F7;
+            --color-text-primary: #1D1D1F;
+            --color-text-secondary: #6E6E73;
+            --color-border: rgba(0, 0, 0, 0.1);
+            --max-width: 1440px;
+            --content-width: 720px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.8;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-apple-blue);
+        }
+
+        /* ===== ARTICLE HEADER ===== */
+        .article-header {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: clamp(3rem, 8vw, 5rem) clamp(1.5rem, 4vw, 2rem) clamp(2rem, 5vw, 3rem);
+        }
+
+        .article-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(94, 92, 230, 0.1);
+            color: var(--color-ios-purple);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-primary);
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 2rem;
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-content {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 4vw, 2rem) clamp(3rem, 6vw, 5rem);
+        }
+
+        .article-content h2 {
+            font-size: clamp(1.5rem, 3.5vw, 2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            color: var(--color-text-primary);
+        }
+
+        .article-content h3 {
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.4;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: var(--color-text-primary);
+        }
+
+        .article-content p {
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-primary);
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 1.5rem 0 1.5rem 1.5rem;
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            line-height: 1.8;
+        }
+
+        .article-content li {
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+        }
+
+        .article-content strong {
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, rgba(94, 92, 230, 0.08) 0%, rgba(0, 113, 227, 0.08) 100%);
+            border-left: 4px solid var(--color-ios-purple);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        .quote-box p {
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            margin-bottom: 0;
+        }
+
+        .quote-box .quote-author {
+            display: block;
+            margin-top: 1rem;
+            font-style: normal;
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        .stat-highlight {
+            background: linear-gradient(135deg, rgba(94, 92, 230, 0.08) 0%, rgba(0, 113, 227, 0.08) 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .stat-highlight .stat-number {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-highlight .stat-label {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        .pain-point-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .pain-point-card {
+            background: var(--color-bg-secondary);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .pain-point-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .pain-point-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--color-text-primary);
+        }
+
+        .pain-point-card p {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0;
+        }
+
+        .callout {
+            background: linear-gradient(135deg, rgba(94, 92, 230, 0.08) 0%, rgba(0, 113, 227, 0.08) 100%);
+            border-left: 4px solid var(--color-apple-blue);
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .callout p {
+            margin-bottom: 0.75rem;
+        }
+
+        .callout p:last-child {
+            margin-bottom: 0;
+        }
+
+        .callout strong {
+            color: var(--color-apple-blue);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            color: white;
+            padding: 2.5rem 2rem;
+            border-radius: 18px;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 12px 24px rgba(94, 92, 230, 0.2);
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1rem, 2vw, 1.125rem);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--color-apple-blue);
+            padding: 0.875rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.0625rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--color-bg-secondary);
+            border-top: 1px solid var(--color-border);
+            margin-top: clamp(4rem, 8vw, 6rem);
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-apple-blue);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .pain-point-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="/" class="logo">FlightSuite</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/blog.html">Blog</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <span class="article-category">Pain Points</span>
+        <h1>Why Sales Reps Hate Data Entry (And How to Fix It)</h1>
+        <div class="article-meta">
+            <span>January 2025</span>
+            <span>•</span>
+            <span>6 min read</span>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="article-content">
+        <p>It's 6:15 PM on a Thursday. Your sales rep, Alex, just closed a $45,000 deal after three months of relationship building. Champagne is in order. High-fives all around.</p>
+
+        <p>Instead, Alex is staring at a CRM screen with 27 empty fields to fill out. Contact info, deal stage, product details, discovery notes, next steps, competitive intel... Twenty minutes later, the celebration is over, replaced by exhaustion and resentment.</p>
+
+        <div class="quote-box">
+            <p>"I became a salesperson to build relationships and solve problems, not to be a data entry clerk."</p>
+            <span class="quote-author">— Anonymous sales rep survey response</span>
+        </div>
+
+        <p>CRM data entry is the <strong>#1 complaint</strong> among sales professionals. It's not laziness. It's not resistance to technology. It's a fundamental conflict between what motivates salespeople and what CRM systems demand.</p>
+
+        <p>Let's explore the psychology behind why reps avoid data entry—and the modern solutions that actually work.</p>
+
+        <h2>The Psychology: Why Data Entry Feels So Painful</h2>
+
+        <p>Understanding why reps hate data entry requires understanding what makes salespeople tick in the first place.</p>
+
+        <h3>1. Identity Mismatch</h3>
+
+        <p>People who excel at sales are typically driven by:</p>
+        <ul>
+            <li><strong>Interpersonal connection:</strong> Building relationships energizes them</li>
+            <li><strong>Winning:</strong> Closing deals provides dopamine hits</li>
+            <li><strong>Autonomy:</strong> They thrive on controlling their own schedule</li>
+            <li><strong>Impact:</strong> Solving customer problems feels meaningful</li>
+        </ul>
+
+        <p>Data entry offers <strong>none of these rewards</strong>. It's solitary, tedious, and feels like compliance theater. When you ask a relationship-driven closer to spend an hour typing into forms, you're asking them to do the exact opposite of what they signed up for.</p>
+
+        <div class="callout">
+            <p><strong>The identity conflict:</strong> "I'm a salesperson" vs. "I'm doing admin work" creates cognitive dissonance that manifests as procrastination and resentment.</p>
+        </div>
+
+        <h3>2. Delayed Gratification Problem</h3>
+
+        <p>Sales is all about immediate feedback loops:</p>
+        <ul>
+            <li>Send a cold email → Get a response (or don't) within hours</li>
+            <li>Make a pitch → See the prospect's reaction in real-time</li>
+            <li>Close a deal → Immediate celebration and commission credit</li>
+        </ul>
+
+        <p>Data entry? The "reward" is... cleaner data that benefits the sales manager's forecasting model next quarter. <strong>For the rep, the value is abstract and distant.</strong></p>
+
+        <p>Humans are terrible at delayed gratification. When the benefit of an action is invisible and weeks away, our brains deprioritize it. This is why reps always mean to "update the CRM later" and then never do.</p>
+
+        <h3>3. Opportunity Cost Awareness</h3>
+
+        <p>Sales reps are acutely aware that <strong>time is money</strong>. Every hour spent on data entry is an hour not spent:</p>
+        <ul>
+            <li>Prospecting new leads</li>
+            <li>Following up with hot opportunities</li>
+            <li>Building relationships with champions</li>
+            <li>Closing deals</li>
+        </ul>
+
+        <div class="stat-highlight">
+            <div class="stat-number">$75/hour</div>
+            <div class="stat-label">Opportunity cost of data entry for a quota-carrying rep</div>
+        </div>
+
+        <p>When a rep spends 10 hours per week on CRM admin, they know they're sacrificing $750 in potential commission earnings. That psychological tax makes every minute of data entry feel more painful.</p>
+
+        <h3>4. Lack of Autonomy</h3>
+
+        <p>Top sales performers are often described as "entrepreneurs within a company." They want control over <em>how</em> they work, not just <em>what</em> outcomes they deliver.</p>
+
+        <p>Mandatory CRM compliance feels like micromanagement. When managers say "you have to log every call by end of day," reps hear "I don't trust you to manage your own workflow."</p>
+
+        <p>This perception—fair or not—creates resistance. The more you mandate data entry, the more it feels like surveillance rather than support.</p>
+
+        <h2>The Real-World Consequences</h2>
+
+        <p>When reps hate data entry, everyone loses:</p>
+
+        <div class="pain-point-grid">
+            <div class="pain-point-card">
+                <span class="icon">📉</span>
+                <h4>Data Quality Plummets</h4>
+                <p>When reps rush through CRM updates to "get it over with," error rates reach 4%+ and critical fields stay empty.</p>
+            </div>
+
+            <div class="pain-point-card">
+                <span class="icon">😤</span>
+                <h4>Morale Suffers</h4>
+                <p>Constant reminders to "update the CRM" erode trust between reps and managers, creating a compliance culture.</p>
+            </div>
+
+            <div class="pain-point-card">
+                <span class="icon">💸</span>
+                <h4>Productivity Drops</h4>
+                <p>20% of a rep's time spent on data entry means 20% less time selling—a direct hit to revenue.</p>
+            </div>
+
+            <div class="pain-point-card">
+                <span class="icon">🔮</span>
+                <h4>Forecasts Fail</h4>
+                <p>Incomplete data leads to forecast errors of 30%+, making pipeline planning nearly useless.</p>
+            </div>
+        </div>
+
+        <h2>Solutions That Don't Work (And Why)</h2>
+
+        <p>Before we talk about what <em>does</em> work, let's address the common "solutions" that backfire:</p>
+
+        <h3>❌ "Just Make It Mandatory"</h3>
+        <p>Threatening consequences ("Update the CRM or lose commission credit") creates compliance, not quality. Reps do the bare minimum, data quality stays poor, and resentment grows.</p>
+
+        <h3>❌ "Simplify the CRM"</h3>
+        <p>Fewer fields means less useful data for reporting and forecasting. You can't simplify away the fundamental problem: <strong>manual typing is still manual typing.</strong></p>
+
+        <h3>❌ "Provide Better Training"</h3>
+        <p>Reps don't avoid the CRM because they don't know how to use it. They avoid it because it's tedious and unrewarding. Training doesn't fix motivation.</p>
+
+        <h3>❌ "Gamify CRM Usage"</h3>
+        <p>Leaderboards and badges might work for a week, but novelty wears off. Extrinsic rewards don't solve intrinsic motivation problems.</p>
+
+        <h2>Solutions That Actually Work</h2>
+
+        <p>The only real solution is to <strong>eliminate manual data entry entirely</strong>. Here's how:</p>
+
+        <h3>1. AI-Powered Natural Language Input</h3>
+
+        <p>Instead of filling out forms, reps speak or type naturally:</p>
+
+        <div class="callout">
+            <p><strong>Old way:</strong> Click "New Contact" → Fill out 15 fields → Click "New Opportunity" → Fill out 12 more fields → Click "New Task" → Fill out 6 more fields</p>
+            <p><strong>New way:</strong> "Had a great call with Jessica at Acme Corp, VP of Sales, interested in Enterprise plan, $75K budget, send pricing by Friday"</p>
+            <p>AI parses the sentence, populates all the fields, creates the opportunity, and sets the task. <strong>30 seconds instead of 20 minutes.</strong></p>
+        </div>
+
+        <p>This works because it aligns with how reps naturally think and communicate. No context switching, no form-filling friction.</p>
+
+        <h3>2. Automatic Activity Logging</h3>
+
+        <p>AI tools that integrate with email, calendar, and phone systems can log activities automatically:</p>
+        <ul>
+            <li>Sales emails auto-log to the right contact and deal</li>
+            <li>Calendar meetings create CRM activities with attendees</li>
+            <li>Calls are transcribed and summarized with action items extracted</li>
+        </ul>
+
+        <p>Reps don't have to remember to log anything—it just happens.</p>
+
+        <h3>3. Mobile-First Voice Commands</h3>
+
+        <p>Sales happens in the field, not at a desk. Voice-powered tools let reps update the CRM hands-free:</p>
+        <ul>
+            <li>After a meeting: "Log demo with Sarah, she loved the product, next step: send contract"</li>
+            <li>Between calls: "Mark the Acme deal as closed-won, $45K"</li>
+            <li>During commute: "Remind me to follow up with John on Thursday"</li>
+        </ul>
+
+        <p>This eliminates the "catch-up" sessions where reps spend an hour at the end of the day trying to remember what happened.</p>
+
+        <h3>4. Real-Time Value for Reps</h3>
+
+        <p>The best CRM tools give reps <em>immediate</em> value in exchange for their data:</p>
+        <ul>
+            <li><strong>AI recommendations:</strong> "This lead is hot—book a demo within 24 hours"</li>
+            <li><strong>Contextual insights:</strong> "Last time you emailed this contact was 12 days ago, engagement is dropping"</li>
+            <li><strong>Auto-generated follow-ups:</strong> AI drafts the next email based on conversation history</li>
+        </ul>
+
+        <p>When reps see the CRM as a tool that <em>helps them sell</em> rather than a reporting obligation, adoption skyrockets.</p>
+
+        <div class="cta-box">
+            <h3>FlightSuite: Zero Data Entry, Full CRM</h3>
+            <p>FlightSuite eliminates manual CRM work with AI. Just speak naturally—"Log call with Sarah, qualified, $50K opportunity, send proposal by Friday"—and our AI operator updates your CRM instantly. Works with Salesforce, HubSpot, and every major platform.</p>
+            <a href="/" class="cta-button">Try FlightSuite Free</a>
+        </div>
+
+        <h2>Measuring Success: What Changes</h2>
+
+        <p>When you eliminate manual data entry, here's what improves:</p>
+
+        <ul>
+            <li><strong>CRM adoption:</strong> Jumps from 60% completion to 95%+</li>
+            <li><strong>Data quality:</strong> Error rates drop from 4% to under 0.5%</li>
+            <li><strong>Time savings:</strong> Reps reclaim 8-10 hours per week</li>
+            <li><strong>Rep satisfaction:</strong> The #1 complaint disappears</li>
+            <li><strong>Revenue impact:</strong> More selling time = 10-15% revenue lift</li>
+        </ul>
+
+        <h2>The Cultural Shift</h2>
+
+        <p>Fixing the data entry problem isn't just about technology—it's about reframing the conversation with your team.</p>
+
+        <p><strong>Old message:</strong> "You need to keep the CRM updated so I can forecast accurately."</p>
+
+        <p><strong>New message:</strong> "I'm giving you a tool that eliminates the busywork so you can spend more time selling and making commission."</p>
+
+        <p>When reps see CRM automation as something that <em>benefits them</em> (more time, less friction, better results), resistance evaporates.</p>
+
+        <h2>Final Thoughts</h2>
+
+        <p>Sales reps don't hate data entry because they're difficult or tech-averse. They hate it because it conflicts with everything that makes them good at sales: relationship building, autonomy, immediate feedback, and meaningful impact.</p>
+
+        <p>The solution isn't better training, stricter policies, or simplified forms. <strong>The solution is eliminating manual data entry entirely with AI automation.</strong></p>
+
+        <p>When your reps can update the CRM by speaking naturally for 10 seconds instead of typing for 20 minutes, compliance becomes effortless. Data quality improves. Morale improves. Revenue improves.</p>
+
+        <p><strong>The question isn't whether to fix this problem. It's how much longer you can afford to let it drag down your team.</strong></p>
+
+        <hr style="border: none; border-top: 1px solid var(--color-border); margin: 3rem 0;">
+
+        <p style="color: var(--color-text-secondary); font-size: 0.9375rem;"><em>Ready to eliminate CRM data entry for your team? <a href="/" style="color: var(--color-apple-blue); text-decoration: none;">FlightSuite</a> is a free Chrome extension that turns natural language into perfect CRM data. Your reps will actually use it.</em></p>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 FlightSuite. Your AI CRM operator.</p>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/#waitlist">Get Early Access</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

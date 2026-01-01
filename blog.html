@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlightSuite Blog - AI CRM Automation Insights</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Expert insights on AI CRM automation, sales productivity, and data entry solutions. Learn how modern teams eliminate manual work.">
+    <meta name="keywords" content="AI CRM automation, sales productivity, CRM data entry, HubSpot vs Salesforce, sales workflow optimization">
+    <link rel="canonical" href="https://flightsuite.ai/blog">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flightsuite.ai/blog">
+    <meta property="og:title" content="FlightSuite Blog - AI CRM Automation Insights">
+    <meta property="og:description" content="Expert insights on AI CRM automation, sales productivity, and data entry solutions.">
+    <meta property="og:image" content="https://flightsuite.ai/Assets/social-preview.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://flightsuite.ai/blog">
+    <meta name="twitter:title" content="FlightSuite Blog - AI CRM Automation Insights">
+    <meta name="twitter:description" content="Expert insights on AI CRM automation, sales productivity, and data entry solutions.">
+    <meta name="twitter:image" content="https://flightsuite.ai/Assets/social-preview.png">
+
+    <style>
+        /* ===== CSS RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-apple-blue: #0071E3;
+            --color-ios-purple: #5E5CE6;
+            --color-bg-primary: #FFFFFF;
+            --color-bg-secondary: #F5F5F7;
+            --color-text-primary: #1D1D1F;
+            --color-text-secondary: #6E6E73;
+            --color-border: rgba(0, 0, 0, 0.1);
+            --max-width: 1440px;
+            --content-width: 980px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-apple-blue);
+        }
+
+        .nav-cta {
+            background: var(--color-apple-blue);
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            background: #0077ED;
+            transform: scale(1.02);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: clamp(1rem, 2vw, 1.5rem);
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== BLOG GRID ===== */
+        .blog-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: clamp(2rem, 4vw, 3rem);
+        }
+
+        .blog-card {
+            background: var(--color-bg-primary);
+            border: 1px solid var(--color-border);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            border-color: var(--color-apple-blue);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-card-image::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            top: -50%;
+            left: -50%;
+        }
+
+        .blog-card-content {
+            padding: clamp(1.5rem, 3vw, 2rem);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+
+        .blog-card-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(94, 92, 230, 0.1);
+            color: var(--color-ios-purple);
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .blog-card-date {
+            color: var(--color-text-secondary);
+        }
+
+        .blog-card h2 {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
+            color: var(--color-text-primary);
+        }
+
+        .blog-card p {
+            font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .blog-card-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-apple-blue);
+            font-weight: 600;
+            font-size: 0.9375rem;
+            margin-top: auto;
+        }
+
+        .blog-card-cta svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .blog-card:hover .blog-card-cta svg {
+            transform: translateX(4px);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--color-bg-secondary);
+            border-top: 1px solid var(--color-border);
+            margin-top: clamp(4rem, 8vw, 8rem);
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-apple-blue);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="/" class="logo">FlightSuite</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/#waitlist">Get Early Access</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Insights for Modern Sales Teams</h1>
+        <p>Expert guides on AI CRM automation, sales productivity, and eliminating manual data entry.</p>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="blog-container">
+        <div class="blog-grid">
+            <!-- Blog Post 1 -->
+            <a href="/blog/hubspot-vs-salesforce-small-teams.html" class="blog-card">
+                <div class="blog-card-image">
+                    <span style="font-size: 4rem;">⚖️</span>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-meta">
+                        <span class="blog-card-category">CRM Comparison</span>
+                        <span class="blog-card-date">5 min read</span>
+                    </div>
+                    <h2>HubSpot vs Salesforce for Small Teams: Which CRM Fits Your Sales Workflow?</h2>
+                    <p>Choosing between HubSpot and Salesforce for your 5-50 person sales team? We break down pricing, ease of use, automation capabilities, and which CRM actually saves your reps time.</p>
+                    <span class="blog-card-cta">
+                        Read article
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Blog Post 2 -->
+            <a href="/blog/eliminate-manual-crm-data-entry.html" class="blog-card">
+                <div class="blog-card-image">
+                    <span style="font-size: 4rem;">⚡</span>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-meta">
+                        <span class="blog-card-category">Productivity</span>
+                        <span class="blog-card-date">8 min read</span>
+                    </div>
+                    <h2>Stop Wasting 10 Hours a Week: How AI Eliminates Manual CRM Data Entry</h2>
+                    <p>Sales reps spend 20% of their time on data entry. Learn how AI automation can reclaim those hours and eliminate the #1 complaint about CRM systems.</p>
+                    <span class="blog-card-cta">
+                        Read article
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Blog Post 3 -->
+            <a href="/blog/ai-crm-automation-guide.html" class="blog-card">
+                <div class="blog-card-image">
+                    <span style="font-size: 4rem;">🤖</span>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-meta">
+                        <span class="blog-card-category">AI Automation</span>
+                        <span class="blog-card-date">12 min read</span>
+                    </div>
+                    <h2>The Complete Guide to AI CRM Automation for Sales Teams</h2>
+                    <p>From natural language processing to predictive analytics, discover how modern AI tools are transforming CRM workflows and boosting revenue by 10-15%.</p>
+                    <span class="blog-card-cta">
+                        Read article
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Blog Post 4 -->
+            <a href="/blog/why-sales-reps-hate-data-entry.html" class="blog-card">
+                <div class="blog-card-image">
+                    <span style="font-size: 4rem;">😤</span>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-meta">
+                        <span class="blog-card-category">Pain Points</span>
+                        <span class="blog-card-date">6 min read</span>
+                    </div>
+                    <h2>Why Sales Reps Hate Data Entry (And How to Fix It)</h2>
+                    <p>Manual CRM data entry causes 4% error rates and kills motivation. Explore the psychology behind why reps avoid it and the modern solutions that actually work.</p>
+                    <span class="blog-card-cta">
+                        Read article
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 FlightSuite. Your AI CRM operator.</p>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/#waitlist">Get Early Access</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
