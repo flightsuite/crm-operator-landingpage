@@ -2228,6 +2228,7 @@
                 <a href="#demo" class="nav-link">Demo</a>
                 <a href="#faq" class="nav-link">FAQ</a>
                 <a href="/blog.html" class="nav-link">Blog</a>
+                <a href="/installation-guide.html" class="nav-link">Setup Guide</a>
                 <a href="https://crm.flightsuite.ai" class="nav-link" target="_blank" rel="noopener noreferrer">Need a CRM?</a>
                 <button class="cta-header" onclick="openInstallModal()" data-event="install_click">Install for Chrome</button>
             </nav>
@@ -2254,10 +2255,14 @@
             </div>
             <h1 class="hero-title">Your AI CRM operator</h1>
             <p class="hero-subtitle">Type what you want to record, FlightSuite logs it to your CRM. A Chrome extension that turns natural language into perfect CRM data instantly.</p>
-            <div style="text-align: center; margin-bottom: clamp(20px, 3vw, 24px);">
+            <div style="text-align: center; margin-bottom: clamp(20px, 3vw, 24px); display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;">
                 <button onclick="openModal('crmInfoModal')" style="border: none; background: none; color: var(--color-apple-blue); text-decoration: underline; cursor: pointer; font-size: clamp(13px, 1.8vw, 14px); font-family: inherit; padding: 0; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">
                     What's a CRM?
                 </button>
+                <span style="color: var(--color-text-tertiary); font-size: clamp(13px, 1.8vw, 14px);">|</span>
+                <a href="/installation-guide.html" style="color: var(--color-apple-blue); text-decoration: underline; font-size: clamp(13px, 1.8vw, 14px); transition: opacity 0.2s;" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">
+                    Installation Guide
+                </a>
             </div>
             <div class="hero-cta-group">
                 <button class="cta-primary" onclick="openInstallModal()" data-event="install_click">
@@ -2733,6 +2738,7 @@
                     <h4>Resources</h4>
                     <ul class="footer-links">
                         <li><a href="/blog.html" class="footer-link">Blog</a></li>
+                        <li><a href="/installation-guide.html" class="footer-link">Installation Guide</a></li>
                         <li><a href="https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb?hl=en-US" class="footer-link">Chrome Store</a></li>
                     </ul>
                 </div>
@@ -2843,6 +2849,16 @@
                             <li>Click "Connect" and start using FlightSuite!</li>
                         </ul>
                     </div>
+                </div>
+
+                <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--color-border); text-align: center;">
+                    <p style="color: var(--color-text-secondary); margin-bottom: 16px; font-size: 14px;">Need more detailed instructions with screenshots?</p>
+                    <a href="/installation-guide.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--gradient-primary); color: white; text-decoration: none; border-radius: 100px; font-weight: 600; font-size: 14px; transition: transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 24px rgba(94, 92, 230, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                        View Complete Installation Guide
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
