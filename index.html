@@ -3807,23 +3807,29 @@
                 } else {
                     tiffanyExplode(startX, endY, colorScheme);
                     setTimeout(() => trail.remove(), 600);
+                    decrementAnimationCount(); // Track completion
                 }
             }
 
+            incrementAnimationCount(); // Track start
             requestAnimationFrame(animateTrail);
         }
 
         function tiffanyExplode(x, y, colorScheme) {
-            // Ultra-Vivid Multi-layer bloom effect - LARGER & MORE INTENSE
-            // Optimize for mobile: reduce particles on smaller screens
+            // Ultra-Vivid Multi-layer bloom effect - PERFORMANCE OPTIMIZED
+            // Significantly reduce particles to prevent crashes
             const isMobile = window.innerWidth < 768;
             const layers = 3;
-            const particlesPerLayer = isMobile ? [20, 15, 10] : [32, 24, 16]; // Reduced on mobile
-            const shimmerCount = isMobile ? 15 : 30; // Half on mobile
+            // DRASTICALLY reduced particle counts to prevent crashes
+            const particlesPerLayer = isMobile ? [12, 8, 6] : [20, 14, 10]; // Was [20,15,10] / [32,24,16]
+            const shimmerCount = isMobile ? 8 : 15; // Was 15/30
 
             // Staggered bloom layers
             for (let layer = 0; layer < layers; layer++) {
                 setTimeout(() => {
+                    // Double-check visibility before creating particles
+                    if (!isPageVisible || prefersReducedMotion) return;
+
                     const count = particlesPerLayer[layer];
                     for (let i = 0; i < count; i++) {
                         createDiamondParticle(x, y, i, count, colorScheme, layer);
@@ -3833,10 +3839,13 @@
 
             // Add trailing sparkles - optimized for mobile
             for (let i = 0; i < shimmerCount; i++) {
-                setTimeout(() => createShimmer(x, y, colorScheme), Math.random() * 400);
+                setTimeout(() => {
+                    if (!isPageVisible || prefersReducedMotion) return;
+                    createShimmer(x, y, colorScheme);
+                }, Math.random() * 400);
             }
 
-            // Center bloom flash - LARGER
+            // Center bloom flash
             createBloomCenter(x, y, colorScheme);
         }
 
@@ -3867,9 +3876,11 @@
                     requestAnimationFrame(animate);
                 } else {
                     bloom.remove();
+                    decrementAnimationCount(); // Track completion
                 }
             }
 
+            incrementAnimationCount(); // Track start
             requestAnimationFrame(animate);
         }
 
@@ -3944,28 +3955,128 @@
                     requestAnimationFrame(animate);
                 } else {
                     particle.remove();
+                    decrementAnimationCount(); // Track completion
                 }
             }
 
+            incrementAnimationCount(); // Track start
             requestAnimationFrame(animate);
         }
 
-        // Launch premium fireworks with elegant timing - MORE VIVID
+        // ===== FIREWORKS PERFORMANCE & CRASH PREVENTION =====
+        let fireworksIntervalId = null;
+        let activeAnimationCount = 0;
+        const MAX_CONCURRENT_ANIMATIONS = 200; // Prevent memory overflow
+        let isPageVisible = true;
+        let prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Track animation count to prevent memory leaks
+        function incrementAnimationCount() {
+            activeAnimationCount++;
+        }
+
+        function decrementAnimationCount() {
+            activeAnimationCount--;
+        }
+
+        // Launch premium fireworks with elegant timing - OPTIMIZED
         function scheduleFireworks() {
+            // Skip if user prefers reduced motion
+            if (prefersReducedMotion) {
+                console.log('⚠️ Fireworks disabled: user prefers reduced motion');
+                return;
+            }
+
+            // Skip if page is hidden (tab switched, minimized, etc.)
+            if (!isPageVisible) {
+                console.log('⏸️ Fireworks paused: page not visible');
+                return;
+            }
+
+            // Prevent memory overflow by limiting concurrent animations
+            if (activeAnimationCount > MAX_CONCURRENT_ANIMATIONS) {
+                console.warn('⚠️ Skipping fireworks: too many active animations', activeAnimationCount);
+                return;
+            }
+
             const isMobile = window.innerWidth < 768;
-            const fireworkCount = isMobile ? 3 : 5; // Fewer on mobile
+            // Reduce firework count further to prevent crashes
+            const fireworkCount = isMobile ? 2 : 3; // Reduced from 3/5
 
             for (let i = 0; i < fireworkCount; i++) {
-                setTimeout(() => launchPremiumFirework(), i * 500);
+                setTimeout(() => {
+                    if (isPageVisible && !prefersReducedMotion) {
+                        launchPremiumFirework();
+                    }
+                }, i * 600); // Increased delay between fireworks
             }
         }
 
-        // Initial launch
-        setTimeout(scheduleFireworks, 800);
+        // Start fireworks system
+        function startFireworks() {
+            // Clear any existing interval
+            if (fireworksIntervalId) {
+                clearInterval(fireworksIntervalId);
+            }
 
-        // Periodic launches - optimized interval for mobile
-        const launchInterval = window.innerWidth < 768 ? 4500 : 3500;
-        setInterval(scheduleFireworks, launchInterval);
+            // Initial launch with delay
+            setTimeout(() => {
+                if (isPageVisible && !prefersReducedMotion) {
+                    scheduleFireworks();
+                }
+            }, 800);
+
+            // Periodic launches - optimized interval for performance
+            const launchInterval = window.innerWidth < 768 ? 6000 : 5000; // Increased from 4500/3500
+            fireworksIntervalId = setInterval(() => {
+                scheduleFireworks();
+            }, launchInterval);
+
+            console.log('✅ Fireworks system started with performance optimizations');
+        }
+
+        // Stop fireworks system - CRITICAL for preventing crashes
+        function stopFireworks() {
+            if (fireworksIntervalId) {
+                clearInterval(fireworksIntervalId);
+                fireworksIntervalId = null;
+                console.log('🛑 Fireworks system stopped');
+            }
+        }
+
+        // Page Visibility API - pause/resume animations when tab visibility changes
+        document.addEventListener('visibilitychange', () => {
+            isPageVisible = !document.hidden;
+
+            if (document.hidden) {
+                console.log('👁️ Page hidden - pausing fireworks');
+                stopFireworks();
+            } else {
+                console.log('👁️ Page visible - resuming fireworks');
+                startFireworks();
+            }
+        });
+
+        // Cleanup on page unload to prevent memory leaks
+        window.addEventListener('beforeunload', () => {
+            console.log('🧹 Cleaning up fireworks on page unload');
+            stopFireworks();
+        });
+
+        // Listen for reduced motion preference changes
+        window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
+            prefersReducedMotion = e.matches;
+            if (prefersReducedMotion) {
+                console.log('♿ Reduced motion enabled - stopping fireworks');
+                stopFireworks();
+            } else {
+                console.log('♿ Reduced motion disabled - starting fireworks');
+                startFireworks();
+            }
+        });
+
+        // Initialize fireworks system
+        startFireworks();
 
         // Demo buttons are now in HTML - no initialization needed
         console.log('✅ Demo initialized with hardcoded buttons');
