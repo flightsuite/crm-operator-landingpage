@@ -1235,7 +1235,7 @@
         /* Animated Bus */
         .bus {
             position: absolute;
-            left: 8%;
+            left: 28%;
             top: 50%;
             transform: translateY(-50%);
             width: clamp(60px, 10vw, 80px);
@@ -1247,6 +1247,65 @@
         @keyframes busIdle {
             0%, 100% { transform: translateY(-50%) translateX(0); }
             50% { transform: translateY(-50%) translateX(4px); }
+        }
+
+        /* Now Boarding Banner */
+        .boarding-banner {
+            position: absolute;
+            left: 28%;
+            top: 15%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, #4A4AE0 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: clamp(12px, 1.6vw, 14px);
+            font-weight: 600;
+            white-space: nowrap;
+            z-index: 5;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(94, 92, 230, 0.4);
+            animation: boardingPulse 2s ease-in-out infinite;
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .boarding-banner:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 6px 30px rgba(94, 92, 230, 0.6);
+        }
+
+        .boarding-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid #4A4AE0;
+        }
+
+        @keyframes boardingPulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(94, 92, 230, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(94, 92, 230, 0.7);
+            }
+        }
+
+        .station-status.boarding {
+            background: rgba(94, 92, 230, 0.3);
+            color: #A5A4FF;
+            font-weight: 600;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
         @keyframes pulse {
@@ -1316,6 +1375,10 @@
             }
 
             .bus {
+                display: none;
+            }
+
+            .boarding-banner {
                 display: none;
             }
 
@@ -2533,7 +2596,7 @@
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            FlightSuite works with GoHighLevel and HubSpot. Salesforce and Zoho coming 2026.
+                            FlightSuite works with GoHighLevel and HubSpot. Salesforce is now boarding—join the waitlist! Zoho coming 2026.
                         </div>
                     </div>
                 </div>
@@ -2590,8 +2653,8 @@
         <div class="roadmap-container">
             <div class="roadmap-header">
                 <div class="roadmap-label">CRM Integration Roadmap</div>
-                <h2 class="roadmap-title">Next Stop: Your CRM</h2>
-                <p class="roadmap-description">Your CoPilot is learning new CRMs. Currently live on GoHighLevel and HubSpot!</p>
+                <h2 class="roadmap-title">Now Boarding for Salesforce</h2>
+                <p class="roadmap-description">Live on GoHighLevel and HubSpot. Join the waitlist for Salesforce—launching soon!</p>
             </div>
 
             <div class="roadmap-journey">
@@ -2599,6 +2662,11 @@
                 <div class="road-path">
                     <div class="road-line"></div>
                     <div class="road-dashes"></div>
+                </div>
+
+                <!-- Now Boarding Banner -->
+                <div class="boarding-banner" onclick="openCrmRequestModal()" data-event="boarding_salesforce_click">
+                    Now Boarding for Salesforce →
                 </div>
 
                 <!-- Animated Bus -->
@@ -2641,13 +2709,13 @@
                         <div class="station-status live">● Live Now</div>
                     </div>
 
-                    <!-- Salesforce Station - Future -->
-                    <div class="station">
-                        <div class="station-marker future">
+                    <!-- Salesforce Station - Now Boarding -->
+                    <div class="station" onclick="openCrmRequestModal()" data-event="salesforce_station_click">
+                        <div class="station-marker coming-soon">
                             <div class="station-icon"><img src="Assets/Salesforce.com_logo.svg.png" alt="Salesforce" class="larger-logo"></div>
                         </div>
                         <div class="station-name">Salesforce</div>
-                        <div class="station-status">Coming 2026</div>
+                        <div class="station-status boarding">Now Boarding</div>
                     </div>
 
                     <!-- Zoho Station - Future -->
@@ -2677,10 +2745,10 @@
 
             <!-- Roadmap CTA -->
             <div class="roadmap-cta">
-                <h3 class="roadmap-cta-title">Don't see your CRM?</h3>
-                <p class="roadmap-cta-description">Join the waitlist and we'll notify you when FlightSuite supports your platform.</p>
+                <h3 class="roadmap-cta-title">Get on board for Salesforce</h3>
+                <p class="roadmap-cta-description">Salesforce support is coming soon. Join the waitlist to be first in line!</p>
                 <button class="cta-large" onclick="openCrmRequestModal()" data-event="roadmap_waitlist_click" style="background: white; color: var(--color-text-primary);">
-                    Join the Waitlist
+                    Join the Salesforce Waitlist
                     <span>→</span>
                 </button>
             </div>
