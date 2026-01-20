@@ -406,8 +406,8 @@
             </div>
             <div class="crm-option" data-crm="hubspot">
                 <h3>HubSpot CRM</h3>
-                <p>Integration in progress</p>
-                <span class="status-badge status-coming-soon">Coming Soon</span>
+                <p>Complete integration setup</p>
+                <span class="status-badge status-live">Live Now</span>
             </div>
         </div>
     </div>
@@ -524,12 +524,76 @@
             </div>
         </div>
 
-        <!-- HubSpot Guide (Coming Soon) -->
+        <!-- HubSpot Guide -->
         <div class="crm-guide" id="hubspot-guide">
-            <div class="coming-soon-message">
-                <h2>HubSpot Integration Coming Soon</h2>
-                <p>We're working hard to bring FlightSuite to HubSpot CRM. Join our waitlist to be notified when it's ready!</p>
-                <a href="/#install" class="cta-button">Join the Waitlist</a>
+            <!-- Step 1: Access HubSpot Settings -->
+            <div class="installation-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">
+                        <h2>Access HubSpot Settings</h2>
+                    </div>
+                </div>
+                <div class="step-description">
+                    Log into your HubSpot account and navigate to <strong>Settings</strong> (gear icon in the top right). Then go to <strong>Integrations → Private Apps</strong> in the left sidebar.
+                </div>
+                <!-- Screenshot placeholder: Assets/HubSpot Installation/1. Access Settings.png -->
+            </div>
+
+            <!-- Step 2: Create Private App -->
+            <div class="installation-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">
+                        <h2>Create a Private App</h2>
+                    </div>
+                </div>
+                <div class="step-description">
+                    Click <strong>"Create a private app"</strong>. Give your app a name like "FlightSuite Integration" and optionally add a description to help you identify it later.
+                </div>
+                <!-- Screenshot placeholder: Assets/HubSpot Installation/2. Create Private App.png -->
+            </div>
+
+            <!-- Step 3: Configure Scopes -->
+            <div class="installation-step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">
+                        <h2>Configure Scopes</h2>
+                    </div>
+                </div>
+                <div class="step-description">
+                    Click the <strong>"Scopes"</strong> tab. Under <strong>CRM</strong>, find <strong>Contacts</strong> and select both <strong>Read</strong> and <strong>Write</strong> permissions. This is the only scope FlightSuite needs to manage your contacts.
+                </div>
+                <!-- Screenshot placeholder: Assets/HubSpot Installation/3. Configure Scopes.png -->
+            </div>
+
+            <!-- Step 4: Create App and Copy Token -->
+            <div class="installation-step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">
+                        <h2>Create App and Copy Token</h2>
+                    </div>
+                </div>
+                <div class="step-description">
+                    Click <strong>"Create app"</strong> and confirm when prompted. HubSpot will generate an <strong>Access Token</strong>. Click <strong>"Show token"</strong> and copy it. Store this token securely - you'll need it for the next step.
+                </div>
+                <!-- Screenshot placeholder: Assets/HubSpot Installation/4. Copy Token.png -->
+            </div>
+
+            <!-- Step 5: Connect to FlightSuite -->
+            <div class="installation-step">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <div class="step-title">
+                        <h2>Connect to FlightSuite</h2>
+                    </div>
+                </div>
+                <div class="step-description">
+                    Open the FlightSuite Chrome extension, select <strong>HubSpot</strong> as your CRM, and paste your Access Token. Click <strong>"Connect"</strong> and you're ready to go! FlightSuite will now be able to update your HubSpot contacts automatically.
+                </div>
+                <!-- Screenshot placeholder: Assets/HubSpot Installation/5. Connect FlightSuite.png -->
             </div>
         </div>
     </div>

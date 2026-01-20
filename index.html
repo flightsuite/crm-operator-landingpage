@@ -2080,8 +2080,8 @@
             background: rgba(0, 0, 0, 0.3);
         }
 
-        /* Fireworks Effects */
-        .nye-container {
+        /* Particle Fusion Animation - CRM + AI Synergy */
+        .fusion-container {
             position: absolute;
             top: 0;
             left: 0;
@@ -2092,21 +2092,75 @@
             overflow: hidden;
         }
 
-        .firework-trail {
+        .fusion-core {
             position: absolute;
-            width: 3px;
-            height: 60px;
-            pointer-events: none;
-            will-change: transform;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-apple-blue), var(--color-ios-purple));
+            box-shadow:
+                0 0 20px rgba(0, 113, 227, 0.4),
+                0 0 40px rgba(94, 92, 230, 0.3),
+                0 0 60px rgba(0, 113, 227, 0.2);
+            opacity: 0.6;
+            transition: all 0.3s ease-out;
         }
 
-        .firework-particle {
+        .fusion-core.pulse {
+            animation: fusionCorePulse 0.6s ease-out;
+        }
+
+        @keyframes fusionCorePulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+                box-shadow:
+                    0 0 30px rgba(0, 113, 227, 0.6),
+                    0 0 60px rgba(94, 92, 230, 0.5),
+                    0 0 90px rgba(0, 113, 227, 0.3);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(2.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+                box-shadow:
+                    0 0 20px rgba(0, 113, 227, 0.4),
+                    0 0 40px rgba(94, 92, 230, 0.3),
+                    0 0 60px rgba(0, 113, 227, 0.2);
+            }
+        }
+
+        .fusion-particle {
             position: absolute;
-            width: 3px;
-            height: 3px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             pointer-events: none;
             will-change: transform, opacity;
+        }
+
+        .fusion-particle.crm {
+            background: var(--color-apple-blue);
+            box-shadow: 0 0 12px rgba(0, 113, 227, 0.8), 0 0 24px rgba(0, 113, 227, 0.4);
+        }
+
+        .fusion-particle.ai {
+            background: var(--color-ios-purple);
+            box-shadow: 0 0 12px rgba(94, 92, 230, 0.8), 0 0 24px rgba(94, 92, 230, 0.4);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fusion-container,
+            .fusion-core,
+            .fusion-particle {
+                display: none !important;
+            }
         }
 
         /* Floating Control Buttons */
@@ -2237,8 +2291,10 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <!-- Fireworks Container -->
-        <div class="nye-container" id="fireworksContainer"></div>
+        <!-- Particle Fusion Container -->
+        <div class="fusion-container" id="fusionContainer">
+            <div class="fusion-core" id="fusionCore"></div>
+        </div>
 
         <div class="hero-content">
             <div class="hero-badge">
@@ -2251,7 +2307,7 @@
                     </defs>
                     <path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/>
                 </svg>
-                Available Now for GoHighLevel
+                Available Now for GoHighLevel & HubSpot
             </div>
             <h1 class="hero-title">Your CRM CoPilot</h1>
             <p class="hero-subtitle">Stop fighting your CRM. Just type what happened and FlightSuite logs it instantly. The Chrome extension that makes your CRM actually usable.</p>
@@ -2477,7 +2533,7 @@
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            FlightSuite currently works with GoHighLevel. HubSpot integration is coming soon - join the waitlist for early access.
+                            FlightSuite works with GoHighLevel and HubSpot. Salesforce and Zoho coming 2026.
                         </div>
                     </div>
                 </div>
@@ -2535,7 +2591,7 @@
             <div class="roadmap-header">
                 <div class="roadmap-label">CRM Integration Roadmap</div>
                 <h2 class="roadmap-title">Next Stop: Your CRM</h2>
-                <p class="roadmap-description">Your CoPilot is learning new CRMs. Currently live on GoHighLevel, with HubSpot arriving soon!</p>
+                <p class="roadmap-description">Your CoPilot is learning new CRMs. Currently live on GoHighLevel and HubSpot!</p>
             </div>
 
             <div class="roadmap-journey">
@@ -2576,13 +2632,13 @@
                         <div class="station-status live">● Live Now</div>
                     </div>
 
-                    <!-- HubSpot Station - Coming Soon -->
+                    <!-- HubSpot Station - Live -->
                     <div class="station">
-                        <div class="station-marker coming-soon">
+                        <div class="station-marker active">
                             <div class="station-icon"><img src="Assets/hubspot.svg" alt="HubSpot"></div>
                         </div>
                         <div class="station-name">HubSpot</div>
-                        <div class="station-status arriving">Arriving Jan 2026</div>
+                        <div class="station-status live">● Live Now</div>
                     </div>
 
                     <!-- Salesforce Station - Future -->
@@ -3760,287 +3816,202 @@
             `;
         }
 
-        // Ultra-Luxury Fireworks - Tiffany & Co Inspired
-        const fireworksContainer = document.getElementById('fireworksContainer');
-        const tiffanyColors = [
-            { main: '#FFD700', glow: 'rgba(255, 215, 0, 0.7)', trail: 'rgba(255, 215, 0, 0.4)' },      // 24K Gold
-            { main: '#F4E4C1', glow: 'rgba(244, 228, 193, 0.6)', trail: 'rgba(244, 228, 193, 0.3)' },  // Champagne Diamond
-            { main: '#FFFAF0', glow: 'rgba(255, 250, 240, 0.9)', trail: 'rgba(255, 250, 240, 0.5)' },  // Flawless White
-            { main: '#E8E8E8', glow: 'rgba(232, 232, 232, 0.7)', trail: 'rgba(232, 232, 232, 0.4)' },  // Platinum Shimmer
-            { main: '#FFEAA7', glow: 'rgba(255, 234, 167, 0.6)', trail: 'rgba(255, 234, 167, 0.3)' }   // Yellow Diamond
-        ];
+        // ===== PARTICLE FUSION ANIMATION - CRM + AI SYNERGY =====
+        const fusionContainer = document.getElementById('fusionContainer');
+        const fusionCore = document.getElementById('fusionCore');
 
-        function launchPremiumFirework() {
-            const startX = Math.random() * window.innerWidth;
-            const startY = fireworksContainer.offsetHeight;
-            const endY = Math.random() * (fireworksContainer.offsetHeight * 0.2) + 40;
-            const colorScheme = tiffanyColors[Math.floor(Math.random() * tiffanyColors.length)];
-
-            // Elegant ascending trail with shimmer
-            const trail = document.createElement('div');
-            trail.className = 'firework-trail';
-            trail.style.left = startX + 'px';
-            trail.style.top = startY + 'px';
-            trail.style.width = '1.5px';
-            trail.style.height = '100px';
-            trail.style.background = `linear-gradient(to top, ${colorScheme.trail}, transparent)`;
-            trail.style.boxShadow = `0 0 25px ${colorScheme.glow}, 0 0 40px ${colorScheme.glow}`;
-            trail.style.filter = 'blur(0.3px)';
-            trail.style.opacity = '0.9';
-            fireworksContainer.appendChild(trail);
-
-            // Graceful upward animation
-            const duration = 1600;
-            const start = performance.now();
-
-            function animateTrail(currentTime) {
-                const elapsed = currentTime - start;
-                const progress = Math.min(elapsed / duration, 1);
-                const easeOut = 1 - Math.pow(1 - progress, 5);
-
-                const currentY = startY - (startY - endY) * easeOut;
-                trail.style.top = currentY + 'px';
-                trail.style.opacity = 0.9 - progress * 0.4;
-
-                if (progress < 1) {
-                    requestAnimationFrame(animateTrail);
-                } else {
-                    tiffanyExplode(startX, endY, colorScheme);
-                    setTimeout(() => trail.remove(), 600);
-                    decrementAnimationCount(); // Track completion
-                }
+        // Configuration
+        const FUSION_CONFIG = {
+            desktop: {
+                particlesPerStream: 3,
+                streamInterval: 2500,
+                maxConcurrent: 60
+            },
+            mobile: {
+                particlesPerStream: 2,
+                streamInterval: 3500,
+                maxConcurrent: 30
             }
+        };
 
-            incrementAnimationCount(); // Track start
-            requestAnimationFrame(animateTrail);
+        // State management
+        let fusionIntervalId = null;
+        let activeParticleCount = 0;
+        let isPageVisible = true;
+        let prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function getConfig() {
+            return window.innerWidth < 768 ? FUSION_CONFIG.mobile : FUSION_CONFIG.desktop;
         }
 
-        function tiffanyExplode(x, y, colorScheme) {
-            // Ultra-Vivid Multi-layer bloom effect - PERFORMANCE OPTIMIZED
-            // Significantly reduce particles to prevent crashes
-            const isMobile = window.innerWidth < 768;
-            const layers = 3;
-            // DRASTICALLY reduced particle counts to prevent crashes
-            const particlesPerLayer = isMobile ? [12, 8, 6] : [20, 14, 10]; // Was [20,15,10] / [32,24,16]
-            const shimmerCount = isMobile ? 8 : 15; // Was 15/30
-
-            // Staggered bloom layers
-            for (let layer = 0; layer < layers; layer++) {
-                setTimeout(() => {
-                    // Double-check visibility before creating particles
-                    if (!isPageVisible || prefersReducedMotion) return;
-
-                    const count = particlesPerLayer[layer];
-                    for (let i = 0; i < count; i++) {
-                        createDiamondParticle(x, y, i, count, colorScheme, layer);
-                    }
-                }, layer * 120);
-            }
-
-            // Add trailing sparkles - optimized for mobile
-            for (let i = 0; i < shimmerCount; i++) {
-                setTimeout(() => {
-                    if (!isPageVisible || prefersReducedMotion) return;
-                    createShimmer(x, y, colorScheme);
-                }, Math.random() * 400);
-            }
-
-            // Center bloom flash
-            createBloomCenter(x, y, colorScheme);
+        function incrementParticleCount() {
+            activeParticleCount++;
         }
 
-        function createBloomCenter(x, y, colorScheme) {
-            const bloom = document.createElement('div');
-            bloom.className = 'firework-particle';
-            bloom.style.left = x + 'px';
-            bloom.style.top = y + 'px';
-            bloom.style.width = '12px';
-            bloom.style.height = '12px';
-            bloom.style.background = colorScheme.main;
-            bloom.style.borderRadius = '50%';
-            bloom.style.boxShadow = `0 0 60px ${colorScheme.glow}, 0 0 90px ${colorScheme.glow}, 0 0 120px ${colorScheme.trail}`;
-            bloom.style.opacity = '1';
-            fireworksContainer.appendChild(bloom);
-
-            const duration = 600;
-            const start = performance.now();
-
-            function animate(currentTime) {
-                const elapsed = currentTime - start;
-                const progress = Math.min(elapsed / duration, 1);
-
-                bloom.style.opacity = 1 - progress;
-                bloom.style.transform = `scale(${1 + progress * 3})`;
-
-                if (progress < 1) {
-                    requestAnimationFrame(animate);
-                } else {
-                    bloom.remove();
-                    decrementAnimationCount(); // Track completion
-                }
-            }
-
-            incrementAnimationCount(); // Track start
-            requestAnimationFrame(animate);
+        function decrementParticleCount() {
+            activeParticleCount--;
         }
 
-        function createDiamondParticle(x, y, index, total, colorScheme, layer) {
+        // Create a single fusion particle
+        function createFusionParticle(side) {
+            if (!fusionContainer || prefersReducedMotion || !isPageVisible) return;
+
+            const config = getConfig();
+            if (activeParticleCount >= config.maxConcurrent) return;
+
             const particle = document.createElement('div');
-            particle.className = 'firework-particle';
-            particle.style.left = x + 'px';
-            particle.style.top = y + 'px';
+            particle.className = `fusion-particle ${side}`;
 
-            const size = layer === 0 ? 8 : layer === 1 ? 6 : 5;
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.background = colorScheme.main;
-            particle.style.borderRadius = '50%';
+            const containerRect = fusionContainer.getBoundingClientRect();
+            const centerX = containerRect.width / 2;
+            const centerY = containerRect.height / 2;
 
-            const glowIntensity = layer === 0 ? 30 : layer === 1 ? 25 : 20;
-            particle.style.boxShadow = `
-                0 0 ${glowIntensity}px ${colorScheme.glow},
-                0 0 ${glowIntensity * 2}px ${colorScheme.glow},
-                0 0 ${glowIntensity * 3}px ${colorScheme.trail}
-            `;
-            fireworksContainer.appendChild(particle);
+            // Start position: left or right edge with vertical variance
+            const startX = side === 'crm' ? -10 : containerRect.width + 10;
+            const startY = centerY + (Math.random() - 0.5) * containerRect.height * 0.6;
 
-            const angle = (Math.PI * 2 * index) / total + (Math.random() * 0.2 - 0.1);
-            const baseVelocity = layer === 0 ? 130 : layer === 1 ? 100 : 70;
-            const velocity = baseVelocity + Math.random() * 30;
-            const vx = Math.cos(angle) * velocity;
-            const vy = Math.sin(angle) * velocity;
+            particle.style.left = startX + 'px';
+            particle.style.top = startY + 'px';
+            particle.style.opacity = '0';
 
-            animateDiamondParticle(particle, x, y, vx, vy, layer);
-        }
+            fusionContainer.appendChild(particle);
+            incrementParticleCount();
 
-        function createShimmer(x, y, colorScheme) {
-            const shimmer = document.createElement('div');
-            shimmer.className = 'firework-particle';
-            shimmer.style.left = x + 'px';
-            shimmer.style.top = y + 'px';
-            shimmer.style.width = '3.5px';
-            shimmer.style.height = '3.5px';
-            shimmer.style.background = '#FFFAF0';
-            shimmer.style.borderRadius = '50%';
-            shimmer.style.boxShadow = '0 0 15px rgba(255, 250, 240, 1), 0 0 30px rgba(255, 215, 0, 0.8), 0 0 45px rgba(255, 215, 0, 0.5)';
-            fireworksContainer.appendChild(shimmer);
-
-            const angle = Math.random() * Math.PI * 2;
-            const velocity = 30 + Math.random() * 70;
-            const vx = Math.cos(angle) * velocity;
-            const vy = Math.sin(angle) * velocity;
-
-            animateDiamondParticle(shimmer, x, y, vx, vy, 0, 1000);
-        }
-
-        function animateDiamondParticle(particle, startX, startY, vx, vy, layer, customDuration) {
-            const duration = customDuration || 2200;
+            // Animate particle along curved path to center
+            const duration = 2500 + Math.random() * 1000; // 2.5-3.5s
             const start = performance.now();
 
+            // Control points for bezier-like curve
+            const controlY = startY + (Math.random() - 0.5) * 100;
+
             function animate(currentTime) {
+                if (!isPageVisible || prefersReducedMotion) {
+                    particle.remove();
+                    decrementParticleCount();
+                    return;
+                }
+
                 const elapsed = currentTime - start;
                 const progress = Math.min(elapsed / duration, 1);
-                const easeOut = 1 - Math.pow(1 - progress, 1.5);
 
-                const currentX = startX + vx * easeOut;
-                const currentY = startY + vy * easeOut + (progress * progress * 60); // Delicate gravity
-                const opacity = Math.pow(1 - progress, 2);
+                // Ease-in-out for smooth flow
+                const easeProgress = progress < 0.5
+                    ? 2 * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+                // Calculate position along curved path
+                const t = easeProgress;
+                const currentX = startX + (centerX - startX) * t;
+
+                // Bezier-like curve for Y
+                const y1 = startY;
+                const y2 = controlY;
+                const y3 = centerY;
+                const currentY = (1 - t) * (1 - t) * y1 + 2 * (1 - t) * t * y2 + t * t * y3;
+
+                // Opacity: fade in, stay visible, fade out near center
+                let opacity;
+                if (progress < 0.1) {
+                    opacity = progress * 10; // Fade in
+                } else if (progress > 0.85) {
+                    opacity = (1 - progress) / 0.15; // Fade out
+                } else {
+                    opacity = 1;
+                }
+
+                // Scale decreases as approaching center
+                const scale = 1 - progress * 0.3;
 
                 particle.style.left = currentX + 'px';
                 particle.style.top = currentY + 'px';
                 particle.style.opacity = opacity;
-                particle.style.transform = `scale(${1 - progress * 0.6}) rotate(${progress * 360}deg)`;
+                particle.style.transform = `scale(${scale})`;
 
                 if (progress < 1) {
                     requestAnimationFrame(animate);
                 } else {
                     particle.remove();
-                    decrementAnimationCount(); // Track completion
+                    decrementParticleCount();
+
+                    // Trigger core pulse when particle reaches center
+                    triggerCorePulse();
                 }
             }
 
-            incrementAnimationCount(); // Track start
             requestAnimationFrame(animate);
         }
 
-        // ===== FIREWORKS PERFORMANCE & CRASH PREVENTION =====
-        let fireworksIntervalId = null;
-        let activeAnimationCount = 0;
-        const MAX_CONCURRENT_ANIMATIONS = 200; // Prevent memory overflow
-        let isPageVisible = true;
-        let prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Pulse the fusion core when particles merge
+        let pulseTimeout = null;
+        function triggerCorePulse() {
+            if (!fusionCore || prefersReducedMotion) return;
 
-        // Track animation count to prevent memory leaks
-        function incrementAnimationCount() {
-            activeAnimationCount++;
+            // Debounce rapid pulses
+            if (pulseTimeout) return;
+
+            fusionCore.classList.add('pulse');
+            pulseTimeout = setTimeout(() => {
+                fusionCore.classList.remove('pulse');
+                pulseTimeout = null;
+            }, 600);
         }
 
-        function decrementAnimationCount() {
-            activeAnimationCount--;
-        }
+        // Launch a stream of particles from both sides
+        function launchFusionStream() {
+            if (prefersReducedMotion || !isPageVisible) return;
 
-        // Launch premium fireworks with elegant timing - OPTIMIZED
-        function scheduleFireworks() {
-            // Skip if user prefers reduced motion
-            if (prefersReducedMotion) {
-                console.log('⚠️ Fireworks disabled: user prefers reduced motion');
-                return;
-            }
+            const config = getConfig();
+            if (activeParticleCount >= config.maxConcurrent) return;
 
-            // Skip if page is hidden (tab switched, minimized, etc.)
-            if (!isPageVisible) {
-                console.log('⏸️ Fireworks paused: page not visible');
-                return;
-            }
-
-            // Prevent memory overflow by limiting concurrent animations
-            if (activeAnimationCount > MAX_CONCURRENT_ANIMATIONS) {
-                console.warn('⚠️ Skipping fireworks: too many active animations', activeAnimationCount);
-                return;
-            }
-
-            const isMobile = window.innerWidth < 768;
-            // Reduce firework count further to prevent crashes
-            const fireworkCount = isMobile ? 2 : 3; // Reduced from 3/5
-
-            for (let i = 0; i < fireworkCount; i++) {
+            // Launch particles from both sides with staggered timing
+            for (let i = 0; i < config.particlesPerStream; i++) {
                 setTimeout(() => {
                     if (isPageVisible && !prefersReducedMotion) {
-                        launchPremiumFirework();
+                        createFusionParticle('crm'); // Blue from left
                     }
-                }, i * 600); // Increased delay between fireworks
+                }, i * 200);
+
+                setTimeout(() => {
+                    if (isPageVisible && !prefersReducedMotion) {
+                        createFusionParticle('ai'); // Purple from right
+                    }
+                }, i * 200 + 100);
             }
         }
 
-        // Start fireworks system
-        function startFireworks() {
-            // Clear any existing interval
-            if (fireworksIntervalId) {
-                clearInterval(fireworksIntervalId);
+        // Start fusion animation system
+        function startFusion() {
+            if (fusionIntervalId) {
+                clearInterval(fusionIntervalId);
+            }
+
+            if (prefersReducedMotion) {
+                console.log('Fusion animation disabled: user prefers reduced motion');
+                return;
             }
 
             // Initial launch with delay
             setTimeout(() => {
                 if (isPageVisible && !prefersReducedMotion) {
-                    scheduleFireworks();
+                    launchFusionStream();
                 }
             }, 800);
 
-            // Periodic launches - optimized interval for performance
-            const launchInterval = window.innerWidth < 768 ? 6000 : 5000; // Increased from 4500/3500
-            fireworksIntervalId = setInterval(() => {
-                scheduleFireworks();
-            }, launchInterval);
+            // Periodic launches
+            const config = getConfig();
+            fusionIntervalId = setInterval(() => {
+                launchFusionStream();
+            }, config.streamInterval);
 
-            console.log('✅ Fireworks system started with performance optimizations');
+            console.log('Fusion animation started');
         }
 
-        // Stop fireworks system - CRITICAL for preventing crashes
-        function stopFireworks() {
-            if (fireworksIntervalId) {
-                clearInterval(fireworksIntervalId);
-                fireworksIntervalId = null;
-                console.log('🛑 Fireworks system stopped');
+        // Stop fusion animation system
+        function stopFusion() {
+            if (fusionIntervalId) {
+                clearInterval(fusionIntervalId);
+                fusionIntervalId = null;
+                console.log('Fusion animation stopped');
             }
         }
 
@@ -4049,34 +4020,29 @@
             isPageVisible = !document.hidden;
 
             if (document.hidden) {
-                console.log('👁️ Page hidden - pausing fireworks');
-                stopFireworks();
+                stopFusion();
             } else {
-                console.log('👁️ Page visible - resuming fireworks');
-                startFireworks();
+                startFusion();
             }
         });
 
         // Cleanup on page unload to prevent memory leaks
         window.addEventListener('beforeunload', () => {
-            console.log('🧹 Cleaning up fireworks on page unload');
-            stopFireworks();
+            stopFusion();
         });
 
         // Listen for reduced motion preference changes
         window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
             prefersReducedMotion = e.matches;
             if (prefersReducedMotion) {
-                console.log('♿ Reduced motion enabled - stopping fireworks');
-                stopFireworks();
+                stopFusion();
             } else {
-                console.log('♿ Reduced motion disabled - starting fireworks');
-                startFireworks();
+                startFusion();
             }
         });
 
-        // Initialize fireworks system
-        startFireworks();
+        // Initialize fusion animation system
+        startFusion();
 
         // Demo buttons are now in HTML - no initialization needed
         console.log('✅ Demo initialized with hardcoded buttons');
