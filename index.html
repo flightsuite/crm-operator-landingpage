@@ -1029,6 +1029,57 @@
             font-weight: 500;
         }
 
+        /* Social Proof Section */
+        .social-proof-section {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(94, 92, 230, 0.03) 100%);
+            text-align: center;
+        }
+
+        .social-proof-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-proof-label {
+            font-size: clamp(11px, 1.5vw, 12px);
+            font-weight: 600;
+            color: var(--color-text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: clamp(12px, 2vw, 16px);
+        }
+
+        .social-proof-title {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: clamp(16px, 3vw, 24px);
+            line-height: 1.2;
+        }
+
+        .social-proof-subtitle {
+            font-size: clamp(16px, 2vw, 18px);
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto clamp(40px, 6vw, 60px);
+            line-height: 1.6;
+        }
+
+        .social-proof-image {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth);
+        }
+
+        .social-proof-image:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12), 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
         /* FAQ Section */
         .faq-section {
             background: transparent;
@@ -2752,6 +2803,16 @@
                     <span>→</span>
                 </button>
             </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof-section">
+        <div class="social-proof-container">
+            <div class="social-proof-label">What Users Are Saying</div>
+            <h2 class="social-proof-title">Real reactions from real users</h2>
+            <p class="social-proof-subtitle">Join the community of sales teams who finally love their CRM workflow.</p>
+            <img src="Assets/social-proof.png" alt="User testimonials showing excitement about FlightSuite - messages like 'this is incredible', 'omg its like the assistant you dont have to train', and 'Wow this looks awesome'" class="social-proof-image" loading="lazy">
         </div>
     </section>
 
