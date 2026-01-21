@@ -58,3 +58,45 @@ No build, lint, or test commands exist - this is pure static HTML/CSS/JS.
 - All styles and scripts are inline in `index.html` for performance
 - Forms use `no-cors` mode for Google Apps Script compatibility
 - The `WEBHOOK_SETUP.md` documents the Airtable webhook integration (now using Google Sheets)
+
+## SEO/AEO 30-Day Growth Plan
+
+This project has an active SEO optimization plan. Run the daily task with:
+
+```
+/seo-daily
+```
+
+### Key SEO Files
+
+| File | Purpose |
+|------|---------|
+| `docs/SEO-AEO-STRATEGY.md` | Full 30-day strategy document |
+| `docs/SEO-PROGRESS.json` | Progress tracker (current day, completed tasks) |
+| `.claude/commands/seo-daily.md` | Daily task runner skill |
+
+### How the Daily SEO Runner Works
+
+1. Reads `docs/SEO-PROGRESS.json` to get current day (1-30)
+2. Executes that day's tasks completely
+3. Creates/modifies files as specified
+4. Updates progress tracker when done
+5. If session budget remains, continues to next day
+
+### Session Budget Targets
+
+- **Pro users**: ~44,000 tokens per 5-hour window
+- **Max5 users**: ~88,000 tokens per 5-hour window
+- **Max20 users**: ~220,000 tokens per 5-hour window
+
+The `/seo-daily` skill is designed to maximize session usage by completing substantial work.
+
+### Manual Progress Reset
+
+To restart from a specific day, edit `docs/SEO-PROGRESS.json`:
+```json
+{
+  "currentDay": 1,
+  "status": "not_started"
+}
+```

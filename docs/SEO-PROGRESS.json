@@ -1,0 +1,277 @@
+{
+  "projectName": "FlightSuite SEO/AEO 30-Day Plan",
+  "startDate": "2026-01-21",
+  "currentDay": 2,
+  "totalDays": 30,
+  "lastRunDate": "2026-01-21",
+  "status": "in_progress",
+  "completedTasks": [
+    {
+      "day": 1,
+      "date": "2026-01-21",
+      "title": "FAQPage Schema Implementation",
+      "tasks": [
+        "Added FAQPage schema with 8 comprehensive Q&As (40-60 word answers)",
+        "Added Organization schema with full brand entity data",
+        "Updated SoftwareApplication schema (HubSpot now live, not 'coming soon')",
+        "All schemas validated and properly formatted"
+      ],
+      "filesModified": ["index.html"]
+    },
+    {
+      "day": 5,
+      "date": "2026-01-21",
+      "title": "Sitemap Fix (Partial)",
+      "tasks": [
+        "Added missing best-crm-for-your-business.html to sitemap",
+        "Added missing installation-guide.html to sitemap",
+        "Updated all lastmod dates to 2026-01-21"
+      ],
+      "filesModified": ["sitemap.xml"]
+    }
+  ],
+  "notes": [
+    "Day 1 completed on 2026-01-21 - all schema tasks done",
+    "Also fixed sitemap (Day 5 task) while we were at it"
+  ],
+  "metrics": {
+    "pagesCreated": 0,
+    "schemasAdded": 3,
+    "blogPostsUpdated": 0,
+    "comparisonPages": 0,
+    "expertProfiles": 0
+  },
+  "dayDetails": {
+    "1": {
+      "title": "FAQPage Schema Implementation",
+      "status": "completed",
+      "tasks": [
+        "Add FAQPage schema to index.html",
+        "Add Organization schema",
+        "Validate markup"
+      ]
+    },
+    "2": {
+      "title": "HowTo Schema & Installation Guide",
+      "status": "pending",
+      "tasks": [
+        "Add HowTo schema to installation-guide.html",
+        "Add speakable schema"
+      ]
+    },
+    "3": {
+      "title": "Blog Schema Enhancement",
+      "status": "pending",
+      "tasks": [
+        "Add Article schema to all 5 blog posts",
+        "Cross-link between posts"
+      ]
+    },
+    "4": {
+      "title": "Answer Block Formatting",
+      "status": "pending",
+      "tasks": [
+        "Add 40-60 word answer blocks",
+        "Add TL;DR to blog posts"
+      ]
+    },
+    "5": {
+      "title": "Sitemap & Technical SEO",
+      "status": "completed",
+      "tasks": [
+        "Fix sitemap (add missing page)",
+        "Update lastmod dates"
+      ]
+    },
+    "6": {
+      "title": "Internal Linking Audit",
+      "status": "pending",
+      "tasks": [
+        "Map internal links",
+        "Add breadcrumb navigation",
+        "Add BreadcrumbList schema"
+      ]
+    },
+    "7": {
+      "title": "Performance Baseline",
+      "status": "pending",
+      "tasks": [
+        "Document current state",
+        "Create SEO-BASELINE.md"
+      ]
+    },
+    "8": {
+      "title": "Comparison Page Template",
+      "status": "pending",
+      "tasks": [
+        "Create templates/comparison-template.html",
+        "Design comparison table CSS"
+      ]
+    },
+    "9": {
+      "title": "HubSpot vs Salesforce Page",
+      "status": "pending",
+      "tasks": [
+        "Create compare/hubspot-vs-salesforce.html",
+        "2,500+ word comparison"
+      ]
+    },
+    "10": {
+      "title": "GoHighLevel vs HubSpot Page",
+      "status": "pending",
+      "tasks": [
+        "Create compare/gohighlevel-vs-hubspot.html",
+        "2,000+ word comparison"
+      ]
+    },
+    "11": {
+      "title": "Salesforce Alternatives Page",
+      "status": "pending",
+      "tasks": [
+        "Create alternatives/salesforce-alternatives.html",
+        "List 10 alternatives"
+      ]
+    },
+    "12": {
+      "title": "HubSpot Alternatives Page",
+      "status": "pending",
+      "tasks": [
+        "Create alternatives/hubspot-alternatives.html"
+      ]
+    },
+    "13": {
+      "title": "Best CRM for Small Business",
+      "status": "pending",
+      "tasks": [
+        "Create best-crm/small-business.html",
+        "3,000+ word guide"
+      ]
+    },
+    "14": {
+      "title": "Best CRM for Real Estate",
+      "status": "pending",
+      "tasks": [
+        "Create best-crm/real-estate.html"
+      ]
+    },
+    "15": {
+      "title": "Best CRM for Agencies",
+      "status": "pending",
+      "tasks": [
+        "Create best-crm/agencies.html"
+      ]
+    },
+    "16": {
+      "title": "CRM Data Entry Cost Article",
+      "status": "pending",
+      "tasks": [
+        "Create blog/true-cost-of-manual-crm-data-entry.html",
+        "Research statistics"
+      ]
+    },
+    "17": {
+      "title": "GoHighLevel Complete Guide",
+      "status": "pending",
+      "tasks": [
+        "Create guides/what-is-gohighlevel.html"
+      ]
+    },
+    "18": {
+      "title": "HubSpot Automation Guide",
+      "status": "pending",
+      "tasks": [
+        "Create guides/hubspot-automation-guide.html"
+      ]
+    },
+    "19": {
+      "title": "Sales Productivity Statistics",
+      "status": "pending",
+      "tasks": [
+        "Create resources/sales-productivity-statistics.html"
+      ]
+    },
+    "20": {
+      "title": "CRM ROI Calculator",
+      "status": "pending",
+      "tasks": [
+        "Create tools/crm-roi-calculator.html",
+        "JavaScript calculator"
+      ]
+    },
+    "21": {
+      "title": "Update All Blog Posts",
+      "status": "pending",
+      "tasks": [
+        "Add TL;DR sections",
+        "Improve internal linking",
+        "Update sitemap"
+      ]
+    },
+    "22": {
+      "title": "Expert Directory Design",
+      "status": "pending",
+      "tasks": [
+        "Create EXPERT-DIRECTORY-SPEC.md"
+      ]
+    },
+    "23": {
+      "title": "Expert Directory Landing",
+      "status": "pending",
+      "tasks": [
+        "Create experts/index.html"
+      ]
+    },
+    "24": {
+      "title": "Expert Profile Template",
+      "status": "pending",
+      "tasks": [
+        "Create templates/expert-profile-template.html"
+      ]
+    },
+    "25": {
+      "title": "First Expert Profiles",
+      "status": "pending",
+      "tasks": [
+        "Create 5 placeholder expert pages"
+      ]
+    },
+    "26": {
+      "title": "CRM Category Expert Pages",
+      "status": "pending",
+      "tasks": [
+        "Create experts/hubspot.html",
+        "Create experts/salesforce.html",
+        "Create experts/gohighlevel.html"
+      ]
+    },
+    "27": {
+      "title": "Backlink Outreach Plan",
+      "status": "pending",
+      "tasks": [
+        "Create BACKLINK-OUTREACH.md"
+      ]
+    },
+    "28": {
+      "title": "Statistics Promotion Plan",
+      "status": "pending",
+      "tasks": [
+        "Create STATISTICS-PROMOTION.md"
+      ]
+    },
+    "29": {
+      "title": "Google Business Setup",
+      "status": "pending",
+      "tasks": [
+        "Create GOOGLE-BUSINESS-SETUP.md"
+      ]
+    },
+    "30": {
+      "title": "Month 1 Review",
+      "status": "pending",
+      "tasks": [
+        "Create MONTH-1-REVIEW.md",
+        "Plan Month 2"
+      ]
+    }
+  }
+}
