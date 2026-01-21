@@ -1,7 +1,7 @@
 {
   "projectName": "FlightSuite SEO/AEO 30-Day Plan",
   "startDate": "2026-01-21",
-  "currentDay": 2,
+  "currentDay": 3,
   "totalDays": 30,
   "lastRunDate": "2026-01-21",
   "status": "in_progress",
@@ -28,15 +28,28 @@
         "Updated all lastmod dates to 2026-01-21"
       ],
       "filesModified": ["sitemap.xml"]
+    },
+    {
+      "day": 2,
+      "date": "2026-01-21",
+      "title": "HowTo Schema & Installation Guide",
+      "tasks": [
+        "Added HowTo schema for GoHighLevel installation (7 detailed steps)",
+        "Added HowTo schema for HubSpot installation (5 detailed steps)",
+        "Added Speakable schema for voice search optimization",
+        "Included totalTime, estimatedCost, supplies, and tools metadata"
+      ],
+      "filesModified": ["installation-guide.html"]
     }
   ],
   "notes": [
     "Day 1 completed on 2026-01-21 - all schema tasks done",
-    "Also fixed sitemap (Day 5 task) while we were at it"
+    "Also fixed sitemap (Day 5 task) while we were at it",
+    "Day 2 completed on 2026-01-21 - HowTo schemas added for both CRM guides"
   ],
   "metrics": {
     "pagesCreated": 0,
-    "schemasAdded": 3,
+    "schemasAdded": 6,
     "blogPostsUpdated": 0,
     "comparisonPages": 0,
     "expertProfiles": 0
@@ -53,7 +66,7 @@
     },
     "2": {
       "title": "HowTo Schema & Installation Guide",
-      "status": "pending",
+      "status": "completed",
       "tasks": [
         "Add HowTo schema to installation-guide.html",
         "Add speakable schema"

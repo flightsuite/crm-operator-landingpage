@@ -32,6 +32,163 @@
     <meta name="twitter:image" content="https://flightsuite.ai/Assets/social-preview.png">
     <meta name="twitter:image:alt" content="FlightSuite Installation Guide">
 
+    <!-- HowTo Schema for GoHighLevel Installation -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Install FlightSuite with GoHighLevel",
+      "description": "Step-by-step guide to connect FlightSuite CRM CoPilot with your GoHighLevel account. Complete setup takes about 5 minutes and enables AI-powered CRM automation.",
+      "image": "https://flightsuite.ai/Assets/social-preview.png",
+      "totalTime": "PT5M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "supply": [
+        {
+          "@type": "HowToSupply",
+          "name": "GoHighLevel account with admin access"
+        },
+        {
+          "@type": "HowToSupply",
+          "name": "Google Chrome browser"
+        }
+      ],
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "FlightSuite Chrome Extension"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Find Your Location ID",
+          "text": "Navigate to your business profile settings in GoHighLevel and copy your Location ID. This unique identifier connects FlightSuite to your specific CRM account.",
+          "image": "https://flightsuite.ai/Assets/FlightSuite Installation/1. Find Location ID.png"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Create Private Integration Token",
+          "text": "Go to Settings, navigate to Private Integrations, and click 'Create New Token'. This allows FlightSuite to securely communicate with your CRM."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Enter Token Information",
+          "text": "Provide a name for your token (e.g., 'FlightSuite Integration') and a description. This helps you identify the token's purpose later."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Select All Permissions",
+          "text": "For the token scope, select all permissions to ensure FlightSuite can fully automate your CRM tasks including Contacts, Opportunities, Users, Calendars, Tasks, and Conversations."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Confirm Security Warning",
+          "text": "When prompted with a security risk warning, click 'Confirm' to proceed. This warning appears because you're granting comprehensive access permissions necessary for FlightSuite to function."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Copy and Save Your Key",
+          "text": "Copy your Private App Key and save it somewhere secure like a password manager. Important: You won't be able to view this key again after this step."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 7,
+          "name": "Connect FlightSuite Extension",
+          "text": "Open the FlightSuite Chrome extension, paste your Location ID and Private App Key, then click Connect. You're now ready to automate your CRM data entry."
+        }
+      ]
+    }
+    </script>
+
+    <!-- HowTo Schema for HubSpot Installation -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Install FlightSuite with HubSpot",
+      "description": "Step-by-step guide to connect FlightSuite CRM CoPilot with your HubSpot account. Complete setup takes about 3 minutes and enables AI-powered contact management.",
+      "image": "https://flightsuite.ai/Assets/social-preview.png",
+      "totalTime": "PT3M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "supply": [
+        {
+          "@type": "HowToSupply",
+          "name": "HubSpot account with admin access"
+        },
+        {
+          "@type": "HowToSupply",
+          "name": "Google Chrome browser"
+        }
+      ],
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "FlightSuite Chrome Extension"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Access HubSpot Settings",
+          "text": "Log into your HubSpot account and navigate to Settings (gear icon in the top right). Then go to Integrations, then Private Apps in the left sidebar."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Create a Private App",
+          "text": "Click 'Create a private app'. Give your app a name like 'FlightSuite Integration' and optionally add a description to help you identify it later."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Configure Scopes",
+          "text": "Click the Scopes tab. Under CRM, find Contacts and select both Read and Write permissions. This is the only scope FlightSuite needs to manage your contacts."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Create App and Copy Token",
+          "text": "Click 'Create app' and confirm when prompted. HubSpot will generate an Access Token. Click 'Show token' and copy it. Store this token securely."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Connect to FlightSuite",
+          "text": "Open the FlightSuite Chrome extension, select HubSpot as your CRM, and paste your Access Token. Click Connect and you're ready to automate your CRM data entry."
+        }
+      ]
+    }
+    </script>
+
+    <!-- Speakable Schema for Voice Search -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "FlightSuite Installation Guide",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".page-header h1", ".page-header p", ".step-title h2", ".step-description"]
+      },
+      "url": "https://flightsuite.ai/installation-guide"
+    }
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="Assets/Flight Suite Favicon vPurple.svg">
 
