@@ -1,7 +1,7 @@
 {
   "projectName": "FlightSuite SEO/AEO 30-Day Plan",
   "startDate": "2026-01-21",
-  "currentDay": 8,
+  "currentDay": 9,
   "totalDays": 30,
   "lastRunDate": "2026-01-22",
   "status": "in_progress",
@@ -96,6 +96,23 @@
         "Defined metrics to track"
       ],
       "filesModified": ["docs/SEO-BASELINE.md"]
+    },
+    {
+      "day": 8,
+      "date": "2026-01-22",
+      "title": "Comparison Page Template",
+      "tasks": [
+        "Created templates/comparison-template.html",
+        "Included Article schema with placeholders",
+        "Included FAQPage schema with 5 questions",
+        "Included BreadcrumbList schema",
+        "Designed responsive comparison table CSS",
+        "Added TL;DR block, pros/cons grid, verdict box",
+        "Added FAQ section with semantic markup",
+        "Added FlightSuite CTA section",
+        "Added related posts section"
+      ],
+      "filesModified": ["templates/comparison-template.html"]
     }
   ],
   "notes": [
@@ -105,7 +122,8 @@
     "Day 3 completed on 2026-01-21 - Article schema added to all 5 blog posts",
     "Day 4 completed on 2026-01-22 - Answer blocks added to homepage, TL;DR summaries added to all 5 blog posts",
     "Day 6 completed on 2026-01-22 - Breadcrumb navigation and related posts added to all 5 blog posts",
-    "Day 7 completed on 2026-01-22 - SEO baseline document created"
+    "Day 7 completed on 2026-01-22 - SEO baseline document created",
+    "Day 8 completed on 2026-01-22 - Comparison page template created"
   ],
   "metrics": {
     "pagesCreated": 0,
@@ -175,7 +193,7 @@
     },
     "8": {
       "title": "Comparison Page Template",
-      "status": "pending",
+      "status": "completed",
       "tasks": [
         "Create templates/comparison-template.html",
         "Design comparison table CSS"
