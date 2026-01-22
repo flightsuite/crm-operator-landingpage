@@ -423,6 +423,40 @@
                 gap: 1rem;
             }
         }
+
+        /* TL;DR Summary Block for AI Search Optimization */
+        .tldr-block {
+            background: linear-gradient(135deg, rgba(94, 92, 230, 0.06) 0%, rgba(0, 113, 227, 0.06) 100%);
+            border: 1px solid rgba(94, 92, 230, 0.15);
+            border-radius: 12px;
+            padding: clamp(1.25rem, 3vw, 1.75rem);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .tldr-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-ios-purple);
+            margin-bottom: 0.75rem;
+        }
+
+        .tldr-label::before {
+            content: '⚡';
+        }
+
+        .tldr-block p {
+            font-size: clamp(0.9375rem, 1.8vw, 1.0625rem);
+            line-height: 1.7;
+            color: var(--color-text-primary);
+            margin: 0;
+            font-weight: 450;
+        }
     </style>
 </head>
 <body>
@@ -450,6 +484,12 @@
 
     <!-- Article Content -->
     <article class="article-content">
+        <!-- TL;DR Summary for AI Search -->
+        <aside class="tldr-block" itemscope itemtype="https://schema.org/Answer">
+            <div class="tldr-label">TL;DR</div>
+            <p itemprop="text">Sales reps waste 5-10 hours weekly on manual CRM data entry—that's 20% of selling time lost. AI automation eliminates this by letting reps type naturally (like "called John, he wants pricing") while AI handles field mapping and logging automatically. Result: reps focus on selling, data quality improves, and teams save $15,000+ per rep annually.</p>
+        </aside>
+
         <p>Sarah closes a huge deal. The prospect said yes, the contract is signed, and she should be celebrating. Instead, she's staring at her CRM, filling out 23 different fields: contact details, company info, deal stage, product interest, next steps, call notes...</p>
 
         <p>Twenty minutes later, she's done. And she still has four more deals from this week to log.</p>

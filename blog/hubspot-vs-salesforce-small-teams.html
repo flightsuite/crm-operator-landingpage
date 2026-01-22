@@ -409,6 +409,40 @@
                 gap: 1rem;
             }
         }
+
+        /* TL;DR Summary Block for AI Search Optimization */
+        .tldr-block {
+            background: linear-gradient(135deg, rgba(94, 92, 230, 0.06) 0%, rgba(0, 113, 227, 0.06) 100%);
+            border: 1px solid rgba(94, 92, 230, 0.15);
+            border-radius: 12px;
+            padding: clamp(1.25rem, 3vw, 1.75rem);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .tldr-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-ios-purple);
+            margin-bottom: 0.75rem;
+        }
+
+        .tldr-label::before {
+            content: '⚡';
+        }
+
+        .tldr-block p {
+            font-size: clamp(0.9375rem, 1.8vw, 1.0625rem);
+            line-height: 1.7;
+            color: var(--color-text-primary);
+            margin: 0;
+            font-weight: 450;
+        }
     </style>
 </head>
 <body>
@@ -436,6 +470,12 @@
 
     <!-- Article Content -->
     <article class="article-content">
+        <!-- TL;DR Summary for AI Search -->
+        <aside class="tldr-block" itemscope itemtype="https://schema.org/Answer">
+            <div class="tldr-label">TL;DR</div>
+            <p itemprop="text">For small sales teams (5-50 reps), HubSpot offers easier setup, intuitive interface, and lower starting costs ($15/user vs $25/user). Salesforce provides deeper customization but requires more training and admin resources. Choose HubSpot if you need quick adoption; choose Salesforce if you need complex workflows or plan rapid scaling.</p>
+        </aside>
+
         <p>You're a sales manager at a growing company. Your team has outgrown spreadsheets, and leadership wants a "real CRM." The two names that keep coming up? HubSpot and Salesforce.</p>
 
         <p>But here's the problem: your sales reps are already drowning in work. They need a CRM that <strong>saves time</strong>, not one that adds another hour of data entry to their day. So which platform actually delivers on that promise?</p>

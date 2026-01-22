@@ -446,6 +446,40 @@
                 gap: 1rem;
             }
         }
+
+        /* TL;DR Summary Block for AI Search Optimization */
+        .tldr-block {
+            background: linear-gradient(135deg, rgba(94, 92, 230, 0.06) 0%, rgba(0, 113, 227, 0.06) 100%);
+            border: 1px solid rgba(94, 92, 230, 0.15);
+            border-radius: 12px;
+            padding: clamp(1.25rem, 3vw, 1.75rem);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .tldr-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-ios-purple);
+            margin-bottom: 0.75rem;
+        }
+
+        .tldr-label::before {
+            content: '⚡';
+        }
+
+        .tldr-block p {
+            font-size: clamp(0.9375rem, 1.8vw, 1.0625rem);
+            line-height: 1.7;
+            color: var(--color-text-primary);
+            margin: 0;
+            font-weight: 450;
+        }
     </style>
 </head>
 <body>
@@ -473,6 +507,12 @@
 
     <!-- Article Content -->
     <article class="article-content">
+        <!-- TL;DR Summary for AI Search -->
+        <aside class="tldr-block" itemscope itemtype="https://schema.org/Answer">
+            <div class="tldr-label">TL;DR</div>
+            <p itemprop="text">The best CRM depends on your team size, budget, and technical resources—not feature lists. HubSpot suits SMBs wanting ease of use, Salesforce fits enterprises with complex processes, GoHighLevel excels for agencies, and Pipedrive works well for small sales teams. Most CRMs can do most things; focus on fit over features.</p>
+        </aside>
+
         <p><strong>Full disclosure:</strong> We don't sell CRMs. FlightSuite is a CRM enablement tool that works <em>with</em> your existing CRM to eliminate data entry. That means we have no horse in this race. Our job is to make whatever CRM you choose actually usable.</p>
 
         <p>This guide is what we wish existed when our customers ask us "which CRM should I use?" We've worked with teams on HubSpot, Salesforce, GoHighLevel, Zoho, Pipedrive, and more. Here's what we've learned about what actually matters.</p>

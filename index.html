@@ -2297,6 +2297,141 @@
             background: rgba(0, 0, 0, 0.3);
         }
 
+        /* Answer Block Styling for AI Search Optimization */
+        .answer-block {
+            background: linear-gradient(135deg, rgba(94, 92, 230, 0.04) 0%, rgba(0, 113, 227, 0.04) 100%);
+            border-left: 3px solid var(--color-ios-purple);
+            padding: clamp(16px, 3vw, 24px);
+            margin: clamp(24px, 4vw, 32px) 0;
+            border-radius: 0 12px 12px 0;
+            position: relative;
+        }
+
+        .answer-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -3px;
+            width: 3px;
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 3px 0 0 3px;
+        }
+
+        .answer-block p {
+            font-size: clamp(15px, 1.8vw, 17px);
+            line-height: 1.7;
+            color: var(--color-text-primary);
+            margin: 0;
+        }
+
+        .answer-block-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: clamp(11px, 1.3vw, 12px);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-ios-purple);
+            margin-bottom: 12px;
+        }
+
+        .answer-block-label svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Value Proposition Section */
+        .value-props-section {
+            padding: var(--section-spacing) var(--container-padding);
+            background: var(--color-bg-secondary);
+        }
+
+        .value-props-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .value-props-header {
+            text-align: center;
+            margin-bottom: clamp(32px, 5vw, 48px);
+        }
+
+        .value-props-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: clamp(12px, 1.5vw, 14px);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-ios-purple);
+            margin-bottom: clamp(12px, 2vw, 16px);
+        }
+
+        .value-props-title {
+            font-family: var(--font-display);
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            color: var(--color-text-primary);
+        }
+
+        .value-props-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+            gap: clamp(20px, 3vw, 28px);
+        }
+
+        .value-prop-card {
+            background: white;
+            border-radius: 16px;
+            padding: clamp(24px, 3vw, 32px);
+            border: 1px solid var(--color-border-light);
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .value-prop-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            border-color: rgba(94, 92, 230, 0.2);
+        }
+
+        .value-prop-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .value-prop-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+
+        .value-prop-question {
+            font-family: var(--font-display);
+            font-size: clamp(18px, 2.2vw, 22px);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--color-text-primary);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .value-prop-answer {
+            font-size: clamp(14px, 1.6vw, 16px);
+            line-height: 1.65;
+            color: var(--color-text-secondary);
+        }
+
         /* Particle Fusion Animation - CRM + AI Synergy */
         .fusion-container {
             position: absolute;
@@ -2731,6 +2866,89 @@
                 </div>
                 <div class="stat-number">100%</div>
                 <div class="stat-label">Automated data entry</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Propositions Section - Answer Blocks for AI Search -->
+    <section class="value-props-section" id="why-flightsuite">
+        <div class="value-props-container">
+            <div class="value-props-header">
+                <div class="value-props-label">Why FlightSuite?</div>
+                <h2 class="value-props-title">Questions sales teams ask</h2>
+            </div>
+            <div class="value-props-grid">
+                <!-- Answer Block 1: What is FlightSuite? -->
+                <div class="value-prop-card" itemscope itemtype="https://schema.org/Answer">
+                    <div class="value-prop-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-prop-question">What is FlightSuite?</h3>
+                    <p class="value-prop-answer" itemprop="text">FlightSuite is a Chrome extension that eliminates CRM data entry. Instead of manually updating your CRM, you type what happened in natural language—like "Just called John, he wants the enterprise plan"—and FlightSuite automatically logs it to GoHighLevel or HubSpot. Sales teams save 5-10 hours weekly.</p>
+                </div>
+
+                <!-- Answer Block 2: How does it work? -->
+                <div class="value-prop-card" itemscope itemtype="https://schema.org/Answer">
+                    <div class="value-prop-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-prop-question">How does CRM automation work?</h3>
+                    <p class="value-prop-answer" itemprop="text">FlightSuite uses AI to understand natural language and map it to your CRM fields automatically. When you type "Met Sarah at conference, she needs pricing by Friday," the AI identifies the contact, logs the meeting note, and can create a follow-up task—all without you clicking through CRM forms.</p>
+                </div>
+
+                <!-- Answer Block 3: Time Savings -->
+                <div class="value-prop-card" itemscope itemtype="https://schema.org/Answer">
+                    <div class="value-prop-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-prop-question">How much time does CRM data entry take?</h3>
+                    <p class="value-prop-answer" itemprop="text">Sales reps spend 5-10 hours per week on manual CRM data entry—that's 20% of their selling time. Studies show reps make an average of 4 errors per 100 entries when typing manually. FlightSuite eliminates this busywork entirely, letting your team focus on closing deals instead of updating records.</p>
+                </div>
+
+                <!-- Answer Block 4: CRM Compatibility -->
+                <div class="value-prop-card" itemscope itemtype="https://schema.org/Answer">
+                    <div class="value-prop-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <path d="M3 9h18M9 21V9"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-prop-question">What CRMs does FlightSuite support?</h3>
+                    <p class="value-prop-answer" itemprop="text">FlightSuite currently integrates with GoHighLevel and HubSpot, with both integrations fully live. Salesforce support is coming soon—join the waitlist to be first in line. We're also planning Zoho CRM support for 2026. The extension works directly in Chrome alongside your CRM.</p>
+                </div>
+
+                <!-- Answer Block 5: Security -->
+                <div class="value-prop-card" itemscope itemtype="https://schema.org/Answer">
+                    <div class="value-prop-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="5" y="11" width="14" height="10" rx="2"/>
+                            <circle cx="12" cy="16" r="1"/>
+                            <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-prop-question">Is my CRM data secure with FlightSuite?</h3>
+                    <p class="value-prop-answer" itemprop="text">FlightSuite prioritizes your data security. We only access CRM data when you're actively using the extension, never store your CRM credentials on our servers, and never share data with third parties. You maintain full control, and your CRM data stays in your CRM—we just help you put it there faster.</p>
+                </div>
+
+                <!-- Answer Block 6: Getting Started -->
+                <div class="value-prop-card" itemscope itemtype="https://schema.org/Answer">
+                    <div class="value-prop-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-prop-question">How do I start using FlightSuite?</h3>
+                    <p class="value-prop-answer" itemprop="text">Getting started takes under two minutes. Install the free Chrome extension from the Web Store, connect your CRM account (GoHighLevel or HubSpot), and start typing naturally. Most users make their first automated CRM update within 10 minutes. No training required—if you can type, you can use FlightSuite.</p>
+                </div>
             </div>
         </div>
     </section>
