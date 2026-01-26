@@ -406,6 +406,43 @@
             cursor: pointer;
         }
 
+        /* Sort Dropdown */
+        .sort-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 16px;
+            padding-left: 16px;
+            border-left: 1px solid var(--color-border-light);
+        }
+
+        .sort-select {
+            padding: 8px 32px 8px 12px;
+            background: var(--color-bg-secondary);
+            border: 1px solid transparent;
+            border-radius: 980px;
+            font-size: clamp(13px, 1.5vw, 14px);
+            font-weight: 500;
+            color: var(--color-text-primary);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236E6E73' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .sort-select:hover {
+            background-color: white;
+            border-color: var(--color-border);
+        }
+
+        .sort-select:focus {
+            outline: none;
+            border-color: var(--color-ios-purple);
+            box-shadow: 0 0 0 3px rgba(94, 92, 230, 0.1);
+        }
+
         .filter-toggle input {
             display: none;
         }
@@ -785,29 +822,64 @@
                 display: none;
             }
 
+            .filter-bar {
+                overflow: hidden;
+            }
+
             .filter-container {
                 flex-direction: column;
                 align-items: stretch;
+                gap: 8px;
+                overflow: hidden;
+            }
+
+            .filter-label {
+                flex-shrink: 0;
+                margin-bottom: 4px;
             }
 
             .filter-chips {
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 8px;
+                display: flex;
                 flex-wrap: nowrap;
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding-bottom: 4px;
+                margin: 0 -16px;
+                padding-left: 16px;
+                padding-right: 16px;
                 -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+
+            .filter-chips::-webkit-scrollbar {
+                display: none;
             }
 
             .filter-chip {
                 white-space: nowrap;
                 flex-shrink: 0;
+                padding: 10px 16px;
+                font-size: 14px;
             }
 
             .filter-toggle {
                 margin-left: 0;
-                justify-content: space-between;
+                justify-content: flex-start;
                 padding-top: 12px;
                 border-top: 1px solid var(--color-border-light);
+                margin-top: 4px;
+            }
+
+            .sort-container {
+                margin-left: auto;
+                padding-left: 12px;
+                border-left: none;
+            }
+
+            .sort-select {
+                padding: 10px 28px 10px 12px;
+                font-size: 14px;
             }
 
             .expert-grid {
@@ -928,6 +1000,14 @@
                 <span class="toggle-switch"></span>
                 <span class="toggle-label">Verified Only</span>
             </label>
+            <div class="sort-container">
+                <select class="sort-select" id="sortExperts">
+                    <option value="recommended">Recommended</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name-az">Name: A-Z</option>
+                </select>
+            </div>
         </div>
     </div>
 
@@ -1534,11 +1614,61 @@
     </footer>
 
     <script>
-        // Filter functionality
+        // Filter and Sort functionality
         const crmChips = document.querySelectorAll('#crmFilters .filter-chip:not(.disabled)');
         const specialtyChips = document.querySelectorAll('#specialtyFilters .filter-chip');
+        const expertGrid = document.getElementById('expertGrid');
         const expertCards = document.querySelectorAll('.expert-card');
         const verifiedToggle = document.getElementById('verifiedOnly');
+        const sortSelect = document.getElementById('sortExperts');
+
+        // Extract price from card for sorting
+        function getCardPrice(card) {
+            const priceText = card.querySelector('.meta-item strong')?.textContent || '';
+            // Extract first number from price text
+            const match = priceText.match(/\$?([\d,]+)/);
+            if (match) {
+                return parseInt(match[1].replace(',', ''));
+            }
+            // Handle hourly rates
+            const hourlyMatch = priceText.match(/\$([\d]+)\/hr/);
+            if (hourlyMatch) {
+                return parseInt(hourlyMatch[1]);
+            }
+            return 999999; // Default for "Contact for pricing" etc.
+        }
+
+        // Get expert name for sorting
+        function getCardName(card) {
+            return card.querySelector('.expert-name')?.textContent || '';
+        }
+
+        // Sort experts
+        function sortExperts() {
+            const sortValue = sortSelect.value;
+            const cardsArray = Array.from(expertCards);
+
+            cardsArray.sort((a, b) => {
+                switch(sortValue) {
+                    case 'price-low':
+                        return getCardPrice(a) - getCardPrice(b);
+                    case 'price-high':
+                        return getCardPrice(b) - getCardPrice(a);
+                    case 'name-az':
+                        return getCardName(a).localeCompare(getCardName(b));
+                    case 'recommended':
+                    default:
+                        // Keep original order (claimed profiles first, then by position)
+                        const aHasClaimed = a.querySelector('.claimed-badge') ? 0 : 1;
+                        const bHasClaimed = b.querySelector('.claimed-badge') ? 0 : 1;
+                        return aHasClaimed - bHasClaimed;
+                }
+            });
+
+            // Re-append in sorted order
+            cardsArray.forEach(card => expertGrid.appendChild(card));
+            filterExperts();
+        }
 
         // CRM filter click handler
         crmChips.forEach(chip => {
@@ -1559,6 +1689,7 @@
         });
 
         verifiedToggle.addEventListener('change', filterExperts);
+        sortSelect.addEventListener('change', sortExperts);
 
         function filterExperts() {
             const activeCrmFilter = document.querySelector('#crmFilters .filter-chip.active')?.dataset.crmFilter || 'all';
