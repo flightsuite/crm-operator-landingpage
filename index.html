@@ -424,6 +424,36 @@
             animation: fadeInUp 0.8s var(--ease-out) 0.5s forwards;
         }
 
+        .user-count-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: clamp(16px, 2.5vw, 24px);
+            padding: 8px 16px;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 980px;
+            font-size: clamp(12px, 1.5vw, 14px);
+            color: var(--color-text-secondary);
+            opacity: 0;
+            animation: fadeInUp 0.8s var(--ease-out) 0.7s forwards;
+        }
+
+        .user-count-badge svg {
+            flex-shrink: 0;
+        }
+
+        .user-count-number {
+            font-weight: 600;
+            color: var(--color-text-primary);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .user-count-badge .chrome-icon {
+            width: 16px;
+            height: 16px;
+        }
+
         .cta-primary {
             background: var(--gradient-primary);
             color: white;
@@ -2682,6 +2712,16 @@
                     Join Waitlist for Your CRM
                 </button>
             </div>
+            <div class="user-count-badge">
+                <svg class="chrome-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="#4285F4" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="4" fill="#4285F4"/>
+                    <path d="M12 2C6.48 2 2 6.48 2 12h10" stroke="#EA4335" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M12 2c5.52 0 10 4.48 10 10h-10" stroke="#34A853" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M12 22c5.52 0 10-4.48 10-10H12" stroke="#FBBC05" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span>Trusted by <span class="user-count-number" id="userCount">100+</span> Chrome users</span>
+            </div>
         </div>
     </section>
 
@@ -3730,6 +3770,42 @@
             if (firstButton) {
                 firstButton.classList.add('demo-hint');
             }
+        });
+
+        // User count animation
+        window.addEventListener('DOMContentLoaded', () => {
+            const userCountEl = document.getElementById('userCount');
+            if (!userCountEl) return;
+
+            const targetCount = 100;
+            let hasAnimated = false;
+
+            const animateCount = () => {
+                if (hasAnimated) return;
+                hasAnimated = true;
+
+                let current = 0;
+                const duration = 1200;
+                const startTime = performance.now();
+
+                const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
+
+                const step = (currentTime) => {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    current = Math.round(easeOutQuart(progress) * targetCount);
+                    userCountEl.textContent = current + '+';
+
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    }
+                };
+
+                requestAnimationFrame(step);
+            };
+
+            // Start animation after badge fades in (0.7s delay + 0.8s animation)
+            setTimeout(animateCount, 1500);
         });
 
         // Subtle Click Sound (General buttons) - Soft tap
