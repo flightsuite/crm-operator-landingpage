@@ -76,4 +76,20 @@
         <priority>0.9</priority>
     </url>
 
+    <!-- Comparison: GoHighLevel vs HubSpot -->
+    <url>
+        <loc>https://flightsuite.ai/compare/gohighlevel-vs-hubspot.html</loc>
+        <lastmod>2026-01-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Alternatives: Salesforce Alternatives -->
+    <url>
+        <loc>https://flightsuite.ai/alternatives/salesforce-alternatives.html</loc>
+        <lastmod>2026-01-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
 </urlset>
