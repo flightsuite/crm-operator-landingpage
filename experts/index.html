@@ -738,6 +738,12 @@
                 overflow-x: auto;
                 padding-bottom: 8px;
                 flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .filter-chip {
+                white-space: nowrap;
+                flex-shrink: 0;
             }
 
             .filter-toggle {
@@ -749,6 +755,28 @@
 
             .expert-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* Mobile card footer */
+            .card-footer {
+                flex-direction: column;
+            }
+
+            .btn-profile {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 15px;
+                text-align: center;
+            }
+
+            /* Expert card mobile tweaks */
+            .expert-quote {
+                font-size: 14px;
+            }
+
+            .expert-meta {
+                flex-direction: column;
+                gap: 8px;
             }
         }
 
@@ -876,7 +904,7 @@
                     </span>
                 </div>
                 <div class="card-footer">
-                    <a href="/experts/noli-aquino" class="btn-profile">View Profile</a>
+                    <a href="/experts/noli-aquino.html" class="btn-profile">View Profile</a>
                     <a href="https://advancedhighlevel.com/#calendar-BYSKdmOqm3" class="btn-book" target="_blank" title="Book a call">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                     </a>
@@ -908,10 +936,7 @@
                     </span>
                 </div>
                 <div class="card-footer">
-                    <a href="/experts/abdullah-virk" class="btn-profile">View Profile</a>
-                    <a href="https://vamatters.com/book-a-call" class="btn-book" target="_blank" title="Book a call">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    </a>
+                    <a href="https://vamatters.com/book-a-call" class="btn-profile" target="_blank">Book a Call</a>
                 </div>
             </div>
         </article>
@@ -940,10 +965,7 @@
                     </span>
                 </div>
                 <div class="card-footer">
-                    <a href="/experts/salman-tariq" class="btn-profile">View Profile</a>
-                    <a href="https://link.iotec.agency/widget/bookings/connect-with-salman" class="btn-book" target="_blank" title="Book a call">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    </a>
+                    <a href="https://link.iotec.agency/widget/bookings/connect-with-salman" class="btn-profile" target="_blank">Book a Call</a>
                 </div>
             </div>
         </article>
@@ -972,10 +994,7 @@
                     </span>
                 </div>
                 <div class="card-footer">
-                    <a href="/experts/seth-wixtrom" class="btn-profile">View Profile</a>
-                    <a href="https://link.revcore.io/widget/bookings/bookwithedc" class="btn-book" target="_blank" title="Book a call">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    </a>
+                    <a href="https://link.revcore.io/widget/bookings/bookwithedc" class="btn-profile" target="_blank">Book a Call</a>
                 </div>
             </div>
         </article>
@@ -1004,10 +1023,7 @@
                     </span>
                 </div>
                 <div class="card-footer">
-                    <a href="/experts/vanessa-zamora" class="btn-profile">View Profile</a>
-                    <a href="https://book.marketingdragon888.com/biolink" class="btn-book" target="_blank" title="Book a call">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    </a>
+                    <a href="https://book.marketingdragon888.com/biolink" class="btn-profile" target="_blank">Book a Call</a>
                 </div>
             </div>
         </article>
@@ -1036,10 +1052,7 @@
                     </span>
                 </div>
                 <div class="card-footer">
-                    <a href="/experts/huzaifa-siddiqi" class="btn-profile">View Profile</a>
-                    <a href="#" class="btn-book" target="_blank" title="Book a call">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    </a>
+                    <a href="mailto:hello@flightsuite.ai?subject=Connect with Huzaifa Siddiqi" class="btn-profile">Request Intro</a>
                 </div>
             </div>
         </article>
@@ -1068,10 +1081,7 @@
                     </span>
                 </div>
                 <div class="card-footer">
-                    <a href="/experts/deborah-spence" class="btn-profile">View Profile</a>
-                    <a href="#" class="btn-book" target="_blank" title="Book a call">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    </a>
+                    <a href="mailto:hello@flightsuite.ai?subject=Connect with Deborah Spence" class="btn-profile">Request Intro</a>
                 </div>
             </div>
         </article>
@@ -1100,15 +1110,11 @@
                     </span>
                 </div>
                 <div class="card-footer">
-                    <a href="/experts/josimara-hoffman" class="btn-profile">View Profile</a>
-                    <a href="https://ghl.josimarahoffmann.com/calendar" class="btn-book" target="_blank" title="Book a call">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    </a>
+                    <a href="https://ghl.josimarahoffmann.com/calendar" class="btn-profile" target="_blank">Book a Call</a>
                 </div>
             </div>
         </article>
 
-        <!-- More experts following same pattern... -->
         <!-- Jithin Sujala -->
         <article class="expert-card" data-crm="gohighlevel" data-specialty="automation ai-voice" data-verified="true">
             <div class="verified-badge">
@@ -1133,10 +1139,7 @@
                     </span>
                 </div>
                 <div class="card-footer">
-                    <a href="/experts/jithin-sujala" class="btn-profile">View Profile</a>
-                    <a href="https://www.damartech.com" class="btn-book" target="_blank" title="Book a call">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    </a>
+                    <a href="https://www.damartech.com" class="btn-profile" target="_blank">Visit Website</a>
                 </div>
             </div>
         </article>
@@ -1165,10 +1168,7 @@
                     </span>
                 </div>
                 <div class="card-footer">
-                    <a href="/experts/cristina-samoila" class="btn-profile">View Profile</a>
-                    <a href="https://beeproductive.eu/clarity-call/" class="btn-book" target="_blank" title="Book a call">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    </a>
+                    <a href="https://beeproductive.eu/clarity-call/" class="btn-profile" target="_blank">Book a Call</a>
                 </div>
             </div>
         </article>
@@ -1197,10 +1197,7 @@
                     </span>
                 </div>
                 <div class="card-footer">
-                    <a href="/experts/abdelwahab-aitichou" class="btn-profile">View Profile</a>
-                    <a href="#" class="btn-book" target="_blank" title="Book a call">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    </a>
+                    <a href="mailto:hello@flightsuite.ai?subject=Connect with Abdelwahab Aitichou" class="btn-profile">Request Intro</a>
                 </div>
             </div>
         </article>
@@ -1229,10 +1226,7 @@
                     </span>
                 </div>
                 <div class="card-footer">
-                    <a href="/experts/akhimi-zambales" class="btn-profile">View Profile</a>
-                    <a href="http://virtuallyakhimi.co/" class="btn-book" target="_blank" title="Book a call">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    </a>
+                    <a href="http://virtuallyakhimi.co/" class="btn-profile" target="_blank">Visit Website</a>
                 </div>
             </div>
         </article>
