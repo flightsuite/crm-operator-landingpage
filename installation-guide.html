@@ -476,6 +476,65 @@
             margin-top: 1.5rem;
         }
 
+        /* Image container for centering non-full-width images */
+        .step-image-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        /* Banner images - wide and short, don't stretch */
+        .step-image-banner {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Sidebar images - narrow and tall */
+        .step-image-sidebar {
+            max-width: 280px;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Modal/dialog images - medium width */
+        .step-image-modal {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Small UI element images */
+        .step-image-small {
+            max-width: 320px;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Multiple images in a row */
+        .step-images-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .step-images-row .step-image-modal {
+            flex: 1;
+            min-width: 300px;
+            max-width: 100%;
+        }
+
         .coming-soon-message {
             text-align: center;
             padding: 4rem 2rem;
@@ -733,7 +792,9 @@
                 <div class="step-description">
                     Log into your HubSpot account and click the <strong>Settings</strong> gear icon in the top navigation bar.
                 </div>
-                <img src="Assets/Hubspot Installation/1. Select Settings.png" alt="Step 1: Click Settings gear icon in HubSpot" class="step-image">
+                <div class="step-image-container">
+                    <img src="Assets/Hubspot Installation/1. Select Settings.png" alt="Step 1: Click Settings gear icon in HubSpot" class="step-image-banner">
+                </div>
             </div>
 
             <!-- Step 2: Navigate to Legacy Apps -->
@@ -747,7 +808,9 @@
                 <div class="step-description">
                     In the left sidebar under <strong>Account Management</strong>, click <strong>Integrations</strong>, then select <strong>Legacy Apps</strong> from the dropdown menu.
                 </div>
-                <img src="Assets/Hubspot Installation/2. Select Integrations > Legacy Apps.png" alt="Step 2: Navigate to Integrations then Legacy Apps" class="step-image">
+                <div class="step-image-container">
+                    <img src="Assets/Hubspot Installation/2. Select Integrations > Legacy Apps.png" alt="Step 2: Navigate to Integrations then Legacy Apps" class="step-image-sidebar">
+                </div>
             </div>
 
             <!-- Step 3: Create Legacy App -->
@@ -761,7 +824,9 @@
                 <div class="step-description">
                     Click the <strong>Create Legacy App</strong> button to start creating your integration.
                 </div>
-                <img src="Assets/Hubspot Installation/3. Create Legacy App.png" alt="Step 3: Click Create Legacy App button" class="step-image">
+                <div class="step-image-container">
+                    <img src="Assets/Hubspot Installation/3. Create Legacy App.png" alt="Step 3: Click Create Legacy App button" class="step-image-banner">
+                </div>
             </div>
 
             <!-- Step 4: Select Private App Type -->
@@ -775,7 +840,9 @@
                 <div class="step-description">
                     Choose <strong>Private</strong> as the app type. This creates a secure connection between FlightSuite and your HubSpot account.
                 </div>
-                <img src="Assets/Hubspot Installation/4. Legacy App > Private.png" alt="Step 4: Select Private app type" class="step-image">
+                <div class="step-image-container">
+                    <img src="Assets/Hubspot Installation/4. Legacy App > Private.png" alt="Step 4: Select Private app type" class="step-image-modal">
+                </div>
             </div>
 
             <!-- Step 5: Enter App Information -->
@@ -789,7 +856,9 @@
                 <div class="step-description">
                     Give your app a name like <strong>"FlightSuite Integration"</strong> and optionally add a description to help you identify it later.
                 </div>
-                <img src="Assets/Hubspot Installation/5. New Legacy App > Basic Info.png" alt="Step 5: Enter app name and description" class="step-image">
+                <div class="step-image-container">
+                    <img src="Assets/Hubspot Installation/5. New Legacy App > Basic Info.png" alt="Step 5: Enter app name and description" class="step-image-modal">
+                </div>
             </div>
 
             <!-- Step 6: Select Scopes -->
@@ -803,9 +872,13 @@
                 <div class="step-description">
                     Click the <strong>Scopes</strong> tab and select the required permissions for FlightSuite. You'll need to enable read and write access for contacts and any other CRM data you want FlightSuite to manage.
                 </div>
-                <img src="Assets/Hubspot Installation/6. Select Scopes.png" alt="Step 6: Click Scopes tab" class="step-image">
-                <img src="Assets/Hubspot Installation/6b. Scopes to Select.png" alt="Step 6b: Select the required scopes" class="step-image" style="margin-top: 1rem;">
-                <img src="Assets/Hubspot Installation/6c. summary of selected scopes.png" alt="Step 6c: Review selected scopes summary" class="step-image" style="margin-top: 1rem;">
+                <div class="step-images-row">
+                    <img src="Assets/Hubspot Installation/6. Select Scopes.png" alt="Step 6: Click Scopes tab" class="step-image-modal">
+                    <img src="Assets/Hubspot Installation/6b. Scopes to Select.png" alt="Step 6b: Select the required scopes" class="step-image-modal">
+                </div>
+                <div class="step-image-container" style="margin-top: 1rem;">
+                    <img src="Assets/Hubspot Installation/6c. summary of selected scopes.png" alt="Step 6c: Review selected scopes summary" class="step-image-modal">
+                </div>
             </div>
 
             <!-- Step 7: Create the App -->
@@ -819,7 +892,9 @@
                 <div class="step-description">
                     Review your settings and click <strong>Create App</strong> to generate your integration.
                 </div>
-                <img src="Assets/Hubspot Installation/7. Create App.png" alt="Step 7: Click Create App button" class="step-image">
+                <div class="step-image-container">
+                    <img src="Assets/Hubspot Installation/7. Create App.png" alt="Step 7: Click Create App button" class="step-image-banner">
+                </div>
             </div>
 
             <!-- Step 8: Click Continue -->
@@ -833,7 +908,9 @@
                 <div class="step-description">
                     Click <strong>Continue</strong> to proceed to the authentication screen where you can access your token.
                 </div>
-                <img src="Assets/Hubspot Installation/8. Click Continue.png" alt="Step 8: Click Continue button" class="step-image">
+                <div class="step-image-container">
+                    <img src="Assets/Hubspot Installation/8. Click Continue.png" alt="Step 8: Click Continue button" class="step-image-modal">
+                </div>
             </div>
 
             <!-- Step 9: Access Auth Tab -->
@@ -847,7 +924,9 @@
                 <div class="step-description">
                     On the next screen, click the <strong>Auth</strong> tab to view your access token.
                 </div>
-                <img src="Assets/Hubspot Installation/9. Click Auth Tab on Next Screen to Get Token.png" alt="Step 9: Click Auth tab to get token" class="step-image">
+                <div class="step-image-container">
+                    <img src="Assets/Hubspot Installation/9. Click Auth Tab on Next Screen to Get Token.png" alt="Step 9: Click Auth tab to get token" class="step-image-banner">
+                </div>
             </div>
 
             <!-- Step 10: Copy Access Token -->
@@ -861,7 +940,9 @@
                 <div class="step-description">
                     Click <strong>Show Token</strong>, then copy the access token. This is your <strong>FlightSuite access key</strong>. Open the FlightSuite Chrome extension, select HubSpot as your CRM, and paste this token to complete setup.
                 </div>
-                <img src="Assets/Hubspot Installation/10. Click showen token and copy access token. This will be your FlightSuite access key..png" alt="Step 10: Click Show Token and copy your access key" class="step-image">
+                <div class="step-image-container">
+                    <img src="Assets/Hubspot Installation/10. Click showen token and copy access token. This will be your FlightSuite access key..png" alt="Step 10: Click Show Token and copy your access key" class="step-image-modal">
+                </div>
             </div>
 
             <!-- Optional: Edit Scopes for Future -->
@@ -875,7 +956,9 @@
                 <div class="step-description">
                     If you need to add or modify scopes in the future, you can return to your Legacy App settings and update the permissions as needed.
                 </div>
-                <img src="Assets/Hubspot Installation/11. To Edit Scopes for Future.png" alt="Optional: How to edit scopes in the future" class="step-image">
+                <div class="step-image-container">
+                    <img src="Assets/Hubspot Installation/11. To Edit Scopes for Future.png" alt="Optional: How to edit scopes in the future" class="step-image-small">
+                </div>
             </div>
         </div>
     </div>
