@@ -922,6 +922,27 @@
             text-decoration: underline;
         }
 
+        .claim-profile-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--color-success) 0%, #2ecc71 100%);
+            color: white;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s var(--ease-smooth);
+            box-shadow: 0 4px 12px rgba(52, 199, 89, 0.3);
+        }
+
+        .claim-profile-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 199, 89, 0.4);
+        }
+
         /* Section Divider */
         .section-divider {
             max-width: 1200px;
@@ -1774,7 +1795,8 @@
     <!-- Section Divider for Unclaimed -->
     <div class="section-divider" id="unclaimedSection">
         <h2>More GHL Certified Admins</h2>
-        <p>These experts haven't verified with FlightSuite yet. Are you one of them? <a href="mailto:hello@flightsuite.ai?subject=Claim My Profile">Claim your profile</a></p>
+        <p>These experts haven't claimed their profile yet. <strong>Verified pros get 3x more visibility</strong> and direct lead referrals from FlightSuite users.</p>
+        <a href="mailto:hello@flightsuite.ai?subject=Claim My Profile" class="claim-profile-cta">Claim Your Profile - Get Featured Free</a>
     </div>
 
     <!-- Unclaimed Expert Grid -->
@@ -1827,6 +1849,54 @@
             </div>
         </article>
 
+        <!-- Patrick Cohen (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="ai-voice automation" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin + AI Employee
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">PC</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Patrick Cohen</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                        <div class="expert-rating">
+                            <span class="rating-stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                            <span class="rating-count">12 reviews</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        United States
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/certified-admins/patrick-cohen" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Patrick Cohen">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
         <!-- Angel Joy Romaraog (Unclaimed) -->
         <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="automation funnels" data-verified="false">
             <div class="unclaimed-badge">
@@ -1875,8 +1945,8 @@
             </div>
         </article>
 
-        <!-- Patrick Cohen (Unclaimed) -->
-        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="ai-voice automation" data-verified="false">
+        <!-- Khuram Shahzad (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="full-builds automation" data-verified="false">
             <div class="unclaimed-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -1888,9 +1958,9 @@
             </div>
             <div class="card-body">
                 <div class="expert-header">
-                    <div class="expert-photo">PC</div>
+                    <div class="expert-photo">KS</div>
                     <div class="expert-info">
-                        <h3 class="expert-name">Patrick Cohen</h3>
+                        <h3 class="expert-name">Khuram Shahzad</h3>
                         <p class="expert-specialty">GHL Certified Admin</p>
                         <div class="expert-rating">
                             <span class="rating-stars">
@@ -1900,7 +1970,7 @@
                                 <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                 <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             </span>
-                            <span class="rating-count">12 reviews</span>
+                            <span class="rating-count">7 reviews</span>
                         </div>
                     </div>
                 </div>
@@ -1911,14 +1981,712 @@
                     </span>
                 </div>
                 <div class="card-footer">
-                    <a href="https://directory.gohighlevel.com/certified-admins/patrick-cohen" class="btn-ghl" target="_blank">
+                    <a href="https://directory.gohighlevel.com/certified-admins/khuram-shahzad" class="btn-ghl" target="_blank">
                         View on GHL Directory
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                     </a>
                 </div>
                 <div class="claim-cta-small">
                     <p>Is this you?</p>
-                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Patrick Cohen">Claim your profile</a>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Khuram Shahzad">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Bryan Odina (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="automation funnels" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">BO</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Bryan Odina</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                        <div class="expert-rating">
+                            <span class="rating-stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                            <span class="rating-count">6 reviews</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Philippines
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/philippines/taguig/certified-admins/bryan-odina" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Bryan Odina">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Ben McGary (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="full-builds automation" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">BM</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Ben McGary</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                        <div class="expert-rating">
+                            <span class="rating-stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                            <span class="rating-count">4 reviews</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        United States
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/united-states/box-elder/certified-admins/ben-mcgary" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Ben McGary">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Ann Marie Walts (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="automation funnels" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">AW</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Ann Marie Walts</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                        <div class="expert-rating">
+                            <span class="rating-stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                            <span class="rating-count">2 reviews</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        United States
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/united-states/west-springfield/certified-admins/ann-marie-walts" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Ann Marie Walts">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Nicholas Scalice (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="funnels automation" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">NS</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Nicholas Scalice</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                        <div class="expert-rating">
+                            <span class="rating-stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                            <span class="rating-count">1 review</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        United States
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/united-states/port-st-lucie/certified-admins/nicholas-scalice" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Nicholas Scalice">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Andreas Dolleschal (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="automation ai-voice" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">AD</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Andreas Dolleschal</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                        <div class="expert-rating">
+                            <span class="rating-stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                            <span class="rating-count">1 review</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        United States
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/united-states/fort-myers/certified-admins/andreas-dolleschal" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Andreas Dolleschal">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Muhammad Nouman (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="full-builds automation" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">MN</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Muhammad Nouman</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                        <div class="expert-rating">
+                            <span class="rating-stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                            <span class="rating-count">10 reviews</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        United States
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/united-states/sheridan/certified-admins/muhammad-nouman" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Muhammad Nouman">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Marcus Wilson (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="automation funnels" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">MW</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Marcus Wilson</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                        <div class="expert-rating">
+                            <span class="rating-stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                            <span class="rating-count">3 reviews</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        United States
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/united-states/holland/certified-admins/marcus-wilson" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Marcus Wilson">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Paul Lingren (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="full-builds automation" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">PL</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Paul Lingren</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                        <div class="expert-rating">
+                            <span class="rating-stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                            <span class="rating-count">1 review</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        United States
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/united-states/colorado-springs/certified-admins/paul-lingren" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Paul Lingren">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Liam Holmes (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="automation funnels" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">LH</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Liam Holmes</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        United Kingdom
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/united-kingdom/newquay/certified-admins/liam-holmes" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Liam Holmes">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Gareth Everson (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="full-builds automation" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">GE</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Gareth Everson</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        United Kingdom
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/united-kingdom/harrogate/certified-admins/gareth-everson" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Gareth Everson">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Brett Emery (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="automation funnels" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">BE</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Brett Emery</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Australia
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/australia/brisbane/certified-admins/brett-emery" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Brett Emery">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Norwin Loyola (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="automation funnels" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">NL</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Norwin Loyola</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Philippines
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/philippines/manila/certified-admins/norwin-loyola" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Norwin Loyola">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Edgar Canete Jr (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="full-builds automation" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">EC</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Edgar Canete Jr</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Philippines
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/philippines/manila/certified-admins/edgar-canete-jr" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Edgar Canete Jr">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Andrew George (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="automation ai-voice" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">AG</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Andrew George</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        United States
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/united-states/dallas/certified-admins/andrew-george" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Andrew George">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Ahmer Zaman (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="full-builds automation" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">AZ</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Ahmer Zaman</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Pakistan
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/pakistan/islamabad/certified-admins/ahmer-zaman" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Ahmer Zaman">Claim your profile</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Dakota Routh (Unclaimed) -->
+        <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="full-builds automation" data-verified="false">
+            <div class="unclaimed-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                GHL Certified Admin
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">DR</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">Dakota Routh</h3>
+                        <p class="expert-specialty">GHL Certified Admin</p>
+                        <div class="expert-rating">
+                            <span class="rating-stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                            <span class="rating-count">1 review</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        United States
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://directory.gohighlevel.com/united-states/las-vegas/certified-admins/dakota-routh" class="btn-ghl" target="_blank">
+                        View on GHL Directory
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <div class="claim-cta-small">
+                    <p>Is this you?</p>
+                    <a href="mailto:hello@flightsuite.ai?subject=Claim Profile: Dakota Routh">Claim your profile</a>
                 </div>
             </div>
         </article>
