@@ -124,4 +124,28 @@
         <priority>0.7</priority>
     </url>
 
+    <!-- Expert Profile: Abdullah Virk -->
+    <url>
+        <loc>https://flightsuite.ai/experts/abdullah-virk.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Expert Profile: Seth Wixtrom -->
+    <url>
+        <loc>https://flightsuite.ai/experts/seth-wixtrom.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Expert Profile: Deborah Spence -->
+    <url>
+        <loc>https://flightsuite.ai/experts/deborah-spence.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
 </urlset>
