@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM ROI Calculator - Calculate Your Time Savings | FlightSuite</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Calculate how much time and money your sales team loses to CRM data entry. Free ROI calculator shows potential savings from automation.">
+    <meta name="keywords" content="CRM ROI calculator, CRM time savings, sales productivity calculator, data entry cost calculator, CRM automation ROI">
+    <link rel="canonical" href="https://flightsuite.ai/tools/crm-roi-calculator.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flightsuite.ai/tools/crm-roi-calculator.html">
+    <meta property="og:title" content="CRM ROI Calculator - Calculate Your Time Savings">
+    <meta property="og:description" content="Calculate how much time and money your sales team loses to CRM data entry. Free calculator.">
+    <meta property="og:image" content="https://flightsuite.ai/Assets/social-preview.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CRM ROI Calculator - Calculate Your Time Savings">
+    <meta name="twitter:description" content="Calculate how much your sales team loses to CRM data entry.">
+    <meta name="twitter:image" content="https://flightsuite.ai/Assets/social-preview.png">
+
+    <!-- WebApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "CRM ROI Calculator",
+      "description": "Calculate how much time and money your sales team loses to CRM data entry, and see potential savings from automation.",
+      "url": "https://flightsuite.ai/tools/crm-roi-calculator.html",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "FlightSuite",
+        "url": "https://flightsuite.ai"
+      }
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://flightsuite.ai"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://flightsuite.ai/tools"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "CRM ROI Calculator",
+          "item": "https://flightsuite.ai/tools/crm-roi-calculator.html"
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        /* ===== CSS RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --color-apple-blue: #0071E3;
+            --color-ios-purple: #5E5CE6;
+            --color-bg-primary: #FFFFFF;
+            --color-bg-secondary: #F5F5F7;
+            --color-text-primary: #1D1D1F;
+            --color-text-secondary: #6E6E73;
+            --color-border: rgba(0, 0, 0, 0.1);
+            --color-success: #34C759;
+            --color-warning: #FF9500;
+            --color-danger: #FF3B30;
+            --max-width: 1440px;
+            --content-width: 900px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover { color: var(--color-apple-blue); }
+
+        /* ===== HERO ===== */
+        .hero {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 2rem);
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            background: rgba(94, 92, 230, 0.1);
+            color: var(--color-ios-purple);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CALCULATOR ===== */
+        .calculator-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 4vw, 2rem) clamp(3rem, 6vw, 5rem);
+        }
+
+        .calculator {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .calculator { grid-template-columns: 1fr; }
+        }
+
+        /* ===== INPUT SECTION ===== */
+        .calculator-inputs {
+            background: var(--color-bg-secondary);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .calculator-inputs h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .input-group .helper {
+            font-size: 0.8125rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .input-group input[type="number"],
+        .input-group input[type="range"] {
+            width: 100%;
+        }
+
+        .input-group input[type="number"] {
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            font-size: 1.125rem;
+            font-family: inherit;
+            font-weight: 500;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-group input[type="number"]:focus {
+            outline: none;
+            border-color: var(--color-ios-purple);
+        }
+
+        .input-group input[type="range"] {
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, var(--color-ios-purple) 0%, var(--color-ios-purple) var(--value), #E5E5EA var(--value), #E5E5EA 100%);
+            margin-top: 0.5rem;
+        }
+
+        .input-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+        }
+
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .range-value {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-ios-purple);
+            margin-top: 0.5rem;
+        }
+
+        /* ===== RESULTS SECTION ===== */
+        .calculator-results {
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            color: white;
+        }
+
+        .calculator-results h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-card:last-of-type {
+            margin-bottom: 1.5rem;
+        }
+
+        .result-label {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.25rem;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .result-value.negative { color: #FF6B6B; }
+        .result-value.positive { color: #69DB7C; }
+
+        .result-subtext {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0.25rem;
+        }
+
+        .savings-highlight {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .savings-highlight .label {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .savings-highlight .value {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .cta-button {
+            display: block;
+            background: white;
+            color: var(--color-ios-purple);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s ease;
+            margin-top: 1.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== METHODOLOGY ===== */
+        .methodology {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 4vw, 2rem) clamp(3rem, 6vw, 5rem);
+        }
+
+        .methodology h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .methodology p {
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+
+        .methodology ul {
+            color: var(--color-text-secondary);
+            margin: 1rem 0 1rem 1.5rem;
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+
+        .methodology li {
+            margin-bottom: 0.5rem;
+        }
+
+        .methodology a {
+            color: var(--color-apple-blue);
+            text-decoration: none;
+        }
+
+        .methodology a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== RELATED CONTENT ===== */
+        .related-content {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 4vw, 2rem) clamp(3rem, 6vw, 5rem);
+        }
+
+        .related-content h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .related-card {
+            background: var(--color-bg-secondary);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .related-card .category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-ios-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .related-card h3 {
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-card p {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--color-bg-secondary);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+        }
+
+        .footer-links a:hover { color: var(--color-apple-blue); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            nav { flex-direction: column; gap: 1rem; text-align: center; }
+            .nav-links { flex-wrap: wrap; justify-content: center; }
+            .hero h1 { font-size: 1.75rem; }
+            .result-value { font-size: 1.5rem; }
+            .savings-highlight .value { font-size: 2rem; }
+            .footer-links { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="/" class="logo">FlightSuite</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/experts/">Experts</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero -->
+    <header class="hero">
+        <span class="hero-badge">Free Tool</span>
+        <h1>CRM ROI Calculator</h1>
+        <p>Calculate how much time and money your sales team loses to CRM data entry—and how much you could save with automation.</p>
+    </header>
+
+    <!-- Calculator -->
+    <div class="calculator-container">
+        <div class="calculator">
+            <!-- Inputs -->
+            <div class="calculator-inputs">
+                <h2>Your Team Details</h2>
+
+                <div class="input-group">
+                    <label for="team-size">Sales Team Size</label>
+                    <div class="helper">Number of sales reps entering CRM data</div>
+                    <input type="number" id="team-size" value="10" min="1" max="500">
+                </div>
+
+                <div class="input-group">
+                    <label for="hourly-cost">Fully-Loaded Hourly Cost ($)</label>
+                    <div class="helper">Salary + benefits + overhead (typically 1.3-1.5x base salary)</div>
+                    <input type="number" id="hourly-cost" value="45" min="15" max="200">
+                </div>
+
+                <div class="input-group">
+                    <label for="entry-hours">Hours Per Week on Data Entry</label>
+                    <div class="helper">Industry average is 5.5 hours</div>
+                    <input type="range" id="entry-hours" min="1" max="15" value="5.5" step="0.5" style="--value: 36.67%;">
+                    <div class="range-labels">
+                        <span>1 hr</span>
+                        <span>15 hrs</span>
+                    </div>
+                    <div class="range-value"><span id="entry-hours-value">5.5</span> hrs/week</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="automation-reduction">Automation Reduction</label>
+                    <div class="helper">Expected reduction in data entry time with FlightSuite</div>
+                    <input type="range" id="automation-reduction" min="50" max="95" value="85" step="5" style="--value: 77.78%;">
+                    <div class="range-labels">
+                        <span>50%</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="range-value"><span id="automation-reduction-value">85</span>%</div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="calculator-results">
+                <h2>Your Results</h2>
+
+                <div class="result-card">
+                    <div class="result-label">Current Annual Cost of Data Entry</div>
+                    <div class="result-value negative" id="current-cost">$128,700</div>
+                    <div class="result-subtext"><span id="current-hours">2,860</span> hours/year spent on admin</div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-label">Hours Recovered Per Rep Per Year</div>
+                    <div class="result-value positive" id="hours-recovered">243</div>
+                    <div class="result-subtext">That's <span id="days-recovered">30</span> extra selling days</div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-label">Team Hours Recovered Annually</div>
+                    <div class="result-value positive" id="team-hours">2,431</div>
+                    <div class="result-subtext">Redirected to revenue-generating activities</div>
+                </div>
+
+                <div class="savings-highlight">
+                    <div class="label">Potential Annual Savings</div>
+                    <div class="value" id="annual-savings">$109,395</div>
+                </div>
+
+                <a href="/" class="cta-button">Start Saving Time with FlightSuite</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Methodology -->
+    <section class="methodology">
+        <h2>How We Calculate</h2>
+        <p>Our calculator uses industry-validated benchmarks and research-backed assumptions:</p>
+        <ul>
+            <li><strong>5.5 hours/week:</strong> Average time sales reps spend on CRM data entry (Salesforce, HubSpot research)</li>
+            <li><strong>52 weeks:</strong> Standard work year</li>
+            <li><strong>85% reduction:</strong> Conservative estimate based on FlightSuite user data (actual range: 80-95%)</li>
+            <li><strong>8-hour days:</strong> Standard calculation for converting hours to "selling days"</li>
+        </ul>
+        <p>These calculations don't include secondary benefits like improved data quality, better forecasting accuracy, or increased CRM adoption—all of which further improve ROI.</p>
+        <p>For detailed statistics on sales productivity and data entry costs, see our <a href="/resources/sales-productivity-statistics.html">50 Sales Productivity Statistics</a> and <a href="/blog/true-cost-of-manual-crm-data-entry.html">The True Cost of Manual CRM Data Entry</a>.</p>
+    </section>
+
+    <!-- Related Content -->
+    <section class="related-content">
+        <h2>Related Resources</h2>
+        <div class="related-grid">
+            <a href="/blog/true-cost-of-manual-crm-data-entry.html" class="related-card">
+                <div class="category">Research</div>
+                <h3>The True Cost of Manual CRM Data Entry</h3>
+                <p>Deep dive into the financial impact of CRM data entry on sales teams.</p>
+            </a>
+            <a href="/resources/sales-productivity-statistics.html" class="related-card">
+                <div class="category">Data</div>
+                <h3>50 Sales Productivity Statistics</h3>
+                <p>Essential statistics for making the case for sales automation.</p>
+            </a>
+            <a href="/guides/hubspot-automation-guide.html" class="related-card">
+                <div class="category">Guide</div>
+                <h3>HubSpot Automation Guide</h3>
+                <p>How to automate HubSpot data entry with AI and workflows.</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 FlightSuite. CRM enablement for modern sales teams.</p>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/experts/">Find an Expert</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Calculator Logic
+        const teamSizeInput = document.getElementById('team-size');
+        const hourlyCostInput = document.getElementById('hourly-cost');
+        const entryHoursInput = document.getElementById('entry-hours');
+        const automationReductionInput = document.getElementById('automation-reduction');
+
+        const entryHoursValue = document.getElementById('entry-hours-value');
+        const automationReductionValue = document.getElementById('automation-reduction-value');
+
+        const currentCostEl = document.getElementById('current-cost');
+        const currentHoursEl = document.getElementById('current-hours');
+        const hoursRecoveredEl = document.getElementById('hours-recovered');
+        const daysRecoveredEl = document.getElementById('days-recovered');
+        const teamHoursEl = document.getElementById('team-hours');
+        const annualSavingsEl = document.getElementById('annual-savings');
+
+        function updateRangeBackground(input) {
+            const min = parseFloat(input.min);
+            const max = parseFloat(input.max);
+            const value = parseFloat(input.value);
+            const percentage = ((value - min) / (max - min)) * 100;
+            input.style.setProperty('--value', percentage + '%');
+        }
+
+        function calculate() {
+            const teamSize = parseFloat(teamSizeInput.value) || 0;
+            const hourlyCost = parseFloat(hourlyCostInput.value) || 0;
+            const entryHours = parseFloat(entryHoursInput.value) || 0;
+            const automationReduction = parseFloat(automationReductionInput.value) || 0;
+
+            // Update displayed values
+            entryHoursValue.textContent = entryHours;
+            automationReductionValue.textContent = automationReduction;
+
+            // Calculations
+            const weeksPerYear = 52;
+            const hoursPerDay = 8;
+
+            // Current annual hours on data entry (whole team)
+            const annualHours = teamSize * entryHours * weeksPerYear;
+
+            // Current annual cost
+            const annualCost = annualHours * hourlyCost;
+
+            // Hours saved with automation
+            const hoursSaved = annualHours * (automationReduction / 100);
+
+            // Hours per rep recovered
+            const hoursPerRep = (entryHours * weeksPerYear) * (automationReduction / 100);
+
+            // Days recovered per rep
+            const daysPerRep = hoursPerRep / hoursPerDay;
+
+            // Annual savings
+            const savings = hoursSaved * hourlyCost;
+
+            // Update UI
+            currentCostEl.textContent = '$' + Math.round(annualCost).toLocaleString();
+            currentHoursEl.textContent = Math.round(annualHours).toLocaleString();
+            hoursRecoveredEl.textContent = Math.round(hoursPerRep).toLocaleString();
+            daysRecoveredEl.textContent = Math.round(daysPerRep);
+            teamHoursEl.textContent = Math.round(hoursSaved).toLocaleString();
+            annualSavingsEl.textContent = '$' + Math.round(savings).toLocaleString();
+        }
+
+        // Event listeners
+        teamSizeInput.addEventListener('input', calculate);
+        hourlyCostInput.addEventListener('input', calculate);
+
+        entryHoursInput.addEventListener('input', function() {
+            updateRangeBackground(this);
+            calculate();
+        });
+
+        automationReductionInput.addEventListener('input', function() {
+            updateRangeBackground(this);
+            calculate();
+        });
+
+        // Initial calculation
+        calculate();
+        updateRangeBackground(entryHoursInput);
+        updateRangeBackground(automationReductionInput);
+    </script>
+</body>
+</html>

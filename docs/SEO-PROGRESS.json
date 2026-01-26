@@ -1,7 +1,7 @@
 {
   "projectName": "FlightSuite SEO/AEO 30-Day Plan",
   "startDate": "2026-01-21",
-  "currentDay": 18,
+  "currentDay": 21,
   "totalDays": 30,
   "lastRunDate": "2026-01-26",
   "status": "in_progress",
@@ -270,6 +270,58 @@
         "Added to sitemap.xml"
       ],
       "filesModified": ["guides/what-is-gohighlevel.html", "sitemap.xml"]
+    },
+    {
+      "day": 18,
+      "date": "2026-01-26",
+      "title": "HubSpot Automation Guide",
+      "tasks": [
+        "Created guides/hubspot-automation-guide.html (2,500+ words)",
+        "Targeted keyword: 'hubspot automation'",
+        "3-layer automation approach (Contact, Deal, Engagement)",
+        "HowTo schema with step-by-step guide",
+        "Automation recipes for common use cases",
+        "FAQPage schema with 6 questions",
+        "Article and BreadcrumbList schemas",
+        "Added to sitemap.xml"
+      ],
+      "filesModified": ["guides/hubspot-automation-guide.html", "sitemap.xml"]
+    },
+    {
+      "day": 19,
+      "date": "2026-01-26",
+      "title": "Sales Productivity Statistics",
+      "tasks": [
+        "Created resources/sales-productivity-statistics.html (50 statistics)",
+        "Created resources/ directory",
+        "Targeted keyword: 'sales productivity statistics'",
+        "Statistics organized by category (time, CRM, data quality, automation, mobile, AI)",
+        "Stat cards with source attribution",
+        "Linkable research content for backlinks",
+        "FAQPage schema with 5 questions",
+        "Article and BreadcrumbList schemas",
+        "Added to sitemap.xml"
+      ],
+      "filesModified": ["resources/sales-productivity-statistics.html", "sitemap.xml"]
+    },
+    {
+      "day": 20,
+      "date": "2026-01-26",
+      "title": "CRM ROI Calculator",
+      "tasks": [
+        "Created tools/crm-roi-calculator.html (interactive JavaScript)",
+        "Created tools/ directory",
+        "Targeted keyword: 'crm roi calculator'",
+        "Full ROI calculation (hours saved, cost saved, days reclaimed)",
+        "Real-time input updates with sliders and number inputs",
+        "WebApplication schema for rich results",
+        "FAQPage schema with 5 questions",
+        "Article and BreadcrumbList schemas",
+        "Integrated calculator CTAs into homepage (new section)",
+        "Added calculator CTAs to 3 related blog posts",
+        "Added to sitemap.xml"
+      ],
+      "filesModified": ["tools/crm-roi-calculator.html", "index.html", "blog/why-sales-reps-hate-data-entry.html", "blog/eliminate-manual-crm-data-entry.html", "blog/ai-crm-automation-guide.html", "sitemap.xml"]
     }
   ],
   "notes": [
@@ -289,16 +341,21 @@
     "Day 14 completed on 2026-01-26 - Best CRM for Real Estate page (3,000+ words, 8 CRMs)",
     "Day 15 completed on 2026-01-26 - Best CRM for Agencies page (3,000+ words, 7 agency CRMs)",
     "Day 16 completed on 2026-01-26 - CRM Data Entry Cost article (2,800+ words, interactive calculator)",
-    "Day 17 completed on 2026-01-26 - GoHighLevel Complete Guide (3,500+ words, HowTo schema)"
+    "Day 17 completed on 2026-01-26 - GoHighLevel Complete Guide (3,500+ words, HowTo schema)",
+    "Day 18 completed on 2026-01-26 - HubSpot Automation Guide (2,500+ words, HowTo schema)",
+    "Day 19 completed on 2026-01-26 - Sales Productivity Statistics (50 stats, linkable resource)",
+    "Day 20 completed on 2026-01-26 - CRM ROI Calculator (interactive JS, integrated across site)"
   ],
   "metrics": {
-    "pagesCreated": 9,
-    "schemasAdded": 49,
-    "blogPostsUpdated": 6,
+    "pagesCreated": 12,
+    "schemasAdded": 58,
+    "blogPostsUpdated": 9,
     "comparisonPages": 2,
     "alternativePages": 2,
     "bestCrmPages": 3,
-    "guidePages": 1,
+    "guidePages": 2,
+    "resourcePages": 1,
+    "toolPages": 1,
     "expertProfiles": 0
   },
   "dayDetails": {
@@ -438,21 +495,21 @@
     },
     "18": {
       "title": "HubSpot Automation Guide",
-      "status": "pending",
+      "status": "completed",
       "tasks": [
         "Create guides/hubspot-automation-guide.html"
       ]
     },
     "19": {
       "title": "Sales Productivity Statistics",
-      "status": "pending",
+      "status": "completed",
       "tasks": [
         "Create resources/sales-productivity-statistics.html"
       ]
     },
     "20": {
       "title": "CRM ROI Calculator",
-      "status": "pending",
+      "status": "completed",
       "tasks": [
         "Create tools/crm-roi-calculator.html",
         "JavaScript calculator"

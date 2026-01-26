@@ -292,4 +292,28 @@
         <priority>0.8</priority>
     </url>
 
+    <!-- Guide: HubSpot Automation -->
+    <url>
+        <loc>https://flightsuite.ai/guides/hubspot-automation-guide.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Resource: Sales Productivity Statistics -->
+    <url>
+        <loc>https://flightsuite.ai/resources/sales-productivity-statistics.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Tool: CRM ROI Calculator -->
+    <url>
+        <loc>https://flightsuite.ai/tools/crm-roi-calculator.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
 </urlset>
