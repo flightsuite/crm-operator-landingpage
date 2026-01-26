@@ -2037,6 +2037,51 @@
             padding: clamp(32px, 5vw, 40px);
         }
 
+        /* CRM Toggle in Modal */
+        .crm-toggle-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 28px;
+            padding: 4px;
+            background: var(--color-bg-secondary);
+            border-radius: 12px;
+        }
+
+        .crm-toggle-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 10px;
+            background: transparent;
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .crm-toggle-btn:hover {
+            color: var(--color-text-primary);
+        }
+
+        .crm-toggle-btn.active {
+            background: white;
+            color: var(--color-text-primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .crm-instructions {
+            display: none;
+        }
+
+        .crm-instructions.active {
+            display: block;
+        }
+
         .installation-step {
             margin-bottom: clamp(32px, 5vw, 40px);
         }
@@ -3496,6 +3541,19 @@
                 <button class="modal-close" onclick="closeModal('installModal')">×</button>
             </div>
             <div class="modal-body">
+                <!-- CRM Toggle -->
+                <div class="crm-toggle-container">
+                    <button class="crm-toggle-btn active" data-crm="ghl" onclick="switchCrmGuide('ghl')">
+                        <img src="Assets/GoHighLevel.svg" alt="GoHighLevel" style="width: 20px; height: 20px;">
+                        GoHighLevel
+                    </button>
+                    <button class="crm-toggle-btn" data-crm="hubspot" onclick="switchCrmGuide('hubspot')">
+                        <img src="Assets/HubSpot.svg" alt="HubSpot" style="width: 20px; height: 20px;">
+                        HubSpot
+                    </button>
+                </div>
+
+                <!-- Step 1: Install Extension (shared) -->
                 <div class="installation-step">
                     <div class="step-number">1</div>
                     <h3 class="step-title">Install Extension</h3>
@@ -3505,52 +3563,103 @@
                     </div>
                 </div>
 
-                <div class="installation-step">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">Get Your Location ID</h3>
-                    <div class="step-content">
-                        <p>Find your GoHighLevel Location ID:</p>
-                        <ul class="step-list">
-                            <li>Log in to your GoHighLevel account</li>
-                            <li>Go to Settings > Business Profile</li>
-                            <li>Copy your Location ID</li>
-                        </ul>
+                <!-- GoHighLevel Instructions -->
+                <div class="crm-instructions active" id="ghl-instructions">
+                    <div class="installation-step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Get Your Location ID</h3>
+                        <div class="step-content">
+                            <p>Find your GoHighLevel Location ID:</p>
+                            <ul class="step-list">
+                                <li>Log in to your GoHighLevel account</li>
+                                <li>Go to Settings > Business Profile</li>
+                                <li>Copy your Location ID</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="installation-step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Create Private Integration Token</h3>
+                        <div class="step-content">
+                            <p>Generate a Private Integration Token in GoHighLevel:</p>
+                            <ul class="step-list">
+                                <li>Navigate to Settings > Private Integrations</li>
+                                <li>Click "Create New Token"</li>
+                                <li>Enter a name (e.g., "FlightSuite Integration")</li>
+                                <li>Select all permissions for full CRM automation</li>
+                                <li>Confirm the security warning when prompted</li>
+                                <li>Copy and save your Private App Key immediately</li>
+                            </ul>
+                            <p style="margin-top: 12px; color: var(--color-text-tertiary); font-size: 14px;">⚠️ Save your token securely—it won't be shown again.</p>
+                        </div>
+                    </div>
+
+                    <div class="installation-step">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Enter Credentials</h3>
+                        <div class="step-content">
+                            <p>In the FlightSuite extension:</p>
+                            <ul class="step-list">
+                                <li>Click the FlightSuite icon in Chrome</li>
+                                <li>Paste your Location ID</li>
+                                <li>Paste your Private Integration Token</li>
+                                <li>Click "Connect" and start using FlightSuite!</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <div class="installation-step">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Create Private Integration Token</h3>
-                    <div class="step-content">
-                        <p>Generate a Private Integration Token in GoHighLevel:</p>
-                        <ul class="step-list">
-                            <li>Navigate to Settings > Private Integrations</li>
-                            <li>Click "Create New Token"</li>
-                            <li>Enter a name (e.g., "FlightSuite Integration") and description</li>
-                            <li>Select all permissions to ensure full CRM automation</li>
-                            <li>Confirm the security warning when prompted</li>
-                            <li>Copy and save your Private App Key immediately</li>
-                        </ul>
-                        <p style="margin-top: 12px; color: var(--color-text-tertiary); font-size: 14px;">⚠️ Save your Private Integration Token securely. It won't be shown again. For detailed instructions with screenshots, see the complete installation guide below.</p>
+                <!-- HubSpot Instructions -->
+                <div class="crm-instructions" id="hubspot-instructions">
+                    <div class="installation-step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Navigate to Legacy Apps</h3>
+                        <div class="step-content">
+                            <p>Create a Legacy App in HubSpot:</p>
+                            <ul class="step-list">
+                                <li>Log in to your HubSpot account</li>
+                                <li>Click the Settings gear icon</li>
+                                <li>Go to Integrations > Legacy Apps</li>
+                                <li>Click "Create Legacy App"</li>
+                                <li>Select "Private" as the app type</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
-                <div class="installation-step">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">Enter Credentials</h3>
-                    <div class="step-content">
-                        <p>In the FlightSuite extension:</p>
-                        <ul class="step-list">
-                            <li>Click the FlightSuite icon in Chrome</li>
-                            <li>Paste your Location ID</li>
-                            <li>Paste your Private Integration Token</li>
-                            <li>Click "Connect" and start using FlightSuite!</li>
-                        </ul>
+                    <div class="installation-step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Configure Scopes & Get Token</h3>
+                        <div class="step-content">
+                            <p>Set up permissions and copy your token:</p>
+                            <ul class="step-list">
+                                <li>Name your app (e.g., "FlightSuite Integration")</li>
+                                <li>Click the Scopes tab</li>
+                                <li>Enable read/write access for Contacts, Companies, Deals</li>
+                                <li>Click "Create App" then "Continue"</li>
+                                <li>Click the Auth tab and copy your Access Token</li>
+                            </ul>
+                            <p style="margin-top: 12px; color: var(--color-text-tertiary); font-size: 14px;">📋 See the full guide for the complete list of 18 required scopes.</p>
+                        </div>
+                    </div>
+
+                    <div class="installation-step">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Enter Credentials</h3>
+                        <div class="step-content">
+                            <p>In the FlightSuite extension:</p>
+                            <ul class="step-list">
+                                <li>Click the FlightSuite icon in Chrome</li>
+                                <li>Select "HubSpot" as your CRM</li>
+                                <li>Paste your Access Token</li>
+                                <li>Click "Connect" and start using FlightSuite!</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--color-border); text-align: center;">
-                    <p style="color: var(--color-text-secondary); margin-bottom: 16px; font-size: 14px;">Need more detailed instructions with screenshots?</p>
+                    <p style="color: var(--color-text-secondary); margin-bottom: 16px; font-size: 14px;">Need detailed instructions with screenshots?</p>
                     <a href="/installation-guide.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--gradient-primary); color: white; text-decoration: none; border-radius: 100px; font-weight: 600; font-size: 14px; transition: transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 24px rgba(94, 92, 230, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
                         View Complete Installation Guide
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -3958,6 +4067,20 @@
             playClickSound();
             document.getElementById(modalId).classList.add('active');
             document.body.style.overflow = 'hidden';
+        }
+
+        // CRM Guide Toggle in Install Modal
+        function switchCrmGuide(crm) {
+            playClickSound();
+            // Update toggle buttons
+            document.querySelectorAll('.crm-toggle-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.crm === crm);
+            });
+            // Update instructions visibility
+            document.querySelectorAll('.crm-instructions').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(crm + '-instructions').classList.add('active');
         }
 
         // Mobile Detection & Email Capture
