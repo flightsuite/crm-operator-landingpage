@@ -943,6 +943,209 @@
             box-shadow: 0 6px 20px rgba(52, 199, 89, 0.4);
         }
 
+        /* Vetting Modal */
+        .vetting-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .vetting-modal-overlay.active {
+            display: flex;
+        }
+
+        .vetting-modal {
+            background: white;
+            border-radius: 24px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.3);
+            animation: vettingModalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        @keyframes vettingModalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .vetting-modal-header {
+            padding: 24px 28px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .vetting-modal-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--color-success) 0%, #2ecc71 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .vetting-modal-icon svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        .vetting-modal-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 4px;
+        }
+
+        .vetting-modal-subtitle {
+            font-size: 14px;
+            color: var(--color-text-tertiary);
+        }
+
+        .vetting-modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--color-text-tertiary);
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .vetting-modal-close:hover {
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--color-text-primary);
+        }
+
+        .vetting-modal-body {
+            padding: 24px 28px;
+        }
+
+        .vetting-info {
+            margin-bottom: 24px;
+        }
+
+        .vetting-info p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .vetting-checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .vetting-checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        .vetting-checklist li svg {
+            width: 18px;
+            height: 18px;
+            color: var(--color-success);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .vetting-duration {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: rgba(94, 92, 230, 0.08);
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .vetting-duration svg {
+            width: 18px;
+            height: 18px;
+            color: var(--color-ios-purple);
+        }
+
+        .vetting-duration span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-ios-purple);
+        }
+
+        .vetting-modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .vetting-btn-primary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, var(--color-success) 0%, #2ecc71 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s var(--ease-smooth);
+            box-shadow: 0 4px 12px rgba(52, 199, 89, 0.3);
+        }
+
+        .vetting-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 199, 89, 0.4);
+        }
+
+        .vetting-btn-secondary {
+            padding: 12px 24px;
+            background: transparent;
+            color: var(--color-text-tertiary);
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .vetting-btn-secondary:hover {
+            background: var(--color-bg-secondary);
+            color: var(--color-text-secondary);
+        }
+
         /* Section Divider */
         .section-divider {
             max-width: 1200px;
@@ -1144,7 +1347,7 @@
                 <button class="filter-chip" data-filter="funnels">Funnels</button>
             </div>
             <label class="filter-toggle">
-                <input type="checkbox" id="verifiedOnly" checked>
+                <input type="checkbox" id="verifiedOnly">
                 <span class="toggle-switch"></span>
                 <span class="toggle-label">Verified Pros Only</span>
             </label>
@@ -1796,7 +1999,7 @@
     <div class="section-divider" id="unclaimedSection">
         <h2>More GHL Certified Admins</h2>
         <p>These experts haven't claimed their profile yet. <strong>Verified pros get 3x more visibility</strong> and direct lead referrals from FlightSuite users.</p>
-        <a href="mailto:hello@flightsuite.ai?subject=Claim My Profile" class="claim-profile-cta">Claim Your Profile - Get Featured Free</a>
+        <a href="#" onclick="openVettingModal(); return false;" class="claim-profile-cta">Claim Your Profile - Get Featured Free</a>
     </div>
 
     <!-- Unclaimed Expert Grid -->
@@ -2697,7 +2900,7 @@
         <div class="cta-card">
             <h3>Are you a GHL expert?</h3>
             <p>Get verified and receive qualified leads from FlightSuite users looking for CRM help.</p>
-            <a href="mailto:hello@flightsuite.ai?subject=Verified Pro Application" class="cta-btn">
+            <a href="#" onclick="openVettingModal(); return false;" class="cta-btn">
                 Apply to be a Verified Pro
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -2712,6 +2915,64 @@
             Made with care by <a href="/">FlightSuite</a> · <a href="/find-your-crm.html">CRM Quiz</a> · <a href="/blog.html">Blog</a>
         </p>
     </footer>
+
+    <!-- Vetting Process Modal -->
+    <div class="vetting-modal-overlay" id="vettingModal">
+        <div class="vetting-modal">
+            <div class="vetting-modal-header">
+                <div>
+                    <div class="vetting-modal-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="vetting-modal-title">Join Our Verified Pros</h3>
+                    <p class="vetting-modal-subtitle">Quick 15-minute discovery call</p>
+                </div>
+                <button class="vetting-modal-close" onclick="closeVettingModal()">×</button>
+            </div>
+            <div class="vetting-modal-body">
+                <div class="vetting-info">
+                    <p>Our vetting process helps us understand your expertise so we can match you with the right clients. During the call, we'll cover:</p>
+                    <ul class="vetting-checklist">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span>Your business and the clients you serve</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span>Your GHL specializations and experience</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span>Your pricing and availability</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span>How we can help you get qualified leads</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="vetting-duration">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>Just 15 minutes – we respect your time</span>
+                </div>
+                <div class="vetting-modal-actions">
+                    <a href="https://links.flightsuite.ai/widget/bookings/discovery-call-1st1z" target="_blank" class="vetting-btn-primary">
+                        Schedule Discovery Call
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <button class="vetting-btn-secondary" onclick="closeVettingModal()">Maybe Later</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Filter and Sort functionality with algorithmic ranking
@@ -2928,6 +3189,39 @@
 
         // Initialize
         loadExpertData();
+
+        // Vetting Modal Functions
+        function openVettingModal() {
+            document.getElementById('vettingModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVettingModal() {
+            document.getElementById('vettingModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on overlay click
+        document.getElementById('vettingModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVettingModal();
+            }
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('vettingModal').classList.contains('active')) {
+                closeVettingModal();
+            }
+        });
+
+        // Intercept all claim profile links to open the vetting modal
+        document.querySelectorAll('.claim-cta-small a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                openVettingModal();
+            });
+        });
     </script>
 </body>
 </html>
