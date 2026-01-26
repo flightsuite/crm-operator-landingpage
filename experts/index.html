@@ -542,6 +542,63 @@
             line-height: 1.4;
         }
 
+        /* GHL Directory Rating */
+        .expert-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 6px;
+            font-size: 13px;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 2px;
+            color: #FFB800;
+        }
+
+        .rating-stars svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .rating-count {
+            color: var(--color-text-tertiary);
+            font-size: 12px;
+        }
+
+        .rating-count a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .rating-count a:hover {
+            color: var(--color-apple-blue);
+            text-decoration: underline;
+        }
+
+        /* Claimed Profile Badge */
+        .claimed-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            background: rgba(94, 92, 230, 0.1);
+            color: var(--color-ios-purple);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-top: 6px;
+        }
+
+        .claimed-badge svg {
+            width: 12px;
+            height: 12px;
+        }
+
         .expert-quote {
             font-size: clamp(14px, 1.6vw, 15px);
             color: var(--color-text-secondary);
@@ -890,6 +947,20 @@
                     <div class="expert-info">
                         <h3 class="expert-name">Noli Aquino</h3>
                         <p class="expert-specialty">Full-Service Agency Builds</p>
+                        <div class="expert-rating">
+                            <span class="rating-stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                            <span class="rating-count"><a href="https://directory.gohighlevel.com" target="_blank">GHL Directory</a></span>
+                        </div>
+                        <span class="claimed-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Claimed Profile
+                        </span>
                     </div>
                 </div>
                 <p class="expert-quote">"Custom GHL builds from scratch, not templates"</p>
