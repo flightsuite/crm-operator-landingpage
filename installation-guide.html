@@ -535,6 +535,65 @@
             max-width: 100%;
         }
 
+        /* Scopes table */
+        .scopes-table-container {
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .scopes-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9375rem;
+            background: var(--color-bg-primary);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+
+        .scopes-table th {
+            background: var(--color-bg-secondary);
+            padding: 0.875rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .scopes-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--color-border);
+            vertical-align: top;
+        }
+
+        .scopes-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .scopes-table code {
+            background: var(--color-bg-secondary);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+            font-size: 0.8125rem;
+            color: var(--color-ios-purple);
+            user-select: all;
+            cursor: pointer;
+        }
+
+        .scopes-table .scope-category {
+            font-weight: 600;
+            color: var(--color-text-primary);
+            background: var(--color-bg-secondary);
+        }
+
+        .scope-hint {
+            font-size: 0.8125rem;
+            color: var(--color-text-tertiary);
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
         .coming-soon-message {
             text-align: center;
             padding: 4rem 2rem;
@@ -870,8 +929,115 @@
                     </div>
                 </div>
                 <div class="step-description">
-                    Click the <strong>Scopes</strong> tab and select the required permissions for FlightSuite. You'll need to enable read and write access for contacts and any other CRM data you want FlightSuite to manage.
+                    Click the <strong>Scopes</strong> tab and select the required permissions for FlightSuite. Search for each scope name below and enable it:
                 </div>
+
+                <div class="scopes-table-container">
+                    <table class="scopes-table">
+                        <thead>
+                            <tr>
+                                <th>Scope Name</th>
+                                <th>Permission</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="scope-category">
+                                <td colspan="2">Contacts</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.objects.contacts.read</code></td>
+                                <td>View contact records</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.objects.contacts.write</code></td>
+                                <td>Create and update contacts</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.schemas.contacts.read</code></td>
+                                <td>View contact properties</td>
+                            </tr>
+                            <tr class="scope-category">
+                                <td colspan="2">Companies</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.objects.companies.read</code></td>
+                                <td>View company records</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.objects.companies.write</code></td>
+                                <td>Create and update companies</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.schemas.companies.read</code></td>
+                                <td>View company properties</td>
+                            </tr>
+                            <tr class="scope-category">
+                                <td colspan="2">Deals</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.objects.deals.read</code></td>
+                                <td>View deal records</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.objects.deals.write</code></td>
+                                <td>Create and update deals</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.schemas.deals.read</code></td>
+                                <td>View deal properties</td>
+                            </tr>
+                            <tr class="scope-category">
+                                <td colspan="2">Tickets</td>
+                            </tr>
+                            <tr>
+                                <td><code>tickets</code></td>
+                                <td>View, create, and update tickets</td>
+                            </tr>
+                            <tr class="scope-category">
+                                <td colspan="2">Appointments</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.objects.appointments.read</code></td>
+                                <td>View appointments</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.objects.appointments.write</code></td>
+                                <td>Create and update appointments</td>
+                            </tr>
+                            <tr class="scope-category">
+                                <td colspan="2">Custom Objects</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.objects.custom.read</code></td>
+                                <td>View custom object records</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.objects.custom.write</code></td>
+                                <td>Create and update custom objects</td>
+                            </tr>
+                            <tr class="scope-category">
+                                <td colspan="2">Users & Owners</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.objects.owners.read</code></td>
+                                <td>View record owners</td>
+                            </tr>
+                            <tr>
+                                <td><code>crm.objects.users.read</code></td>
+                                <td>View user details</td>
+                            </tr>
+                            <tr class="scope-category">
+                                <td colspan="2">Email</td>
+                            </tr>
+                            <tr>
+                                <td><code>sales-email-read</code></td>
+                                <td>Read one-to-one emails</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="scope-hint">Click any scope name to select it, then paste into HubSpot's scope search.</p>
+
                 <div class="step-images-row">
                     <img src="Assets/Hubspot Installation/6. Select Scopes.png" alt="Step 6: Click Scopes tab" class="step-image-modal">
                     <img src="Assets/Hubspot Installation/6b. Scopes to Select.png" alt="Step 6b: Select the required scopes" class="step-image-modal">
