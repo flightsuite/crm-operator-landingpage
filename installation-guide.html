@@ -116,9 +116,8 @@
       "@context": "https://schema.org",
       "@type": "HowTo",
       "name": "How to Install FlightSuite with HubSpot",
-      "description": "Step-by-step guide to connect FlightSuite CRM CoPilot with your HubSpot account. Complete setup takes about 3 minutes and enables AI-powered contact management.",
+      "description": "Step-by-step guide to connect FlightSuite CRM CoPilot with your HubSpot account using Legacy Apps. Enables AI-powered contact management.",
       "image": "https://flightsuite.ai/Assets/social-preview.png",
-      "totalTime": "PT3M",
       "estimatedCost": {
         "@type": "MonetaryAmount",
         "currency": "USD",
@@ -145,31 +144,71 @@
           "@type": "HowToStep",
           "position": 1,
           "name": "Access HubSpot Settings",
-          "text": "Log into your HubSpot account and navigate to Settings (gear icon in the top right). Then go to Integrations, then Private Apps in the left sidebar."
+          "text": "Log into your HubSpot account and click the Settings gear icon in the top navigation bar.",
+          "image": "https://flightsuite.ai/Assets/Hubspot%20Installation/1.%20Select%20Settings.png"
         },
         {
           "@type": "HowToStep",
           "position": 2,
-          "name": "Create a Private App",
-          "text": "Click 'Create a private app'. Give your app a name like 'FlightSuite Integration' and optionally add a description to help you identify it later."
+          "name": "Navigate to Legacy Apps",
+          "text": "In the left sidebar under Account Management, click Integrations, then select Legacy Apps from the dropdown menu.",
+          "image": "https://flightsuite.ai/Assets/Hubspot%20Installation/2.%20Select%20Integrations%20%3E%20Legacy%20Apps.png"
         },
         {
           "@type": "HowToStep",
           "position": 3,
-          "name": "Configure Scopes",
-          "text": "Click the Scopes tab. Under CRM, find Contacts and select both Read and Write permissions. This is the only scope FlightSuite needs to manage your contacts."
+          "name": "Create a Legacy App",
+          "text": "Click the Create Legacy App button to start creating your integration.",
+          "image": "https://flightsuite.ai/Assets/Hubspot%20Installation/3.%20Create%20Legacy%20App.png"
         },
         {
           "@type": "HowToStep",
           "position": 4,
-          "name": "Create App and Copy Token",
-          "text": "Click 'Create app' and confirm when prompted. HubSpot will generate an Access Token. Click 'Show token' and copy it. Store this token securely."
+          "name": "Select Private App Type",
+          "text": "Choose Private as the app type. This creates a secure connection between FlightSuite and your HubSpot account.",
+          "image": "https://flightsuite.ai/Assets/Hubspot%20Installation/4.%20Legacy%20App%20%3E%20Private.png"
         },
         {
           "@type": "HowToStep",
           "position": 5,
-          "name": "Connect to FlightSuite",
-          "text": "Open the FlightSuite Chrome extension, select HubSpot as your CRM, and paste your Access Token. Click Connect and you're ready to automate your CRM data entry."
+          "name": "Enter App Information",
+          "text": "Give your app a name like 'FlightSuite Integration' and optionally add a description to help identify it later.",
+          "image": "https://flightsuite.ai/Assets/Hubspot%20Installation/5.%20New%20Legacy%20App%20%3E%20Basic%20Info.png"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Select Required Scopes",
+          "text": "Click the Scopes tab and select the required permissions for FlightSuite to access your CRM data including contacts read/write access.",
+          "image": "https://flightsuite.ai/Assets/Hubspot%20Installation/6.%20Select%20Scopes.png"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 7,
+          "name": "Create the App",
+          "text": "Review your settings and click Create App to generate your integration.",
+          "image": "https://flightsuite.ai/Assets/Hubspot%20Installation/7.%20Create%20App.png"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 8,
+          "name": "Continue to Token Screen",
+          "text": "Click Continue to proceed to the authentication screen where you can access your token.",
+          "image": "https://flightsuite.ai/Assets/Hubspot%20Installation/8.%20Click%20Continue.png"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 9,
+          "name": "Access the Auth Tab",
+          "text": "Click the Auth tab on the next screen to view your access token.",
+          "image": "https://flightsuite.ai/Assets/Hubspot%20Installation/9.%20Click%20Auth%20Tab%20on%20Next%20Screen%20to%20Get%20Token.png"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 10,
+          "name": "Copy Your Access Token",
+          "text": "Click Show Token, then copy the access token. This is your FlightSuite access key. Paste it into the FlightSuite Chrome extension to complete setup.",
+          "image": "https://flightsuite.ai/Assets/Hubspot%20Installation/10.%20Click%20showen%20token%20and%20copy%20access%20token.%20This%20will%20be%20your%20FlightSuite%20access%20key..png"
         }
       ]
     }
@@ -692,65 +731,151 @@
                     </div>
                 </div>
                 <div class="step-description">
-                    Log into your HubSpot account and navigate to <strong>Settings</strong> (gear icon in the top right). Then go to <strong>Integrations → Private Apps</strong> in the left sidebar.
+                    Log into your HubSpot account and click the <strong>Settings</strong> gear icon in the top navigation bar.
                 </div>
-                <!-- Screenshot placeholder: Assets/HubSpot Installation/1. Access Settings.png -->
+                <img src="Assets/Hubspot Installation/1. Select Settings.png" alt="Step 1: Click Settings gear icon in HubSpot" class="step-image">
             </div>
 
-            <!-- Step 2: Create Private App -->
+            <!-- Step 2: Navigate to Legacy Apps -->
             <div class="installation-step">
                 <div class="step-header">
                     <div class="step-number">2</div>
                     <div class="step-title">
-                        <h2>Create a Private App</h2>
+                        <h2>Navigate to Legacy Apps</h2>
                     </div>
                 </div>
                 <div class="step-description">
-                    Click <strong>"Create a private app"</strong>. Give your app a name like "FlightSuite Integration" and optionally add a description to help you identify it later.
+                    In the left sidebar under <strong>Account Management</strong>, click <strong>Integrations</strong>, then select <strong>Legacy Apps</strong> from the dropdown menu.
                 </div>
-                <!-- Screenshot placeholder: Assets/HubSpot Installation/2. Create Private App.png -->
+                <img src="Assets/Hubspot Installation/2. Select Integrations > Legacy Apps.png" alt="Step 2: Navigate to Integrations then Legacy Apps" class="step-image">
             </div>
 
-            <!-- Step 3: Configure Scopes -->
+            <!-- Step 3: Create Legacy App -->
             <div class="installation-step">
                 <div class="step-header">
                     <div class="step-number">3</div>
                     <div class="step-title">
-                        <h2>Configure Scopes</h2>
+                        <h2>Create a Legacy App</h2>
                     </div>
                 </div>
                 <div class="step-description">
-                    Click the <strong>"Scopes"</strong> tab. Under <strong>CRM</strong>, find <strong>Contacts</strong> and select both <strong>Read</strong> and <strong>Write</strong> permissions. This is the only scope FlightSuite needs to manage your contacts.
+                    Click the <strong>Create Legacy App</strong> button to start creating your integration.
                 </div>
-                <!-- Screenshot placeholder: Assets/HubSpot Installation/3. Configure Scopes.png -->
+                <img src="Assets/Hubspot Installation/3. Create Legacy App.png" alt="Step 3: Click Create Legacy App button" class="step-image">
             </div>
 
-            <!-- Step 4: Create App and Copy Token -->
+            <!-- Step 4: Select Private App Type -->
             <div class="installation-step">
                 <div class="step-header">
                     <div class="step-number">4</div>
                     <div class="step-title">
-                        <h2>Create App and Copy Token</h2>
+                        <h2>Select Private App Type</h2>
                     </div>
                 </div>
                 <div class="step-description">
-                    Click <strong>"Create app"</strong> and confirm when prompted. HubSpot will generate an <strong>Access Token</strong>. Click <strong>"Show token"</strong> and copy it. Store this token securely - you'll need it for the next step.
+                    Choose <strong>Private</strong> as the app type. This creates a secure connection between FlightSuite and your HubSpot account.
                 </div>
-                <!-- Screenshot placeholder: Assets/HubSpot Installation/4. Copy Token.png -->
+                <img src="Assets/Hubspot Installation/4. Legacy App > Private.png" alt="Step 4: Select Private app type" class="step-image">
             </div>
 
-            <!-- Step 5: Connect to FlightSuite -->
+            <!-- Step 5: Enter App Information -->
             <div class="installation-step">
                 <div class="step-header">
                     <div class="step-number">5</div>
                     <div class="step-title">
-                        <h2>Connect to FlightSuite</h2>
+                        <h2>Enter App Information</h2>
                     </div>
                 </div>
                 <div class="step-description">
-                    Open the FlightSuite Chrome extension, select <strong>HubSpot</strong> as your CRM, and paste your Access Token. Click <strong>"Connect"</strong> and you're ready to go! FlightSuite will now be able to update your HubSpot contacts automatically.
+                    Give your app a name like <strong>"FlightSuite Integration"</strong> and optionally add a description to help you identify it later.
                 </div>
-                <!-- Screenshot placeholder: Assets/HubSpot Installation/5. Connect FlightSuite.png -->
+                <img src="Assets/Hubspot Installation/5. New Legacy App > Basic Info.png" alt="Step 5: Enter app name and description" class="step-image">
+            </div>
+
+            <!-- Step 6: Select Scopes -->
+            <div class="installation-step">
+                <div class="step-header">
+                    <div class="step-number">6</div>
+                    <div class="step-title">
+                        <h2>Select Required Scopes</h2>
+                    </div>
+                </div>
+                <div class="step-description">
+                    Click the <strong>Scopes</strong> tab and select the required permissions for FlightSuite. You'll need to enable read and write access for contacts and any other CRM data you want FlightSuite to manage.
+                </div>
+                <img src="Assets/Hubspot Installation/6. Select Scopes.png" alt="Step 6: Click Scopes tab" class="step-image">
+                <img src="Assets/Hubspot Installation/6b. Scopes to Select.png" alt="Step 6b: Select the required scopes" class="step-image" style="margin-top: 1rem;">
+                <img src="Assets/Hubspot Installation/6c. summary of selected scopes.png" alt="Step 6c: Review selected scopes summary" class="step-image" style="margin-top: 1rem;">
+            </div>
+
+            <!-- Step 7: Create the App -->
+            <div class="installation-step">
+                <div class="step-header">
+                    <div class="step-number">7</div>
+                    <div class="step-title">
+                        <h2>Create the App</h2>
+                    </div>
+                </div>
+                <div class="step-description">
+                    Review your settings and click <strong>Create App</strong> to generate your integration.
+                </div>
+                <img src="Assets/Hubspot Installation/7. Create App.png" alt="Step 7: Click Create App button" class="step-image">
+            </div>
+
+            <!-- Step 8: Click Continue -->
+            <div class="installation-step">
+                <div class="step-header">
+                    <div class="step-number">8</div>
+                    <div class="step-title">
+                        <h2>Continue to Token Screen</h2>
+                    </div>
+                </div>
+                <div class="step-description">
+                    Click <strong>Continue</strong> to proceed to the authentication screen where you can access your token.
+                </div>
+                <img src="Assets/Hubspot Installation/8. Click Continue.png" alt="Step 8: Click Continue button" class="step-image">
+            </div>
+
+            <!-- Step 9: Access Auth Tab -->
+            <div class="installation-step">
+                <div class="step-header">
+                    <div class="step-number">9</div>
+                    <div class="step-title">
+                        <h2>Access the Auth Tab</h2>
+                    </div>
+                </div>
+                <div class="step-description">
+                    On the next screen, click the <strong>Auth</strong> tab to view your access token.
+                </div>
+                <img src="Assets/Hubspot Installation/9. Click Auth Tab on Next Screen to Get Token.png" alt="Step 9: Click Auth tab to get token" class="step-image">
+            </div>
+
+            <!-- Step 10: Copy Access Token -->
+            <div class="installation-step">
+                <div class="step-header">
+                    <div class="step-number">10</div>
+                    <div class="step-title">
+                        <h2>Copy Your Access Token</h2>
+                    </div>
+                </div>
+                <div class="step-description">
+                    Click <strong>Show Token</strong>, then copy the access token. This is your <strong>FlightSuite access key</strong>. Open the FlightSuite Chrome extension, select HubSpot as your CRM, and paste this token to complete setup.
+                </div>
+                <img src="Assets/Hubspot Installation/10. Click showen token and copy access token. This will be your FlightSuite access key..png" alt="Step 10: Click Show Token and copy your access key" class="step-image">
+            </div>
+
+            <!-- Optional: Edit Scopes for Future -->
+            <div class="installation-step">
+                <div class="step-header">
+                    <div class="step-number" style="background: var(--color-text-tertiary);">+</div>
+                    <div class="step-title">
+                        <h2>Edit Scopes (Optional)</h2>
+                    </div>
+                </div>
+                <div class="step-description">
+                    If you need to add or modify scopes in the future, you can return to your Legacy App settings and update the permissions as needed.
+                </div>
+                <img src="Assets/Hubspot Installation/11. To Edit Scopes for Future.png" alt="Optional: How to edit scopes in the future" class="step-image">
             </div>
         </div>
     </div>
