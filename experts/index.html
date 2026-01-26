@@ -392,6 +392,12 @@
             border-color: transparent;
         }
 
+        .filter-chip.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
         .filter-toggle {
             display: flex;
             align-items: center;
@@ -775,7 +781,7 @@
         <div class="header-inner">
             <a href="/" class="logo-text">FlightSuite</a>
             <nav class="header-nav">
-                <a href="/find-your-crm" class="nav-link">Find Your CRM</a>
+                <a href="/find-your-crm.html" class="nav-link">Find Your CRM</a>
                 <a href="/experts" class="nav-link active">Experts</a>
                 <a href="/blog" class="nav-link">Blog</a>
                 <a href="https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb" class="cta-header" target="_blank">Install Free</a>
@@ -802,7 +808,7 @@
         </span>
         <h1 class="hero-title">GoHighLevel <span>Experts</span></h1>
         <p class="hero-subtitle">FlightSuite Verified Pros ready to build your CRM, automations, funnels, and more. We've interviewed each expert to ensure quality.</p>
-        <a href="/find-your-crm" class="hero-cta">
+        <a href="/find-your-crm.html" class="hero-cta">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"></circle>
                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
@@ -815,8 +821,17 @@
     <!-- Filter Bar -->
     <div class="filter-bar">
         <div class="filter-container">
+            <span class="filter-label">CRM:</span>
+            <div class="filter-chips" id="crmFilters">
+                <button class="filter-chip active" data-crm-filter="all">All CRMs</button>
+                <button class="filter-chip" data-crm-filter="gohighlevel">GoHighLevel</button>
+                <button class="filter-chip disabled" data-crm-filter="hubspot" title="Coming soon">HubSpot <span style="font-size: 10px; opacity: 0.7;">soon</span></button>
+                <button class="filter-chip disabled" data-crm-filter="salesforce" title="Coming soon">Salesforce <span style="font-size: 10px; opacity: 0.7;">soon</span></button>
+            </div>
+        </div>
+        <div class="filter-container" style="margin-top: 8px;">
             <span class="filter-label">Specialty:</span>
-            <div class="filter-chips">
+            <div class="filter-chips" id="specialtyFilters">
                 <button class="filter-chip active" data-filter="all">All Experts</button>
                 <button class="filter-chip" data-filter="full-builds">Full Builds</button>
                 <button class="filter-chip" data-filter="automation">Automation</button>
@@ -834,7 +849,7 @@
     <!-- Expert Grid -->
     <div class="expert-grid" id="expertGrid">
         <!-- Noli Aquino -->
-        <article class="expert-card" data-specialty="full-builds" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds" data-verified="true">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -870,7 +885,7 @@
         </article>
 
         <!-- Abdullah Virk -->
-        <article class="expert-card" data-specialty="full-builds automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds automation" data-verified="true">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -902,7 +917,7 @@
         </article>
 
         <!-- Salman Tariq -->
-        <article class="expert-card" data-specialty="full-builds automation ai-voice" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds automation ai-voice" data-verified="true">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -934,7 +949,7 @@
         </article>
 
         <!-- Seth Wixtrom -->
-        <article class="expert-card" data-specialty="automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -966,7 +981,7 @@
         </article>
 
         <!-- Vanessa Zamora -->
-        <article class="expert-card" data-specialty="full-builds automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds automation" data-verified="true">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -998,7 +1013,7 @@
         </article>
 
         <!-- Huzaifa Siddiqi -->
-        <article class="expert-card" data-specialty="full-builds automation ai-voice" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds automation ai-voice" data-verified="true">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1030,7 +1045,7 @@
         </article>
 
         <!-- Deborah Spence -->
-        <article class="expert-card" data-specialty="ai-voice" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="ai-voice" data-verified="true">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1062,7 +1077,7 @@
         </article>
 
         <!-- Josimara Hoffman -->
-        <article class="expert-card" data-specialty="funnels automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation" data-verified="true">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1095,7 +1110,7 @@
 
         <!-- More experts following same pattern... -->
         <!-- Jithin Sujala -->
-        <article class="expert-card" data-specialty="automation ai-voice" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation ai-voice" data-verified="true">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1127,7 +1142,7 @@
         </article>
 
         <!-- Cristina Samoila -->
-        <article class="expert-card" data-specialty="full-builds automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds automation" data-verified="true">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1159,7 +1174,7 @@
         </article>
 
         <!-- Abdelwahab Aitichou -->
-        <article class="expert-card" data-specialty="automation ai-voice" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation ai-voice" data-verified="true">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1191,7 +1206,7 @@
         </article>
 
         <!-- Akhimi Zambales -->
-        <article class="expert-card" data-specialty="full-builds funnels" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds funnels" data-verified="true">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1240,20 +1255,30 @@
     <!-- Footer -->
     <footer class="footer">
         <p class="footer-text">
-            Made with care by <a href="/">FlightSuite</a> · <a href="/find-your-crm">CRM Quiz</a> · <a href="/blog">Blog</a>
+            Made with care by <a href="/">FlightSuite</a> · <a href="/find-your-crm.html">CRM Quiz</a> · <a href="/blog">Blog</a>
         </p>
     </footer>
 
     <script>
         // Filter functionality
-        const filterChips = document.querySelectorAll('.filter-chip');
+        const crmChips = document.querySelectorAll('#crmFilters .filter-chip:not(.disabled)');
+        const specialtyChips = document.querySelectorAll('#specialtyFilters .filter-chip');
         const expertCards = document.querySelectorAll('.expert-card');
         const verifiedToggle = document.getElementById('verifiedOnly');
 
-        filterChips.forEach(chip => {
+        // CRM filter click handler
+        crmChips.forEach(chip => {
             chip.addEventListener('click', () => {
-                // Update active chip
-                filterChips.forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('#crmFilters .filter-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                filterExperts();
+            });
+        });
+
+        // Specialty filter click handler
+        specialtyChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                specialtyChips.forEach(c => c.classList.remove('active'));
                 chip.classList.add('active');
                 filterExperts();
             });
@@ -1262,18 +1287,30 @@
         verifiedToggle.addEventListener('change', filterExperts);
 
         function filterExperts() {
-            const activeFilter = document.querySelector('.filter-chip.active').dataset.filter;
+            const activeCrmFilter = document.querySelector('#crmFilters .filter-chip.active')?.dataset.crmFilter || 'all';
+            const activeSpecialtyFilter = document.querySelector('#specialtyFilters .filter-chip.active')?.dataset.filter || 'all';
             const verifiedOnly = verifiedToggle.checked;
 
             expertCards.forEach(card => {
+                const crm = card.dataset.crm || '';
                 const specialty = card.dataset.specialty || '';
                 const isVerified = card.dataset.verified === 'true';
 
-                let showBySpecialty = activeFilter === 'all' || specialty.includes(activeFilter);
+                let showByCrm = activeCrmFilter === 'all' || crm === activeCrmFilter;
+                let showBySpecialty = activeSpecialtyFilter === 'all' || specialty.includes(activeSpecialtyFilter);
                 let showByVerified = !verifiedOnly || isVerified;
 
-                card.style.display = (showBySpecialty && showByVerified) ? 'flex' : 'none';
+                card.style.display = (showByCrm && showBySpecialty && showByVerified) ? 'flex' : 'none';
             });
+
+            // Show "no results" if all cards are hidden
+            const visibleCards = document.querySelectorAll('.expert-card[style="display: flex;"]');
+            const noResultsEl = document.querySelector('.no-results');
+            if (visibleCards.length === 0 && noResultsEl) {
+                noResultsEl.style.display = 'block';
+            } else if (noResultsEl) {
+                noResultsEl.style.display = 'none';
+            }
         }
     </script>
 </body>
