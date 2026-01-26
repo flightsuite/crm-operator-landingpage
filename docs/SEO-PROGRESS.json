@@ -1,9 +1,9 @@
 {
   "projectName": "FlightSuite SEO/AEO 30-Day Plan",
   "startDate": "2026-01-21",
-  "currentDay": 12,
+  "currentDay": 15,
   "totalDays": 30,
-  "lastRunDate": "2026-01-25",
+  "lastRunDate": "2026-01-26",
   "status": "in_progress",
   "completedTasks": [
     {
@@ -165,6 +165,57 @@
         "Added to sitemap.xml"
       ],
       "filesModified": ["alternatives/salesforce-alternatives.html", "sitemap.xml"]
+    },
+    {
+      "day": 12,
+      "date": "2026-01-26",
+      "title": "HubSpot Alternatives Page",
+      "tasks": [
+        "Created alternatives/hubspot-alternatives.html (2,800+ words)",
+        "Targeted keyword: 'hubspot alternatives' (5,400 searches/mo)",
+        "Listed 10 alternatives with detailed pros/cons for each",
+        "Quick comparison table for all 10 alternatives (Pipedrive, Zoho, ActiveCampaign, Salesforce, Freshsales, GoHighLevel, Monday CRM, Brevo, Close, Keap)",
+        "Decision framework for choosing based on use case, pain points, budget",
+        "FAQPage schema with 5 questions",
+        "Article and BreadcrumbList schemas",
+        "Added to sitemap.xml"
+      ],
+      "filesModified": ["alternatives/hubspot-alternatives.html", "sitemap.xml"]
+    },
+    {
+      "day": 13,
+      "date": "2026-01-26",
+      "title": "Best CRM for Small Business Page",
+      "tasks": [
+        "Created best-crm/small-business.html (3,200+ words)",
+        "Targeted keyword: 'best crm for small business' (14,800 searches/mo)",
+        "Quick decision tree for CRM selection",
+        "Recommendations by team size (solo to 15+ people)",
+        "Detailed reviews of 7 top CRMs (HubSpot, Pipedrive, Zoho, Freshsales, Monday, GoHighLevel, Close)",
+        "Industry-specific considerations section",
+        "FAQPage schema with 6 questions",
+        "Article and BreadcrumbList schemas",
+        "Created best-crm/ directory",
+        "Added to sitemap.xml"
+      ],
+      "filesModified": ["best-crm/small-business.html", "sitemap.xml"]
+    },
+    {
+      "day": 14,
+      "date": "2026-01-26",
+      "title": "Best CRM for Real Estate Page",
+      "tasks": [
+        "Created best-crm/real-estate.html (3,000+ words)",
+        "Targeted keyword: 'best crm for real estate' (4,400 searches/mo)",
+        "Recommendations by business type (solo agent, small team, brokerage)",
+        "Detailed reviews of 8 real estate CRMs (Follow Up Boss, LionDesk, kvCORE, Sierra Interactive, BoomTown, Real Geeks, Wise Agent, Realvolve)",
+        "Essential features checklist for real estate",
+        "Comparison table with Zillow/Realtor.com integration info",
+        "FAQPage schema with 6 questions",
+        "Article and BreadcrumbList schemas",
+        "Added to sitemap.xml"
+      ],
+      "filesModified": ["best-crm/real-estate.html", "sitemap.xml"]
     }
   ],
   "notes": [
@@ -178,14 +229,18 @@
     "Day 8 completed on 2026-01-22 - Comparison page template created",
     "Day 9 completed on 2026-01-22 - HubSpot vs Salesforce comparison page (2,800+ words)",
     "Day 10 completed on 2026-01-25 - GoHighLevel vs HubSpot comparison page (2,500+ words)",
-    "Day 11 completed on 2026-01-25 - Salesforce Alternatives page (3,200+ words, 10 alternatives)"
+    "Day 11 completed on 2026-01-25 - Salesforce Alternatives page (3,200+ words, 10 alternatives)",
+    "Day 12 completed on 2026-01-26 - HubSpot Alternatives page (2,800+ words, 10 alternatives)",
+    "Day 13 completed on 2026-01-26 - Best CRM for Small Business page (3,200+ words, 7 CRMs)",
+    "Day 14 completed on 2026-01-26 - Best CRM for Real Estate page (3,000+ words, 8 CRMs)"
   ],
   "metrics": {
-    "pagesCreated": 3,
-    "schemasAdded": 31,
+    "pagesCreated": 6,
+    "schemasAdded": 40,
     "blogPostsUpdated": 5,
     "comparisonPages": 2,
-    "alternativePages": 1,
+    "alternativePages": 2,
+    "bestCrmPages": 2,
     "expertProfiles": 0
   },
   "dayDetails": {
@@ -281,14 +336,14 @@
     },
     "12": {
       "title": "HubSpot Alternatives Page",
-      "status": "pending",
+      "status": "completed",
       "tasks": [
         "Create alternatives/hubspot-alternatives.html"
       ]
     },
     "13": {
       "title": "Best CRM for Small Business",
-      "status": "pending",
+      "status": "completed",
       "tasks": [
         "Create best-crm/small-business.html",
         "3,000+ word guide"
@@ -296,7 +351,7 @@
     },
     "14": {
       "title": "Best CRM for Real Estate",
-      "status": "pending",
+      "status": "completed",
       "tasks": [
         "Create best-crm/real-estate.html"
       ]
