@@ -13,10 +13,10 @@
     },
     "abdullah-virk": {
       "name": "Abdullah Virk",
-      "ghlDirectoryUrl": null,
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/lahore/certified-admins/abdullah-virk",
       "rating": 5.0,
-      "reviewCount": 8,
-      "certifications": ["Certified Admin", "Agency Certified", "SaaS Certified"],
+      "reviewCount": 73,
+      "certifications": ["Certified Admin", "HIPAA Compliance", "Course Creator", "AI Employee", "SaaS Certified"],
       "claimed": true,
       "priceMin": 25,
       "featured": false
@@ -43,30 +43,30 @@
     },
     "salman-tariq": {
       "name": "Salman Tariq",
-      "ghlDirectoryUrl": null,
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/salman-tariq",
       "rating": 5.0,
-      "reviewCount": 6,
-      "certifications": ["Certified Admin"],
+      "reviewCount": 8,
+      "certifications": ["Certified Admin", "AI Employee", "Paid Ads"],
       "claimed": true,
       "priceMin": 16,
       "featured": false
     },
     "vanessa-zamora": {
       "name": "Vanessa Zamora",
-      "ghlDirectoryUrl": null,
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/doylestown/certified-admins/vanessa-zamora",
       "rating": 5.0,
-      "reviewCount": 10,
-      "certifications": ["Certified Admin"],
+      "reviewCount": 22,
+      "certifications": ["Certified Admin", "HIPAA Compliance", "Course Creator", "Funnel Builder", "Paid Ads"],
       "claimed": true,
       "priceMin": 500,
       "featured": false
     },
     "huzaifa-siddiqi": {
       "name": "Huzaifa Siddiqi",
-      "ghlDirectoryUrl": null,
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/multan/certified-admins/huzaifa-siddiqi",
       "rating": 5.0,
-      "reviewCount": 4,
-      "certifications": ["Certified Admin"],
+      "reviewCount": 3,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "HIPAA Compliance", "AI Employee", "Course Creator"],
       "claimed": true,
       "priceMin": 15,
       "featured": false
@@ -83,10 +83,10 @@
     },
     "jithin-sujala": {
       "name": "Jithin Sujala",
-      "ghlDirectoryUrl": null,
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/sydney/certified-admins/jithin-sujala",
       "rating": 5.0,
-      "reviewCount": 5,
-      "certifications": ["Certified Admin"],
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "HIPAA Compliance", "A2P 10DLC Compliance", "Course Creator", "Voice AI", "WhatsApp Integration"],
       "claimed": true,
       "priceMin": 150,
       "featured": false
@@ -160,6 +160,35 @@
       "claimed": true,
       "priceMin": 500,
       "featured": false
+    }
+  },
+  "unclaimedExperts": {
+    "stepan-rezek": {
+      "name": "Stepan Rezek",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/stepan-rezek",
+      "rating": 5.0,
+      "reviewCount": 15,
+      "certifications": ["Certified Admin"],
+      "specialty": "full-builds automation",
+      "location": "Czech Republic"
+    },
+    "angel-joy-romaraog": {
+      "name": "Angel Joy Romaraog",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/angel-joy-romaraog",
+      "rating": 5.0,
+      "reviewCount": 8,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation funnels",
+      "location": "Philippines"
+    },
+    "patrick-cohen": {
+      "name": "Patrick Cohen",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/patrick-cohen",
+      "rating": 5.0,
+      "reviewCount": 12,
+      "certifications": ["Certified Admin", "AI Employee"],
+      "specialty": "ai-voice automation",
+      "location": "United States"
     }
   },
   "rankingWeights": {
