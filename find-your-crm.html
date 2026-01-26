@@ -1637,8 +1637,8 @@
                 logo: 'GHL',
                 tier: 'A',
                 pricing: '$97-297/mo',
-                description: 'All-in-one platform for agencies and local businesses',
-                strengths: ['all-in-one', 'automation', 'unlimited-contacts'],
+                description: 'All-in-one CRM with built-in SMS, email, funnels & automation',
+                strengths: ['all-in-one', 'automation', 'unlimited-contacts', 'messaging'],
                 trialUrl: 'https://www.gohighlevel.com/?fp_ref=flightsuite',
                 expertUrl: '/experts',
                 hasExperts: true,
@@ -1854,58 +1854,66 @@
                 scores[key] = 0;
             });
 
+            // GHL base bonus - excellent all-around platform when set up correctly
+            // Combined with FlightSuite, offers superior messaging + CRM automation
+            scores.gohighlevel += 15;
+
             // Q1: Business type
             const businessType = answers['1'];
             if (businessType === 'real-estate') {
-                scores.followupboss += 40;
+                scores.followupboss += 35;
+                scores.gohighlevel += 30; // GHL has strong real estate templates
                 scores.hubspot += 15;
-                scores.gohighlevel += 20;
             } else if (businessType === 'home-services') {
-                scores.servicetitan += 45;
-                scores.gohighlevel += 20;
+                scores.servicetitan += 40;
+                scores.gohighlevel += 30; // GHL great for local service businesses
                 scores.hubspot += 10;
             } else if (businessType === 'agency') {
-                scores.gohighlevel += 35;
-                scores.hubspot += 25;
-                scores.salesforce += 15;
+                scores.gohighlevel += 40; // GHL is THE agency platform
+                scores.hubspot += 20;
+                scores.salesforce += 10;
             } else if (businessType === 'coach') {
-                scores.keap += 30;
-                scores.gohighlevel += 25;
-                scores.hubspot += 20;
+                scores.gohighlevel += 35; // GHL excellent for coaches
+                scores.keap += 25;
+                scores.hubspot += 15;
             } else if (businessType === 'local-service') {
-                scores.gohighlevel += 30;
-                scores.hubspot += 20;
-                scores.keap += 15;
+                scores.gohighlevel += 40; // GHL dominates local service
+                scores.hubspot += 15;
+                scores.keap += 10;
             } else if (businessType === 'professional') {
-                scores.salesforce += 25;
-                scores.hubspot += 25;
+                scores.gohighlevel += 25; // GHL works well here too
+                scores.salesforce += 20;
+                scores.hubspot += 20;
                 scores.pipedrive += 15;
             } else if (businessType === 'ecommerce') {
-                scores.hubspot += 30;
-                scores.salesforce += 20;
-                scores.zoho += 15;
+                scores.hubspot += 25;
+                scores.gohighlevel += 20;
+                scores.salesforce += 15;
+                scores.zoho += 10;
             } else {
-                scores.hubspot += 20;
-                scores.gohighlevel += 15;
-                scores.pipedrive += 15;
+                scores.gohighlevel += 25; // GHL good default choice
+                scores.hubspot += 15;
+                scores.pipedrive += 10;
             }
 
-            // Q2: Team size
+            // Q2: Team size - GHL unlimited users is major advantage
             const teamSize = answers['2'];
             if (teamSize === 'solo') {
+                scores.gohighlevel += 20; // Unlimited users means room to grow
                 scores.hubspot += 15;
-                scores.pipedrive += 15;
+                scores.pipedrive += 10;
                 scores.zoho += 10;
             } else if (teamSize === 'small') {
-                scores.gohighlevel += 15;
+                scores.gohighlevel += 25; // Best value for small teams
                 scores.hubspot += 15;
                 scores.keap += 10;
             } else if (teamSize === 'medium') {
+                scores.gohighlevel += 20; // Still great value
                 scores.salesforce += 15;
                 scores.hubspot += 10;
-                scores.gohighlevel += 10;
             } else if (teamSize === 'large') {
-                scores.salesforce += 25;
+                scores.salesforce += 20;
+                scores.gohighlevel += 15;
                 scores.hubspot += 15;
             }
 
@@ -1913,28 +1921,31 @@
             const priorities = answers['3'] || [];
             priorities.forEach(priority => {
                 if (priority === 'all-in-one') {
-                    scores.gohighlevel += 25;
+                    scores.gohighlevel += 35; // GHL is THE all-in-one solution
                     scores.keap += 15;
                 } else if (priority === 'sales-pipeline') {
+                    scores.gohighlevel += 15; // GHL has solid pipeline
                     scores.pipedrive += 20;
                     scores.salesforce += 15;
                     scores.hubspot += 10;
                 } else if (priority === 'automation') {
-                    scores.gohighlevel += 20;
+                    scores.gohighlevel += 30; // GHL automation is excellent
                     scores.keap += 15;
                     scores.hubspot += 10;
                 } else if (priority === 'easy') {
                     scores.hubspot += 15;
+                    scores.gohighlevel += 10; // Easy when set up by expert
                     scores.pipedrive += 15;
-                    scores.zoho += 10;
+                    scores.zoho += 5;
                 } else if (priority === 'affordable') {
-                    scores.hubspot += 20;
+                    scores.gohighlevel += 20; // Unlimited contacts = great value
+                    scores.hubspot += 15;
                     scores.zoho += 15;
                     scores.pipedrive += 10;
                 } else if (priority === 'integrations') {
                     scores.hubspot += 15;
+                    scores.gohighlevel += 10; // GHL integrations growing
                     scores.salesforce += 15;
-                    scores.zapier += 10;
                 }
             });
 
@@ -1943,34 +1954,39 @@
             if (budget === 'free') {
                 scores.hubspot += 25;
                 scores.zoho += 15;
+                // Note: GHL doesn't have free tier, but $97/mo is great value
             } else if (budget === 'under-100') {
+                scores.gohighlevel += 20; // $97/mo fits this budget
                 scores.hubspot += 15;
-                scores.gohighlevel += 10;
                 scores.pipedrive += 15;
             } else if (budget === '100-300') {
-                scores.gohighlevel += 20;
+                scores.gohighlevel += 30; // Sweet spot for GHL
                 scores.keap += 15;
                 scores.hubspot += 10;
             } else if (budget === '300-plus') {
+                scores.gohighlevel += 25; // GHL Pro at $297
                 scores.salesforce += 15;
-                scores.gohighlevel += 15;
                 scores.hubspot += 10;
             }
 
-            // Q5: Tech comfort
+            // Q5: Tech comfort - GHL expert network is a major advantage
             const techComfort = answers['5'];
             if (techComfort === 'setup-for-me') {
-                scores.gohighlevel += 15; // Has expert network
+                scores.gohighlevel += 25; // Has verified expert network on FlightSuite
                 scores.hubspot += 10;
             } else if (techComfort === 'tutorials') {
+                scores.gohighlevel += 15; // Large community, good docs
                 scores.hubspot += 15;
                 scores.pipedrive += 10;
-                scores.gohighlevel += 10;
             } else if (techComfort === 'technical') {
+                scores.gohighlevel += 15; // API access, custom builds
                 scores.salesforce += 15;
-                scores.gohighlevel += 10;
                 scores.hubspot += 5;
             }
+
+            // FlightSuite integration bonus - GHL + FlightSuite is a powerful combo
+            // for messaging, automation, and CRM updates via natural language
+            scores.gohighlevel += 10;
 
             return scores;
         }
@@ -1981,14 +1997,31 @@
 
             // Business type reasons
             const businessType = answers['1'];
-            if (businessType === 'agency' && crmKey === 'gohighlevel') {
-                reasons.push('Built specifically for marketing agencies');
+            if (crmKey === 'gohighlevel') {
+                if (businessType === 'agency') {
+                    reasons.push('Built specifically for marketing agencies');
+                } else if (businessType === 'coach') {
+                    reasons.push('Perfect for coaches with built-in course hosting');
+                } else if (businessType === 'local-service') {
+                    reasons.push('Excellent for local businesses with SMS & scheduling');
+                } else if (businessType === 'real-estate') {
+                    reasons.push('Strong SMS/voice features for real estate follow-up');
+                } else if (businessType === 'home-services') {
+                    reasons.push('Great for service businesses with booking & messaging');
+                } else {
+                    reasons.push('Versatile platform that grows with your business');
+                }
             } else if (businessType === 'real-estate' && crmKey === 'followupboss') {
                 reasons.push('Designed specifically for real estate teams');
             } else if (businessType === 'home-services' && crmKey === 'servicetitan') {
                 reasons.push('Purpose-built for home service businesses');
-            } else if (businessType === 'coach' && (crmKey === 'keap' || crmKey === 'gohighlevel')) {
+            } else if (businessType === 'coach' && crmKey === 'keap') {
                 reasons.push('Popular choice for coaches and consultants');
+            }
+
+            // GHL-specific messaging advantage
+            if (crmKey === 'gohighlevel') {
+                reasons.push('Built-in SMS, email, and voice—no extra tools needed');
             }
 
             // Priority reasons
@@ -1997,9 +2030,15 @@
                 reasons.push('All-in-one solution (your top priority)');
             }
             if (priorities.includes('automation') && crm.strengths.includes('automation')) {
-                reasons.push('Strong marketing automation capabilities');
+                if (crmKey === 'gohighlevel') {
+                    reasons.push('Powerful automation with multi-channel messaging');
+                } else {
+                    reasons.push('Strong marketing automation capabilities');
+                }
             }
-            if (priorities.includes('affordable') && (crm.strengths.includes('free-tier') || crm.strengths.includes('affordable'))) {
+            if (priorities.includes('affordable') && crmKey === 'gohighlevel') {
+                reasons.push('Unlimited contacts included—no per-contact fees');
+            } else if (priorities.includes('affordable') && (crm.strengths.includes('free-tier') || crm.strengths.includes('affordable'))) {
                 reasons.push('Budget-friendly pricing');
             }
             if (priorities.includes('easy') && crm.strengths.includes('ease-of-use')) {
@@ -2010,24 +2049,30 @@
             const budget = answers['4'];
             if (budget === 'free' && crm.strengths.includes('free-tier')) {
                 reasons.push('Robust free tier to get started');
-            } else if (budget === '100-300' && crmKey === 'gohighlevel') {
-                reasons.push('Fits your $100-300/mo budget with unlimited contacts');
+            } else if ((budget === '100-300' || budget === 'under-100') && crmKey === 'gohighlevel') {
+                reasons.push('Fits your budget with unlimited users & contacts');
             }
 
             // Tech comfort reasons
             const techComfort = answers['5'];
             if (techComfort === 'setup-for-me' && crm.hasExperts) {
-                reasons.push('Expert network available to set it up for you');
+                reasons.push('FlightSuite Verified Pros can set it up for you');
             }
 
-            // FlightSuite support
-            if (crm.flightsuiteSupported) {
+            // FlightSuite integration - major advantage for GHL
+            if (crmKey === 'gohighlevel') {
+                reasons.push('FlightSuite integration for voice-powered CRM updates');
+            } else if (crm.flightsuiteSupported) {
                 reasons.push('Works with FlightSuite for automated data entry');
             }
 
             // Ensure at least 3 reasons
             if (reasons.length < 3) {
-                if (crm.tier === 'A') reasons.push('Top-tier CRM with excellent support');
+                if (crmKey === 'gohighlevel') {
+                    reasons.push('Active community & frequent feature updates');
+                } else if (crm.tier === 'A') {
+                    reasons.push('Top-tier CRM with excellent support');
+                }
                 if (crm.strengths.includes('integrations')) reasons.push('Extensive integration ecosystem');
             }
 
