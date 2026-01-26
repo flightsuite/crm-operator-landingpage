@@ -1003,6 +1003,8 @@
             <div class="sort-container">
                 <select class="sort-select" id="sortExperts">
                     <option value="recommended">Recommended</option>
+                    <option value="rating">Highest Rated</option>
+                    <option value="reviews">Most Reviews</option>
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
                     <option value="name-az">Name: A-Z</option>
@@ -1614,7 +1616,7 @@
     </footer>
 
     <script>
-        // Filter and Sort functionality
+        // Filter and Sort functionality with algorithmic ranking
         const crmChips = document.querySelectorAll('#crmFilters .filter-chip:not(.disabled)');
         const specialtyChips = document.querySelectorAll('#specialtyFilters .filter-chip');
         const expertGrid = document.getElementById('expertGrid');
@@ -1622,25 +1624,96 @@
         const verifiedToggle = document.getElementById('verifiedOnly');
         const sortSelect = document.getElementById('sortExperts');
 
+        // Expert ranking data (loaded from JSON)
+        let expertsData = null;
+        let rankingScores = {};
+
+        // Load expert data and calculate rankings
+        async function loadExpertData() {
+            try {
+                const response = await fetch('/experts/experts-data.json');
+                expertsData = await response.json();
+                calculateRankingScores();
+                sortExperts(); // Initial sort by recommended
+            } catch (error) {
+                console.log('Expert data not loaded, using default sorting');
+            }
+        }
+
+        // Calculate ranking score for each expert
+        function calculateRankingScores() {
+            if (!expertsData) return;
+
+            const weights = expertsData.rankingWeights;
+            const experts = expertsData.experts;
+
+            // Find max review count for normalization
+            const maxReviews = Math.max(...Object.values(experts).map(e => e.reviewCount || 0));
+
+            for (const [slug, data] of Object.entries(experts)) {
+                let score = 0;
+
+                // Rating score (0-5 normalized to 0-100, then weighted)
+                score += (data.rating / 5) * 100 * (weights.rating / 100);
+
+                // Review count score (normalized by max reviews)
+                const reviewScore = maxReviews > 0 ? (data.reviewCount / maxReviews) * 100 : 0;
+                score += reviewScore * (weights.reviewCount / 100);
+
+                // Certifications score (each cert adds points, max 3)
+                const certCount = Math.min(data.certifications?.length || 0, 3);
+                score += (certCount / 3) * 100 * (weights.certifications / 100);
+
+                // Claimed bonus
+                if (data.claimed) {
+                    score += 100 * (weights.claimed / 100);
+                }
+
+                // Featured bonus
+                if (data.featured) {
+                    score += 100 * (weights.featured / 100);
+                }
+
+                rankingScores[slug] = score;
+            }
+        }
+
+        // Get slug from card name
+        function getCardSlug(card) {
+            const name = card.querySelector('.expert-name')?.textContent || '';
+            return name.toLowerCase().replace(/\s+/g, '-');
+        }
+
+        // Get ranking score for a card
+        function getCardRankingScore(card) {
+            const slug = getCardSlug(card);
+            return rankingScores[slug] || 0;
+        }
+
         // Extract price from card for sorting
         function getCardPrice(card) {
             const priceText = card.querySelector('.meta-item strong')?.textContent || '';
-            // Extract first number from price text
             const match = priceText.match(/\$?([\d,]+)/);
             if (match) {
                 return parseInt(match[1].replace(',', ''));
             }
-            // Handle hourly rates
             const hourlyMatch = priceText.match(/\$([\d]+)\/hr/);
             if (hourlyMatch) {
                 return parseInt(hourlyMatch[1]);
             }
-            return 999999; // Default for "Contact for pricing" etc.
+            return 999999;
         }
 
         // Get expert name for sorting
         function getCardName(card) {
             return card.querySelector('.expert-name')?.textContent || '';
+        }
+
+        // Get expert data by slug
+        function getExpertData(card) {
+            if (!expertsData) return null;
+            const slug = getCardSlug(card);
+            return expertsData.experts[slug] || null;
         }
 
         // Sort experts
@@ -1649,19 +1722,34 @@
             const cardsArray = Array.from(expertCards);
 
             cardsArray.sort((a, b) => {
+                const dataA = getExpertData(a);
+                const dataB = getExpertData(b);
+
                 switch(sortValue) {
+                    case 'rating':
+                        // Sort by rating (highest first), then by review count
+                        const ratingA = dataA?.rating || 0;
+                        const ratingB = dataB?.rating || 0;
+                        if (ratingB !== ratingA) return ratingB - ratingA;
+                        return (dataB?.reviewCount || 0) - (dataA?.reviewCount || 0);
+
+                    case 'reviews':
+                        // Sort by review count (highest first)
+                        return (dataB?.reviewCount || 0) - (dataA?.reviewCount || 0);
+
                     case 'price-low':
                         return getCardPrice(a) - getCardPrice(b);
+
                     case 'price-high':
                         return getCardPrice(b) - getCardPrice(a);
+
                     case 'name-az':
                         return getCardName(a).localeCompare(getCardName(b));
+
                     case 'recommended':
                     default:
-                        // Keep original order (claimed profiles first, then by position)
-                        const aHasClaimed = a.querySelector('.claimed-badge') ? 0 : 1;
-                        const bHasClaimed = b.querySelector('.claimed-badge') ? 0 : 1;
-                        return aHasClaimed - bHasClaimed;
+                        // Sort by algorithmic ranking score (highest first)
+                        return getCardRankingScore(b) - getCardRankingScore(a);
                 }
             });
 
@@ -1717,6 +1805,9 @@
                 noResultsEl.style.display = 'none';
             }
         }
+
+        // Initialize
+        loadExpertData();
     </script>
 </body>
 </html>

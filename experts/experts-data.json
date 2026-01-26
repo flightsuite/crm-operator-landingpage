@@ -1,0 +1,172 @@
+{
+  "lastUpdated": "2026-01-26",
+  "experts": {
+    "noli-aquino": {
+      "name": "Noli Aquino",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/san-mateo/certified-admins/noli-aquino",
+      "rating": 5.0,
+      "reviewCount": 12,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 1499,
+      "featured": true
+    },
+    "abdullah-virk": {
+      "name": "Abdullah Virk",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 8,
+      "certifications": ["Certified Admin", "Agency Certified", "SaaS Certified"],
+      "claimed": true,
+      "priceMin": 25,
+      "featured": false
+    },
+    "seth-wixtrom": {
+      "name": "Seth Wixtrom",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 5,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 200,
+      "featured": false
+    },
+    "deborah-spence": {
+      "name": "Deborah Spence",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 3,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 297,
+      "featured": false
+    },
+    "salman-tariq": {
+      "name": "Salman Tariq",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 6,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 16,
+      "featured": false
+    },
+    "vanessa-zamora": {
+      "name": "Vanessa Zamora",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 10,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 500,
+      "featured": false
+    },
+    "huzaifa-siddiqi": {
+      "name": "Huzaifa Siddiqi",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 4,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 15,
+      "featured": false
+    },
+    "josimara-hoffman": {
+      "name": "Josimara Hoffman",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 7,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 1000,
+      "featured": false
+    },
+    "jithin-sujala": {
+      "name": "Jithin Sujala",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 5,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 150,
+      "featured": false
+    },
+    "cristina-samoila": {
+      "name": "Cristina Samoila",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 6,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 500,
+      "featured": false
+    },
+    "abdelwahab-aitichou": {
+      "name": "Abdelwahab Aitichou",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 4,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 65,
+      "featured": false
+    },
+    "akhimi-zambales": {
+      "name": "Akhimi Zambales",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 5,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 20,
+      "featured": false
+    },
+    "mike-gorski": {
+      "name": "Mike Gorski",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 15,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 97,
+      "featured": false
+    },
+    "ammar-yasir": {
+      "name": "Ammar Yasir",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 4,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 300,
+      "featured": false
+    },
+    "ezechiel-joachim": {
+      "name": "Ezechiel Joachim",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 3,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 197,
+      "featured": false
+    },
+    "vanessa-mishra": {
+      "name": "Vanessa Mishra",
+      "ghlDirectoryUrl": null,
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin"],
+      "claimed": true,
+      "priceMin": 500,
+      "featured": false
+    }
+  },
+  "rankingWeights": {
+    "rating": 30,
+    "reviewCount": 25,
+    "certifications": 20,
+    "claimed": 15,
+    "featured": 10
+  }
+}
