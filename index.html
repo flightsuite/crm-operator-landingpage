@@ -1416,21 +1416,21 @@
             font-weight: 600;
         }
 
-        /* Animated Bus */
-        .bus {
+        /* Animated Plane */
+        .plane {
             position: absolute;
             left: 28%;
             top: 50%;
             transform: translateY(-50%);
-            width: clamp(60px, 10vw, 80px);
-            height: clamp(40px, 6.5vw, 55px);
+            width: clamp(70px, 12vw, 100px);
+            height: clamp(45px, 7vw, 65px);
             z-index: 4;
-            animation: busIdle 3s ease-in-out infinite;
+            animation: planeFloat 3s ease-in-out infinite;
         }
 
-        @keyframes busIdle {
-            0%, 100% { transform: translateY(-50%) translateX(0); }
-            50% { transform: translateY(-50%) translateX(4px); }
+        @keyframes planeFloat {
+            0%, 100% { transform: translateY(-50%) translateX(0) rotate(-2deg); }
+            50% { transform: translateY(-55%) translateX(6px) rotate(0deg); }
         }
 
         /* Now Boarding Banner */
@@ -1497,33 +1497,37 @@
             50% { transform: scale(1.05); box-shadow: 0 12px 48px rgba(255, 215, 0, 0.5); }
         }
 
-        .bus-body {
+        .plane-body {
             fill: #FFD700;
         }
 
-        .bus-window {
+        .plane-wing {
+            fill: #E5C100;
+        }
+
+        .plane-window {
             fill: #1E3A8A;
             opacity: 0.8;
         }
 
-        .bus-wheel {
-            fill: #1F2937;
+        .plane-engine {
+            fill: #B8B8B8;
         }
 
-        .bus-exhaust {
+        .plane-contrail {
             position: absolute;
-            left: -10px;
-            top: 60%;
-            width: 8px;
-            height: 8px;
+            left: -15px;
+            top: 50%;
+            width: 12px;
+            height: 4px;
             background: rgba(255, 255, 255, 0.4);
             border-radius: 50%;
-            animation: exhaust 2s ease-out infinite;
+            animation: contrail 2s ease-out infinite;
         }
 
-        @keyframes exhaust {
-            0% { transform: translateX(0) scale(1); opacity: 0.4; }
-            100% { transform: translateX(-30px) scale(2); opacity: 0; }
+        @keyframes contrail {
+            0% { transform: translateX(0) scale(1); opacity: 0.5; }
+            100% { transform: translateX(-40px) scale(3); opacity: 0; }
         }
 
         /* Roadmap CTA */
@@ -1558,7 +1562,7 @@
                 display: none;
             }
 
-            .bus {
+            .plane {
                 display: none;
             }
 
@@ -3251,24 +3255,33 @@
                     Now Boarding for Salesforce →
                 </div>
 
-                <!-- Animated Bus -->
-                <div class="bus">
-                    <svg viewBox="0 0 100 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Bus Body -->
-                        <rect x="10" y="15" width="80" height="35" rx="8" class="bus-body"/>
+                <!-- Animated Plane -->
+                <div class="plane">
+                    <svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Fuselage -->
+                        <ellipse cx="55" cy="30" rx="50" ry="10" class="plane-body"/>
+                        <!-- Nose cone -->
+                        <path d="M100 30 L115 30 Q120 30 115 28 L100 25 Z" class="plane-body"/>
+                        <!-- Tail fin -->
+                        <path d="M10 30 L5 10 L20 25 Z" class="plane-body"/>
+                        <!-- Main wings -->
+                        <path d="M45 30 L35 55 L70 55 L60 30 Z" class="plane-wing"/>
+                        <!-- Engine 1 -->
+                        <ellipse cx="42" cy="48" rx="6" ry="3" class="plane-engine"/>
+                        <!-- Engine 2 -->
+                        <ellipse cx="63" cy="48" rx="6" ry="3" class="plane-engine"/>
                         <!-- Windows -->
-                        <rect x="18" y="22" width="15" height="12" rx="2" class="bus-window"/>
-                        <rect x="38" y="22" width="15" height="12" rx="2" class="bus-window"/>
-                        <rect x="58" y="22" width="15" height="12" rx="2" class="bus-window"/>
-                        <!-- Wheels -->
-                        <circle cx="25" cy="50" r="8" class="bus-wheel"/>
-                        <circle cx="75" cy="50" r="8" class="bus-wheel"/>
-                        <!-- Headlight -->
-                        <circle cx="88" cy="30" r="3" fill="#FFF" opacity="0.8"/>
+                        <circle cx="75" cy="28" r="2.5" class="plane-window"/>
+                        <circle cx="65" cy="28" r="2.5" class="plane-window"/>
+                        <circle cx="55" cy="28" r="2.5" class="plane-window"/>
+                        <circle cx="45" cy="28" r="2.5" class="plane-window"/>
+                        <circle cx="35" cy="28" r="2.5" class="plane-window"/>
+                        <!-- Cockpit window -->
+                        <path d="M95 26 Q100 26 100 30 L95 30 Z" fill="#1E3A8A" opacity="0.8"/>
                     </svg>
-                    <div class="bus-exhaust"></div>
-                    <div class="bus-exhaust" style="animation-delay: 0.5s;"></div>
-                    <div class="bus-exhaust" style="animation-delay: 1s;"></div>
+                    <div class="plane-contrail"></div>
+                    <div class="plane-contrail" style="animation-delay: 0.4s; top: 45%;"></div>
+                    <div class="plane-contrail" style="animation-delay: 0.8s; top: 55%;"></div>
                 </div>
 
                 <!-- Stations -->
