@@ -148,6 +148,102 @@
         <priority>0.7</priority>
     </url>
 
+    <!-- Expert Profile: Salman Tariq -->
+    <url>
+        <loc>https://flightsuite.ai/experts/salman-tariq.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Expert Profile: Vanessa Zamora -->
+    <url>
+        <loc>https://flightsuite.ai/experts/vanessa-zamora.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Expert Profile: Huzaifa Siddiqi -->
+    <url>
+        <loc>https://flightsuite.ai/experts/huzaifa-siddiqi.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Expert Profile: Josimara Hoffman -->
+    <url>
+        <loc>https://flightsuite.ai/experts/josimara-hoffman.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Expert Profile: Jithin Sujala -->
+    <url>
+        <loc>https://flightsuite.ai/experts/jithin-sujala.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Expert Profile: Cristina Samoila -->
+    <url>
+        <loc>https://flightsuite.ai/experts/cristina-samoila.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Expert Profile: Abdelwahab Aitichou -->
+    <url>
+        <loc>https://flightsuite.ai/experts/abdelwahab-aitichou.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Expert Profile: Akhimi Zambales -->
+    <url>
+        <loc>https://flightsuite.ai/experts/akhimi-zambales.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Expert Profile: Mike Gorski -->
+    <url>
+        <loc>https://flightsuite.ai/experts/mike-gorski.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Expert Profile: Ammar Yasir -->
+    <url>
+        <loc>https://flightsuite.ai/experts/ammar-yasir.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Expert Profile: Ezechiel Joachim -->
+    <url>
+        <loc>https://flightsuite.ai/experts/ezechiel-joachim.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Expert Profile: Vanessa Mishra -->
+    <url>
+        <loc>https://flightsuite.ai/experts/vanessa-mishra.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
     <!-- Alternatives: HubSpot Alternatives -->
     <url>
         <loc>https://flightsuite.ai/alternatives/hubspot-alternatives.html</loc>
