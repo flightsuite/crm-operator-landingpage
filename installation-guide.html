@@ -723,6 +723,81 @@
             font-size: 0.875rem;
         }
 
+        /* ===== VIDEO PREVIEW ===== */
+        .video-preview-section {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 4vw, 2rem) clamp(2rem, 4vw, 3rem);
+        }
+
+        .video-preview {
+            display: none;
+        }
+
+        .video-preview.active {
+            display: block;
+        }
+
+        .video-container {
+            background: var(--color-bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .video-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .video-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
+        }
+
+        .video-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        .video-subtitle {
+            font-size: 0.875rem;
+            color: var(--color-text-tertiary);
+            margin-left: auto;
+        }
+
+        .video-embed {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .crm-selector {
@@ -775,6 +850,41 @@
                 <h3>HubSpot CRM</h3>
                 <p>Complete integration setup</p>
                 <span class="status-badge status-live">Live Now</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Preview Section -->
+    <div class="video-preview-section">
+        <!-- GoHighLevel Video -->
+        <div class="video-preview active" id="flightsuite-ghl-video">
+            <div class="video-container">
+                <div class="video-header">
+                    <div class="video-icon">
+                        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </div>
+                    <span class="video-title">See FlightSuite in Action</span>
+                    <span class="video-subtitle">New: Email & Contact Associations</span>
+                </div>
+                <div class="video-embed">
+                    <iframe src="https://www.loom.com/embed/58ea37d0d46b4bdaa0aa6bc8a30ee1fd?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- HubSpot Video -->
+        <div class="video-preview" id="hubspot-video">
+            <div class="video-container">
+                <div class="video-header">
+                    <div class="video-icon">
+                        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </div>
+                    <span class="video-title">See FlightSuite in Action</span>
+                    <span class="video-subtitle">HubSpot CoPilot Demo</span>
+                </div>
+                <div class="video-embed">
+                    <iframe src="https://www.loom.com/embed/f04a4617d2d54c3cba04428a549b0f98?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -1204,6 +1314,7 @@
         // CRM Selector Logic
         const crmOptions = document.querySelectorAll('.crm-option');
         const crmGuides = document.querySelectorAll('.crm-guide');
+        const crmVideos = document.querySelectorAll('.video-preview');
 
         crmOptions.forEach(option => {
             option.addEventListener('click', () => {
@@ -1219,6 +1330,14 @@
                     guide.classList.remove('active');
                     if (guide.id === `${selectedCrm}-guide`) {
                         guide.classList.add('active');
+                    }
+                });
+
+                // Show corresponding video
+                crmVideos.forEach(video => {
+                    video.classList.remove('active');
+                    if (video.id === `${selectedCrm}-video`) {
+                        video.classList.add('active');
                     }
                 });
             });
