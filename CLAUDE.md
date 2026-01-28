@@ -59,29 +59,55 @@ No build, lint, or test commands exist - this is pure static HTML/CSS/JS.
 - Forms use `no-cors` mode for Google Apps Script compatibility
 - The `WEBHOOK_SETUP.md` documents the Airtable webhook integration (now using Google Sheets)
 
-## SEO/AEO 30-Day Growth Plan
+## SEO/AEO 60-Day Growth Plan
 
-This project has an active SEO optimization plan. Run the daily task with:
+This project has an active SEO optimization plan spanning 60 days in two phases. Run the daily task with:
 
 ```
 /seo-daily
 ```
 
+### Phases
+
+| Phase | Days | Focus |
+|-------|------|-------|
+| Phase 1 | 1-30 | On-site SEO: Schema, content, technical optimization |
+| Phase 2 | 31-60 | Off-page SEO: Backlinks, social, outreach, reviews |
+
 ### Key SEO Files
 
 | File | Purpose |
 |------|---------|
-| `docs/SEO-AEO-STRATEGY.md` | Full 30-day strategy document |
-| `docs/SEO-PROGRESS.json` | Progress tracker (current day, completed tasks) |
+| `docs/SEO-AEO-STRATEGY.md` | Phase 1 strategy (Days 1-30) |
+| `docs/SEO-PROGRESS.json` | Phase 1 progress tracker |
+| `docs/SEO-PHASE2-STRATEGY.md` | Phase 2 strategy (Days 31-60) |
+| `docs/SEO-PHASE2-PROGRESS.json` | Phase 2 progress tracker |
 | `.claude/commands/seo-daily.md` | Daily task runner skill |
+
+### Phase 2 Task Types
+
+Phase 2 introduces three task types to handle work that requires human action:
+
+| Type | Description |
+|------|-------------|
+| **CODE** | Claude executes fully (content creation, technical work) |
+| **TEAM** | Requires human action - Claude provides copy-paste ready Slack messages |
+| **HYBRID** | Claude does prep work, then provides Slack message for team portions |
+
+For TEAM and HYBRID tasks, Claude outputs ready-to-copy messages you can paste directly into Slack for your team. These include:
+- Specific people/sites to contact
+- Exact email templates
+- Step-by-step instructions
+- Goals and success metrics
 
 ### How the Daily SEO Runner Works
 
-1. Reads `docs/SEO-PROGRESS.json` to get current day (1-30)
-2. Executes that day's tasks completely
-3. Creates/modifies files as specified
-4. Updates progress tracker when done
-5. If session budget remains, continues to next day
+1. Detects which phase we're in based on progress
+2. Reads the appropriate strategy and progress files
+3. For CODE tasks: Executes completely
+4. For TEAM tasks: Outputs copy-paste Slack message
+5. For HYBRID tasks: Does prep work + outputs Slack message
+6. Updates progress tracker
 
 ### Session Budget Targets
 
@@ -93,8 +119,70 @@ The `/seo-daily` skill is designed to maximize session usage by completing subst
 
 ### Manual Progress Reset
 
-To restart from a specific day, edit `docs/SEO-PROGRESS.json`:
+To restart from a specific day in Phase 1:
 ```json
+// docs/SEO-PROGRESS.json
+{
+  "currentDay": 1,
+  "status": "not_started"
+}
+```
+
+To restart from a specific day in Phase 2:
+```json
+// docs/SEO-PHASE2-PROGRESS.json
+{
+  "currentDay": 31,
+  "status": "not_started"
+}
+```
+
+## Social Media 30-Day Growth Plan
+
+This project has an active social media plan for LinkedIn and Facebook. Run the daily task with:
+
+```
+/social-daily
+```
+
+### Platforms
+
+- **LinkedIn**: https://www.linkedin.com/company/flight-suite-ai
+- **Facebook**: https://www.facebook.com/flightsuiteai/
+
+### Key Social Media Files
+
+| File | Purpose |
+|------|---------|
+| `docs/SOCIAL-MEDIA-STRATEGY.md` | Full 30-day strategy with post copy |
+| `docs/SOCIAL-MEDIA-PROGRESS.json` | Progress tracker |
+| `.claude/commands/social-daily.md` | Daily task runner skill |
+
+### How the Daily Social Runner Works
+
+1. Reads progress tracker to determine current day
+2. Provides **2 days of posts at a time**
+3. Searches Google for thumbnail images for each post
+4. Outputs complete post copy, hashtags, and links
+5. Updates progress tracker
+
+### Content Strategy
+
+The plan pairs with the SEO strategy by promoting blog content:
+
+| Content Pillar | % of Posts |
+|----------------|------------|
+| Relatable Pain Points | 25% |
+| Actionable Tips | 30% |
+| Blog/Content Promos | 20% |
+| Statistics & Data | 15% |
+| Behind-the-Scenes | 10% |
+
+### Manual Progress Reset
+
+To restart from a specific day:
+```json
+// docs/SOCIAL-MEDIA-PROGRESS.json
 {
   "currentDay": 1,
   "status": "not_started"
