@@ -1,42 +1,42 @@
 {
-  "lastUpdated": "2026-01-26",
+  "lastUpdated": "2026-01-28",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/san-mateo/certified-admins/noli-aquino",
       "rating": 5.0,
-      "reviewCount": 12,
-      "certifications": ["Certified Admin"],
+      "reviewCount": 11,
+      "certifications": ["Certified Admin", "Automated Swag Store", "Social Media Manager", "Paid Ads", "AI Employee", "Local Hero (SaaS)"],
       "claimed": true,
       "priceMin": 1499,
       "featured": true
     },
     "abdullah-virk": {
       "name": "Abdullah Virk",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/lahore/certified-admins/abdullah-virk",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/lahore/certified-admins/abdullah-virk",
       "rating": 5.0,
-      "reviewCount": 73,
-      "certifications": ["Certified Admin", "HIPAA Compliance", "Course Creator", "AI Employee", "SaaS Certified"],
+      "reviewCount": 77,
+      "certifications": ["Certified Admin", "HIPAA Compliance", "Course Creator", "AI Employee", "Local Hero (SaaS)", "A2P 10DLC Compliance", "Automated Swag Store", "Social Media Manager", "Paid Ads", "Quick Wins", "Funnel Builder", "WhatsApp Integration"],
       "claimed": true,
       "priceMin": 25,
       "featured": false
     },
     "seth-wixtrom": {
       "name": "Seth Wixtrom",
-      "ghlDirectoryUrl": null,
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/republic/certified-admins/seth-wixtrom",
       "rating": 5.0,
-      "reviewCount": 5,
-      "certifications": ["Certified Admin"],
+      "reviewCount": 6,
+      "certifications": ["Certified Admin", "HIPAA Compliance", "AI Employee"],
       "claimed": true,
       "priceMin": 200,
       "featured": false
     },
     "deborah-spence": {
       "name": "Deborah Spence",
-      "ghlDirectoryUrl": null,
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/bala-cynwyd/certified-admins/deborah-spence",
       "rating": 5.0,
-      "reviewCount": 3,
-      "certifications": ["Certified Admin"],
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "AI Employee", "Paid Ads", "Social Media Manager", "Funnel Builder"],
       "claimed": true,
       "priceMin": 297,
       "featured": false
@@ -46,7 +46,7 @@
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/salman-tariq",
       "rating": 5.0,
       "reviewCount": 8,
-      "certifications": ["Certified Admin", "AI Employee", "Paid Ads"],
+      "certifications": ["Certified Admin", "AI Employee", "Paid Ads", "Social Media Manager", "A2P 10DLC Compliance", "HIPAA Compliance", "Automated Swag Store", "Quick Wins", "Course Creator", "Local Hero (SaaS)"],
       "claimed": true,
       "priceMin": 16,
       "featured": false
@@ -56,7 +56,7 @@
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/doylestown/certified-admins/vanessa-zamora",
       "rating": 5.0,
       "reviewCount": 22,
-      "certifications": ["Certified Admin", "HIPAA Compliance", "Course Creator", "Funnel Builder", "Paid Ads"],
+      "certifications": ["Certified Admin", "Course Creator", "Automated Swag Store", "Local Hero (SaaS)", "Paid Ads", "A2P 10DLC Compliance", "HIPAA Compliance", "AI Employee", "Social Media Manager", "Funnel Builder", "AI Tech Stack"],
       "claimed": true,
       "priceMin": 500,
       "featured": false
@@ -66,16 +66,16 @@
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/multan/certified-admins/huzaifa-siddiqi",
       "rating": 5.0,
       "reviewCount": 3,
-      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "HIPAA Compliance", "AI Employee", "Course Creator"],
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "HIPAA Compliance", "AI Employee", "Course Creator", "Automated Swag Store", "Social Media Manager", "Quick Wins", "Paid Ads", "Funnel Builder", "AI Tech Stack"],
       "claimed": true,
       "priceMin": 15,
       "featured": false
     },
     "josimara-hoffman": {
-      "name": "Josimara Hoffman",
-      "ghlDirectoryUrl": null,
+      "name": "Josimara Hoffmann",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/australia/chinderah/certified-admins/josimara-hoffmann",
       "rating": 5.0,
-      "reviewCount": 7,
+      "reviewCount": 2,
       "certifications": ["Certified Admin"],
       "claimed": true,
       "priceMin": 1000,
@@ -83,20 +83,20 @@
     },
     "jithin-sujala": {
       "name": "Jithin Sujala",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/sydney/certified-admins/jithin-sujala",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/australia/sydney/certified-admins/jithin-sujala",
       "rating": 5.0,
       "reviewCount": 2,
-      "certifications": ["Certified Admin", "HIPAA Compliance", "A2P 10DLC Compliance", "Course Creator", "Voice AI", "WhatsApp Integration"],
+      "certifications": ["Certified Admin", "Local Hero (SaaS)", "A2P 10DLC Compliance", "AI Employee", "Course Creator", "HIPAA Compliance", "Paid Ads", "Funnel Builder", "WhatsApp Integration", "Quick Wins", "Automated Swag Store", "Social Media Manager", "AI Tech Stack", "Voice AI"],
       "claimed": true,
       "priceMin": 150,
       "featured": false
     },
     "cristina-samoila": {
       "name": "Cristina Samoila",
-      "ghlDirectoryUrl": null,
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/cristina-samoila",
       "rating": 5.0,
-      "reviewCount": 6,
-      "certifications": ["Certified Admin"],
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "Funnel Builder", "A2P 10DLC Compliance", "AI Tech Stack", "HIPAA Compliance"],
       "claimed": true,
       "priceMin": 500,
       "featured": false
@@ -163,32 +163,194 @@
     }
   },
   "unclaimedExperts": {
-    "stepan-rezek": {
-      "name": "Stepan Rezek",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/stepan-rezek",
+    "rob-eason": {
+      "name": "Rob Eason",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/charlotte/certified-admins/rob-eason",
       "rating": 5.0,
-      "reviewCount": 15,
-      "certifications": ["Certified Admin"],
-      "specialty": "full-builds automation",
-      "location": "Czech Republic"
+      "reviewCount": 61,
+      "certifications": ["Certified Admin", "Social Media Manager", "HIPAA Compliance", "A2P 10DLC Compliance", "Funnel Builder", "Automated Swag Store", "Paid Ads", "Quick Wins", "Course Creator", "AI Employee", "Local Hero (SaaS)", "AI Tech Stack"],
+      "specialty": "full-builds ai-voice automation",
+      "location": "United States"
     },
-    "angel-joy-romaraog": {
-      "name": "Angel Joy Romaraog",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/angel-joy-romaraog",
+    "jonathan-schoenberg": {
+      "name": "Jonathan Schoenberg",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/concord/certified-admins/jonathan-schoenberg",
       "rating": 5.0,
-      "reviewCount": 8,
-      "certifications": ["Certified Admin"],
+      "reviewCount": 57,
+      "certifications": ["Certified Admin", "AI Employee", "Course Creator"],
+      "specialty": "automation funnels ai-voice",
+      "location": "United States"
+    },
+    "irfan-khan": {
+      "name": "Irfan Khan",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/irfan-khan-www-ghlarmy-com",
+      "rating": 5.0,
+      "reviewCount": 34,
+      "certifications": ["Certified Admin", "Funnel Builder", "Course Creator", "A2P 10DLC Compliance", "HIPAA Compliance", "Quick Wins", "WhatsApp Integration", "Automated Swag Store", "Social Media Manager"],
+      "specialty": "full-builds automation",
+      "location": "Pakistan"
+    },
+    "donna-alia": {
+      "name": "Donna Alia",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/san-pablo-city/certified-admins/donna-alia",
+      "rating": 4.9,
+      "reviewCount": 20,
+      "certifications": ["Certified Admin", "Social Media Manager", "A2P 10DLC Compliance", "AI Employee", "Automated Swag Store", "Course Creator", "Local Hero (SaaS)", "HIPAA Compliance", "Quick Wins", "Paid Ads", "Funnel Builder"],
       "specialty": "automation funnels",
       "location": "Philippines"
     },
-    "patrick-cohen": {
-      "name": "Patrick Cohen",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/patrick-cohen",
+    "yaakov-oranski": {
+      "name": "Yaakov Oranski",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/tampa/certified-admins/yaakov-koby-oranski",
+      "rating": 5.0,
+      "reviewCount": 18,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "AI Employee", "HIPAA Compliance", "Local Hero (SaaS)", "Paid Ads", "Social Media Manager", "Quick Wins", "Automated Swag Store", "Course Creator", "Funnel Builder", "WhatsApp Integration", "AI Tech Stack", "Voice AI"],
+      "specialty": "full-builds ai-voice automation",
+      "location": "United States"
+    },
+    "farhan-parpia": {
+      "name": "Farhan Parpia",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/pakistan/karachi/certified-admins/farhan-parpia",
+      "rating": 5.0,
+      "reviewCount": 17,
+      "certifications": ["Certified Admin", "AI Employee", "Social Media Manager", "HIPAA Compliance"],
+      "specialty": "automation funnels",
+      "location": "Pakistan"
+    },
+    "thomas-pacheco": {
+      "name": "Thomas Pacheco",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/manchester/certified-admins/thomas-pacheco",
+      "rating": 5.0,
+      "reviewCount": 16,
+      "certifications": ["Certified Admin"],
+      "specialty": "full-builds automation ai-voice",
+      "location": "United States"
+    },
+    "brian-murphy": {
+      "name": "Brian Murphy",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/worcester/certified-admins/brian-murphy",
+      "rating": 5.0,
+      "reviewCount": 14,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "AI Employee", "Social Media Manager", "Course Creator", "Funnel Builder"],
+      "specialty": "full-builds automation",
+      "location": "United States"
+    },
+    "gareth-richardson": {
+      "name": "Gareth Richardson",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-kingdom/london/certified-admins/gareth-richardson",
       "rating": 5.0,
       "reviewCount": 12,
-      "certifications": ["Certified Admin", "AI Employee"],
-      "specialty": "ai-voice automation",
+      "certifications": ["Certified Admin", "AI Employee", "Local Hero (SaaS)", "Social Media Manager", "Quick Wins", "Automated Swag Store", "A2P 10DLC Compliance", "Paid Ads", "Course Creator", "HIPAA Compliance", "Funnel Builder"],
+      "specialty": "full-builds automation",
+      "location": "United Kingdom"
+    },
+    "mark-celli": {
+      "name": "Mark Celli",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/north-arlington/certified-admins/mark-celli",
+      "rating": 5.0,
+      "reviewCount": 12,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "HIPAA Compliance", "AI Employee"],
+      "specialty": "automation full-builds",
       "location": "United States"
+    },
+    "muhammad-ahmad-rasheed": {
+      "name": "Muhammad Ahmad Rasheed",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/pakistan/lahore/certified-admins/muhammad-ahmad-rasheed",
+      "rating": 5.0,
+      "reviewCount": 12,
+      "certifications": ["Certified Admin", "HIPAA Compliance", "Course Creator", "Local Hero (SaaS)", "A2P 10DLC Compliance", "WhatsApp Integration", "Funnel Builder", "Paid Ads"],
+      "specialty": "funnels automation",
+      "location": "Pakistan"
+    },
+    "aun-raza": {
+      "name": "Aun Raza",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/lahore/certified-admins/syed-aun",
+      "rating": 5.0,
+      "reviewCount": 10,
+      "certifications": ["Certified Admin", "Course Creator", "AI Employee", "HIPAA Compliance", "Local Hero (SaaS)", "Social Media Manager", "Quick Wins", "Automated Swag Store", "Paid Ads"],
+      "specialty": "full-builds automation",
+      "location": "Pakistan"
+    },
+    "haiyya-bhai": {
+      "name": "Haiyya Bhai",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/muhammad-abdul-rahman",
+      "rating": 5.0,
+      "reviewCount": 10,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "HIPAA Compliance", "Automated Swag Store", "AI Employee", "Social Media Manager", "Course Creator", "Quick Wins", "Local Hero (SaaS)", "Paid Ads", "Funnel Builder"],
+      "specialty": "full-builds automation",
+      "location": "Pakistan"
+    },
+    "muhammad-nouman": {
+      "name": "Muhammad Nouman",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/sheridan/certified-admins/muhammad-nouman",
+      "rating": 5.0,
+      "reviewCount": 10,
+      "certifications": ["Certified Admin", "Course Creator", "Quick Wins", "Local Hero (SaaS)", "HIPAA Compliance", "Paid Ads", "Social Media Manager", "Automated Swag Store", "AI Employee", "A2P 10DLC Compliance", "Funnel Builder", "WhatsApp Integration"],
+      "specialty": "full-builds automation",
+      "location": "United States"
+    },
+    "kenneth-jose": {
+      "name": "Kenneth Jose",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/kenneth-nair",
+      "rating": 5.0,
+      "reviewCount": 8,
+      "certifications": ["Certified Admin", "WhatsApp Integration"],
+      "specialty": "automation",
+      "location": "India"
+    },
+    "mike-petritis": {
+      "name": "Mike Petritis",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/austin/certified-admins/mike-petritis",
+      "rating": 5.0,
+      "reviewCount": 8,
+      "certifications": ["Certified Admin", "HIPAA Compliance", "A2P 10DLC Compliance", "AI Employee", "Paid Ads"],
+      "specialty": "full-builds automation",
+      "location": "United States"
+    },
+    "norwin-lacson": {
+      "name": "Norwin Lacson",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/angeles/certified-admins/norwin-lacson",
+      "rating": 5.0,
+      "reviewCount": 8,
+      "certifications": ["Certified Admin", "HIPAA Compliance"],
+      "specialty": "automation funnels",
+      "location": "Philippines"
+    },
+    "irfan-ahmad": {
+      "name": "Irfan Ahmad",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/lahore/certified-admins/irfan-ahmad",
+      "rating": 4.4,
+      "reviewCount": 7,
+      "certifications": ["Certified Admin", "Quick Wins", "Automated Swag Store", "Social Media Manager", "Paid Ads", "HIPAA Compliance", "AI Employee", "Course Creator"],
+      "specialty": "automation funnels",
+      "location": "Pakistan"
+    },
+    "khuram-shahzad": {
+      "name": "Khuram Shahzad",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/certified-admins/khuram-shahzad",
+      "rating": 5.0,
+      "reviewCount": 7,
+      "certifications": ["Certified Admin", "Quick Wins", "Automated Swag Store", "Course Creator", "Local Hero (SaaS)", "Paid Ads", "HIPAA Compliance", "AI Employee", "Funnel Builder", "WhatsApp Integration", "AI Tech Stack", "Social Media Manager", "Voice AI"],
+      "specialty": "full-builds ai-voice automation",
+      "location": "United States"
+    },
+    "marcus-teh": {
+      "name": "Marcus Teh Zhi Cheng",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/new-york/certified-admins/marcus-teh",
+      "rating": 4.9,
+      "reviewCount": 7,
+      "certifications": ["Certified Admin", "HIPAA Compliance", "Paid Ads", "Funnel Builder", "WhatsApp Integration", "Course Creator", "Local Hero (SaaS)"],
+      "specialty": "funnels automation",
+      "location": "United States"
+    },
+    "shellamae-ladero": {
+      "name": "Shellamae Ladero",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/davao-city/certified-admins/shellamae-ladero-ladero",
+      "rating": 5.0,
+      "reviewCount": 7,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "Philippines"
     },
     "bryan-odina": {
       "name": "Bryan Odina",
@@ -199,86 +361,509 @@
       "specialty": "automation funnels",
       "location": "Philippines"
     },
-    "khuram-shahzad": {
-      "name": "Khuram Shahzad",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/khuram-shahzad",
+    "kelvin-ng": {
+      "name": "Kelvin Ng Ka Fai",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-kingdom/london/certified-admins/kelvin-ng-ka-fai",
       "rating": 5.0,
-      "reviewCount": 7,
+      "reviewCount": 6,
+      "certifications": ["Certified Admin", "Paid Ads", "Automated Swag Store", "Funnel Builder", "HIPAA Compliance", "Voice AI", "WhatsApp Integration"],
+      "specialty": "funnels ai-voice",
+      "location": "United Kingdom"
+    },
+    "maryam-waseem": {
+      "name": "Maryam Waseem",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/pakistan/certified-admins/maryam-waseem",
+      "rating": 5.0,
+      "reviewCount": 6,
+      "certifications": ["Certified Admin", "Local Hero (SaaS)", "AI Employee", "Automated Swag Store", "Paid Ads", "Social Media Manager"],
+      "specialty": "automation",
+      "location": "Pakistan"
+    },
+    "michael-pope": {
+      "name": "Michael Joseph Pope Jr",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/fairfield/certified-admins/michael-joseph-pope-jr",
+      "rating": 5.0,
+      "reviewCount": 5,
+      "certifications": ["Certified Admin", "Funnel Builder"],
+      "specialty": "funnels",
+      "location": "United States"
+    },
+    "richard-whirley": {
+      "name": "Richard Whirley",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/athens/certified-admins/richard-whirley",
+      "rating": 5.0,
+      "reviewCount": 5,
       "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "United States"
+    },
+    "tamara-macdonald": {
+      "name": "Tamara MacDonald",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/edmonton/certified-admins/tamara-macdonald",
+      "rating": 5.0,
+      "reviewCount": 5,
+      "certifications": ["Certified Admin", "Local Hero (SaaS)", "Paid Ads", "AI Employee", "Course Creator", "HIPAA Compliance", "A2P 10DLC Compliance"],
       "specialty": "full-builds automation",
       "location": "United States"
+    },
+    "antonio-pino": {
+      "name": "Antonio Pino",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/italy/milazzo/certified-admins/antonio-pino",
+      "rating": 5.0,
+      "reviewCount": 4,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "Italy"
     },
     "ben-mcgary": {
       "name": "Ben McGary",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/box-elder/certified-admins/ben-mcgary",
       "rating": 5.0,
       "reviewCount": 4,
-      "certifications": ["Certified Admin"],
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "HIPAA Compliance", "Quick Wins", "Course Creator", "Social Media Manager", "Paid Ads", "WhatsApp Integration", "Automated Swag Store", "Local Hero (SaaS)", "Funnel Builder", "AI Tech Stack", "Voice AI"],
+      "specialty": "full-builds ai-voice automation",
+      "location": "United States"
+    },
+    "catherine-trebble": {
+      "name": "Catherine Trebble",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/ireland/dublin/certified-admins/catherine-trebble",
+      "rating": 5.0,
+      "reviewCount": 4,
+      "certifications": ["Certified Admin", "Course Creator", "HIPAA Compliance", "A2P 10DLC Compliance", "AI Employee", "Local Hero (SaaS)", "Social Media Manager", "Quick Wins", "Automated Swag Store"],
       "specialty": "full-builds automation",
-      "location": "United States"
+      "location": "Ireland"
     },
-    "ann-marie-walts": {
-      "name": "Ann Marie Walts",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/west-springfield/certified-admins/ann-marie-walts",
+    "febie-mae": {
+      "name": "Febie Mae",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/febie-mae-galang",
       "rating": 5.0,
-      "reviewCount": 2,
-      "certifications": ["Certified Admin"],
-      "specialty": "automation funnels",
-      "location": "United States"
+      "reviewCount": 4,
+      "certifications": ["Certified Admin", "Course Creator", "A2P 10DLC Compliance", "AI Employee"],
+      "specialty": "automation",
+      "location": "Philippines"
     },
-    "nicholas-scalice": {
-      "name": "Nicholas Scalice",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/port-st-lucie/certified-admins/nicholas-scalice",
+    "jaycee-tan": {
+      "name": "Jaycee Tan",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/certified-admins/cece-tan",
       "rating": 5.0,
-      "reviewCount": 1,
-      "certifications": ["Certified Admin"],
-      "specialty": "funnels automation",
-      "location": "United States"
+      "reviewCount": 4,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance"],
+      "specialty": "automation",
+      "location": "Philippines"
     },
-    "andreas-dolleschal": {
-      "name": "Andreas Dolleschal",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/fort-myers/certified-admins/andreas-dolleschal",
+    "manohar-sharma": {
+      "name": "Manohar Sharma",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/manohar-sharma",
       "rating": 5.0,
-      "reviewCount": 1,
+      "reviewCount": 4,
       "certifications": ["Certified Admin"],
-      "specialty": "automation ai-voice",
-      "location": "United States"
+      "specialty": "automation",
+      "location": "India"
     },
-    "muhammad-nouman": {
-      "name": "Muhammad Nouman",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/sheridan/certified-admins/muhammad-nouman",
+    "michael-bugagao": {
+      "name": "Michael Jake Bugagao",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/san-pablo/certified-admins/michael-jake-bugagao",
       "rating": 5.0,
-      "reviewCount": 10,
-      "certifications": ["Certified Admin"],
+      "reviewCount": 4,
+      "certifications": ["Certified Admin", "Quick Wins", "Social Media Manager", "Course Creator", "Automated Swag Store", "Funnel Builder", "Paid Ads", "HIPAA Compliance", "Local Hero (SaaS)", "A2P 10DLC Compliance", "WhatsApp Integration"],
+      "specialty": "full-builds funnels automation",
+      "location": "Philippines"
+    },
+    "sasha-ivone": {
+      "name": "Sasha Ivone",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/portugal/certified-admins/sasha-ivone",
+      "rating": 5.0,
+      "reviewCount": 4,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "HIPAA Compliance", "AI Employee", "Course Creator"],
+      "specialty": "automation",
+      "location": "Portugal"
+    },
+    "arham-abid": {
+      "name": "Arham Abid",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/arham-abid",
+      "rating": 5.0,
+      "reviewCount": 3,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "Local Hero (SaaS)", "Social Media Manager", "Course Creator"],
+      "specialty": "automation",
+      "location": "Pakistan"
+    },
+    "camil-manongsong": {
+      "name": "Camil Manongsong",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/cebu-city/certified-admins/camil-manongsong",
+      "rating": 5.0,
+      "reviewCount": 3,
+      "certifications": ["Certified Admin", "AI Employee", "HIPAA Compliance", "Course Creator", "Social Media Manager", "A2P 10DLC Compliance", "Automated Swag Store", "Paid Ads", "Quick Wins", "Local Hero (SaaS)", "AI Tech Stack"],
       "specialty": "full-builds automation",
+      "location": "Philippines"
+    },
+    "diana-greenlee": {
+      "name": "Diana Greenlee",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-kingdom/ballywalter/certified-admins/diana-greenlee",
+      "rating": 5.0,
+      "reviewCount": 3,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "United Kingdom"
+    },
+    "felicia-brown": {
+      "name": "Felicia Chanell Brown",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/san-antonio/certified-admins/felicia-chanell-brown",
+      "rating": 5.0,
+      "reviewCount": 3,
+      "certifications": ["Certified Admin", "Funnel Builder", "HIPAA Compliance", "Course Creator", "Social Media Manager", "Local Hero (SaaS)", "A2P 10DLC Compliance", "Quick Wins", "Paid Ads", "AI Tech Stack"],
+      "specialty": "full-builds funnels",
       "location": "United States"
+    },
+    "haider-jutt": {
+      "name": "Haider Jutt",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/pakistan/faisalabad/certified-admins/haider-jutt",
+      "rating": 5.0,
+      "reviewCount": 3,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "Pakistan"
+    },
+    "haris-khattak": {
+      "name": "Haris Khattak",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/haris-khattak",
+      "rating": 5.0,
+      "reviewCount": 3,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "HIPAA Compliance", "AI Employee", "Course Creator", "Local Hero (SaaS)", "Social Media Manager", "Paid Ads", "Quick Wins", "Automated Swag Store"],
+      "specialty": "full-builds automation",
+      "location": "Pakistan"
     },
     "marcus-wilson": {
       "name": "Marcus Wilson",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/holland/certified-admins/marcus-wilson",
       "rating": 5.0,
       "reviewCount": 3,
-      "certifications": ["Certified Admin"],
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance"],
       "specialty": "automation funnels",
       "location": "United States"
     },
-    "paul-lingren": {
-      "name": "Paul Lingren",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/colorado-springs/certified-admins/paul-lingren",
+    "mervin-de-castro": {
+      "name": "Mervin Angelo De Castro",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/certified-admins/mervin-de-castro",
+      "rating": 5.0,
+      "reviewCount": 3,
+      "certifications": ["Certified Admin", "HIPAA Compliance", "AI Employee", "Course Creator"],
+      "specialty": "automation",
+      "location": "Philippines"
+    },
+    "norvert-abella": {
+      "name": "Norvert John Abella",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/davao-city/certified-admins/norvert-john-abella",
+      "rating": 5.0,
+      "reviewCount": 3,
+      "certifications": ["Certified Admin", "AI Employee", "HIPAA Compliance", "Course Creator", "A2P 10DLC Compliance"],
+      "specialty": "automation",
+      "location": "Philippines"
+    },
+    "wil-kirwan": {
+      "name": "Wil Kirwan",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/austin/certified-admins/wil-kirwan",
+      "rating": 5.0,
+      "reviewCount": 3,
+      "certifications": ["Certified Admin", "Course Creator", "Social Media Manager", "HIPAA Compliance", "AI Employee", "Automated Swag Store", "Local Hero (SaaS)", "A2P 10DLC Compliance", "Paid Ads", "Quick Wins", "Funnel Builder", "WhatsApp Integration", "AI Tech Stack", "Voice AI"],
+      "specialty": "full-builds ai-voice automation",
+      "location": "United States"
+    },
+    "zaryab-hayat": {
+      "name": "Zaryab Hayat",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/pakistan/lahore/certified-admins/zaryab-hayat",
+      "rating": 5.0,
+      "reviewCount": 3,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "Pakistan"
+    },
+    "abbie-rotoni": {
+      "name": "Abbie Rotoni",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/general-trias/certified-admins/abbie-rotoni",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "Social Media Manager"],
+      "specialty": "automation",
+      "location": "Philippines"
+    },
+    "ana-marie-pagobo": {
+      "name": "Ana Marie Pagobo",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/lapu-lapu/certified-admins/ana-marie-pagobo",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance"],
+      "specialty": "automation",
+      "location": "Philippines"
+    },
+    "ann-marie-walts": {
+      "name": "Ann Marie Walts",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/west-springfield/certified-admins/ann-marie-walts",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "Social Media Manager", "AI Employee", "Funnel Builder"],
+      "specialty": "automation funnels",
+      "location": "United States"
+    },
+    "chris-dillon": {
+      "name": "Chris Dillon",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-kingdom/armagh/certified-admins/chris-dillon",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "WhatsApp Integration"],
+      "specialty": "automation",
+      "location": "United Kingdom"
+    },
+    "christian-nadela": {
+      "name": "Christian Dominic Nadela",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/caloocan/certified-admins/christian-dominic-nadela",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "Quick Wins", "HIPAA Compliance", "Funnel Builder", "WhatsApp Integration", "Automated Swag Store", "Social Media Manager", "Course Creator", "Local Hero (SaaS)", "Paid Ads"],
+      "specialty": "full-builds funnels automation",
+      "location": "Philippines"
+    },
+    "fatima-mallari": {
+      "name": "Fatima Joyse Mallari",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/australia/east-perth/certified-admins/fatima-joyse-mallari",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "AI Employee", "HIPAA Compliance", "Course Creator", "A2P 10DLC Compliance", "Paid Ads", "Social Media Manager", "Funnel Builder", "WhatsApp Integration", "Local Hero (SaaS)"],
+      "specialty": "full-builds automation",
+      "location": "Australia"
+    },
+    "francis-rodino": {
+      "name": "Francis Rodino",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-kingdom/london/certified-admins/francis-rodino",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "United Kingdom"
+    },
+    "josh-hughes": {
+      "name": "Josh Hughes",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/athens/certified-admins/josh-hughes",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "United States"
+    },
+    "kim-roth": {
+      "name": "Kim Roth",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/archbold/certified-admins/kim-roth",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "Local Hero (SaaS)", "A2P 10DLC Compliance", "AI Employee", "Course Creator", "Funnel Builder", "AI Tech Stack", "Voice AI"],
+      "specialty": "full-builds ai-voice automation",
+      "location": "United States"
+    },
+    "kristine-lestrange": {
+      "name": "Kristine L'Estrange",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/new-zealand/havelock-north/certified-admins/kristine-l-estrange",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "Social Media Manager", "Paid Ads", "AI Employee", "HIPAA Compliance", "Funnel Builder"],
+      "specialty": "automation funnels",
+      "location": "New Zealand"
+    },
+    "marianne-alonzo": {
+      "name": "Marianne Alonzo",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/tagaytay-city/certified-admins/marianne-alonzo",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "Quick Wins"],
+      "specialty": "automation",
+      "location": "Philippines"
+    },
+    "micah-gaudio": {
+      "name": "Micah Gaudio",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/st-petersburg/certified-admins/micah-gaudio",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "United States"
+    },
+    "michael-reimer": {
+      "name": "Michael Reimer",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/west-plam-beach/certified-admins/michael-reimer",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "Automated Swag Store", "Social Media Manager", "Paid Ads", "Course Creator", "A2P 10DLC Compliance", "HIPAA Compliance", "AI Employee", "Local Hero (SaaS)"],
+      "specialty": "full-builds automation",
+      "location": "United States"
+    },
+    "micheal-pacitto": {
+      "name": "Micheal Pacitto",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/canada/smiths-falls/certified-admins/micheal-pacitto",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "Canada"
+    },
+    "neil-hernandez": {
+      "name": "Neil Hernandez",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/neil-hernandez",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "Course Creator", "A2P 10DLC Compliance", "AI Employee", "Local Hero (SaaS)", "Quick Wins", "HIPAA Compliance", "Paid Ads", "Social Media Manager", "Funnel Builder"],
+      "specialty": "full-builds automation",
+      "location": "Philippines"
+    },
+    "paul-douglas": {
+      "name": "Paul Douglas",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/canada/winnipeg/certified-admins/paul-douglas",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "AI Employee", "Quick Wins", "Funnel Builder"],
+      "specialty": "funnels automation",
+      "location": "Canada"
+    },
+    "pritam-bhadra": {
+      "name": "Pritam Bhadra",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/pritam-bhadra",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "AI Employee", "Course Creator"],
+      "specialty": "funnels automation",
+      "location": "India"
+    },
+    "sujit-menon": {
+      "name": "Sujit Menon",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/australia/brisbane/certified-admins/sujit-menon",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "Local Hero (SaaS)", "Course Creator", "Funnel Builder", "Automated Swag Store", "AI Tech Stack"],
+      "specialty": "funnels automation",
+      "location": "Australia"
+    },
+    "tiffany-lopez": {
+      "name": "Tiffany Lopez",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/houston/certified-admins/tiffany-lopez",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "Course Creator", "Local Hero (SaaS)", "Funnel Builder", "Social Media Manager", "Paid Ads", "HIPAA Compliance"],
+      "specialty": "funnels automation",
+      "location": "United States"
+    },
+    "tina-dahmen": {
+      "name": "Tina Dahmen",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/dubai/certified-admins/tina-dahmen",
+      "rating": 5.0,
+      "reviewCount": 2,
+      "certifications": ["Certified Admin", "Course Creator", "AI Employee"],
+      "specialty": "automation",
+      "location": "United Arab Emirates"
+    },
+    "alex-vazquez": {
+      "name": "Alex Vazquez",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/cuyahoga-falls/certified-admins/alex-vazquez",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin", "Course Creator", "Funnel Builder"],
+      "specialty": "funnels automation",
+      "location": "United States"
+    },
+    "amna-kazmi": {
+      "name": "Amna Kazmi",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-arab-emirates/dubai/certified-admins/amna-kazmi",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin", "AI Employee", "Local Hero (SaaS)", "Social Media Manager", "HIPAA Compliance", "Quick Wins", "Paid Ads", "Course Creator"],
+      "specialty": "full-builds automation",
+      "location": "United Arab Emirates"
+    },
+    "andreas-dolleschal": {
+      "name": "Andreas Dolleschal",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/fort-myers/certified-admins/andreas-andy-dolleschal",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation ai-voice",
+      "location": "United States"
+    },
+    "andrew-jenkins": {
+      "name": "Andrew Lee Jenkins",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/richmond/certified-admins/andrew-lee-jenkins",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "United States"
+    },
+    "arianny-ortega": {
+      "name": "Arianny Ortega",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/arianny-ortega",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "Local Hero (SaaS)"],
+      "specialty": "automation",
+      "location": "Venezuela"
+    },
+    "chifu-cynthia": {
+      "name": "Chifu Cynthia",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/chifu-cynthia",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin", "Course Creator", "Paid Ads", "AI Employee", "Social Media Manager", "Quick Wins", "Automated Swag Store", "HIPAA Compliance", "Local Hero (SaaS)", "Funnel Builder"],
+      "specialty": "full-builds funnels automation",
+      "location": "Cameroon"
+    },
+    "cohen-powell": {
+      "name": "Cohen Powell",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/pensacola/certified-admins/cohen-powell",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin", "Local Hero (SaaS)", "HIPAA Compliance", "Course Creator", "A2P 10DLC Compliance", "AI Employee", "Paid Ads", "Social Media Manager", "Automated Swag Store", "Quick Wins", "Funnel Builder", "WhatsApp Integration", "Voice AI"],
+      "specialty": "full-builds ai-voice automation",
+      "location": "United States"
+    },
+    "dakota-routh": {
+      "name": "Dakota Routh",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/las-vegas/certified-admins/dakota-routh",
       "rating": 5.0,
       "reviewCount": 1,
       "certifications": ["Certified Admin"],
       "specialty": "full-builds automation",
       "location": "United States"
     },
-    "liam-holmes": {
-      "name": "Liam Holmes",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-kingdom/newquay/certified-admins/liam-holmes",
+    "dietrich-lee": {
+      "name": "Dietrich Lee",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/cameroon/yaounde/certified-admins/dietrich-lee",
       "rating": 5.0,
-      "reviewCount": 0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin", "Local Hero (SaaS)", "AI Employee", "A2P 10DLC Compliance", "Paid Ads", "Course Creator", "Social Media Manager", "HIPAA Compliance"],
+      "specialty": "full-builds automation",
+      "location": "Cameroon"
+    },
+    "doni-asuncion": {
+      "name": "Doni Asuncion",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/doni-asuncion",
+      "rating": 5.0,
+      "reviewCount": 1,
       "certifications": ["Certified Admin"],
-      "specialty": "automation funnels",
-      "location": "United Kingdom"
+      "specialty": "automation",
+      "location": "Philippines"
+    },
+    "eduardo-prieto": {
+      "name": "Eduardo Prieto",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/santiago/certified-admins/eduardo-prieto",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin", "Quick Wins", "Paid Ads", "AI Employee", "A2P 10DLC Compliance", "Course Creator", "WhatsApp Integration", "HIPAA Compliance"],
+      "specialty": "automation",
+      "location": "Chile"
+    },
+    "eleni-psycha": {
+      "name": "Eleni Psycha",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/greece/athens/certified-admins/eleni-psycha",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "Funnel Builder"],
+      "specialty": "funnels automation",
+      "location": "Greece"
     },
     "gareth-everson": {
       "name": "Gareth Everson",
@@ -289,58 +874,94 @@
       "specialty": "full-builds automation",
       "location": "United Kingdom"
     },
-    "brett-emery": {
-      "name": "Brett Emery",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/australia/brisbane/certified-admins/brett-emery",
+    "john-farley": {
+      "name": "John Farley",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/san-pascual/certified-admins/john-farley-pesigan",
       "rating": 5.0,
-      "reviewCount": 0,
-      "certifications": ["Certified Admin"],
-      "specialty": "automation funnels",
-      "location": "Australia"
-    },
-    "norwin-loyola": {
-      "name": "Norwin Loyola",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/manila/certified-admins/norwin-loyola",
-      "rating": 5.0,
-      "reviewCount": 0,
-      "certifications": ["Certified Admin"],
-      "specialty": "automation funnels",
-      "location": "Philippines"
-    },
-    "edgar-canete-jr": {
-      "name": "Edgar Canete Jr",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/manila/certified-admins/edgar-canete-jr",
-      "rating": 5.0,
-      "reviewCount": 0,
-      "certifications": ["Certified Admin"],
-      "specialty": "full-builds automation",
-      "location": "Philippines"
-    },
-    "andrew-george": {
-      "name": "Andrew George",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/dallas/certified-admins/andrew-george",
-      "rating": 5.0,
-      "reviewCount": 0,
-      "certifications": ["Certified Admin"],
+      "reviewCount": 1,
+      "certifications": ["Certified Admin", "AI Tech Stack"],
       "specialty": "automation ai-voice",
-      "location": "United States"
+      "location": "Philippines"
     },
-    "ahmer-zaman": {
-      "name": "Ahmer Zaman",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/pakistan/islamabad/certified-admins/ahmer-zaman",
+    "julio-roldos": {
+      "name": "Julio Roldos Carrera",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/albuquerque/certified-admins/julio-roldos",
       "rating": 5.0,
-      "reviewCount": 0,
-      "certifications": ["Certified Admin"],
-      "specialty": "full-builds automation",
-      "location": "Pakistan"
+      "reviewCount": 1,
+      "certifications": ["Certified Admin", "Social Media Manager", "Funnel Builder", "Paid Ads", "Local Hero (SaaS)", "Course Creator", "HIPAA Compliance", "WhatsApp Integration", "Quick Wins", "Automated Swag Store", "AI Tech Stack"],
+      "specialty": "full-builds funnels automation",
+      "location": "Ecuador"
     },
-    "dakota-routh": {
-      "name": "Dakota Routh",
-      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/las-vegas/certified-admins/dakota-routh",
+    "justin-lizama": {
+      "name": "Justin Lizama",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/west-jordan/certified-admins/justin-lizama",
       "rating": 5.0,
       "reviewCount": 1,
       "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "United States"
+    },
+    "khan-teneng": {
+      "name": "Khan Diland Teneng",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/khan-diland-teneng",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin", "A2P 10DLC Compliance", "Paid Ads", "AI Employee", "Social Media Manager", "Automated Swag Store", "HIPAA Compliance", "Course Creator", "Quick Wins", "Local Hero (SaaS)"],
       "specialty": "full-builds automation",
+      "location": "Cameroon"
+    },
+    "lisa-catto": {
+      "name": "Lisa Catto",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-kingdom/london/certified-admins/lisa-catto",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "United Kingdom"
+    },
+    "liza-torrano": {
+      "name": "Liza Torrano",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/liza-torrano",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin", "Course Creator", "A2P 10DLC Compliance", "Local Hero (SaaS)"],
+      "specialty": "automation",
+      "location": "Philippines"
+    },
+    "mae-canlas": {
+      "name": "Mae Canlas",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/certified-admins/mae-canlas",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "Philippines"
+    },
+    "martin-dellwing": {
+      "name": "Martin Dellwing",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/germany/neukirchen/certified-admins/martin-dellwing",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin", "AI Employee", "Local Hero (SaaS)", "Course Creator", "WhatsApp Integration", "Funnel Builder", "Quick Wins", "Automated Swag Store", "Social Media Manager", "Paid Ads", "HIPAA Compliance", "AI Tech Stack", "Voice AI"],
+      "specialty": "full-builds ai-voice automation",
+      "location": "Germany"
+    },
+    "maureen-esmabe": {
+      "name": "Maureen Cares Esmabe",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/maureen-cares-esmabe",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin"],
+      "specialty": "automation",
+      "location": "Philippines"
+    },
+    "meagan-westmoreland": {
+      "name": "Meagan Westmoreland",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/baton-rouge/certified-admins/meagan-westmoreland",
+      "rating": 5.0,
+      "reviewCount": 1,
+      "certifications": ["Certified Admin", "Course Creator", "HIPAA Compliance", "Social Media Manager"],
+      "specialty": "automation",
       "location": "United States"
     }
   },
