@@ -425,13 +425,7 @@
             font-weight: 600;
             color: var(--color-text-secondary);
             border: 1px solid var(--color-border);
-            transition: all 0.2s ease;
-            cursor: default;
-        }
-
-        .category-tag:hover {
-            border-color: var(--color-ios-purple);
-            color: var(--color-ios-purple);
+            pointer-events: none;
         }
 
         .category-tag.active {
@@ -451,12 +445,6 @@
             border-radius: 12px;
             padding: 1.25rem;
             border: 1px solid var(--color-border);
-            transition: all 0.2s ease;
-        }
-
-        .prompt-example:hover {
-            border-color: var(--color-ios-purple);
-            box-shadow: 0 4px 12px rgba(94, 92, 230, 0.1);
         }
 
         .prompt-example .prompt-name {
