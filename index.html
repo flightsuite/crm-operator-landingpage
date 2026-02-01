@@ -454,6 +454,46 @@
             height: 16px;
         }
 
+        .hero-trust-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(16px, 3vw, 24px);
+            flex-wrap: wrap;
+            margin-top: clamp(16px, 2.5vw, 24px);
+            opacity: 0;
+            animation: fadeInUp 0.8s var(--ease-out) 0.7s forwards;
+        }
+
+        .press-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 980px;
+            font-size: clamp(12px, 1.5vw, 14px);
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .press-badge:hover {
+            background: rgba(0, 0, 0, 0.06);
+            color: var(--color-text-primary);
+        }
+
+        .press-badge-label {
+            font-weight: 500;
+            color: var(--color-text-tertiary);
+        }
+
+        .press-badge-source {
+            font-weight: 600;
+            color: var(--color-text-primary);
+            font-family: "Georgia", "Times New Roman", serif;
+        }
+
         .cta-primary {
             background: var(--gradient-primary);
             color: white;
@@ -1237,25 +1277,6 @@
 
         .press-card:hover .press-cta svg {
             transform: translateX(2px);
-        }
-
-        .press-blog-link {
-            margin-top: clamp(32px, 5vw, 48px);
-        }
-
-        .press-blog-link a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: clamp(14px, 1.8vw, 16px);
-            font-weight: 500;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            transition: color 0.3s var(--ease-smooth);
-        }
-
-        .press-blog-link a:hover {
-            color: var(--color-apple-blue);
         }
 
         /* Tech-Forward Stats Section */
@@ -2897,6 +2918,7 @@
                 <a href="/capabilities.html" class="nav-link">Capabilities</a>
                 <a href="/find-your-crm.html" class="nav-link">Find Your CRM</a>
                 <a href="/experts/" class="nav-link">Experts</a>
+                <a href="#press" class="nav-link">Press</a>
                 <a href="/blog.html" class="nav-link">Blog</a>
                 <button class="cta-header" onclick="openInstallModal()" data-event="install_click">Install for Chrome</button>
             </nav>
@@ -2943,15 +2965,21 @@
                     Join Waitlist for Your CRM
                 </button>
             </div>
-            <div class="user-count-badge">
-                <svg class="chrome-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="#4285F4" stroke-width="2" fill="none"/>
-                    <circle cx="12" cy="12" r="4" fill="#4285F4"/>
-                    <path d="M12 2C6.48 2 2 6.48 2 12h10" stroke="#EA4335" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M12 2c5.52 0 10 4.48 10 10h-10" stroke="#34A853" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M12 22c5.52 0 10-4.48 10-10H12" stroke="#FBBC05" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                <span>Trusted by <span class="user-count-number" id="userCount">100+</span> Chrome users</span>
+            <div class="hero-trust-row">
+                <div class="user-count-badge" style="margin-top: 0; opacity: 1; animation: none;">
+                    <svg class="chrome-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#4285F4" stroke-width="2" fill="none"/>
+                        <circle cx="12" cy="12" r="4" fill="#4285F4"/>
+                        <path d="M12 2C6.48 2 2 6.48 2 12h10" stroke="#EA4335" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M12 2c5.52 0 10 4.48 10 10h-10" stroke="#34A853" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M12 22c5.52 0 10-4.48 10-10H12" stroke="#FBBC05" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Trusted by <span class="user-count-number" id="userCount">100+</span> Chrome users</span>
+                </div>
+                <a href="#press" class="press-badge">
+                    <span class="press-badge-label">As seen in</span>
+                    <span class="press-badge-source">Charlotte Business Journal</span>
+                </a>
             </div>
         </div>
     </section>
@@ -3115,7 +3143,7 @@
 
             <div class="press-grid">
                 <!-- CBJ Small Business Feature -->
-                <a href="https://www.bizjournals.com/charlotte/news/2026/01/23/charlotte-small-business-ecosystem-outlook-startup.html" target="_blank" rel="noopener" class="press-card">
+                <a href="/blog/flightsuite-founder-story.html" class="press-card">
                     <div class="press-card-header">
                         <span class="press-publication">Charlotte Business Journal</span>
                         <span class="press-date">Jan 23, 2026</span>
@@ -3123,7 +3151,7 @@
                     <h3 class="press-headline">What the city's Small Business Ecosystem Assessment says about Charlotte's startup community</h3>
                     <p class="press-quote">We want to help 1,000 businesses. That's our No. 1 objective.</p>
                     <span class="press-cta">
-                        Read article
+                        Read the story
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
@@ -3131,7 +3159,7 @@
                 </a>
 
                 <!-- gBETA Accelerator Feature -->
-                <a href="https://www.bizjournals.com/charlotte/news/2025/12/10/gbeta-accelerator-program-founders-startups-tech.html" target="_blank" rel="noopener" class="press-card">
+                <a href="/blog/gbeta-charlotte-accelerator.html" class="press-card">
                     <div class="press-card-header">
                         <span class="press-publication">Charlotte Business Journal</span>
                         <span class="press-date">Dec 10, 2025</span>
@@ -3139,7 +3167,7 @@
                     <h3 class="press-headline">Charlotte-backed accelerator pushes five emerging tech startups toward scale</h3>
                     <p class="press-quote">The program opened up my mindset to be able to think bigger.</p>
                     <span class="press-cta">
-                        Read article
+                        Read the story
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
@@ -3147,14 +3175,6 @@
                 </a>
             </div>
 
-            <div class="press-blog-link">
-                <a href="/blog/flightsuite-founder-story.html">
-                    Read the full founder story
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
-            </div>
         </div>
     </section>
 
