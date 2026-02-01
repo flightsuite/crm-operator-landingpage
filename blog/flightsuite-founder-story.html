@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From gBETA Accelerator to Helping 1,000 Businesses: The FlightSuite Story</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="How FlightSuite went from a seven-week accelerator to being featured in the Charlotte Business Journal. The founder's journey building AI-powered CRM automation.">
+    <meta name="keywords" content="FlightSuite founder, gBETA Charlotte, Charlotte Business Journal, startup story, CRM automation, Fitzgerald Light">
+    <link rel="canonical" href="https://flightsuite.ai/blog/flightsuite-founder-story">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://flightsuite.ai/blog/flightsuite-founder-story">
+    <meta property="og:title" content="From gBETA Accelerator to Helping 1,000 Businesses">
+    <meta property="og:description" content="The FlightSuite founder story: from a seven-week accelerator to Charlotte Business Journal feature.">
+    <meta property="og:image" content="https://flightsuite.ai/Assets/cbj-fitz-news-article.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="From gBETA Accelerator to Helping 1,000 Businesses">
+    <meta name="twitter:description" content="The FlightSuite founder story: from accelerator to press feature.">
+    <meta name="twitter:image" content="https://flightsuite.ai/Assets/cbj-fitz-news-article.jpg">
+
+    <!-- Article Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "From gBETA Accelerator to Helping 1,000 Businesses: The FlightSuite Story",
+      "description": "How FlightSuite went from a seven-week accelerator to being featured in the Charlotte Business Journal.",
+      "image": "https://flightsuite.ai/Assets/cbj-fitz-news-article.jpg",
+      "datePublished": "2026-01-31",
+      "dateModified": "2026-01-31",
+      "author": {
+        "@type": "Person",
+        "name": "Fitzgerald Light",
+        "jobTitle": "Founder & CEO",
+        "url": "https://flightsuite.ai"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FlightSuite",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://flightsuite.ai/Assets/Flight Suite Favicon vPurple.svg"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://flightsuite.ai/blog/flightsuite-founder-story"
+      },
+      "keywords": ["FlightSuite", "startup story", "gBETA Charlotte", "CRM automation", "founder journey"]
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://flightsuite.ai"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://flightsuite.ai/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Founder Story",
+          "item": "https://flightsuite.ai/blog/flightsuite-founder-story"
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        /* ===== CSS RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-apple-blue: #0071E3;
+            --color-ios-purple: #5E5CE6;
+            --color-bg-primary: #FFFFFF;
+            --color-bg-secondary: #F5F5F7;
+            --color-text-primary: #1D1D1F;
+            --color-text-secondary: #6E6E73;
+            --color-border: rgba(0, 0, 0, 0.1);
+            --max-width: 1440px;
+            --content-width: 720px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.8;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-apple-blue);
+        }
+
+        /* ===== HERO IMAGE ===== */
+        .hero-image-container {
+            width: 100%;
+            max-height: 500px;
+            overflow: hidden;
+            background: var(--color-bg-secondary);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 4vw, 2rem);
+        }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-ios-purple);
+            margin-bottom: 1rem;
+        }
+
+        .article-header h1 {
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
+            color: var(--color-text-primary);
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ===== ARTICLE BODY ===== */
+        .article-content h2 {
+            font-size: clamp(1.5rem, 3vw, 1.875rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text-primary);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content h3 {
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-content p {
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            color: var(--color-text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content p strong {
+            color: var(--color-text-primary);
+        }
+
+        /* ===== QUOTE BLOCK ===== */
+        .quote-block {
+            background: linear-gradient(135deg, rgba(94, 92, 230, 0.08) 0%, rgba(0, 113, 227, 0.08) 100%);
+            border-left: 4px solid var(--color-ios-purple);
+            padding: 2rem 2.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 2.5rem 0;
+        }
+
+        .quote-block blockquote {
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            font-weight: 500;
+            font-style: italic;
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .quote-block cite {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            font-style: normal;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline {
+            margin: 2.5rem 0;
+            padding-left: 2rem;
+            border-left: 2px solid rgba(94, 92, 230, 0.2);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-ios-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0;
+        }
+
+        /* ===== PRESS CARD ===== */
+        .press-feature {
+            background: var(--color-bg-secondary);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .press-feature:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            border-color: rgba(94, 92, 230, 0.2);
+        }
+
+        .press-feature img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .press-feature-content h4 {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 0.875rem;
+            color: var(--color-text-tertiary, #86868b);
+            margin-bottom: 0.5rem;
+        }
+
+        .press-feature-content h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        .press-feature-content p {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0;
+        }
+
+        /* ===== CTA BOXES ===== */
+        .cta-box {
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            color: white;
+            padding: 2.5rem 2rem;
+            border-radius: 18px;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 12px 24px rgba(94, 92, 230, 0.2);
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1rem, 2vw, 1.125rem);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--color-apple-blue);
+            padding: 0.875rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.0625rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-secondary {
+            background: white;
+            color: var(--color-ios-purple);
+        }
+
+        .cta-secondary:hover {
+            background: #f5f5f7;
+        }
+
+        /* PDF Download Link */
+        .pdf-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid var(--color-border);
+        }
+
+        .pdf-download:hover {
+            background: white;
+            border-color: var(--color-apple-blue);
+            color: var(--color-apple-blue);
+        }
+
+        .pdf-download svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .article-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        /* ===== INLINE CTA ===== */
+        .inline-cta {
+            background: var(--color-bg-secondary);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .inline-cta-text h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .inline-cta-text p {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0;
+        }
+
+        .inline-cta-button {
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .inline-cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(94, 92, 230, 0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--color-bg-secondary);
+            border-top: 1px solid var(--color-border);
+            margin-top: clamp(4rem, 8vw, 6rem);
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-apple-blue);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.875rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
+
+            .press-feature {
+                flex-direction: column;
+            }
+
+            .press-feature img {
+                width: 100%;
+                height: 200px;
+            }
+
+            .inline-cta {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="/" class="logo">FlightSuite</a>
+            <div class="nav-links">
+                <a href="/blog.html">Blog</a>
+                <a href="/experts/index.html">Expert Directory</a>
+                <a href="/#press">Press</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Image -->
+    <div class="hero-image-container">
+        <img src="/Assets/cbj-fitz-news-article.jpg" alt="Fitzgerald Light holding the Charlotte Business Journal featuring FlightSuite" class="hero-image">
+    </div>
+
+    <!-- Article Content -->
+    <article class="article-container">
+        <header class="article-header">
+            <span class="article-category">Founder Story</span>
+            <h1>From gBETA Accelerator to Helping 1,000 Businesses: The FlightSuite Story</h1>
+            <div class="article-meta">
+                <div class="author-info">
+                    <span>By Fitzgerald Light</span>
+                </div>
+                <span>January 31, 2026</span>
+                <span>5 min read</span>
+            </div>
+        </header>
+
+        <div class="article-content">
+            <p><strong>Building a startup is a series of small moments that compound into something bigger.</strong> A conversation that leads to an introduction. A pitch that opens a door. A feature that validates you're on the right track. Looking back on FlightSuite's journey from a seven-week accelerator program to being featured in the Charlotte Business Journal, I'm reminded that momentum is real and consistency compounds.</p>
+
+            <h2>The Problem We Set Out to Solve</h2>
+
+            <p>Every sales rep I've ever talked to has the same complaint: CRM data entry is a time suck. They spend hours every week clicking through forms, updating contact records, and logging calls instead of doing what they were hired to do: sell.</p>
+
+            <p>The data backs this up. Sales reps spend only about 34% of their time actually selling. The rest goes to administrative tasks, with CRM updates being one of the biggest culprits.</p>
+
+            <p>FlightSuite was born from a simple idea: what if you could just tell your CRM what happened, and it would handle the rest? No clicking through forms. No hunting for the right fields. Just type "Had a great call with Sarah about the enterprise plan, she wants a proposal by Friday" and let AI do the logging.</p>
+
+            <div class="inline-cta">
+                <div class="inline-cta-text">
+                    <h4>Not sure which CRM is right for you?</h4>
+                    <p>Take our 2-minute quiz to find your perfect match.</p>
+                </div>
+                <a href="/find-your-crm.html" class="inline-cta-button">Find Your CRM</a>
+            </div>
+
+            <h2>The Accelerator That Changed Everything</h2>
+
+            <p>In late 2025, FlightSuite was selected for the gBETA Charlotte cohort, a no-equity accelerator backed by gener8tor and the city of Charlotte. We were one of five companies chosen from more than 40 applicants.</p>
+
+            <p>The seven-week program was intense. Weekly accountability sessions. Mentorship from experienced founders and investors. Access to a network I couldn't have built on my own in years.</p>
+
+            <div class="quote-block">
+                <blockquote>"The program opened up my mindset to be able to think bigger."</blockquote>
+                <cite>— Fitzgerald Light, as quoted in Charlotte Business Journal, December 2025</cite>
+            </div>
+
+            <p>Before gBETA, I was thinking about how to help individual sales reps save time. After gBETA, I was thinking about how to transform how entire organizations interact with their CRM systems.</p>
+
+            <a href="/blog/gbeta-charlotte-accelerator.html" class="press-feature">
+                <img src="/Assets/cbj-gbeta-cohort.png" alt="gBETA Charlotte Fall 2025 cohort at pitch night">
+                <div class="press-feature-content">
+                    <h4>Charlotte Business Journal</h4>
+                    <h3>Charlotte-backed accelerator pushes five emerging tech startups toward scale</h3>
+                    <p>December 10, 2025</p>
+                </div>
+            </a>
+
+            <h2>Building Momentum</h2>
+
+            <p>After graduating from gBETA, we hit the ground running. The traction started compounding:</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">February 2025</div>
+                    <div class="timeline-content">
+                        <h4>MVP Launch</h4>
+                        <p>Launched our first version of FlightSuite as a Chrome extension for GoHighLevel users.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Fall 2025</div>
+                    <div class="timeline-content">
+                        <h4>gBETA Charlotte</h4>
+                        <p>Selected for the accelerator program. Intensive mentorship and investor access.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">December 2025</div>
+                    <div class="timeline-content">
+                        <h4>Pitch Night & Press</h4>
+                        <p>Graduated from gBETA and featured in Charlotte Business Journal's accelerator coverage.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">January 2026</div>
+                    <div class="timeline-content">
+                        <h4>Featured in Small Business Ecosystem Report</h4>
+                        <p>Charlotte Business Journal highlighted FlightSuite in their deep-dive on Charlotte's startup community.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>The 1,000 Business Goal</h2>
+
+            <p>When the Charlotte Business Journal asked me about our goals for 2026, I didn't hesitate:</p>
+
+            <div class="quote-block">
+                <blockquote>"We want to help 1,000 businesses. That's our No. 1 objective."</blockquote>
+                <cite>— Fitzgerald Light, Charlotte Business Journal, January 2026</cite>
+            </div>
+
+            <p>It's not about the number itself. It's about the impact. Each business we help means sales reps who get to spend more time with customers instead of fighting their CRM. It means data that actually gets logged, so managers can make better decisions. It means less friction and more selling.</p>
+
+            <a href="https://www.bizjournals.com/charlotte/news/2026/01/23/charlotte-small-business-ecosystem-outlook-startup.html" target="_blank" rel="noopener" class="press-feature">
+                <img src="/Assets/cbj-fitz-news-article.jpg" alt="Fitzgerald Light featured in Charlotte Business Journal">
+                <div class="press-feature-content">
+                    <h4>Charlotte Business Journal</h4>
+                    <h3>What the city's Small Business Ecosystem Assessment says about Charlotte's startup community</h3>
+                    <p>January 23, 2026</p>
+                </div>
+            </a>
+
+            <div class="article-links">
+                <a href="https://www.bizjournals.com/charlotte/news/2026/01/23/charlotte-small-business-ecosystem-outlook-startup.html" target="_blank" rel="noopener" class="pdf-download">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                    Read on CBJ
+                </a>
+                <a href="/Assets/cbj-small-business-ecosystem.pdf" download class="pdf-download">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download Full Article (PDF)
+                </a>
+            </div>
+
+            <h2>What's Next</h2>
+
+            <p>We're just getting started. HubSpot integration is live. More CRM platforms are on the roadmap. And we're continuing to build features based on what our users actually need.</p>
+
+            <p>The Charlotte startup ecosystem has been instrumental in getting us here. From gBETA to Innovate Charlotte to the incredible mentors and investors who've given their time, this city believes in founders who are building something real.</p>
+
+            <p>If you're a sales rep tired of data entry, or a sales manager frustrated by incomplete CRM data, <a href="/#press">check out our press coverage</a> or just <a href="https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb">try FlightSuite for free</a>.</p>
+
+            <p>And if you're a founder in Charlotte wondering if the ecosystem can support you: it can. Reach out. Show up. The momentum is real.</p>
+
+            <!-- Final CTA -->
+            <div class="cta-box">
+                <h3>Ready to Eliminate CRM Data Entry?</h3>
+                <p>Join the businesses already using FlightSuite to automate their CRM updates.</p>
+                <div class="cta-buttons">
+                    <a href="https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb" class="cta-button">Try FlightSuite Free</a>
+                    <a href="/experts/index.html" class="cta-button cta-secondary">Find a CRM Expert</a>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>FlightSuite - Your CRM CoPilot</p>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/find-your-crm.html">CRM Quiz</a>
+                <a href="/experts/index.html">Expert Directory</a>
+                <a href="/#press">Press</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

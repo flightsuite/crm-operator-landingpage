@@ -1081,6 +1081,183 @@
             opacity: 0.8;
         }
 
+        /* Press Section */
+        .press-section {
+            padding: var(--section-spacing) var(--container-padding);
+            background: linear-gradient(180deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+            text-align: center;
+        }
+
+        .press-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .press-label {
+            font-size: clamp(11px, 1.5vw, 12px);
+            font-weight: 600;
+            color: var(--color-text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: clamp(12px, 2vw, 16px);
+        }
+
+        .press-title {
+            font-family: var(--font-display);
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: clamp(12px, 2vw, 16px);
+            color: var(--color-text-primary);
+        }
+
+        .press-subtitle {
+            font-size: clamp(16px, 2vw, 18px);
+            color: var(--color-text-secondary);
+            margin-bottom: clamp(32px, 5vw, 48px);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .press-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr));
+            gap: clamp(20px, 3vw, 32px);
+        }
+
+        .press-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 20px;
+            padding: clamp(28px, 4vw, 40px);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            transition: all 0.4s var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .press-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s var(--ease-out);
+        }
+
+        .press-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .press-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1);
+            border-color: rgba(94, 92, 230, 0.2);
+        }
+
+        .press-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: clamp(16px, 2.5vw, 20px);
+        }
+
+        .press-publication {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: clamp(14px, 1.8vw, 16px);
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.01em;
+        }
+
+        .press-date {
+            font-size: clamp(12px, 1.4vw, 13px);
+            color: var(--color-text-tertiary);
+            font-weight: 500;
+        }
+
+        .press-headline {
+            font-family: var(--font-display);
+            font-size: clamp(18px, 2.5vw, 22px);
+            font-weight: 600;
+            line-height: 1.35;
+            letter-spacing: -0.015em;
+            color: var(--color-text-primary);
+            margin-bottom: clamp(16px, 2.5vw, 20px);
+        }
+
+        .press-quote {
+            font-size: clamp(15px, 1.8vw, 17px);
+            line-height: 1.5;
+            color: var(--color-text-secondary);
+            margin-bottom: clamp(16px, 2.5vw, 20px);
+            flex-grow: 1;
+            font-style: italic;
+        }
+
+        .press-quote::before {
+            content: '"';
+            color: var(--color-ios-purple);
+            font-weight: 600;
+        }
+
+        .press-quote::after {
+            content: '"';
+            color: var(--color-ios-purple);
+            font-weight: 600;
+        }
+
+        .press-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: clamp(13px, 1.5vw, 14px);
+            font-weight: 500;
+            color: var(--color-apple-blue);
+            transition: gap 0.3s var(--ease-smooth);
+        }
+
+        .press-card:hover .press-cta {
+            gap: 10px;
+        }
+
+        .press-cta svg {
+            transition: transform 0.3s var(--ease-smooth);
+        }
+
+        .press-card:hover .press-cta svg {
+            transform: translateX(2px);
+        }
+
+        .press-blog-link {
+            margin-top: clamp(32px, 5vw, 48px);
+        }
+
+        .press-blog-link a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: clamp(14px, 1.8vw, 16px);
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.3s var(--ease-smooth);
+        }
+
+        .press-blog-link a:hover {
+            color: var(--color-apple-blue);
+        }
+
         /* Tech-Forward Stats Section */
         .stats-section {
             background: transparent;
@@ -2692,6 +2869,15 @@
             }
         }
     </style>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
 </head>
 <body>
     <!-- Animated Background -->
@@ -2917,6 +3103,58 @@
             <div class="trust-logo">The Executive Club</div>
             <div class="trust-logo">Refine Mortgage</div>
             <div class="trust-logo">S&A Properties</div>
+        </div>
+    </section>
+
+    <!-- Press Section -->
+    <section class="press-section" id="press">
+        <div class="press-container">
+            <div class="press-label">In The Press</div>
+            <h2 class="press-title">Building in Public</h2>
+            <p class="press-subtitle">Following FlightSuite's journey from accelerator to helping 1,000 businesses automate their CRM.</p>
+
+            <div class="press-grid">
+                <!-- CBJ Small Business Feature -->
+                <a href="https://www.bizjournals.com/charlotte/news/2026/01/23/charlotte-small-business-ecosystem-outlook-startup.html" target="_blank" rel="noopener" class="press-card">
+                    <div class="press-card-header">
+                        <span class="press-publication">Charlotte Business Journal</span>
+                        <span class="press-date">Jan 23, 2026</span>
+                    </div>
+                    <h3 class="press-headline">What the city's Small Business Ecosystem Assessment says about Charlotte's startup community</h3>
+                    <p class="press-quote">We want to help 1,000 businesses. That's our No. 1 objective.</p>
+                    <span class="press-cta">
+                        Read article
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </a>
+
+                <!-- gBETA Accelerator Feature -->
+                <a href="https://www.bizjournals.com/charlotte/news/2025/12/10/gbeta-accelerator-program-founders-startups-tech.html" target="_blank" rel="noopener" class="press-card">
+                    <div class="press-card-header">
+                        <span class="press-publication">Charlotte Business Journal</span>
+                        <span class="press-date">Dec 10, 2025</span>
+                    </div>
+                    <h3 class="press-headline">Charlotte-backed accelerator pushes five emerging tech startups toward scale</h3>
+                    <p class="press-quote">The program opened up my mindset to be able to think bigger.</p>
+                    <span class="press-cta">
+                        Read article
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </a>
+            </div>
+
+            <div class="press-blog-link">
+                <a href="/blog/flightsuite-founder-story.html">
+                    Read the full founder story
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
         </div>
     </section>
 

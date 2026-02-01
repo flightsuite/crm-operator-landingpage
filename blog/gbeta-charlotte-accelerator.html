@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlightSuite Graduates from gBETA Charlotte Accelerator | Startup Showcase</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="FlightSuite was one of five startups selected for gBETA Charlotte's no-equity accelerator. See how seven weeks of intensive mentorship helped us think bigger and target enterprise clients.">
+    <meta name="keywords" content="gBETA Charlotte, startup accelerator, FlightSuite, gener8tor, Charlotte startups, pitch night, CRM automation">
+    <link rel="canonical" href="https://flightsuite.ai/blog/gbeta-charlotte-accelerator">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://flightsuite.ai/blog/gbeta-charlotte-accelerator">
+    <meta property="og:title" content="FlightSuite Graduates from gBETA Charlotte Accelerator">
+    <meta property="og:description" content="Selected from 40+ applicants for intensive mentorship and investor access. Here's what we learned.">
+    <meta property="og:image" content="https://flightsuite.ai/Assets/cbj-gbeta-cohort.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FlightSuite Graduates from gBETA Charlotte Accelerator">
+    <meta name="twitter:description" content="Selected from 40+ applicants. Here's what seven weeks of intensive mentorship taught us.">
+    <meta name="twitter:image" content="https://flightsuite.ai/Assets/cbj-gbeta-cohort.png">
+
+    <!-- Article Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "FlightSuite Graduates from gBETA Charlotte Accelerator",
+      "description": "FlightSuite was one of five startups selected for gBETA Charlotte's no-equity accelerator program.",
+      "image": "https://flightsuite.ai/Assets/cbj-gbeta-cohort.png",
+      "datePublished": "2025-12-10",
+      "dateModified": "2026-01-31",
+      "author": {
+        "@type": "Person",
+        "name": "Fitzgerald Light",
+        "jobTitle": "Founder & CEO",
+        "url": "https://flightsuite.ai"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FlightSuite",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://flightsuite.ai/Assets/Flight Suite Favicon vPurple.svg"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://flightsuite.ai/blog/gbeta-charlotte-accelerator"
+      },
+      "keywords": ["gBETA Charlotte", "startup accelerator", "gener8tor", "Charlotte tech", "CRM automation"]
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://flightsuite.ai"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://flightsuite.ai/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "gBETA Charlotte",
+          "item": "https://flightsuite.ai/blog/gbeta-charlotte-accelerator"
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        /* ===== CSS RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-apple-blue: #0071E3;
+            --color-ios-purple: #5E5CE6;
+            --color-bg-primary: #FFFFFF;
+            --color-bg-secondary: #F5F5F7;
+            --color-text-primary: #1D1D1F;
+            --color-text-secondary: #6E6E73;
+            --color-border: rgba(0, 0, 0, 0.1);
+            --max-width: 1440px;
+            --content-width: 720px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.8;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-apple-blue);
+        }
+
+        /* ===== HERO IMAGE ===== */
+        .hero-image-container {
+            width: 100%;
+            max-height: 500px;
+            overflow: hidden;
+            background: var(--color-bg-secondary);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-caption {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 1rem clamp(1.5rem, 4vw, 2rem);
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            font-style: italic;
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: clamp(1rem, 4vw, 2rem) clamp(1.5rem, 4vw, 2rem) clamp(2rem, 6vw, 4rem);
+        }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-ios-purple);
+            margin-bottom: 1rem;
+        }
+
+        .article-header h1 {
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
+            color: var(--color-text-primary);
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* ===== ARTICLE BODY ===== */
+        .article-content h2 {
+            font-size: clamp(1.5rem, 3vw, 1.875rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text-primary);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content h3 {
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-content p {
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            color: var(--color-text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content p strong {
+            color: var(--color-text-primary);
+        }
+
+        .article-content ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .article-content li {
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            color: var(--color-text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .article-content a {
+            color: var(--color-apple-blue);
+            text-decoration: none;
+        }
+
+        .article-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== QUOTE BLOCK ===== */
+        .quote-block {
+            background: linear-gradient(135deg, rgba(94, 92, 230, 0.08) 0%, rgba(0, 113, 227, 0.08) 100%);
+            border-left: 4px solid var(--color-ios-purple);
+            padding: 2rem 2.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 2.5rem 0;
+        }
+
+        .quote-block blockquote {
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            font-weight: 500;
+            font-style: italic;
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .quote-block cite {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            font-style: normal;
+        }
+
+        /* ===== COHORT GRID ===== */
+        .cohort-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .cohort-card {
+            background: var(--color-bg-secondary);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .cohort-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .cohort-card .founder {
+            font-size: 0.875rem;
+            color: var(--color-ios-purple);
+            margin-bottom: 0.75rem;
+        }
+
+        .cohort-card p {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0;
+        }
+
+        /* ===== STATS GRID ===== */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, rgba(94, 92, 230, 0.08) 0%, rgba(0, 113, 227, 0.08) 100%);
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+        }
+
+        .stat-number {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--color-ios-purple);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* ===== CTA BOXES ===== */
+        .cta-box {
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            color: white;
+            padding: 2.5rem 2rem;
+            border-radius: 18px;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 12px 24px rgba(94, 92, 230, 0.2);
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1rem, 2vw, 1.125rem);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--color-apple-blue);
+            padding: 0.875rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.0625rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-secondary {
+            background: white;
+            color: var(--color-ios-purple);
+            margin-left: 1rem;
+        }
+
+        .cta-secondary:hover {
+            background: #f5f5f7;
+        }
+
+        /* PDF Download Link */
+        .pdf-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid var(--color-border);
+        }
+
+        .pdf-download:hover {
+            background: white;
+            border-color: var(--color-apple-blue);
+            color: var(--color-apple-blue);
+        }
+
+        .pdf-download svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .article-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        /* ===== INLINE CTA ===== */
+        .inline-cta {
+            background: var(--color-bg-secondary);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .inline-cta-text h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .inline-cta-text p {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0;
+        }
+
+        .inline-cta-button {
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .inline-cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(94, 92, 230, 0.3);
+        }
+
+        /* ===== RELATED POSTS ===== */
+        .related-section {
+            background: var(--color-bg-secondary);
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .related-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 4vw, 2rem);
+        }
+
+        .related-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-primary);
+        }
+
+        .related-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            border: 1px solid var(--color-border);
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .related-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .related-card p {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--color-bg-primary);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-apple-blue);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.875rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr;
+            }
+
+            .inline-cta {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cta-secondary {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="/" class="logo">FlightSuite</a>
+            <div class="nav-links">
+                <a href="/blog.html">Blog</a>
+                <a href="/experts/index.html">Expert Directory</a>
+                <a href="/#press">Press</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Image -->
+    <div class="hero-image-container">
+        <img src="/Assets/cbj-gbeta-cohort.png" alt="gBETA Charlotte Fall 2025 cohort founders at pitch night" class="hero-image">
+    </div>
+    <p class="hero-caption">The gBETA Charlotte Fall 2025 cohort at pitch night: founders from Codd AI, Troodie, Touio, FlightSuite.ai, and OpenScope Health. Photo: Charlotte Business Journal</p>
+
+    <!-- Article Content -->
+    <article class="article-container">
+        <header class="article-header">
+            <span class="article-category">Company News</span>
+            <h1>FlightSuite Graduates from gBETA Charlotte Accelerator</h1>
+            <div class="article-meta">
+                <span>By Fitzgerald Light</span>
+                <span>December 10, 2025</span>
+                <span>4 min read</span>
+            </div>
+        </header>
+
+        <div class="article-content">
+            <p><strong>On December 8, 2025, FlightSuite took the stage at the Co-Lab at UNC Charlotte Center City</strong> alongside four other startups to showcase what we'd built during seven weeks of intensive mentorship, investor access, and business development support.</p>
+
+            <p>We were one of five companies selected from more than 40 applicants for the gBETA Charlotte program, a no-equity accelerator backed by <a href="https://www.gener8tor.com/news/five-charlotte-based-startups-selected-for-accelerator" target="_blank" rel="noopener">gener8tor</a> and the city of Charlotte.</p>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Applicants</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Companies Selected</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Weeks of Mentorship</div>
+                </div>
+            </div>
+
+            <h2>What is gBETA Charlotte?</h2>
+
+            <p>gBETA is a free, seven-week accelerator for early-stage companies with local roots. Unlike many programs, gBETA takes no equity. The program provides weekly accountability sessions, mentorship from experienced founders and investors, and direct access to Charlotte's growing entrepreneurial network.</p>
+
+            <p>The program builds on gALPHA Charlotte, a shorter venture-creation program that helps entrepreneurs pressure-test concepts before transitioning into gBETA for growth and investor readiness.</p>
+
+            <div class="quote-block">
+                <blockquote>"The program opened up my mindset to be able to think bigger."</blockquote>
+                <cite>— Fitzgerald Light, as quoted in Charlotte Business Journal</cite>
+            </div>
+
+            <p>Before gBETA, I was focused on helping individual sales reps save time on CRM data entry. The mentorship and investor conversations pushed me to think about how FlightSuite could transform how entire organizations interact with their CRM systems and target enterprise clients.</p>
+
+            <h2>The Fall 2025 Cohort</h2>
+
+            <p>We were honored to go through the program alongside four other incredible Charlotte-based startups:</p>
+
+            <div class="cohort-grid">
+                <div class="cohort-card">
+                    <h4>FlightSuite.ai</h4>
+                    <div class="founder">Fitzgerald Light</div>
+                    <p>AI-powered CRM automation that eliminates manual data entry and automates sales follow-ups.</p>
+                </div>
+                <div class="cohort-card">
+                    <h4>Touio</h4>
+                    <div class="founder">Ali Hosseini</div>
+                    <p>Simplifies IoT deployments by making connected devices easier to build and manage.</p>
+                </div>
+                <div class="cohort-card">
+                    <h4>Troodie</h4>
+                    <div class="founder">Taylor Davis</div>
+                    <p>Connects restaurants with content creators and tracks influencer marketing ROI.</p>
+                </div>
+                <div class="cohort-card">
+                    <h4>Codd AI</h4>
+                    <div class="founder">Ravindra Punuru</div>
+                    <p>Generative AI for instant analysis of structured and unstructured business data.</p>
+                </div>
+                <div class="cohort-card">
+                    <h4>OpenScope Health</h4>
+                    <div class="founder">Bryce Piro</div>
+                    <p>Intelligent symptom evaluation to guide patients to the right care efficiently.</p>
+                </div>
+            </div>
+
+            <div class="inline-cta">
+                <div class="inline-cta-text">
+                    <h4>Not sure which CRM fits your business?</h4>
+                    <p>Take our 2-minute quiz to find your perfect match.</p>
+                </div>
+                <a href="/find-your-crm.html" class="inline-cta-button">Find Your CRM</a>
+            </div>
+
+            <h2>What We Learned</h2>
+
+            <p>The seven weeks were intense. Here's what stood out:</p>
+
+            <ul>
+                <li><strong>Think bigger, faster.</strong> The mentors pushed us to expand our vision. What could FlightSuite become if we targeted enterprise teams instead of just individual reps?</li>
+                <li><strong>Investor readiness is a skill.</strong> Learning to communicate our value proposition clearly and concisely made every conversation more productive.</li>
+                <li><strong>Community matters.</strong> Having four other founders going through the same challenges created accountability and support that's hard to find elsewhere.</li>
+                <li><strong>Charlotte believes in its startups.</strong> The city's investment in programs like gBETA shows a real commitment to building an ecosystem where founders can scale locally.</li>
+            </ul>
+
+            <h2>The Impact So Far</h2>
+
+            <p>City leaders say the investment is already translating to measurable results. The first two gBETA cohorts have raised more than $820,000 in capital and created more than 50 jobs since the program launched less than a year ago.</p>
+
+            <div class="quote-block">
+                <blockquote>"Entrepreneurship is probably one of the key aspects in the growth of a city when you can raise the capital. And what this program does is make sure that you're properly equipped to receive the capital and to also make sure that you grow responsibly."</blockquote>
+                <cite>— Shahid Rana, Director of Economic Development, City of Charlotte</cite>
+            </div>
+
+            <h2>What's Next</h2>
+
+            <p>Graduating from gBETA was just the beginning. We're using the momentum and connections from the program to:</p>
+
+            <ul>
+                <li>Expand our CRM integrations (HubSpot is now live)</li>
+                <li>Target enterprise sales teams</li>
+                <li>Build partnerships with CRM consultants and agencies</li>
+                <li>Work toward our goal of helping 1,000 businesses automate their CRM</li>
+            </ul>
+
+            <p>If you're a founder in Charlotte considering an accelerator, I'd highly recommend applying to gBETA. The network, mentorship, and accountability are worth it.</p>
+
+            <div class="article-links">
+                <a href="https://www.bizjournals.com/charlotte/news/2025/12/10/gbeta-accelerator-program-founders-startups-tech.html" target="_blank" rel="noopener" class="pdf-download">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                    Read on CBJ
+                </a>
+                <a href="/Assets/cbj-gbeta-accelerator.pdf" download class="pdf-download">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download PDF
+                </a>
+                <a href="https://www.gener8tor.com/news/five-charlotte-based-startups-selected-for-accelerator" target="_blank" rel="noopener" class="pdf-download">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                    gener8tor Announcement
+                </a>
+            </div>
+
+            <!-- Final CTA -->
+            <div class="cta-box">
+                <h3>Ready to Automate Your CRM?</h3>
+                <p>Join the businesses already using FlightSuite to eliminate manual data entry.</p>
+                <a href="https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb" class="cta-button">Try FlightSuite Free</a>
+                <a href="/experts/index.html" class="cta-button cta-secondary">Find a CRM Expert</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Related Posts -->
+    <section class="related-section">
+        <div class="related-container">
+            <h3 class="related-title">Continue Reading</h3>
+            <a href="/blog/flightsuite-founder-story.html" class="related-card">
+                <h4>From gBETA Accelerator to Helping 1,000 Businesses</h4>
+                <p>The full FlightSuite journey from seven-week accelerator to Charlotte Business Journal features.</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>FlightSuite - Your CRM CoPilot</p>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/find-your-crm.html">CRM Quiz</a>
+                <a href="/experts/index.html">Expert Directory</a>
+                <a href="/#press">Press</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
