@@ -210,6 +210,25 @@
             object-position: center 30%;
         }
 
+        .blog-card-image.contain-image {
+            height: auto;
+            min-height: 200px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blog-card-image.contain-image img {
+            width: auto;
+            max-width: 100%;
+            max-height: 280px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
         .blog-card-content {
             padding: clamp(1.5rem, 3vw, 2rem);
             flex: 1;
@@ -419,8 +438,8 @@
 
             <!-- Founder Story -->
             <a href="/blog/flightsuite-founder-story.html" class="blog-card" style="border: 2px solid rgba(52, 199, 89, 0.3);">
-                <div class="blog-card-image" style="background: #1a1a1a;">
-                    <img src="/Assets/cbj-fitz-news-article.jpg" alt="Fitzgerald Light holding the Charlotte Business Journal">
+                <div class="blog-card-image contain-image" style="background: var(--color-bg-secondary);">
+                    <img src="/Assets/cbj-news-quote.jpg" alt="Fitzgerald Light featured in Charlotte Business Journal">
                 </div>
                 <div class="blog-card-content">
                     <div class="blog-card-meta">
