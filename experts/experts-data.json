@@ -9,7 +9,12 @@
       "certifications": ["Certified Admin", "Automated Swag Store", "Social Media Manager", "Paid Ads", "AI Employee", "Local Hero (SaaS)"],
       "claimed": true,
       "priceMin": 1499,
-      "featured": true
+      "featured": true,
+      "specialty": "full-builds",
+      "location": "United States",
+      "budgetTier": "high",
+      "industries": ["agency", "local-service", "coach"],
+      "crm": ["gohighlevel"]
     },
     "abdullah-virk": {
       "name": "Abdullah Virk",
@@ -19,7 +24,12 @@
       "certifications": ["Certified Admin", "HIPAA Compliance", "Course Creator", "AI Employee", "Local Hero (SaaS)", "A2P 10DLC Compliance", "Automated Swag Store", "Social Media Manager", "Paid Ads", "Quick Wins", "Funnel Builder", "WhatsApp Integration"],
       "claimed": true,
       "priceMin": 25,
-      "featured": false
+      "featured": false,
+      "specialty": "full-builds automation",
+      "location": "Pakistan",
+      "budgetTier": "low",
+      "industries": ["agency", "saas", "coach", "ecommerce", "healthcare"],
+      "crm": ["gohighlevel"]
     },
     "seth-wixtrom": {
       "name": "Seth Wixtrom",
@@ -29,7 +39,12 @@
       "certifications": ["Certified Admin", "HIPAA Compliance", "AI Employee"],
       "claimed": true,
       "priceMin": 200,
-      "featured": false
+      "featured": false,
+      "specialty": "automation",
+      "location": "United States",
+      "budgetTier": "mid",
+      "industries": ["agency", "local-service", "healthcare"],
+      "crm": ["gohighlevel"]
     },
     "deborah-spence": {
       "name": "Deborah Spence",
@@ -39,7 +54,12 @@
       "certifications": ["Certified Admin", "A2P 10DLC Compliance", "AI Employee", "Paid Ads", "Social Media Manager", "Funnel Builder"],
       "claimed": true,
       "priceMin": 297,
-      "featured": false
+      "featured": false,
+      "specialty": "ai-voice",
+      "location": "United States",
+      "budgetTier": "mid",
+      "industries": ["real-estate", "local-service"],
+      "crm": ["gohighlevel"]
     },
     "salman-tariq": {
       "name": "Salman Tariq",
@@ -49,7 +69,12 @@
       "certifications": ["Certified Admin", "AI Employee", "Paid Ads", "Social Media Manager", "A2P 10DLC Compliance", "HIPAA Compliance", "Automated Swag Store", "Quick Wins", "Course Creator", "Local Hero (SaaS)"],
       "claimed": true,
       "priceMin": 16,
-      "featured": false
+      "featured": false,
+      "specialty": "full-builds automation ai-voice",
+      "location": "International",
+      "budgetTier": "low",
+      "industries": ["agency", "coach", "local-service", "saas"],
+      "crm": ["gohighlevel"]
     },
     "vanessa-zamora": {
       "name": "Vanessa Zamora",
@@ -59,7 +84,12 @@
       "certifications": ["Certified Admin", "Course Creator", "Automated Swag Store", "Local Hero (SaaS)", "Paid Ads", "A2P 10DLC Compliance", "HIPAA Compliance", "AI Employee", "Social Media Manager", "Funnel Builder", "AI Tech Stack"],
       "claimed": true,
       "priceMin": 500,
-      "featured": false
+      "featured": false,
+      "specialty": "full-builds automation",
+      "location": "United States",
+      "budgetTier": "mid",
+      "industries": ["agency", "coach", "ecommerce", "saas"],
+      "crm": ["gohighlevel"]
     },
     "huzaifa-siddiqi": {
       "name": "Huzaifa Siddiqi",
@@ -69,7 +99,12 @@
       "certifications": ["Certified Admin", "A2P 10DLC Compliance", "HIPAA Compliance", "AI Employee", "Course Creator", "Automated Swag Store", "Social Media Manager", "Quick Wins", "Paid Ads", "Funnel Builder", "AI Tech Stack"],
       "claimed": true,
       "priceMin": 15,
-      "featured": false
+      "featured": false,
+      "specialty": "full-builds automation ai-voice",
+      "location": "Pakistan",
+      "budgetTier": "low",
+      "industries": ["agency", "coach", "local-service", "healthcare"],
+      "crm": ["gohighlevel"]
     },
     "josimara-hoffman": {
       "name": "Josimara Hoffmann",
@@ -79,7 +114,12 @@
       "certifications": ["Certified Admin"],
       "claimed": true,
       "priceMin": 1000,
-      "featured": false
+      "featured": false,
+      "specialty": "funnels automation",
+      "location": "Australia",
+      "budgetTier": "high",
+      "industries": ["agency", "local-service", "ecommerce"],
+      "crm": ["gohighlevel"]
     },
     "jithin-sujala": {
       "name": "Jithin Sujala",
@@ -89,7 +129,12 @@
       "certifications": ["Certified Admin", "Local Hero (SaaS)", "A2P 10DLC Compliance", "AI Employee", "Course Creator", "HIPAA Compliance", "Paid Ads", "Funnel Builder", "WhatsApp Integration", "Quick Wins", "Automated Swag Store", "Social Media Manager", "AI Tech Stack", "Voice AI"],
       "claimed": true,
       "priceMin": 150,
-      "featured": false
+      "featured": false,
+      "specialty": "automation ai-voice",
+      "location": "Australia",
+      "budgetTier": "mid",
+      "industries": ["agency", "coach", "local-service", "saas"],
+      "crm": ["gohighlevel"]
     },
     "cristina-samoila": {
       "name": "Cristina Samoila",
@@ -99,7 +144,12 @@
       "certifications": ["Certified Admin", "Funnel Builder", "A2P 10DLC Compliance", "AI Tech Stack", "HIPAA Compliance"],
       "claimed": true,
       "priceMin": 500,
-      "featured": false
+      "featured": false,
+      "specialty": "full-builds automation",
+      "location": "International",
+      "budgetTier": "mid",
+      "industries": ["agency", "coach", "ecommerce"],
+      "crm": ["gohighlevel"]
     },
     "abdelwahab-aitichou": {
       "name": "Abdelwahab Aitichou",
@@ -109,7 +159,12 @@
       "certifications": ["Certified Admin"],
       "claimed": true,
       "priceMin": 65,
-      "featured": false
+      "featured": false,
+      "specialty": "automation ai-voice",
+      "location": "International",
+      "budgetTier": "low",
+      "industries": ["agency", "local-service", "coach"],
+      "crm": ["gohighlevel"]
     },
     "akhimi-zambales": {
       "name": "Akhimi Zambales",
@@ -119,7 +174,12 @@
       "certifications": ["Certified Admin"],
       "claimed": true,
       "priceMin": 20,
-      "featured": false
+      "featured": false,
+      "specialty": "full-builds funnels",
+      "location": "Philippines",
+      "budgetTier": "low",
+      "industries": ["real-estate", "coach", "local-service", "ecommerce"],
+      "crm": ["gohighlevel"]
     },
     "mike-gorski": {
       "name": "Mike Gorski",
@@ -129,7 +189,12 @@
       "certifications": ["Certified Admin"],
       "claimed": true,
       "priceMin": 97,
-      "featured": false
+      "featured": false,
+      "specialty": "automation",
+      "location": "United States",
+      "budgetTier": "low",
+      "industries": ["agency", "coach", "local-service"],
+      "crm": ["gohighlevel"]
     },
     "ammar-yasir": {
       "name": "Ammar Yasir",
@@ -139,7 +204,12 @@
       "certifications": ["Certified Admin"],
       "claimed": true,
       "priceMin": 300,
-      "featured": false
+      "featured": false,
+      "specialty": "funnels automation",
+      "location": "International",
+      "budgetTier": "mid",
+      "industries": ["agency", "coach", "ecommerce"],
+      "crm": ["gohighlevel"]
     },
     "ezechiel-joachim": {
       "name": "Ezechiel Joachim",
@@ -149,7 +219,12 @@
       "certifications": ["Certified Admin"],
       "claimed": true,
       "priceMin": 197,
-      "featured": false
+      "featured": false,
+      "specialty": "full-builds automation",
+      "location": "International",
+      "budgetTier": "mid",
+      "industries": ["agency", "saas", "local-service"],
+      "crm": ["gohighlevel"]
     },
     "vanessa-mishra": {
       "name": "Vanessa Mishra",
@@ -159,7 +234,12 @@
       "certifications": ["Certified Admin"],
       "claimed": true,
       "priceMin": 500,
-      "featured": false
+      "featured": false,
+      "specialty": "full-builds automation",
+      "location": "International",
+      "budgetTier": "mid",
+      "industries": ["agency", "coach", "local-service"],
+      "crm": ["gohighlevel"]
     }
   },
   "unclaimedExperts": {

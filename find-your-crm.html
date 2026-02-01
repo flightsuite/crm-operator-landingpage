@@ -951,6 +951,228 @@
             background: var(--color-bg-secondary);
         }
 
+        /* Expert Matching Section (Post-Quiz) */
+        .expert-matching {
+            display: none;
+            margin-top: clamp(32px, 5vw, 48px);
+            background: linear-gradient(135deg, rgba(94, 92, 230, 0.04) 0%, rgba(0, 113, 227, 0.04) 100%);
+            border-radius: 24px;
+            padding: clamp(24px, 4vw, 32px);
+            border: 1px solid rgba(94, 92, 230, 0.15);
+        }
+
+        .expert-matching.active {
+            display: block;
+            animation: fadeIn 0.5s var(--ease-out);
+        }
+
+        .expert-matching-header {
+            text-align: center;
+            margin-bottom: clamp(20px, 3vw, 28px);
+        }
+
+        .expert-matching-header h3 {
+            font-family: var(--font-display);
+            font-size: clamp(20px, 3vw, 26px);
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .expert-matching-header h3 svg {
+            color: var(--color-success);
+        }
+
+        .expert-matching-header p {
+            font-size: clamp(15px, 1.8vw, 17px);
+            color: var(--color-text-secondary);
+        }
+
+        /* Expert Follow-up Questions */
+        .expert-questions {
+            margin-bottom: clamp(24px, 4vw, 32px);
+        }
+
+        .expert-question {
+            margin-bottom: 20px;
+        }
+
+        .expert-question label {
+            display: block;
+            font-weight: 600;
+            font-size: clamp(15px, 1.8vw, 17px);
+            margin-bottom: 12px;
+            color: var(--color-text-primary);
+        }
+
+        .expert-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .expert-option {
+            padding: clamp(10px, 1.5vw, 12px) clamp(16px, 2.5vw, 20px);
+            background: white;
+            border: 1.5px solid var(--color-border-light);
+            border-radius: 12px;
+            font-size: clamp(14px, 1.6vw, 15px);
+            cursor: pointer;
+            transition: all 0.3s var(--ease-smooth);
+            color: var(--color-text-primary);
+        }
+
+        .expert-option:hover {
+            border-color: rgba(94, 92, 230, 0.4);
+            background: rgba(94, 92, 230, 0.02);
+        }
+
+        .expert-option.selected {
+            border-color: var(--color-ios-purple);
+            background: rgba(94, 92, 230, 0.08);
+            color: var(--color-ios-purple);
+            font-weight: 500;
+        }
+
+        /* Matched Experts Grid */
+        .matched-experts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .matched-expert-card {
+            background: white;
+            border: 1px solid var(--color-border-light);
+            border-radius: 16px;
+            padding: clamp(18px, 2.5vw, 22px);
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .matched-expert-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            border-color: rgba(94, 92, 230, 0.3);
+        }
+
+        .matched-expert-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .matched-expert-photo {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .matched-expert-info h4 {
+            font-size: clamp(16px, 2vw, 18px);
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .matched-expert-info .specialty {
+            font-size: clamp(13px, 1.5vw, 14px);
+            color: var(--color-text-secondary);
+        }
+
+        .matched-expert-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .matched-expert-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: var(--color-bg-secondary);
+            border-radius: 6px;
+            font-size: 12px;
+            color: var(--color-text-secondary);
+        }
+
+        .matched-expert-tag svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .matched-expert-tag.match {
+            background: rgba(52, 199, 89, 0.1);
+            color: var(--color-success);
+            font-weight: 600;
+        }
+
+        .matched-expert-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .matched-expert-actions a {
+            flex: 1;
+            padding: clamp(10px, 1.5vw, 12px);
+            border-radius: 10px;
+            font-size: clamp(13px, 1.5vw, 14px);
+            font-weight: 500;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .matched-expert-actions .btn-view {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .matched-expert-actions .btn-view:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(94, 92, 230, 0.3);
+        }
+
+        .see-all-experts {
+            display: block;
+            text-align: center;
+            padding: 14px;
+            color: var(--color-apple-blue);
+            font-size: clamp(14px, 1.6vw, 15px);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .see-all-experts:hover {
+            text-decoration: underline;
+        }
+
+        .skip-experts-link {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            color: var(--color-text-tertiary);
+            font-size: clamp(13px, 1.5vw, 14px);
+            text-decoration: none;
+        }
+
+        .skip-experts-link:hover {
+            color: var(--color-text-secondary);
+        }
+
         /* FAQ Section */
         .faq-section {
             padding: var(--section-spacing) 0;
@@ -1768,6 +1990,56 @@
                             <a href="/" class="btn-small secondary">Learn More</a>
                         </div>
                     </div>
+
+                    <!-- Expert Matching Section (shown if GHL in top 3) -->
+                    <div class="expert-matching" id="expertMatching">
+                        <div class="expert-matching-header">
+                            <h3>
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Get Expert Help Setting Up
+                            </h3>
+                            <p>Tell us what you need and we'll match you with the right GHL pros.</p>
+                        </div>
+
+                        <div class="expert-questions" id="expertQuestions">
+                            <div class="expert-question">
+                                <label>What kind of help are you looking for?</label>
+                                <div class="expert-options" id="helpTypeOptions">
+                                    <button class="expert-option" data-value="full-setup">Full CRM setup from scratch</button>
+                                    <button class="expert-option" data-value="automation">Specific automation help</button>
+                                    <button class="expert-option" data-value="funnels">Funnels & landing pages</button>
+                                    <button class="expert-option" data-value="ai-voice">AI / Voice agents</button>
+                                    <button class="expert-option" data-value="migration">Migration from another CRM</button>
+                                    <button class="expert-option" data-value="audit">Audit & optimization</button>
+                                    <button class="expert-option" data-value="diy">Just browsing / I'll DIY</button>
+                                </div>
+                            </div>
+
+                            <div class="expert-question" id="budgetQuestion" style="display: none;">
+                                <label>What's your budget for expert help?</label>
+                                <div class="expert-options" id="expertBudgetOptions">
+                                    <button class="expert-option" data-value="low">Under $100 (quick tasks)</button>
+                                    <button class="expert-option" data-value="mid">$100-500 (focused projects)</button>
+                                    <button class="expert-option" data-value="high">$500+ (comprehensive builds)</button>
+                                    <button class="expert-option" data-value="unsure">Not sure yet</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="matched-experts-grid" id="matchedExpertsGrid" style="display: none;">
+                            <!-- Filled by JavaScript -->
+                        </div>
+
+                        <a href="/experts/" class="see-all-experts" id="seeAllExperts" style="display: none;">
+                            See All Verified GHL Experts →
+                        </a>
+
+                        <a href="#" class="skip-experts-link" id="skipExperts">
+                            Skip, I'll find help later
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -2442,8 +2714,237 @@
             // Show results
             quizResults.classList.add('active');
 
+            // Check if GHL is in top 3 - if so, show expert matching section
+            const top3Keys = sorted.slice(0, 3).map(([key]) => key);
+            if (top3Keys.includes('gohighlevel')) {
+                const expertMatchingEl = document.getElementById('expertMatching');
+                expertMatchingEl.classList.add('active');
+                initExpertMatching();
+            }
+
             // Scroll to results
             quizResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Expert matching state
+        let expertAnswers = {
+            helpType: null,
+            budget: null
+        };
+        let expertsData = null;
+
+        // Initialize expert matching interactions
+        function initExpertMatching() {
+            const helpTypeOptions = document.querySelectorAll('#helpTypeOptions .expert-option');
+            const budgetOptions = document.querySelectorAll('#expertBudgetOptions .expert-option');
+            const budgetQuestion = document.getElementById('budgetQuestion');
+            const skipLink = document.getElementById('skipExperts');
+
+            helpTypeOptions.forEach(opt => {
+                opt.addEventListener('click', () => {
+                    // Remove selected from siblings
+                    helpTypeOptions.forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    expertAnswers.helpType = opt.dataset.value;
+
+                    // If "DIY", skip to browse all link
+                    if (expertAnswers.helpType === 'diy') {
+                        budgetQuestion.style.display = 'none';
+                        document.getElementById('matchedExpertsGrid').style.display = 'none';
+                        document.getElementById('seeAllExperts').style.display = 'block';
+                        document.getElementById('skipExperts').style.display = 'none';
+                    } else {
+                        // Show budget question
+                        budgetQuestion.style.display = 'block';
+                        document.getElementById('seeAllExperts').style.display = 'none';
+                    }
+                });
+            });
+
+            budgetOptions.forEach(opt => {
+                opt.addEventListener('click', () => {
+                    budgetOptions.forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    expertAnswers.budget = opt.dataset.value;
+
+                    // Now match experts
+                    matchAndDisplayExperts();
+                });
+            });
+
+            skipLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('expertMatching').classList.remove('active');
+            });
+        }
+
+        // Match experts based on quiz answers
+        async function matchAndDisplayExperts() {
+            // Load expert data if not already loaded
+            if (!expertsData) {
+                try {
+                    const response = await fetch('/experts/experts-data.json');
+                    expertsData = await response.json();
+                } catch (error) {
+                    console.error('Failed to load expert data:', error);
+                    document.getElementById('seeAllExperts').style.display = 'block';
+                    return;
+                }
+            }
+
+            const experts = expertsData.experts;
+            const businessType = answers['1']; // From quiz
+
+            // Score each expert
+            const scored = Object.entries(experts)
+                .filter(([slug, expert]) => expert.claimed && expert.crm?.includes('gohighlevel'))
+                .map(([slug, expert]) => {
+                    let score = 0;
+                    let matchReasons = [];
+
+                    // Budget alignment (+30)
+                    if (matchesBudget(expertAnswers.budget, expert.budgetTier)) {
+                        score += 30;
+                        matchReasons.push('Budget fit');
+                    }
+
+                    // Specialty alignment (+25)
+                    const specialtyMatch = matchesSpecialty(expertAnswers.helpType, expert.specialty);
+                    if (specialtyMatch) {
+                        score += 25;
+                        matchReasons.push(specialtyMatch);
+                    }
+
+                    // Industry experience (+20)
+                    const industryKey = mapBusinessTypeToIndustry(businessType);
+                    if (expert.industries?.includes(industryKey)) {
+                        score += 20;
+                        matchReasons.push('Industry experience');
+                    }
+
+                    // Reviews/credibility (+15)
+                    score += Math.min(15, (expert.reviewCount || 0) / 5);
+
+                    // Certifications (+10)
+                    score += Math.min(10, (expert.certifications?.length || 0));
+
+                    return { slug, expert, score, matchReasons };
+                })
+                .sort((a, b) => b.score - a.score);
+
+            // Get top 3
+            const top3 = scored.slice(0, 3);
+
+            // Render matched experts
+            renderMatchedExperts(top3);
+        }
+
+        function matchesBudget(userBudget, expertTier) {
+            if (userBudget === 'unsure') return true;
+            return userBudget === expertTier;
+        }
+
+        function matchesSpecialty(helpType, expertSpecialty) {
+            if (!expertSpecialty) return null;
+            const specialtyStr = expertSpecialty.toLowerCase();
+
+            switch (helpType) {
+                case 'full-setup':
+                case 'migration':
+                    if (specialtyStr.includes('full-builds')) return 'Full builds';
+                    break;
+                case 'automation':
+                    if (specialtyStr.includes('automation')) return 'Automation expert';
+                    break;
+                case 'funnels':
+                    if (specialtyStr.includes('funnels')) return 'Funnel specialist';
+                    break;
+                case 'ai-voice':
+                    if (specialtyStr.includes('ai-voice')) return 'AI/Voice expert';
+                    break;
+                case 'audit':
+                    if (specialtyStr.includes('automation') || specialtyStr.includes('full-builds')) return 'System optimization';
+                    break;
+            }
+            return null;
+        }
+
+        function mapBusinessTypeToIndustry(businessType) {
+            const mapping = {
+                'real-estate': 'real-estate',
+                'home-services': 'local-service',
+                'agency': 'agency',
+                'coach': 'coach',
+                'ecommerce': 'ecommerce',
+                'local-service': 'local-service',
+                'saas': 'saas',
+                'healthcare': 'healthcare'
+            };
+            return mapping[businessType] || 'agency';
+        }
+
+        function getInitials(name) {
+            return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+        }
+
+        function formatSpecialty(specialty) {
+            if (!specialty) return 'GHL Expert';
+            const parts = specialty.split(' ');
+            const labels = {
+                'full-builds': 'Full Builds',
+                'automation': 'Automation',
+                'ai-voice': 'AI/Voice',
+                'funnels': 'Funnels'
+            };
+            return parts.map(p => labels[p] || p).slice(0, 2).join(' + ');
+        }
+
+        function renderMatchedExperts(experts) {
+            const grid = document.getElementById('matchedExpertsGrid');
+            const seeAllLink = document.getElementById('seeAllExperts');
+            const skipLink = document.getElementById('skipExperts');
+
+            if (experts.length === 0) {
+                grid.style.display = 'none';
+                seeAllLink.style.display = 'block';
+                skipLink.style.display = 'none';
+                return;
+            }
+
+            grid.innerHTML = experts.map(({ slug, expert, score, matchReasons }) => {
+                const initials = getInitials(expert.name);
+                const matchPercent = Math.min(95, Math.max(70, Math.round(score)));
+                const topReason = matchReasons[0] || 'Verified Pro';
+
+                return `
+                    <div class="matched-expert-card">
+                        <div class="matched-expert-header">
+                            <div class="matched-expert-photo">${initials}</div>
+                            <div class="matched-expert-info">
+                                <h4>${expert.name}</h4>
+                                <span class="specialty">${formatSpecialty(expert.specialty)}</span>
+                            </div>
+                        </div>
+                        <div class="matched-expert-meta">
+                            <span class="matched-expert-tag match">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                ${topReason}
+                            </span>
+                            <span class="matched-expert-tag">${expert.location || 'International'}</span>
+                            ${expert.reviewCount > 0 ? `<span class="matched-expert-tag">${expert.reviewCount} reviews</span>` : ''}
+                        </div>
+                        <div class="matched-expert-actions">
+                            <a href="/experts/${slug}.html" class="btn-view">View Profile</a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            grid.style.display = 'grid';
+            seeAllLink.style.display = 'block';
+            skipLink.style.display = 'none';
         }
 
         // Initialize on load

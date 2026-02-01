@@ -2326,10 +2326,28 @@
             return expertsData.experts[slug] || null;
         }
 
+        // Fisher-Yates shuffle for fair rotation
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
         // Sort experts
         function sortExperts() {
             const sortValue = sortSelect.value;
             const cardsArray = Array.from(expertCards);
+
+            if (sortValue === 'recommended') {
+                // Random shuffle for fair rotation - all verified experts get equal exposure
+                const shuffled = shuffleArray(cardsArray);
+                shuffled.forEach(card => expertGrid.appendChild(card));
+                filterExperts();
+                return;
+            }
 
             cardsArray.sort((a, b) => {
                 const dataA = getExpertData(a);
@@ -2356,10 +2374,8 @@
                     case 'name-az':
                         return getCardName(a).localeCompare(getCardName(b));
 
-                    case 'recommended':
                     default:
-                        // Sort by algorithmic ranking score (highest first)
-                        return getCardRankingScore(b) - getCardRankingScore(a);
+                        return 0;
                 }
             });
 
