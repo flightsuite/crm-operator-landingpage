@@ -1,0 +1,16 @@
+{
+  "name": "flightsuite-landing",
+  "version": "1.0.0",
+  "description": "FlightSuite landing page with Airtable-synced expert directory",
+  "scripts": {
+    "sync": "node scripts/sync-airtable.js",
+    "sync:dry-run": "node scripts/sync-airtable.js --dry-run",
+    "update-rankings": "node scripts/update-expert-rankings.js"
+  },
+  "dependencies": {
+    "puppeteer": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

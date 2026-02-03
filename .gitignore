@@ -6,5 +6,13 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Node
+node_modules/
+package-lock.json
+
 # Playwright test screenshots
 .playwright-mcp/
+
+# Environment
+.env
+.env.local

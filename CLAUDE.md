@@ -8,13 +8,15 @@ This is a static landing page for **FlightSuite** (branded as "CRM CoPilot"), a 
 
 ## Architecture
 
-**Single-file static site** - No build process, no package manager, no bundler.
+**Static site with automation scripts** - No build process required for the site itself, but includes Node.js scripts for data sync.
 
 - `index.html` - Main landing page (~157KB, contains all HTML/CSS/JS inline)
 - `airtable-config.js` - Form submission logic using Google Sheets webhooks
 - `blog/` - SEO blog articles (static HTML files)
+- `experts/` - Expert directory (auto-synced from Airtable)
 - `Assets/` - Images, logos, favicons
 - `docs/` - Design documentation and project summaries
+- `scripts/` - Automation scripts (Airtable sync, GHL scraper)
 
 ## Development
 
@@ -28,7 +30,12 @@ python -m http.server 8000
 npx serve .
 ```
 
-No build, lint, or test commands exist - this is pure static HTML/CSS/JS.
+**For automation scripts:**
+```bash
+npm install
+npm run sync           # Sync experts from Airtable
+npm run sync:dry-run   # Preview sync without changes
+```
 
 ## Key Integration Points
 
@@ -154,29 +161,44 @@ This project has an active social media plan for LinkedIn and Facebook. Run the 
 
 | File | Purpose |
 |------|---------|
-| `docs/SOCIAL-MEDIA-STRATEGY.md` | Full 30-day strategy with post copy |
-| `docs/SOCIAL-MEDIA-PROGRESS.json` | Progress tracker |
+| `docs/SOCIAL-MEDIA-STRATEGY.md` | Content templates and framework |
+| `docs/SOCIAL-MEDIA-PROGRESS.json` | Progress and promotion tracker |
 | `.claude/commands/social-daily.md` | Daily task runner skill |
+
+### Dynamic Content System
+
+The social media skill is **dynamic** - it adapts based on real-time analysis:
+
+1. **Fetches blog content** from https://www.flightsuite.ai/blog.html to find new posts
+2. **Checks LinkedIn** for recent post themes to avoid repetition
+3. **Selects content templates** based on what's needed
+4. **Prioritizes new SEO content** (comparison pages, alternatives, guides)
 
 ### How the Daily Social Runner Works
 
-1. Reads progress tracker to determine current day
-2. Provides **2 days of posts at a time**
-3. Searches Google for thumbnail images for each post
-4. Outputs complete post copy, hashtags, and links
-5. Updates progress tracker
+1. Fetches live blog to see current content
+2. Checks LinkedIn for recent post themes
+3. Cross-references with progress tracker
+4. Selects appropriate content (adapts if needed)
+5. Provides **2 days of posts** with thumbnail URLs
+6. Updates progress tracker
 
-### Content Strategy
+### Content Mix Targets
 
-The plan pairs with the SEO strategy by promoting blog content:
-
-| Content Pillar | % of Posts |
-|----------------|------------|
+| Content Pillar | Target % |
+|----------------|----------|
+| Blog/Content Promos | 30% |
 | Relatable Pain Points | 25% |
-| Actionable Tips | 30% |
-| Blog/Content Promos | 20% |
-| Statistics & Data | 15% |
-| Behind-the-Scenes | 10% |
+| Actionable Tips | 25% |
+| Statistics & Data | 10% |
+| Engagement Posts | 10% |
+
+### SEO Integration
+
+New SEO content is automatically prioritized for promotion:
+- **Tier 1**: New comparison/alternatives pages (promote within 48 hours)
+- **Tier 2**: New blog posts (promote within 1 week)
+- **Tier 3**: Evergreen content (rotate monthly)
 
 ### Manual Progress Reset
 
@@ -185,6 +207,82 @@ To restart from a specific day:
 // docs/SOCIAL-MEDIA-PROGRESS.json
 {
   "currentDay": 1,
-  "status": "not_started"
+  "status": "not_started",
+  "promotedBlogs": []
 }
+```
+
+## Expert Directory (Airtable Integration)
+
+The Expert Directory at `/experts/` is automatically synced from Airtable. When new CRM admin interviews are added to Airtable, they automatically appear on the website.
+
+### Airtable Configuration
+
+| Setting | Value |
+|---------|-------|
+| Base ID | `appK4eoFrLRthiENZ` |
+| Table ID | `tbldVnfJ0SBfo0hiK` |
+| Required Secret | `AIRTABLE_API_KEY` (set in GitHub Secrets) |
+
+### How the Sync Works
+
+1. **GitHub Action** runs daily at 6 AM UTC (or manually triggered)
+2. **Fetches records** from Airtable via API
+3. **Scrapes GHL directory** for each expert to get ratings, reviews, certifications
+4. **Merges data** (Airtable interview data + GHL directory data)
+5. **Updates** `experts/experts-data.json`
+6. **Generates HTML pages** for any new experts
+7. **Commits and pushes** changes automatically
+
+### Key Files
+
+| File | Purpose |
+|------|---------|
+| `scripts/sync-airtable.js` | Main sync script |
+| `scripts/update-expert-rankings.js` | GHL scraper (standalone) |
+| `.github/workflows/sync-experts.yml` | GitHub Action for automated sync |
+| `experts/experts-data.json` | Expert data (auto-generated) |
+| `experts/*.html` | Individual expert pages (auto-generated) |
+
+### Airtable Fields Mapped
+
+| Airtable Column | Used For |
+|-----------------|----------|
+| Lead Name | Expert name, page title, slug |
+| CRM Type | GHL vs HubSpot classification |
+| Website or Profile Link | GHL directory URL for scraping |
+| Email | Contact (not displayed) |
+| Fathom Link | Video embed on profile |
+| Core Services | Services section |
+| Prices | Pricing section, budget tier |
+| Target Clients | "Best For" tags |
+| Booking link | CTA button |
+
+### Manual Sync
+
+To run a sync locally:
+```bash
+export AIRTABLE_API_KEY=pat...your-key-here
+npm run sync
+
+# Or dry run to preview:
+npm run sync:dry-run
+```
+
+### Triggering Sync from Airtable
+
+You can set up an Airtable automation to trigger the sync when records change:
+
+1. In Airtable, create an automation with trigger "When record is updated"
+2. Add action: "Run script"
+3. Use this script to call the GitHub webhook:
+```javascript
+let response = await fetch('https://api.github.com/repos/YOUR_ORG/YOUR_REPO/dispatches', {
+    method: 'POST',
+    headers: {
+        'Authorization': 'Bearer YOUR_GITHUB_TOKEN',
+        'Accept': 'application/vnd.github.v3+json'
+    },
+    body: JSON.stringify({ event_type: 'airtable-update' })
+});
 ```

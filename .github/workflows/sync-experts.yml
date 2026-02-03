@@ -1,0 +1,104 @@
+name: Sync Expert Directory from Airtable
+
+on:
+  # Run daily at 6 AM UTC (1 AM EST, 10 PM PST)
+  schedule:
+    - cron: '0 6 * * *'
+
+  # Manual trigger from GitHub Actions UI
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (no changes)'
+        required: false
+        default: 'false'
+        type: boolean
+
+  # Webhook trigger (for Airtable automation)
+  repository_dispatch:
+    types: [airtable-update]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Run Airtable sync
+        env:
+          AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID || 'appK4eoFrLRthiENZ' }}
+          AIRTABLE_TABLE_ID: ${{ secrets.AIRTABLE_TABLE_ID || 'tbldVnfJ0SBfo0hiK' }}
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" == "true" ]; then
+            node scripts/sync-airtable.js --dry-run
+          else
+            node scripts/sync-airtable.js
+          fi
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git add -A
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.has_changes == 'true' && github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Get count of changed files
+          CHANGED=$(git diff --staged --name-only | wc -l)
+          NEW_EXPERTS=$(git diff --staged --name-only -- 'experts/*.html' | grep -v 'index.html' | wc -l)
+
+          # Create commit message
+          if [ "$NEW_EXPERTS" -gt 0 ]; then
+            git commit -m "feat(experts): sync from Airtable (+${NEW_EXPERTS} new profiles)
+
+          Automated sync from Airtable database.
+          Changed files: ${CHANGED}
+          New expert profiles: ${NEW_EXPERTS}
+
+          Triggered by: ${{ github.event_name }}"
+          else
+            git commit -m "chore(experts): update expert data from Airtable
+
+          Automated sync from Airtable database.
+          Changed files: ${CHANGED}
+
+          Triggered by: ${{ github.event_name }}"
+          fi
+
+          git push
+
+      - name: Summary
+        run: |
+          echo "## Sync Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.changes.outputs.has_changes }}" == "true" ]; then
+            echo "✅ Changes detected and committed" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### Changed files:" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            git diff --staged --name-only >> $GITHUB_STEP_SUMMARY || echo "Already committed" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ No changes detected" >> $GITHUB_STEP_SUMMARY
+          fi
