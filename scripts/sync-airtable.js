@@ -863,6 +863,134 @@ function generateExpertHTML(expert) {
 }
 
 /**
+ * Generate expert card HTML for index page
+ */
+function generateExpertCard(slug, expert) {
+    const initials = expert.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+    const specialtyDisplay = (expert.specialty || 'automation').split(' ').map(s =>
+        s.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+    ).slice(0, 2).join(' & ');
+
+    const priceDisplay = expert.priceMin ? `From $${expert.priceMin.toLocaleString()}` : 'Contact for pricing';
+    const locationDisplay = expert.location || 'International';
+    const reviewCount = expert.reviewCount || 0;
+    const ghlUrl = expert.ghlDirectoryUrl;
+    const bookingLink = expert.bookingLink || '#';
+
+    // Generate a short quote from services
+    let quote = '"GHL expert ready to help"';
+    if (expert.coreServices) {
+        const firstLine = expert.coreServices.split('\n')[0].trim();
+        if (firstLine.length > 10 && firstLine.length < 60) {
+            quote = `"${firstLine}"`;
+        }
+    }
+
+    const reviewsHtml = ghlUrl
+        ? `<span class="rating-count"><a href="${ghlUrl}" target="_blank">${reviewCount} reviews</a></span>`
+        : `<span class="rating-count">${reviewCount} reviews</span>`;
+
+    return `
+        <!-- ${expert.name} -->
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="${expert.specialty || 'automation'}" data-verified="true">
+            <div class="verified-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                FlightSuite Verified Pro
+            </div>
+            <div class="card-body">
+                <div class="expert-header">
+                    <div class="expert-photo">${initials}</div>
+                    <div class="expert-info">
+                        <h3 class="expert-name">${expert.name}</h3>
+                        <p class="expert-specialty">${specialtyDisplay}</p>
+                        <div class="expert-rating">
+                            <span class="rating-stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                            ${reviewsHtml}
+                        </div>
+                        <span class="claimed-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Claimed Profile
+                        </span>
+                    </div>
+                </div>
+                <p class="expert-quote">${quote}</p>
+                <div class="expert-meta">
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <strong>${priceDisplay}</strong>
+                    </span>
+                    <span class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        ${locationDisplay}
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="/experts/${slug}.html" class="btn-profile">View Profile</a>
+                    <a href="${bookingLink}" class="btn-book" target="_blank" title="Book a call">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </a>
+                </div>
+            </div>
+        </article>`;
+}
+
+/**
+ * Update experts/index.html with all expert cards
+ */
+function updateExpertsIndexPage(experts, dryRun) {
+    const indexPath = path.join(CONFIG.EXPERTS_DIR, 'index.html');
+
+    try {
+        let html = fs.readFileSync(indexPath, 'utf8');
+
+        // Generate cards for all experts, sorted by review count (descending)
+        const sortedExperts = Object.entries(experts)
+            .sort((a, b) => (b[1].reviewCount || 0) - (a[1].reviewCount || 0));
+
+        const cardsHtml = sortedExperts
+            .map(([slug, expert]) => generateExpertCard(slug, expert))
+            .join('\n');
+
+        // Replace the expert grid content
+        const gridStartMarker = '<div class="expert-grid" id="expertGrid">';
+        const gridEndMarker = '</div>\n\n    <!-- Unclaimed';
+
+        const startIndex = html.indexOf(gridStartMarker);
+        const endIndex = html.indexOf(gridEndMarker);
+
+        if (startIndex === -1 || endIndex === -1) {
+            console.log('   ⚠️  Could not find expert grid markers in index.html');
+            return;
+        }
+
+        const newHtml = html.substring(0, startIndex + gridStartMarker.length) +
+            '\n' + cardsHtml + '\n    ' +
+            html.substring(endIndex);
+
+        // Also update the count in the stats
+        const countRegex = /(\d+) Verified \+ (\d+) Unclaimed/;
+        const updatedHtml = newHtml.replace(countRegex, `${sortedExperts.length} Verified + $2 Unclaimed`);
+
+        if (!dryRun) {
+            fs.writeFileSync(indexPath, updatedHtml);
+            console.log(`   ✅ Updated experts/index.html with ${sortedExperts.length} expert cards`);
+        } else {
+            console.log(`   Would update experts/index.html with ${sortedExperts.length} expert cards`);
+        }
+    } catch (err) {
+        console.log(`   ⚠️  Error updating index.html: ${err.message}`);
+    }
+}
+
+/**
  * Main sync function
  */
 async function syncAirtable() {
@@ -970,6 +1098,10 @@ async function syncAirtable() {
     } else {
         console.log(`\nWould update experts-data.json`);
     }
+
+    // Update experts/index.html with all expert cards
+    console.log(`\n📄 Updating experts listing page...`);
+    updateExpertsIndexPage(expertsData.experts, CONFIG.DRY_RUN);
 
     // Summary
     console.log('\n' + '='.repeat(60));
