@@ -1011,7 +1011,7 @@ function updateExpertsIndexPage(experts, dryRun) {
 
         // Replace the expert grid content
         const gridStartMarker = '<div class="expert-grid" id="expertGrid">';
-        const gridEndMarker = '</div>\n\n    <!-- Unclaimed';
+        const gridEndMarker = '</div>\n\n    <div class="section-divider"';
 
         const startIndex = html.indexOf(gridStartMarker);
         const endIndex = html.indexOf(gridEndMarker);
