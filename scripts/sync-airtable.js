@@ -120,6 +120,56 @@ function extractGHLUrl(profileLink) {
 }
 
 /**
+ * Extract location from GHL directory URL
+ * URLs like: /united-states/san-mateo/certified-admins/name or /australia/sydney/certified-admins/name
+ */
+function extractLocationFromGHLUrl(ghlUrl) {
+    if (!ghlUrl) return 'International';
+
+    // Known country mappings (URL path → Display name)
+    const countryMap = {
+        'united-states': 'United States',
+        'united-kingdom': 'United Kingdom',
+        'australia': 'Australia',
+        'canada': 'Canada',
+        'philippines': 'Philippines',
+        'pakistan': 'Pakistan',
+        'india': 'India',
+        'germany': 'Germany',
+        'ireland': 'Ireland',
+        'italy': 'Italy',
+        'greece': 'Greece',
+        'portugal': 'Portugal',
+        'new-zealand': 'New Zealand',
+        'united-arab-emirates': 'UAE',
+        'dubai': 'UAE',
+        'cameroon': 'Cameroon',
+        'venezuela': 'Venezuela',
+        'chile': 'Chile',
+        'ecuador': 'Ecuador',
+    };
+
+    try {
+        const url = new URL(ghlUrl);
+        const pathParts = url.pathname.split('/').filter(p => p && p !== 'certified-admins' && p !== 'ghl');
+
+        // Check if first part is a known country
+        if (pathParts.length > 0) {
+            const firstPart = pathParts[0].toLowerCase();
+            if (countryMap[firstPart]) {
+                return countryMap[firstPart];
+            }
+            // If it's a city name (not in country map), try to identify common patterns
+            // Some URLs are like /doylestown/certified-admins/name (US city without country)
+        }
+
+        return 'International';
+    } catch (e) {
+        return 'International';
+    }
+}
+
+/**
  * Generate URL slug from name
  */
 function generateSlug(name) {
@@ -290,7 +340,7 @@ function transformAirtableRecord(record, scrapedData) {
             priceMin: priceMin || 100,
             featured: false,
             specialty: extractSpecialty(fields['Core Services']),
-            location: scrapedData?.location || 'International',
+            location: extractLocationFromGHLUrl(ghlUrl),
             budgetTier: getBudgetTier(priceMin),
             industries: extractIndustries(fields['Target Clients']),
             crm: [crmType === 'ghl' ? 'gohighlevel' : crmType],

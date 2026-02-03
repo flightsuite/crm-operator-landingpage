@@ -13,7 +13,7 @@
       "priceMin": 1499,
       "featured": false,
       "specialty": "full-builds funnels automation",
-      "location": "International",
+      "location": "United States",
       "budgetTier": "high",
       "industries": [
         "agency"
@@ -40,7 +40,7 @@
       "priceMin": 1,
       "featured": false,
       "specialty": "full-builds funnels automation integrations",
-      "location": "International",
+      "location": "United States",
       "budgetTier": "low",
       "industries": [
         "agency"
@@ -67,7 +67,7 @@
       "priceMin": 200,
       "featured": false,
       "specialty": "integrations",
-      "location": "International",
+      "location": "United States",
       "budgetTier": "mid",
       "industries": [
         "agency"
@@ -94,7 +94,7 @@
       "priceMin": 15,
       "featured": false,
       "specialty": "automation ai-voice",
-      "location": "International",
+      "location": "United States",
       "budgetTier": "low",
       "industries": [
         "real-estate",
@@ -228,7 +228,7 @@
       "priceMin": 150,
       "featured": false,
       "specialty": "automation ai-voice integrations",
-      "location": "International",
+      "location": "Australia",
       "budgetTier": "mid",
       "industries": [
         "agency",
@@ -313,7 +313,7 @@
       "priceMin": 97,
       "featured": false,
       "specialty": "full-builds",
-      "location": "International",
+      "location": "United States",
       "budgetTier": "low",
       "industries": [
         "agency"
@@ -340,7 +340,7 @@
       "priceMin": 300,
       "featured": false,
       "specialty": "full-builds funnels automation",
-      "location": "International",
+      "location": "United States",
       "budgetTier": "mid",
       "industries": [
         "coach",
@@ -450,7 +450,7 @@
       "priceMin": 30,
       "featured": false,
       "specialty": "automation ai-voice integrations",
-      "location": "International",
+      "location": "United States",
       "budgetTier": "low",
       "industries": [
         "agency"
@@ -477,7 +477,7 @@
       "priceMin": 20,
       "featured": false,
       "specialty": "funnels automation",
-      "location": "International",
+      "location": "Philippines",
       "budgetTier": "low",
       "industries": [
         "agency",
@@ -507,7 +507,7 @@
       "priceMin": 17,
       "featured": false,
       "specialty": "automation integrations",
-      "location": "International",
+      "location": "Pakistan",
       "budgetTier": "low",
       "industries": [
         "agency"
@@ -533,7 +533,7 @@
       "priceMin": 100,
       "featured": false,
       "specialty": "automation integrations",
-      "location": "International",
+      "location": "Philippines",
       "budgetTier": "mid",
       "industries": [
         "agency",
@@ -561,7 +561,7 @@
       "priceMin": 12,
       "featured": false,
       "specialty": "funnels automation integrations",
-      "location": "International",
+      "location": "United States",
       "budgetTier": "low",
       "industries": [
         "agency",
@@ -618,7 +618,7 @@
       "priceMin": 10,
       "featured": false,
       "specialty": "funnels automation ai-voice integrations",
-      "location": "International",
+      "location": "Pakistan",
       "budgetTier": "low",
       "industries": [
         "agency"
@@ -645,7 +645,7 @@
       "priceMin": 2500,
       "featured": false,
       "specialty": "funnels automation ai-voice integrations",
-      "location": "International",
+      "location": "India",
       "budgetTier": "high",
       "industries": [
         "agency"
@@ -727,7 +727,7 @@
       "priceMin": 20,
       "featured": false,
       "specialty": "automation",
-      "location": "International",
+      "location": "United States",
       "budgetTier": "low",
       "industries": [
         "agency",
