@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-03",
+  "lastUpdated": "2026-02-06",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
@@ -737,6 +737,7 @@
         "gohighlevel"
       ],
       "email": "eduardo@addressableteam.com",
+      "fathomLink": "https://fathom.video/share/VkUrtvVR-3zehyrh7GeVtCRM1uEy6_1C",
       "coreServices": "GoHighLevel setup and customization\nAdvanced automations and workflow builds\nSnapshot creation and system architecture\nPipeline and CRM configuration\nA2P setup and support\nTechnical troubleshooting and ongoing support\nAbility to coordinate additional resources for marketing or development when needed",
       "pricingDetails": "Hourly rate of $20 USD\nProject based pricing depending on scope\nRetainer options available for ongoing support",
       "targetClients": "Agency owners\nBusinesses already using GoHighLevel\nTeams needing advanced GHL support rather than marketing services\nClients looking for flexible technical help",
@@ -768,6 +769,147 @@
       "pricingDetails": "Primarily ongoing monthly retainer / flat rate arrangements\nTypical rates: $50–$70/hour for specialized work",
       "targetClients": "Small businesses and agency owners\nClients seeking ongoing CRM support rather than initial builds\nBusiness owners looking to delegate system tasks and workflow management",
       "bookingLink": "None"
+    },
+    "christine-haley": {
+      "name": "Christine Haley",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/christine-haley",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 150,
+      "featured": false,
+      "specialty": "automation integrations",
+      "location": "International",
+      "budgetTier": "mid",
+      "industries": [
+        "agency"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "hello@yourtechsage.net",
+      "fathomLink": "https://fathom.video/share/_p17mKYaevveNxvZh_3AN5UkxQv-FCUk",
+      "coreServices": "Backend system setup and optimization\n\nAutomation and workflow creation\n\nCustom objects and associations\n\nFrontend design as needed to support client deliverables\n\nConsulting on technology strategy, fractional CIO services, and SaaS integrations\n\nEmail migrations, cybersecurity, and Google Workspace/Office 365 support",
+      "pricingDetails": "Flexible pricing models: project-based or retainer\n\nHourly rate for consulting/fractional CIO: $150/hr\n\nRetainers: minimum of 5 hours/month prepaid, scope-dependent",
+      "targetClients": "Works with both businesses and agencies using GoHighLevel",
+      "bookingLink": "https://sugarpixelstudios.com/#calendar-oMcTBE0vxO"
+    },
+    "hazel-jane-dino": {
+      "name": "Hazel Jane Dino",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/winnipeg/certified-admins/hazel-jane-dino",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 25,
+      "featured": false,
+      "specialty": "funnels automation",
+      "location": "International",
+      "budgetTier": "low",
+      "industries": [
+        "agency"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "hdino@betechky.com",
+      "fathomLink": "https://fathom.video/share/SigQrPPWgiysysu5xLVUxj8CnzmzJZx3",
+      "coreServices": "Custom website and funnel builds\nWorkflow and automation setup\nCRM tagging and contact logic\nMembership and subscription systems\nBooking and scheduling systems with confirmations\nA2P setup and compliance support\nConversational AI and chatbot setup\nQR code based systems for ticketing, access control, and promotions\nEcommerce and payment workflows inside GoHighLevel",
+      "pricingDetails": "Hourly rate around $25 USD\nFlexible pricing based on project scope and client stage\nOpen to project based work and longer term engagements\nWorks with both agencies and direct business owners using GoHighLevel",
+      "targetClients": "Agency owners using GoHighLevel\nBusinesses already on GoHighLevel\nClients needing fully customized systems and automation\nClients who want done for you execution rather than templates",
+      "bookingLink": "https://hazeldino.com/why-choose-me/"
+    },
+    "chandan-mitra": {
+      "name": "Chandan Mitra",
+      "ghlDirectoryUrl": null,
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 30,
+      "featured": false,
+      "specialty": "automation ai-voice integrations",
+      "location": "International",
+      "budgetTier": "low",
+      "industries": [
+        "agency",
+        "coach",
+        "local-service"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "risegenie@gmail.com",
+      "fathomLink": "https://fathom.video/share/DCG3VKvq6RU2i-r_3yt_6SjxP_NLxqr4",
+      "coreServices": "Website design and development\nWorkflow and automation setup\nSnapshot creation and optimization\nA2P 10DLC setup and compliance with high approval success rate\nCalendar, Zoom, Stripe, and CRM integrations\nClient onboarding and training including custom walkthrough videos\nConversational and voice AI agent setup and training",
+      "pricingDetails": "Hourly rate between $30 to $40 depending on scope and volume\nProject based work priced after reviewing requirements\nTypical small updates or optimizations scoped hourly\nA2P setup and approval typically priced at $60 per brand and campaign\nMonthly or higher volume work available at adjusted hourly rates",
+      "targetClients": "Agency owners using GoHighLevel\nBusinesses using HighLevel directly\nHVAC and service based businesses\nCoaches and consultants",
+      "bookingLink": "https://bookme.risegenie.com/consultation"
+    },
+    "arvin-cabases": {
+      "name": "Arvin Cabases",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/general-trias-city/certified-admins/arvin-cabases-mba",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 10,
+      "featured": false,
+      "specialty": "funnels automation",
+      "location": "Philippines",
+      "budgetTier": "low",
+      "industries": [
+        "agency"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "vincabases@gmail.com",
+      "fathomLink": "https://fathom.video/share/bLLaxMzU6yxX5C8ohKFCgSV9RRRts84e",
+      "coreServices": "Funnel and website design inside GoHighLevel\nWorkflow and automation setup\nCRM tagging and automation logic\nLead routing and contact organization\nBasic chatbot and conversational automation\nSupport for agencies and direct business clients",
+      "pricingDetails": "Hourly rate starting at $10 USD\nOpen to project based work depending on scope\nCurrently focused on building case studies and testimonials within GoHighLevel\nRates expected to increase as portfolio grows",
+      "targetClients": "Agency owners using GoHighLevel\nBusinesses already on GoHighLevel\nClients needing funnel rebuilds or automation cleanup\nClients looking for conversion focused funnel design rather than ads management",
+      "bookingLink": "https://api.leadconnectorhq.com/widget/bookings/book-a-call-with-arvin-cabases"
+    },
+    "erieka-sato": {
+      "name": "Erieka Sato",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/erieka-sato",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 25,
+      "featured": false,
+      "specialty": "funnels automation integrations",
+      "location": "International",
+      "budgetTier": "low",
+      "industries": [
+        "agency",
+        "coach",
+        "real-estate",
+        "local-service",
+        "saas"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "serieka96@gmail.com",
+      "fathomLink": "https://fathom.video/share/969eDhpZLVaFhdqJydXDPpAznC5xfurD",
+      "coreServices": "CRM structure and system architecture\nWorkflow and automation setup and optimization\nSMS and email automation\nA2P 10DLC setup and compliance\nConversational AI using native GoHighLevel tools\nSystem cleanup and rebuilds\nCustom funnel or website enhancements using code when needed\nCRM migrations and third party integrations\nClient onboarding and education to ensure long term usability",
+      "pricingDetails": "Discovery first approach before pricing\nClients grant access for review prior to scoping\nHourly rate starting at $25 USD\nProject based pricing depending on complexity\nExample three page site with basic automation typically starts around $1,000\nMonthly retainer options available\nAbility to scale support with additional resources when needed",
+      "targetClients": "Agencies using GoHighLevel\nSaaS owners\nService based businesses\nCoaches and real estate teams\nClients already using GHL or new users needing proper setup",
+      "bookingLink": "https://www.seriekava.com/bookinglink"
     }
   },
   "unclaimedExperts": {
