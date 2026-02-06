@@ -18,6 +18,9 @@ on:
   repository_dispatch:
     types: [airtable-update]
 
+permissions:
+  contents: write
+
 jobs:
   sync:
     runs-on: ubuntu-latest
