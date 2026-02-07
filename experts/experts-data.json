@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-06",
+  "lastUpdated": "2026-02-07",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
@@ -166,8 +166,8 @@
     "huzaifa-siddiqi": {
       "name": "Huzaifa Siddiqi",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/multan/certified-admins/huzaifa-siddiqi",
-      "rating": 3,
-      "reviewCount": 3,
+      "rating": 5,
+      "reviewCount": 0,
       "certifications": [
         "Certified Admin"
       ],
@@ -580,8 +580,8 @@
     "haris-khattak": {
       "name": "Haris Khattak",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/haris-khattak",
-      "rating": 3,
-      "reviewCount": 3,
+      "rating": 5,
+      "reviewCount": 0,
       "certifications": [
         "Certified Admin"
       ],
