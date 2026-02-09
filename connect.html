@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect WhatsApp | FlightSuite</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Verify your phone number and connect WhatsApp to FlightSuite. Enter your pairing code in the Chrome extension to complete setup.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://flightsuite.ai/connect">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flightsuite.ai/connect">
+    <meta property="og:site_name" content="FlightSuite">
+    <meta property="og:title" content="Connect WhatsApp | FlightSuite">
+    <meta property="og:description" content="Verify your phone number and connect WhatsApp to FlightSuite CRM CoPilot.">
+    <meta property="og:image" content="https://flightsuite.ai/Assets/social-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="FlightSuite WhatsApp Connection">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://flightsuite.ai/connect">
+    <meta name="twitter:title" content="Connect WhatsApp | FlightSuite">
+    <meta name="twitter:description" content="Verify your phone number and connect WhatsApp to FlightSuite CRM CoPilot.">
+    <meta name="twitter:image" content="https://flightsuite.ai/Assets/social-preview.png">
+    <meta name="twitter:image:alt" content="FlightSuite WhatsApp Connection">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="Assets/Flight Suite Favicon vPurple.svg">
+
+    <style>
+        /* ===== CSS RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-apple-blue: #0071E3;
+            --color-ios-purple: #5E5CE6;
+            --color-success: #34C759;
+            --color-warning: #FF9500;
+            --color-info: #5AC8FA;
+            --color-bg-primary: #FFFFFF;
+            --color-bg-secondary: #F5F5F7;
+            --color-text-primary: #1D1D1F;
+            --color-text-secondary: #6E6E73;
+            --color-text-tertiary: #86868B;
+            --color-border: rgba(0, 0, 0, 0.1);
+            --max-width: 1440px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-apple-blue);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .connect-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem);
+        }
+
+        .connect-card {
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ===== STATE VISIBILITY ===== */
+        .state {
+            display: none;
+        }
+
+        .state.active {
+            display: block;
+        }
+
+        /* ===== ICONS ===== */
+        .state-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .state-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .icon-success {
+            background: rgba(52, 199, 89, 0.12);
+        }
+
+        .icon-success svg {
+            color: var(--color-success);
+        }
+
+        .icon-warning {
+            background: rgba(255, 149, 0, 0.12);
+        }
+
+        .icon-warning svg {
+            color: var(--color-warning);
+        }
+
+        .icon-info {
+            background: rgba(90, 200, 250, 0.12);
+        }
+
+        .icon-info svg {
+            color: var(--color-info);
+        }
+
+        /* ===== SPINNER ===== */
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid var(--color-border);
+            border-top-color: var(--color-ios-purple);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        .state-headline {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            color: var(--color-text-primary);
+        }
+
+        .state-body {
+            font-size: 1.0625rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        .phone-display {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin: 1rem 0 1.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* ===== PAIRING CODE CARD ===== */
+        .pairing-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .pairing-label {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-text-tertiary);
+            margin-bottom: 0.75rem;
+        }
+
+        .pairing-code {
+            font-family: "SF Mono", Monaco, "Cascadia Code", "Courier New", monospace;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--color-ios-purple);
+            margin-bottom: 1rem;
+            user-select: all;
+        }
+
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--color-bg-primary);
+            border: 1px solid var(--color-border);
+            border-radius: 100px;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            justify-content: center;
+            min-height: 48px;
+        }
+
+        .copy-btn:hover {
+            border-color: var(--color-ios-purple);
+            color: var(--color-ios-purple);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+
+        .copy-btn svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .copy-btn.copied {
+            border-color: var(--color-success);
+            color: var(--color-success);
+        }
+
+        /* ===== SETUP STEPS ===== */
+        .setup-steps {
+            text-align: left;
+            margin: 2rem 0;
+        }
+
+        .setup-steps-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--color-text-tertiary);
+            margin-bottom: 1rem;
+        }
+
+        .setup-step {
+            display: flex;
+            gap: 0.875rem;
+            align-items: flex-start;
+            padding: 0.75rem 0;
+        }
+
+        .setup-step + .setup-step {
+            border-top: 1px solid var(--color-border);
+        }
+
+        .step-num {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8125rem;
+        }
+
+        .step-text {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+            padding-top: 0.2rem;
+        }
+
+        .step-text strong {
+            color: var(--color-text-primary);
+        }
+
+        /* ===== SECONDARY LINK ===== */
+        .install-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.9375rem;
+            color: var(--color-apple-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .install-link:hover {
+            opacity: 0.8;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--color-bg-secondary);
+            border-top: 1px solid var(--color-border);
+            padding: 3rem clamp(1.5rem, 4vw, 3rem);
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-apple-blue);
+        }
+
+        .footer-copyright {
+            color: var(--color-text-tertiary);
+            font-size: 0.875rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .copy-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="/" class="logo">FlightSuite</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/#install">Install</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="connect-wrapper">
+        <div class="connect-card">
+
+            <!-- State: Loading -->
+            <div id="state-loading" class="state">
+                <div class="spinner"></div>
+                <p class="state-body">Verifying your phone number&hellip;</p>
+            </div>
+
+            <!-- State: Verified -->
+            <div id="state-verified" class="state">
+                <div class="state-icon icon-success">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                </div>
+                <h1 class="state-headline">Your phone number is verified!</h1>
+                <div id="phone-display" class="phone-display"></div>
+
+                <div class="pairing-card">
+                    <div class="pairing-label">Your Pairing Code</div>
+                    <div id="pairing-code" class="pairing-code"></div>
+                    <button id="copy-btn" class="copy-btn" type="button">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                        </svg>
+                        <span id="copy-text">Copy Code</span>
+                    </button>
+                </div>
+
+                <div class="setup-steps">
+                    <div class="setup-steps-title">Complete Setup</div>
+                    <div class="setup-step">
+                        <div class="step-num">1</div>
+                        <div class="step-text">Open the FlightSuite Chrome extension sidebar</div>
+                    </div>
+                    <div class="setup-step">
+                        <div class="step-num">2</div>
+                        <div class="step-text">Go to <strong>Settings &rarr; Connect WhatsApp</strong></div>
+                    </div>
+                    <div class="setup-step">
+                        <div class="step-num">3</div>
+                        <div class="step-text">Enter the pairing code above</div>
+                    </div>
+                </div>
+
+                <a href="https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb" class="install-link" target="_blank" rel="noopener">
+                    Don't have FlightSuite? Install from Chrome Web Store &rarr;
+                </a>
+            </div>
+
+            <!-- State: Expired / Invalid -->
+            <div id="state-expired" class="state">
+                <div class="state-icon icon-warning">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                </div>
+                <h1 class="state-headline">This link has expired or is invalid</h1>
+                <p class="state-body">Send any message to our WhatsApp number to get a new link.</p>
+            </div>
+
+            <!-- State: No Token -->
+            <div id="state-no-token" class="state">
+                <div class="state-icon icon-info">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="16" x2="12" y2="12"/>
+                        <line x1="12" y1="8" x2="12.01" y2="8"/>
+                    </svg>
+                </div>
+                <h1 class="state-headline">Looking for WhatsApp setup?</h1>
+                <p class="state-body">Send any message to our WhatsApp number to get started.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/installation-guide.html">Installation Guide</a>
+                <a href="/#install">Get Early Access</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2025 FlightSuite. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var stateLoading = document.getElementById('state-loading');
+            var stateVerified = document.getElementById('state-verified');
+            var stateExpired = document.getElementById('state-expired');
+            var stateNoToken = document.getElementById('state-no-token');
+            var phoneDisplay = document.getElementById('phone-display');
+            var pairingCode = document.getElementById('pairing-code');
+            var copyBtn = document.getElementById('copy-btn');
+            var copyText = document.getElementById('copy-text');
+
+            function showState(el) {
+                [stateLoading, stateVerified, stateExpired, stateNoToken].forEach(function (s) {
+                    s.classList.remove('active');
+                });
+                el.classList.add('active');
+            }
+
+            function maskPhone(phone) {
+                // Strip non-digit/plus characters
+                var cleaned = phone.replace(/[^\d+]/g, '');
+                var digits = cleaned.replace(/\+/, '');
+
+                if (digits.length >= 10) {
+                    var last4 = digits.slice(-4);
+                    var countryCode = digits.slice(0, digits.length - 10) || '1';
+                    return '+' + countryCode + ' (***) ***-' + last4;
+                }
+
+                // Fallback for short numbers
+                var last4 = digits.slice(-4);
+                var prefix = digits.slice(0, -4);
+                return '+' + (prefix || '') + ' ***' + last4;
+            }
+
+            function copyToClipboard(text) {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    return navigator.clipboard.writeText(text).then(function () {
+                        return true;
+                    }).catch(function () {
+                        return fallbackCopy(text);
+                    });
+                }
+                return Promise.resolve(fallbackCopy(text));
+            }
+
+            function fallbackCopy(text) {
+                var textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.left = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.select();
+                var ok = false;
+                try { ok = document.execCommand('copy'); } catch (e) { /* ignore */ }
+                document.body.removeChild(textarea);
+                return ok;
+            }
+
+            // Parse token from URL
+            var params = new URLSearchParams(window.location.search);
+            var token = params.get('pair');
+
+            if (!token) {
+                showState(stateNoToken);
+                return;
+            }
+
+            showState(stateLoading);
+
+            fetch('https://prod.flightsuite.ai/api/v1/channels/pairing/resolve', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ pairing_token: token })
+            })
+            .then(function (res) {
+                if (res.ok) return res.json();
+                throw new Error(res.status);
+            })
+            .then(function (data) {
+                // Mask and display phone
+                var phone = data.phone || data.phone_number || '';
+                phoneDisplay.textContent = phone ? maskPhone(phone) : '';
+
+                // Extract pairing code (last 8 chars of token)
+                var code = token.replace(/-/g, '').slice(-8);
+                pairingCode.textContent = code;
+
+                showState(stateVerified);
+
+                // Copy button handler
+                copyBtn.addEventListener('click', function () {
+                    copyToClipboard(code).then(function () {
+                        copyBtn.classList.add('copied');
+                        copyText.textContent = 'Copied!';
+                        setTimeout(function () {
+                            copyBtn.classList.remove('copied');
+                            copyText.textContent = 'Copy Code';
+                        }, 2000);
+                    });
+                });
+            })
+            .catch(function () {
+                showState(stateExpired);
+            });
+        })();
+    </script>
+</body>
+</html>
