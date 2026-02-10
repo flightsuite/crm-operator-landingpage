@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-09",
+  "lastUpdated": "2026-02-10",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
@@ -909,6 +909,88 @@
       "pricingDetails": "Discovery first approach before pricing\nClients grant access for review prior to scoping\nHourly rate starting at $25 USD\nProject based pricing depending on complexity\nExample three page site with basic automation typically starts around $1,000\nMonthly retainer options available\nAbility to scale support with additional resources when needed",
       "targetClients": "Agencies using GoHighLevel\nSaaS owners\nService based businesses\nCoaches and real estate teams\nClients already using GHL or new users needing proper setup",
       "bookingLink": "https://www.seriekava.com/bookinglink"
+    },
+    "jomelyn-g-benido": {
+      "name": "Jomelyn G. Benido",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/tanauan/certified-admins/jomelyn-benido",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 15,
+      "featured": false,
+      "specialty": "funnels automation",
+      "location": "Philippines",
+      "budgetTier": "low",
+      "industries": [
+        "agency"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "jombenido27@gmail.com",
+      "fathomLink": "https://fathom.video/share/VNv5czYEUxAajoDe6W9DY9PzUsyeagw8",
+      "coreServices": "Funnel and website design inside GoHighLevel\nSales pages, checkout pages, and thank you pages\nBasic automations tied to funnels\nCalendar and appointment booking setup\nCourse and program setup and organization\nLead capture and feedback form setup\nLight CRM organization to support offers and programs",
+      "pricingDetails": "Hourly rate at $15 USD for business owners\nProject based funnel builds starting around $500 depending on scope\nPricing varies based on funnel length and complexity",
+      "targetClients": "Agency owners needing funnel execution support\nBusiness owners using GoHighLevel\nClients with an existing offer who need structure and systems\nClients looking for practical, done for you funnel builds",
+      "bookingLink": "https://api.leadconnectorhq.com/widget/booking/tmmq2yjkhKipxcKUyOIX"
+    },
+    "teamup-local": {
+      "name": "TeamUp Local",
+      "ghlDirectoryUrl": null,
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 1000,
+      "featured": false,
+      "specialty": "ai-voice integrations",
+      "location": "International",
+      "budgetTier": "high",
+      "industries": [
+        "agency"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "info@teamuplocal.com",
+      "fathomLink": "https://fathom.video/share/1y36oieZTGXAUsw-S1H25cQWpcZfjmq5",
+      "coreServices": "Advanced GoHighLevel build outs and customization\nAPI and third party integrations using tools like N8N\nCustom snapshot development for agencies and vertical specific use cases\nCRM integrations for industries with existing systems\nVoice AI and conversational AI\nA2P setup and compliance with white glove client education\nAgent Studio and emerging HighLevel AI tools",
+      "pricingDetails": "Projects typically start just under $1,000\nMid to large projects range into five figures depending on scope\nMulti month engagements available for complex builds\nGenerally not focused on low budget or basic setup projects, though open to reviewing fit",
+      "targetClients": "Established agencies using GoHighLevel\nAgencies building vertical specific or custom snapshots\nBusinesses with complex workflows or existing CRMs\nClients looking for premium, long term solutions rather than basic onboarding",
+      "bookingLink": "https://teamuplocal.com/book-demo"
+    },
+    "jamm-lacbawan": {
+      "name": "Jamm Lacbawan",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/certified-admins/jamm-lacbawan",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 500,
+      "featured": false,
+      "specialty": "funnels automation ai-voice integrations",
+      "location": "Philippines",
+      "budgetTier": "high",
+      "industries": [
+        "agency",
+        "local-service"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "lacbawanjamm@gmail.com",
+      "fathomLink": "https://fathom.video/share/T3pZBEisi1JxznaGKE4ozWr1nRa4Jv1F",
+      "coreServices": "Funnel and website builds inside GoHighLevel\nAccount setup and structure\nAutomations tied to funnels and bookings\nCalendar and appointment booking setup\nBasic integrations using tools like Zapier and Make\nExperience testing native Conversational AI and Voice AI features",
+      "pricingDetails": "Project based only\nBasic three page funnel starting around $500\nCustom designs and advanced features priced based on scope\nHourly and retainer work not currently offered",
+      "targetClients": "Clients who understand their offer and funnel goals\nProjects with clear scope, timeline, and deliverables\nBusinesses looking for execution rather than ongoing support\n\n",
+      "bookingLink": "https://yourgrowthpartner.hirea.digital/widget/bookings/lacbawan-jamm"
     }
   },
   "unclaimedExperts": {
