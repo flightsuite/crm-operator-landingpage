@@ -103,6 +103,7 @@
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
 
         body {
@@ -1405,13 +1406,26 @@
                 </select>
             </div>
         </div>
+        <div class="filter-container" style="margin-top: 8px;">
+            <span class="filter-label">Industry:</span>
+            <div class="filter-chips-wrapper">
+                <div class="filter-chips" id="industryFilters">
+                    <button class="filter-chip active" data-industry-filter="all">All Industries</button>
+                    <button class="filter-chip" data-industry-filter="agency">Agencies</button>
+                    <button class="filter-chip" data-industry-filter="real-estate">Real Estate</button>
+                    <button class="filter-chip" data-industry-filter="local-service">Local Services</button>
+                    <button class="filter-chip" data-industry-filter="coach">Coaches</button>
+                    <button class="filter-chip" data-industry-filter="healthcare">Healthcare</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Expert Grid -->
     <div class="expert-grid" id="expertGrid">
 
         <!-- Abdullah Virk -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds funnels automation integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds funnels automation integrations" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1461,7 +1475,7 @@
         </article>
 
         <!-- Vanessa Zamora -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1511,7 +1525,7 @@
         </article>
 
         <!-- Noli Aquino -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds funnels automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds funnels automation" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1561,7 +1575,7 @@
         </article>
 
         <!-- Haiyya Bhai -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation integrations" data-verified="true" data-industries="agency coach">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1611,7 +1625,7 @@
         </article>
 
         <!-- Salman Tariq -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1661,7 +1675,7 @@
         </article>
 
         <!-- Seth Wixtrom -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="integrations" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1711,7 +1725,7 @@
         </article>
 
         <!-- Cristina Samoila -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true" data-industries="agency coach healthcare">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1761,7 +1775,7 @@
         </article>
 
         <!-- Deborah Spence -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation ai-voice" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation ai-voice" data-verified="true" data-industries="real-estate local-service">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1811,7 +1825,7 @@
         </article>
 
         <!-- Jithin Sujala -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation ai-voice integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation ai-voice integrations" data-verified="true" data-industries="agency coach local-service">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1861,7 +1875,7 @@
         </article>
 
         <!-- Ammar Yasir -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds funnels automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds funnels automation" data-verified="true" data-industries="coach local-service">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1911,7 +1925,7 @@
         </article>
 
         <!-- Eduardo Prieto -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true" data-industries="agency local-service">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1961,7 +1975,7 @@
         </article>
 
         <!-- Huzaifa Siddiqi -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds funnels automation integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds funnels automation integrations" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2011,7 +2025,7 @@
         </article>
 
         <!-- Josimara Hoffman -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true" data-industries="local-service">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2061,7 +2075,7 @@
         </article>
 
         <!-- Abdelwahab Aitichou -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation ai-voice integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation ai-voice integrations" data-verified="true" data-industries="agency local-service">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2111,7 +2125,7 @@
         </article>
 
         <!-- Mike Gorski -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="full-builds" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2161,7 +2175,7 @@
         </article>
 
         <!-- Ezechiel Joachim -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="integrations" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2211,7 +2225,7 @@
         </article>
 
         <!-- Vanessa Mishra -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true" data-industries="agency real-estate local-service">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2261,7 +2275,7 @@
         </article>
 
         <!-- Bernadette Abonales -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2311,7 +2325,7 @@
         </article>
 
         <!-- DIVYESH GOHIL -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation ai-voice integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation ai-voice integrations" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2361,7 +2375,7 @@
         </article>
 
         <!-- Akhimi Xilca Zambales -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation" data-verified="true" data-industries="agency coach real-estate healthcare">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2411,7 +2425,7 @@
         </article>
 
         <!-- Abdul Rahman -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation integrations" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2461,7 +2475,7 @@
         </article>
 
         <!-- Cian Ohm -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation integrations" data-verified="true" data-industries="agency local-service">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2512,7 +2526,7 @@
 
         <!-- Sabik Ali
  -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation integrations" data-verified="true" data-industries="agency local-service">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2563,7 +2577,7 @@
         </article>
 
         <!-- Haris Khattak -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation integrations" data-verified="true" data-industries="agency coach local-service">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2613,7 +2627,7 @@
         </article>
 
         <!-- Fahad Bukhari -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation ai-voice integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation ai-voice integrations" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2663,7 +2677,7 @@
         </article>
 
         <!-- Durvesh Naik -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation ai-voice integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation ai-voice integrations" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2713,7 +2727,7 @@
         </article>
 
         <!-- Clare Inyang -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation integrations" data-verified="true" data-industries="coach">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2763,7 +2777,7 @@
         </article>
 
         <!-- Dan Allsup  -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2813,7 +2827,7 @@
         </article>
 
         <!-- Christine Haley -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation integrations" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2863,7 +2877,7 @@
         </article>
 
         <!-- Hazel Jane Dino -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2913,7 +2927,7 @@
         </article>
 
         <!-- Chandan Mitra -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation ai-voice integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="automation ai-voice integrations" data-verified="true" data-industries="agency coach local-service">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -2963,7 +2977,7 @@
         </article>
 
         <!-- Arvin Cabases -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation" data-verified="true" data-industries="agency">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -3013,7 +3027,7 @@
         </article>
 
         <!-- Erieka Sato -->
-        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation integrations" data-verified="true">
+        <article class="expert-card" data-crm="gohighlevel" data-specialty="funnels automation integrations" data-verified="true" data-industries="agency coach real-estate local-service saas">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -3307,6 +3321,7 @@
         // Filter and Sort functionality with algorithmic ranking
         const crmChips = document.querySelectorAll('#crmFilters .filter-chip:not(.disabled)');
         const specialtyChips = document.querySelectorAll('#specialtyFilters .filter-chip');
+        const industryChips = document.querySelectorAll('#industryFilters .filter-chip');
         const expertGrid = document.getElementById('expertGrid');
         const unclaimedGrid = document.getElementById('unclaimedGrid');
         const unclaimedSection = document.getElementById('unclaimedSection');
@@ -3377,7 +3392,7 @@
                     : 'GHL Certified Admin';
 
                 return `
-                    <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="${specialty}" data-verified="false">
+                    <article class="expert-card expert-card--unclaimed" data-crm="gohighlevel" data-specialty="${specialty}" data-verified="false" data-industries="">
                         <div class="unclaimed-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -3576,23 +3591,35 @@
             });
         });
 
+        // Industry filter click handler
+        industryChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                industryChips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                filterExperts();
+            });
+        });
+
         verifiedToggle.addEventListener('change', filterExperts);
         sortSelect.addEventListener('change', sortExperts);
 
         function filterExperts() {
             const activeCrmFilter = document.querySelector('#crmFilters .filter-chip.active')?.dataset.crmFilter || 'all';
             const activeSpecialtyFilter = document.querySelector('#specialtyFilters .filter-chip.active')?.dataset.filter || 'all';
+            const activeIndustryFilter = document.querySelector('#industryFilters .filter-chip.active')?.dataset.industryFilter || 'all';
             const verifiedOnly = verifiedToggle.checked;
 
             // Filter verified experts
             expertCards.forEach(card => {
                 const crm = card.dataset.crm || '';
                 const specialty = card.dataset.specialty || '';
+                const industries = card.dataset.industries || '';
 
                 let showByCrm = activeCrmFilter === 'all' || crm === activeCrmFilter;
                 let showBySpecialty = activeSpecialtyFilter === 'all' || specialty.includes(activeSpecialtyFilter);
+                let showByIndustry = activeIndustryFilter === 'all' || industries.includes(activeIndustryFilter);
 
-                card.style.display = (showByCrm && showBySpecialty) ? 'flex' : 'none';
+                card.style.display = (showByCrm && showBySpecialty && showByIndustry) ? 'flex' : 'none';
             });
 
             // Filter unclaimed experts and show/hide section
@@ -3607,11 +3634,13 @@
                 currentUnclaimedCards.forEach(card => {
                     const crm = card.dataset.crm || '';
                     const specialty = card.dataset.specialty || '';
+                    const industries = card.dataset.industries || '';
 
                     let showByCrm = activeCrmFilter === 'all' || crm === activeCrmFilter;
                     let showBySpecialty = activeSpecialtyFilter === 'all' || specialty.includes(activeSpecialtyFilter);
+                    let showByIndustry = activeIndustryFilter === 'all' || industries.includes(activeIndustryFilter);
 
-                    card.style.display = (showByCrm && showBySpecialty) ? 'flex' : 'none';
+                    card.style.display = (showByCrm && showBySpecialty && showByIndustry) ? 'flex' : 'none';
                 });
             }
 
