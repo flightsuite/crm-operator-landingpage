@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-10",
+  "lastUpdated": "2026-02-11",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
@@ -32,7 +32,7 @@
       "name": "Abdullah Virk",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/lahore/certified-admins/abdullah-virk",
       "rating": 5,
-      "reviewCount": 77,
+      "reviewCount": 79,
       "certifications": [
         "Certified Admin"
       ],
@@ -913,8 +913,8 @@
     "jomelyn-g-benido": {
       "name": "Jomelyn G. Benido",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/tanauan/certified-admins/jomelyn-benido",
-      "rating": 5,
-      "reviewCount": 0,
+      "rating": 1,
+      "reviewCount": 1,
       "certifications": [
         "Certified Admin"
       ],
@@ -991,6 +991,63 @@
       "pricingDetails": "Project based only\nBasic three page funnel starting around $500\nCustom designs and advanced features priced based on scope\nHourly and retainer work not currently offered",
       "targetClients": "Clients who understand their offer and funnel goals\nProjects with clear scope, timeline, and deliverables\nBusinesses looking for execution rather than ongoing support\n\n",
       "bookingLink": "https://yourgrowthpartner.hirea.digital/widget/bookings/lacbawan-jamm"
+    },
+    "john-guia": {
+      "name": "John Guia",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/john-guia",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 8,
+      "featured": false,
+      "specialty": "funnels automation integrations",
+      "location": "International",
+      "budgetTier": "low",
+      "industries": [
+        "agency",
+        "local-service"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "guiajohn13@gmail.com",
+      "fathomLink": "https://fathom.video/share/FZzXoBqGiMuEc5bYqGcrfJNw5TFexsa7",
+      "coreServices": "Advanced automations and workflows\nFunnels and website integration\nPayment integrations including Stripe and PayPal\nConversational AI setup\nCRM configuration and optimization\nSupport with integrations and backend logic",
+      "pricingDetails": "Hourly rate around $8\nFunnel and automation projects priced based on complexity\nOpen to retainer and ongoing support engagements",
+      "targetClients": "Primarily businesses using GoHighLevel\nOpen to working with a wide range of use cases as long as scope is clear",
+      "bookingLink": "https://john53portfolio.cc/home-page#form-eBqJI_CYRq"
+    },
+    "janine-coogler": {
+      "name": "Janine Coogler",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/fredericksburg/certified-admins/janine-coogler-hudson",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 1500,
+      "featured": false,
+      "specialty": "funnels automation integrations",
+      "location": "United States",
+      "budgetTier": "high",
+      "industries": [
+        "real-estate",
+        "local-service",
+        "healthcare"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "jhudson@mobi9tech.com",
+      "fathomLink": "https://fathom.video/share/EtWPzJDt1xjc8SkKBLR63MUF-mxV-osi",
+      "coreServices": "GoHighLevel CRM setup and system buildouts\nAdvanced automation and workflow integrations\nFunnels and website integration\nAI setup and A2P verification\nPrebuilt snapshots and subaccount deployments\nConsultation and planning to define project goals and execution\nOngoing maintenance and support for existing systems",
+      "pricingDetails": "Retainer-based starting at $1,500 per month\nIncludes a set number of projects per month with rotation\nAdditional projects can be added at higher tiers\nMaintenance of systems you fully built available at hourly rates\nConsultative planning ensures alignment with client budgets",
+      "targetClients": "Nonprofits, healthcare providers, service-based businesses, and realtors\nBusiness owners who want structured GoHighLevel setups\nClients needing guidance on system planning, automation, and workflow integration\nTeams looking for full buildouts or ongoing maintenance",
+      "bookingLink": "https://api.aidigitalentrepreneurs.net/widget/booking/1LrCeEvbSOIIEgmEfWbn"
     }
   },
   "unclaimedExperts": {
