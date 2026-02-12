@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-11",
+  "lastUpdated": "2026-02-12",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
@@ -248,8 +248,8 @@
     "cristina-samoila": {
       "name": "Cristina Samoila",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/cristina-samoila",
-      "rating": 3,
-      "reviewCount": 3,
+      "rating": 4,
+      "reviewCount": 4,
       "certifications": [
         "Certified Admin"
       ],
@@ -552,8 +552,8 @@
     "sabik-ali": {
       "name": "Sabik Ali\n",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/certified-admins/sabir-hussain",
-      "rating": 5,
-      "reviewCount": 0,
+      "rating": 1,
+      "reviewCount": 1,
       "certifications": [
         "Certified Admin"
       ],
@@ -1048,6 +1048,33 @@
       "pricingDetails": "Retainer-based starting at $1,500 per month\nIncludes a set number of projects per month with rotation\nAdditional projects can be added at higher tiers\nMaintenance of systems you fully built available at hourly rates\nConsultative planning ensures alignment with client budgets",
       "targetClients": "Nonprofits, healthcare providers, service-based businesses, and realtors\nBusiness owners who want structured GoHighLevel setups\nClients needing guidance on system planning, automation, and workflow integration\nTeams looking for full buildouts or ongoing maintenance",
       "bookingLink": "https://api.aidigitalentrepreneurs.net/widget/booking/1LrCeEvbSOIIEgmEfWbn"
+    },
+    "john-rico-cortes": {
+      "name": "John Rico Cortes",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/marikina/certified-admins/john-rico-cortes",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 12,
+      "featured": false,
+      "specialty": "funnels automation ai-voice",
+      "location": "Philippines",
+      "budgetTier": "low",
+      "industries": [
+        "local-service"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "johnricocortes@gmail.com",
+      "fathomLink": "https://fathom.video/share/ynCzktjtsu2cqMQ3dkjprfjFkQwWj-Ah",
+      "coreServices": "Website and funnel design inside GoHighLevel\nLanding pages and multi page funnel builds\nNative GoHighLevel AI voice setup\nConversational AI implementation\nWorkflow automation and backend logic\nAsset creation including basic copy and marketing materials\nGuidance on A2P setup process",
+      "pricingDetails": "Primarily project based pricing\nBasic funnel or website build starting around $500\nFull setup including new HighLevel account and foundational build around $700\nHourly work available upon request at approximately $12 per hour\nTransparent pricing structure focused on efficiency for clients",
+      "targetClients": "Small and mid sized business owners\nHVAC and home service businesses\nBusiness owners new to GoHighLevel\nClients needing funnels, websites, and AI voice setup\nEntrepreneurs looking for affordable project based builds",
+      "bookingLink": "https://highlvlrico.online/booking-page"
     }
   },
   "unclaimedExperts": {
