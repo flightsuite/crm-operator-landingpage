@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-02-12",
+  "lastUpdated": "2026-02-13",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/san-mateo/certified-admins/noli-aquino",
       "rating": 5,
-      "reviewCount": 11,
+      "reviewCount": 12,
       "certifications": [
         "Certified Admin"
       ],
@@ -32,7 +32,7 @@
       "name": "Abdullah Virk",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/lahore/certified-admins/abdullah-virk",
       "rating": 5,
-      "reviewCount": 79,
+      "reviewCount": 80,
       "certifications": [
         "Certified Admin"
       ],
@@ -1075,6 +1075,35 @@
       "pricingDetails": "Primarily project based pricing\nBasic funnel or website build starting around $500\nFull setup including new HighLevel account and foundational build around $700\nHourly work available upon request at approximately $12 per hour\nTransparent pricing structure focused on efficiency for clients",
       "targetClients": "Small and mid sized business owners\nHVAC and home service businesses\nBusiness owners new to GoHighLevel\nClients needing funnels, websites, and AI voice setup\nEntrepreneurs looking for affordable project based builds",
       "bookingLink": "https://highlvlrico.online/booking-page"
+    },
+    "kenlie-carreon-yang": {
+      "name": "Kenlie Carreon-Yang",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/baguio/certified-admins/kenlie-carreon-yang",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 100,
+      "featured": false,
+      "specialty": "funnels automation",
+      "location": "Philippines",
+      "budgetTier": "mid",
+      "industries": [
+        "agency",
+        "local-service",
+        "healthcare"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "hello@careandconvert.com",
+      "fathomLink": "https://fathom.video/share/Dg_mh1nsC3Hs_Zjv_pE3XFnfgC52PSA7",
+      "coreServices": "Backend CRM architecture and lifecycle based automation\nHealthcare and wellness focused system design\nFunnel strategy and implementation\nWorkflow routing systems and automation logic\nPipeline optimization based on user behavior\nSnapshot design and subaccount setup for agencies\nOnboarding and ticketing automation strategy\nStrategic planning sessions with implementation and testing",
+      "pricingDetails": "Hourly rate ranges from 15 to 20 USD for funnel strategy and automation work\nProject based builds typically range from 1,000 to 2,500 USD depending on scope and complexity\nOpen to both agency partnerships and direct client engagements\nFlexible structure based on client goals, timeline, and implementation needs",
+      "targetClients": "Healthcare and wellness businesses\nTrust based service providers such as doctors and clinics\nAgencies seeking backend architecture support\nBusiness owners who are not tech savvy and need a true system partner\nClients looking for strategic buildouts rather than one off tasks",
+      "bookingLink": "https://app.careandconvert.com/widget/booking/WURyhhbfdUjazBiQaV0H"
     }
   },
   "unclaimedExperts": {
