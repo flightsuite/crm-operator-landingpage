@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-13",
+  "lastUpdated": "2026-02-14",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
@@ -552,8 +552,8 @@
     "sabik-ali": {
       "name": "Sabik Ali\n",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/certified-admins/sabir-hussain",
-      "rating": 1,
-      "reviewCount": 1,
+      "rating": 5,
+      "reviewCount": 0,
       "certifications": [
         "Certified Admin"
       ],
@@ -1104,6 +1104,87 @@
       "pricingDetails": "Hourly rate ranges from 15 to 20 USD for funnel strategy and automation work\nProject based builds typically range from 1,000 to 2,500 USD depending on scope and complexity\nOpen to both agency partnerships and direct client engagements\nFlexible structure based on client goals, timeline, and implementation needs",
       "targetClients": "Healthcare and wellness businesses\nTrust based service providers such as doctors and clinics\nAgencies seeking backend architecture support\nBusiness owners who are not tech savvy and need a true system partner\nClients looking for strategic buildouts rather than one off tasks",
       "bookingLink": "https://app.careandconvert.com/widget/booking/WURyhhbfdUjazBiQaV0H"
+    },
+    "joel-negron": {
+      "name": "Joel Negron",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/virginia-beach/certified-admins/joel-negron",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 100,
+      "featured": false,
+      "specialty": "funnels automation ai-voice",
+      "location": "International",
+      "budgetTier": "mid",
+      "industries": [
+        "agency",
+        "local-service"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "joel@jvrtechllc.com",
+      "coreServices": "Conversational AI setup and optimization\nVoice AI implementation\nReview AI and content AI configuration\nAI roadmap implementation for client onboarding\nFunnel builds and website creation inside GoHighLevel\nBasic automation workflows\nCRM setup and guided client onboarding",
+      "pricingDetails": "Currently offering AI implementation and CRM services starting at 497 USD per month\nNo upfront setup fee at this time\nFocused on generating testimonials and case studies\nOpen to refining pricing structure as results and portfolio expand",
+      "targetClients": "Service based businesses exploring AI adoption\nDance academies and education focused businesses\nSmall and growing businesses wanting to implement AI early\nAgencies looking to add AI components to their existing HighLevel services",
+      "bookingLink": "https://link.jvrtechllc.com/widget/bookings/joel-personal-calender"
+    },
+    "monica-burden": {
+      "name": "Monica Burden",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/brookline/certified-admins/monica-burden",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 100,
+      "featured": false,
+      "specialty": "full-builds funnels automation",
+      "location": "United States",
+      "budgetTier": "mid",
+      "industries": [
+        "agency",
+        "real-estate"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "monica@theapiguys.com",
+      "fathomLink": "https://fathom.video/share/1iEDaXceNchDVGzcAwxwLx3ND3gzs99q",
+      "coreServices": "Full GoHighLevel system setup\nWorkflow and automation builds\nConversational AI setup\nAI agents and call transfer configuration\nA2P registration and phone setup\nFunnel and website builds inside HighLevel\nPipeline and conversation management\nClient onboarding and training",
+      "pricingDetails": "Hourly rate of 40 USD\nProject based pricing available depending on scope\nOpen to both direct business owners and agency partnerships",
+      "targetClients": "Small business owners\nReal estate agents\nLife insurance agents\nMortgage brokers\nSolar companies\nMarketing agencies needing backend HighLevel support"
+    },
+    "bridget-horton": {
+      "name": "Bridget Horton",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/rockford/certified-admins/bridget-horton",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 100,
+      "featured": false,
+      "specialty": "funnels automation",
+      "location": "International",
+      "budgetTier": "mid",
+      "industries": [
+        "local-service",
+        "healthcare"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "info@m.holisticsystemsconsulting.com",
+      "coreServices": "Custom GoHighLevel CRM builds\nWorkflow and automation setup\nPipeline configuration and contact management\nLead capture forms and funnel page creation\nSnapshot development for scalable onboarding\nSystem setup for healthcare and medical practices\nBackend organization and process optimization",
+      "pricingDetails": "Custom build pricing to be finalized\nOpen to discussing project based engagements depending on scope\nFocused primarily on direct business owners rather than agency white label work",
+      "targetClients": "Medical clinics and healthcare practices\nService based business owners\nTeams that need structured CRM setup but are not tech savvy\nBusiness owners looking for done for you CRM implementation",
+      "bookingLink": "https://holisticsystemsconsulting.com/about"
     }
   },
   "unclaimedExperts": {
