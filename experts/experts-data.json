@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-17",
+  "lastUpdated": "2026-02-18",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
@@ -32,7 +32,7 @@
       "name": "Abdullah Virk",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/lahore/certified-admins/abdullah-virk",
       "rating": 5,
-      "reviewCount": 81,
+      "reviewCount": 82,
       "certifications": [
         "Certified Admin"
       ],
@@ -1240,6 +1240,87 @@
       "coreServices": "Funnel builds inside GoHighLevel\nWebsite design and page optimization\nWorkflow and automation setup\nSystem builds for agencies and service based businesses\nTroubleshooting workflows and platform issues\nLight A2P knowledge and guidance",
       "pricingDetails": "Hourly rate between 10 and 15 USD for troubleshooting and maintenance\nProject based pricing after reviewing scope\nTypical 3 page funnel or website polish ranges from 400 to 600 USD depending on branding and complexity\nTimeline provided after reviewing full project brief to ensure quality delivery",
       "targetClients": "Marketing agencies needing funnel and workflow support\nService based businesses implementing GoHighLevel\nBusiness owners overwhelmed with funnel navigation and workflow setup\nClients needing system simplification and automation cleanup"
+    },
+    "momodu-jalloh": {
+      "name": "Momodu Jalloh",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/momodu-jalloh",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 100,
+      "featured": false,
+      "specialty": "full-builds funnels automation",
+      "location": "International",
+      "budgetTier": "mid",
+      "industries": [
+        "local-service"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "momodu@ethoslinksystems.com",
+      "coreServices": "Full GoHighLevel account setup and configuration\nWorkflow and automation builds\nFunnel and website development\nBackend system audits and optimization\nPipeline, tagging, domain, and email setup\nAI and automation implementation\nA2P registration and compliance guidance\nOrganic growth systems with optional paid ads support\nStrategy driven onboarding and business foundation review",
+      "pricingDetails": "Setup fee typically ranges from 1000 to 2000 USD depending on scope\nMonthly retainers starting at 197 USD and scaling to 297 USD depending on service level\nStrategy call provided with full roadmap and option for client self implementation or done for you execution",
+      "targetClients": "Service based business owners using GoHighLevel\nBusinesses needing full backend setup before scaling\nOwners who want strategic guidance, not just technical execution\nCompanies seeking long term system optimization and automation support",
+      "bookingLink": "https://ethoslinksystems.com/onboarding-calendar"
+    },
+    "marrianey-grace-makiling": {
+      "name": "Marrianey Grace Makiling",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/certified-admins/marrianey-grace-makiling",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 100,
+      "featured": false,
+      "specialty": "funnels automation",
+      "location": "Philippines",
+      "budgetTier": "mid",
+      "industries": [
+        "coach",
+        "local-service"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "marrianeygrace.makiling@gmail.com",
+      "fathomLink": "https://fathom.video/share/DMajpS-yLbkSwUnWZhrbNXbosBg4PzSv",
+      "coreServices": "Workflow and automation setup\nWebsite and funnel builds inside GoHighLevel\nSnapshot implementation and onboarding support\nSub account setup and configuration\nClient onboarding coordination and SOP based execution\nSystem connection between funnels, forms, and automations",
+      "pricingDetails": "Hourly rate of 16 USD\nTypically works on retainer model with 10 hours per week allocations\nOpen to discussing project based pricing depending on scope",
+      "targetClients": "Business owners using GoHighLevel who need workflow and automation support\nCoaches and service providers needing structured onboarding systems\nClients who need help implementing snapshots and automation processes\nBusiness owners who want technical execution without managing setup themselves",
+      "bookingLink": "https://marcollectives.my.canva.site/"
+    },
+    "rex-macadangdang": {
+      "name": "Rex Macadangdang",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/calamba/certified-admins/rex-macadangdang",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 100,
+      "featured": false,
+      "specialty": "funnels automation integrations",
+      "location": "Philippines",
+      "budgetTier": "mid",
+      "industries": [
+        "agency"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "rexmacadangdang@gmail.com",
+      "fathomLink": "https://fathom.video/share/sujSjczZSJf_xK6fh4SBHgMAiMiHHfcC",
+      "coreServices": "Funnel builds inside GoHighLevel\nLanding page design and conversion optimization\nWebsite builds and page updates\nForm creation and automation setup\nConversational AI setup and integration\nCampaign improvement and performance optimization",
+      "pricingDetails": "Project based pricing only\nStandard funnel builds range from 300 to 500 USD depending on complexity\nFunnels with automation and website components typically range from 800 to 1000 USD\n\nFinal pricing confirmed after reviewing scope and automation requirements",
+      "targetClients": "Agencies needing funnel and landing page execution support\nAd agencies requiring page and automation implementation for sub accounts\nBusiness owners who want to focus on operations and need help building or improving their funnel systems\nClients needing higher converting landing pages and streamlined automations",
+      "bookingLink": "https://link.thedigitaldefenders.com/widget/bookings/rexmac-gmeet"
     }
   },
   "unclaimedExperts": {
