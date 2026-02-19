@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-18",
+  "lastUpdated": "2026-02-19",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
@@ -1321,6 +1321,32 @@
       "pricingDetails": "Project based pricing only\nStandard funnel builds range from 300 to 500 USD depending on complexity\nFunnels with automation and website components typically range from 800 to 1000 USD\n\nFinal pricing confirmed after reviewing scope and automation requirements",
       "targetClients": "Agencies needing funnel and landing page execution support\nAd agencies requiring page and automation implementation for sub accounts\nBusiness owners who want to focus on operations and need help building or improving their funnel systems\nClients needing higher converting landing pages and streamlined automations",
       "bookingLink": "https://link.thedigitaldefenders.com/widget/bookings/rexmac-gmeet"
+    },
+    "richard-jason-uy": {
+      "name": "Richard Jason Uy",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/certified-admins/richard-jason-uy",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 100,
+      "featured": false,
+      "specialty": "funnels automation",
+      "location": "Philippines",
+      "budgetTier": "mid",
+      "industries": [
+        "agency"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "uy.richardjason@gmail.com",
+      "fathomLink": "https://fathom.video/share/2cmnnX4sqxegyqvuwoFB6cyazVrP6krd",
+      "coreServices": "Workflow and automation setup\nSystem building and backend process creation\nBasic funnel and website builds\nA2P setup support and implementation guidance\nOngoing learning and expansion into conversational AI and advanced automation",
+      "pricingDetails": "Open to hourly or project based work depending on scope\nFlexible engagement structure as portfolio expands\nRates to be confirmed and finalized",
+      "targetClients": "Business owners implementing GoHighLevel who need automation support\nAgencies looking for backend workflow assistance\nClients who need structured systems built from the ground up\nBusinesses seeking affordable support while scaling"
     }
   },
   "unclaimedExperts": {
