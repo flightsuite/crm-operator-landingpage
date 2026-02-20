@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-19",
+  "lastUpdated": "2026-02-20",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
@@ -59,7 +59,7 @@
       "name": "Seth Wixtrom",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/republic/certified-admins/seth-wixtrom",
       "rating": 5,
-      "reviewCount": 6,
+      "reviewCount": 7,
       "certifications": [
         "Certified Admin"
       ],
@@ -1347,6 +1347,33 @@
       "coreServices": "Workflow and automation setup\nSystem building and backend process creation\nBasic funnel and website builds\nA2P setup support and implementation guidance\nOngoing learning and expansion into conversational AI and advanced automation",
       "pricingDetails": "Open to hourly or project based work depending on scope\nFlexible engagement structure as portfolio expands\nRates to be confirmed and finalized",
       "targetClients": "Business owners implementing GoHighLevel who need automation support\nAgencies looking for backend workflow assistance\nClients who need structured systems built from the ground up\nBusinesses seeking affordable support while scaling"
+    },
+    "ramon-ombid": {
+      "name": "Ramon Ombid",
+      "ghlDirectoryUrl": "https://directory.gohighlevel.com/philippines/quezon-city/certified-admins/ramon-ombid",
+      "rating": 5,
+      "reviewCount": 0,
+      "certifications": [
+        "Certified Admin"
+      ],
+      "claimed": true,
+      "priceMin": 100,
+      "featured": false,
+      "specialty": "funnels automation integrations",
+      "location": "Philippines",
+      "budgetTier": "mid",
+      "industries": [
+        "agency"
+      ],
+      "crm": [
+        "gohighlevel"
+      ],
+      "email": "ramon.ombid13@gmail.com",
+      "fathomLink": "https://fathom.video/share/hwmgqtv8tWyrqfasGpzPddgJxUX-ipyH",
+      "coreServices": "Workflow and automation setup\nCRM pipeline builds and optimization\nSystem logic and backend structuring\nBasic funnel and website builds\nThird party integrations\nConversational AI and automation expansion\nOpen to A2P related setup support as experience grows",
+      "pricingDetails": "Hourly rate between 10 and 20 USD depending on scope\nProject based pricing to be finalized based on complexity\nOpen to flexible engagement structures",
+      "targetClients": "Agencies looking for automation and CRM support\nBusiness owners implementing GoHighLevel for the first time\nClients needing backend workflow structure and pipeline organization\nFounders open to working with a growing specialist focused on long term improvement",
+      "bookingLink": "https://app.gohighlevel.com/v2/preview/4oZvXBaaXTtDTVkyRUAN"
     }
   },
   "unclaimedExperts": {
