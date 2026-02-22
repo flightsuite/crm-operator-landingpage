@@ -581,7 +581,7 @@
                 <a href="/#install">Get Early Access</a>
             </div>
             <div class="footer-copyright">
-                &copy; 2025 FlightSuite. All rights reserved.
+                &copy; 2026 FlightSuite. All rights reserved.
             </div>
         </div>
     </footer>
@@ -686,7 +686,7 @@
             function resolvePairing() {
                 showState(stateLoading);
 
-                fetch('https://prod.flightsuite.ai/api/v1/channels/pairing/resolve', {
+                fetch('https://devapi2.flightsuite.ai/api/v1/channels/pairing/resolve', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ pairing_token: token })

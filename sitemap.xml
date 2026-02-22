@@ -14,6 +14,22 @@
         <priority>1.0</priority>
     </url>
 
+    <!-- Privacy Policy -->
+    <url>
+        <loc>https://flightsuite.ai/privacy-policy.html</loc>
+        <lastmod>2026-02-22</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Terms of Service -->
+    <url>
+        <loc>https://flightsuite.ai/terms.html</loc>
+        <lastmod>2026-02-22</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
     <!-- Installation Guide -->
     <url>
         <loc>https://flightsuite.ai/installation-guide.html</loc>

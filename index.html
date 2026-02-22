@@ -3643,7 +3643,7 @@
                     Browse CRM Experts
                 </a>
             </div>
-            <p style="font-size: 14px; color: var(--color-text-tertiary); margin-top: 24px;">28 verified GoHighLevel experts ready to help</p>
+            <p id="expert-count-label" style="font-size: 14px; color: var(--color-text-tertiary); margin-top: 24px;">43 verified GoHighLevel experts ready to help</p>
         </div>
     </section>
 
@@ -3746,8 +3746,8 @@
                 <div class="footer-column">
                     <h4>Company</h4>
                     <ul class="footer-links">
-                        <li><a href="https://flightsuite.ai/privacy-policy" class="footer-link">Privacy</a></li>
-                        <li><a href="#" class="footer-link">Terms</a></li>
+                        <li><a href="/privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="/terms.html" class="footer-link">Terms of Service</a></li>
                         <li><a href="https://forms.gle/4wQhEo9hgp1eJKqL7" class="footer-link">Support</a></li>
                     </ul>
                 </div>
@@ -3782,7 +3782,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                © 2025 Light Estate Enterprises LLC dba FlightSuite. All rights reserved.
+                © 2026 FlightSuite Corporation. All rights reserved.
             </div>
         </div>
     </footer>
@@ -5136,5 +5136,23 @@
 
     <!-- Airtable Integration -->
     <script src="airtable-config.js"></script>
+
+    <!-- Dynamic Expert Count -->
+    <script>
+        (function () {
+            fetch('/experts/experts-data.json')
+                .then(function (r) { return r.json(); })
+                .then(function (data) {
+                    var count = Array.isArray(data.experts) ? data.experts.length : 0;
+                    if (count > 0) {
+                        var el = document.getElementById('expert-count-label');
+                        if (el) {
+                            el.textContent = count + ' verified GoHighLevel experts ready to help';
+                        }
+                    }
+                })
+                .catch(function () { /* fail silently, static fallback shown */ });
+        })();
+    </script>
 </body>
 </html>

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | FlightSuite</title>
+    <meta name="description" content="FlightSuite Privacy Policy. Learn how we collect, use, and protect your personal information when you use the FlightSuite CRM CoPilot Chrome extension.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://flightsuite.ai/privacy-policy">
+    <link rel="icon" type="image/svg+xml" href="Assets/Flight Suite Favicon vPurple.svg">
+    <link rel="apple-touch-icon" href="Assets/Flight Suite Favicon vPurple.svg">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flightsuite.ai/privacy-policy">
+    <meta property="og:title" content="Privacy Policy | FlightSuite">
+    <meta property="og:description" content="Learn how FlightSuite collects, uses, and protects your personal information.">
+    <meta property="og:image" content="https://flightsuite.ai/Assets/social-preview.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-apple-blue: #0071E3;
+            --color-ios-purple: #5E5CE6;
+            --color-bg-primary: #FFFFFF;
+            --color-bg-secondary: #F5F5F7;
+            --color-text-primary: #1D1D1F;
+            --color-text-secondary: #6E6E73;
+            --color-text-tertiary: #86868B;
+            --color-border: rgba(0, 0, 0, 0.1);
+            --color-border-light: rgba(0, 0, 0, 0.06);
+            --gradient-primary: linear-gradient(135deg, #0071E3, #5E5CE6);
+            --max-width: 1440px;
+            --content-width: 760px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.7;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border-light);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: clamp(14px, 2vw, 20px) clamp(24px, 4vw, 48px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: clamp(18px, 2vw, 20px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(20px, 3vw, 32px);
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--color-apple-blue); }
+
+        .nav-cta {
+            padding: 10px 20px;
+            background: var(--color-apple-blue);
+            color: white !important;
+            border-radius: 980px;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            transition: opacity 0.2s !important;
+        }
+
+        .nav-cta:hover { opacity: 0.85; }
+
+        /* ===== HERO ===== */
+        .page-hero {
+            background: var(--color-bg-secondary);
+            padding: clamp(48px, 8vw, 80px) clamp(24px, 4vw, 48px) clamp(40px, 6vw, 64px);
+            text-align: center;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .page-hero .eyebrow {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-ios-purple);
+            margin-bottom: 16px;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--color-text-primary);
+            margin-bottom: 16px;
+        }
+
+        .page-hero .meta {
+            font-size: 15px;
+            color: var(--color-text-tertiary);
+        }
+
+        /* ===== CONTENT ===== */
+        .content-wrapper {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: clamp(48px, 8vw, 80px) clamp(24px, 4vw, 48px);
+        }
+
+        .toc {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border-light);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 56px;
+        }
+
+        .toc h2 {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--color-text-tertiary);
+            margin-bottom: 16px;
+        }
+
+        .toc ol {
+            list-style: none;
+            counter-reset: toc-counter;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 24px;
+        }
+
+        @media (max-width: 600px) {
+            .toc ol { grid-template-columns: 1fr; }
+        }
+
+        .toc ol li {
+            counter-increment: toc-counter;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .toc ol li::before {
+            content: counter(toc-counter) ".";
+            color: var(--color-apple-blue);
+            font-weight: 600;
+            font-size: 13px;
+            min-width: 20px;
+            padding-top: 1px;
+        }
+
+        .toc ol li a {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            transition: color 0.2s;
+            line-height: 1.4;
+        }
+
+        .toc ol li a:hover { color: var(--color-apple-blue); }
+
+        .section {
+            margin-bottom: 56px;
+            scroll-margin-top: 100px;
+        }
+
+        .section h2 {
+            font-size: clamp(20px, 2.5vw, 24px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text-primary);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--color-border-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 .section-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .section p {
+            font-size: 15px;
+            color: var(--color-text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.75;
+        }
+
+        .section p:last-child { margin-bottom: 0; }
+
+        .section ul, .section ol {
+            padding-left: 0;
+            list-style: none;
+            margin-bottom: 16px;
+        }
+
+        .section ul li, .section ol li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 15px;
+            color: var(--color-text-secondary);
+            line-height: 1.75;
+            margin-bottom: 8px;
+        }
+
+        .section ul li::before {
+            content: "·";
+            position: absolute;
+            left: 6px;
+            color: var(--color-apple-blue);
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        .section h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin: 24px 0 12px;
+        }
+
+        .highlight-box {
+            background: rgba(0, 113, 227, 0.06);
+            border-left: 3px solid var(--color-apple-blue);
+            border-radius: 0 10px 10px 0;
+            padding: 16px 20px;
+            margin: 24px 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        /* Data table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 12px 16px;
+            background: var(--color-bg-secondary);
+            color: var(--color-text-tertiary);
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .data-table td {
+            padding: 12px 16px;
+            color: var(--color-text-secondary);
+            border-bottom: 1px solid var(--color-border-light);
+            vertical-align: top;
+        }
+
+        .data-table tr:last-child td { border-bottom: none; }
+
+        .contact-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border-light);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-top: 32px;
+        }
+
+        .contact-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .contact-card p {
+            margin-bottom: 8px;
+        }
+
+        .contact-card a {
+            color: var(--color-apple-blue);
+            text-decoration: none;
+        }
+
+        .contact-card a:hover { text-decoration: underline; }
+
+        .rights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            .rights-grid { grid-template-columns: 1fr; }
+        }
+
+        .rights-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border-light);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .rights-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 6px;
+        }
+
+        .rights-card p {
+            font-size: 13px;
+            color: var(--color-text-tertiary);
+            margin: 0 !important;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--color-bg-secondary);
+            border-top: 1px solid var(--color-border-light);
+            padding: clamp(32px, 6vw, 48px) clamp(24px, 4vw, 48px);
+        }
+
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-left {
+            font-size: 13px;
+            color: var(--color-text-tertiary);
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-right a {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-right a:hover { color: var(--color-apple-blue); }
+
+        .footer-right a.active { color: var(--color-apple-blue); font-weight: 600; }
+
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
+            .footer-inner { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="/" class="nav-logo">FlightSuite</a>
+            <div class="nav-links">
+                <a href="/#demo">Demo</a>
+                <a href="/experts/">Experts</a>
+                <a href="/blog.html">Blog</a>
+                <a href="https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb?hl=en-US" class="nav-cta" target="_blank" rel="noopener noreferrer">Add to Chrome — Free</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero -->
+    <div class="page-hero">
+        <span class="eyebrow">Legal</span>
+        <h1>Privacy Policy</h1>
+        <p class="meta">Last updated: February 22, 2026 &nbsp;·&nbsp; Effective: February 22, 2026</p>
+    </div>
+
+    <!-- Content -->
+    <div class="content-wrapper">
+
+        <div class="highlight-box">
+            <p>Your privacy matters to us. This Privacy Policy explains how FlightSuite Corporation collects, uses, shares, and protects information when you use our Chrome extension and related services. We do not sell your personal information.</p>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h2>Contents</h2>
+            <ol>
+                <li><a href="#controller">Who We Are</a></li>
+                <li><a href="#what-we-collect">Information We Collect</a></li>
+                <li><a href="#how-we-use">How We Use Your Information</a></li>
+                <li><a href="#sharing">How We Share Information</a></li>
+                <li><a href="#crm-data">CRM Data &amp; Third-Party Platforms</a></li>
+                <li><a href="#cookies">Cookies &amp; Tracking</a></li>
+                <li><a href="#retention">Data Retention</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#your-rights">Your Rights</a></li>
+                <li><a href="#children">Children's Privacy</a></li>
+                <li><a href="#international">International Transfers</a></li>
+                <li><a href="#changes">Changes to This Policy</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ol>
+        </div>
+
+        <!-- Sections -->
+        <div class="section" id="controller">
+            <h2><span class="section-num">1</span> Who We Are</h2>
+            <p>FlightSuite Corporation, a Delaware corporation ("FlightSuite," "we," "us," or "our"), is the data controller for the personal information collected through the FlightSuite Chrome extension and website at <strong>flightsuite.ai</strong>.</p>
+            <p>FlightSuite is a Chrome browser extension that automates CRM data entry using natural language, currently supporting GoHighLevel and HubSpot.</p>
+        </div>
+
+        <div class="section" id="what-we-collect">
+            <h2><span class="section-num">2</span> Information We Collect</h2>
+            <p>We collect information in the following categories:</p>
+
+            <h3>2.1 Information You Provide Directly</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Examples</th>
+                        <th>When Collected</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Contact Information</strong></td>
+                        <td>Name, email address</td>
+                        <td>Early access sign-up, contact forms</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Account Credentials</strong></td>
+                        <td>Authentication tokens for connected CRM platforms</td>
+                        <td>When you connect a CRM account</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Natural Language Commands</strong></td>
+                        <td>Text instructions you type to update your CRM</td>
+                        <td>During active use of the extension</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Feedback &amp; Support</strong></td>
+                        <td>Messages, bug reports, feature requests</td>
+                        <td>When you contact our support</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2.2 Information Collected Automatically</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Examples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Usage Data</strong></td>
+                        <td>Feature interactions, command frequency, error events</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Technical Data</strong></td>
+                        <td>Browser version, extension version, operating system</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Log Data</strong></td>
+                        <td>IP address, timestamps, pages visited on flightsuite.ai</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Analytics</strong></td>
+                        <td>Aggregated usage statistics via privacy-respecting analytics tools</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2.3 Information We Do NOT Collect</h3>
+            <ul>
+                <li>We do <strong>not</strong> collect, store, or transmit your CRM contacts' personal data to our servers.</li>
+                <li>We do <strong>not</strong> record keystrokes beyond the natural language commands you explicitly submit.</li>
+                <li>We do <strong>not</strong> access browsing history on pages unrelated to supported CRM platforms.</li>
+                <li>We do <strong>not</strong> sell, rent, or trade your personal information.</li>
+            </ul>
+        </div>
+
+        <div class="section" id="how-we-use">
+            <h2><span class="section-num">3</span> How We Use Your Information</h2>
+            <p>We use the information we collect for the following purposes:</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Purpose</th>
+                        <th>Legal Basis (where applicable)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Providing and operating the Service</td>
+                        <td>Contract performance</td>
+                    </tr>
+                    <tr>
+                        <td>Processing your natural language commands and executing CRM actions</td>
+                        <td>Contract performance</td>
+                    </tr>
+                    <tr>
+                        <td>Improving and developing new features</td>
+                        <td>Legitimate interest</td>
+                    </tr>
+                    <tr>
+                        <td>Detecting and preventing fraud, abuse, and security incidents</td>
+                        <td>Legitimate interest</td>
+                    </tr>
+                    <tr>
+                        <td>Responding to your inquiries and providing customer support</td>
+                        <td>Legitimate interest / Contract</td>
+                    </tr>
+                    <tr>
+                        <td>Sending product updates and announcements (with your consent)</td>
+                        <td>Consent</td>
+                    </tr>
+                    <tr>
+                        <td>Complying with legal obligations</td>
+                        <td>Legal obligation</td>
+                    </tr>
+                    <tr>
+                        <td>Enforcing our Terms of Service</td>
+                        <td>Legitimate interest</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section" id="sharing">
+            <h2><span class="section-num">4</span> How We Share Information</h2>
+            <p>We do not sell your personal information. We may share information in the following limited circumstances:</p>
+
+            <h3>Service Providers</h3>
+            <p>We engage trusted third-party service providers who assist us in operating the Service. These providers are contractually obligated to protect your information and may not use it for their own purposes.</p>
+            <ul>
+                <li><strong>AI Model Providers:</strong> Natural language commands may be processed by AI model APIs (e.g., Anthropic Claude) to interpret your intent. Only the command text is transmitted — no CRM records or personal contact data.</li>
+                <li><strong>Analytics:</strong> Aggregated, anonymized usage data for product improvement.</li>
+                <li><strong>Cloud Infrastructure:</strong> Hosting and storage providers.</li>
+                <li><strong>Customer Support:</strong> Tools used to manage support requests.</li>
+            </ul>
+
+            <h3>Legal Requirements</h3>
+            <p>We may disclose information if required by law, regulation, legal process, or governmental request, or if we believe in good faith that disclosure is necessary to protect rights, property, or safety.</p>
+
+            <h3>Business Transfers</h3>
+            <p>In the event of a merger, acquisition, financing, or sale of assets, your information may be transferred as part of the transaction. We will notify you before your information becomes subject to a different privacy policy.</p>
+
+            <h3>With Your Consent</h3>
+            <p>We may share information with third parties when you have given us your explicit consent to do so.</p>
+        </div>
+
+        <div class="section" id="crm-data">
+            <h2><span class="section-num">5</span> CRM Data &amp; Third-Party Platforms</h2>
+            <p>FlightSuite operates <strong>within your browser session</strong> and interacts directly with your connected CRM platform (e.g., GoHighLevel, HubSpot) using your existing authenticated session or API credentials.</p>
+            <div class="highlight-box">
+                <p>CRM actions (creating contacts, updating deals, logging calls, etc.) are executed directly between the extension and the CRM platform's API. FlightSuite does not create a separate copy of your CRM data on our servers.</p>
+            </div>
+            <p>Your use of connected CRM platforms is governed by those platforms' own terms of service and privacy policies. We encourage you to review:</p>
+            <ul>
+                <li><strong>GoHighLevel:</strong> <a href="https://www.gohighlevel.com/privacy-policy" target="_blank" rel="noopener noreferrer" style="color: var(--color-apple-blue); text-decoration: none;">Privacy Policy</a></li>
+                <li><strong>HubSpot:</strong> <a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer" style="color: var(--color-apple-blue); text-decoration: none;">Privacy Policy</a></li>
+            </ul>
+        </div>
+
+        <div class="section" id="cookies">
+            <h2><span class="section-num">6</span> Cookies &amp; Tracking</h2>
+            <h3>Website (flightsuite.ai)</h3>
+            <p>Our website may use cookies and similar technologies for the following purposes:</p>
+            <ul>
+                <li><strong>Essential cookies:</strong> Required for the website to function properly.</li>
+                <li><strong>Analytics cookies:</strong> Help us understand how visitors use the site (aggregated, anonymized).</li>
+                <li><strong>Preference cookies:</strong> Remember your settings and choices.</li>
+            </ul>
+            <p>You can control cookies through your browser settings. Disabling cookies may affect your experience on our website.</p>
+
+            <h3>Chrome Extension</h3>
+            <p>The FlightSuite Chrome extension does not use advertising cookies or cross-site tracking. It accesses browser storage only to maintain your settings and session state.</p>
+        </div>
+
+        <div class="section" id="retention">
+            <h2><span class="section-num">7</span> Data Retention</h2>
+            <p>We retain your information for as long as necessary to provide the Service and fulfill the purposes described in this Policy, unless a longer retention period is required by law.</p>
+            <ul>
+                <li><strong>Account and contact information:</strong> Retained while your account is active and for up to 2 years after account closure for legal and compliance purposes.</li>
+                <li><strong>Usage and log data:</strong> Typically retained for 12 months.</li>
+                <li><strong>Support communications:</strong> Retained for 3 years after resolution.</li>
+                <li><strong>Natural language command logs:</strong> Retained for up to 90 days for debugging purposes, then deleted or anonymized.</li>
+            </ul>
+            <p>You may request deletion of your personal information at any time (see Your Rights below).</p>
+        </div>
+
+        <div class="section" id="security">
+            <h2><span class="section-num">8</span> Security</h2>
+            <p>We implement industry-standard technical and organizational security measures to protect your information, including:</p>
+            <ul>
+                <li>Encryption of data in transit (TLS/HTTPS)</li>
+                <li>Encryption of sensitive data at rest</li>
+                <li>Access controls and authentication requirements for internal systems</li>
+                <li>Regular security reviews of our infrastructure</li>
+            </ul>
+            <p>However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to protect your information, we cannot guarantee absolute security. If you believe your security has been compromised, please contact us immediately.</p>
+        </div>
+
+        <div class="section" id="your-rights">
+            <h2><span class="section-num">9</span> Your Rights</h2>
+            <p>Depending on your location, you may have the following rights regarding your personal information:</p>
+
+            <div class="rights-grid">
+                <div class="rights-card">
+                    <h4>Access</h4>
+                    <p>Request a copy of the personal information we hold about you.</p>
+                </div>
+                <div class="rights-card">
+                    <h4>Correction</h4>
+                    <p>Request correction of inaccurate or incomplete information.</p>
+                </div>
+                <div class="rights-card">
+                    <h4>Deletion</h4>
+                    <p>Request deletion of your personal information ("right to be forgotten").</p>
+                </div>
+                <div class="rights-card">
+                    <h4>Portability</h4>
+                    <p>Receive your data in a structured, machine-readable format.</p>
+                </div>
+                <div class="rights-card">
+                    <h4>Restriction</h4>
+                    <p>Request that we restrict processing of your information.</p>
+                </div>
+                <div class="rights-card">
+                    <h4>Objection</h4>
+                    <p>Object to processing based on legitimate interests.</p>
+                </div>
+                <div class="rights-card">
+                    <h4>Opt-Out (CCPA)</h4>
+                    <p>California residents may opt out of the sale of personal information. We do not sell personal information.</p>
+                </div>
+                <div class="rights-card">
+                    <h4>Withdraw Consent</h4>
+                    <p>Withdraw consent at any time where processing is based on consent.</p>
+                </div>
+            </div>
+
+            <p>To exercise any of these rights, please contact us at <a href="mailto:privacy@flightsuite.ai" style="color: var(--color-apple-blue); text-decoration: none;">privacy@flightsuite.ai</a>. We will respond within 30 days. We may need to verify your identity before processing your request.</p>
+            <p>If you are a resident of the European Economic Area (EEA) or UK and believe we have not addressed your concerns, you have the right to lodge a complaint with your local data protection authority.</p>
+        </div>
+
+        <div class="section" id="children">
+            <h2><span class="section-num">10</span> Children's Privacy</h2>
+            <p>The Service is not directed to individuals under the age of 18. We do not knowingly collect personal information from children under 18. If you are a parent or guardian and believe we have inadvertently collected information from a child under 18, please contact us immediately and we will take steps to delete the information.</p>
+        </div>
+
+        <div class="section" id="international">
+            <h2><span class="section-num">11</span> International Data Transfers</h2>
+            <p>FlightSuite is based in the United States. If you access the Service from outside the United States, your information may be transferred to, stored, and processed in the United States, where data protection laws may differ from those in your country.</p>
+            <p>For users in the EEA or UK, we rely on appropriate safeguards for international transfers, such as Standard Contractual Clauses approved by the European Commission, where required.</p>
+        </div>
+
+        <div class="section" id="changes">
+            <h2><span class="section-num">12</span> Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or for other reasons. When we make material changes, we will update the "Last updated" date at the top of this page and may notify you by email or through the Service.</p>
+            <p>Your continued use of the Service after changes take effect constitutes your acceptance of the updated Privacy Policy. We encourage you to review this Policy periodically.</p>
+        </div>
+
+        <div class="section" id="contact">
+            <h2><span class="section-num">13</span> Contact Us</h2>
+            <p>If you have questions, concerns, or requests regarding this Privacy Policy or our data practices, please reach out:</p>
+            <div class="contact-card">
+                <h3>FlightSuite Privacy Team</h3>
+                <p><strong>Company:</strong> FlightSuite Corporation</p>
+                <p><strong>Privacy Email:</strong> <a href="mailto:privacy@flightsuite.ai">privacy@flightsuite.ai</a></p>
+                <p><strong>Legal Email:</strong> <a href="mailto:legal@flightsuite.ai">legal@flightsuite.ai</a></p>
+                <p><strong>Support:</strong> <a href="https://forms.gle/4wQhEo9hgp1eJKqL7" target="_blank" rel="noopener noreferrer">Submit a support request</a></p>
+                <p><strong>Website:</strong> <a href="https://flightsuite.ai">flightsuite.ai</a></p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                &copy; 2026 FlightSuite Corporation. All rights reserved.
+            </div>
+            <div class="footer-right">
+                <a href="/">Home</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/experts/">Experts</a>
+                <a href="/privacy-policy.html" class="active">Privacy Policy</a>
+                <a href="/terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
