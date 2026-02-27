@@ -21,7 +21,7 @@
             --surface: #FFFFFF;
             --border:  #D2D2D7;
             --border-l:#E8E8ED;
-            --grad:    linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+            --grad:    linear-gradient(135deg, #5E5CE6 0%, #0071E3 100%);
             --fd:      -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
             --ft:      -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
             --ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -29,7 +29,7 @@
             --out:     cubic-bezier(0.16, 1, 0.3, 1);
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        html { -webkit-font-smoothing: antialiased; }
         body {
             font-family: var(--ft);
             color: var(--t1);
@@ -40,626 +40,335 @@
             min-height: 100vh;
         }
 
-        /* ════════════ LOGIN ════════════ */
+        /* ══════════ LOGIN ══════════ */
         #login-view {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: #fff;
             position: relative;
             overflow: hidden;
-            background: #fff;
         }
         #login-view::before {
             content: '';
-            position: absolute;
-            top: -200px; left: -200px;
-            width: 600px; height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(94,92,230,0.14) 0%, transparent 70%);
+            position: absolute; top: -200px; left: -200px;
+            width: 600px; height: 600px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(94,92,230,.13) 0%, transparent 70%);
             pointer-events: none;
         }
         #login-view::after {
             content: '';
-            position: absolute;
-            bottom: -150px; right: -150px;
-            width: 500px; height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,113,227,0.10) 0%, transparent 70%);
+            position: absolute; bottom: -150px; right: -150px;
+            width: 480px; height: 480px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,113,227,.09) 0%, transparent 70%);
             pointer-events: none;
         }
-
-        .login-wrap {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            max-width: 420px;
-            padding: 16px;
+        .login-wrap { position: relative; z-index: 1; width: 100%; max-width: 420px; padding: 16px; }
+        .login-brand {
+            display: flex; align-items: center; justify-content: center;
+            gap: 10px; margin-bottom: 28px;
         }
-        .login-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 32px;
+        .login-brand img { width: 34px; height: 34px; }
+        .login-brand span {
+            font-family: var(--fd); font-size: 22px; font-weight: 700;
+            letter-spacing: -.05em; color: var(--t1);
         }
-        .login-logo img { width: 34px; height: 34px; }
-        .login-logo span {
-            font-family: var(--fd);
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: -0.05em;
-            color: var(--t1);
-        }
-
         .login-card {
             background: var(--surface);
             border-radius: 24px;
             padding: 40px 36px;
-            box-shadow:
-                0 0 0 1px rgba(0,0,0,0.04),
-                0 4px 6px rgba(0,0,0,0.04),
-                0 16px 48px rgba(0,0,0,0.08);
+            box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 4px 6px rgba(0,0,0,.04), 0 20px 48px rgba(0,0,0,.09);
         }
-        .login-title {
-            font-family: var(--fd);
-            font-size: 26px;
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            margin-bottom: 6px;
-        }
-        .login-sub {
-            font-size: 14px;
-            color: var(--t2);
-            margin-bottom: 28px;
-            line-height: 1.5;
-        }
+        .login-title { font-family: var(--fd); font-size: 26px; font-weight: 700; letter-spacing: -.04em; margin-bottom: 6px; }
+        .login-sub { font-size: 14px; color: var(--t2); margin-bottom: 28px; line-height: 1.5; }
 
-        /* Google button */
-        #gsi-wrap { display: flex; justify-content: center; margin-bottom: 18px; }
+        #gsi-wrap { display: flex; justify-content: center; margin-bottom: 16px; }
         .btn-google {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 12px 20px;
-            background: var(--surface);
-            border: 1.5px solid var(--border);
-            border-radius: 12px;
-            font-family: var(--ft);
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--t1);
-            cursor: pointer;
-            transition: border-color .15s, box-shadow .15s;
-            margin-bottom: 18px;
+            width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 12px 20px; background: var(--surface); border: 1.5px solid var(--border);
+            border-radius: 12px; font-family: var(--ft); font-size: 15px; font-weight: 500;
+            color: var(--t1); cursor: pointer; transition: border-color .15s, box-shadow .15s; margin-bottom: 16px;
         }
-        .btn-google:hover { border-color: #999; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+        .btn-google:hover { border-color: #999; box-shadow: 0 2px 8px rgba(0,0,0,.07); }
 
         .divider {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--t3);
-            font-size: 13px;
-            margin-bottom: 18px;
+            display: flex; align-items: center; gap: 12px;
+            color: var(--t3); font-size: 13px; margin-bottom: 16px;
         }
-        .divider::before, .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border-l);
-        }
+        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border-l); }
 
         .field { margin-bottom: 12px; }
-        .field-label {
-            display: block;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--t2);
-            margin-bottom: 6px;
-        }
+        .field-label { display: block; font-size: 13px; font-weight: 500; color: var(--t2); margin-bottom: 6px; }
         .field-input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1.5px solid var(--border);
-            border-radius: 12px;
-            font-family: var(--ft);
-            font-size: 15px;
-            color: var(--t1);
-            background: var(--surface);
-            outline: none;
-            transition: border-color .15s, box-shadow .15s;
+            width: 100%; padding: 12px 14px; border: 1.5px solid var(--border);
+            border-radius: 12px; font-family: var(--ft); font-size: 15px; color: var(--t1);
+            background: var(--surface); outline: none; transition: border-color .15s, box-shadow .15s;
         }
-        .field-input:focus {
-            border-color: var(--blue);
-            box-shadow: 0 0 0 3px rgba(0,113,227,.1);
-        }
+        .field-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,113,227,.1); }
         .field-input::placeholder { color: var(--t3); }
 
         .btn-primary {
-            width: 100%;
-            padding: 13px 20px;
-            background: var(--blue);
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            font-family: var(--ft);
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: -.01em;
-            cursor: pointer;
-            transition: opacity .15s, transform .1s;
+            width: 100%; padding: 13px 20px; background: var(--blue); color: #fff; border: none;
+            border-radius: 12px; font-family: var(--ft); font-size: 15px; font-weight: 600;
+            letter-spacing: -.01em; cursor: pointer; transition: opacity .15s, transform .1s;
         }
         .btn-primary:hover { opacity: .88; }
         .btn-primary:active { transform: scale(.98); }
         .btn-primary:disabled { opacity: .45; cursor: not-allowed; transform: none; }
 
-        .otp-back {
-            background: none;
-            border: none;
-            color: var(--blue);
-            font-family: var(--ft);
-            font-size: 13px;
-            cursor: pointer;
-            padding: 0;
-            margin-bottom: 16px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .resend-row {
-            text-align: center;
-            margin-top: 12px;
-            font-size: 13px;
-            color: var(--t2);
-        }
-        .resend-btn {
-            background: none;
-            border: none;
-            color: var(--blue);
-            cursor: pointer;
-            font-family: var(--ft);
-            font-size: 13px;
-        }
+        .otp-back { background: none; border: none; color: var(--blue); font-family: var(--ft); font-size: 13px; cursor: pointer; padding: 0; margin-bottom: 16px; }
+        .resend-row { text-align: center; margin-top: 12px; font-size: 13px; color: var(--t2); }
+        .resend-btn { background: none; border: none; color: var(--blue); cursor: pointer; font-family: var(--ft); font-size: 13px; }
+        .err-box { background: rgba(255,59,48,.07); border: 1px solid rgba(255,59,48,.2); border-radius: 10px; padding: 10px 14px; font-size: 13px; color: var(--red); margin-bottom: 12px; display: none; }
 
-        .err-box {
-            background: rgba(255,59,48,.07);
-            border: 1px solid rgba(255,59,48,.2);
-            border-radius: 10px;
-            padding: 10px 14px;
-            font-size: 13px;
-            color: var(--red);
-            margin-bottom: 12px;
-            display: none;
-            text-align: left;
-        }
-
-        /* ════════════ DASHBOARD ════════════ */
+        /* ══════════ TOPBAR ══════════ */
         #dash-view { display: none; }
-
-        /* Topbar */
-        .topbar {
-            background: rgba(255,255,255,.9);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--border-l);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .topbar-inner {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 0 24px;
-            height: 52px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .topbar-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            font-family: var(--fd);
-            font-size: 17px;
-            font-weight: 600;
-            letter-spacing: -.03em;
-            color: var(--t1);
-        }
+        .topbar { background: rgba(255,255,255,.9); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--border-l); position: sticky; top: 0; z-index: 200; }
+        .topbar-inner { max-width: 1080px; margin: 0 auto; padding: 0 24px; height: 52px; display: flex; align-items: center; justify-content: space-between; }
+        .topbar-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--fd); font-size: 17px; font-weight: 600; letter-spacing: -.03em; color: var(--t1); }
         .topbar-logo img { width: 26px; height: 26px; }
         .topbar-right { display: flex; align-items: center; gap: 6px; }
         .topbar-email { font-size: 13px; color: var(--t3); }
-        .btn-ghost {
-            background: none;
-            border: none;
-            font-family: var(--ft);
-            font-size: 13px;
-            color: var(--t2);
-            cursor: pointer;
-            padding: 6px 12px;
-            border-radius: 8px;
-            transition: background .15s, color .15s;
-        }
+        .btn-ghost { background: none; border: none; font-family: var(--ft); font-size: 13px; color: var(--t2); cursor: pointer; padding: 6px 12px; border-radius: 8px; transition: background .15s, color .15s; }
         .btn-ghost:hover { background: var(--bg); color: var(--t1); }
 
-        /* Page */
-        .page {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 36px 24px 80px;
-        }
+        /* ══════════ PAGE ══════════ */
+        .page { max-width: 1080px; margin: 0 auto; padding: 36px 24px 80px; }
 
-        /* Welcome header */
-        .welcome-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 28px;
-            flex-wrap: wrap;
-        }
-        .welcome-text {}
-        .welcome-greeting {
-            font-family: var(--fd);
-            font-size: clamp(26px, 3.5vw, 36px);
-            font-weight: 700;
-            letter-spacing: -.04em;
-            line-height: 1.1;
-        }
+        /* Welcome */
+        .welcome-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+        .welcome-greeting { font-family: var(--fd); font-size: clamp(26px, 3.5vw, 36px); font-weight: 700; letter-spacing: -.04em; line-height: 1.1; }
         .welcome-email { font-size: 14px; color: var(--t2); margin-top: 4px; }
-        .tier-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .01em;
-            flex-shrink: 0;
-        }
+        .tier-pill { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: .01em; flex-shrink: 0; margin-top: 4px; }
         .tier-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
-        .tier-free    { background: rgba(110,110,115,.1);  color: var(--t2); }
-        .tier-free    .dot { background: var(--t3); }
-        .tier-starter { background: rgba(0,113,227,.08);   color: var(--blue); }
-        .tier-starter .dot { background: var(--blue); }
-        .tier-pro     { background: rgba(94,92,230,.08);   color: var(--purple); }
-        .tier-pro     .dot { background: var(--purple); }
-        .tier-business{ background: rgba(52,199,89,.1);    color: #1c7a38; }
-        .tier-business .dot { background: var(--green); }
+        .tier-free     { background: rgba(110,110,115,.1); color: var(--t2); } .tier-free .dot { background: var(--t3); }
+        .tier-starter  { background: rgba(0,113,227,.08);  color: var(--blue); } .tier-starter .dot { background: var(--blue); }
+        .tier-pro      { background: rgba(94,92,230,.08);  color: var(--purple); } .tier-pro .dot { background: var(--purple); }
+        .tier-business { background: rgba(52,199,89,.1);   color: #1c7a38; } .tier-business .dot { background: var(--green); }
 
-        /* Success banner */
-        .banner-success {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(52,199,89,.08);
-            border: 1px solid rgba(52,199,89,.25);
-            border-radius: 14px;
-            padding: 14px 18px;
-            margin-bottom: 24px;
-            font-size: 14px;
-            color: #1c7a38;
-        }
-        .banner-success .banner-icon { font-size: 20px; flex-shrink: 0; }
+        /* Banner */
+        .banner-ok { display: flex; align-items: center; gap: 12px; background: rgba(52,199,89,.08); border: 1px solid rgba(52,199,89,.25); border-radius: 14px; padding: 14px 18px; margin-bottom: 24px; font-size: 14px; color: #1c7a38; }
+        .banner-ok .bi { font-size: 20px; flex-shrink: 0; }
 
-        /* Cards grid */
-        .grid-top {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 14px;
-        }
-        .grid-bottom {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-        }
+        /* Grid */
+        .grid-top    { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+        .grid-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
-        /* Card base */
-        .card {
-            background: var(--surface);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow:
-                0 0 0 1px rgba(0,0,0,0.03),
-                0 2px 4px rgba(0,0,0,0.04),
-                0 8px 24px rgba(0,0,0,0.04);
-        }
-        .card-title {
-            font-family: var(--fd);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .04em;
-            text-transform: uppercase;
-            color: var(--t3);
-            margin-bottom: 16px;
-        }
+        /* Cards */
+        .card { background: var(--surface); border-radius: 20px; padding: 24px; box-shadow: 0 0 0 1px rgba(0,0,0,.03), 0 2px 4px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.04); position: relative; overflow: hidden; }
+        .card-label { font-family: var(--fd); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--t3); margin-bottom: 16px; }
 
-        /* ── Credits card ── */
-        .credits-numbers {
-            display: flex;
-            align-items: baseline;
-            gap: 6px;
-            margin-bottom: 8px;
-        }
-        .credits-big {
-            font-family: var(--fd);
-            font-size: 42px;
-            font-weight: 700;
-            letter-spacing: -.05em;
-            line-height: 1;
-        }
-        .credits-of { font-size: 16px; color: var(--t3); font-weight: 400; }
-        .credits-label { font-size: 13px; color: var(--t2); margin-bottom: 12px; }
+        /* ─ Credits ─ */
+        .cred-big { font-family: var(--fd); font-size: 44px; font-weight: 700; letter-spacing: -.05em; line-height: 1; }
+        .cred-of  { font-size: 17px; color: var(--t3); font-weight: 400; margin-left: 4px; }
+        .cred-ctx { font-size: 13px; color: var(--t2); margin: 6px 0 12px; }
+        .progress-track { height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; margin-bottom: 10px; }
+        .progress-fill  { height: 100%; border-radius: 4px; background: var(--grad); transition: width .8s var(--out); }
+        .progress-fill.warn { background: var(--orange); }
+        .progress-fill.over { background: var(--red); }
+        .cred-rem { font-size: 13px; color: var(--t2); }
+        .cred-rem .hl { font-weight: 600; color: var(--t1); }
+        .cred-rem .warn-text { font-weight: 600; color: var(--orange); }
+        .cred-rem .over-text { font-weight: 600; color: var(--red); }
+        .inline-link { color: var(--blue); text-decoration: none; font-weight: 500; }
+        .inline-link:hover { text-decoration: underline; }
 
-        .progress-track {
-            height: 8px;
-            background: var(--bg);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 10px;
+        /* ─ Subscription ─ */
+        .sub-name { font-family: var(--fd); font-size: 30px; font-weight: 700; letter-spacing: -.04em; margin-bottom: 6px; }
+        .sub-status-row { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--t2); margin-bottom: 14px; }
+        .sdot { width: 7px; height: 7px; border-radius: 50%; }
+        .sdot.active { background: var(--green); } .sdot.cancelled { background: var(--t3); } .sdot.none { background: var(--border); }
+        .sub-renew { font-size: 12px; color: var(--t3); margin-bottom: 14px; }
+        .sub-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+        .btn-upgrade-cta {
+            flex: 1; min-width: 120px; padding: 12px 18px; background: var(--grad); color: #fff; border: none;
+            border-radius: 12px; font-family: var(--ft); font-size: 14px; font-weight: 600; cursor: pointer;
+            transition: opacity .15s, transform .1s; letter-spacing: -.01em; text-align: center;
         }
-        .progress-fill {
-            height: 100%;
-            border-radius: 4px;
-            background: var(--grad);
-            transition: width .8s var(--out);
+        .btn-upgrade-cta:hover { opacity: .88; } .btn-upgrade-cta:active { transform: scale(.97); }
+        .btn-manage-cta {
+            flex: 1; min-width: 120px; padding: 12px 18px; background: var(--bg); border: none; border-radius: 12px;
+            font-family: var(--ft); font-size: 14px; font-weight: 500; color: var(--t1); cursor: pointer; transition: background .15s;
         }
-        .progress-fill.warn  { background: var(--orange); }
-        .progress-fill.over  { background: var(--red); }
+        .btn-manage-cta:hover { background: #e5e5ea; }
+        .btn-manage-cta:disabled { opacity: .5; cursor: not-allowed; }
 
-        .credits-remaining {
-            font-size: 13px;
-            color: var(--t2);
+        /* ─ CRM card ─ */
+        .crm-connect-btns { display: flex; flex-direction: column; gap: 10px; margin-bottom: 2px; }
+        .btn-crm {
+            display: flex; align-items: center; gap: 10px; width: 100%; padding: 13px 16px;
+            border-radius: 13px; border: 1.5px solid var(--border-l); background: var(--surface);
+            font-family: var(--ft); font-size: 14px; font-weight: 500; color: var(--t1);
+            cursor: pointer; transition: border-color .15s, box-shadow .15s, transform .1s;
+            text-align: left;
         }
-        .credits-remaining .highlight { font-weight: 600; color: var(--t1); }
+        .btn-crm:hover { border-color: var(--border); box-shadow: 0 2px 8px rgba(0,0,0,.07); }
+        .btn-crm:active { transform: scale(.98); }
+        .btn-crm:disabled { opacity: .5; cursor: not-allowed; }
+        .crm-btn-logo { width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; }
+        .crm-btn-logo.hs  { background: rgba(255,122,0,.1); color: #f07900; }
+        .crm-btn-logo.ghl { background: rgba(94,92,230,.08); color: var(--purple); }
+        .btn-crm .arrow { margin-left: auto; font-size: 16px; color: var(--t3); }
 
-        /* ── Subscription card ── */
-        .sub-plan-name {
-            font-family: var(--fd);
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -.04em;
-            margin-bottom: 4px;
-        }
-        .sub-status-row {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            font-size: 13px;
-            color: var(--t2);
-            margin-bottom: 16px;
-        }
-        .sub-dot { width: 7px; height: 7px; border-radius: 50%; }
-        .sub-dot.active    { background: var(--green); }
-        .sub-dot.cancelled { background: var(--t3); }
-        .sub-dot.none      { background: var(--border); }
+        .crm-list-rows { display: flex; flex-direction: column; gap: 10px; }
+        .crm-row { display: flex; align-items: center; gap: 12px; padding: 11px 13px; background: var(--bg); border-radius: 12px; animation: fadeUp .3s var(--out); }
+        .crm-row-logo { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; }
+        .crm-row-logo.hs  { background: rgba(255,122,0,.1); color: #f07900; }
+        .crm-row-logo.ghl { background: rgba(94,92,230,.08); color: var(--purple); }
+        .crm-row-info { flex: 1; min-width: 0; }
+        .crm-row-name  { font-size: 14px; font-weight: 600; }
+        .crm-row-acct  { font-size: 12px; color: var(--t2); }
+        .crm-row-date  { font-size: 11px; color: var(--t3); }
+        .dot-g { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-right: 5px; vertical-align: middle; }
+        .btn-row-danger { font-size: 12px; color: var(--red); background: none; border: none; cursor: pointer; font-family: var(--ft); font-weight: 500; padding: 5px 8px; border-radius: 7px; transition: background .15s; flex-shrink: 0; }
+        .btn-row-danger:hover { background: rgba(255,59,48,.07); }
+        .card-footer-link { display: flex; align-items: center; justify-content: flex-end; margin-top: 12px; }
+        .subtle-link { font-size: 12px; color: var(--t3); text-decoration: none; transition: color .15s; }
+        .subtle-link:hover { color: var(--blue); }
 
-        .sub-renew { font-size: 12px; color: var(--t3); margin-bottom: 16px; }
-        .sub-cta-row { display: flex; gap: 8px; flex-wrap: wrap; }
-        .btn-upgrade {
-            flex: 1;
-            min-width: 110px;
-            padding: 11px 18px;
-            background: var(--grad);
-            color: #fff;
-            border: none;
-            border-radius: 11px;
-            font-family: var(--ft);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: opacity .15s, transform .1s;
-            text-align: center;
+        /* CRM polling overlay inside card */
+        .crm-poll-overlay {
+            position: absolute; inset: 0; background: rgba(255,255,255,.95);
+            backdrop-filter: blur(6px); border-radius: 20px;
+            display: none; flex-direction: column; align-items: center; justify-content: center; gap: 12px; z-index: 5;
         }
-        .btn-upgrade:hover { opacity: .88; }
-        .btn-upgrade:active { transform: scale(.97); }
-        .btn-manage {
-            flex: 1;
-            min-width: 110px;
-            padding: 11px 18px;
-            background: var(--bg);
-            color: var(--t1);
-            border: none;
-            border-radius: 11px;
-            font-family: var(--ft);
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background .15s;
-            text-align: center;
-        }
-        .btn-manage:hover { background: #e5e5ea; }
+        .crm-poll-overlay.show { display: flex; }
+        .poll-title { font-family: var(--fd); font-size: 16px; font-weight: 600; letter-spacing: -.03em; }
+        .poll-sub { font-size: 13px; color: var(--t2); }
+        .poll-cancel { background: none; border: none; font-family: var(--ft); font-size: 13px; color: var(--t3); cursor: pointer; margin-top: 4px; }
+        .poll-cancel:hover { color: var(--red); }
+        .poll-success-icon { width: 52px; height: 52px; background: rgba(52,199,89,.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; }
 
-        /* ── CRM card ── */
-        .crm-list { display: flex; flex-direction: column; gap: 10px; }
-        .crm-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 14px;
-            background: var(--bg);
-            border-radius: 13px;
-            animation: fadeIn .3s var(--out);
+        /* ─ Phone card ─ */
+        .phone-list-rows { display: flex; flex-direction: column; gap: 10px; }
+        .phone-row { display: flex; align-items: center; gap: 12px; padding: 11px 13px; background: var(--bg); border-radius: 12px; animation: fadeUp .3s var(--out); }
+        .phone-row-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(52,199,89,.1); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+        .phone-row-info { flex: 1; min-width: 0; }
+        .phone-row-num   { font-size: 14px; font-weight: 600; }
+        .phone-row-route { font-size: 12px; color: var(--t2); }
+        .phone-row-date  { font-size: 11px; color: var(--t3); }
+        .phone-add-wrap { margin-top: 10px; }
+        .btn-add-dashed {
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            width: 100%; padding: 11px 18px; background: none; border: 1.5px dashed var(--border);
+            border-radius: 12px; font-family: var(--ft); font-size: 13px; font-weight: 500; color: var(--t2);
+            cursor: pointer; transition: border-color .15s, color .15s, background .15s;
         }
-        .crm-logo {
-            width: 38px;
-            height: 38px;
-            border-radius: 9px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: 800;
-            flex-shrink: 0;
-            letter-spacing: -.02em;
-        }
-        .crm-logo.hs  { background: rgba(255,122,0,.1); color: #f07900; }
-        .crm-logo.ghl { background: rgba(94,92,230,.08); color: var(--purple); }
-        .crm-info { flex: 1; min-width: 0; }
-        .crm-name { font-size: 14px; font-weight: 600; line-height: 1.2; }
-        .crm-account { font-size: 12px; color: var(--t2); margin-top: 2px; }
-        .crm-date { font-size: 11px; color: var(--t3); margin-top: 1px; }
-        .btn-text-danger {
-            font-size: 12px;
-            color: var(--red);
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-family: var(--ft);
-            font-weight: 500;
-            padding: 6px 10px;
-            border-radius: 8px;
-            transition: background .15s;
-            flex-shrink: 0;
-        }
-        .btn-text-danger:hover { background: rgba(255,59,48,.06); }
-
-        .empty-state {
-            text-align: center;
-            padding: 20px 0 8px;
-        }
-        .empty-icon { font-size: 32px; margin-bottom: 8px; }
-        .empty-text { font-size: 13px; color: var(--t2); margin-bottom: 14px; }
-
-        .btn-add {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 18px;
-            background: var(--bg);
-            border: 1.5px dashed var(--border);
-            border-radius: 11px;
-            font-family: var(--ft);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--t2);
-            cursor: pointer;
-            width: 100%;
-            justify-content: center;
-            transition: background .15s, border-color .15s, color .15s;
-            text-decoration: none;
-            margin-top: 10px;
-        }
-        .btn-add:hover { background: #e8e8ed; border-color: #aaa; color: var(--t1); }
-
-        /* ── Phone card ── */
-        .phone-list { display: flex; flex-direction: column; gap: 10px; }
-        .phone-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 14px;
-            background: var(--bg);
-            border-radius: 13px;
-            animation: fadeIn .3s var(--out);
-        }
-        .phone-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 9px;
-            background: rgba(52,199,89,.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            flex-shrink: 0;
-        }
-        .phone-info { flex: 1; min-width: 0; }
-        .phone-number { font-size: 14px; font-weight: 600; }
-        .phone-route { font-size: 12px; color: var(--t2); margin-top: 2px; }
-        .phone-date { font-size: 11px; color: var(--t3); margin-top: 1px; }
-
-        /* Phone registration inline */
-        .phone-reg { margin-top: 4px; }
+        .btn-add-dashed:hover { border-color: #aaa; color: var(--t1); background: rgba(0,0,0,.02); }
+        .phone-form { margin-top: 10px; }
         .input-row { display: flex; gap: 8px; }
         .input-row .field-input { flex: 1; }
-        .btn-sm {
-            padding: 10px 16px;
-            background: var(--bg);
-            border: none;
-            border-radius: 10px;
-            font-family: var(--ft);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--t1);
-            cursor: pointer;
-            white-space: nowrap;
-            transition: background .15s;
-            flex-shrink: 0;
-        }
-        .btn-sm:hover { background: #e5e5ea; }
-        .btn-sm.blue { background: var(--blue); color: #fff; }
-        .btn-sm.blue:hover { opacity: .88; }
-        .phone-err { font-size: 12px; color: var(--red); margin-top: 6px; display: none; }
+        .btn-sm-blue { padding: 11px 15px; background: var(--blue); color: #fff; border: none; border-radius: 10px; font-family: var(--ft); font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity .15s; flex-shrink: 0; }
+        .btn-sm-blue:hover { opacity: .85; }
+        .inline-err { font-size: 12px; color: var(--red); margin-top: 6px; display: none; }
 
         /* ─ Skeleton ─ */
-        .skel {
-            background: linear-gradient(90deg, var(--bg) 25%, #ebebef 50%, var(--bg) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.4s infinite;
-            border-radius: 6px;
-        }
+        .skel { background: linear-gradient(90deg, var(--bg) 25%, #ebebef 50%, var(--bg) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 8px; }
         @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
-        /* Status dot inline */
-        .dot-green { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-right: 5px; }
+        /* ─ Card error state ─ */
+        .card-err { text-align: center; padding: 16px 0; }
+        .card-err-icon { font-size: 28px; margin-bottom: 8px; }
+        .card-err-text { font-size: 13px; color: var(--t2); margin-bottom: 12px; }
+        .btn-retry { background: none; border: 1.5px solid var(--border); border-radius: 9px; padding: 7px 16px; font-family: var(--ft); font-size: 13px; font-weight: 500; color: var(--t1); cursor: pointer; transition: background .15s; }
+        .btn-retry:hover { background: var(--bg); }
 
-        /* Spinner */
-        .spin {
-            width: 16px; height: 16px;
-            border: 2px solid rgba(0,0,0,.1);
-            border-top-color: var(--blue);
-            border-radius: 50%;
-            animation: rot .7s linear infinite;
-            display: inline-block;
+        /* ══════════ PLAN PICKER MODAL ══════════ */
+        .modal-backdrop {
+            position: fixed; inset: 0; background: rgba(0,0,0,.45); backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px); z-index: 500; display: flex;
+            align-items: flex-end; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity .25s var(--ease);
         }
+        .modal-backdrop.open { opacity: 1; pointer-events: all; }
+        .modal-sheet {
+            background: var(--surface); border-radius: 24px 24px 0 0;
+            padding: 32px 28px 40px; width: 100%; max-width: 720px;
+            transform: translateY(40px); transition: transform .3s var(--out);
+            max-height: 90vh; overflow-y: auto;
+        }
+        .modal-backdrop.open .modal-sheet { transform: translateY(0); }
+        .modal-handle { width: 36px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 20px; }
+        .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+        .modal-title { font-family: var(--fd); font-size: 22px; font-weight: 700; letter-spacing: -.04em; }
+        .modal-close { background: var(--bg); border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 16px; color: var(--t2); display: flex; align-items: center; justify-content: center; transition: background .15s; }
+        .modal-close:hover { background: #e5e5ea; }
+
+        .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .plan-tile {
+            border: 1.5px solid var(--border-l); border-radius: 18px; padding: 22px 18px;
+            cursor: pointer; transition: border-color .15s, box-shadow .15s, transform .15s;
+            position: relative;
+        }
+        .plan-tile:hover { border-color: var(--border); box-shadow: 0 4px 20px rgba(0,0,0,.09); transform: translateY(-2px); }
+        .plan-tile.popular { border-color: var(--purple); box-shadow: 0 4px 20px rgba(94,92,230,.15); }
+        .plan-tile.popular:hover { box-shadow: 0 8px 32px rgba(94,92,230,.2); }
+        .plan-popular-tag {
+            position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+            background: var(--grad); color: #fff; font-size: 10px; font-weight: 700;
+            padding: 3px 12px; border-radius: 20px; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap;
+        }
+        .plan-tile-name { font-family: var(--fd); font-size: 16px; font-weight: 700; letter-spacing: -.03em; margin-bottom: 4px; }
+        .plan-tile-price { font-family: var(--fd); font-size: 34px; font-weight: 700; letter-spacing: -.05em; line-height: 1; margin-bottom: 2px; }
+        .plan-tile-price.featured { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .plan-tile-period { font-size: 13px; color: var(--t2); margin-bottom: 14px; }
+        .plan-tile-credits { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+        .plan-tile-credits span { color: var(--t2); font-weight: 400; }
+        .plan-tile-features { list-style: none; margin-bottom: 18px; }
+        .plan-tile-features li { font-size: 12.5px; color: var(--t2); margin-bottom: 5px; padding-left: 14px; position: relative; }
+        .plan-tile-features li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 11px; }
+        .btn-select {
+            width: 100%; padding: 11px 16px; border-radius: 11px; border: none;
+            font-family: var(--ft); font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity .15s, transform .1s;
+        }
+        .btn-select:active { transform: scale(.97); }
+        .btn-select.default { background: var(--bg); color: var(--t1); }
+        .btn-select.default:hover { background: #e5e5ea; }
+        .btn-select.featured { background: var(--grad); color: #fff; }
+        .btn-select.featured:hover { opacity: .88; }
+        .btn-select:disabled { opacity: .45; cursor: not-allowed; }
+        .modal-note { font-size: 12px; color: var(--t3); text-align: center; margin-top: 16px; }
+
+        /* ══════════ SPINNER / UTILS ══════════ */
+        .spin { width: 18px; height: 18px; border: 2px solid rgba(0,0,0,.1); border-top-color: var(--blue); border-radius: 50%; animation: rot .7s linear infinite; display: inline-block; flex-shrink: 0; }
+        .spin-lg { width: 36px; height: 36px; border-width: 3px; border-top-color: var(--purple); }
         @keyframes rot { to { transform: rotate(360deg); } }
-
-        /* Fade in */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         .hidden { display: none !important; }
 
-        /* ─ Toast ─ */
+        /* Toast */
         #toast {
-            position: fixed;
-            bottom: 28px;
-            left: 50%;
+            position: fixed; bottom: 28px; left: 50%;
             transform: translateX(-50%) translateY(80px);
-            padding: 11px 22px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 500;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.14);
-            transition: transform .3s var(--out);
-            z-index: 999;
-            pointer-events: none;
-            white-space: nowrap;
+            padding: 11px 22px; border-radius: 12px; font-size: 14px; font-weight: 500;
+            box-shadow: 0 4px 24px rgba(0,0,0,.14); transition: transform .3s var(--out);
+            z-index: 999; pointer-events: none; white-space: nowrap;
         }
         #toast.show { transform: translateX(-50%) translateY(0); }
         #toast.ok  { background: var(--green); color: #fff; }
         #toast.bad { background: var(--red);   color: #fff; }
+        #toast.info{ background: var(--t1);    color: #fff; }
 
         /* Responsive */
         @media (max-width: 700px) {
             .grid-top, .grid-bottom { grid-template-columns: 1fr; }
+            .plans-grid { grid-template-columns: 1fr; }
+            .modal-sheet { border-radius: 20px 20px 0 0; padding: 28px 20px 36px; }
             .login-card { padding: 32px 24px; }
             .page { padding: 24px 16px 60px; }
-            .welcome-greeting { font-size: 26px; }
+        }
+        @media (min-width: 480px) and (max-width: 700px) {
+            .plans-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════ LOGIN ═══════════════════════════ -->
+<!-- ═══════════════════ LOGIN ═══════════════════ -->
 <div id="login-view">
     <div class="login-wrap">
-        <div class="login-logo">
+        <div class="login-brand">
             <img src="/Assets/Flight Suite Favicon vPurple.svg" alt="FlightSuite">
             <span>FlightSuite</span>
         </div>
@@ -667,7 +376,6 @@
             <h1 class="login-title">Sign in</h1>
             <p class="login-sub">Manage your plan, CRM connections, and phone numbers.</p>
 
-            <!-- Google Sign-In -->
             <div id="gsi-wrap"></div>
             <button id="google-fallback" class="btn-google" onclick="manualGoogle()">
                 <svg width="18" height="18" viewBox="0 0 18 18">
@@ -681,7 +389,6 @@
 
             <div class="divider">or continue with email</div>
 
-            <!-- Email step -->
             <div id="step-email">
                 <div id="err-email" class="err-box"></div>
                 <div class="field">
@@ -691,9 +398,8 @@
                 <button class="btn-primary" id="btn-send-otp" onclick="requestOtp()">Send sign-in code</button>
             </div>
 
-            <!-- OTP step -->
             <div id="step-otp" class="hidden">
-                <button class="otp-back" onclick="showEmailStep()">← Back</button>
+                <button class="otp-back" onclick="backToEmail()">← Back</button>
                 <div id="err-otp" class="err-box"></div>
                 <div class="field">
                     <label class="field-label" for="inp-otp">6-digit code</label>
@@ -706,9 +412,8 @@
     </div>
 </div>
 
-<!-- ═══════════════════════════ DASHBOARD ═══════════════════════════ -->
+<!-- ═══════════════════ DASHBOARD ═══════════════════ -->
 <div id="dash-view">
-
     <nav class="topbar">
         <div class="topbar-inner">
             <a href="/" class="topbar-logo">
@@ -724,16 +429,16 @@
 
     <div class="page">
 
-        <!-- Success banner -->
-        <div id="subscribed-banner" class="banner-success hidden">
-            <span class="banner-icon">🎉</span>
+        <!-- Subscribed banner -->
+        <div id="subscribed-banner" class="banner-ok hidden">
+            <span class="bi">🎉</span>
             <div><strong>Subscription activated!</strong> Your monthly credits are ready to use.</div>
         </div>
 
-        <!-- Welcome header -->
+        <!-- Welcome -->
         <div class="welcome-header">
-            <div class="welcome-text">
-                <div class="welcome-greeting" id="welcome-name">Welcome back</div>
+            <div>
+                <div class="welcome-greeting" id="welcome-name">Welcome back.</div>
                 <div class="welcome-email" id="welcome-email"></div>
             </div>
             <div id="tier-pill" class="tier-pill tier-free">
@@ -742,105 +447,176 @@
             </div>
         </div>
 
-        <!-- Top row: Credits + Subscription -->
+        <!-- Row 1: Credits + Subscription -->
         <div class="grid-top">
 
             <!-- Credits -->
             <div class="card">
-                <div class="card-title">SMS &amp; WhatsApp Credits</div>
-                <div id="credits-skel">
-                    <div class="skel" style="height:42px; width:60%; margin-bottom:8px;"></div>
-                    <div class="skel" style="height:8px; margin-bottom:8px;"></div>
-                    <div class="skel" style="height:14px; width:50%;"></div>
+                <div class="card-label">SMS &amp; WhatsApp Credits</div>
+                <div id="cred-skel">
+                    <div class="skel" style="height:44px;width:55%;margin-bottom:8px;"></div>
+                    <div class="skel" style="height:8px;margin-bottom:10px;"></div>
+                    <div class="skel" style="height:14px;width:50%;"></div>
                 </div>
-                <div id="credits-content" class="hidden">
-                    <div class="credits-numbers">
-                        <span class="credits-big" id="cred-used">—</span>
-                        <span class="credits-of" id="cred-limit-label"></span>
+                <div id="cred-content" class="hidden">
+                    <div style="display:flex;align-items:baseline;">
+                        <span class="cred-big" id="cred-used">—</span>
+                        <span class="cred-of" id="cred-limit-lbl"></span>
                     </div>
-                    <div class="credits-label" id="cred-context-label"></div>
-                    <div class="progress-track">
-                        <div class="progress-fill" id="cred-bar" style="width:0%"></div>
-                    </div>
-                    <div class="credits-remaining" id="cred-remaining"></div>
+                    <div class="cred-ctx" id="cred-ctx"></div>
+                    <div class="progress-track"><div class="progress-fill" id="cred-bar" style="width:0%"></div></div>
+                    <div class="cred-rem" id="cred-rem"></div>
+                </div>
+                <div id="cred-err" class="card-err hidden">
+                    <div class="card-err-icon">⚠️</div>
+                    <div class="card-err-text">Couldn't load credits.</div>
+                    <button class="btn-retry" onclick="loadBilling()">Retry ↺</button>
                 </div>
             </div>
 
             <!-- Subscription -->
             <div class="card">
-                <div class="card-title">Subscription</div>
+                <div class="card-label">Subscription</div>
                 <div id="sub-skel">
-                    <div class="skel" style="height:28px; width:45%; margin-bottom:10px;"></div>
-                    <div class="skel" style="height:14px; width:65%; margin-bottom:16px;"></div>
-                    <div class="skel" style="height:42px;"></div>
+                    <div class="skel" style="height:30px;width:45%;margin-bottom:10px;"></div>
+                    <div class="skel" style="height:14px;width:65%;margin-bottom:16px;"></div>
+                    <div class="skel" style="height:44px;border-radius:12px;"></div>
                 </div>
                 <div id="sub-content" class="hidden">
-                    <div class="sub-plan-name" id="sub-plan-name">Free</div>
+                    <div class="sub-name" id="sub-plan-name">Free</div>
                     <div class="sub-status-row">
-                        <div class="sub-dot none" id="sub-dot"></div>
+                        <div class="sdot none" id="sub-sdot"></div>
                         <span id="sub-status-text">No active subscription</span>
                     </div>
-                    <div class="sub-renew hidden" id="sub-renew"></div>
-                    <div class="sub-cta-row">
-                        <button class="btn-upgrade hidden" id="btn-upgrade" onclick="startUpgrade()">Upgrade plan →</button>
-                        <button class="btn-manage hidden" id="btn-manage" onclick="openPortal()">Manage subscription</button>
+                    <div id="sub-renew" class="sub-renew hidden"></div>
+                    <div class="sub-actions">
+                        <button id="btn-upgrade-cta" class="btn-upgrade-cta hidden" onclick="openPlanModal()">
+                            Choose a plan →
+                        </button>
+                        <button id="btn-manage-cta" class="btn-manage-cta hidden" onclick="openPortal()">
+                            Manage subscription
+                        </button>
                     </div>
+                </div>
+                <div id="sub-err" class="card-err hidden">
+                    <div class="card-err-icon">⚠️</div>
+                    <div class="card-err-text">Couldn't load subscription.</div>
+                    <button class="btn-retry" onclick="loadBilling()">Retry ↺</button>
                 </div>
             </div>
 
         </div>
 
-        <!-- Bottom row: CRMs + Phone -->
+        <!-- Row 2: CRMs + Phone -->
         <div class="grid-bottom">
 
-            <!-- Connected CRMs -->
-            <div class="card">
-                <div class="card-title">Connected CRMs</div>
+            <!-- CRM connections -->
+            <div class="card" id="crm-card">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+                    <div class="card-label" style="margin-bottom:0;">Connected CRMs</div>
+                    <a href="/app/connect" class="subtle-link">Full view →</a>
+                </div>
                 <div id="crm-skel">
-                    <div class="skel" style="height:62px; border-radius:13px; margin-bottom:10px;"></div>
+                    <div class="skel" style="height:54px;border-radius:13px;margin-bottom:10px;"></div>
+                    <div class="skel" style="height:54px;border-radius:13px;"></div>
                 </div>
                 <div id="crm-content" class="hidden">
-                    <div id="crm-list" class="crm-list"></div>
-                    <a href="/app/connect" class="btn-add" id="btn-add-crm">
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                            <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                        </svg>
-                        Connect a CRM
-                    </a>
+                    <!-- Connected rows rendered here -->
+                    <div id="crm-rows" class="crm-list-rows"></div>
+                    <!-- Connect buttons (shown when CRM not yet connected) -->
+                    <div id="crm-connect-btns" class="crm-connect-btns hidden"></div>
+                </div>
+                <div id="crm-err" class="card-err hidden">
+                    <div class="card-err-icon">⚠️</div>
+                    <div class="card-err-text">Couldn't load CRM connections.</div>
+                    <button class="btn-retry" onclick="loadUser()">Retry ↺</button>
+                </div>
+
+                <!-- Polling overlay -->
+                <div class="crm-poll-overlay" id="crm-poll-overlay">
+                    <div class="spin spin-lg"></div>
+                    <div class="poll-title" id="poll-title">Waiting for authorization…</div>
+                    <div class="poll-sub">Complete sign-in in the tab that just opened</div>
+                    <button class="poll-cancel" id="poll-cancel-btn">Cancel</button>
                 </div>
             </div>
 
             <!-- Phone Numbers -->
             <div class="card">
-                <div class="card-title">Phone Numbers</div>
+                <div class="card-label">Phone Numbers</div>
                 <div id="phone-skel">
-                    <div class="skel" style="height:62px; border-radius:13px; margin-bottom:10px;"></div>
+                    <div class="skel" style="height:54px;border-radius:13px;margin-bottom:10px;"></div>
                 </div>
                 <div id="phone-content" class="hidden">
-                    <div id="phone-list" class="phone-list"></div>
-
-                    <!-- Add phone form (shown when no phone linked, or to add more) -->
-                    <div id="phone-add-section">
-                        <div id="phone-step-number" class="phone-reg">
-                            <div class="input-row">
-                                <input id="inp-phone" class="field-input" type="tel" placeholder="+1 555 000 0000">
-                                <button class="btn-sm blue" onclick="sendPhoneCode()">Send code</button>
-                            </div>
-                            <div id="phone-err" class="phone-err"></div>
-                        </div>
-                        <div id="phone-step-otp" class="phone-reg hidden">
-                            <p style="font-size:13px; color:var(--t2); margin-bottom:8px;">Enter the code sent to your number:</p>
-                            <div class="input-row">
-                                <input id="inp-phone-otp" class="field-input" type="text" inputmode="numeric" maxlength="6" placeholder="000000">
-                                <button class="btn-sm blue" onclick="verifyPhoneCode()">Verify</button>
-                            </div>
-                            <div id="phone-otp-err" class="phone-err"></div>
-                        </div>
-                    </div>
+                    <div id="phone-rows" class="phone-list-rows"></div>
+                    <div id="phone-add-area" class="phone-add-wrap"></div>
+                </div>
+                <div id="phone-err" class="card-err hidden">
+                    <div class="card-err-icon">⚠️</div>
+                    <div class="card-err-text">Couldn't load phone numbers.</div>
+                    <button class="btn-retry" onclick="loadUser()">Retry ↺</button>
                 </div>
             </div>
 
         </div>
+    </div>
+</div>
+
+<!-- ═══════════════════ PLAN PICKER MODAL ═══════════════════ -->
+<div class="modal-backdrop" id="plan-modal" onclick="maybeCloseModal(event)">
+    <div class="modal-sheet">
+        <div class="modal-handle"></div>
+        <div class="modal-header">
+            <div class="modal-title">Choose your plan</div>
+            <button class="modal-close" onclick="closePlanModal()">✕</button>
+        </div>
+        <div class="plans-grid">
+
+            <!-- Starter -->
+            <div class="plan-tile" data-tier="starter">
+                <div class="plan-tile-name">Starter</div>
+                <div class="plan-tile-price">$5</div>
+                <div class="plan-tile-period">per month</div>
+                <div class="plan-tile-credits">100 <span>SMS/WA credits/mo</span></div>
+                <ul class="plan-tile-features">
+                    <li>Unlimited Chrome extension</li>
+                    <li>HubSpot &amp; GHL</li>
+                    <li>Monthly reset</li>
+                </ul>
+                <button class="btn-select default" onclick="selectPlan('starter', this)">Get Starter</button>
+            </div>
+
+            <!-- Pro (featured) -->
+            <div class="plan-tile popular" data-tier="pro">
+                <div class="plan-popular-tag">Most Popular</div>
+                <div class="plan-tile-name">Pro</div>
+                <div class="plan-tile-price featured">$10</div>
+                <div class="plan-tile-period">per month</div>
+                <div class="plan-tile-credits">300 <span>SMS/WA credits/mo</span></div>
+                <ul class="plan-tile-features">
+                    <li>Unlimited Chrome extension</li>
+                    <li>HubSpot &amp; GHL</li>
+                    <li>Priority support</li>
+                </ul>
+                <button class="btn-select featured" onclick="selectPlan('pro', this)">Get Pro</button>
+            </div>
+
+            <!-- Business -->
+            <div class="plan-tile" data-tier="business">
+                <div class="plan-tile-name">Business</div>
+                <div class="plan-tile-price">$15</div>
+                <div class="plan-tile-period">per month</div>
+                <div class="plan-tile-credits">600 <span>SMS/WA credits/mo</span></div>
+                <ul class="plan-tile-features">
+                    <li>Unlimited Chrome extension</li>
+                    <li>HubSpot &amp; GHL</li>
+                    <li>Priority support + SLA</li>
+                </ul>
+                <button class="btn-select default" onclick="selectPlan('business', this)">Get Business</button>
+            </div>
+
+        </div>
+        <div class="modal-note">Cancel anytime · No contracts · Secure checkout via Stripe</div>
     </div>
 </div>
 
@@ -849,13 +625,13 @@
 <script>
 const API = 'https://treasonable-refugio-uncoincidentally.ngrok-free.dev/api/v1';
 
-// ── Token ──────────────────────────────────────────────────────────
-function tok()          { return localStorage.getItem('fs_token'); }
-function setTok(t)      { localStorage.setItem('fs_token', t); }
-function clearTok()     { localStorage.removeItem('fs_token'); localStorage.removeItem('fs_email'); }
-function auth()         { return { 'Authorization': 'Bearer ' + tok(), 'Content-Type': 'application/json' }; }
+// ── Token (standardized key: fs_user_token) ──────────────────────
+function tok()      { return localStorage.getItem('fs_user_token'); }
+function setTok(t)  { localStorage.setItem('fs_user_token', t); }
+function clearTok() { localStorage.removeItem('fs_user_token'); localStorage.removeItem('fs_email'); }
+function auth()     { return { 'Authorization': 'Bearer ' + tok(), 'Content-Type': 'application/json' }; }
 
-// ── Boot ───────────────────────────────────────────────────────────
+// ── Boot ─────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
     initGSI();
     if (tok()) {
@@ -864,12 +640,12 @@ window.addEventListener('DOMContentLoaded', () => {
         document.getElementById('login-view').style.display = 'flex';
     }
     if (new URLSearchParams(location.search).get('subscribed') === 'true') {
-        document.getElementById('subscribed-banner').classList.remove('hidden');
+        show('subscribed-banner');
         history.replaceState({}, '', '/app');
     }
 });
 
-// ── Google Sign-In ─────────────────────────────────────────────────
+// ── Google Sign-In ────────────────────────────────────────────────
 function initGSI() {
     if (typeof google === 'undefined') return;
     google.accounts.id.initialize({
@@ -882,14 +658,11 @@ function initGSI() {
     );
     document.getElementById('google-fallback').classList.add('hidden');
 }
-function manualGoogle() {
-    if (typeof google !== 'undefined') google.accounts.id.prompt();
-}
+function manualGoogle() { if (typeof google !== 'undefined') google.accounts.id.prompt(); }
 async function onGoogleCred(res) {
     try {
         const r = await fetch(API + '/auth/google/token', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id_token: res.credential })
         });
         const d = await r.json();
@@ -900,75 +673,80 @@ async function onGoogleCred(res) {
     } catch(e) { showErr('err-email', e.message); }
 }
 
-// ── Email OTP ──────────────────────────────────────────────────────
-let _email = '';
+// ── Email OTP ─────────────────────────────────────────────────────
+let _otp_email = '';
 async function requestOtp(resend = false) {
     const email = document.getElementById('inp-email').value.trim();
     if (!email) { showErr('err-email', 'Please enter your email address.'); return; }
-    _email = email;
+    _otp_email = email;
     clearErr('err-email');
-    setBtnLoading('btn-send-otp', 'Sending…');
+    setLoading('btn-send-otp', 'Sending…');
     try {
         const r = await fetch(API + '/auth/email/request-otp', {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email })
         });
         const d = await r.json();
-        if (!r.ok) throw new Error(d.detail || 'Failed to send code');
-        document.getElementById('step-email').classList.add('hidden');
-        document.getElementById('step-otp').classList.remove('hidden');
-        setTimeout(() => document.getElementById('inp-otp').focus(), 100);
-    } catch(e) { showErr('err-email', e.message); }
-    finally { resetBtn('btn-send-otp', 'Send sign-in code'); }
+        if (!r.ok) throw new Error(d.detail || 'Failed to send code. Try again.');
+        hide('step-email'); show('step-otp');
+        setTimeout(() => document.getElementById('inp-otp').focus(), 80);
+    } catch(e) {
+        showErr('err-email', e.message);
+    } finally { resetLoading('btn-send-otp', 'Send sign-in code'); }
 }
 async function verifyOtp() {
     const code = document.getElementById('inp-otp').value.trim();
-    if (code.length !== 6) { showErr('err-otp', 'Enter the 6-digit code.'); return; }
+    if (code.length !== 6) { showErr('err-otp', 'Enter the 6-digit code from your email.'); return; }
     clearErr('err-otp');
-    setBtnLoading('btn-verify-otp', 'Verifying…');
+    setLoading('btn-verify-otp', 'Verifying…');
     try {
         const r = await fetch(API + '/auth/email/verify-otp', {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: _email, code })
+            body: JSON.stringify({ email: _otp_email, code })
         });
         const d = await r.json();
-        if (!r.ok) throw new Error(d.detail || 'Invalid code');
+        if (!r.ok) throw new Error(d.detail || 'Invalid code. Please try again.');
         setTok(d.user_token);
         if (d.email) localStorage.setItem('fs_email', d.email);
         showDash();
     } catch(e) {
         showErr('err-otp', e.message);
-        resetBtn('btn-verify-otp', 'Sign in');
+        resetLoading('btn-verify-otp', 'Sign in');
     }
 }
-function showEmailStep() {
-    document.getElementById('step-otp').classList.add('hidden');
-    document.getElementById('step-email').classList.remove('hidden');
-    clearErr('err-otp');
-}
+function backToEmail() { hide('step-otp'); show('step-email'); clearErr('err-otp'); }
 
-// ── Dashboard ──────────────────────────────────────────────────────
+// ── Dashboard ─────────────────────────────────────────────────────
 function showDash() {
     document.getElementById('login-view').style.display = 'none';
     document.getElementById('dash-view').style.display = 'block';
     const email = localStorage.getItem('fs_email') || '';
     document.getElementById('topbar-email').textContent = email;
-    loadAll();
+    loadBilling();
+    loadUser();
 }
 function signOut() { clearTok(); location.reload(); }
 
-async function loadAll() {
-    await Promise.all([ loadBilling(), loadUser() ]);
-}
-
-// ── Billing ────────────────────────────────────────────────────────
+// ── Billing ───────────────────────────────────────────────────────
 async function loadBilling() {
+    hide('cred-err'); hide('sub-err');
+    show('cred-skel'); show('sub-skel');
+    hide('cred-content'); hide('sub-content');
     try {
         const r = await fetch(API + '/billing/status', { headers: auth() });
         if (r.status === 401) { signOut(); return; }
+        if (!r.ok) {
+            const d = await r.json().catch(() => ({}));
+            throw new Error(d.detail || 'Server error (' + r.status + ')');
+        }
         renderBilling(await r.json());
-    } catch(e) { renderBilling({}); }
+    } catch(e) {
+        hide('cred-skel'); hide('sub-skel');
+        show('cred-err'); show('sub-err');
+        toast(e.message || 'Connection error loading billing data', 'bad');
+    }
 }
+
 function renderBilling(d) {
     const tier   = (d.tier || 'free').toLowerCase();
     const used   = d.queries_sms_used   ?? 0;
@@ -981,64 +759,57 @@ function renderBilling(d) {
     const pill = document.getElementById('tier-pill');
     const lbl  = document.getElementById('tier-label');
     pill.className = 'tier-pill tier-' + tier;
-    lbl.textContent = tier.charAt(0).toUpperCase() + tier.slice(1);
+    lbl.textContent = { free:'Free', starter:'Starter', pro:'Pro', business:'Business' }[tier] || tier;
 
-    // Credits card
-    const isFree  = tier === 'free';
-    const isUnlim = limit === null || limit >= 99999;
+    // Credits
+    const isUnlim = (limit === null || limit >= 99999);
     document.getElementById('cred-used').textContent = used;
-    document.getElementById('cred-limit-label').textContent = isUnlim ? '/ ∞' : '/ ' + limit;
-    document.getElementById('cred-context-label').textContent = isFree ? 'lifetime trial credits used' : 'credits used this month';
+    document.getElementById('cred-limit-lbl').textContent = isUnlim ? '/ ∞' : '/ ' + limit;
+    document.getElementById('cred-ctx').textContent = tier === 'free' ? 'lifetime trial credits used' : 'credits used this month';
 
-    const pct = isUnlim ? 10 : (limit > 0 ? Math.min((used / limit) * 100, 100) : 0);
+    const pct = isUnlim ? 8 : (limit > 0 ? Math.min((used / limit) * 100, 100) : 0);
     const bar = document.getElementById('cred-bar');
     bar.style.width = pct + '%';
-    bar.className = 'progress-fill';
-    if (!isUnlim) {
-        if (used >= limit)         bar.classList.add('over');
-        else if (used >= limit - 5) bar.classList.add('warn');
-    }
+    bar.className = 'progress-fill' + (!isUnlim && used >= limit ? ' over' : (!isUnlim && used >= limit - 5 ? ' warn' : ''));
 
     const rem = isUnlim ? null : (limit - used);
-    const remEl = document.getElementById('cred-remaining');
+    const remEl = document.getElementById('cred-rem');
     if (isUnlim) {
-        remEl.innerHTML = '<span class="highlight">Unlimited</span> credits';
+        remEl.innerHTML = '<span class="hl">Unlimited</span> credits this month';
     } else if (rem <= 0) {
-        remEl.innerHTML = '<span class="highlight" style="color:var(--red)">0 credits remaining</span> · <a href="/subscribe" style="color:var(--blue); text-decoration:none; font-weight:500;">Upgrade →</a>';
+        remEl.innerHTML = '<span class="over-text">0 credits remaining</span> &nbsp;·&nbsp; <a class="inline-link" href="/subscribe">Upgrade →</a>';
     } else if (rem <= 5) {
-        remEl.innerHTML = '<span class="highlight" style="color:var(--orange)">' + rem + ' credits remaining</span> · <a href="/subscribe" style="color:var(--blue); text-decoration:none; font-weight:500;">Upgrade →</a>';
+        remEl.innerHTML = '<span class="warn-text">' + rem + ' credits remaining</span> &nbsp;·&nbsp; <a class="inline-link" href="/subscribe">Upgrade →</a>';
     } else {
-        remEl.innerHTML = '<span class="highlight">' + rem + '</span> remaining';
+        remEl.innerHTML = '<span class="hl">' + rem + '</span> remaining';
     }
 
-    hide('credits-skel'); show('credits-content');
+    hide('cred-skel'); show('cred-content');
 
     // Subscription card
-    const names = { free:'Free', starter:'Starter', pro:'Pro', business:'Business' };
+    const names = { free:'Free plan', starter:'Starter', pro:'Pro', business:'Business' };
     document.getElementById('sub-plan-name').textContent = names[tier] || tier;
 
-    const dot = document.getElementById('sub-dot');
-    const stText = document.getElementById('sub-status-text');
-    dot.className = 'sub-dot ' + (status === 'active' ? 'active' : status === 'cancelled' ? 'cancelled' : 'none');
-    stText.textContent = status === 'active' ? 'Active subscription' : status === 'cancelled' ? 'Cancelled' : 'No active subscription';
+    const sdot = document.getElementById('sub-sdot');
+    sdot.className = 'sdot ' + (status === 'active' ? 'active' : status === 'cancelled' ? 'cancelled' : 'none');
+    document.getElementById('sub-status-text').textContent =
+        status === 'active'    ? 'Active subscription' :
+        status === 'cancelled' ? 'Cancelled – access until period end' :
+                                 'No active subscription';
 
     if (end) {
-        const dt = new Date(typeof end === 'number' ? end * 1000 : end);
-        const renew = document.getElementById('sub-renew');
-        renew.textContent = 'Renews ' + dt.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-        renew.classList.remove('hidden');
+        const dt  = new Date(typeof end === 'number' ? end * 1000 : end);
+        const ren = document.getElementById('sub-renew');
+        ren.textContent = 'Renews ' + dt.toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+        show('sub-renew');
     }
 
-    // CTA buttons
-    if (hasCust) {
-        show('btn-manage');
+    if (hasCust && tier !== 'free') {
+        show('btn-manage-cta');
     } else {
-        show('btn-upgrade');
-    }
-    // If paid tier, show manage alongside upgrade
-    if (tier !== 'free' && hasCust) {
-        hide('btn-upgrade');
-        show('btn-manage');
+        show('btn-upgrade-cta');
+        // If paid but no stripe_customer_id yet (edge case), show both
+        if (tier !== 'free') show('btn-manage-cta');
     }
 
     hide('sub-skel'); show('sub-content');
@@ -1046,255 +817,404 @@ function renderBilling(d) {
 
 // ── /users/me ─────────────────────────────────────────────────────
 async function loadUser() {
+    hide('crm-err'); hide('phone-err');
+    show('crm-skel'); show('phone-skel');
+    hide('crm-content'); hide('phone-content');
     try {
         const r = await fetch(API + '/users/me', { headers: auth() });
         if (r.status === 401) { signOut(); return; }
+        if (!r.ok) {
+            const d = await r.json().catch(() => ({}));
+            throw new Error(d.detail || 'Server error (' + r.status + ')');
+        }
         renderUser(await r.json());
-    } catch(e) { renderUser({}); }
+    } catch(e) {
+        hide('crm-skel'); hide('phone-skel');
+        show('crm-err'); show('phone-err');
+        if (!e.message.includes('Server error')) {
+            toast('Connection error — check your network and try again', 'bad');
+        }
+    }
 }
+
 function renderUser(d) {
-    // Welcome header
     const name  = d.name  || localStorage.getItem('fs_email') || 'there';
     const email = d.email || localStorage.getItem('fs_email') || '';
-    document.getElementById('welcome-name').textContent  = 'Welcome back, ' + name.split(' ')[0] + '.';
+    document.getElementById('welcome-name').textContent = 'Welcome back, ' + name.split(' ')[0] + '.';
     document.getElementById('welcome-email').textContent = email;
     document.getElementById('topbar-email').textContent  = email;
     localStorage.setItem('fs_email', email);
 
-    // CRMs
     renderCRMs(d.crm_links || []);
-    // Phones
     renderPhones(d.channels || []);
 }
 
+// ── CRM rendering ─────────────────────────────────────────────────
+const CRM_META = {
+    hubspot: { label: 'HubSpot',       cls: 'hs',  icon: 'HS'  },
+    ghl:     { label: 'GoHighLevel',   cls: 'ghl', icon: 'GHL' },
+};
+
 function renderCRMs(links) {
     hide('crm-skel'); show('crm-content');
-    const list = document.getElementById('crm-list');
+    const rows    = document.getElementById('crm-rows');
+    const btnArea = document.getElementById('crm-connect-btns');
+    rows.innerHTML = '';
+    btnArea.innerHTML = '';
 
-    if (links.length === 0) {
-        list.innerHTML = `
-            <div class="empty-state">
-                <div class="empty-icon">🔌</div>
-                <div class="empty-text">No CRMs connected yet</div>
-            </div>`;
-        document.getElementById('btn-add-crm').textContent = '+ Connect your first CRM';
-        return;
-    }
+    const connectedTypes = new Set(links.map(l => l.crm_type));
 
-    list.innerHTML = links.map(l => {
-        const isHS  = l.crm_type === 'hubspot';
-        const label = isHS ? 'HubSpot' : 'GoHighLevel';
-        const cls   = isHS ? 'hs' : 'ghl';
-        const icon  = isHS ? 'HS' : 'GHL';
-        const date  = l.linked_at ? 'Connected ' + new Date(l.linked_at).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) : '';
-        return `
-        <div class="crm-row">
-            <div class="crm-logo ${cls}">${icon}</div>
-            <div class="crm-info">
-                <div class="crm-name"><span class="dot-green"></span>${label}</div>
-                <div class="crm-account">${l.session_name || l.crm_id || ''}</div>
-                <div class="crm-date">${date}</div>
+    // Render connected rows
+    links.forEach(l => {
+        const m    = CRM_META[l.crm_type] || { label: l.crm_type, cls: 'hs', icon: '?' };
+        const date = l.linked_at ? 'Connected ' + new Date(l.linked_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '';
+        const row  = document.createElement('div');
+        row.className = 'crm-row';
+        row.innerHTML = `
+            <div class="crm-row-logo ${m.cls}">${m.icon}</div>
+            <div class="crm-row-info">
+                <div class="crm-row-name"><span class="dot-g"></span>${m.label}</div>
+                <div class="crm-row-acct">${l.session_name || l.crm_id || ''}</div>
+                <div class="crm-row-date">${date}</div>
             </div>
-            <button class="btn-text-danger" onclick="disconnectCRM('${l.crm_type}','${l.crm_id}')">Disconnect</button>
-        </div>`;
-    }).join('');
+            <button class="btn-row-danger" onclick="disconnectCRM('${l.crm_type}','${l.crm_id}')">Disconnect</button>
+        `;
+        rows.appendChild(row);
+    });
 
-    // Update add button label
-    document.getElementById('btn-add-crm').innerHTML = `
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        Connect another CRM`;
+    // Render connect buttons for any CRM not yet connected
+    const toConnect = ['hubspot', 'ghl'].filter(k => !connectedTypes.has(k));
+    if (toConnect.length > 0) {
+        show('crm-connect-btns');
+        toConnect.forEach(crm => {
+            const m = CRM_META[crm];
+            const btn = document.createElement('button');
+            btn.className = 'btn-crm';
+            btn.id = 'btn-connect-' + crm;
+            btn.innerHTML = `
+                <div class="crm-btn-logo ${m.cls}">${m.icon}</div>
+                <span>Connect ${m.label}</span>
+                <span class="arrow">›</span>
+            `;
+            btn.onclick = () => startCRMConnect(crm);
+            btnArea.appendChild(btn);
+        });
+    } else {
+        hide('crm-connect-btns');
+    }
 }
 
+// ── CRM OAuth polling ─────────────────────────────────────────────
+let _pollInterval = null;
+let _activeCRM    = null;
+
+async function startCRMConnect(crm) {
+    _activeCRM = crm;
+    const m = CRM_META[crm];
+    const endpoint = crm === 'hubspot' ? '/auth/hubspot/oauth/start' : '/auth/ghl/oauth/start';
+    const pollPath = crm === 'hubspot' ? '/auth/hubspot/oauth/session' : '/auth/ghl/oauth/session';
+
+    // Disable connect button
+    const btn = document.getElementById('btn-connect-' + crm);
+    if (btn) btn.disabled = true;
+
+    try {
+        const r = await fetch(API + endpoint, { method: 'POST', headers: auth() });
+        if (r.status === 401) { signOut(); return; }
+        if (!r.ok) {
+            const d = await r.json().catch(() => ({}));
+            throw new Error(d.detail || 'Could not start ' + m.label + ' authorization');
+        }
+        const data = await r.json();
+        const authUrl      = data.auth_url || data.url;
+        const pollingToken = data.polling_token;
+        if (!authUrl) throw new Error('No authorization URL returned from server');
+
+        // Open auth tab
+        window.open(authUrl, '_blank');
+
+        // Show overlay
+        document.getElementById('poll-title').textContent = 'Authorizing ' + m.label + '…';
+        document.getElementById('poll-cancel-btn').onclick = () => cancelCRMPoll();
+        document.getElementById('crm-poll-overlay').classList.add('show');
+
+        // Poll every 2s
+        _pollInterval = setInterval(async () => {
+            try {
+                const pr = await fetch(API + pollPath + '?polling_token=' + encodeURIComponent(pollingToken), { headers: auth() });
+                if (pr.status === 401) { cancelCRMPoll(); signOut(); return; }
+                if (!pr.ok) return; // keep polling
+                const pd = await pr.json();
+                const st = (pd.status || '').toLowerCase();
+                if (st === 'complete' || st === 'completed') {
+                    clearInterval(_pollInterval); _pollInterval = null;
+                    showCRMSuccess(m.label);
+                } else if (st === 'error' || st === 'failed') {
+                    clearInterval(_pollInterval); _pollInterval = null;
+                    hidePollOverlay();
+                    toast(m.label + ' authorization failed. Please try again.', 'bad');
+                    if (btn) btn.disabled = false;
+                }
+            } catch(e) { /* keep polling on network hiccup */ }
+        }, 2000);
+
+        // 5-minute safety timeout
+        setTimeout(() => {
+            if (_pollInterval) { cancelCRMPoll(); toast('Authorization timed out. Please try again.', 'bad'); }
+        }, 300000);
+
+    } catch(e) {
+        hidePollOverlay();
+        toast(e.message, 'bad');
+        if (btn) btn.disabled = false;
+    }
+}
+
+function showCRMSuccess(label) {
+    const overlay = document.getElementById('crm-poll-overlay');
+    overlay.innerHTML = `
+        <div class="poll-success-icon">✓</div>
+        <div class="poll-title" style="color:var(--green)">${label} connected!</div>
+        <div class="poll-sub">Your CRM is now linked to your account.</div>
+    `;
+    toast(label + ' connected successfully!', 'ok');
+    setTimeout(() => {
+        hidePollOverlay();
+        // Restore overlay content
+        overlay.innerHTML = `
+            <div class="spin spin-lg"></div>
+            <div class="poll-title" id="poll-title">Waiting for authorization…</div>
+            <div class="poll-sub">Complete sign-in in the tab that just opened</div>
+            <button class="poll-cancel" id="poll-cancel-btn">Cancel</button>
+        `;
+        loadUser();
+    }, 2000);
+}
+
+function cancelCRMPoll() {
+    if (_pollInterval) { clearInterval(_pollInterval); _pollInterval = null; }
+    hidePollOverlay();
+    const btn = _activeCRM ? document.getElementById('btn-connect-' + _activeCRM) : null;
+    if (btn) btn.disabled = false;
+    _activeCRM = null;
+}
+
+function hidePollOverlay() { document.getElementById('crm-poll-overlay').classList.remove('show'); }
+
+// ── CRM disconnect ────────────────────────────────────────────────
+async function disconnectCRM(crm_type, crm_id) {
+    const label = CRM_META[crm_type]?.label || crm_type;
+    if (!confirm('Disconnect ' + label + '? You can reconnect anytime.')) return;
+    try {
+        const r = await fetch(API + '/users/me/crm-links/' + crm_type + '/' + crm_id, {
+            method: 'DELETE', headers: auth()
+        });
+        if (r.status === 401) { signOut(); return; }
+        if (!r.ok) {
+            const d = await r.json().catch(() => ({}));
+            throw new Error(d.detail || 'Failed to disconnect');
+        }
+        toast(label + ' disconnected', 'ok');
+        loadUser();
+    } catch(e) { toast(e.message, 'bad'); }
+}
+
+// ── Phone rendering ───────────────────────────────────────────────
 function renderPhones(channels) {
     hide('phone-skel'); show('phone-content');
-    const phones = channels.filter(c => c.channel_type === 'sms' || c.channel_type === 'whatsapp');
-    const list = document.getElementById('phone-list');
+    const phones  = channels.filter(c => c.channel_type === 'sms' || c.channel_type === 'whatsapp');
+    const rowsEl  = document.getElementById('phone-rows');
+    const addArea = document.getElementById('phone-add-area');
+    rowsEl.innerHTML = '';
+    addArea.innerHTML = '';
 
+    phones.forEach(p => {
+        const isSMS = p.channel_type === 'sms';
+        const num   = formatPhone(p.channel_id || '');
+        const crm   = routeLabel(p.linked_crm || '');
+        const date  = p.registered_at ? 'Added ' + new Date(p.registered_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '';
+        const row   = document.createElement('div');
+        row.className = 'phone-row';
+        row.innerHTML = `
+            <div class="phone-row-icon">${isSMS ? '💬' : '📱'}</div>
+            <div class="phone-row-info">
+                <div class="phone-row-num"><span class="dot-g"></span>${num}</div>
+                <div class="phone-row-route">${crm}</div>
+                <div class="phone-row-date">${date}</div>
+            </div>
+            <button class="btn-row-danger" onclick="disconnectPhone('${p.channel_type}','${encodeURIComponent(p.channel_id)}')">Remove</button>
+        `;
+        rowsEl.appendChild(row);
+    });
+
+    // Add phone button / form
     if (phones.length > 0) {
-        list.innerHTML = phones.map(p => {
-            const isSMS = p.channel_type === 'sms';
-            const icon  = isSMS ? '💬' : '📱';
-            const num   = formatPhone(p.channel_id || '');
-            const crm   = routeLabel(p.linked_crm || '');
-            const date  = p.registered_at ? new Date(p.registered_at).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) : '';
-            return `
-            <div class="phone-row">
-                <div class="phone-icon">${icon}</div>
-                <div class="phone-info">
-                    <div class="phone-number"><span class="dot-green"></span>${num}</div>
-                    <div class="phone-route">${crm}</div>
-                    <div class="phone-date">${date ? 'Added ' + date : ''}</div>
-                </div>
-                <button class="btn-text-danger" onclick="disconnectPhone('${p.channel_type}','${encodeURIComponent(p.channel_id)}')">Remove</button>
-            </div>`;
-        }).join('');
-        // Hide add section if phone already linked (show as collapsed add-more)
-        document.getElementById('phone-add-section').innerHTML = `
-            <button class="btn-add" onclick="showAddPhone(this)">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                </svg>
-                Add another number
-            </button>`;
+        addArea.innerHTML = `<button class="btn-add-dashed" onclick="showAddPhoneForm(this)">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Add another number
+        </button>`;
     } else {
-        list.innerHTML = '';
-        // Show registration form
+        addArea.appendChild(buildPhoneForm());
     }
 }
 
-function showAddPhone(btn) {
-    btn.replaceWith(buildPhoneForm());
-}
+function showAddPhoneForm(btn) { btn.replaceWith(buildPhoneForm()); }
 
 function buildPhoneForm() {
     const wrap = document.createElement('div');
-    wrap.className = 'phone-reg';
-    wrap.id = 'phone-reg-inline';
+    wrap.className = 'phone-form';
     wrap.innerHTML = `
-        <div id="phone-step-number-inline">
+        <div id="pf-step-num">
             <div class="input-row">
-                <input id="inp-phone-inline" class="field-input" type="tel" placeholder="+1 555 000 0000">
-                <button class="btn-sm blue" onclick="sendPhoneCode(true)">Send code</button>
+                <input id="pf-inp" class="field-input" type="tel" placeholder="+1 555 000 0000" style="font-size:14px;">
+                <button class="btn-sm-blue" onclick="sendPhoneCode()">Send code</button>
             </div>
-            <div id="phone-err-inline" class="phone-err"></div>
+            <div id="pf-err" class="inline-err"></div>
         </div>
-        <div id="phone-step-otp-inline" class="hidden" style="margin-top:8px;">
-            <p style="font-size:13px; color:var(--t2); margin-bottom:8px;">Enter the code sent to your number:</p>
+        <div id="pf-step-otp" class="hidden" style="margin-top:6px;">
+            <p style="font-size:13px;color:var(--t2);margin-bottom:8px;">Enter the 6-digit code sent to your number:</p>
             <div class="input-row">
-                <input id="inp-phone-otp-inline" class="field-input" type="text" inputmode="numeric" maxlength="6" placeholder="000000">
-                <button class="btn-sm blue" onclick="verifyPhoneCode(true)">Verify</button>
+                <input id="pf-otp" class="field-input" type="text" inputmode="numeric" maxlength="6" placeholder="000000" style="font-size:14px;">
+                <button class="btn-sm-blue" onclick="verifyPhoneCode()">Verify</button>
             </div>
-            <div id="phone-otp-err-inline" class="phone-err"></div>
-        </div>`;
+            <div id="pf-otp-err" class="inline-err"></div>
+        </div>
+    `;
     return wrap;
 }
 
-// Phone registration
-async function sendPhoneCode(inline = false) {
-    const sfx = inline ? '-inline' : '';
-    const phone = document.getElementById('inp-phone' + sfx).value.trim();
-    if (!phone) return;
+let _phoneNum = '';
+async function sendPhoneCode() {
+    const phone = document.getElementById('pf-inp')?.value.trim();
+    if (!phone) { showInlineErr('pf-err', 'Enter your phone number.'); return; }
+    _phoneNum = phone;
+    clearInlineErr('pf-err');
     try {
         const r = await fetch(API + '/channels/sms/send-code', {
             method: 'POST', headers: auth(),
             body: JSON.stringify({ phone_number: phone })
         });
-        if (!r.ok) { const d = await r.json(); showPhoneErr(d.detail || 'Failed to send code', sfx); return; }
-        hide('phone-step-number' + sfx);
-        show('phone-step-otp' + sfx);
-        setTimeout(() => document.getElementById('inp-phone-otp' + sfx)?.focus(), 100);
-    } catch(e) { showPhoneErr(e.message, sfx); }
+        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.detail || 'Failed to send code'); }
+        hide('pf-step-num'); show('pf-step-otp');
+        setTimeout(() => document.getElementById('pf-otp')?.focus(), 80);
+    } catch(e) { showInlineErr('pf-err', e.message); }
 }
-async function verifyPhoneCode(inline = false) {
-    const sfx   = inline ? '-inline' : '';
-    const phone = document.getElementById('inp-phone' + sfx)?.value.trim() || document.getElementById('inp-phone-inline')?.value.trim() || '';
-    const code  = document.getElementById('inp-phone-otp' + sfx).value.trim();
-    if (code.length !== 6) { showPhoneErr('Enter the 6-digit code.', sfx); return; }
+async function verifyPhoneCode() {
+    const code = document.getElementById('pf-otp')?.value.trim();
+    if (!code || code.length !== 6) { showInlineErr('pf-otp-err', 'Enter the 6-digit code.'); return; }
+    clearInlineErr('pf-otp-err');
     try {
         const r = await fetch(API + '/channels/sms/verify-code', {
             method: 'POST', headers: auth(),
-            body: JSON.stringify({ phone_number: phone, code })
+            body: JSON.stringify({ phone_number: _phoneNum, code })
         });
-        if (!r.ok) { const d = await r.json(); showPhoneErr(d.detail || 'Invalid code', sfx); return; }
+        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.detail || 'Invalid code'); }
         toast('Phone number linked! 🎉', 'ok');
         loadUser();
-    } catch(e) { showPhoneErr(e.message, sfx); }
-}
-function showPhoneErr(msg, sfx = '') {
-    const el = document.getElementById('phone-err' + sfx) || document.getElementById('phone-otp-err' + sfx);
-    if (el) { el.textContent = msg; el.style.display = 'block'; }
+    } catch(e) { showInlineErr('pf-otp-err', e.message); }
 }
 
-// Disconnect CRM
-async function disconnectCRM(crm_type, crm_id) {
-    if (!confirm('Disconnect ' + (crm_type === 'hubspot' ? 'HubSpot' : 'GoHighLevel') + '?')) return;
-    try {
-        await fetch(API + '/users/me/crm-links/' + crm_type + '/' + crm_id, {
-            method: 'DELETE', headers: auth()
-        });
-        toast('CRM disconnected', 'ok');
-        loadUser();
-    } catch(e) { toast('Error disconnecting CRM', 'bad'); }
-}
-
-// Disconnect phone
-async function disconnectPhone(channel_type, phone) {
+async function disconnectPhone(channel_type, encodedPhone) {
     if (!confirm('Remove this phone number?')) return;
     try {
-        await fetch(API + '/channels/' + channel_type + '/' + phone, {
+        const r = await fetch(API + '/channels/' + channel_type + '/' + encodedPhone, {
             method: 'DELETE', headers: auth()
         });
+        if (r.status === 401) { signOut(); return; }
+        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.detail || 'Failed to remove'); }
         toast('Phone number removed', 'ok');
         loadUser();
-    } catch(e) { toast('Error removing number', 'bad'); }
+    } catch(e) { toast(e.message, 'bad'); }
 }
 
-// Billing actions
-async function startUpgrade() {
+// ── Plan Modal ────────────────────────────────────────────────────
+function openPlanModal() {
+    document.getElementById('plan-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closePlanModal() {
+    document.getElementById('plan-modal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+function maybeCloseModal(e) { if (e.target === e.currentTarget) closePlanModal(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePlanModal(); });
+
+async function selectPlan(tier, btn) {
+    btn.disabled = true;
+    btn.textContent = 'Redirecting…';
     try {
         const r = await fetch(API + '/billing/checkout', {
             method: 'POST', headers: auth(),
-            body: JSON.stringify({ tier: 'starter' })
+            body: JSON.stringify({ tier })
         });
+        if (r.status === 401) { signOut(); return; }
         const d = await r.json();
-        if (!r.ok) throw new Error(d.detail || 'Could not start checkout');
-        if (d.url || d.checkout_url) location.href = d.url || d.checkout_url;
-        else location.href = '/subscribe';
-    } catch(e) { location.href = '/subscribe'; }
+        if (!r.ok) throw new Error(d.detail || 'Could not create checkout session');
+        const url = d.url || d.checkout_url;
+        if (!url) throw new Error('No checkout URL returned — contact support');
+        location.href = url;
+    } catch(e) {
+        toast(e.message, 'bad');
+        btn.disabled = false;
+        btn.textContent = tier === 'pro' ? 'Get Pro' : tier === 'starter' ? 'Get Starter' : 'Get Business';
+    }
 }
+
 async function openPortal() {
-    const btn = document.getElementById('btn-manage');
+    const btn = document.getElementById('btn-manage-cta');
     btn.textContent = 'Opening…';
     btn.disabled = true;
     try {
-        const r = await fetch(API + '/billing/portal', {
-            method: 'POST', headers: auth()
-        });
+        const r = await fetch(API + '/billing/portal', { method: 'POST', headers: auth() });
+        if (r.status === 401) { signOut(); return; }
         const d = await r.json();
-        if (!r.ok) throw new Error(d.detail);
-        if (d.url || d.portal_url) location.href = d.url || d.portal_url;
+        if (!r.ok) throw new Error(d.detail || 'Could not open billing portal');
+        const url = d.url || d.portal_url;
+        if (!url) throw new Error('No portal URL returned — contact support');
+        location.href = url;
     } catch(e) {
-        toast(e.message || 'Could not open portal', 'bad');
+        toast(e.message, 'bad');
         btn.textContent = 'Manage subscription';
         btn.disabled = false;
     }
 }
 
-// ── Helpers ────────────────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────────
 function formatPhone(p) {
-    const d = p.replace(/\D/g,'');
+    const d = (p || '').replace(/\D/g, '');
     if (d.length === 11 && d[0] === '1') return '+1 (' + d.slice(1,4) + ') ' + d.slice(4,7) + '-' + d.slice(7);
     return p;
 }
-function routeLabel(linked_crm) {
-    if (!linked_crm) return 'No CRM linked';
-    if (linked_crm.toLowerCase().includes('hubspot')) return 'Routing to HubSpot';
-    if (linked_crm.toLowerCase().includes('ghl') || linked_crm.toLowerCase().includes('highlevel')) return 'Routing to GoHighLevel';
-    return 'Linked to ' + linked_crm;
+function routeLabel(linked) {
+    if (!linked) return 'No CRM linked';
+    const l = linked.toLowerCase();
+    if (l.includes('hubspot'))    return 'Routing to HubSpot';
+    if (l.includes('ghl') || l.includes('highlevel')) return 'Routing to GoHighLevel';
+    return 'Linked to ' + linked;
 }
 function show(id) { document.getElementById(id)?.classList.remove('hidden'); }
 function hide(id) { document.getElementById(id)?.classList.add('hidden'); }
-function showErr(id, msg) { const el = document.getElementById(id); if (el) { el.textContent = msg; el.style.display = 'block'; } }
-function clearErr(id)     { const el = document.getElementById(id); if (el) el.style.display = 'none'; }
-function setBtnLoading(id, txt) { const b = document.getElementById(id); if(b){ b.disabled=true; b.textContent=txt; } }
-function resetBtn(id, txt)      { const b = document.getElementById(id); if(b){ b.disabled=false; b.textContent=txt; } }
+function showErr(id, msg)    { const e = document.getElementById(id); if(e){ e.textContent = msg; e.style.display = 'block'; } }
+function clearErr(id)        { const e = document.getElementById(id); if(e) e.style.display = 'none'; }
+function showInlineErr(id, msg) { const e = document.getElementById(id); if(e){ e.textContent = msg; e.style.display = 'block'; } }
+function clearInlineErr(id)     { const e = document.getElementById(id); if(e) e.style.display = 'none'; }
+function setLoading(id, txt)    { const b = document.getElementById(id); if(b){ b.disabled = true; b.textContent = txt; } }
+function resetLoading(id, txt)  { const b = document.getElementById(id); if(b){ b.disabled = false; b.textContent = txt; } }
 function toast(msg, type) {
     const el = document.getElementById('toast');
     el.textContent = msg;
     el.className = 'show ' + type;
-    setTimeout(() => { el.className = type; }, 3200);
+    setTimeout(() => { el.className = type; }, 3500);
 }
 
 // Enter key support
 document.addEventListener('keydown', e => {
     if (e.key !== 'Enter') return;
-    const active = document.activeElement?.id;
-    if (active === 'inp-email')     requestOtp();
-    if (active === 'inp-otp')       verifyOtp();
-    if (active === 'inp-phone' || active === 'inp-phone-inline') sendPhoneCode(active.includes('inline'));
-    if (active === 'inp-phone-otp' || active === 'inp-phone-otp-inline') verifyPhoneCode(active.includes('inline'));
+    const id = document.activeElement?.id;
+    if (id === 'inp-email')  requestOtp();
+    if (id === 'inp-otp')    verifyOtp();
+    if (id === 'pf-inp')     sendPhoneCode();
+    if (id === 'pf-otp')     verifyPhoneCode();
 });
 </script>
 </body>

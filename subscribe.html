@@ -394,7 +394,7 @@
     <div class="pricing-grid">
 
         <!-- FREE -->
-        <div class="plan-card">
+        <div class="plan-card" data-tier="free">
             <div class="plan-name">Free</div>
             <div class="plan-price">
                 <span class="plan-price-amount">$0</span>
@@ -412,7 +412,7 @@
         </div>
 
         <!-- STARTER -->
-        <div class="plan-card">
+        <div class="plan-card" data-tier="starter">
             <div class="plan-name">Starter</div>
             <div class="plan-price">
                 <span class="plan-price-amount">$5</span>
@@ -430,7 +430,7 @@
         </div>
 
         <!-- PRO (featured) -->
-        <div class="plan-card featured">
+        <div class="plan-card featured" data-tier="pro">
             <div class="plan-badge">Most Popular</div>
             <div class="plan-name">Pro</div>
             <div class="plan-price">
@@ -449,7 +449,7 @@
         </div>
 
         <!-- BUSINESS -->
-        <div class="plan-card">
+        <div class="plan-card" data-tier="business">
             <div class="plan-name">Business</div>
             <div class="plan-price">
                 <span class="plan-price-amount">$15</span>
@@ -531,18 +531,10 @@
     }
 
     function markCurrentPlan(tier) {
-        const map = { starter: 1, pro: 2, business: 3 };
-        const idx = map[tier];
-        if (idx === undefined) return;
-        const btns = document.querySelectorAll('.btn-plan:not(.btn-plan-outline)');
-        // Find the right card and update its button
-        document.querySelectorAll('.plan-card').forEach((card, i) => {
-            if (i === idx) {
-                const btn = card.querySelector('.btn-plan');
-                btn.textContent = 'Current plan';
-                btn.disabled = true;
-            }
-        });
+        const card = document.querySelector('.plan-card[data-tier="' + tier + '"]');
+        if (!card) return;
+        const btn = card.querySelector('.btn-plan');
+        if (btn) { btn.textContent = 'Current plan'; btn.disabled = true; }
     }
 
     async function subscribe(tier) {
