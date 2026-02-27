@@ -788,7 +788,7 @@ window.addEventListener('DOMContentLoaded', () => {
         document.getElementById('header').classList.toggle('scrolled', window.scrollY > 10);
     });
 
-    initGSI();
+    initGSI(); // fallback if GIS loaded before DOMContentLoaded
     if (tok()) {
         showDash();
     } else {
@@ -801,18 +801,31 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // ── Google Sign-In ────────────────────────────────────────────────
+// Called by GIS library when it's ready (async defer timing fix)
+window.onGoogleLibraryLoad = initGSI;
+
 function initGSI() {
     if (typeof google === 'undefined') return;
+    // Skip if already initialised
+    if (document.getElementById('gsi-wrap').childElementCount > 0) return;
     google.accounts.id.initialize({
         client_id: '1063285697384-4nqvgdp2ok8o98uusc1ql9qb8gbqsn04.apps.googleusercontent.com',
-        callback: onGoogleCred
+        callback: onGoogleCred,
+        auto_select: false,
+        cancel_on_tap_outside: true
     });
     google.accounts.id.renderButton(document.getElementById('gsi-wrap'), {
-        theme: 'outline', size: 'large', width: 376, text: 'continue_with'
+        theme: 'outline', size: 'large', width: 376, text: 'continue_with', locale: 'en'
     });
     hide('google-fallback');
 }
-function manualGoogle() { if (typeof google !== 'undefined') google.accounts.id.prompt(); }
+function manualGoogle() {
+    if (typeof google !== 'undefined') {
+        google.accounts.id.prompt();
+    } else {
+        showErr('err-email', 'Google sign-in is still loading — try again in a moment.');
+    }
+}
 async function onGoogleCred(res) {
     try {
         const r = await fetch(API + '/auth/google/token', {
