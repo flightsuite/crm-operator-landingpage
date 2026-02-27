@@ -3,367 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlightSuite — Plans & Pricing</title>
-    <meta name="description" content="Choose a FlightSuite plan. Start free, upgrade when you need more SMS and WhatsApp AI credits.">
+    <title>FlightSuite Plans — AI CRM Updates by Text</title>
+    <meta name="description" content="Update your CRM by text or WhatsApp. Free Chrome extension forever. Upgrade for more AI text queries.">
     <link rel="canonical" href="https://flightsuite.ai/subscribe">
     <link rel="icon" type="image/svg+xml" href="/Assets/Flight Suite Favicon vPurple.svg">
     <style>
         :root {
-            --color-apple-blue: #0071E3;
-            --color-ios-purple: #5E5CE6;
-            --color-success: #34C759;
-            --color-error: #FF3B30;
-            --color-text-primary: #1D1D1F;
-            --color-text-secondary: #6E6E73;
-            --color-text-tertiary: #86868B;
-            --color-bg-primary: #FFFFFF;
-            --color-bg-secondary: #F5F5F7;
-            --color-border: #D2D2D7;
-            --color-border-light: #E8E8ED;
-            --gradient-primary: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
-            --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-            --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            --blue:    #0071E3;
+            --purple:  #5E5CE6;
+            --green:   #34C759;
+            --red:     #FF3B30;
+            --t1:      #1D1D1F;
+            --t2:      #6E6E73;
+            --t3:      #86868B;
+            --bg:      #F5F5F7;
+            --surface: #FFFFFF;
+            --border:  #D2D2D7;
+            --border-l:#E8E8ED;
+            --grad:    linear-gradient(135deg, #5E5CE6 0%, #0071E3 100%);
+            --fd:      -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+            --ft:      -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
             --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
-        body {
-            font-family: var(--font-body);
-            color: var(--color-text-primary);
-            background: var(--color-bg-primary);
-            font-size: 15px;
-            line-height: 1.47;
-            letter-spacing: -0.022em;
-        }
+        body { font-family: var(--ft); color: var(--t1); background: var(--surface); font-size: 15px; line-height: 1.47; letter-spacing: -0.022em; }
 
-        /* Nav */
+        /* ── Nav ── */
         nav {
             background: rgba(255,255,255,0.85);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--color-border-light);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            border-bottom: 1px solid var(--border-l);
+            position: sticky; top: 0; z-index: 100;
         }
-        .nav-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-            height: 52px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            font-family: var(--font-display);
-            font-size: 17px;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            letter-spacing: -0.03em;
-        }
+        .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 52px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--fd); font-size: 17px; font-weight: 600; letter-spacing: -0.03em; color: var(--t1); }
         .nav-logo img { width: 26px; height: 26px; }
         .nav-links { display: flex; align-items: center; gap: 20px; }
-        .nav-link {
-            font-size: 14px;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            transition: color 0.15s;
-        }
-        .nav-link:hover { color: var(--color-text-primary); }
-        .btn-nav {
-            font-size: 14px;
-            font-weight: 500;
-            padding: 7px 16px;
-            background: var(--color-apple-blue);
-            color: white;
-            border-radius: 20px;
-            text-decoration: none;
-            transition: opacity 0.15s;
-        }
+        .nav-link { font-size: 14px; color: var(--t2); text-decoration: none; transition: color 0.15s; }
+        .nav-link:hover { color: var(--t1); }
+        .btn-nav { font-size: 14px; font-weight: 500; padding: 7px 16px; background: var(--blue); color: white; border-radius: 20px; text-decoration: none; transition: opacity 0.15s; }
         .btn-nav:hover { opacity: 0.85; }
 
-        /* Hero */
+        /* ── Hero ── */
         .hero {
             text-align: center;
-            padding: clamp(60px, 8vw, 100px) 24px clamp(40px, 5vw, 60px);
+            padding: clamp(64px, 9vw, 108px) 24px clamp(40px, 5vw, 56px);
             background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
         }
         .hero-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(94,92,230,0.08);
-            color: var(--color-ios-purple);
-            font-size: 13px;
-            font-weight: 600;
-            padding: 5px 14px;
-            border-radius: 20px;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            margin-bottom: 20px;
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(94,92,230,0.08); color: var(--purple);
+            font-size: 12px; font-weight: 700; padding: 5px 14px;
+            border-radius: 20px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 22px;
         }
         .hero-title {
-            font-family: var(--font-display);
-            font-size: clamp(36px, 5vw, 56px);
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            line-height: 1.07;
-            margin-bottom: 14px;
+            font-family: var(--fd); font-size: clamp(36px, 5.5vw, 62px); font-weight: 700;
+            letter-spacing: -0.04em; line-height: 1.06; margin-bottom: 16px;
         }
-        .hero-sub {
-            font-size: clamp(15px, 2vw, 18px);
-            color: var(--color-text-secondary);
-            max-width: 520px;
-            margin: 0 auto;
-        }
-        .gradient-text {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-sub { font-size: clamp(15px, 2vw, 19px); color: var(--t2); max-width: 540px; margin: 0 auto 32px; line-height: 1.5; }
 
-        /* Pricing section */
-        .pricing-section {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px clamp(60px, 8vw, 100px);
+        /* ── "What's a credit?" explainer ── */
+        .credit-explainer {
+            max-width: 680px; margin: 0 auto 56px;
+            background: var(--bg); border-radius: 18px; padding: 24px 28px;
+            text-align: left;
         }
+        .credit-explainer-title { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--t3); margin-bottom: 14px; }
+        .credit-example {
+            display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;
+        }
+        .credit-example:last-child { margin-bottom: 0; }
+        .bubble-you {
+            background: var(--blue); color: white; padding: 9px 14px;
+            border-radius: 18px 18px 4px 18px; font-size: 13.5px; max-width: 340px; line-height: 1.45;
+        }
+        .bubble-fs {
+            background: white; border: 1px solid var(--border-l); color: var(--t1);
+            padding: 9px 14px; border-radius: 18px 18px 18px 4px; font-size: 13.5px; max-width: 340px; line-height: 1.45;
+        }
+        .credit-tag {
+            font-size: 11px; font-weight: 700; color: var(--purple);
+            background: rgba(94,92,230,0.1); padding: 3px 8px; border-radius: 20px;
+            white-space: nowrap; margin-top: 6px; align-self: flex-end;
+        }
+        .credit-explainer-note { font-size: 13px; color: var(--t2); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border-l); }
+
+        /* ── Pricing grid ── */
+        .pricing-section { max-width: 1080px; margin: 0 auto; padding: 0 24px clamp(60px, 8vw, 100px); }
+        #current-plan-info {
+            background: rgba(94,92,230,0.05); border: 1.5px solid rgba(94,92,230,0.15);
+            border-radius: 14px; padding: 14px 20px; display: none; margin-bottom: 28px;
+            font-size: 14px; color: var(--t2); text-align: center;
+        }
+        #current-plan-info strong { color: var(--t1); }
+        .manage-link { color: var(--blue); font-weight: 500; text-decoration: none; }
+        .manage-link:hover { text-decoration: underline; }
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 16px;
-            align-items: start;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px; align-items: start;
         }
+        @media (max-width: 900px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px) { .pricing-grid { grid-template-columns: 1fr; } .plan-card.featured { order: -1; } }
 
         .plan-card {
-            background: white;
-            border: 1.5px solid var(--color-border-light);
-            border-radius: 22px;
-            padding: 28px 24px;
-            position: relative;
-            transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+            background: white; border: 1.5px solid var(--border-l);
+            border-radius: 22px; padding: 26px 22px; position: relative;
+            transition: box-shadow 0.2s, transform 0.2s;
         }
-        .plan-card:hover {
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
-        .plan-card.featured {
-            border-color: var(--color-ios-purple);
-            box-shadow: 0 4px 24px rgba(94,92,230,0.15);
-        }
-        .plan-card.featured:hover {
-            box-shadow: 0 12px 40px rgba(94,92,230,0.2);
-        }
+        .plan-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.09); transform: translateY(-2px); }
+        .plan-card.featured { border-color: var(--purple); box-shadow: 0 4px 24px rgba(94,92,230,0.15); }
+        .plan-card.featured:hover { box-shadow: 0 12px 40px rgba(94,92,230,0.22); }
 
         .plan-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient-primary);
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 4px 14px;
-            border-radius: 20px;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            white-space: nowrap;
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--grad); color: white; font-size: 11px; font-weight: 700;
+            padding: 4px 14px; border-radius: 20px; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap;
         }
 
-        .plan-name {
-            font-family: var(--font-display);
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 6px;
-        }
-        .plan-price {
-            margin-bottom: 4px;
-        }
-        .plan-price-amount {
-            font-family: var(--font-display);
-            font-size: 40px;
-            font-weight: 700;
-            letter-spacing: -0.05em;
-            line-height: 1;
-        }
-        .plan-price-period {
-            font-size: 14px;
-            color: var(--color-text-secondary);
-        }
-        .plan-desc {
-            font-size: 13px;
-            color: var(--color-text-secondary);
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
+        .plan-name { font-family: var(--fd); font-size: 15px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; color: var(--t2); }
+        .plan-price { margin-bottom: 2px; }
+        .plan-price-amount { font-family: var(--fd); font-size: 42px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; }
+        .plan-price-period { font-size: 14px; color: var(--t2); }
 
-        .plan-divider {
-            height: 1px;
-            background: var(--color-border-light);
-            margin-bottom: 18px;
+        /* The headline value line */
+        .plan-headline {
+            font-family: var(--fd); font-size: 15px; font-weight: 600;
+            color: var(--t1); margin: 10px 0 4px; letter-spacing: -0.02em;
         }
+        .plan-cadence { font-size: 12.5px; color: var(--t3); margin-bottom: 18px; }
 
-        .plan-features { list-style: none; margin-bottom: 24px; }
-        .plan-features li {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            font-size: 13.5px;
-            margin-bottom: 9px;
-            color: var(--color-text-primary);
-        }
-        .check {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: rgba(52,199,89,0.12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-        .check::after {
-            content: '✓';
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--color-success);
-        }
-        .plan-features .highlight { font-weight: 600; }
+        .plan-divider { height: 1px; background: var(--border-l); margin-bottom: 16px; }
+
+        .plan-features { list-style: none; margin-bottom: 22px; }
+        .plan-features li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; margin-bottom: 8px; color: var(--t1); }
+        .check { width: 16px; height: 16px; border-radius: 50%; background: rgba(52,199,89,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+        .check::after { content: '✓'; font-size: 10px; font-weight: 700; color: var(--green); }
+        .plan-features .hl { font-weight: 600; }
 
         .btn-plan {
-            width: 100%;
-            padding: 13px 20px;
-            border-radius: 12px;
-            font-family: var(--font-body);
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.15s, transform 0.1s;
-            letter-spacing: -0.01em;
-            border: none;
-            display: block;
-            text-align: center;
-            text-decoration: none;
+            width: 100%; padding: 13px 20px; border-radius: 12px;
+            font-family: var(--ft); font-size: 15px; font-weight: 600;
+            cursor: pointer; transition: opacity 0.15s, transform 0.1s;
+            letter-spacing: -0.01em; border: none; display: block; text-align: center; text-decoration: none;
         }
         .btn-plan:active { transform: scale(0.98); }
         .btn-plan:disabled { opacity: 0.5; cursor: not-allowed; }
-        .btn-plan-primary {
-            background: var(--gradient-primary);
-            color: white;
-        }
-        .btn-plan-primary:hover { opacity: 0.88; }
-        .btn-plan-outline {
-            background: var(--color-bg-secondary);
-            color: var(--color-text-primary);
-        }
-        .btn-plan-outline:hover { background: #e5e5ea; }
+        .btn-primary { background: var(--grad); color: white; }
+        .btn-primary:hover { opacity: 0.88; }
+        .btn-outline { background: var(--bg); color: var(--t1); }
+        .btn-outline:hover { background: #e5e5ea; }
 
-        /* Already subscribed info */
-        #current-plan-info {
-            background: rgba(94,92,230,0.05);
-            border: 1.5px solid rgba(94,92,230,0.15);
-            border-radius: 14px;
-            padding: 16px 20px;
-            display: none;
-            margin-bottom: 28px;
-            font-size: 14px;
-            color: var(--color-text-secondary);
+        /* ── Value bar (visual daily usage) ── */
+        .usage-bar-wrap { margin-bottom: 16px; }
+        .usage-bar-label { font-size: 11.5px; color: var(--t3); margin-bottom: 5px; }
+        .usage-bar-track { height: 5px; background: var(--border-l); border-radius: 3px; overflow: hidden; }
+        .usage-bar-fill { height: 100%; border-radius: 3px; background: var(--grad); }
+
+        /* ── "How it works" strip ── */
+        .how-section {
+            background: var(--bg); padding: clamp(48px, 6vw, 80px) 24px;
             text-align: center;
         }
-        #current-plan-info strong { color: var(--color-text-primary); }
-        .manage-link {
-            color: var(--color-apple-blue);
-            font-weight: 500;
-            text-decoration: none;
+        .how-inner { max-width: 860px; margin: 0 auto; }
+        .section-title {
+            font-family: var(--fd); font-size: clamp(24px, 3vw, 32px); font-weight: 700;
+            letter-spacing: -0.04em; margin-bottom: 10px;
         }
-        .manage-link:hover { text-decoration: underline; }
+        .section-sub { font-size: 15px; color: var(--t2); margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        @media (max-width: 600px) { .steps { grid-template-columns: 1fr; } }
+        .step { background: white; border-radius: 18px; padding: 24px 20px; text-align: left; }
+        .step-num { font-size: 11px; font-weight: 700; color: var(--purple); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+        .step-title { font-family: var(--fd); font-size: 16px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 6px; }
+        .step-body { font-size: 13.5px; color: var(--t2); line-height: 1.5; }
+        .step-example { font-size: 13px; color: var(--blue); margin-top: 10px; font-style: italic; }
 
-        /* FAQ */
-        .faq-section {
-            background: var(--color-bg-secondary);
-            padding: clamp(48px, 6vw, 80px) 24px;
-        }
+        /* ── FAQ ── */
+        .faq-section { padding: clamp(48px, 6vw, 80px) 24px; }
         .faq-inner { max-width: 720px; margin: 0 auto; }
-        .faq-title {
-            font-family: var(--font-display);
-            font-size: clamp(26px, 3vw, 34px);
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .faq-item { margin-bottom: 16px; }
-        .faq-q {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-        .faq-a {
-            font-size: 14px;
-            color: var(--color-text-secondary);
-            line-height: 1.55;
-        }
+        .faq-item { border-bottom: 1px solid var(--border-l); padding: 20px 0; cursor: pointer; }
+        .faq-item:first-of-type { border-top: 1px solid var(--border-l); }
+        .faq-q { font-size: 15px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .faq-icon { font-size: 20px; color: var(--t3); flex-shrink: 0; transition: transform 0.2s; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-a { font-size: 14px; color: var(--t2); line-height: 1.6; max-height: 0; overflow: hidden; transition: max-height 0.3s var(--ease-out), padding 0.3s; }
+        .faq-item.open .faq-a { max-height: 300px; padding-top: 10px; }
 
-        /* Error toast */
-        #error-toast {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--color-error);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 500;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            transition: transform 0.3s var(--ease-out);
-            z-index: 200;
-            white-space: nowrap;
-        }
-        #error-toast.show { transform: translateX(-50%) translateY(0); }
+        /* ── Guarantee bar ── */
+        .guarantee { background: rgba(52,199,89,0.06); border-top: 1px solid rgba(52,199,89,0.2); border-bottom: 1px solid rgba(52,199,89,0.2); padding: 20px 24px; text-align: center; }
+        .guarantee-inner { max-width: 600px; margin: 0 auto; font-size: 14px; color: var(--t1); }
+        .guarantee-inner strong { color: var(--green); }
 
-        /* Loading overlay */
+        /* ── Overlays ── */
         #loading-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(4px);
-            z-index: 300;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 14px;
+            display: none; position: fixed; inset: 0;
+            background: rgba(255,255,255,0.7); backdrop-filter: blur(4px);
+            z-index: 300; align-items: center; justify-content: center; flex-direction: column; gap: 14px;
         }
         #loading-overlay.show { display: flex; }
-        .spinner-lg {
-            width: 44px;
-            height: 44px;
-            border: 3px solid rgba(94,92,230,0.2);
-            border-top-color: var(--color-ios-purple);
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-        }
+        .spinner-lg { width: 44px; height: 44px; border: 3px solid rgba(94,92,230,0.2); border-top-color: var(--purple); border-radius: 50%; animation: spin 0.7s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .loading-text { font-size: 15px; font-weight: 500; color: var(--color-text-secondary); }
+        .loading-text { font-size: 15px; font-weight: 500; color: var(--t2); }
 
-        @media (max-width: 640px) {
-            .pricing-grid { grid-template-columns: 1fr; }
-            .plan-card.featured { order: -1; }
+        #error-toast {
+            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+            background: var(--red); color: white; padding: 12px 24px; border-radius: 12px;
+            font-size: 14px; font-weight: 500; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s var(--ease-out); z-index: 200; white-space: nowrap;
         }
+        #error-toast.show { transform: translateX(-50%) translateY(0); }
     </style>
 </head>
 <body>
@@ -381,14 +235,35 @@
     </div>
 </nav>
 
+<!-- ── Hero ── -->
 <div class="hero">
-    <div class="hero-eyebrow">Pricing</div>
-    <h1 class="hero-title">Simple, <span class="gradient-text">transparent</span> pricing</h1>
-    <p class="hero-sub">The Chrome extension is free forever. Only pay when you want SMS & WhatsApp AI credits.</p>
+    <div class="hero-eyebrow">✦ Pricing</div>
+    <h1 class="hero-title">Your CRM, updated<br><span class="grad-text">by text</span></h1>
+    <p class="hero-sub">Text FlightSuite like a colleague. It logs calls, updates contacts, and sets follow-ups — while you're still in the car.</p>
+
+    <!-- Credit explainer -->
+    <div class="credit-explainer">
+        <div class="credit-explainer-title">What does one query look like?</div>
+
+        <div class="credit-example">
+            <div>
+                <div class="bubble-you">Just left a call with Marcus at Apex Roofing. He's interested in the premium package, needs a quote by Friday. Set a follow-up for Thursday 2pm.</div>
+            </div>
+            <div class="credit-tag">1 query</div>
+        </div>
+
+        <div class="credit-example" style="justify-content: flex-end; margin-top: 8px;">
+            <div>
+                <div class="bubble-fs">Done ✓ Updated Marcus Reeves at Apex Roofing — noted interest in premium package, added quote deadline Friday. Follow-up set for Thursday at 2:00 PM.</div>
+            </div>
+        </div>
+
+        <p class="credit-explainer-note">One query = one text you send FlightSuite. Replies, confirmations, and follow-up questions don't count. The Chrome extension never uses queries.</p>
+    </div>
 </div>
 
+<!-- ── Pricing cards ── -->
 <div class="pricing-section">
-    <!-- Current plan notice (shown when logged in with active subscription) -->
     <div id="current-plan-info"></div>
 
     <div class="pricing-grid">
@@ -398,17 +273,22 @@
             <div class="plan-name">Free</div>
             <div class="plan-price">
                 <span class="plan-price-amount">$0</span>
-                <span class="plan-price-period">/forever</span>
+                <span class="plan-price-period"> forever</span>
             </div>
-            <p class="plan-desc">Try it out. No card required.</p>
+            <div class="plan-headline">20 trial queries</div>
+            <div class="plan-cadence">One-time, no card needed</div>
+            <div class="usage-bar-wrap">
+                <div class="usage-bar-label">Daily pace</div>
+                <div class="usage-bar-track"><div class="usage-bar-fill" style="width:8%"></div></div>
+            </div>
             <div class="plan-divider"></div>
             <ul class="plan-features">
-                <li><span class="check"></span><span><span class="highlight">20 SMS/WA credits</span> (lifetime trial)</span></li>
-                <li><span class="check"></span><span>Unlimited Chrome extension</span></li>
+                <li><span class="check"></span><span>20 lifetime text queries to try it out</span></li>
+                <li><span class="check"></span><span><span class="hl">Chrome extension free forever</span> — unlimited</span></li>
                 <li><span class="check"></span><span>HubSpot &amp; GHL integrations</span></li>
-                <li><span class="check"></span><span>Natural language CRM updates</span></li>
+                <li><span class="check"></span><span>No credit card required</span></li>
             </ul>
-            <a href="/app" class="btn-plan btn-plan-outline">Sign in free</a>
+            <a href="/app" class="btn-plan btn-outline">Start free</a>
         </div>
 
         <!-- STARTER -->
@@ -416,17 +296,22 @@
             <div class="plan-name">Starter</div>
             <div class="plan-price">
                 <span class="plan-price-amount">$5</span>
-                <span class="plan-price-period">/month</span>
+                <span class="plan-price-period">/mo</span>
             </div>
-            <p class="plan-desc">Great for solo reps staying in touch on the go.</p>
+            <div class="plan-headline">~5 updates/day</div>
+            <div class="plan-cadence">Good for 1–2 calls/day</div>
+            <div class="usage-bar-wrap">
+                <div class="usage-bar-label">Daily pace</div>
+                <div class="usage-bar-track"><div class="usage-bar-fill" style="width:28%"></div></div>
+            </div>
             <div class="plan-divider"></div>
             <ul class="plan-features">
-                <li><span class="check"></span><span><span class="highlight">100 SMS/WA credits/mo</span></span></li>
-                <li><span class="check"></span><span>Unlimited Chrome extension</span></li>
+                <li><span class="check"></span><span><span class="hl">100 queries/month</span> — log calls, notes &amp; follow-ups</span></li>
+                <li><span class="check"></span><span>Chrome extension — unlimited</span></li>
                 <li><span class="check"></span><span>HubSpot &amp; GHL integrations</span></li>
-                <li><span class="check"></span><span>Monthly rollover reset</span></li>
+                <li><span class="check"></span><span>Resets every month</span></li>
             </ul>
-            <button class="btn-plan btn-plan-outline" onclick="subscribe('starter')">Get Starter</button>
+            <button class="btn-plan btn-outline" onclick="subscribe('starter')">Get Starter</button>
         </div>
 
         <!-- PRO (featured) -->
@@ -434,18 +319,23 @@
             <div class="plan-badge">Most Popular</div>
             <div class="plan-name">Pro</div>
             <div class="plan-price">
-                <span class="plan-price-amount" style="background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">$10</span>
-                <span class="plan-price-period">/month</span>
+                <span class="plan-price-amount" style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">$10</span>
+                <span class="plan-price-period">/mo</span>
             </div>
-            <p class="plan-desc">For reps who live in the field and text constantly.</p>
+            <div class="plan-headline">~15 updates/day</div>
+            <div class="plan-cadence">Built for active field reps</div>
+            <div class="usage-bar-wrap">
+                <div class="usage-bar-label">Daily pace</div>
+                <div class="usage-bar-track"><div class="usage-bar-fill" style="width:62%"></div></div>
+            </div>
             <div class="plan-divider"></div>
             <ul class="plan-features">
-                <li><span class="check"></span><span><span class="highlight">300 SMS/WA credits/mo</span></span></li>
-                <li><span class="check"></span><span>Unlimited Chrome extension</span></li>
+                <li><span class="check"></span><span><span class="hl">300 queries/month</span> — every call, every contact</span></li>
+                <li><span class="check"></span><span>Chrome extension — unlimited</span></li>
                 <li><span class="check"></span><span>HubSpot &amp; GHL integrations</span></li>
                 <li><span class="check"></span><span>Priority support</span></li>
             </ul>
-            <button class="btn-plan btn-plan-primary" onclick="subscribe('pro')">Get Pro</button>
+            <button class="btn-plan btn-primary" onclick="subscribe('pro')">Get Pro</button>
         </div>
 
         <!-- BUSINESS -->
@@ -453,45 +343,97 @@
             <div class="plan-name">Business</div>
             <div class="plan-price">
                 <span class="plan-price-amount">$15</span>
-                <span class="plan-price-period">/month</span>
+                <span class="plan-price-period">/mo</span>
             </div>
-            <p class="plan-desc">For power users who never want to hit a limit.</p>
+            <div class="plan-headline">~30 updates/day</div>
+            <div class="plan-cadence">Power users, high-volume reps</div>
+            <div class="usage-bar-wrap">
+                <div class="usage-bar-label">Daily pace</div>
+                <div class="usage-bar-track"><div class="usage-bar-fill" style="width:100%"></div></div>
+            </div>
             <div class="plan-divider"></div>
             <ul class="plan-features">
-                <li><span class="check"></span><span><span class="highlight">600 SMS/WA credits/mo</span></span></li>
-                <li><span class="check"></span><span>Unlimited Chrome extension</span></li>
+                <li><span class="check"></span><span><span class="hl">600 queries/month</span> — practically unlimited</span></li>
+                <li><span class="check"></span><span>Chrome extension — unlimited</span></li>
                 <li><span class="check"></span><span>HubSpot &amp; GHL integrations</span></li>
                 <li><span class="check"></span><span>Priority support + SLA</span></li>
             </ul>
-            <button class="btn-plan btn-plan-outline" onclick="subscribe('business')">Get Business</button>
+            <button class="btn-plan btn-outline" onclick="subscribe('business')">Get Business</button>
         </div>
 
     </div>
 </div>
 
+<!-- ── Guarantee ── -->
+<div class="guarantee">
+    <div class="guarantee-inner">
+        <strong>Cancel anytime.</strong> No contracts, no questions. Your Chrome extension stays free forever — the subscription only covers text queries.
+    </div>
+</div>
+
+<!-- ── How it works ── -->
+<div class="how-section">
+    <div class="how-inner">
+        <h2 class="section-title">How it works</h2>
+        <p class="section-sub">You're already on your phone after every call. FlightSuite turns that habit into logged CRM data.</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">Step 1</div>
+                <div class="step-title">Finish your call</div>
+                <div class="step-body">Pull out your phone on the way to the next appointment. No need to type into your CRM later.</div>
+                <div class="step-example">"Just left Sarah at TechCorp — she's ready to move forward, needs contract by EOW."</div>
+            </div>
+            <div class="step">
+                <div class="step-num">Step 2</div>
+                <div class="step-title">Text FlightSuite</div>
+                <div class="step-body">Send a message via SMS or WhatsApp — whatever you already use. No app to open.</div>
+                <div class="step-example">FlightSuite reads your message, finds the right contact, and writes the update.</div>
+            </div>
+            <div class="step">
+                <div class="step-num">Step 3</div>
+                <div class="step-title">CRM updated instantly</div>
+                <div class="step-body">HubSpot or GHL gets the note, follow-up, or deal update — exactly how you'd write it yourself.</div>
+                <div class="step-example">"Done ✓ Added note to Sarah Chen · contract deadline set · follow-up Friday 9am."</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── FAQ ── -->
 <div class="faq-section">
     <div class="faq-inner">
-        <h2 class="faq-title">Questions</h2>
-        <div class="faq-item">
-            <p class="faq-q">Is the Chrome extension really free forever?</p>
-            <p class="faq-a">Yes. The Chrome extension — which lets you update your CRM by typing naturally in your browser — will always be free with no usage limits. The subscription only applies to SMS and WhatsApp AI queries.</p>
+        <h2 class="section-title" style="text-align:center;margin-bottom:32px;">Questions</h2>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Is the Chrome extension really free forever? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Yes. The Chrome extension — which lets you update your CRM by typing in your browser — will always be free with no usage limits. Subscriptions only apply to SMS and WhatsApp queries.</div>
         </div>
-        <div class="faq-item">
-            <p class="faq-q">What counts as an SMS/WA credit?</p>
-            <p class="faq-a">Every time you send a text or WhatsApp message to FlightSuite and it processes your request, that uses one credit. Reading replies or confirmations doesn't count.</p>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">What exactly counts as one query? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Every message you send to FlightSuite via text or WhatsApp uses one query. That includes logging calls, updating contacts, setting follow-ups, and asking questions about your pipeline. Replies and confirmations from FlightSuite are free — they don't count.</div>
         </div>
-        <div class="faq-item">
-            <p class="faq-q">What happens when I run out of credits?</p>
-            <p class="faq-a">Your Chrome extension keeps working normally — unlimited. SMS/WA queries will get a friendly reply asking you to upgrade. Your CRM data is never affected.</p>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">How many texts do I actually send in a day? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Most sales reps log 3–10 updates per day via text. The Starter plan (~5/day) covers light-volume reps. Pro (~15/day) is built for active field reps who are on calls all day. Business (~30/day) is for power users who never want to think about limits.</div>
         </div>
-        <div class="faq-item">
-            <p class="faq-q">Can I cancel anytime?</p>
-            <p class="faq-a">Yes. Cancel at any time from your account portal. You keep your credits until the end of the billing period. No questions asked.</p>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">What happens when I run out of queries? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Your Chrome extension keeps working — unlimited as always. Text queries will get a friendly reply with a link to upgrade. Your CRM data is never affected or deleted.</div>
         </div>
-        <div class="faq-item">
-            <p class="faq-q">I'm already subscribed — how do I manage my plan?</p>
-            <p class="faq-a">Sign in and click "Manage plan" to access the Stripe Customer Portal where you can upgrade, downgrade, update payment, or cancel.</p>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Can I cancel anytime? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Yes. Cancel in seconds from your account portal. You keep your remaining queries until the end of the billing period. No fees, no questions asked.</div>
         </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">I'm already subscribed — how do I manage my plan? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Sign in at flightsuite.ai/app and click "Manage subscription" to access the Stripe Customer Portal where you can upgrade, downgrade, update payment info, or cancel.</div>
+        </div>
+
     </div>
 </div>
 
@@ -503,28 +445,26 @@
 
 <script>
     const API = 'https://treasonable-refugio-uncoincidentally.ngrok-free.dev/api/v1';
-
     function getToken() { return localStorage.getItem('fs_user_token'); }
 
     window.addEventListener('DOMContentLoaded', async () => {
-        if (getToken()) {
-            await loadCurrentPlan();
-        }
+        if (getToken()) await loadCurrentPlan();
+        const intent = sessionStorage.getItem('subscribe_intent');
+        if (intent && getToken()) { sessionStorage.removeItem('subscribe_intent'); subscribe(intent); }
     });
 
     async function loadCurrentPlan() {
         try {
             const res = await fetch(API + '/billing/status', {
-                headers: { 'Authorization': 'Bearer ' + getToken() }
+                headers: { 'Authorization': 'Bearer ' + getToken(), 'ngrok-skip-browser-warning': 'true' }
             });
             if (!res.ok) return;
             const data = await res.json();
             const tier = (data.tier || 'free').toLowerCase();
             if (tier !== 'free') {
                 const el = document.getElementById('current-plan-info');
-                el.innerHTML = `You're on the <strong>${tier.charAt(0).toUpperCase() + tier.slice(1)}</strong> plan. <a href="#" class="manage-link" onclick="openPortal(event)">Manage or cancel →</a>`;
+                el.innerHTML = `You're on the <strong>${tier.charAt(0).toUpperCase()+tier.slice(1)}</strong> plan. <a href="#" class="manage-link" onclick="openPortal(event)">Manage or cancel →</a>`;
                 el.style.display = 'block';
-                // Swap CTA buttons to show "Current plan" for active tier
                 markCurrentPlan(tier);
             }
         } catch(e) {}
@@ -538,77 +478,45 @@
     }
 
     async function subscribe(tier) {
-        if (!getToken()) {
-            // Save intent and redirect to login
-            sessionStorage.setItem('subscribe_intent', tier);
-            location.href = '/app';
-            return;
-        }
+        if (!getToken()) { sessionStorage.setItem('subscribe_intent', tier); location.href = '/app'; return; }
         showLoading();
         try {
             const res = await fetch(API + '/billing/checkout', {
                 method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer ' + getToken(),
-                    'Content-Type': 'application/json',
-                    'ngrok-skip-browser-warning': 'true'
-                },
+                headers: { 'Authorization': 'Bearer ' + getToken(), 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
                 body: JSON.stringify({ tier })
             });
             const data = await res.json();
             if (!res.ok) throw new Error(data.detail || 'Could not start checkout');
-            if (data.url || data.checkout_url) {
-                location.href = data.url || data.checkout_url;
-            } else {
-                throw new Error('No checkout URL returned');
-            }
-        } catch(e) {
-            hideLoading();
-            showError(e.message);
-        }
+            if (data.url || data.checkout_url) { location.href = data.url || data.checkout_url; }
+            else throw new Error('No checkout URL returned');
+        } catch(e) { hideLoading(); showError(e.message); }
     }
 
     async function openPortal(e) {
-        e.preventDefault();
-        showLoading();
+        e.preventDefault(); showLoading();
         try {
             const res = await fetch(API + '/billing/portal', {
                 method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer ' + getToken(),
-                    'Content-Type': 'application/json',
-                    'ngrok-skip-browser-warning': 'true'
-                }
+                headers: { 'Authorization': 'Bearer ' + getToken(), 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' }
             });
             const data = await res.json();
             if (!res.ok) throw new Error(data.detail || 'Could not open portal');
-            if (data.url || data.portal_url) {
-                location.href = data.url || data.portal_url;
-            }
-        } catch(e) {
-            hideLoading();
-            showError(e.message);
-        }
+            if (data.url || data.portal_url) location.href = data.url || data.portal_url;
+        } catch(e) { hideLoading(); showError(e.message); }
+    }
+
+    function toggleFaq(el) {
+        el.classList.toggle('open');
     }
 
     function showLoading() { document.getElementById('loading-overlay').classList.add('show'); }
     function hideLoading() { document.getElementById('loading-overlay').classList.remove('show'); }
-
     function showError(msg) {
         const el = document.getElementById('error-toast');
-        el.textContent = msg;
-        el.classList.add('show');
+        el.textContent = msg; el.classList.add('show');
         setTimeout(() => el.classList.remove('show'), 4000);
     }
-
-    // Handle subscribe intent after login redirect
-    window.addEventListener('DOMContentLoaded', () => {
-        const intent = sessionStorage.getItem('subscribe_intent');
-        if (intent && getToken()) {
-            sessionStorage.removeItem('subscribe_intent');
-            subscribe(intent);
-        }
-    });
 </script>
 </body>
 </html>
