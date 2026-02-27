@@ -550,7 +550,8 @@
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + getToken(),
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'ngrok-skip-browser-warning': 'true'
                 },
                 body: JSON.stringify({ tier })
             });
@@ -575,7 +576,8 @@
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + getToken(),
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'ngrok-skip-browser-warning': 'true'
                 }
             });
             const data = await res.json();

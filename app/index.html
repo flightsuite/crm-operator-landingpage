@@ -778,7 +778,8 @@ const API = 'https://treasonable-refugio-uncoincidentally.ngrok-free.dev/api/v1'
 function tok()     { return localStorage.getItem('fs_user_token'); }
 function setTok(t) { localStorage.setItem('fs_user_token', t); }
 function clearTok(){ localStorage.removeItem('fs_user_token'); localStorage.removeItem('fs_email'); }
-function auth()    { return { 'Authorization': 'Bearer ' + tok(), 'Content-Type': 'application/json' }; }
+function auth()    { return { 'Authorization': 'Bearer ' + tok(), 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' }; }
+function noauth()  { return { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' }; }
 
 // ── Boot ──────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
@@ -815,7 +816,7 @@ function manualGoogle() { if (typeof google !== 'undefined') google.accounts.id.
 async function onGoogleCred(res) {
     try {
         const r = await fetch(API + '/auth/google/token', {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            method: 'POST', headers: noauth(),
             body: JSON.stringify({ id_token: res.credential })
         });
         const d = await r.json();
@@ -836,7 +837,7 @@ async function requestOtp(resend = false) {
     setLoading('btn-send-otp', 'Sending…');
     try {
         const r = await fetch(API + '/auth/email/request-otp', {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            method: 'POST', headers: noauth(),
             body: JSON.stringify({ email })
         });
         const d = await r.json();
@@ -853,7 +854,7 @@ async function verifyOtp() {
     setLoading('btn-verify-otp', 'Verifying…');
     try {
         const r = await fetch(API + '/auth/email/verify-otp', {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            method: 'POST', headers: noauth(),
             body: JSON.stringify({ email: _otp_email, code })
         });
         const d = await r.json();

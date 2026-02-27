@@ -450,7 +450,7 @@
 
     function getToken() { return localStorage.getItem('fs_user_token'); }
     function authHeaders() {
-        return { 'Authorization': 'Bearer ' + getToken(), 'Content-Type': 'application/json' };
+        return { 'Authorization': 'Bearer ' + getToken(), 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' };
     }
 
     // ─── Boot ──────────────────────────────────────────────

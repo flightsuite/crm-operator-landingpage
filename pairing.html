@@ -413,7 +413,7 @@
         try {
             const res = await fetch(API + '/auth/google/token', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
                 body: JSON.stringify({ id_token: response.credential })
             });
             const data = await res.json();
@@ -438,7 +438,7 @@
         try {
             const res = await fetch(API + '/auth/email/request-otp', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
                 body: JSON.stringify({ email })
             });
             const data = await res.json();
@@ -463,7 +463,7 @@
         try {
             const res = await fetch(API + '/auth/email/verify-otp', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
                 body: JSON.stringify({ email: currentEmail, code })
             });
             const data = await res.json();
@@ -493,7 +493,8 @@
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + getToken(),
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'ngrok-skip-browser-warning': 'true'
                 },
                 body: JSON.stringify({ pairing_token: pairingToken })
             });
