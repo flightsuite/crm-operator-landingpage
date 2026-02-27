@@ -193,7 +193,6 @@
             text-align: left;
         }
 
-        #gsi-wrap { display: flex; justify-content: center; margin-bottom: 14px; }
         .btn-google {
             width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
             padding: 13px 20px; background: var(--surface); border: 1px solid var(--border);
@@ -558,8 +557,7 @@
         <p class="login-sub">Manage your plan, CRM connections, and phone numbers.</p>
 
         <div class="login-card">
-            <div id="gsi-wrap"></div>
-            <button id="google-fallback" class="btn-google" onclick="manualGoogle()">
+            <button id="btn-google" class="btn-google" onclick="signInWithGoogle()">
                 <svg width="18" height="18" viewBox="0 0 18 18">
                     <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
                     <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/>
@@ -800,44 +798,53 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+function googleBtnInner() {
+    return `<svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.964 10.706A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.706V4.962H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.038l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.962L3.964 7.294C4.672 5.163 6.656 3.58 9 3.58z"/></svg> Continue with Google`;
+}
+
 // ── Google Sign-In ────────────────────────────────────────────────
-// Called by GIS library when it's ready (async defer timing fix)
+// Uses OAuth2 Token Client (access token) — same flow as the extension
+// POST /auth/google { google_access_token }
+let _tokenClient = null;
 window.onGoogleLibraryLoad = initGSI;
 
 function initGSI() {
     if (typeof google === 'undefined') return;
-    // Skip if already initialised
-    if (document.getElementById('gsi-wrap').childElementCount > 0) return;
-    google.accounts.id.initialize({
+    _tokenClient = google.accounts.oauth2.initTokenClient({
         client_id: '45916659545-don6ufgcuv6o4l1hkn5f14rv15r22shh.apps.googleusercontent.com',
-        callback: onGoogleCred,
-        auto_select: false,
-        cancel_on_tap_outside: true
+        scope: 'openid email profile',
+        callback: onGoogleAccessToken,
+        error_callback: (err) => showErr('err-email', err.message || 'Google sign-in was cancelled.')
     });
-    google.accounts.id.renderButton(document.getElementById('gsi-wrap'), {
-        theme: 'outline', size: 'large', width: 376, text: 'continue_with', locale: 'en'
-    });
-    hide('google-fallback');
 }
-function manualGoogle() {
-    if (typeof google !== 'undefined') {
-        google.accounts.id.prompt();
-    } else {
-        showErr('err-email', 'Google sign-in is still loading — try again in a moment.');
+
+function signInWithGoogle() {
+    if (!_tokenClient) {
+        // GIS not loaded yet — try to init then prompt
+        initGSI();
+        if (!_tokenClient) { showErr('err-email', 'Google sign-in is still loading — try again in a moment.'); return; }
     }
+    _tokenClient.requestAccessToken({ prompt: 'select_account' });
 }
-async function onGoogleCred(res) {
+
+async function onGoogleAccessToken(tokenResponse) {
+    if (tokenResponse.error) { showErr('err-email', tokenResponse.error_description || 'Google sign-in failed.'); return; }
+    const btn = document.getElementById('btn-google');
+    if (btn) { btn.disabled = true; btn.textContent = 'Signing in…'; }
     try {
-        const r = await fetch(API + '/auth/google/token', {
+        const r = await fetch(API + '/auth/google', {
             method: 'POST', headers: noauth(),
-            body: JSON.stringify({ id_token: res.credential })
+            body: JSON.stringify({ google_access_token: tokenResponse.access_token })
         });
         const d = await r.json();
         if (!r.ok) throw new Error(d.detail || 'Google sign-in failed');
         setTok(d.user_token);
         if (d.email) localStorage.setItem('fs_email', d.email);
         showDash();
-    } catch(e) { showErr('err-email', e.message); }
+    } catch(e) {
+        showErr('err-email', e.message);
+        if (btn) { btn.disabled = false; btn.innerHTML = googleBtnInner(); }
+    }
 }
 
 // ── Email OTP ─────────────────────────────────────────────────────
