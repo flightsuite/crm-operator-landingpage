@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlightSuite — Plans & Pricing</title>
+    <meta name="description" content="Choose a FlightSuite plan. Start free, upgrade when you need more SMS and WhatsApp AI credits.">
+    <link rel="canonical" href="https://flightsuite.ai/subscribe">
+    <link rel="icon" type="image/svg+xml" href="/Assets/Flight Suite Favicon vPurple.svg">
+    <style>
+        :root {
+            --color-apple-blue: #0071E3;
+            --color-ios-purple: #5E5CE6;
+            --color-success: #34C759;
+            --color-error: #FF3B30;
+            --color-text-primary: #1D1D1F;
+            --color-text-secondary: #6E6E73;
+            --color-text-tertiary: #86868B;
+            --color-bg-primary: #FFFFFF;
+            --color-bg-secondary: #F5F5F7;
+            --color-border: #D2D2D7;
+            --color-border-light: #E8E8ED;
+            --gradient-primary: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-primary);
+            background: var(--color-bg-primary);
+            font-size: 15px;
+            line-height: 1.47;
+            letter-spacing: -0.022em;
+        }
+
+        /* Nav */
+        nav {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            letter-spacing: -0.03em;
+        }
+        .nav-logo img { width: 26px; height: 26px; }
+        .nav-links { display: flex; align-items: center; gap: 20px; }
+        .nav-link {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .nav-link:hover { color: var(--color-text-primary); }
+        .btn-nav {
+            font-size: 14px;
+            font-weight: 500;
+            padding: 7px 16px;
+            background: var(--color-apple-blue);
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: opacity 0.15s;
+        }
+        .btn-nav:hover { opacity: 0.85; }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: clamp(60px, 8vw, 100px) 24px clamp(40px, 5vw, 60px);
+            background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+        }
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(94,92,230,0.08);
+            color: var(--color-ios-purple);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.07;
+            margin-bottom: 14px;
+        }
+        .hero-sub {
+            font-size: clamp(15px, 2vw, 18px);
+            color: var(--color-text-secondary);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Pricing section */
+        .pricing-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px clamp(60px, 8vw, 100px);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 16px;
+            align-items: start;
+        }
+
+        .plan-card {
+            background: white;
+            border: 1.5px solid var(--color-border-light);
+            border-radius: 22px;
+            padding: 28px 24px;
+            position: relative;
+            transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+        }
+        .plan-card:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        .plan-card.featured {
+            border-color: var(--color-ios-purple);
+            box-shadow: 0 4px 24px rgba(94,92,230,0.15);
+        }
+        .plan-card.featured:hover {
+            box-shadow: 0 12px 40px rgba(94,92,230,0.2);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-primary);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .plan-name {
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+        .plan-price {
+            margin-bottom: 4px;
+        }
+        .plan-price-amount {
+            font-family: var(--font-display);
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            line-height: 1;
+        }
+        .plan-price-period {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+        .plan-desc {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .plan-divider {
+            height: 1px;
+            background: var(--color-border-light);
+            margin-bottom: 18px;
+        }
+
+        .plan-features { list-style: none; margin-bottom: 24px; }
+        .plan-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13.5px;
+            margin-bottom: 9px;
+            color: var(--color-text-primary);
+        }
+        .check {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(52,199,89,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .check::after {
+            content: '✓';
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--color-success);
+        }
+        .plan-features .highlight { font-weight: 600; }
+
+        .btn-plan {
+            width: 100%;
+            padding: 13px 20px;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.15s, transform 0.1s;
+            letter-spacing: -0.01em;
+            border: none;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+        }
+        .btn-plan:active { transform: scale(0.98); }
+        .btn-plan:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-plan-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+        .btn-plan-primary:hover { opacity: 0.88; }
+        .btn-plan-outline {
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+        }
+        .btn-plan-outline:hover { background: #e5e5ea; }
+
+        /* Already subscribed info */
+        #current-plan-info {
+            background: rgba(94,92,230,0.05);
+            border: 1.5px solid rgba(94,92,230,0.15);
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: none;
+            margin-bottom: 28px;
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            text-align: center;
+        }
+        #current-plan-info strong { color: var(--color-text-primary); }
+        .manage-link {
+            color: var(--color-apple-blue);
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .manage-link:hover { text-decoration: underline; }
+
+        /* FAQ */
+        .faq-section {
+            background: var(--color-bg-secondary);
+            padding: clamp(48px, 6vw, 80px) 24px;
+        }
+        .faq-inner { max-width: 720px; margin: 0 auto; }
+        .faq-title {
+            font-family: var(--font-display);
+            font-size: clamp(26px, 3vw, 34px);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .faq-item { margin-bottom: 16px; }
+        .faq-q {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .faq-a {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.55;
+        }
+
+        /* Error toast */
+        #error-toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--color-error);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s var(--ease-out);
+            z-index: 200;
+            white-space: nowrap;
+        }
+        #error-toast.show { transform: translateX(-50%) translateY(0); }
+
+        /* Loading overlay */
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(4px);
+            z-index: 300;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 14px;
+        }
+        #loading-overlay.show { display: flex; }
+        .spinner-lg {
+            width: 44px;
+            height: 44px;
+            border: 3px solid rgba(94,92,230,0.2);
+            border-top-color: var(--color-ios-purple);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { font-size: 15px; font-weight: 500; color: var(--color-text-secondary); }
+
+        @media (max-width: 640px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+            .plan-card.featured { order: -1; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="/" class="nav-logo">
+            <img src="/Assets/Flight Suite Favicon vPurple.svg" alt="FlightSuite">
+            FlightSuite
+        </a>
+        <div class="nav-links">
+            <a href="/app" class="nav-link">My Account</a>
+            <a href="/" class="btn-nav">Get Extension</a>
+        </div>
+    </div>
+</nav>
+
+<div class="hero">
+    <div class="hero-eyebrow">Pricing</div>
+    <h1 class="hero-title">Simple, <span class="gradient-text">transparent</span> pricing</h1>
+    <p class="hero-sub">The Chrome extension is free forever. Only pay when you want SMS & WhatsApp AI credits.</p>
+</div>
+
+<div class="pricing-section">
+    <!-- Current plan notice (shown when logged in with active subscription) -->
+    <div id="current-plan-info"></div>
+
+    <div class="pricing-grid">
+
+        <!-- FREE -->
+        <div class="plan-card">
+            <div class="plan-name">Free</div>
+            <div class="plan-price">
+                <span class="plan-price-amount">$0</span>
+                <span class="plan-price-period">/forever</span>
+            </div>
+            <p class="plan-desc">Try it out. No card required.</p>
+            <div class="plan-divider"></div>
+            <ul class="plan-features">
+                <li><span class="check"></span><span><span class="highlight">20 SMS/WA credits</span> (lifetime trial)</span></li>
+                <li><span class="check"></span><span>Unlimited Chrome extension</span></li>
+                <li><span class="check"></span><span>HubSpot &amp; GHL integrations</span></li>
+                <li><span class="check"></span><span>Natural language CRM updates</span></li>
+            </ul>
+            <a href="/app" class="btn-plan btn-plan-outline">Sign in free</a>
+        </div>
+
+        <!-- STARTER -->
+        <div class="plan-card">
+            <div class="plan-name">Starter</div>
+            <div class="plan-price">
+                <span class="plan-price-amount">$5</span>
+                <span class="plan-price-period">/month</span>
+            </div>
+            <p class="plan-desc">Great for solo reps staying in touch on the go.</p>
+            <div class="plan-divider"></div>
+            <ul class="plan-features">
+                <li><span class="check"></span><span><span class="highlight">100 SMS/WA credits/mo</span></span></li>
+                <li><span class="check"></span><span>Unlimited Chrome extension</span></li>
+                <li><span class="check"></span><span>HubSpot &amp; GHL integrations</span></li>
+                <li><span class="check"></span><span>Monthly rollover reset</span></li>
+            </ul>
+            <button class="btn-plan btn-plan-outline" onclick="subscribe('starter')">Get Starter</button>
+        </div>
+
+        <!-- PRO (featured) -->
+        <div class="plan-card featured">
+            <div class="plan-badge">Most Popular</div>
+            <div class="plan-name">Pro</div>
+            <div class="plan-price">
+                <span class="plan-price-amount" style="background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">$10</span>
+                <span class="plan-price-period">/month</span>
+            </div>
+            <p class="plan-desc">For reps who live in the field and text constantly.</p>
+            <div class="plan-divider"></div>
+            <ul class="plan-features">
+                <li><span class="check"></span><span><span class="highlight">300 SMS/WA credits/mo</span></span></li>
+                <li><span class="check"></span><span>Unlimited Chrome extension</span></li>
+                <li><span class="check"></span><span>HubSpot &amp; GHL integrations</span></li>
+                <li><span class="check"></span><span>Priority support</span></li>
+            </ul>
+            <button class="btn-plan btn-plan-primary" onclick="subscribe('pro')">Get Pro</button>
+        </div>
+
+        <!-- BUSINESS -->
+        <div class="plan-card">
+            <div class="plan-name">Business</div>
+            <div class="plan-price">
+                <span class="plan-price-amount">$15</span>
+                <span class="plan-price-period">/month</span>
+            </div>
+            <p class="plan-desc">For power users who never want to hit a limit.</p>
+            <div class="plan-divider"></div>
+            <ul class="plan-features">
+                <li><span class="check"></span><span><span class="highlight">600 SMS/WA credits/mo</span></span></li>
+                <li><span class="check"></span><span>Unlimited Chrome extension</span></li>
+                <li><span class="check"></span><span>HubSpot &amp; GHL integrations</span></li>
+                <li><span class="check"></span><span>Priority support + SLA</span></li>
+            </ul>
+            <button class="btn-plan btn-plan-outline" onclick="subscribe('business')">Get Business</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="faq-section">
+    <div class="faq-inner">
+        <h2 class="faq-title">Questions</h2>
+        <div class="faq-item">
+            <p class="faq-q">Is the Chrome extension really free forever?</p>
+            <p class="faq-a">Yes. The Chrome extension — which lets you update your CRM by typing naturally in your browser — will always be free with no usage limits. The subscription only applies to SMS and WhatsApp AI queries.</p>
+        </div>
+        <div class="faq-item">
+            <p class="faq-q">What counts as an SMS/WA credit?</p>
+            <p class="faq-a">Every time you send a text or WhatsApp message to FlightSuite and it processes your request, that uses one credit. Reading replies or confirmations doesn't count.</p>
+        </div>
+        <div class="faq-item">
+            <p class="faq-q">What happens when I run out of credits?</p>
+            <p class="faq-a">Your Chrome extension keeps working normally — unlimited. SMS/WA queries will get a friendly reply asking you to upgrade. Your CRM data is never affected.</p>
+        </div>
+        <div class="faq-item">
+            <p class="faq-q">Can I cancel anytime?</p>
+            <p class="faq-a">Yes. Cancel at any time from your account portal. You keep your credits until the end of the billing period. No questions asked.</p>
+        </div>
+        <div class="faq-item">
+            <p class="faq-q">I'm already subscribed — how do I manage my plan?</p>
+            <p class="faq-a">Sign in and click "Manage plan" to access the Stripe Customer Portal where you can upgrade, downgrade, update payment, or cancel.</p>
+        </div>
+    </div>
+</div>
+
+<div id="loading-overlay">
+    <div class="spinner-lg"></div>
+    <div class="loading-text">Redirecting to checkout…</div>
+</div>
+<div id="error-toast"></div>
+
+<script>
+    const API = 'https://treasonable-refugio-uncoincidentally.ngrok-free.dev/api/v1';
+
+    function getToken() { return localStorage.getItem('fs_user_token'); }
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        if (getToken()) {
+            await loadCurrentPlan();
+        }
+    });
+
+    async function loadCurrentPlan() {
+        try {
+            const res = await fetch(API + '/billing/status', {
+                headers: { 'Authorization': 'Bearer ' + getToken() }
+            });
+            if (!res.ok) return;
+            const data = await res.json();
+            const tier = (data.tier || 'free').toLowerCase();
+            if (tier !== 'free') {
+                const el = document.getElementById('current-plan-info');
+                el.innerHTML = `You're on the <strong>${tier.charAt(0).toUpperCase() + tier.slice(1)}</strong> plan. <a href="#" class="manage-link" onclick="openPortal(event)">Manage or cancel →</a>`;
+                el.style.display = 'block';
+                // Swap CTA buttons to show "Current plan" for active tier
+                markCurrentPlan(tier);
+            }
+        } catch(e) {}
+    }
+
+    function markCurrentPlan(tier) {
+        const map = { starter: 1, pro: 2, business: 3 };
+        const idx = map[tier];
+        if (idx === undefined) return;
+        const btns = document.querySelectorAll('.btn-plan:not(.btn-plan-outline)');
+        // Find the right card and update its button
+        document.querySelectorAll('.plan-card').forEach((card, i) => {
+            if (i === idx) {
+                const btn = card.querySelector('.btn-plan');
+                btn.textContent = 'Current plan';
+                btn.disabled = true;
+            }
+        });
+    }
+
+    async function subscribe(tier) {
+        if (!getToken()) {
+            // Save intent and redirect to login
+            sessionStorage.setItem('subscribe_intent', tier);
+            location.href = '/app';
+            return;
+        }
+        showLoading();
+        try {
+            const res = await fetch(API + '/billing/checkout', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + getToken(),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ tier })
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.detail || 'Could not start checkout');
+            if (data.url || data.checkout_url) {
+                location.href = data.url || data.checkout_url;
+            } else {
+                throw new Error('No checkout URL returned');
+            }
+        } catch(e) {
+            hideLoading();
+            showError(e.message);
+        }
+    }
+
+    async function openPortal(e) {
+        e.preventDefault();
+        showLoading();
+        try {
+            const res = await fetch(API + '/billing/portal', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + getToken(),
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.detail || 'Could not open portal');
+            if (data.url || data.portal_url) {
+                location.href = data.url || data.portal_url;
+            }
+        } catch(e) {
+            hideLoading();
+            showError(e.message);
+        }
+    }
+
+    function showLoading() { document.getElementById('loading-overlay').classList.add('show'); }
+    function hideLoading() { document.getElementById('loading-overlay').classList.remove('show'); }
+
+    function showError(msg) {
+        const el = document.getElementById('error-toast');
+        el.textContent = msg;
+        el.classList.add('show');
+        setTimeout(() => el.classList.remove('show'), 4000);
+    }
+
+    // Handle subscribe intent after login redirect
+    window.addEventListener('DOMContentLoaded', () => {
+        const intent = sessionStorage.getItem('subscribe_intent');
+        if (intent && getToken()) {
+            sessionStorage.removeItem('subscribe_intent');
+            subscribe(intent);
+        }
+    });
+</script>
+</body>
+</html>

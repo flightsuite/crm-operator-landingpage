@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlightSuite — Connect Your Phone</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="/Assets/Flight Suite Favicon vPurple.svg">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+        :root {
+            --color-apple-blue: #0071E3;
+            --color-ios-purple: #5E5CE6;
+            --color-success: #34C759;
+            --color-error: #FF3B30;
+            --color-text-primary: #1D1D1F;
+            --color-text-secondary: #6E6E73;
+            --color-text-tertiary: #86868B;
+            --color-bg-primary: #FFFFFF;
+            --color-bg-secondary: #F5F5F7;
+            --color-border: #D2D2D7;
+            --color-border-light: #E8E8ED;
+            --gradient-primary: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { -webkit-font-smoothing: antialiased; }
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-primary);
+            background: linear-gradient(160deg, #f0f0f5 0%, #ffffff 70%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            letter-spacing: -0.022em;
+        }
+
+        .logo-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 32px;
+            text-decoration: none;
+        }
+        .logo-bar img { width: 32px; height: 32px; }
+        .logo-bar span {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            letter-spacing: -0.04em;
+        }
+
+        .card {
+            background: white;
+            border-radius: 22px;
+            padding: 40px 36px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 2px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+
+        /* Screens */
+        .screen { display: none; }
+        .screen.active { display: block; }
+
+        .screen-icon {
+            font-size: 44px;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 8px;
+        }
+        .card-sub {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.55;
+            margin-bottom: 28px;
+        }
+        .phone-display {
+            display: inline-block;
+            background: var(--color-bg-secondary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 28px;
+        }
+
+        /* Buttons */
+        .btn-google {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 13px 20px;
+            background: white;
+            border: 1.5px solid var(--color-border);
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            cursor: pointer;
+            transition: border-color 0.15s, box-shadow 0.15s;
+            margin-bottom: 16px;
+        }
+        .btn-google:hover { border-color: #aaa; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--color-text-tertiary);
+            font-size: 13px;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--color-border-light);
+        }
+
+        .form-group { text-align: left; margin-bottom: 12px; }
+        .form-label { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 6px; display: block; }
+        .form-input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid var(--color-border);
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            color: var(--color-text-primary);
+            background: white;
+            outline: none;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+        .form-input:focus { border-color: var(--color-apple-blue); box-shadow: 0 0 0 3px rgba(0,113,227,0.12); }
+        .form-input::placeholder { color: var(--color-text-tertiary); }
+
+        .btn-primary {
+            width: 100%;
+            padding: 13px 20px;
+            background: var(--color-apple-blue);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.15s, transform 0.1s;
+            letter-spacing: -0.01em;
+        }
+        .btn-primary:hover { opacity: 0.88; }
+        .btn-primary:active { transform: scale(0.98); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* OTP back */
+        .btn-back {
+            font-size: 13px;
+            color: var(--color-apple-blue);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+            margin-bottom: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .otp-hint { font-size: 13px; color: var(--color-text-secondary); margin-top: 10px; }
+        .otp-resend {
+            background: none;
+            border: none;
+            color: var(--color-apple-blue);
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 13px;
+        }
+
+        .error-box {
+            background: rgba(255,59,48,0.08);
+            border: 1px solid rgba(255,59,48,0.2);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 13px;
+            color: var(--color-error);
+            margin-bottom: 12px;
+            text-align: left;
+            display: none;
+        }
+
+        /* Success screen */
+        .success-icon {
+            width: 72px;
+            height: 72px;
+            background: rgba(52,199,89,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 34px;
+        }
+        .success-title {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 10px;
+            color: var(--color-success);
+        }
+        .success-sub { font-size: 14px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 28px; }
+
+        .btn-secondary {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            background: var(--color-bg-secondary);
+            border: none;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: background 0.15s;
+        }
+        .btn-secondary:hover { background: #e5e5ea; }
+
+        /* Loading */
+        .loading-screen { text-align: center; padding: 40px 0; }
+        .spinner {
+            width: 36px;
+            height: 36px;
+            border: 3px solid rgba(94,92,230,0.15);
+            border-top-color: var(--color-ios-purple);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            margin: 0 auto 14px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { font-size: 14px; color: var(--color-text-secondary); }
+
+        /* Invalid token */
+        .invalid-card { text-align: center; }
+
+        @media (max-width: 480px) {
+            .card { padding: 32px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="/" class="logo-bar">
+    <img src="/Assets/Flight Suite Favicon vPurple.svg" alt="FlightSuite">
+    <span>FlightSuite</span>
+</a>
+
+<div class="card">
+
+    <!-- Loading -->
+    <div id="screen-loading" class="screen active loading-screen">
+        <div class="spinner"></div>
+        <div class="loading-text">Loading…</div>
+    </div>
+
+    <!-- Invalid token -->
+    <div id="screen-invalid" class="screen">
+        <span class="screen-icon">🔗</span>
+        <h2 class="card-title">Link expired</h2>
+        <p class="card-sub">This pairing link has expired or is invalid. Please generate a new one from the FlightSuite extension or SMS the word <strong>PAIR</strong> to get a new link.</p>
+    </div>
+
+    <!-- Sign-in screen -->
+    <div id="screen-signin" class="screen">
+        <span class="screen-icon">📱</span>
+        <h2 class="card-title">Connect your phone</h2>
+        <p class="card-sub">Sign in to link <span id="phone-display" class="phone-display"></span> to your FlightSuite account.</p>
+
+        <!-- Google sign-in -->
+        <div id="g-signin-btn" style="display:flex; justify-content:center; margin-bottom:16px;"></div>
+        <button id="google-btn-fallback" class="btn-google" onclick="signInWithGoogle()">
+            <svg width="18" height="18" viewBox="0 0 18 18">
+                <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
+                <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/>
+                <path fill="#FBBC05" d="M3.964 10.706A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.706V4.962H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.038l3.007-2.332z"/>
+                <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.962L3.964 7.294C4.672 5.163 6.656 3.58 9 3.58z"/>
+            </svg>
+            Continue with Google
+        </button>
+
+        <div class="divider">or sign in with email</div>
+
+        <!-- Email step -->
+        <div id="email-step">
+            <div id="email-error" class="error-box"></div>
+            <div class="form-group">
+                <label class="form-label" for="email-input">Email address</label>
+                <input id="email-input" class="form-input" type="email" placeholder="you@company.com" autocomplete="email">
+            </div>
+            <button class="btn-primary" id="send-otp-btn" onclick="requestOtp()">Send sign-in code</button>
+        </div>
+
+        <!-- OTP step -->
+        <div id="otp-step" style="display:none;">
+            <button class="btn-back" onclick="showEmailStep()">← Back</button>
+            <div id="otp-error" class="error-box"></div>
+            <div class="form-group">
+                <label class="form-label" for="otp-input">6-digit code</label>
+                <input id="otp-input" class="form-input" type="text" inputmode="numeric" maxlength="6" placeholder="000000" autocomplete="one-time-code">
+            </div>
+            <button class="btn-primary" id="verify-otp-btn" onclick="verifyOtp()">Sign in &amp; connect</button>
+            <p class="otp-hint">Didn't get it? <button class="otp-resend" onclick="requestOtp(true)">Resend</button></p>
+        </div>
+    </div>
+
+    <!-- Linking in progress -->
+    <div id="screen-linking" class="screen loading-screen">
+        <div class="spinner"></div>
+        <div class="loading-text">Linking your phone…</div>
+    </div>
+
+    <!-- Success -->
+    <div id="screen-success" class="screen">
+        <div class="success-icon">✓</div>
+        <h2 class="success-title">Phone connected!</h2>
+        <p class="success-sub" id="success-message">
+            Your phone is now linked to your FlightSuite account. You can text or WhatsApp to update your CRM from anywhere.
+        </p>
+        <a href="/app" class="btn-secondary">Go to My Account →</a>
+    </div>
+
+</div>
+
+<script>
+    const API = 'https://treasonable-refugio-uncoincidentally.ngrok-free.dev/api/v1';
+    let pairingToken = null;
+    let phoneNumber = null;
+    let currentEmail = '';
+
+    function getToken() { return localStorage.getItem('fs_user_token'); }
+    function setToken(t) { localStorage.setItem('fs_user_token', t); }
+
+    // ─── Init ──────────────────────────────────────────────
+    window.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(location.search);
+        pairingToken = params.get('token');
+        phoneNumber = params.get('phone') || params.get('p');
+
+        if (!pairingToken) {
+            showScreen('invalid');
+            return;
+        }
+
+        if (phoneNumber) {
+            document.getElementById('phone-display').textContent = phoneNumber;
+        } else {
+            document.getElementById('phone-display').style.display = 'none';
+        }
+
+        // If already signed in, go straight to linking
+        if (getToken()) {
+            linkPhone();
+        } else {
+            initGoogleSignIn();
+            showScreen('signin');
+        }
+    });
+
+    function showScreen(name) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById('screen-' + name).classList.add('active');
+    }
+
+    // ─── Google Sign-In ────────────────────────────────────
+    function initGoogleSignIn() {
+        if (typeof google === 'undefined') { return; }
+        google.accounts.id.initialize({
+            client_id: '1063285697384-4nqvgdp2ok8o98uusc1ql9qb8gbqsn04.apps.googleusercontent.com',
+            callback: handleGoogleCredential
+        });
+        google.accounts.id.renderButton(
+            document.getElementById('g-signin-btn'),
+            { theme: 'outline', size: 'large', width: 348, text: 'continue_with' }
+        );
+        document.getElementById('google-btn-fallback').style.display = 'none';
+    }
+
+    function signInWithGoogle() {
+        if (typeof google !== 'undefined') google.accounts.id.prompt();
+    }
+
+    async function handleGoogleCredential(response) {
+        try {
+            const res = await fetch(API + '/auth/google/token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id_token: response.credential })
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.detail || 'Google sign-in failed');
+            setToken(data.user_token);
+            if (data.email) localStorage.setItem('fs_user_email', data.email);
+            linkPhone();
+        } catch(e) {
+            showError('email-error', e.message);
+        }
+    }
+
+    // ─── Email OTP ─────────────────────────────────────────
+    async function requestOtp(resend = false) {
+        const email = document.getElementById('email-input').value.trim();
+        if (!email) { showError('email-error', 'Please enter your email address.'); return; }
+        currentEmail = email;
+        hideError('email-error');
+        const btn = document.getElementById('send-otp-btn');
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        try {
+            const res = await fetch(API + '/auth/email/request-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.detail || 'Failed to send code');
+            document.getElementById('email-step').style.display = 'none';
+            document.getElementById('otp-step').style.display = 'block';
+        } catch(e) {
+            showError('email-error', e.message);
+        } finally {
+            btn.disabled = false;
+            btn.textContent = 'Send sign-in code';
+        }
+    }
+
+    async function verifyOtp() {
+        const code = document.getElementById('otp-input').value.trim();
+        if (code.length !== 6) { showError('otp-error', 'Enter the 6-digit code.'); return; }
+        hideError('otp-error');
+        const btn = document.getElementById('verify-otp-btn');
+        btn.disabled = true;
+        btn.textContent = 'Verifying…';
+        try {
+            const res = await fetch(API + '/auth/email/verify-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: currentEmail, code })
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.detail || 'Invalid code');
+            setToken(data.user_token);
+            if (data.email) localStorage.setItem('fs_user_email', data.email);
+            linkPhone();
+        } catch(e) {
+            showError('otp-error', e.message);
+            btn.disabled = false;
+            btn.textContent = 'Sign in & connect';
+        }
+    }
+
+    function showEmailStep() {
+        document.getElementById('otp-step').style.display = 'none';
+        document.getElementById('email-step').style.display = 'block';
+        hideError('otp-error');
+    }
+
+    // ─── Phone linking ─────────────────────────────────────
+    async function linkPhone() {
+        showScreen('linking');
+        try {
+            // Call the pairing endpoint with the token
+            const res = await fetch(API + '/channels/sms/pair', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + getToken(),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pairing_token: pairingToken })
+            });
+
+            if (res.status === 404 || res.status === 410) {
+                showScreen('invalid');
+                return;
+            }
+
+            if (!res.ok) {
+                const d = await res.json();
+                // If already linked to this account, that's success
+                if (d.detail && d.detail.toLowerCase().includes('already')) {
+                    showSuccess();
+                    return;
+                }
+                throw new Error(d.detail || 'Failed to link phone');
+            }
+
+            const data = await res.json();
+            if (data.phone_number) {
+                phoneNumber = data.phone_number;
+            }
+            showSuccess();
+        } catch(e) {
+            // Show signin screen with error
+            showScreen('signin');
+            showError('email-error', e.message);
+        }
+    }
+
+    function showSuccess() {
+        if (phoneNumber) {
+            document.getElementById('success-message').textContent =
+                phoneNumber + ' is now linked to your FlightSuite account. Text or WhatsApp this number to update your CRM from anywhere.';
+        }
+        showScreen('success');
+    }
+
+    // ─── Helpers ───────────────────────────────────────────
+    function showError(id, msg) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = msg;
+        el.style.display = 'block';
+    }
+    function hideError(id) {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    }
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+            if (document.getElementById('email-input') === document.activeElement) requestOtp();
+            if (document.getElementById('otp-input') === document.activeElement) verifyOtp();
+        }
+    });
+</script>
+</body>
+</html>

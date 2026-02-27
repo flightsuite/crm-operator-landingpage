@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlightSuite — Connect Your CRM</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="/Assets/Flight Suite Favicon vPurple.svg">
+    <style>
+        :root {
+            --color-apple-blue: #0071E3;
+            --color-ios-purple: #5E5CE6;
+            --color-success: #34C759;
+            --color-error: #FF3B30;
+            --color-text-primary: #1D1D1F;
+            --color-text-secondary: #6E6E73;
+            --color-text-tertiary: #86868B;
+            --color-bg-primary: #FFFFFF;
+            --color-bg-secondary: #F5F5F7;
+            --color-border: #D2D2D7;
+            --color-border-light: #E8E8ED;
+            --gradient-primary: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { -webkit-font-smoothing: antialiased; }
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-primary);
+            background: var(--color-bg-secondary);
+            font-size: 15px;
+            line-height: 1.47;
+            letter-spacing: -0.022em;
+            min-height: 100vh;
+        }
+
+        /* Topbar */
+        .topbar {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .topbar-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .topbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            letter-spacing: -0.03em;
+        }
+        .topbar-logo img { width: 26px; height: 26px; }
+        .back-link {
+            font-size: 14px;
+            color: var(--color-apple-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .back-link:hover { opacity: 0.75; }
+
+        /* Layout */
+        .page {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+        .page-header { margin-bottom: 32px; }
+        .page-title {
+            font-family: var(--font-display);
+            font-size: clamp(26px, 3vw, 34px);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 6px;
+        }
+        .page-sub { font-size: 15px; color: var(--color-text-secondary); }
+
+        /* CRM cards grid */
+        .crm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 16px;
+        }
+
+        .crm-card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crm-card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .crm-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .crm-logo.hs { background: rgba(255,122,0,0.1); color: #ff7a00; }
+        .crm-logo.ghl { background: rgba(94,92,230,0.08); color: var(--color-ios-purple); }
+
+        .crm-info-col { flex: 1; min-width: 0; }
+        .crm-name {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+        .crm-tagline { font-size: 13px; color: var(--color-text-secondary); }
+
+        /* Status row */
+        .crm-status-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: var(--color-bg-secondary);
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+        .crm-status-row.connected { background: rgba(52,199,89,0.08); }
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .status-dot.on { background: var(--color-success); }
+        .status-dot.off { background: var(--color-border); }
+        .status-label { flex: 1; font-weight: 500; }
+        .status-label.on { color: #1c7a38; }
+        .status-label.off { color: var(--color-text-secondary); }
+        .session-name { font-size: 12px; color: var(--color-text-tertiary); }
+
+        /* Feature list */
+        .crm-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        .crm-features li {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            margin-bottom: 5px;
+        }
+        .crm-features li::before {
+            content: '✓';
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--color-success);
+            width: 14px;
+            flex-shrink: 0;
+        }
+
+        /* Action area */
+        .crm-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+        .btn-connect {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: opacity 0.15s, transform 0.1s;
+            letter-spacing: -0.01em;
+            text-align: center;
+        }
+        .btn-connect:active { transform: scale(0.97); }
+        .btn-connect.primary { background: var(--color-apple-blue); color: white; }
+        .btn-connect.primary:hover { opacity: 0.85; }
+        .btn-connect.primary.ghl { background: var(--gradient-primary); }
+        .btn-connect.outline {
+            background: var(--color-bg-secondary);
+            color: var(--color-text-secondary);
+        }
+        .btn-connect.outline:hover { background: #e5e5ea; }
+        .btn-connect.danger {
+            background: rgba(255,59,48,0.08);
+            color: var(--color-error);
+        }
+        .btn-connect.danger:hover { background: rgba(255,59,48,0.14); }
+        .btn-connect:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Polling overlay on card */
+        .polling-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(4px);
+            border-radius: 20px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            z-index: 10;
+        }
+        .polling-overlay.show { display: flex; }
+        .polling-title {
+            font-family: var(--font-display);
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+        }
+        .polling-sub { font-size: 13px; color: var(--color-text-secondary); }
+        .polling-cancel {
+            font-size: 13px;
+            color: var(--color-text-tertiary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+            margin-top: 4px;
+        }
+        .polling-cancel:hover { color: var(--color-error); }
+
+        /* Spinner */
+        .spinner {
+            width: 36px;
+            height: 36px;
+            border: 3px solid rgba(94,92,230,0.15);
+            border-top-color: var(--color-ios-purple);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Success animation */
+        .success-check {
+            width: 52px;
+            height: 52px;
+            background: rgba(52,199,89,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+        }
+
+        /* Toast */
+        #toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            padding: 11px 22px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            transition: transform 0.3s var(--ease-out);
+            z-index: 200;
+            pointer-events: none;
+        }
+        #toast.show { transform: translateX(-50%) translateY(0); }
+        #toast.success { background: var(--color-success); color: white; }
+        #toast.error { background: var(--color-error); color: white; }
+
+        /* Auth redirect */
+        #auth-guard {
+            min-height: 100vh;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        #auth-guard.show { display: flex; }
+        .guard-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 36px;
+            text-align: center;
+            max-width: 380px;
+            box-shadow: 0 2px 40px rgba(0,0,0,0.08);
+        }
+        .guard-title {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 10px;
+        }
+        .guard-sub { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 24px; }
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 13px 20px;
+            background: var(--color-apple-blue);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .crm-grid { grid-template-columns: 1fr; }
+            .page { padding: 28px 16px 60px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Auth guard -->
+<div id="auth-guard">
+    <div class="guard-card">
+        <div style="font-size:40px; margin-bottom:14px;">🔐</div>
+        <h2 class="guard-title">Sign in required</h2>
+        <p class="guard-sub">You need to be signed in to manage CRM connections.</p>
+        <a href="/app" class="btn-primary">Sign in →</a>
+    </div>
+</div>
+
+<!-- Main app -->
+<div id="app-content" style="display:none;">
+    <div class="topbar">
+        <div class="topbar-inner">
+            <a href="/" class="topbar-logo">
+                <img src="/Assets/Flight Suite Favicon vPurple.svg" alt="FlightSuite">
+                FlightSuite
+            </a>
+            <a href="/app" class="back-link">← Back to account</a>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="page-header">
+            <h1 class="page-title">Connect your CRM</h1>
+            <p class="page-sub">Connect HubSpot or GoHighLevel to start using FlightSuite via SMS and WhatsApp.</p>
+        </div>
+
+        <div class="crm-grid">
+
+            <!-- HubSpot Card -->
+            <div class="crm-card" id="hs-card">
+                <div class="crm-card-header">
+                    <div class="crm-logo hs">HS</div>
+                    <div class="crm-info-col">
+                        <div class="crm-name">HubSpot</div>
+                        <div class="crm-tagline">69 available actions</div>
+                    </div>
+                </div>
+                <div id="hs-status-row" class="crm-status-row">
+                    <div class="status-dot off"></div>
+                    <div class="status-label off">Not connected</div>
+                </div>
+                <ul class="crm-features">
+                    <li>Log calls, emails &amp; meetings</li>
+                    <li>Create &amp; update contacts</li>
+                    <li>Manage deals and pipelines</li>
+                    <li>Add notes &amp; tasks</li>
+                </ul>
+                <div class="crm-actions" id="hs-actions">
+                    <button class="btn-connect primary" onclick="connectCRM('hubspot')">Connect HubSpot</button>
+                </div>
+
+                <!-- Polling overlay -->
+                <div class="polling-overlay" id="hs-polling">
+                    <div class="spinner"></div>
+                    <div class="polling-title">Waiting for authorization…</div>
+                    <div class="polling-sub">Complete sign-in in the new tab</div>
+                    <button class="polling-cancel" onclick="cancelPolling('hubspot')">Cancel</button>
+                </div>
+            </div>
+
+            <!-- GHL Card -->
+            <div class="crm-card" id="ghl-card">
+                <div class="crm-card-header">
+                    <div class="crm-logo ghl">GHL</div>
+                    <div class="crm-info-col">
+                        <div class="crm-name">GoHighLevel</div>
+                        <div class="crm-tagline">39 available actions</div>
+                    </div>
+                </div>
+                <div id="ghl-status-row" class="crm-status-row">
+                    <div class="status-dot off"></div>
+                    <div class="status-label off">Not connected</div>
+                </div>
+                <ul class="crm-features">
+                    <li>Log calls &amp; activities</li>
+                    <li>Create &amp; update contacts</li>
+                    <li>Manage opportunities</li>
+                    <li>Send follow-ups &amp; tasks</li>
+                </ul>
+                <div class="crm-actions" id="ghl-actions">
+                    <button class="btn-connect primary ghl" onclick="connectCRM('ghl')">Connect GoHighLevel</button>
+                </div>
+
+                <!-- Polling overlay -->
+                <div class="polling-overlay" id="ghl-polling">
+                    <div class="spinner"></div>
+                    <div class="polling-title">Waiting for authorization…</div>
+                    <div class="polling-sub">Complete sign-in in the new tab</div>
+                    <button class="polling-cancel" onclick="cancelPolling('ghl')">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+    const API = 'https://treasonable-refugio-uncoincidentally.ngrok-free.dev/api/v1';
+    const pollingIntervals = {};
+    const pollingTokens = {};
+
+    function getToken() { return localStorage.getItem('fs_user_token'); }
+    function authHeaders() {
+        return { 'Authorization': 'Bearer ' + getToken(), 'Content-Type': 'application/json' };
+    }
+
+    // ─── Boot ──────────────────────────────────────────────
+    window.addEventListener('DOMContentLoaded', () => {
+        if (!getToken()) {
+            document.getElementById('auth-guard').classList.add('show');
+            return;
+        }
+        document.getElementById('app-content').style.display = 'block';
+        loadConnectedCRMs();
+    });
+
+    // ─── Load current connections ──────────────────────────
+    async function loadConnectedCRMs() {
+        try {
+            const res = await fetch(API + '/channels', { headers: authHeaders() });
+            if (res.status === 401) { location.href = '/app'; return; }
+            const channels = await res.json();
+            updateCRMStatus('hubspot', channels);
+            updateCRMStatus('ghl', channels);
+        } catch(e) {}
+    }
+
+    function updateCRMStatus(crm, channels) {
+        const linked = channels.find(c => {
+            const t = (c.crm_type || c.type || '').toLowerCase();
+            return crm === 'hubspot' ? t.includes('hubspot') : t.includes('ghl') || t.includes('highlevel');
+        });
+
+        const prefix = crm === 'hubspot' ? 'hs' : 'ghl';
+        const statusRow = document.getElementById(prefix + '-status-row');
+        const actionsEl = document.getElementById(prefix + '-actions');
+
+        if (linked) {
+            statusRow.className = 'crm-status-row connected';
+            statusRow.innerHTML = `
+                <div class="status-dot on"></div>
+                <div class="status-label on">Connected</div>
+                <div class="session-name">${linked.session_name || linked.crm_id || ''}</div>
+            `;
+            const label = crm === 'hubspot' ? 'HubSpot' : 'GoHighLevel';
+            actionsEl.innerHTML = `
+                <button class="btn-connect outline" onclick="connectCRM('${crm}')">Reconnect</button>
+                <button class="btn-connect danger" onclick="disconnectCRM('${crm}')">Disconnect</button>
+            `;
+        }
+    }
+
+    // ─── Connect (OAuth polling) ───────────────────────────
+    async function connectCRM(crm) {
+        const prefix = crm === 'hubspot' ? 'hs' : 'ghl';
+        const endpoint = crm === 'hubspot' ? '/auth/hubspot/oauth/start' : '/auth/ghl/oauth/start';
+        const pollEndpoint = crm === 'hubspot' ? '/auth/hubspot/oauth/session' : '/auth/ghl/oauth/session';
+
+        try {
+            const res = await fetch(API + endpoint, {
+                method: 'POST',
+                headers: authHeaders()
+            });
+            if (!res.ok) {
+                const d = await res.json();
+                throw new Error(d.detail || 'Failed to start OAuth');
+            }
+            const data = await res.json();
+            const authUrl = data.auth_url || data.url;
+            const pollingToken = data.polling_token;
+
+            if (!authUrl) throw new Error('No auth URL returned from server');
+
+            // Store polling token
+            pollingTokens[crm] = pollingToken;
+
+            // Open auth tab
+            window.open(authUrl, '_blank');
+
+            // Show polling overlay
+            document.getElementById(prefix + '-polling').classList.add('show');
+
+            // Start polling
+            const intervalId = setInterval(async () => {
+                try {
+                    const pollRes = await fetch(
+                        API + pollEndpoint + '?polling_token=' + encodeURIComponent(pollingToken),
+                        { headers: authHeaders() }
+                    );
+                    if (!pollRes.ok) return;
+                    const pollData = await pollRes.json();
+
+                    if (pollData.status === 'complete' || pollData.status === 'completed') {
+                        clearInterval(intervalId);
+                        delete pollingIntervals[crm];
+                        showSuccessOnCard(prefix, crm, pollData);
+                    } else if (pollData.status === 'error' || pollData.status === 'failed') {
+                        clearInterval(intervalId);
+                        delete pollingIntervals[crm];
+                        document.getElementById(prefix + '-polling').classList.remove('show');
+                        showToast('Authorization failed. Please try again.', 'error');
+                    }
+                } catch(e) { /* keep polling */ }
+            }, 2000);
+
+            pollingIntervals[crm] = intervalId;
+
+            // Auto-cancel after 5 minutes
+            setTimeout(() => {
+                if (pollingIntervals[crm]) {
+                    cancelPolling(crm);
+                    showToast('Authorization timed out. Please try again.', 'error');
+                }
+            }, 300000);
+
+        } catch(e) {
+            showToast(e.message, 'error');
+        }
+    }
+
+    function cancelPolling(crm) {
+        const prefix = crm === 'hubspot' ? 'hs' : 'ghl';
+        if (pollingIntervals[crm]) {
+            clearInterval(pollingIntervals[crm]);
+            delete pollingIntervals[crm];
+        }
+        document.getElementById(prefix + '-polling').classList.remove('show');
+    }
+
+    function showSuccessOnCard(prefix, crm, data) {
+        const pollingEl = document.getElementById(prefix + '-polling');
+        // Swap spinner for checkmark briefly
+        pollingEl.innerHTML = `
+            <div class="success-check">✓</div>
+            <div class="polling-title" style="color: var(--color-success);">Connected!</div>
+            <div class="polling-sub">${crm === 'hubspot' ? 'HubSpot' : 'GoHighLevel'} is now linked to your account.</div>
+        `;
+        showToast((crm === 'hubspot' ? 'HubSpot' : 'GoHighLevel') + ' connected successfully!', 'success');
+        setTimeout(() => {
+            pollingEl.classList.remove('show');
+            // Reset polling overlay content
+            pollingEl.innerHTML = `
+                <div class="spinner"></div>
+                <div class="polling-title">Waiting for authorization…</div>
+                <div class="polling-sub">Complete sign-in in the new tab</div>
+                <button class="polling-cancel" onclick="cancelPolling('${crm}')">Cancel</button>
+            `;
+            loadConnectedCRMs();
+        }, 2200);
+    }
+
+    // ─── Disconnect ────────────────────────────────────────
+    async function disconnectCRM(crm) {
+        const label = crm === 'hubspot' ? 'HubSpot' : 'GoHighLevel';
+        if (!confirm('Disconnect ' + label + '? You can reconnect anytime.')) return;
+        try {
+            // Try DELETE endpoint — adjust path if backend differs
+            const res = await fetch(API + '/channels/crm/' + crm, {
+                method: 'DELETE',
+                headers: authHeaders()
+            });
+            // Even on 404 we reload state
+            loadConnectedCRMs();
+            showToast(label + ' disconnected.', 'success');
+        } catch(e) {
+            showToast('Error disconnecting. Please try again.', 'error');
+        }
+    }
+
+    // ─── Toast ─────────────────────────────────────────────
+    function showToast(msg, type = 'success') {
+        const el = document.getElementById('toast');
+        el.textContent = msg;
+        el.className = 'show ' + type;
+        setTimeout(() => { el.className = type; }, 3500);
+    }
+</script>
+</body>
+</html>
