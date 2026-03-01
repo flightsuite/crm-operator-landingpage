@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlightSuite — Update Your CRM by Text Message</title>
+    <meta name="description" content="Update your CRM by text message. Text FlightSuite after any call and your HubSpot or GoHighLevel gets updated instantly. SMS live now, WhatsApp coming soon.">
+    <meta name="keywords" content="SMS CRM, CRM automation, text message CRM, HubSpot SMS, GoHighLevel SMS, CRM text update, WhatsApp CRM">
+    <link rel="canonical" href="https://flightsuite.ai/whatsapp">
+    <link rel="icon" type="image/svg+xml" href="/Assets/Flight Suite Favicon vPurple.svg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flightsuite.ai/whatsapp">
+    <meta property="og:title" content="FlightSuite — Update Your CRM by Text Message">
+    <meta property="og:description" content="Text FlightSuite after any call. Your CRM gets updated instantly. SMS live now, WhatsApp coming soon.">
+    <meta property="og:image" content="https://flightsuite.ai/Assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <style>
+        :root {
+            --blue: #0071E3;
+            --purple: #5E5CE6;
+            --green: #34C759;
+            --red: #FF3B30;
+            --wa: #25D366;
+            --wa-dark: #128C7E;
+            --wa-light: #DCF8C6;
+            --wa-bg: #E5DDD5;
+            --t1: #1D1D1F;
+            --t2: #6E6E73;
+            --t3: #86868B;
+            --bg: #F5F5F7;
+            --surface: #FFFFFF;
+            --border: #D2D2D7;
+            --border-l: #E8E8ED;
+            --grad: linear-gradient(135deg, #5E5CE6 0%, #0071E3 100%);
+            --fd: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+            --ft: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+            --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+        body { font-family: var(--ft); color: var(--t1); background: var(--surface); font-size: 15px; line-height: 1.47; letter-spacing: -0.022em; overflow-x: hidden; }
+
+        /* ── Nav ── */
+        nav {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-l);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 52px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--fd); font-size: 17px; font-weight: 600; letter-spacing: -0.03em; color: var(--t1); }
+        .nav-logo img { width: 26px; height: 26px; }
+        .nav-links { display: flex; align-items: center; gap: 20px; }
+        .nav-link { font-size: 14px; color: var(--t2); text-decoration: none; transition: color 0.15s; }
+        .nav-link:hover { color: var(--t1); }
+        .btn-nav { font-size: 14px; font-weight: 500; padding: 7px 16px; background: var(--blue); color: white; border-radius: 20px; text-decoration: none; transition: opacity 0.15s; }
+        .btn-nav:hover { opacity: 0.85; }
+
+        /* ── Animations ── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        @keyframes typing-dot {
+            0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+            30% { opacity: 1; transform: translateY(-4px); }
+        }
+        @keyframes check-pop {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .anim-hidden { opacity: 0; }
+        .anim-visible { animation: fadeInUp 0.7s var(--ease-out) forwards; }
+
+        /* ── Hero ── */
+        .hero {
+            text-align: center;
+            padding: clamp(80px, 12vw, 130px) 24px clamp(48px, 6vw, 72px);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%; left: -20%; width: 140%; height: 140%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(37, 211, 102, 0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 60%, rgba(94, 92, 230, 0.05) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(0, 113, 227, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hero-inner { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
+
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(94, 92, 230, 0.08); color: var(--purple);
+            font-size: 12px; font-weight: 700; padding: 6px 16px;
+            border-radius: 20px; letter-spacing: 0.06em; text-transform: uppercase;
+            margin-bottom: 24px;
+            opacity: 0; animation: fadeInUp 0.7s var(--ease-out) 0.1s forwards;
+        }
+        .eyebrow-dot {
+            width: 7px; height: 7px; background: var(--green); border-radius: 50%;
+            animation: pulse-ring 2s ease-out infinite;
+        }
+        .hero-title {
+            font-family: var(--fd); font-size: clamp(36px, 6vw, 68px); font-weight: 700;
+            letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 18px;
+            opacity: 0; animation: fadeInUp 0.7s var(--ease-out) 0.2s forwards;
+        }
+        .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .wa-text { color: var(--wa-dark); -webkit-text-fill-color: var(--wa-dark); }
+        .hero-sub {
+            font-size: clamp(16px, 2vw, 20px); color: var(--t2); max-width: 560px;
+            margin: 0 auto 40px; line-height: 1.5;
+            opacity: 0; animation: fadeInUp 0.7s var(--ease-out) 0.3s forwards;
+        }
+
+        /* ── Phone Mockup ── */
+        .phone-wrap {
+            max-width: 380px; margin: 0 auto 48px;
+            opacity: 0; animation: fadeInUp 0.8s var(--ease-out) 0.45s forwards;
+        }
+        .phone-frame {
+            background: #1A1A1A;
+            border-radius: 36px;
+            padding: 12px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.18), 0 16px 40px rgba(0,0,0,0.12), inset 0 0 0 1px rgba(255,255,255,0.08);
+        }
+        .phone-screen {
+            background: var(--wa-bg);
+            border-radius: 26px;
+            overflow: hidden;
+            position: relative;
+        }
+        .phone-notch {
+            width: 120px; height: 28px; background: #1A1A1A; border-radius: 0 0 18px 18px;
+            margin: 0 auto; position: relative; z-index: 2;
+        }
+        /* SMS iMessage-style chrome */
+        .sms-header {
+            background: rgba(247,247,247,0.95);
+            backdrop-filter: blur(12px);
+            padding: 10px 16px 12px;
+            display: flex; align-items: center; gap: 10px;
+            margin-top: -6px; border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+        .sms-back { color: var(--blue); font-size: 22px; font-weight: 300; }
+        .sms-contact-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .sms-avatar {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: var(--grad);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .sms-avatar svg { width: 16px; height: 16px; }
+        .sms-contact-name { font-size: 12px; font-weight: 600; color: var(--t1); }
+        .sms-info-icon { flex-shrink: 0; }
+
+        /* SMS Chat area */
+        .sms-chat {
+            padding: 14px 12px 16px;
+            min-height: 280px;
+            display: flex; flex-direction: column; gap: 6px;
+            background: #FFFFFF;
+        }
+        .sms-date {
+            text-align: center; margin: 4px 0 8px;
+        }
+        .sms-date span {
+            font-size: 11px; color: var(--t3); font-weight: 500;
+        }
+        .wa-msg {
+            max-width: 82%; padding: 9px 14px; border-radius: 18px;
+            font-size: 13.5px; line-height: 1.4; position: relative;
+        }
+        .sms-msg-out {
+            align-self: flex-end; background: var(--blue); color: white;
+            border-radius: 18px 18px 4px 18px;
+        }
+        .sms-msg-out .wa-msg-text { color: white; }
+        .sms-msg-in {
+            align-self: flex-start; background: #E9E9EB;
+            border-radius: 18px 18px 18px 4px;
+        }
+        .wa-msg-text { margin-bottom: 0; color: #111; }
+        .sms-msg-in .wa-msg-text .done-check {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: rgba(52, 199, 89, 0.15); color: #1a8d3e;
+            font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 6px;
+            margin-bottom: 4px;
+        }
+
+        /* SMS input bar */
+        .sms-input-bar {
+            background: #F7F7F7; padding: 8px 10px; display: flex; align-items: center; gap: 8px;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+        .sms-input-field {
+            flex: 1; background: white; border-radius: 18px; padding: 8px 14px;
+            font-size: 13px; color: var(--t3); border: 1px solid rgba(0,0,0,0.1);
+        }
+        .sms-send-btn {
+            width: 30px; height: 30px; background: var(--blue); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .sms-send-btn svg { width: 14px; height: 14px; transform: rotate(-30deg) translateX(1px); }
+        .wa-typing {
+            align-self: flex-start; background: #E9E9EB; padding: 10px 14px;
+            border-radius: 18px 18px 18px 4px; display: flex; gap: 4px;
+        }
+        .wa-typing-dot {
+            width: 7px; height: 7px; background: #999; border-radius: 50%;
+        }
+        .wa-typing-dot:nth-child(1) { animation: typing-dot 1.4s infinite 0s; }
+        .wa-typing-dot:nth-child(2) { animation: typing-dot 1.4s infinite 0.2s; }
+        .wa-typing-dot:nth-child(3) { animation: typing-dot 1.4s infinite 0.4s; }
+
+        /* Animated message reveal */
+        .wa-msg, .wa-typing { opacity: 0; }
+        .phone-loaded .wa-msg:nth-child(1) { animation: slideInRight 0.5s var(--ease-out) 0.8s forwards; }
+        .phone-loaded .wa-msg:nth-child(2) { animation: slideInRight 0.5s var(--ease-out) 1.0s forwards; }
+        .phone-loaded .wa-typing { animation: fadeIn 0.3s ease 1.5s forwards; }
+        .phone-loaded .wa-msg:nth-child(4) { animation: slideInLeft 0.5s var(--ease-out) 2.4s forwards; }
+        .phone-loaded .wa-typing.hide-after {
+            animation: fadeIn 0.3s ease 1.5s forwards, fadeOut 0.2s ease 2.3s forwards;
+        }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; visibility: hidden; } }
+
+        /* ── Waitlist CTA ── */
+        .waitlist-wrap {
+            max-width: 480px; margin: 0 auto;
+            opacity: 0; animation: fadeInUp 0.7s var(--ease-out) 0.6s forwards;
+        }
+        .waitlist-form {
+            display: flex; gap: 10px; margin-bottom: 12px;
+        }
+        .waitlist-input {
+            flex: 1; padding: 14px 18px; border: 1.5px solid var(--border);
+            border-radius: 12px; font-size: 15px; font-family: var(--ft);
+            background: white; color: var(--t1); outline: none;
+            transition: border-color 0.2s;
+        }
+        .waitlist-input:focus { border-color: var(--blue); }
+        .waitlist-input::placeholder { color: var(--t3); }
+        .waitlist-btn {
+            padding: 14px 24px; background: var(--blue); color: white;
+            border: none; border-radius: 12px; font-size: 15px; font-weight: 600;
+            font-family: var(--ft); cursor: pointer;
+            transition: opacity 0.15s, transform 0.1s; white-space: nowrap;
+        }
+        .waitlist-btn:hover { opacity: 0.88; }
+        .waitlist-btn:active { transform: scale(0.97); }
+        .waitlist-note { font-size: 13px; color: var(--t3); }
+        .waitlist-success {
+            display: none; text-align: center; padding: 18px;
+            background: rgba(37, 211, 102, 0.08); border-radius: 14px;
+        }
+        .waitlist-success.show { display: block; animation: fadeInUp 0.4s var(--ease-out); }
+        .waitlist-success .check-icon {
+            width: 44px; height: 44px; background: var(--green); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 12px; animation: check-pop 0.5s var(--ease-spring);
+        }
+        .waitlist-success .check-icon svg { width: 22px; height: 22px; }
+        .waitlist-success h3 { font-family: var(--fd); font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+        .waitlist-success p { font-size: 14px; color: var(--t2); }
+
+        @media (max-width: 500px) {
+            .waitlist-form { flex-direction: column; }
+            .waitlist-btn { width: 100%; }
+        }
+
+        /* ── How It Works ── */
+        .how-section {
+            background: var(--bg); padding: clamp(56px, 7vw, 88px) 24px;
+        }
+        .how-inner { max-width: 900px; margin: 0 auto; }
+        .section-label {
+            font-size: 12px; font-weight: 700; color: var(--purple);
+            text-transform: uppercase; letter-spacing: 0.06em;
+            text-align: center; margin-bottom: 10px;
+        }
+        .section-title {
+            font-family: var(--fd); font-size: clamp(28px, 4vw, 40px); font-weight: 700;
+            letter-spacing: -0.04em; text-align: center; margin-bottom: 12px;
+        }
+        .section-sub {
+            font-size: clamp(15px, 1.8vw, 17px); color: var(--t2); text-align: center;
+            max-width: 520px; margin: 0 auto 48px; line-height: 1.5;
+        }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        @media (max-width: 700px) { .steps { grid-template-columns: 1fr; } }
+        .step {
+            background: white; border-radius: 20px; padding: 28px 22px;
+            text-align: left; position: relative;
+            transition: transform 0.2s var(--ease-smooth), box-shadow 0.2s;
+        }
+        .step:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.07); }
+        .step-icon {
+            width: 48px; height: 48px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 16px; font-size: 22px;
+        }
+        .step-icon.wa-icon { background: rgba(37, 211, 102, 0.1); }
+        .step-icon.chat-icon { background: rgba(94, 92, 230, 0.1); }
+        .step-icon.crm-icon { background: rgba(0, 113, 227, 0.1); }
+        .step-num {
+            font-size: 11px; font-weight: 700; color: var(--t3);
+            letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px;
+        }
+        .step-title {
+            font-family: var(--fd); font-size: 17px; font-weight: 600;
+            letter-spacing: -0.03em; margin-bottom: 8px;
+        }
+        .step-body { font-size: 14px; color: var(--t2); line-height: 1.55; }
+
+        /* ── Pricing ── */
+        .pricing-section { padding: clamp(56px, 7vw, 88px) 24px; }
+        .pricing-inner { max-width: 1080px; margin: 0 auto; }
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 14px; align-items: start;
+        }
+        @media (max-width: 900px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px) { .pricing-grid { grid-template-columns: 1fr; } .plan-card.featured { order: -1; } }
+        .plan-card {
+            background: white; border: 1.5px solid var(--border-l);
+            border-radius: 22px; padding: 26px 22px; position: relative;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .plan-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.09); transform: translateY(-2px); }
+        .plan-card.featured { border-color: var(--purple); box-shadow: 0 4px 24px rgba(94,92,230,0.15); }
+        .plan-card.featured:hover { box-shadow: 0 12px 40px rgba(94,92,230,0.22); }
+        .plan-badge {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--grad); color: white; font-size: 11px; font-weight: 700;
+            padding: 4px 14px; border-radius: 20px; letter-spacing: 0.04em;
+            text-transform: uppercase; white-space: nowrap;
+        }
+        .plan-name { font-family: var(--fd); font-size: 15px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; color: var(--t2); }
+        .plan-price { margin-bottom: 2px; }
+        .plan-price-amount { font-family: var(--fd); font-size: 42px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; }
+        .plan-price-period { font-size: 14px; color: var(--t2); }
+        .plan-headline { font-family: var(--fd); font-size: 15px; font-weight: 600; color: var(--t1); margin: 10px 0 4px; letter-spacing: -0.02em; }
+        .plan-cadence { font-size: 12.5px; color: var(--t3); margin-bottom: 18px; }
+        .plan-divider { height: 1px; background: var(--border-l); margin-bottom: 16px; }
+        .plan-features { list-style: none; margin-bottom: 22px; }
+        .plan-features li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; margin-bottom: 8px; color: var(--t1); }
+        .check { width: 16px; height: 16px; border-radius: 50%; background: rgba(52,199,89,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+        .check::after { content: '\2713'; font-size: 10px; font-weight: 700; color: var(--green); }
+        .plan-features .hl { font-weight: 600; }
+        .btn-plan {
+            width: 100%; padding: 13px 20px; border-radius: 12px;
+            font-family: var(--ft); font-size: 15px; font-weight: 600;
+            cursor: pointer; transition: opacity 0.15s, transform 0.1s;
+            letter-spacing: -0.01em; border: none; display: block;
+            text-align: center; text-decoration: none;
+        }
+        .btn-plan:active { transform: scale(0.98); }
+        .btn-primary { background: var(--grad); color: white; }
+        .btn-primary:hover { opacity: 0.88; }
+        .btn-outline { background: var(--bg); color: var(--t1); }
+        .btn-outline:hover { background: #e5e5ea; }
+        .free-banner {
+            text-align: center; margin-top: 28px; padding: 16px 20px;
+            background: rgba(94,92,230,0.04); border: 1.5px solid rgba(94,92,230,0.12);
+            border-radius: 14px; font-size: 14px; color: var(--t2);
+        }
+        .free-banner strong { color: var(--t1); }
+
+        /* ── Features Grid ── */
+        .features-section {
+            background: var(--bg); padding: clamp(56px, 7vw, 88px) 24px;
+        }
+        .features-inner { max-width: 900px; margin: 0 auto; }
+        .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        @media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
+        .feature-card {
+            background: white; border-radius: 18px; padding: 24px 22px;
+            display: flex; align-items: flex-start; gap: 14px;
+            transition: transform 0.2s var(--ease-smooth), box-shadow 0.2s;
+        }
+        .feature-card:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.06); }
+        .feature-icon {
+            width: 42px; height: 42px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; font-size: 20px;
+        }
+        .feature-title { font-family: var(--fd); font-size: 15px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
+        .feature-body { font-size: 13.5px; color: var(--t2); line-height: 1.5; }
+
+        /* ── FAQ ── */
+        .faq-section { padding: clamp(56px, 7vw, 88px) 24px; }
+        .faq-inner { max-width: 720px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--border-l); padding: 20px 0; cursor: pointer; }
+        .faq-item:first-of-type { border-top: 1px solid var(--border-l); }
+        .faq-q { font-size: 15px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .faq-icon { font-size: 20px; color: var(--t3); flex-shrink: 0; transition: transform 0.2s; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-a { font-size: 14px; color: var(--t2); line-height: 1.6; max-height: 0; overflow: hidden; transition: max-height 0.3s var(--ease-out), padding 0.3s; }
+        .faq-item.open .faq-a { max-height: 300px; padding-top: 10px; }
+
+        /* ── Bottom CTA ── */
+        .bottom-cta {
+            text-align: center;
+            padding: clamp(56px, 7vw, 88px) 24px;
+            background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
+        }
+        .bottom-cta-inner { max-width: 560px; margin: 0 auto; }
+        .bottom-cta h2 {
+            font-family: var(--fd); font-size: clamp(28px, 4vw, 40px); font-weight: 700;
+            letter-spacing: -0.04em; margin-bottom: 12px;
+        }
+        .bottom-cta p { font-size: 16px; color: var(--t2); margin-bottom: 32px; line-height: 1.5; }
+        .bottom-cta .waitlist-form { max-width: 440px; margin: 0 auto 20px; }
+        .or-divider {
+            display: flex; align-items: center; gap: 14px;
+            margin: 24px auto; max-width: 300px; color: var(--t3); font-size: 13px;
+        }
+        .or-divider::before, .or-divider::after {
+            content: ''; flex: 1; height: 1px; background: var(--border-l);
+        }
+        .btn-extension {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; background: var(--grad); color: white;
+            border-radius: 12px; font-size: 15px; font-weight: 600;
+            text-decoration: none; font-family: var(--ft);
+            transition: opacity 0.15s, transform 0.1s;
+        }
+        .btn-extension:hover { opacity: 0.88; }
+        .btn-extension:active { transform: scale(0.97); }
+        .btn-extension svg { width: 18px; height: 18px; }
+        .extension-note { font-size: 13px; color: var(--t3); margin-top: 10px; }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center; padding: 24px; font-size: 13px; color: var(--t3);
+            border-top: 1px solid var(--border-l);
+        }
+        footer a { color: var(--t2); text-decoration: none; }
+        footer a:hover { color: var(--t1); }
+
+        /* ── Scroll reveal ── */
+        .reveal {
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="/" class="nav-logo">
+            <img src="/Assets/Flight Suite Favicon vPurple.svg" alt="FlightSuite">
+            FlightSuite
+        </a>
+        <div class="nav-links">
+            <a href="/subscribe" class="nav-link">Pricing</a>
+            <a href="/app" class="nav-link">My Account</a>
+            <a href="https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb" class="btn-nav">Get Extension</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══ Hero ═══ -->
+<div class="hero">
+    <div class="hero-inner">
+        <div class="hero-eyebrow"><span class="eyebrow-dot"></span> Now Live</div>
+        <h1 class="hero-title">Update your CRM<br><span class="grad-text">by text message</span></h1>
+        <p class="hero-sub">Finish a call, send a text. FlightSuite reads your message and updates HubSpot or GoHighLevel in seconds — no app, no dashboard, no typing into forms. WhatsApp support coming soon.</p>
+
+        <!-- Phone mockup -->
+        <div class="phone-wrap">
+            <div class="phone-frame">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <div class="sms-header">
+                        <span class="sms-back">&#8249;</span>
+                        <div class="sms-contact-wrap">
+                            <div class="sms-avatar">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            </div>
+                            <div class="sms-contact-name">FlightSuite CRM</div>
+                        </div>
+                        <svg class="sms-info-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0,113,227,0.8)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    </div>
+                    <div class="sms-chat" id="smsChat">
+                        <div class="sms-date"><span>Today 2:47 PM</span></div>
+                        <div class="wa-msg sms-msg-out">
+                            <div class="wa-msg-text">Just finished a call with Sarah at TechCorp. She wants the enterprise demo next Tuesday. Set a follow-up.</div>
+                        </div>
+                        <div class="wa-typing hide-after">
+                            <div class="wa-typing-dot"></div>
+                            <div class="wa-typing-dot"></div>
+                            <div class="wa-typing-dot"></div>
+                        </div>
+                        <div class="wa-msg sms-msg-in">
+                            <div class="wa-msg-text">
+                                <span class="done-check">&#10003; Done</span><br>
+                                Logged call with Sarah Chen at TechCorp &middot; enterprise demo scheduled Tuesday &middot; follow-up set for Monday 4pm
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sms-input-bar">
+                        <div class="sms-input-field">Text Message</div>
+                        <div class="sms-send-btn">
+                            <svg viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signup form -->
+        <div class="waitlist-wrap" id="waitlistTop">
+            <form class="waitlist-form" onsubmit="submitWaitlist(event, this)">
+                <input type="email" class="waitlist-input" placeholder="Enter your email" required>
+                <button type="submit" class="waitlist-btn">Get Early Access</button>
+            </form>
+            <div class="waitlist-note">Join 200+ sales reps already using text-to-CRM. WhatsApp support coming soon.</div>
+            <div class="waitlist-success">
+                <div class="check-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h3>You're in</h3>
+                <p>We'll send you everything you need to start updating your CRM by text.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ How It Works ═══ -->
+<div class="how-section reveal">
+    <div class="how-inner">
+        <div class="section-label">How It Works</div>
+        <h2 class="section-title">Three texts to a better CRM</h2>
+        <p class="section-sub">You already pull out your phone after every call. Now that habit updates your CRM.</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon" style="background:rgba(94,92,230,0.1);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5E5CE6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                </div>
+                <div class="step-num">Step 1</div>
+                <div class="step-title">Pair your phone number</div>
+                <div class="step-body">Sign up, connect your CRM, and register your phone number. Takes under 2 minutes.</div>
+            </div>
+            <div class="step">
+                <div class="step-icon chat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5E5CE6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </div>
+                <div class="step-num">Step 2</div>
+                <div class="step-title">Text after any call</div>
+                <div class="step-body">Send an SMS describing what happened — just like you'd tell a colleague. No forms, no fields, no jargon needed.</div>
+            </div>
+            <div class="step">
+                <div class="step-icon crm-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0071E3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div class="step-num">Step 3</div>
+                <div class="step-title">CRM updated instantly</div>
+                <div class="step-body">HubSpot or GoHighLevel gets the note, the follow-up, and the deal update — exactly how you'd write it yourself.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ Pricing ═══ -->
+<div class="pricing-section reveal">
+    <div class="pricing-inner">
+        <div class="section-label">Pricing</div>
+        <h2 class="section-title">Simple, transparent pricing</h2>
+        <p class="section-sub">The Chrome extension is free forever. Subscriptions only apply to text message queries.</p>
+
+        <div class="pricing-grid">
+            <!-- Free -->
+            <div class="plan-card">
+                <div class="plan-name">Free</div>
+                <div class="plan-price">
+                    <span class="plan-price-amount">$0</span>
+                    <span class="plan-price-period"> forever</span>
+                </div>
+                <div class="plan-headline">20 trial queries</div>
+                <div class="plan-cadence">One-time, no card needed</div>
+                <div class="plan-divider"></div>
+                <ul class="plan-features">
+                    <li><span class="check"></span><span>20 lifetime text queries</span></li>
+                    <li><span class="check"></span><span><span class="hl">Chrome extension free forever</span></span></li>
+                    <li><span class="check"></span><span>HubSpot &amp; GHL integrations</span></li>
+                    <li><span class="check"></span><span>No credit card required</span></li>
+                </ul>
+                <a href="/subscribe" class="btn-plan btn-outline">Start free</a>
+            </div>
+            <!-- Starter -->
+            <div class="plan-card">
+                <div class="plan-name">Starter</div>
+                <div class="plan-price">
+                    <span class="plan-price-amount">$5</span>
+                    <span class="plan-price-period">/mo</span>
+                </div>
+                <div class="plan-headline">~5 updates/day</div>
+                <div class="plan-cadence">Good for 1-2 calls/day</div>
+                <div class="plan-divider"></div>
+                <ul class="plan-features">
+                    <li><span class="check"></span><span><span class="hl">100 queries/month</span></span></li>
+                    <li><span class="check"></span><span>Chrome extension unlimited</span></li>
+                    <li><span class="check"></span><span>HubSpot &amp; GHL integrations</span></li>
+                    <li><span class="check"></span><span>Resets every month</span></li>
+                </ul>
+                <a href="/subscribe" class="btn-plan btn-outline">Get Starter</a>
+            </div>
+            <!-- Pro -->
+            <div class="plan-card featured">
+                <div class="plan-badge">Most Popular</div>
+                <div class="plan-name">Pro</div>
+                <div class="plan-price">
+                    <span class="plan-price-amount" style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">$10</span>
+                    <span class="plan-price-period">/mo</span>
+                </div>
+                <div class="plan-headline">~15 updates/day</div>
+                <div class="plan-cadence">Built for active field reps</div>
+                <div class="plan-divider"></div>
+                <ul class="plan-features">
+                    <li><span class="check"></span><span><span class="hl">300 queries/month</span></span></li>
+                    <li><span class="check"></span><span>Chrome extension unlimited</span></li>
+                    <li><span class="check"></span><span>HubSpot &amp; GHL integrations</span></li>
+                    <li><span class="check"></span><span>Priority support</span></li>
+                </ul>
+                <a href="/subscribe" class="btn-plan btn-primary">Get Pro</a>
+            </div>
+            <!-- Business -->
+            <div class="plan-card">
+                <div class="plan-name">Business</div>
+                <div class="plan-price">
+                    <span class="plan-price-amount">$15</span>
+                    <span class="plan-price-period">/mo</span>
+                </div>
+                <div class="plan-headline">~30 updates/day</div>
+                <div class="plan-cadence">Power users, high-volume reps</div>
+                <div class="plan-divider"></div>
+                <ul class="plan-features">
+                    <li><span class="check"></span><span><span class="hl">600 queries/month</span></span></li>
+                    <li><span class="check"></span><span>Chrome extension unlimited</span></li>
+                    <li><span class="check"></span><span>HubSpot &amp; GHL integrations</span></li>
+                    <li><span class="check"></span><span>Priority support + SLA</span></li>
+                </ul>
+                <a href="/subscribe" class="btn-plan btn-outline">Get Business</a>
+            </div>
+        </div>
+
+        <div class="free-banner">
+            <strong>The Chrome extension is free forever</strong> — unlimited use, no subscription needed. Pricing above only applies to SMS &amp; WhatsApp text queries.
+        </div>
+    </div>
+</div>
+
+<!-- ═══ Features ═══ -->
+<div class="features-section reveal">
+    <div class="features-inner">
+        <div class="section-label">Why FlightSuite</div>
+        <h2 class="section-title">Built for reps on the move</h2>
+        <p class="section-sub">No apps to download, no dashboards to learn. Just text.</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(0,113,227,0.08);">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0071E3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <div>
+                    <div class="feature-title">HubSpot &amp; GoHighLevel</div>
+                    <div class="feature-body">Works with the CRMs you already use. 69 HubSpot tools and 39 GHL tools — contacts, deals, notes, tasks, and more.</div>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(37,211,102,0.08);">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+                </div>
+                <div>
+                    <div class="feature-title">No app to download</div>
+                    <div class="feature-body">Use your phone's built-in SMS. No new apps, no logins, no onboarding. Just start texting. WhatsApp support coming soon.</div>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(94,92,230,0.08);">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5E5CE6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                </div>
+                <div>
+                    <div class="feature-title">AI understands context</div>
+                    <div class="feature-body">Say "Just left Sarah at TechCorp" — FlightSuite finds the right contact, logs the call, and sets follow-ups automatically.</div>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(52,199,89,0.08);">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                    <div class="feature-title">Extension stays free forever</div>
+                    <div class="feature-body">The Chrome extension has zero usage limits and will always be free. SMS/WhatsApp is the only paid feature — and it starts at $0.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ FAQ ═══ -->
+<div class="faq-section reveal">
+    <div class="faq-inner">
+        <h2 class="section-title" style="text-align:center;margin-bottom:32px;">Questions</h2>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Is SMS live now? What about WhatsApp? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Yes — SMS text-to-CRM is live right now. Sign up above to start using it today. WhatsApp support is coming soon and will work the same way. Sign up now and you'll get WhatsApp access automatically when it launches.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Is the Chrome extension still free? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Yes — always. The Chrome extension is free forever with unlimited use. Subscriptions only apply to SMS and WhatsApp text queries. You can keep using the extension without ever paying a cent.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">What counts as one query? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Every message you send to FlightSuite via SMS (and WhatsApp when it launches) counts as one query. That includes logging calls, updating contacts, and setting follow-ups. Replies and confirmations from FlightSuite don't count — only messages you send.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Which CRMs are supported? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Currently HubSpot (69 tools) and GoHighLevel (39 tools) are fully supported. Salesforce integration is in development — you can join the waitlist to be notified when it launches.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Do I need to install anything? <span class="faq-icon">+</span></div>
+            <div class="faq-a">No. SMS works with your phone's built-in messaging app — nothing to install. Just pair your phone number and start texting FlightSuite. The Chrome extension is a separate product — also free, installed from the Chrome Web Store.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Can I cancel anytime? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Yes. Cancel in seconds from your account portal. You keep your remaining queries until the end of the billing period. No fees, no questions asked.</div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ Bottom CTA ═══ -->
+<div class="bottom-cta reveal">
+    <div class="bottom-cta-inner">
+        <h2>Start updating your CRM by text</h2>
+        <p>SMS is live now. Sign up and start texting your CRM updates today. WhatsApp support coming soon.</p>
+        <form class="waitlist-form" onsubmit="submitWaitlist(event, this)">
+            <input type="email" class="waitlist-input" placeholder="Enter your email" required>
+            <button type="submit" class="waitlist-btn">Get Early Access</button>
+        </form>
+        <div class="waitlist-success">
+            <div class="check-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>You're in</h3>
+            <p>We'll send you everything you need to start updating your CRM by text.</p>
+        </div>
+        <div class="or-divider">or</div>
+        <a href="https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb" class="btn-extension">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
+            Get the free Chrome extension
+        </a>
+        <div class="extension-note">Free forever &middot; No credit card required</div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 FlightSuite &nbsp;&middot;&nbsp; <a href="/privacy-policy">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms">Terms</a>
+</footer>
+
+<script>
+    // Phone animation trigger
+    const phoneWrap = document.querySelector('.phone-wrap');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.querySelector('.phone-frame').classList.add('phone-loaded');
+                observer.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    if (phoneWrap) observer.observe(phoneWrap);
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+        });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // Waitlist form
+    function submitWaitlist(e, form) {
+        e.preventDefault();
+        const email = form.querySelector('input[type="email"]').value;
+        const btn = form.querySelector('button');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+
+        fetch('https://script.google.com/macros/s/AKfycbwkjGPGDJUCw3VHXN27e67RbFJghTwBJOdYBjCjJPnUHjB8ywVF0bF1kLQp7ykVfLVh/exec', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, source: 'sms-launch' })
+        }).then(() => {
+            const wrap = form.closest('.waitlist-wrap, .bottom-cta-inner');
+            form.style.display = 'none';
+            const note = form.nextElementSibling;
+            if (note && note.classList.contains('waitlist-note')) note.style.display = 'none';
+            const success = wrap.querySelector('.waitlist-success');
+            if (success) success.classList.add('show');
+        }).catch(() => {
+            btn.textContent = 'Notify Me';
+            btn.disabled = false;
+        });
+    }
+
+    // FAQ toggle
+    function toggleFaq(el) { el.classList.toggle('open'); }
+</script>
+</body>
+</html>
