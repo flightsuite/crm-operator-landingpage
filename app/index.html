@@ -436,21 +436,21 @@
         .modal-backdrop {
             position: fixed; inset: 0;
             background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-            z-index: 500; display: flex; align-items: flex-end; justify-content: center;
+            z-index: 500; display: flex; align-items: center; justify-content: center;
             opacity: 0; pointer-events: none; transition: opacity 0.25s var(--ease-smooth);
         }
         .modal-backdrop.open { opacity: 1; pointer-events: all; }
         .modal-sheet {
             background: rgba(255,255,255,0.96);
             backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-radius: 24px 24px 0 0; padding: 32px 28px 40px;
+            border-radius: 24px; padding: 32px 28px 40px;
             width: 100%; max-width: 760px;
-            transform: translateY(40px); transition: transform 0.3s var(--ease-out);
+            transform: translateY(24px) scale(0.97); transition: transform 0.3s var(--ease-out);
             max-height: 90vh; overflow-y: auto;
-            box-shadow: 0 -4px 40px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 60px rgba(0,0,0,0.18);
         }
-        .modal-backdrop.open .modal-sheet { transform: translateY(0); }
-        .modal-handle { width: 36px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 20px; }
+        .modal-backdrop.open .modal-sheet { transform: translateY(0) scale(1); }
+        .modal-handle { display: none; }
         .modal-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
         .modal-title { font-family: var(--fd); font-size: clamp(22px,3vw,28px); font-weight: 700; letter-spacing: -0.04em; }
         .modal-sub { font-size: 14px; color: var(--t2); margin-bottom: 24px; letter-spacing: -0.01em; }
@@ -476,6 +476,7 @@
         .plan-tile-period { font-size: 13px; color: var(--t2); margin-bottom: 14px; letter-spacing: -0.01em; }
         .plan-tile-credits { font-size: 15px; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.02em; }
         .plan-tile-credits span { color: var(--t2); font-weight: 400; font-size: 13px; }
+        .plan-tile-value { font-size: 12px; color: var(--t3); margin-bottom: 12px; letter-spacing: -0.01em; }
         .plan-tile-features { list-style: none; margin-bottom: 20px; }
         .plan-tile-features li { font-size: 13px; color: var(--t2); margin-bottom: 5px; padding-left: 16px; position: relative; letter-spacing: -0.01em; }
         .plan-tile-features li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 11px; top: 1px; }
@@ -672,7 +673,7 @@
             <div class="card" id="crm-card">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
                     <div class="card-label" style="margin-bottom:0;">Connected CRMs</div>
-                    <a href="/app/connect" class="subtle-link">Full view →</a>
+                    <a href="/app/connect.html" class="subtle-link">Full view →</a>
                 </div>
                 <div id="crm-skel">
                     <div class="skel" style="height:56px;border-radius:14px;margin-bottom:10px;"></div>
@@ -729,10 +730,12 @@
                 <div class="plan-tile-name">Starter</div>
                 <div class="plan-tile-price">$5</div>
                 <div class="plan-tile-period">per month</div>
-                <div class="plan-tile-credits">100 <span>SMS/WA credits/mo</span></div>
+                <div class="plan-tile-credits">100 AI queries <span>/ month</span></div>
+                <div class="plan-tile-value">Update ~100 CRM records via text</div>
                 <ul class="plan-tile-features">
                     <li>Unlimited Chrome extension</li>
                     <li>HubSpot &amp; GoHighLevel</li>
+                    <li>SMS &amp; WhatsApp support</li>
                     <li>Resets monthly</li>
                 </ul>
                 <button class="btn-select default" onclick="selectPlan('starter', this)">Get Starter</button>
@@ -742,10 +745,12 @@
                 <div class="plan-tile-name">Pro</div>
                 <div class="plan-tile-price grad">$10</div>
                 <div class="plan-tile-period">per month</div>
-                <div class="plan-tile-credits">300 <span>SMS/WA credits/mo</span></div>
+                <div class="plan-tile-credits">300 AI queries <span>/ month</span></div>
+                <div class="plan-tile-value">Update ~300 CRM records via text</div>
                 <ul class="plan-tile-features">
                     <li>Unlimited Chrome extension</li>
                     <li>HubSpot &amp; GoHighLevel</li>
+                    <li>SMS &amp; WhatsApp support</li>
                     <li>Priority support</li>
                 </ul>
                 <button class="btn-select primary" onclick="selectPlan('pro', this)">Get Pro</button>
@@ -754,10 +759,12 @@
                 <div class="plan-tile-name">Business</div>
                 <div class="plan-tile-price">$15</div>
                 <div class="plan-tile-period">per month</div>
-                <div class="plan-tile-credits">600 <span>SMS/WA credits/mo</span></div>
+                <div class="plan-tile-credits">600 AI queries <span>/ month</span></div>
+                <div class="plan-tile-value">Update ~600 CRM records via text</div>
                 <ul class="plan-tile-features">
                     <li>Unlimited Chrome extension</li>
                     <li>HubSpot &amp; GoHighLevel</li>
+                    <li>SMS &amp; WhatsApp support</li>
                     <li>Priority support + SLA</li>
                 </ul>
                 <button class="btn-select default" onclick="selectPlan('business', this)">Get Business</button>
@@ -946,9 +953,9 @@ function renderBilling(d) {
     if (isUnlim) {
         remEl.innerHTML = '<span class="hl">Unlimited</span> credits this month';
     } else if (rem <= 0) {
-        remEl.innerHTML = '<span class="over-text">0 credits remaining</span> &nbsp;·&nbsp; <a class="inline-link" href="/subscribe">Upgrade →</a>';
+        remEl.innerHTML = '<span class="over-text">0 credits remaining</span> &nbsp;·&nbsp; <a class="inline-link" href="javascript:void(0)" onclick="openPlanModal()">Upgrade →</a>';
     } else if (rem <= 5) {
-        remEl.innerHTML = '<span class="warn-text">' + rem + ' credits remaining</span> &nbsp;·&nbsp; <a class="inline-link" href="/subscribe">Upgrade →</a>';
+        remEl.innerHTML = '<span class="warn-text">' + rem + ' credits remaining</span> &nbsp;·&nbsp; <a class="inline-link" href="javascript:void(0)" onclick="openPlanModal()">Upgrade →</a>';
     } else {
         remEl.innerHTML = '<span class="hl">' + rem + '</span> remaining';
     }
@@ -1008,7 +1015,6 @@ function renderCRMs(links) {
     const rows    = document.getElementById('crm-rows');
     const btnArea = document.getElementById('crm-connect-btns');
     rows.innerHTML = ''; btnArea.innerHTML = '';
-    const connected = new Set(links.map(l => l.crm_type));
     links.forEach(l => {
         const m = CRM[l.crm_type] || { label: l.crm_type, cls:'hs', icon:'?' };
         const date = l.linked_at ? 'Connected ' + new Date(l.linked_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
@@ -1024,18 +1030,16 @@ function renderCRMs(links) {
             <button class="btn-row-danger" onclick="disconnectCRM('${l.crm_type}','${l.crm_id}')">Disconnect</button>`;
         rows.appendChild(row);
     });
-    const toConnect = ['hubspot','ghl'].filter(k => !connected.has(k));
-    if (toConnect.length > 0) {
-        show('crm-connect-btns');
-        toConnect.forEach(crm => {
-            const m = CRM[crm];
-            const btn = document.createElement('button');
-            btn.className = 'btn-crm'; btn.id = 'btn-connect-' + crm;
-            btn.innerHTML = `<div class="crm-btn-logo ${m.cls}">${m.icon}</div><span>Connect ${m.label}</span><span class="arrow">›</span>`;
-            btn.onclick = () => startCRMConnect(crm);
-            btnArea.appendChild(btn);
-        });
-    } else { hide('crm-connect-btns'); }
+    // Always show connect buttons so users can add multiple accounts
+    show('crm-connect-btns');
+    ['hubspot','ghl'].forEach(crm => {
+        const m = CRM[crm];
+        const btn = document.createElement('button');
+        btn.className = 'btn-crm'; btn.id = 'btn-connect-' + crm + '-' + Date.now();
+        btn.innerHTML = `<div class="crm-btn-logo ${m.cls}">${m.icon}</div><span>Connect ${m.label}</span><span class="arrow">›</span>`;
+        btn.onclick = () => startCRMConnect(crm);
+        btnArea.appendChild(btn);
+    });
 }
 
 // ── CRM OAuth polling ─────────────────────────────────────────────
@@ -1050,7 +1054,7 @@ async function startCRMConnect(crm) {
     try {
         const r = await fetch(API + ep, { method: 'POST', headers: auth() });
         if (r.status === 401) { signOut(); return; }
-        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.detail || 'Could not start ' + m.label + ' authorization'); }
+        if (!r.ok) { const d = await r.json().catch(()=>({})); const msg = typeof d.detail === 'string' ? d.detail : 'Could not start ' + m.label + ' authorization'; throw new Error(msg); }
         const data = await r.json();
         if (!data.auth_url && !data.url) throw new Error('No authorization URL returned from server');
         window.open(data.auth_url || data.url, '_blank');
@@ -1114,30 +1118,29 @@ async function disconnectCRM(type, id) {
 function renderPhones(channels) {
     hide('phone-skel'); show('phone-content');
     const phones = channels.filter(c => c.channel_type === 'sms' || c.channel_type === 'whatsapp');
+    // Deduplicate by channel_id (same number may appear for multiple CRMs)
+    const seen = new Set();
+    const uniquePhones = phones.filter(p => { if (seen.has(p.channel_id)) return false; seen.add(p.channel_id); return true; });
     const rowsEl = document.getElementById('phone-rows');
     const addArea = document.getElementById('phone-add-area');
     rowsEl.innerHTML = ''; addArea.innerHTML = '';
-    phones.forEach(p => {
+    uniquePhones.forEach(p => {
         const num  = formatPhone(p.channel_id || '');
-        const crm  = routeLabel(p.linked_crm || '');
         const date = p.registered_at ? 'Added ' + new Date(p.registered_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
         const row  = document.createElement('div');
         row.className = 'phone-row';
         row.innerHTML = `
-            <div class="phone-row-icon">${p.channel_type === 'sms' ? '💬' : '📱'}</div>
+            <div class="phone-row-icon">💬</div>
             <div class="phone-row-info">
                 <div class="phone-row-num"><span class="dot-g"></span>${num}</div>
-                <div class="phone-row-route">${crm}</div>
+                <div class="phone-row-route">Connected to all CRM accounts</div>
                 <div class="phone-row-date">${date}</div>
             </div>
             <button class="btn-row-danger" onclick="disconnectPhone('${p.channel_type}','${encodeURIComponent(p.channel_id)}')">Remove</button>`;
         rowsEl.appendChild(row);
     });
-    if (phones.length > 0) {
-        addArea.innerHTML = `<button class="btn-add-dashed" onclick="showAddPhoneForm(this)">
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            Add another number</button>`;
-    } else { addArea.appendChild(buildPhoneForm()); }
+    // Only show add form if no phone number is connected (limit to 1)
+    if (uniquePhones.length === 0) { addArea.appendChild(buildPhoneForm()); }
 }
 function showAddPhoneForm(btn) { btn.replaceWith(buildPhoneForm()); }
 function buildPhoneForm() {
@@ -1241,7 +1244,8 @@ function showInlineErr(id,msg){ const e=document.getElementById(id); if(e){e.tex
 function clearInlineErr(id)   { const e=document.getElementById(id); if(e)e.style.display='none'; }
 function setLoading(id,txt)   { const b=document.getElementById(id); if(b){b.disabled=true;b.textContent=txt;} }
 function resetLoading(id,txt) { const b=document.getElementById(id); if(b){b.disabled=false;b.textContent=txt;} }
-function toast(msg,type) { const el=document.getElementById('toast'); el.textContent=msg; el.className='show '+type; setTimeout(()=>{el.className=type;},3500); }
+function errMsg(d, fallback) { return typeof d.detail === 'string' ? d.detail : fallback; }
+function toast(msg,type) { const el=document.getElementById('toast'); el.textContent=typeof msg==='string'?msg:String(msg); el.className='show '+type; setTimeout(()=>{el.className=type;},3500); }
 document.addEventListener('keydown', e => {
     if (e.key !== 'Enter') return;
     const id = document.activeElement?.id;
