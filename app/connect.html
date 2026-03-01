@@ -371,6 +371,9 @@
             <p class="page-sub">Connect HubSpot or GoHighLevel to start using FlightSuite via SMS and WhatsApp.</p>
         </div>
 
+        <!-- Connected accounts -->
+        <div id="connected-accounts" style="margin-bottom:24px;display:none;"></div>
+
         <div class="crm-grid">
 
             <!-- HubSpot Card -->
@@ -382,10 +385,6 @@
                         <div class="crm-tagline">69 available actions</div>
                     </div>
                 </div>
-                <div id="hs-status-row" class="crm-status-row">
-                    <div class="status-dot off"></div>
-                    <div class="status-label off">Not connected</div>
-                </div>
                 <ul class="crm-features">
                     <li>Log calls, emails &amp; meetings</li>
                     <li>Create &amp; update contacts</li>
@@ -393,7 +392,17 @@
                     <li>Add notes &amp; tasks</li>
                 </ul>
                 <div class="crm-actions" id="hs-actions">
-                    <button class="btn-connect primary" onclick="connectCRM('hubspot')">Connect HubSpot</button>
+                    <button class="btn-connect primary" onclick="connectCRM('hubspot')">Connect with OAuth</button>
+                    <button class="btn-connect outline" onclick="togglePATForm('hubspot')">Use API key</button>
+                </div>
+                <div class="pat-form" id="hs-pat-form" style="display:none;margin-top:14px;">
+                    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:8px;">Enter your HubSpot Private App access token:</div>
+                    <input id="hs-pat-input" type="text" placeholder="pat-xx-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:10px;font-size:14px;font-family:var(--font-body);margin-bottom:8px;">
+                    <div style="display:flex;gap:8px;">
+                        <button class="btn-connect primary" style="flex:1;" onclick="connectWithPAT('hubspot')">Connect</button>
+                        <button class="btn-connect outline" onclick="togglePATForm('hubspot')">Cancel</button>
+                    </div>
+                    <div id="hs-pat-err" style="font-size:12px;color:var(--color-error);margin-top:6px;display:none;"></div>
                 </div>
 
                 <!-- Polling overlay -->
@@ -414,10 +423,6 @@
                         <div class="crm-tagline">39 available actions</div>
                     </div>
                 </div>
-                <div id="ghl-status-row" class="crm-status-row">
-                    <div class="status-dot off"></div>
-                    <div class="status-label off">Not connected</div>
-                </div>
                 <ul class="crm-features">
                     <li>Log calls &amp; activities</li>
                     <li>Create &amp; update contacts</li>
@@ -425,7 +430,18 @@
                     <li>Send follow-ups &amp; tasks</li>
                 </ul>
                 <div class="crm-actions" id="ghl-actions">
-                    <button class="btn-connect primary ghl" onclick="connectCRM('ghl')">Connect GoHighLevel</button>
+                    <button class="btn-connect primary ghl" onclick="connectCRM('ghl')">Connect with OAuth</button>
+                    <button class="btn-connect outline" onclick="togglePATForm('ghl')">Use API key</button>
+                </div>
+                <div class="pat-form" id="ghl-pat-form" style="display:none;margin-top:14px;">
+                    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:8px;">Enter your GoHighLevel private integration token:</div>
+                    <input id="ghl-loc-input" type="text" placeholder="Location ID" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:10px;font-size:14px;font-family:var(--font-body);margin-bottom:8px;">
+                    <input id="ghl-pat-input" type="text" placeholder="Private integration token" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:10px;font-size:14px;font-family:var(--font-body);margin-bottom:8px;">
+                    <div style="display:flex;gap:8px;">
+                        <button class="btn-connect primary ghl" style="flex:1;" onclick="connectWithPAT('ghl')">Connect</button>
+                        <button class="btn-connect outline" onclick="togglePATForm('ghl')">Cancel</button>
+                    </div>
+                    <div id="ghl-pat-err" style="font-size:12px;color:var(--color-error);margin-top:6px;display:none;"></div>
                 </div>
 
                 <!-- Polling overlay -->
@@ -466,37 +482,33 @@
     // ─── Load current connections ──────────────────────────
     async function loadConnectedCRMs() {
         try {
-            const res = await fetch(API + '/channels', { headers: authHeaders() });
+            const res = await fetch(API + '/users/me', { headers: authHeaders() });
             if (res.status === 401) { location.href = '/app'; return; }
-            const channels = await res.json();
-            updateCRMStatus('hubspot', channels);
-            updateCRMStatus('ghl', channels);
+            const data = await res.json();
+            renderConnectedAccounts(data.crm_links || []);
         } catch(e) {}
     }
 
-    function updateCRMStatus(crm, channels) {
-        const linked = channels.find(c => {
-            const t = (c.crm_type || c.type || '').toLowerCase();
-            return crm === 'hubspot' ? t.includes('hubspot') : t.includes('ghl') || t.includes('highlevel');
-        });
-
-        const prefix = crm === 'hubspot' ? 'hs' : 'ghl';
-        const statusRow = document.getElementById(prefix + '-status-row');
-        const actionsEl = document.getElementById(prefix + '-actions');
-
-        if (linked) {
-            statusRow.className = 'crm-status-row connected';
-            statusRow.innerHTML = `
-                <div class="status-dot on"></div>
-                <div class="status-label on">Connected</div>
-                <div class="session-name">${linked.session_name || linked.crm_id || ''}</div>
-            `;
-            const label = crm === 'hubspot' ? 'HubSpot' : 'GoHighLevel';
-            actionsEl.innerHTML = `
-                <button class="btn-connect outline" onclick="connectCRM('${crm}')">Reconnect</button>
-                <button class="btn-connect danger" onclick="disconnectCRM('${crm}')">Disconnect</button>
-            `;
-        }
+    function renderConnectedAccounts(links) {
+        const container = document.getElementById('connected-accounts');
+        if (links.length === 0) { container.style.display = 'none'; return; }
+        container.style.display = 'block';
+        const crmMeta = { hubspot: { label:'HubSpot', cls:'hs', icon:'HS' }, ghl: { label:'GoHighLevel', cls:'ghl', icon:'GHL' } };
+        container.innerHTML = `
+            <div style="font-size:13px;font-weight:600;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">Connected Accounts</div>
+            ${links.map(l => {
+                const m = crmMeta[l.crm_type] || { label: l.crm_type, cls:'hs', icon:'?' };
+                const date = l.linked_at ? new Date(l.linked_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
+                return `<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(52,199,89,0.06);border-radius:14px;margin-bottom:8px;">
+                    <div class="crm-logo ${m.cls}" style="width:36px;height:36px;border-radius:9px;font-size:14px;">${m.icon}</div>
+                    <div style="flex:1;min-width:0;">
+                        <div style="font-size:14px;font-weight:600;">${m.label}</div>
+                        <div style="font-size:12px;color:var(--color-text-secondary);">${l.session_name || l.crm_id || ''} · Connected ${date}</div>
+                    </div>
+                    <button class="btn-connect danger" style="flex:none;min-width:auto;padding:8px 14px;font-size:12px;" onclick="disconnectCRM('${l.crm_type}','${l.crm_id}')">Disconnect</button>
+                </div>`;
+            }).join('')}
+        `;
     }
 
     // ─── Connect (OAuth polling) ───────────────────────────
@@ -512,7 +524,7 @@
             });
             if (!res.ok) {
                 const d = await res.json();
-                throw new Error(d.detail || 'Failed to start OAuth');
+                throw new Error(typeof d.detail === 'string' ? d.detail : 'Failed to start OAuth');
             }
             const data = await res.json();
             const authUrl = data.auth_url || data.url;
@@ -599,20 +611,61 @@
     }
 
     // ─── Disconnect ────────────────────────────────────────
-    async function disconnectCRM(crm) {
-        const label = crm === 'hubspot' ? 'HubSpot' : 'GoHighLevel';
+    async function disconnectCRM(type, id) {
+        const label = type === 'hubspot' ? 'HubSpot' : 'GoHighLevel';
         if (!confirm('Disconnect ' + label + '? You can reconnect anytime.')) return;
         try {
-            // Try DELETE endpoint — adjust path if backend differs
-            const res = await fetch(API + '/channels/crm/' + crm, {
+            const res = await fetch(API + '/users/me/crm-links/' + type + '/' + id, {
                 method: 'DELETE',
                 headers: authHeaders()
             });
-            // Even on 404 we reload state
             loadConnectedCRMs();
             showToast(label + ' disconnected.', 'success');
         } catch(e) {
             showToast('Error disconnecting. Please try again.', 'error');
+        }
+    }
+
+    // ─── PAT connection ─────────────────────────────────────
+    function togglePATForm(crm) {
+        const prefix = crm === 'hubspot' ? 'hs' : 'ghl';
+        const form = document.getElementById(prefix + '-pat-form');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    async function connectWithPAT(crm) {
+        const prefix = crm === 'hubspot' ? 'hs' : 'ghl';
+        const errEl = document.getElementById(prefix + '-pat-err');
+        errEl.style.display = 'none';
+
+        let body;
+        if (crm === 'hubspot') {
+            const token = document.getElementById('hs-pat-input').value.trim();
+            if (!token) { errEl.textContent = 'Please enter your access token.'; errEl.style.display = 'block'; return; }
+            body = { access_token: token, crm_type: 'hubspot' };
+        } else {
+            const loc = document.getElementById('ghl-loc-input').value.trim();
+            const token = document.getElementById('ghl-pat-input').value.trim();
+            if (!loc || !token) { errEl.textContent = 'Please enter both Location ID and token.'; errEl.style.display = 'block'; return; }
+            body = { pat_token: token, location_id: loc, crm_type: 'ghl' };
+        }
+
+        try {
+            const res = await fetch(API + '/auth/' + crm + '/token', {
+                method: 'POST',
+                headers: authHeaders(),
+                body: JSON.stringify(body)
+            });
+            if (!res.ok) {
+                const d = await res.json().catch(() => ({}));
+                throw new Error(typeof d.detail === 'string' ? d.detail : 'Failed to connect. Check your credentials.');
+            }
+            showToast((crm === 'hubspot' ? 'HubSpot' : 'GoHighLevel') + ' connected!', 'success');
+            togglePATForm(crm);
+            loadConnectedCRMs();
+        } catch(e) {
+            errEl.textContent = e.message;
+            errEl.style.display = 'block';
         }
     }
 
