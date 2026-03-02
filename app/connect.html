@@ -58,17 +58,18 @@
             justify-content: space-between;
         }
         .topbar-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
             text-decoration: none;
             font-family: var(--font-display);
-            font-size: 17px;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            letter-spacing: -0.03em;
+            font-size: clamp(20px, 3vw, 24px);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: transform 0.3s var(--ease-spring);
         }
-        .topbar-logo img { width: 26px; height: 26px; }
+        .topbar-logo:hover { transform: scale(1.02); }
         .back-link {
             font-size: 14px;
             color: var(--color-apple-blue);
@@ -357,10 +358,7 @@
 <div id="app-content" style="display:none;">
     <div class="topbar">
         <div class="topbar-inner">
-            <a href="/" class="topbar-logo">
-                <img src="/Assets/Flight Suite Favicon vPurple.svg" alt="FlightSuite">
-                FlightSuite
-            </a>
+            <a href="/" class="topbar-logo">FlightSuite</a>
             <a href="/app" class="back-link">← Back to account</a>
         </div>
     </div>
@@ -430,11 +428,10 @@
                     <li>Send follow-ups &amp; tasks</li>
                 </ul>
                 <div class="crm-actions" id="ghl-actions">
-                    <button class="btn-connect primary ghl" onclick="connectCRM('ghl')">Connect with OAuth</button>
-                    <button class="btn-connect outline" onclick="togglePATForm('ghl')">Use API key</button>
+                    <button class="btn-connect primary ghl" onclick="togglePATForm('ghl')">Connect GoHighLevel</button>
                 </div>
                 <div class="pat-form" id="ghl-pat-form" style="display:none;margin-top:14px;">
-                    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:8px;">Enter your GoHighLevel private integration token:</div>
+                    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:8px;">Enter your GoHighLevel Location ID and private integration token:</div>
                     <input id="ghl-loc-input" type="text" placeholder="Location ID" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:10px;font-size:14px;font-family:var(--font-body);margin-bottom:8px;">
                     <input id="ghl-pat-input" type="text" placeholder="Private integration token" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:10px;font-size:14px;font-family:var(--font-body);margin-bottom:8px;">
                     <div style="display:flex;gap:8px;">
@@ -442,14 +439,6 @@
                         <button class="btn-connect outline" onclick="togglePATForm('ghl')">Cancel</button>
                     </div>
                     <div id="ghl-pat-err" style="font-size:12px;color:var(--color-error);margin-top:6px;display:none;"></div>
-                </div>
-
-                <!-- Polling overlay -->
-                <div class="polling-overlay" id="ghl-polling">
-                    <div class="spinner"></div>
-                    <div class="polling-title">Waiting for authorization…</div>
-                    <div class="polling-sub">Complete sign-in in the new tab</div>
-                    <button class="polling-cancel" onclick="cancelPolling('ghl')">Cancel</button>
                 </div>
             </div>
 
@@ -651,7 +640,7 @@
         }
 
         try {
-            const res = await fetch(API + '/auth/' + crm + '/token', {
+            const res = await fetch(API + '/users/me/crm-links', {
                 method: 'POST',
                 headers: authHeaders(),
                 body: JSON.stringify(body)

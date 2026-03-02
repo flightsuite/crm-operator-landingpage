@@ -1211,7 +1211,10 @@ async function selectPlan(tier, btn) {
         if (!r.ok) throw new Error(d.detail || 'Could not create checkout session');
         const url = d.url || d.checkout_url;
         if (!url) throw new Error('No checkout URL returned');
-        location.href = url;
+        window.open(url, '_blank');
+        closePlanModal();
+        btn.disabled = false;
+        btn.textContent = tier === 'pro' ? 'Get Pro' : tier === 'starter' ? 'Get Starter' : 'Get Business';
     } catch(e) {
         toast(e.message, 'bad');
         btn.disabled = false;
