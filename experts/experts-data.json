@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-08",
+  "lastUpdated": "2026-03-09",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
@@ -140,7 +140,7 @@
       "name": "Vanessa Zamora",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/doylestown/certified-admins/vanessa-zamora",
       "rating": 5,
-      "reviewCount": 25,
+      "reviewCount": 26,
       "certifications": [
         "Certified Admin"
       ],
@@ -1107,8 +1107,8 @@
     "joel-negron": {
       "name": "Joel Negron",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/virginia-beach/certified-admins/joel-negron",
-      "rating": 5,
-      "reviewCount": 0,
+      "rating": 1,
+      "reviewCount": 1,
       "certifications": [
         "Certified Admin"
       ],
