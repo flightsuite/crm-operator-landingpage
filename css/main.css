@@ -101,9 +101,9 @@ img { max-width: 100%; height: auto; }
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 80px 80px;
+        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
     mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 70%, transparent 110%);
     -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 70%, transparent 110%);
 }
@@ -1412,6 +1412,28 @@ body::before {
 .capabilities-preview {
     padding: var(--section-spacing) var(--container-padding);
     background: var(--color-bg-secondary);
+}
+
+/* Capabilities grid cards get luminous top border */
+.capabilities-preview [style*="grid"] > div {
+    position: relative;
+}
+
+.capabilities-preview [style*="grid"] > div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(94, 92, 230, 0.3), transparent);
+    border-radius: 16px 16px 0 0;
+}
+
+.capabilities-preview [style*="grid"] > div:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.12) !important;
 }
 
 /* --- CRM Finder / Services / Calculator --- */
