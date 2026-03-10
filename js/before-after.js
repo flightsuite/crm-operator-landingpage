@@ -48,18 +48,12 @@
         isDragging = false;
     });
 
-    // Touch events
+    // Touch events — only trigger on the slider handle, not the whole comparison
     slider.addEventListener('touchstart', (e) => {
         isDragging = true;
         compRect = comparison.getBoundingClientRect();
         e.preventDefault();
     }, { passive: false });
-
-    comparison.addEventListener('touchstart', (e) => {
-        isDragging = true;
-        compRect = comparison.getBoundingClientRect();
-        if (e.touches[0]) updatePosition(e.touches[0].clientX);
-    }, { passive: true });
 
     window.addEventListener('touchmove', (e) => {
         if (!isDragging) return;
@@ -75,21 +69,33 @@
         compRect = null;
     });
 
-    // Scroll-triggered entrance animation — slide from 30% to 50%
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        ScrollTrigger.create({
-            trigger: comparison,
-            start: 'top 80%',
-            end: 'top 40%',
-            scrub: 1,
-            onUpdate: (self) => {
-                if (!isDragging) {
-                    const pct = 30 + self.progress * 20; // 30% → 50%
-                    before.style.width = pct + '%';
-                    slider.style.left = pct + '%';
+    // One-shot entrance: animate to 50% when section enters, then hand off to user
+    let hasAnimated = false;
+    if (typeof gsap !== 'undefined') {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasAnimated) {
+                    hasAnimated = true;
+                    gsap.fromTo(
+                        { pct: 30 },
+                        { pct: 30 },
+                        {
+                            pct: 50,
+                            duration: 1.2,
+                            ease: 'power2.out',
+                            onUpdate: function() {
+                                if (!isDragging) {
+                                    const p = this.targets()[0].pct;
+                                    before.style.width = p + '%';
+                                    slider.style.left = p + '%';
+                                }
+                            }
+                        }
+                    );
                 }
-            }
-        });
+            });
+        }, { threshold: 0.3 });
+        observer.observe(comparison);
     }
 
     console.log('Before/After drag reveal loaded');
