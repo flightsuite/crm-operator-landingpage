@@ -188,7 +188,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/main.css?v=6">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CSY283V4Y"></script>
@@ -200,6 +200,9 @@
     </script>
 </head>
 <body>
+    <!-- Interactive Particle Canvas (mouse-reactive) -->
+    <canvas id="particle-canvas" class="particle-canvas"></canvas>
+
     <!-- Animated Background -->
     <div class="animated-bg">
         <div class="gradient-orb"></div>
@@ -225,165 +228,330 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <!-- Particle Fusion Container -->
-        <div class="fusion-container" id="fusionContainer">
-            <div class="fusion-core" id="fusionCore"></div>
-        </div>
+    <section class="hero" id="hero">
 
         <div class="hero-content">
             <div class="hero-badge">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="url(#goldGradient)" stroke="none">
-                    <defs>
-                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#DAA520;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/>
-                </svg>
+                <span class="hero-badge-dot"></span>
                 Available Now for GoHighLevel & HubSpot
             </div>
-            <h1 class="hero-title">The Universal CRM CoPilot</h1>
-            <p class="hero-subtitle">Make CRM adoption effortless. Just type what happened and FlightSuite logs it instantly—saving you 5-10 hours per week. No more logging into dashboards and clicking around.</p>
-            <div style="text-align: center; margin-bottom: clamp(20px, 3vw, 24px); display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;">
-                <button onclick="openModal('crmInfoModal')" style="border: none; background: none; color: var(--color-apple-blue); text-decoration: underline; cursor: pointer; font-size: clamp(13px, 1.8vw, 14px); font-family: inherit; padding: 0; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">
-                    What's a CRM?
-                </button>
-                <span style="color: var(--color-text-tertiary); font-size: clamp(13px, 1.8vw, 14px);">|</span>
-                <a href="/installation-guide.html" style="color: var(--color-apple-blue); text-decoration: underline; font-size: clamp(13px, 1.8vw, 14px); transition: opacity 0.2s;" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">
-                    Installation Guide
-                </a>
+            <h1 class="hero-title">The Universal CRM Agent</h1>
+            <p class="hero-subtitle">Just type what happened. Your agent handles the rest.</p>
+
+            <!-- Hero Live Demo — the product IS the hero -->
+            <div class="hero-demo">
+                <div class="hero-demo-input">
+                    <div class="hero-demo-prompt">
+                        <span class="hero-demo-cursor-icon">›</span>
+                        <span class="hero-demo-typed" id="heroTypedText"></span>
+                        <span class="hero-demo-caret"></span>
+                    </div>
+                </div>
+                <div class="hero-demo-output" id="heroDemoOutput">
+                    <!-- CRM cards materialize here via JS -->
+                </div>
+                <div class="hero-demo-particles" id="heroDemoParticles">
+                    <!-- Particle trails from text to cards rendered via canvas -->
+                    <canvas id="hero-trail-canvas"></canvas>
+                </div>
             </div>
+
             <div class="hero-cta-group">
                 <button class="cta-primary" onclick="openInstallModal()" data-event="install_click">
-                    Add to Chrome - It's Free
-                    <span>→</span>
+                    Add to Chrome — It's Free
+                    <span class="cta-arrow">→</span>
                 </button>
                 <button class="cta-secondary" onclick="openCrmRequestModal()" data-event="crm_waitlist_click">
                     Join Waitlist for Your CRM
                 </button>
             </div>
+
             <div class="hero-trust-row">
-                <div class="user-count-badge" style="margin-top: 0; opacity: 1; animation: none;">
-                    <svg class="chrome-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div class="trust-pill">
+                    <svg class="chrome-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
                         <circle cx="12" cy="12" r="10" stroke="#4285F4" stroke-width="2" fill="none"/>
                         <circle cx="12" cy="12" r="4" fill="#4285F4"/>
                         <path d="M12 2C6.48 2 2 6.48 2 12h10" stroke="#EA4335" stroke-width="2" stroke-linecap="round"/>
                         <path d="M12 2c5.52 0 10 4.48 10 10h-10" stroke="#34A853" stroke-width="2" stroke-linecap="round"/>
                         <path d="M12 22c5.52 0 10-4.48 10-10H12" stroke="#FBBC05" stroke-width="2" stroke-linecap="round"/>
                     </svg>
-                    <span>Trusted by <span class="user-count-number" id="userCount">100+</span> Chrome users</span>
+                    <span>Trusted by <strong id="userCount">100+</strong> Chrome users</span>
                 </div>
-                <a href="#press" class="press-badge">
-                    <span class="press-badge-label">As seen in</span>
-                    <span class="press-badge-source">Charlotte Business Journal</span>
+                <a href="#press" class="trust-pill trust-pill-press">
+                    As seen in <strong>Charlotte Business Journal</strong>
                 </a>
             </div>
         </div>
-        <div class="hero-bottom-glow"></div>
+    </section>
+
+    <!-- Ghost Agent — AI working while you browse -->
+    <div class="ghost-agent" id="ghostAgent">
+        <div class="ghost-agent-status">
+            <span class="ghost-agent-dot"></span>
+            <span class="ghost-agent-label">Agent Active</span>
+        </div>
+        <div class="ghost-agent-feed" id="ghostAgentFeed">
+            <!-- Actions appear here via JS -->
+        </div>
+    </div>
+
+    <!-- Command Bar — type to navigate / demo the product -->
+    <div class="command-bar" id="commandBar">
+        <div class="command-bar-inner">
+            <span class="command-bar-icon">›</span>
+            <input type="text" class="command-bar-input" id="commandBarInput" placeholder="Type anything... &quot;show me the demo&quot;, &quot;Add Sarah as a contact&quot;" autocomplete="off" />
+            <kbd class="command-bar-hint">⌘K</kbd>
+        </div>
+    </div>
+
+    <!-- Pain Section — The CRM Problem -->
+    <section class="pain-section">
+        <div class="pain-container">
+            <div class="pain-label">The CRM Problem</div>
+            <h2 class="pain-title text-reveal">Your team hates CRM data entry. So they just... don't do it.</h2>
+            <p class="pain-subtitle">The result? Lost deals, bad data, and wasted hours. Sound familiar?</p>
+            <div class="pain-grid">
+                <div class="pain-card spotlight-card tilt-card">
+                    <div class="pain-stat-number" data-count="71">0</div>
+                    <div class="pain-stat-suffix">%</div>
+                    <div class="pain-stat-label">of sales reps say CRM data entry is the biggest waste of their time</div>
+                </div>
+                <div class="pain-card spotlight-card tilt-card">
+                    <div class="pain-stat-number" data-count="5" data-suffix="-10">0</div>
+                    <div class="pain-stat-suffix">hrs/week</div>
+                    <div class="pain-stat-label">spent per rep on manual CRM updates instead of selling</div>
+                </div>
+                <div class="pain-card spotlight-card tilt-card">
+                    <div class="pain-stat-number" data-count="40">0</div>
+                    <div class="pain-stat-suffix">%</div>
+                    <div class="pain-stat-label">of CRM data goes unentered — leads fall through the cracks</div>
+                </div>
+            </div>
+            <div class="pain-solution">
+                <div class="pain-arrow">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                </div>
+                <p class="pain-solution-text">FlightSuite eliminates this entirely. Just type what happened — your CoPilot handles the rest.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before/After Drag Reveal -->
+    <section class="before-after-section" id="before-after">
+        <div class="before-after-container">
+            <div class="section-label">See the Difference</div>
+            <h2 class="before-after-title text-reveal">Drag to reveal the future of CRM</h2>
+            <p class="before-after-subtitle">Left: your current reality. Right: life with FlightSuite.</p>
+
+            <div class="ba-comparison" id="baComparison">
+                <!-- Before side (CRM pain) -->
+                <div class="ba-before">
+                    <div class="ba-panel ba-panel-before">
+                        <div class="ba-panel-label">WITHOUT FLIGHTSUITE</div>
+                        <div class="ba-crm-nightmare">
+                            <div class="ba-crm-header">
+                                <span class="ba-crm-tab ba-crm-tab-active">Contacts</span>
+                                <span class="ba-crm-tab">Deals</span>
+                                <span class="ba-crm-tab">Tasks</span>
+                                <span class="ba-crm-tab">Reports</span>
+                            </div>
+                            <div class="ba-crm-toolbar">
+                                <span class="ba-btn-sm">+ New</span>
+                                <span class="ba-btn-sm">Filter</span>
+                                <span class="ba-btn-sm">Sort</span>
+                                <span class="ba-btn-sm">Import</span>
+                                <span class="ba-btn-sm">Export</span>
+                                <span class="ba-btn-sm">⋯</span>
+                            </div>
+                            <div class="ba-crm-table">
+                                <div class="ba-crm-row ba-crm-row-header">
+                                    <span>Name</span><span>Email</span><span>Phone</span><span>Stage</span><span>Last Activity</span>
+                                </div>
+                                <div class="ba-crm-row ba-crm-row-stale">
+                                    <span>Sarah Chen</span><span>sarah@acme...</span><span>—</span><span class="ba-badge-warn">Stale</span><span class="ba-text-danger">47 days ago</span>
+                                </div>
+                                <div class="ba-crm-row ba-crm-row-stale">
+                                    <span>Mike Johnson</span><span>mike@...</span><span>555-01...</span><span class="ba-badge-warn">Stale</span><span class="ba-text-danger">23 days ago</span>
+                                </div>
+                                <div class="ba-crm-row">
+                                    <span>Lisa Park</span><span>—</span><span>—</span><span class="ba-badge-empty">No Stage</span><span>—</span>
+                                </div>
+                                <div class="ba-crm-row ba-crm-row-stale">
+                                    <span>David W.</span><span>david@...</span><span>—</span><span class="ba-badge-warn">Stale</span><span class="ba-text-danger">31 days ago</span>
+                                </div>
+                                <div class="ba-crm-row">
+                                    <span>New Lead</span><span>—</span><span>—</span><span class="ba-badge-empty">—</span><span>—</span>
+                                </div>
+                            </div>
+                            <div class="ba-crm-warning">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                <span>12 contacts have no activity in 30+ days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- After side (FlightSuite) -->
+                <div class="ba-after">
+                    <div class="ba-panel ba-panel-after">
+                        <div class="ba-panel-label ba-panel-label-glow">WITH FLIGHTSUITE</div>
+                        <div class="ba-flightsuite-clean">
+                            <div class="ba-fs-input">
+                                <div class="ba-fs-prompt">›</div>
+                                <div class="ba-fs-text">Had a call with Sarah Chen. She's interested in the enterprise plan. Move her to Discovery stage. Also book a demo with Lisa Park next Tuesday at 2pm.</div>
+                            </div>
+                            <div class="ba-fs-results">
+                                <div class="ba-fs-card ba-fs-card-success">
+                                    <div class="ba-fs-card-icon">✓</div>
+                                    <div class="ba-fs-card-content">
+                                        <div class="ba-fs-card-title">Contact Updated</div>
+                                        <div class="ba-fs-card-detail">Sarah Chen → Enterprise Plan Interest</div>
+                                    </div>
+                                </div>
+                                <div class="ba-fs-card ba-fs-card-success">
+                                    <div class="ba-fs-card-icon">✓</div>
+                                    <div class="ba-fs-card-content">
+                                        <div class="ba-fs-card-title">Pipeline Moved</div>
+                                        <div class="ba-fs-card-detail">Sarah Chen → Discovery Stage</div>
+                                    </div>
+                                </div>
+                                <div class="ba-fs-card ba-fs-card-success">
+                                    <div class="ba-fs-card-icon">✓</div>
+                                    <div class="ba-fs-card-content">
+                                        <div class="ba-fs-card-title">Note Logged</div>
+                                        <div class="ba-fs-card-detail">Call summary added to Sarah Chen</div>
+                                    </div>
+                                </div>
+                                <div class="ba-fs-card ba-fs-card-success">
+                                    <div class="ba-fs-card-icon">✓</div>
+                                    <div class="ba-fs-card-content">
+                                        <div class="ba-fs-card-title">Appointment Booked</div>
+                                        <div class="ba-fs-card-detail">Lisa Park — Demo — Tue 2:00 PM</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ba-fs-time">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                4 actions completed in 3 seconds
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drag Handle -->
+                <div class="ba-slider" id="baSlider">
+                    <div class="ba-slider-line"></div>
+                    <div class="ba-slider-handle">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="15 18 9 12 15 6"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Demo Section -->
     <section class="demo-section" id="demo">
         <div class="demo-container">
             <div class="demo-header">
-                <div class="demo-label">Interactive Demo</div>
-                <h2 class="demo-title">See FlightSuite in action</h2>
-                <p class="demo-description">Click commands to watch AI orchestrate your CRM data entry automatically.</p>
+                <div class="demo-label">How It Works</div>
+                <h2 class="demo-title">Type naturally. Watch your CRM update.</h2>
+                <p class="demo-description">No clicks, no dashboards. FlightSuite turns your words into structured CRM data instantly.</p>
             </div>
 
-            <!-- Mac Frame -->
-            <div class="mac-frame">
-                <div class="mac-titlebar">
-                    <div class="mac-controls">
-                        <div class="mac-control close"></div>
-                        <div class="mac-control minimize"></div>
-                        <div class="mac-control maximize"></div>
+            <!-- Data Flow Scene -->
+            <div class="dataflow-scene" id="dataflowScene">
+                <!-- Terminal Panel (Left) -->
+                <div class="dataflow-terminal">
+                    <div class="dataflow-terminal-header">
+                        <div class="dataflow-terminal-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="dataflow-terminal-title">FlightSuite Agent</div>
                     </div>
-                </div>
-                <div class="mac-content">
-                    <!-- Chat Panel -->
-                    <div class="chat-panel">
-                        <div class="chat-header">
-                            <div class="chat-title">FlightSuite Universal CRM CoPilot</div>
-                            <div class="chat-subtitle">Just type naturally</div>
+                    <div class="dataflow-terminal-body">
+                        <div class="dataflow-prompt">
+                            <span class="dataflow-prompt-icon">›</span>
+                            <span class="dataflow-typed" id="dataflowTyped"></span>
+                            <span class="dataflow-caret"></span>
                         </div>
-                        <div class="chat-messages" id="chatMessages">
-                            <div class="message ai">
-                                <div class="message-avatar">FS</div>
-                                <div class="message-content">
-                                    <div class="message-bubble">
-                                        I'm your universal CRM CoPilot. Try the commands below to see how I make CRM adoption effortless.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chat-input">
-                            <div class="suggestions" id="suggestions">
-                                <button class="suggestion-chip" onclick="runDemoCommand(0)">Add Jane Doe as a new contact with email jane@company.com</button>
-                                <button class="suggestion-chip" onclick="runDemoCommand(1)" disabled>Log a note for Jane: Discussed pricing for enterprise plan</button>
-                                <button class="suggestion-chip" onclick="runDemoCommand(2)" disabled>Move Jane to Discovery stage</button>
-                                <button class="suggestion-chip" onclick="runDemoCommand(3)" disabled>What's Jane's email address?</button>
-                                <button class="suggestion-chip" onclick="runDemoCommand(4)" disabled>Show all my contacts</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- CRM Panel -->
-                    <div class="crm-panel">
-                        <div class="crm-header">
-                            <div class="crm-title">GoHighLevel CRM</div>
-                        </div>
-                        <div class="crm-content" id="crmContent">
-                            <div class="crm-empty">
-                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4">
-                                    <rect x="3" y="3" width="18" height="18" rx="2"/>
-                                    <path d="M3 9h18M9 21V9"/>
-                                </svg>
-                                <div class="crm-empty-text">CRM updates appear here</div>
-                            </div>
+                        <div class="dataflow-status" id="dataflowStatus">
+                            <span class="dataflow-status-dot"></span>
+                            <span class="dataflow-status-text">Ready</span>
                         </div>
                     </div>
                 </div>
+
+                <!-- Energy Flow (Center) -->
+                <div class="dataflow-energy">
+                    <svg class="dataflow-svg" viewBox="0 0 200 300" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="flowGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#5E5CE6"/>
+                                <stop offset="50%" stop-color="#0071E3"/>
+                                <stop offset="100%" stop-color="#22D3EE"/>
+                            </linearGradient>
+                            <linearGradient id="flowGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#5E5CE6"/>
+                                <stop offset="100%" stop-color="#FF6B9D"/>
+                            </linearGradient>
+                        </defs>
+                        <path class="dataflow-path dataflow-path-1" d="M0,60 C60,60 140,100 200,100" stroke="url(#flowGrad1)" fill="none" stroke-width="2"/>
+                        <path class="dataflow-path dataflow-path-2" d="M0,150 C80,150 120,150 200,150" stroke="url(#flowGrad2)" fill="none" stroke-width="2"/>
+                        <path class="dataflow-path dataflow-path-3" d="M0,240 C60,240 140,200 200,200" stroke="url(#flowGrad1)" fill="none" stroke-width="2"/>
+                    </svg>
+                    <div class="dataflow-brain">
+                        <div class="dataflow-brain-ring"></div>
+                        <div class="dataflow-brain-label">AI</div>
+                    </div>
+                </div>
+
+                <!-- CRM Cards (Right) -->
+                <div class="dataflow-output" id="dataflowOutput">
+                    <!-- Cards injected by JS -->
+                </div>
             </div>
 
-            <!-- Installation Demo -->
-            <div class="install-demo">
-                <div class="demo-steps">
-                    <div class="demo-step">
-                        <div class="demo-step-icon">1</div>
-                        <div class="demo-step-text">Click "Add to Chrome"</div>
+            <!-- Setup Flow — horizontal timeline -->
+            <div class="setup-flow">
+                <div class="setup-flow-steps">
+                    <div class="setup-step">
+                        <div class="setup-step-dot"></div>
+                        <div class="setup-step-label">Install</div>
+                        <div class="setup-step-detail">30 seconds</div>
                     </div>
-                    <div class="demo-step">
-                        <div class="demo-step-icon">2</div>
-                        <div class="demo-step-text">Install in 30 seconds</div>
+                    <div class="setup-step-line"></div>
+                    <div class="setup-step">
+                        <div class="setup-step-dot"></div>
+                        <div class="setup-step-label">Connect CRM</div>
+                        <div class="setup-step-detail">One click</div>
                     </div>
-                    <div class="demo-step">
-                        <div class="demo-step-icon">3</div>
-                        <div class="demo-step-text">Connect your CRM</div>
-                    </div>
-                    <div class="demo-step">
-                        <div class="demo-step-icon">✓</div>
-                        <div class="demo-step-text">Start saving time</div>
+                    <div class="setup-step-line"></div>
+                    <div class="setup-step">
+                        <div class="setup-step-dot active"></div>
+                        <div class="setup-step-label">Start typing</div>
+                        <div class="setup-step-detail">That's it</div>
                     </div>
                 </div>
             </div>
 
             <!-- Demo CTA -->
             <div class="demo-cta" id="demoCta">
-                <h3 class="demo-cta-title">Your CoPilot handles the CRM busywork</h3>
-                <p class="demo-cta-description">Sales teams save 5-10 hours weekly. Just type what happened—FlightSuite does the rest.</p>
                 <button class="cta-primary" onclick="openInstallModal()" data-event="install_click">
-                    Add to Chrome - It's Free
+                    Add to Chrome — Free
                     <span>→</span>
                 </button>
-                <a href="#" class="demo-cta-link" onclick="openCrmRequestModal(); return false;">Join the waitlist for your CRM</a>
+                <a href="#" class="demo-cta-secondary" onclick="openCrmRequestModal(); return false;">Request your CRM</a>
             </div>
         </div>
     </section>
 
-    <!-- Video Section -->
+    <!-- REMOVED: Loom Video Section - redundant with demo section above -->
+    <!--
     <section class="demo-section">
         <div class="demo-container">
             <div class="demo-header">
@@ -391,39 +559,15 @@
                 <h2 class="demo-title">See FlightSuite in your workflow</h2>
                 <p class="demo-description">Watch how your CoPilot eliminates CRM busywork in real time.</p>
             </div>
-
-            <!-- Video Mac Frame -->
             <div class="mac-frame" style="background: #000;">
-                <div class="mac-titlebar" style="background: linear-gradient(to bottom, #2D2D2F 0%, #1C1C1E 100%); border-bottom: 1px solid #000;">
-                    <div class="mac-controls">
-                        <div class="mac-control close"></div>
-                        <div class="mac-control minimize"></div>
-                        <div class="mac-control maximize"></div>
-                    </div>
-                    <div style="flex: 1; text-align: center; padding: 0 40px;">
-                        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); padding: 4px 12px; border-radius: 6px; font-size: clamp(11px, 1.5vw, 12px); color: rgba(255,255,255,0.7);">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color: #34C759;">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
-                            </svg>
-                            loom.com
-                        </div>
-                    </div>
-                </div>
-                <div style="position: relative; padding-bottom: 56.25%; background: #000;">
-                    <iframe
-                        src="https://www.loom.com/embed/56f02ca55d0d4254b45353c90d1be254"
-                        frameborder="0"
-                        webkitallowfullscreen
-                        mozallowfullscreen
-                        allowfullscreen
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                    </iframe>
-                </div>
+                ... (Loom iframe embed) ...
             </div>
         </div>
     </section>
+    -->
 
-    <!-- Trust Section -->
+    <!-- REMOVED: Trust Section - text logos looked cheap -->
+    <!--
     <section class="trust-section">
         <div class="trust-label">Trusted by teams at</div>
         <div class="trust-grid">
@@ -433,88 +577,36 @@
             <div class="trust-logo">S&A Properties</div>
         </div>
     </section>
+    -->
 
-    <!-- Press Section -->
-    <section class="press-section" id="press">
-        <div class="press-container">
-            <div class="press-label">In The Press</div>
-            <h2 class="press-title">Building in Public</h2>
-            <p class="press-subtitle">Following FlightSuite's journey from accelerator to helping 1,000 businesses automate their CRM.</p>
-
-            <div class="press-grid">
-                <!-- CBJ Small Business Feature -->
-                <a href="/blog/flightsuite-founder-story.html" class="press-card">
-                    <div class="press-card-header">
-                        <span class="press-publication">Charlotte Business Journal</span>
-                        <span class="press-date">Jan 23, 2026</span>
-                    </div>
-                    <h3 class="press-headline">What the city's Small Business Ecosystem Assessment says about Charlotte's startup community</h3>
-                    <p class="press-quote">We want to help 1,000 businesses. That's our No. 1 objective.</p>
-                    <span class="press-cta">
-                        Read the story
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </span>
+    <!-- Press Strip — minimal social proof -->
+    <section class="press-strip" id="press">
+        <div class="press-strip-inner">
+            <span class="press-strip-label">As featured in</span>
+            <div class="press-strip-items">
+                <a href="/blog/flightsuite-founder-story.html" class="press-strip-item">
+                    <span class="press-strip-pub">Charlotte Business Journal</span>
+                    <span class="press-strip-divider">/</span>
+                    <span class="press-strip-title">What's Holding Back Small Businesses in Charlotte</span>
                 </a>
-
-                <!-- gBETA Accelerator Feature -->
-                <a href="/blog/gbeta-charlotte-accelerator.html" class="press-card">
-                    <div class="press-card-header">
-                        <span class="press-publication">Charlotte Business Journal</span>
-                        <span class="press-date">Dec 10, 2025</span>
-                    </div>
-                    <h3 class="press-headline">Charlotte-backed accelerator pushes five emerging tech startups toward scale</h3>
-                    <p class="press-quote">The program opened up my mindset to be able to think bigger.</p>
-                    <span class="press-cta">
-                        Read the story
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </span>
+                <a href="/blog/gbeta-charlotte-accelerator.html" class="press-strip-item">
+                    <span class="press-strip-pub">gBETA Charlotte</span>
+                    <span class="press-strip-divider">/</span>
+                    <span class="press-strip-title">Fall 2025 Cohort</span>
                 </a>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 6v6l4 2"/>
-                    </svg>
-                </div>
-                <div class="stat-number">5-10h</div>
-                <div class="stat-label">Saved per rep per week</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                        <rect x="5" y="11" width="14" height="10" rx="2"/>
-                        <circle cx="12" cy="16" r="1"/>
-                        <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
-                    </svg>
-                </div>
-                <div class="stat-number">0</div>
-                <div class="stat-label">Manual CRM updates</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                        <path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/>
-                    </svg>
-                </div>
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Automated data entry</div>
+                <a href="/blog/gbeta-charlotte-accelerator.html" class="press-strip-item">
+                    <span class="press-strip-pub">NEV Elevate X</span>
+                    <span class="press-strip-divider">/</span>
+                    <span class="press-strip-title">Batch 15 Accelerator</span>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Value Propositions Section - Answer Blocks for AI Search -->
+    <!-- REMOVED: Stats Section — generic filler, Ghost Agent already proves the product -->
+
+    <!-- REMOVED: Value Propositions Section - duplicates FAQ content -->
+    <!--
     <section class="value-props-section" id="why-flightsuite">
         <div class="value-props-container">
             <div class="value-props-header">
@@ -522,7 +614,6 @@
                 <h2 class="value-props-title">Questions sales teams ask</h2>
             </div>
             <div class="value-props-grid">
-                <!-- Answer Block 1: What is FlightSuite? -->
                 <div class="value-prop-card" itemscope itemtype="https://schema.org/Answer">
                     <div class="value-prop-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -531,79 +622,22 @@
                         </svg>
                     </div>
                     <h3 class="value-prop-question">What is FlightSuite?</h3>
-                    <p class="value-prop-answer" itemprop="text">FlightSuite is the universal CRM CoPilot that makes CRM adoption effortless. Instead of logging into your dashboard and clicking around, you type what happened in natural language—like "Just called John, he wants the enterprise plan"—and FlightSuite automatically logs it to GoHighLevel or HubSpot. The average user saves 5-10 hours per week.</p>
+                    <p class="value-prop-answer" itemprop="text">FlightSuite is the universal CRM CoPilot that makes CRM adoption effortless. Instead of logging into your dashboard and clicking around, you type what happened in natural language and FlightSuite automatically logs it to GoHighLevel or HubSpot. The average user saves 5-10 hours per week.</p>
                 </div>
-
-                <!-- Answer Block 2: How does it work? -->
-                <div class="value-prop-card" itemscope itemtype="https://schema.org/Answer">
-                    <div class="value-prop-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-                        </svg>
-                    </div>
-                    <h3 class="value-prop-question">How does CRM automation work?</h3>
-                    <p class="value-prop-answer" itemprop="text">FlightSuite uses AI to understand natural language and map it to your CRM fields automatically. When you type "Met Sarah at conference, she needs pricing by Friday," the AI identifies the contact, logs the meeting note, and can create a follow-up task—all without you clicking through CRM forms.</p>
-                </div>
-
-                <!-- Answer Block 3: Time Savings -->
-                <div class="value-prop-card" itemscope itemtype="https://schema.org/Answer">
-                    <div class="value-prop-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                        </svg>
-                    </div>
-                    <h3 class="value-prop-question">How much time does CRM data entry take?</h3>
-                    <p class="value-prop-answer" itemprop="text">The average user spends 5-10 hours per week logging into CRM dashboards, clicking through forms, and entering data manually—that's 20% of their productive time. FlightSuite makes CRM adoption effortless by eliminating this busywork entirely, letting your team focus on closing deals instead of updating records.</p>
-                </div>
-
-                <!-- Answer Block 4: CRM Compatibility -->
-                <div class="value-prop-card" itemscope itemtype="https://schema.org/Answer">
-                    <div class="value-prop-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="3" width="18" height="18" rx="2"/>
-                            <path d="M3 9h18M9 21V9"/>
-                        </svg>
-                    </div>
-                    <h3 class="value-prop-question">What CRMs does FlightSuite support?</h3>
-                    <p class="value-prop-answer" itemprop="text">FlightSuite currently integrates with GoHighLevel (39 tools) and HubSpot (69 tools), with both integrations fully live. WhatsApp and SMS integration is coming next. Salesforce support is also in development—join the waitlist to be first in line. Zoho CRM support is planned for 2026.</p>
-                </div>
-
-                <!-- Answer Block 5: Security -->
-                <div class="value-prop-card" itemscope itemtype="https://schema.org/Answer">
-                    <div class="value-prop-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="5" y="11" width="14" height="10" rx="2"/>
-                            <circle cx="12" cy="16" r="1"/>
-                            <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
-                        </svg>
-                    </div>
-                    <h3 class="value-prop-question">Is my CRM data secure with FlightSuite?</h3>
-                    <p class="value-prop-answer" itemprop="text">FlightSuite prioritizes your data security. We only access CRM data when you're actively using the extension, never store your CRM credentials on our servers, and never share data with third parties. You maintain full control, and your CRM data stays in your CRM—we just help you put it there faster.</p>
-                </div>
-
-                <!-- Answer Block 6: Getting Started -->
-                <div class="value-prop-card" itemscope itemtype="https://schema.org/Answer">
-                    <div class="value-prop-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                            <polyline points="22 4 12 14.01 9 11.01"/>
-                        </svg>
-                    </div>
-                    <h3 class="value-prop-question">How do I start using FlightSuite?</h3>
-                    <p class="value-prop-answer" itemprop="text">Getting started takes under two minutes. Install the free Chrome extension from the Web Store, connect your CRM account (GoHighLevel or HubSpot), and start typing naturally. Most users make their first automated CRM update within 10 minutes. No training required—if you can type, you can use FlightSuite.</p>
-                </div>
+                ... (4 more answer blocks) ...
             </div>
         </div>
     </section>
+    -->
 
-    <!-- ROI Calculator CTA Section -->
+    <!-- REMOVED: ROI Calculator CTA Section - moved to footer link -->
+    <!--
     <section style="padding: var(--section-spacing) var(--container-padding); background: transparent;">
         <div style="max-width: 900px; margin: 0 auto;">
             <div style="background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%); border-radius: 24px; padding: clamp(32px, 5vw, 48px); display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;" id="calculator-cta">
                 <div style="color: white;">
                     <h2 style="font-size: clamp(24px, 4vw, 32px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2;">Calculate Your Data Entry Cost</h2>
-                    <p style="font-size: 16px; line-height: 1.6; opacity: 0.9; margin-bottom: 24px;">See exactly how much time and money your team loses to CRM data entry—and what you could save with automation.</p>
+                    <p style="font-size: 16px; line-height: 1.6; opacity: 0.9; margin-bottom: 24px;">See exactly how much time and money your team loses to CRM data entry - and what you could save with automation.</p>
                     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
                         <a href="/tools/crm-roi-calculator.html" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gradient-primary); color: white; padding: 14px 24px; border-radius: 980px; font-weight: 600; font-size: 15px; text-decoration: none; transition: all 0.2s ease;">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -644,6 +678,7 @@
             }
         </style>
     </section>
+    -->
 
     <!-- FAQ Section -->
     <section class="faq-section" id="faq">
@@ -713,34 +748,35 @@
     </section>
 
     <!-- Capabilities Preview Section -->
-    <section class="capabilities-preview" style="padding: var(--section-spacing) var(--container-padding); background: var(--color-bg-primary);">
-        <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
-            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(94, 92, 230, 0.08); border-radius: 980px; font-size: 14px; font-weight: 500; color: var(--color-ios-purple); margin-bottom: 24px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
-                Capabilities
-            </div>
-            <h2 style="font-family: var(--font-display); font-size: clamp(28px, 5vw, 44px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px;">42+ AI-Powered Actions</h2>
-            <p style="font-size: clamp(17px, 2vw, 20px); color: var(--color-text-secondary); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.5;">From creating contacts to booking appointments—just describe what you want.</p>
+    <section class="capabilities-preview">
+        <div class="capabilities-container">
+            <div class="section-label">Capabilities</div>
+            <h2 class="section-title">42+ AI-Powered Actions</h2>
+            <p class="section-description">From creating contacts to booking appointments—just describe what you want.</p>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 40px; text-align: left;">
+            <div class="cap-grid">
                 <!-- Contacts Card -->
-                <div style="background: var(--color-glass); border: 1px solid var(--color-glass-border); border-radius: 16px; padding: 24px; transition: all 0.3s var(--ease-smooth);" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
-                    <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #5E5CE6 0%, #0071E3 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                <div class="cap-card">
+                    <div class="cap-card-holo"></div>
+                    <div class="cap-card-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                             <circle cx="12" cy="7" r="4"/>
                         </svg>
                     </div>
-                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Contact Management</h3>
-                    <p style="font-size: 14px; color: var(--color-text-secondary); line-height: 1.5;">Create, search, update contacts and add tags with natural language.</p>
-                    <div style="margin-top: 12px; font-size: 13px; color: var(--color-ios-purple); font-weight: 500;">8 capabilities</div>
+                    <h3 class="cap-card-title">Contact Management</h3>
+                    <p class="cap-card-desc">Create, search, update contacts and add tags with natural language.</p>
+                    <div class="cap-card-count">8 capabilities</div>
+                    <div class="cap-card-example">
+                        <span class="cap-example-label">Try saying:</span>
+                        <span class="cap-example-text">"Add Sarah Chen as a contact at Acme Corp"</span>
+                    </div>
                 </div>
 
                 <!-- Appointments Card -->
-                <div style="background: var(--color-glass); border: 1px solid var(--color-glass-border); border-radius: 16px; padding: 24px; transition: all 0.3s var(--ease-smooth);" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
-                    <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #5E5CE6 0%, #0071E3 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                <div class="cap-card">
+                    <div class="cap-card-holo"></div>
+                    <div class="cap-card-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
                             <line x1="16" y1="2" x2="16" y2="6"/>
@@ -748,38 +784,52 @@
                             <line x1="3" y1="10" x2="21" y2="10"/>
                         </svg>
                     </div>
-                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Calendar & Appointments</h3>
-                    <p style="font-size: 14px; color: var(--color-text-secondary); line-height: 1.5;">Book, search, and manage appointments across all your calendars.</p>
-                    <div style="margin-top: 12px; font-size: 13px; color: var(--color-ios-purple); font-weight: 500;">6 capabilities</div>
+                    <h3 class="cap-card-title">Calendar & Appointments</h3>
+                    <p class="cap-card-desc">Book, search, and manage appointments across all your calendars.</p>
+                    <div class="cap-card-count">6 capabilities</div>
+                    <div class="cap-card-example">
+                        <span class="cap-example-label">Try saying:</span>
+                        <span class="cap-example-text">"Book a demo with Lisa Park next Tuesday at 2pm"</span>
+                    </div>
                 </div>
 
                 <!-- Communication Card -->
-                <div style="background: var(--color-glass); border: 1px solid var(--color-glass-border); border-radius: 16px; padding: 24px; transition: all 0.3s var(--ease-smooth);" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
-                    <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #5E5CE6 0%, #0071E3 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                <div class="cap-card">
+                    <div class="cap-card-holo"></div>
+                    <div class="cap-card-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                         </svg>
                     </div>
-                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Communication</h3>
-                    <p style="font-size: 14px; color: var(--color-text-secondary); line-height: 1.5;">Send emails and SMS messages directly from your CRM.</p>
-                    <div style="margin-top: 12px; font-size: 13px; color: var(--color-ios-purple); font-weight: 500;">4 capabilities</div>
+                    <h3 class="cap-card-title">Communication</h3>
+                    <p class="cap-card-desc">Send emails and SMS messages directly from your CRM.</p>
+                    <div class="cap-card-count">4 capabilities</div>
+                    <div class="cap-card-example">
+                        <span class="cap-example-label">Try saying:</span>
+                        <span class="cap-example-text">"Send a follow-up email to Mike about the proposal"</span>
+                    </div>
                 </div>
 
                 <!-- Opportunities Card -->
-                <div style="background: var(--color-glass); border: 1px solid var(--color-glass-border); border-radius: 16px; padding: 24px; transition: all 0.3s var(--ease-smooth);" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
-                    <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #5E5CE6 0%, #0071E3 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                <div class="cap-card">
+                    <div class="cap-card-holo"></div>
+                    <div class="cap-card-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                             <line x1="12" y1="1" x2="12" y2="23"/>
                             <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                         </svg>
                     </div>
-                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Opportunities</h3>
-                    <p style="font-size: 14px; color: var(--color-text-secondary); line-height: 1.5;">Create and manage sales opportunities in your pipeline.</p>
-                    <div style="margin-top: 12px; font-size: 13px; color: var(--color-ios-purple); font-weight: 500;">2 capabilities</div>
+                    <h3 class="cap-card-title">Opportunities</h3>
+                    <p class="cap-card-desc">Create and manage sales opportunities in your pipeline.</p>
+                    <div class="cap-card-count">2 capabilities</div>
+                    <div class="cap-card-example">
+                        <span class="cap-example-label">Try saying:</span>
+                        <span class="cap-example-text">"Create a $24K deal for Acme Corp in Discovery"</span>
+                    </div>
                 </div>
             </div>
 
-            <a href="/capabilities.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: transparent; color: var(--color-apple-blue); border: 1.5px solid var(--color-apple-blue); border-radius: 980px; font-size: 16px; font-weight: 500; text-decoration: none; transition: all 0.3s var(--ease-smooth);" onmouseover="this.style.background='var(--color-apple-blue)'; this.style.color='white';" onmouseout="this.style.background='transparent'; this.style.color='var(--color-accent-purple)';">
+            <a href="/capabilities.html" class="cap-view-all">
                 View All 42+ Capabilities
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -910,17 +960,110 @@
         </div>
     </section>
 
-    <!-- Social Proof Section -->
-    <section class="social-proof-section">
-        <div class="social-proof-container">
-            <div class="social-proof-label">What Users Are Saying</div>
-            <h2 class="social-proof-title">Real reactions from real users</h2>
-            <p class="social-proof-subtitle">Join the community of sales teams who finally love their CRM workflow.</p>
-            <img src="Assets/social-proof.png" alt="User testimonials showing excitement about FlightSuite - messages like 'this is incredible', 'omg its like the assistant you dont have to train', and 'Wow this looks awesome'" class="social-proof-image" loading="lazy" style="border-radius: var(--radius-xl); border: 1px solid var(--color-glass-border); max-width: 800px; margin: 0 auto; display: block;">
+    <!-- Social Proof — Infinite Testimonial Marquee -->
+    <section class="testimonial-marquee-section" id="testimonials">
+        <div class="testimonial-marquee-header">
+            <div class="section-label">What Users Are Saying</div>
+            <h2 class="section-title">Real reactions from real users</h2>
+        </div>
+        <!-- Spotlight glow in center -->
+        <div class="marquee-spotlight"></div>
+        <!-- Row 1 — moves left -->
+        <div class="marquee-row" id="marqueeRow1">
+            <div class="marquee-track marquee-left">
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"This is incredible. I just typed what happened in my meeting and it updated everything in GHL."</p>
+                    <div class="marquee-author">Dale F. <span>Agency Owner</span></div>
+                </div>
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"Saved me at least 5 hours a week. I actually keep my CRM updated now."</p>
+                    <div class="marquee-author">Marcus T. <span>Account Executive</span></div>
+                </div>
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"My team went from 40% CRM compliance to nearly 100% in two weeks."</p>
+                    <div class="marquee-author">Sarah K. <span>Sales Director</span></div>
+                </div>
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"Best Chrome extension I've installed this year. Period."</p>
+                    <div class="marquee-author">David W. <span>Sales Rep</span></div>
+                </div>
+                <!-- Duplicate set for seamless loop -->
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"This is incredible. I just typed what happened in my meeting and it updated everything in GHL."</p>
+                    <div class="marquee-author">Dale F. <span>Agency Owner</span></div>
+                </div>
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"Saved me at least 5 hours a week. I actually keep my CRM updated now."</p>
+                    <div class="marquee-author">Marcus T. <span>Account Executive</span></div>
+                </div>
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"My team went from 40% CRM compliance to nearly 100% in two weeks."</p>
+                    <div class="marquee-author">Sarah K. <span>Sales Director</span></div>
+                </div>
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"Best Chrome extension I've installed this year. Period."</p>
+                    <div class="marquee-author">David W. <span>Sales Rep</span></div>
+                </div>
+            </div>
+        </div>
+        <!-- Row 2 — moves right -->
+        <div class="marquee-row" id="marqueeRow2">
+            <div class="marquee-track marquee-right">
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"OMG it's like the assistant you don't have to train. It just knows what to do with your CRM."</p>
+                    <div class="marquee-author">Jerry N. <span>Sales Manager</span></div>
+                </div>
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"Wow this looks awesome. Finally something that makes CRM not feel like homework."</p>
+                    <div class="marquee-author">Jenifer J. <span>Real Estate Agent</span></div>
+                </div>
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"The natural language is so smooth. I just talk about my day and CRM is done."</p>
+                    <div class="marquee-author">Ryan P. <span>Business Development</span></div>
+                </div>
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"I was skeptical but after one day I can't imagine going back to manual entry."</p>
+                    <div class="marquee-author">Lisa M. <span>Startup Founder</span></div>
+                </div>
+                <!-- Duplicate set for seamless loop -->
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"OMG it's like the assistant you don't have to train. It just knows what to do with your CRM."</p>
+                    <div class="marquee-author">Jerry N. <span>Sales Manager</span></div>
+                </div>
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"Wow this looks awesome. Finally something that makes CRM not feel like homework."</p>
+                    <div class="marquee-author">Jenifer J. <span>Real Estate Agent</span></div>
+                </div>
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"The natural language is so smooth. I just talk about my day and CRM is done."</p>
+                    <div class="marquee-author">Ryan P. <span>Business Development</span></div>
+                </div>
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"I was skeptical but after one day I can't imagine going back to manual entry."</p>
+                    <div class="marquee-author">Lisa M. <span>Startup Founder</span></div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- CRM Finder Section -->
+    <!-- REMOVED: CRM Finder Section - moved to footer link -->
+    <!--
     <section class="crm-finder-section" style="padding: var(--section-spacing) var(--container-padding); background: var(--color-bg-secondary);">
         <div style="max-width: 900px; margin: 0 auto; text-align: center;">
             <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(94, 92, 230, 0.08); border-radius: 980px; font-size: 14px; font-weight: 500; color: var(--color-ios-purple); margin-bottom: 24px;">
@@ -945,9 +1088,11 @@
             <p id="expert-count-label" style="font-size: 14px; color: var(--color-text-tertiary); margin-top: 24px;">43 verified GoHighLevel experts ready to help</p>
         </div>
     </section>
+    -->
 
     <!-- Final CTA -->
     <section class="final-cta">
+        <canvas id="convergence-canvas" class="convergence-canvas"></canvas>
         <div class="final-cta-content">
             <div class="final-cta-label">The Universal CRM CoPilot</div>
             <h2 class="final-cta-title">Make CRM adoption effortless</h2>
@@ -984,7 +1129,8 @@
         </div>
     </section>
 
-    <!-- CRM Services Promo Section -->
+    <!-- REMOVED: CRM Services Promo Section - moved to footer link -->
+    <!--
     <section class="crm-promo-section">
         <div class="crm-promo-container">
             <div class="crm-promo-content">
@@ -1024,6 +1170,7 @@
             </div>
         </div>
     </section>
+    -->
 
     <!-- Footer -->
     <footer class="footer">
@@ -1056,6 +1203,10 @@
                         <li><a href="/blog.html" class="footer-link">Blog</a></li>
                         <li><a href="/installation-guide.html" class="footer-link">Installation Guide</a></li>
                         <li><a href="https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb?hl=en-US" class="footer-link">Chrome Store</a></li>
+                        <li><a href="/tools/crm-roi-calculator.html" class="footer-link">ROI Calculator</a></li>
+                        <li><a href="/find-your-crm.html" class="footer-link">Find Your CRM</a></li>
+                        <li><a href="/experts/" class="footer-link">CRM Experts</a></li>
+                        <li><a href="https://crm.flightsuite.ai" class="footer-link" target="_blank" rel="noopener noreferrer">CRM Services</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1377,12 +1528,26 @@
         </div>
     </div>
 
+    <!-- Three.js + Post-processing -->
+    <!-- Three.js removed — hero uses typing demo + particle canvas instead -->
+
     <!-- GSAP for scroll animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
     <script src="/js/main.js" defer></script>
     <script src="/js/animations.js" defer></script>
+    <!-- hero-scene.js removed — replaced by hero-demo.js -->
+    <script src="/js/generative-seed.js" defer></script>
+    <script src="/js/particles.js?v=4" defer></script>
+    <script src="/js/spotlight.js" defer></script>
+    <script src="/js/hero-demo.js" defer></script>
+    <script src="/js/dataflow.js" defer></script>
+    <script src="/js/convergence.js" defer></script>
+    <script src="/js/before-after.js" defer></script>
+    <!-- testimonial-swirl.js removed — marquee is pure CSS now -->
+    <script src="/js/ghost-agent.js" defer></script>
+    <script src="/js/command-bar.js" defer></script>
 
     <!-- Airtable Integration -->
     <script src="airtable-config.js"></script>
