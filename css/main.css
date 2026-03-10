@@ -3409,18 +3409,28 @@ body::before {
 
     .press-strip-items {
         flex-direction: column;
-        gap: 16px;
+        align-items: flex-start;
+        gap: 20px;
         width: 100%;
     }
 
     .press-strip-item {
         flex-direction: column;
         align-items: flex-start;
-        gap: 4px;
+        gap: 2px;
     }
 
     .press-strip-divider {
         display: none;
+    }
+
+    .press-strip-pub {
+        font-size: 16px;
+    }
+
+    .press-strip-title {
+        font-size: 14px;
+        color: var(--color-text-tertiary);
     }
 
     .setup-flow-steps {
