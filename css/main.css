@@ -2600,8 +2600,21 @@ body::before {
     padding: var(--section-spacing) var(--container-padding);
     text-align: center;
     position: relative;
-    overflow: hidden;
-    background: linear-gradient(180deg, var(--color-bg-primary) 0%, #0A0A2E 50%, var(--color-bg-primary) 100%);
+    overflow: visible; /* allow gradient veil to bleed upward */
+    background: transparent; /* particle canvas shows through, convergence takes over */
+}
+
+/* Gradient veil — bleeds UPWARD from CTA into section above for seamless handoff */
+.final-cta::after {
+    content: '';
+    position: absolute;
+    top: -120px; /* extend above section boundary */
+    left: 0;
+    right: 0;
+    height: 320px;
+    background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 46, 0.15) 30%, rgba(10, 10, 46, 0.5) 60%, rgba(10, 10, 46, 0.85) 85%, #0A0A2E 100%);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .convergence-canvas {
@@ -2611,6 +2624,8 @@ body::before {
     height: 100%;
     pointer-events: none;
     z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .final-cta::before {

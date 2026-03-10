@@ -119,14 +119,18 @@
     }
 
     function render() {
-        ctx.clearRect(0, 0, width, height);
+        // Deep space base that builds with convergence — matches particle canvas darkness
+        const baseBg = Math.min(convergenceProgress * 0.9, 0.85);
+        ctx.fillStyle = `rgba(10, 10, 30, ${baseBg})`;
+        ctx.fillRect(0, 0, width, height);
 
         // Central glow that intensifies with convergence
-        if (convergenceProgress > 0.2) {
-            const glow = convergenceProgress * 0.15;
-            const gradient = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, 200);
+        if (convergenceProgress > 0.1) {
+            const glow = convergenceProgress * 0.2;
+            const radius = 150 + convergenceProgress * 150;
+            const gradient = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, radius);
             gradient.addColorStop(0, `rgba(94, 92, 230, ${glow})`);
-            gradient.addColorStop(0.5, `rgba(0, 113, 227, ${glow * 0.5})`);
+            gradient.addColorStop(0.4, `rgba(0, 113, 227, ${glow * 0.5})`);
             gradient.addColorStop(1, 'transparent');
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, width, height);
@@ -142,6 +146,8 @@
 
     // Scroll-driven convergence via GSAP if available
     function setupScrollTrigger() {
+        const particleCanvas = document.getElementById('particle-canvas');
+
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             ScrollTrigger.create({
                 trigger: canvas.parentElement,
@@ -150,6 +156,12 @@
                 scrub: 1,
                 onUpdate: (self) => {
                     convergenceProgress = self.progress;
+                    // Crossfade: convergence canvas fades in, particle canvas fades out
+                    canvas.style.opacity = Math.min(self.progress * 2, 1); // 0→1 in first half
+                    if (particleCanvas) {
+                        // Particle canvas: 0.6 → 0 over the scroll range
+                        particleCanvas.style.opacity = Math.max(0.6 - self.progress * 0.6, 0);
+                    }
                 },
                 onEnter: () => {
                     active = true;
@@ -158,6 +170,10 @@
                 },
                 onLeaveBack: () => {
                     convergenceProgress = 0;
+                    canvas.style.opacity = 0;
+                    if (particleCanvas) {
+                        particleCanvas.style.opacity = 0.6;
+                    }
                 }
             });
         } else {
@@ -167,10 +183,14 @@
                     if (entry.isIntersecting) {
                         active = true;
                         convergenceProgress = 0.6;
+                        canvas.style.opacity = 1;
+                        if (particleCanvas) particleCanvas.style.opacity = 0.1;
                         init();
                         render();
                     } else {
                         active = false;
+                        canvas.style.opacity = 0;
+                        if (particleCanvas) particleCanvas.style.opacity = 0.6;
                         if (animId) cancelAnimationFrame(animId);
                     }
                 });
