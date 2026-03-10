@@ -68,7 +68,6 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color-scheme: dark;
-    overflow-x: hidden;
     -webkit-text-size-adjust: 100%;
 }
 
@@ -82,8 +81,6 @@ body {
     letter-spacing: -0.01em;
     overflow-x: hidden;
     position: relative;
-    overscroll-behavior: none;
-    -webkit-overflow-scrolling: touch;
 }
 
 a { color: inherit; text-decoration: none; }
