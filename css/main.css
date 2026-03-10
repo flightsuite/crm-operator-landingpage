@@ -68,6 +68,8 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color-scheme: dark;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -80,15 +82,18 @@ body {
     letter-spacing: -0.01em;
     overflow-x: hidden;
     position: relative;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
 }
 
 a { color: inherit; text-decoration: none; }
 button { cursor: pointer; font-family: inherit; border: none; background: none; }
 img { max-width: 100%; height: auto; }
 
-/* GPU compositing for smooth animations */
+/* All sections above particle canvas */
 section {
-    transform: translateZ(0);
+    position: relative;
+    z-index: 1;
 }
 
 /* Smooth default transitions for interactive elements */
@@ -306,6 +311,7 @@ body::before {
     padding: clamp(100px, 15vw, 160px) var(--container-padding) clamp(60px, 8vw, 100px);
     text-align: center;
     position: relative;
+    z-index: 0; /* Let particle canvas show through hero */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -1191,7 +1197,9 @@ body::before {
 .demo-section {
     padding: var(--section-spacing) var(--container-padding);
     position: relative;
+    z-index: 2;
     overflow: hidden;
+    background: var(--color-bg-primary);
 }
 
 /* ================================================================
@@ -1913,6 +1921,9 @@ body::before {
 .channels-section {
     padding: var(--section-spacing) var(--container-padding);
     text-align: center;
+    position: relative;
+    z-index: 1;
+    background: var(--color-bg-primary);
 }
 
 .channel-cards {
@@ -2326,6 +2337,9 @@ body::before {
     padding: 32px var(--container-padding);
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+    z-index: 2;
+    background: var(--color-bg-primary);
 }
 
 .press-strip-inner {
@@ -2455,6 +2469,9 @@ body::before {
 /* --- FAQ Section --- */
 .faq-section {
     padding: var(--section-spacing) var(--container-padding);
+    position: relative;
+    z-index: 2;
+    background: var(--color-bg-primary);
 }
 
 .faq-label {
@@ -2545,6 +2562,9 @@ body::before {
 .integrations-section {
     padding: var(--section-spacing) var(--container-padding);
     text-align: center;
+    position: relative;
+    z-index: 1;
+    background: var(--color-bg-primary);
 }
 
 .integration-logos {
@@ -2600,6 +2620,7 @@ body::before {
     padding: var(--section-spacing) var(--container-padding);
     text-align: center;
     position: relative;
+    z-index: 2;
     overflow: visible; /* allow gradient veil to bleed upward */
     background: transparent; /* particle canvas shows through, convergence takes over */
 }
@@ -2714,6 +2735,9 @@ body::before {
 .roadmap-section {
     padding: var(--section-spacing) var(--container-padding);
     text-align: center;
+    position: relative;
+    z-index: 1;
+    background: var(--color-bg-primary);
 }
 
 .roadmap-title {
@@ -3021,6 +3045,7 @@ body::before {
     border-top: none;
     background: var(--color-bg-secondary);
     position: relative;
+    z-index: 2;
     overflow: hidden;
 }
 
@@ -3436,25 +3461,49 @@ body::before {
     }
 
     .command-bar-input {
-        font-size: 14px;
+        font-size: 16px; /* 16px prevents iOS auto-zoom on focus */
     }
 
-    /* Hero demo adjustments — prevent card overflow */
+    /* ========== MOBILE SMOOTHNESS ========== */
+
+    /* Kill backdrop-filter on mobile — #1 cause of scroll jank */
+    .header,
+    .hero-crm-card,
+    .trust-pill,
+    .ghost-agent,
+    .command-bar-inner,
+    .command-bar-feedback,
+    .pain-card,
+    .channel-card,
+    .modal-content,
+    .install-modal-content,
+    .faq-question,
+    .marquee-card {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+    }
+
+    /* Particle canvas: reduce opacity on mobile for cleaner content */
+    .particle-canvas {
+        opacity: 0.3;
+    }
+
+    /* Hero demo adjustments — FIXED height prevents page bounce */
     .hero-demo {
         margin: 0 -8px;
     }
 
     .hero-demo-input {
         padding: 14px 16px;
-        font-size: 14px;
+        font-size: 16px; /* 16px prevents iOS auto-zoom on focus */
     }
 
     .hero-demo-output {
         flex-direction: column;
         gap: 8px;
         padding: 0 12px;
-        height: auto;
-        min-height: 80px;
+        height: 220px; /* Fixed height — no layout shift when cards appear */
+        overflow: hidden;
     }
 
     .hero-crm-card {
