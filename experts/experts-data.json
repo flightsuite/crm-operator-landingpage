@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-10",
+  "lastUpdated": "2026-03-11",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
@@ -32,7 +32,7 @@
       "name": "Abdullah Virk",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/united-states/lahore/certified-admins/abdullah-virk",
       "rating": 5,
-      "reviewCount": 82,
+      "reviewCount": 83,
       "certifications": [
         "Certified Admin"
       ],
@@ -166,8 +166,8 @@
     "huzaifa-siddiqi": {
       "name": "Huzaifa Siddiqi",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/multan/certified-admins/huzaifa-siddiqi",
-      "rating": 5,
-      "reviewCount": 0,
+      "rating": 3,
+      "reviewCount": 3,
       "certifications": [
         "Certified Admin"
       ],
@@ -219,8 +219,8 @@
     "jithin-sujala": {
       "name": "Jithin Sujala",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/australia/sydney/certified-admins/jithin-sujala",
-      "rating": 3,
-      "reviewCount": 3,
+      "rating": 4,
+      "reviewCount": 4,
       "certifications": [
         "Certified Admin"
       ],
