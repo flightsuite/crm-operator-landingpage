@@ -1,68 +1,51 @@
 # FlightSuite — flightsuite.ai
 
-The universal CRM Agent. AI-powered CRM data entry through natural language across Chrome, SMS, and WhatsApp.
+The Universal CRM Agent. AI-powered CRM data entry through natural language.
+
+**Live**: https://flightsuite.ai
+**Branch**: `redesign/immersive-v2` (active development)
 
 ## Quick Start
 
 ```bash
-# No build step — open directly
-open index.html
-
-# Or use any static server
-python -m http.server 8000
-npx serve .
+python -m http.server 8000   # Serve locally
+open http://localhost:8000    # View in browser
 ```
+
+No build step required. Static HTML/CSS/JS.
 
 ## Project Structure
 
 ```
-├── index.html              # Main landing page
-├── css/                    # Stylesheets (extracted from monolith)
-│   ├── main.css            # All current styles
-│   └── sections/           # Section-specific styles (planned)
-├── js/                     # Scripts
-│   ├── main.js             # Core functionality (demo, modals, sounds, analytics)
-│   ├── init.js             # Dynamic expert count loader
-│   └── hero-scene.js       # Three.js hero (planned)
-├── airtable-config.js      # Form submission via Google Sheets webhook
-├── Assets/                 # Images, logos, favicons
-├── blog/                   # SEO blog articles (9 pages)
-├── alternatives/           # CRM alternatives comparison pages
-├── compare/                # CRM vs CRM comparison pages
-├── experts/                # Auto-synced expert directory from Airtable
-├── guides/                 # Product guides
-├── tools/                  # Interactive tools (ROI calculator)
-├── resources/              # Resource pages
-├── templates/              # Page templates for new content
-├── app/                    # Web app (login, connect CRM)
-├── scripts/                # Automation (Airtable sync, scraper)
-├── docs/                   # Strategy docs, progress trackers
-└── .github/workflows/      # CI/CD (expert sync)
+index.html              # Landing page
+css/main.css            # All styles
+js/                     # All scripts (particles, demo, animations, command bar)
+Assets/                 # Logos, favicons, press images
+blog/                   # SEO articles
+experts/                # Auto-synced from Airtable (don't edit manually)
+scripts/                # Automation (Airtable sync)
+docs/                   # SEO & social media strategy + progress
+.claude/commands/       # AI slash commands (/seo-daily, /social-daily)
+CLAUDE.md               # AI operating manual — read before making changes
 ```
 
-## Key Integrations
-
-| Integration | Purpose |
-|-------------|---------|
-| Chrome Web Store | Primary CTA — free extension install |
-| Google Sheets webhook | Form submissions (configured in `airtable-config.js`) |
-| Airtable | Expert directory data source |
-| Google Analytics | `G-0CSY283V4Y` |
-
-## Expert Directory Sync
+## Key Commands
 
 ```bash
-export AIRTABLE_API_KEY=pat...your-key
-npm run sync           # Sync experts from Airtable
-npm run sync:dry-run   # Preview without changes
+npm run sync            # Sync expert directory from Airtable
+npm run sync:dry-run    # Preview sync without changes
 ```
 
-Runs automatically daily via GitHub Actions. See `scripts/sync-airtable.js`.
+## Design Philosophy
 
-## SEO Content
+See `CLAUDE.md` for the full design philosophy. The short version:
 
-All pages have structured data (JSON-LD), Open Graph tags, and canonical URLs. Do not modify `<head>` content without verifying SEO impact.
+> The site IS the product experience. Steve Jobs standard. Every element serves the story.
 
-## Design System
+## Contributing
 
-See `css/main.css` `:root` for design tokens (colors, typography, spacing, easing curves).
+1. Read `CLAUDE.md` before touching code
+2. Work on `redesign/immersive-v2` branch
+3. Test mobile at 375px — no layout shifts, no scroll jank
+4. Bump cache busters (`?v=N`) after CSS/JS changes
+5. Don't modify `<head>` SEO tags without verification

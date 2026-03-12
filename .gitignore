@@ -10,9 +10,18 @@ Thumbs.db
 node_modules/
 package-lock.json
 
-# Playwright test screenshots
+# Playwright / MCP test artifacts
 .playwright-mcp/
+.conductor/
+nanobanana-output/
+
+# Dev screenshots (Playwright, debug, etc.)
+*.screenshot.png
+screenshots/
 
 # Environment
 .env
 .env.local
+
+# Claude Code memory (lives in ~/.claude/, not in repo)
+memory/
