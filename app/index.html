@@ -6,72 +6,76 @@
     <title>FlightSuite — My Account</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/svg+xml" href="/Assets/Flight Suite Favicon vPurple.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <style>
         :root {
-            --blue:    #0071E3;
-            --purple:  #5E5CE6;
-            --green:   #34C759;
-            --red:     #FF3B30;
-            --orange:  #FF9500;
-            --t1:      #1D1D1F;
-            --t2:      #6E6E73;
-            --t3:      #86868B;
-            --bg:      #F5F5F7;
-            --surface: #FFFFFF;
-            --border:  #D2D2D7;
-            --border-l:#E8E8ED;
-            --grad:    linear-gradient(135deg, #5E5CE6 0%, #0071E3 100%);
-            --fd:      -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
-            --ft:      -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+            --color-bg-primary: #000000;
+            --color-bg-secondary: #0A0A0A;
+            --color-surface: rgba(255,255,255,0.04);
+            --color-surface-hover: rgba(255,255,255,0.07);
+            --color-glass: rgba(255,255,255,0.06);
+            --color-glass-border: rgba(255,255,255,0.08);
+            --color-accent-blue: #0071E3;
+            --color-accent-purple: #5E5CE6;
+            --color-accent-cyan: #22D3EE;
+            --color-green: #34C759;
+            --color-red: #FF3B30;
+            --color-orange: #FF9500;
+            --color-text-primary: #F5F5F7;
+            --color-text-secondary: #8A8A9A;
+            --color-text-tertiary: #6E6E73;
+            --color-border: rgba(255,255,255,0.08);
+            --color-border-hover: rgba(255,255,255,0.15);
+            --grad: linear-gradient(135deg, #5E5CE6 0%, #0071E3 100%);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
             --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
             --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; color-scheme: dark; }
         body {
-            font-family: var(--ft);
-            color: var(--t1);
-            background: var(--surface);
-            font-size: clamp(15px, 1.5vw, 17px);
-            line-height: 1.47059;
+            font-family: var(--font-body);
+            color: var(--color-text-primary);
+            background: var(--color-bg-primary);
+            font-size: 15px;
+            line-height: 1.5;
             font-weight: 400;
-            letter-spacing: -0.022em;
+            letter-spacing: -0.01em;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* ═══ ANIMATED BACKGROUND (matches main site exactly) ═══ */
+        /* ═══ ANIMATED BACKGROUND ═══ */
         .animated-bg {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F7 50%, #FFFFFF 100%);
+            position: fixed; inset: 0; z-index: -1;
+            background: var(--color-bg-primary);
             overflow: hidden;
         }
         .gradient-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.6;
+            position: absolute; border-radius: 50%;
+            filter: blur(120px); opacity: 0.4;
             animation: float 20s ease-in-out infinite;
         }
         .gradient-orb:nth-child(1) {
             width: min(600px, 50vw); height: min(600px, 50vw);
-            background: radial-gradient(circle, rgba(94,92,230,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(94,92,230,0.3) 0%, transparent 70%);
             top: -200px; left: -200px;
             animation-duration: 25s;
         }
         .gradient-orb:nth-child(2) {
             width: min(500px, 40vw); height: min(500px, 40vw);
-            background: radial-gradient(circle, rgba(0,113,227,0.12) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0,113,227,0.25) 0%, transparent 70%);
             top: 50%; right: -150px;
             animation-duration: 30s; animation-delay: -10s;
         }
         .gradient-orb:nth-child(3) {
             width: min(400px, 35vw); height: min(400px, 35vw);
-            background: radial-gradient(circle, rgba(52,199,89,0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 70%);
             bottom: -100px; left: 20%;
             animation-duration: 35s; animation-delay: -20s;
         }
@@ -81,150 +85,146 @@
             66%       { transform: translate(-30px,30px) scale(0.9); }
         }
 
-        /* ═══ HEADER (matches main site exactly) ═══ */
+        /* ═══ HEADER ═══ */
         .header {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            background: rgba(255,255,255,0.72);
+            position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
+            z-index: 1000; width: min(92%, 900px);
+            background: rgba(15,15,15,0.7);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid rgba(0,0,0,0.08);
+            border: 1px solid var(--color-border);
+            border-radius: 980px;
             transition: all 0.3s var(--ease-smooth);
         }
         .header.scrolled {
-            background: rgba(255,255,255,0.88);
-            box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+            background: rgba(15,15,15,0.85);
+            border-color: rgba(255,255,255,0.12);
         }
         .header-inner {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 clamp(20px,5vw,40px);
-            height: clamp(48px,8vw,52px);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            padding: 0 clamp(16px,3vw,28px);
+            height: 48px;
+            display: flex; align-items: center; justify-content: space-between;
         }
         .logo-text {
-            font-family: var(--fd);
-            font-size: clamp(20px,3vw,24px);
-            font-weight: 700;
+            font-family: var(--font-display);
+            font-size: 20px; font-weight: 700;
             letter-spacing: -0.04em;
             text-decoration: none;
             background: var(--grad);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
             transition: transform 0.3s var(--ease-spring);
         }
         .logo-text:hover { transform: scale(1.02); }
-        .header-right { display: flex; align-items: center; gap: 12px; }
-        .header-email { font-size: 13px; color: var(--t3); letter-spacing: -0.01em; }
+        .header-right { display: flex; align-items: center; gap: 10px; }
+        .header-email { font-size: 13px; color: var(--color-text-tertiary); letter-spacing: -0.01em; }
         .btn-signout {
             background: none;
-            border: 1px solid var(--border);
-            color: var(--t2);
-            padding: 6px 14px;
+            border: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+            padding: 5px 14px;
             border-radius: 980px;
-            font-family: var(--ft);
-            font-size: 13px;
+            font-family: var(--font-body); font-size: 13px;
             cursor: pointer;
             transition: all 0.2s var(--ease-smooth);
-            letter-spacing: -0.01em;
         }
-        .btn-signout:hover { background: var(--bg); color: var(--t1); border-color: var(--border); }
+        .btn-signout:hover { background: var(--color-surface-hover); color: var(--color-text-primary); border-color: var(--color-border-hover); }
 
         /* ═══ LOGIN VIEW ═══ */
         #login-view {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: none; align-items: center; justify-content: center;
             min-height: 100vh;
             padding: 80px clamp(20px,5vw,40px) 40px;
         }
         .login-content {
-            width: 100%;
-            max-width: 440px;
-            text-align: center;
-            opacity: 0;
-            animation: fadeInUp 0.7s var(--ease-out) 0.1s forwards;
+            width: 100%; max-width: 440px; text-align: center;
+            opacity: 0; animation: fadeInUp 0.7s var(--ease-out) 0.1s forwards;
         }
         .login-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            display: inline-flex; align-items: center; gap: 6px;
             padding: 6px 16px;
-            background: rgba(0,0,0,0.05);
+            background: var(--color-glass);
+            border: 1px solid var(--color-glass-border);
             border-radius: 980px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--t2);
-            letter-spacing: -0.01em;
-            margin-bottom: 20px;
+            font-size: 13px; font-weight: 500;
+            color: var(--color-text-secondary);
+            margin-bottom: 24px;
         }
         .login-title {
-            font-family: var(--fd);
+            font-family: var(--font-display);
             font-size: clamp(34px,5vw,48px);
             font-weight: 700;
             letter-spacing: -0.04em;
             line-height: 1.06;
             margin-bottom: 12px;
+            color: var(--color-text-primary);
         }
         .login-sub {
-            font-size: clamp(15px,2vw,18px);
-            color: var(--t2);
-            line-height: 1.4;
-            letter-spacing: -0.02em;
+            font-size: clamp(15px,2vw,17px);
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+            letter-spacing: -0.01em;
             margin-bottom: 36px;
         }
-
-        /* Card */
         .login-card {
-            background: rgba(255,255,255,0.8);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border: 1px solid rgba(255,255,255,0.9);
+            background: var(--color-glass);
+            border: 1px solid var(--color-glass-border);
             border-radius: 24px;
             padding: 36px 32px;
-            box-shadow:
-                0 0 0 1px rgba(0,0,0,0.04),
-                0 4px 6px rgba(0,0,0,0.03),
-                0 20px 48px rgba(0,0,0,0.08);
             text-align: left;
         }
+        .login-footer {
+            margin-top: 24px;
+            font-size: 12px;
+            color: var(--color-text-tertiary);
+            text-align: center;
+        }
+        .login-footer a {
+            color: var(--color-accent-cyan);
+            text-decoration: none;
+        }
+        .login-footer a:hover { opacity: 0.7; }
 
         .btn-google {
             width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
-            padding: 13px 20px; background: var(--surface); border: 1px solid var(--border);
-            border-radius: 980px; font-family: var(--ft); font-size: 15px; font-weight: 400;
-            color: var(--t1); cursor: pointer; transition: all 0.2s var(--ease-smooth); margin-bottom: 14px;
-            letter-spacing: -0.01em;
+            padding: 13px 20px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--color-border);
+            border-radius: 980px;
+            font-family: var(--font-body); font-size: 15px; font-weight: 400;
+            color: var(--color-text-primary);
+            cursor: pointer; transition: all 0.2s var(--ease-smooth);
+            margin-bottom: 14px;
         }
-        .btn-google:hover { background: var(--bg); border-color: #bbb; transform: scale(1.01); }
+        .btn-google:hover { background: rgba(255,255,255,0.12); border-color: var(--color-border-hover); }
 
         .divider {
             display: flex; align-items: center; gap: 12px;
-            color: var(--t3); font-size: 13px; margin-bottom: 14px;
+            color: var(--color-text-tertiary); font-size: 13px; margin-bottom: 14px;
         }
-        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border-l); }
+        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--color-border); }
 
         .field { margin-bottom: 10px; }
-        .field-label { display: block; font-size: 13px; font-weight: 500; color: var(--t2); margin-bottom: 6px; letter-spacing: -0.01em; }
+        .field-label { display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 6px; }
         .field-input {
-            width: 100%; padding: 12px 16px; border: 1px solid var(--border);
-            border-radius: 12px; font-family: var(--ft); font-size: 15px; color: var(--t1);
-            background: rgba(255,255,255,0.9); outline: none;
+            width: 100%; padding: 12px 16px;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            font-family: var(--font-body); font-size: 16px;
+            color: var(--color-text-primary);
+            background: rgba(255,255,255,0.04);
+            outline: none;
             transition: border-color 0.2s, box-shadow 0.2s;
-            letter-spacing: -0.01em;
         }
-        .field-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,113,227,0.1); }
-        .field-input::placeholder { color: var(--t3); }
+        .field-input:focus { border-color: var(--color-accent-blue); box-shadow: 0 0 0 3px rgba(0,113,227,0.2); }
+        .field-input::placeholder { color: var(--color-text-tertiary); }
 
         .btn-cta {
             width: 100%; padding: 13px 20px;
-            background: var(--blue); color: #fff; border: none;
-            border-radius: 980px; font-family: var(--ft); font-size: 15px; font-weight: 400;
-            letter-spacing: -0.01em; cursor: pointer;
+            background: var(--color-accent-blue); color: #fff; border: none;
+            border-radius: 980px;
+            font-family: var(--font-body); font-size: 15px; font-weight: 500;
+            cursor: pointer;
             transition: all 0.3s var(--ease-smooth);
         }
         .btn-cta:hover { background: #0077ED; transform: scale(1.01); }
@@ -232,270 +232,377 @@
         .btn-cta:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 
         .otp-back {
-            background: none; border: none; color: var(--blue); font-family: var(--ft);
-            font-size: 13px; cursor: pointer; padding: 0; margin-bottom: 14px;
-            letter-spacing: -0.01em; transition: opacity 0.2s;
+            background: none; border: none; color: var(--color-accent-cyan);
+            font-family: var(--font-body); font-size: 13px;
+            cursor: pointer; padding: 0; margin-bottom: 14px;
+            transition: opacity 0.2s;
         }
         .otp-back:hover { opacity: 0.6; }
-        .resend-row { text-align: center; margin-top: 12px; font-size: 13px; color: var(--t2); }
-        .resend-btn { background: none; border: none; color: var(--blue); cursor: pointer; font-family: var(--ft); font-size: 13px; transition: opacity 0.2s; }
+        .resend-row { text-align: center; margin-top: 12px; font-size: 13px; color: var(--color-text-secondary); }
+        .resend-btn { background: none; border: none; color: var(--color-accent-cyan); cursor: pointer; font-family: var(--font-body); font-size: 13px; transition: opacity 0.2s; }
         .resend-btn:hover { opacity: 0.6; }
         .err-box {
-            background: rgba(255,59,48,0.06); border: 1px solid rgba(255,59,48,0.2);
-            border-radius: 10px; padding: 10px 14px; font-size: 13px; color: var(--red);
-            margin-bottom: 12px; display: none; letter-spacing: -0.01em;
+            background: rgba(255,59,48,0.1); border: 1px solid rgba(255,59,48,0.25);
+            border-radius: 10px; padding: 10px 14px;
+            font-size: 13px; color: var(--color-red);
+            margin-bottom: 12px; display: none;
         }
 
-        /* ═══ DASHBOARD VIEW ═══ */
-        #dash-view { padding-top: clamp(48px,8vw,52px); }
+        /* ═══ DASHBOARD ═══ */
+        #dash-view { padding-top: 72px; }
         .page {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: clamp(36px,5vw,48px) clamp(20px,5vw,40px) 80px;
+            max-width: 1080px; margin: 0 auto;
+            padding: clamp(24px,4vw,48px) clamp(20px,5vw,40px) 80px;
         }
 
         /* Welcome */
         .welcome-section {
-            margin-bottom: clamp(28px,4vw,36px);
-            opacity: 0;
-            animation: fadeInUp 0.7s var(--ease-out) 0.05s forwards;
+            margin-bottom: clamp(24px,3vw,32px);
+            opacity: 0; animation: fadeInUp 0.7s var(--ease-out) 0.05s forwards;
         }
         .welcome-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
         .welcome-greeting {
-            font-family: var(--fd);
+            font-family: var(--font-display);
             font-size: clamp(28px,4vw,40px);
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            line-height: 1.08;
+            font-weight: 700; letter-spacing: -0.04em; line-height: 1.08;
         }
-        .welcome-email { font-size: 15px; color: var(--t2); margin-top: 5px; letter-spacing: -0.02em; }
+        .welcome-email { font-size: 15px; color: var(--color-text-secondary); margin-top: 5px; }
         .tier-pill {
             display: inline-flex; align-items: center; gap: 6px;
             padding: 7px 16px; border-radius: 980px;
-            font-size: 13px; font-weight: 500; letter-spacing: -0.01em; flex-shrink: 0; margin-top: 6px;
+            font-size: 13px; font-weight: 500; flex-shrink: 0; margin-top: 6px;
         }
         .tier-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
-        .tier-free     { background: rgba(0,0,0,0.05);          color: var(--t2); }     .tier-free .dot     { background: var(--t3); }
-        .tier-starter  { background: rgba(0,113,227,0.08);       color: var(--blue); }   .tier-starter .dot  { background: var(--blue); }
-        .tier-pro      { background: rgba(94,92,230,0.08);       color: var(--purple); } .tier-pro .dot      { background: var(--purple); }
-        .tier-business { background: rgba(52,199,89,0.1);        color: #1c7a38; }       .tier-business .dot { background: var(--green); }
+        .tier-free     { background: rgba(255,255,255,0.06); color: var(--color-text-secondary); }
+        .tier-free .dot     { background: var(--color-text-tertiary); }
+        .tier-starter  { background: rgba(0,113,227,0.12); color: #4da3ff; }
+        .tier-starter .dot  { background: var(--color-accent-blue); }
+        .tier-pro      { background: rgba(94,92,230,0.12); color: #8b8ae6; }
+        .tier-pro .dot      { background: var(--color-accent-purple); }
+        .tier-business { background: rgba(52,199,89,0.12); color: #5dd98b; }
+        .tier-business .dot { background: var(--color-green); }
 
         /* Success banner */
         .banner-ok {
             display: flex; align-items: center; gap: 12px;
-            background: rgba(52,199,89,0.07); border: 1px solid rgba(52,199,89,0.2);
+            background: rgba(52,199,89,0.08); border: 1px solid rgba(52,199,89,0.2);
             border-radius: 14px; padding: 14px 18px; margin-bottom: 24px;
-            font-size: 14px; color: #1c7a38; letter-spacing: -0.01em;
+            font-size: 14px; color: #5dd98b;
         }
 
-        /* Cards grid */
-        .grid-top    { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px,2vw,16px); margin-bottom: clamp(12px,2vw,16px); }
-        .grid-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px,2vw,16px); }
+        /* Quick Actions */
+        .quick-actions {
+            display: flex; gap: 10px; flex-wrap: wrap;
+            margin-bottom: clamp(20px,3vw,28px);
+            opacity: 0; animation: fadeInUp 0.7s var(--ease-out) 0.1s forwards;
+        }
+        .quick-action {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 18px;
+            background: var(--color-glass);
+            border: 1px solid var(--color-glass-border);
+            border-radius: 980px;
+            font-family: var(--font-body); font-size: 13px; font-weight: 500;
+            color: var(--color-text-primary);
+            cursor: pointer;
+            transition: all 0.2s var(--ease-smooth);
+            text-decoration: none;
+        }
+        .quick-action:hover { background: var(--color-surface-hover); border-color: var(--color-border-hover); }
+        .quick-action.primary {
+            background: rgba(0,113,227,0.15);
+            border-color: rgba(0,113,227,0.3);
+            color: #4da3ff;
+        }
+        .quick-action.primary:hover { background: rgba(0,113,227,0.22); }
+        .quick-action-icon { font-size: 15px; }
 
-        /* Card */
+        /* Cards */
+        .dash-grid { display: grid; gap: clamp(12px,2vw,16px); }
+        .dash-grid-full { grid-template-columns: 1fr; }
+        .dash-grid-half { grid-template-columns: 1fr 1fr; }
+
         .card {
-            background: rgba(255,255,255,0.8);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border: 1px solid rgba(255,255,255,0.9);
+            background: var(--color-glass);
+            border: 1px solid var(--color-glass-border);
             border-radius: 20px;
             padding: clamp(20px,3vw,28px);
-            box-shadow: 0 0 0 1px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            animation: fadeInUp 0.7s var(--ease-out) forwards;
+            position: relative; overflow: hidden;
+            opacity: 0; animation: fadeInUp 0.7s var(--ease-out) forwards;
         }
-        .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.15s; }
+        .card:nth-child(1) { animation-delay: 0.12s; }
+        .card:nth-child(2) { animation-delay: 0.18s; }
         .card-label {
             font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
-            text-transform: uppercase; color: var(--t3); margin-bottom: 14px;
+            text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 14px;
         }
+        .card-header-row {
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
+        }
+        .card-header-row .card-label { margin-bottom: 0; }
 
-        /* Credits */
-        .cred-big { font-family: var(--fd); font-size: 48px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; }
-        .cred-of  { font-size: 18px; color: var(--t3); font-weight: 400; margin-left: 4px; }
-        .cred-ctx { font-size: 13px; color: var(--t2); margin: 6px 0 14px; letter-spacing: -0.01em; }
-        .progress-track { height: 6px; background: rgba(0,0,0,0.06); border-radius: 3px; overflow: hidden; margin-bottom: 10px; }
+        /* Credits (merged into subscription) */
+        .cred-big { font-family: var(--font-display); font-size: 48px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; }
+        .cred-of  { font-size: 18px; color: var(--color-text-tertiary); font-weight: 400; margin-left: 4px; }
+        .cred-ctx { font-size: 13px; color: var(--color-text-secondary); margin: 6px 0 14px; }
+        .progress-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; margin-bottom: 10px; }
         .progress-fill  { height: 100%; border-radius: 3px; background: var(--grad); transition: width 0.9s var(--ease-out); }
-        .progress-fill.warn { background: var(--orange); }
-        .progress-fill.over { background: var(--red); }
-        .cred-rem { font-size: 13px; color: var(--t2); letter-spacing: -0.01em; }
-        .cred-rem .hl        { font-weight: 600; color: var(--t1); }
-        .cred-rem .warn-text { font-weight: 600; color: var(--orange); }
-        .cred-rem .over-text { font-weight: 600; color: var(--red); }
-        .inline-link { color: var(--blue); text-decoration: none; font-weight: 500; }
+        .progress-fill.warn { background: var(--color-orange); }
+        .progress-fill.over { background: var(--color-red); }
+        .cred-rem { font-size: 13px; color: var(--color-text-secondary); }
+        .cred-rem .hl        { font-weight: 600; color: var(--color-text-primary); }
+        .cred-rem .warn-text { font-weight: 600; color: var(--color-orange); }
+        .cred-rem .over-text { font-weight: 600; color: var(--color-red); }
+        .inline-link { color: var(--color-accent-cyan); text-decoration: none; font-weight: 500; cursor: pointer; }
         .inline-link:hover { opacity: 0.7; }
 
         /* Subscription */
-        .sub-name { font-family: var(--fd); font-size: 32px; font-weight: 700; letter-spacing: -0.04em; margin-bottom: 6px; }
-        .sub-status-row { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--t2); margin-bottom: 14px; letter-spacing: -0.01em; }
+        .sub-name { font-family: var(--font-display); font-size: 28px; font-weight: 700; letter-spacing: -0.04em; margin-bottom: 6px; }
+        .sub-status-row { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--color-text-secondary); margin-bottom: 10px; }
         .sdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-        .sdot.active { background: var(--green); } .sdot.cancelled { background: var(--t3); } .sdot.none { background: var(--border); }
-        .sub-renew { font-size: 12px; color: var(--t3); margin-bottom: 14px; }
-        .sub-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+        .sdot.active { background: var(--color-green); }
+        .sdot.cancelled { background: var(--color-text-tertiary); }
+        .sdot.none { background: var(--color-border); }
+        .sub-renew { font-size: 12px; color: var(--color-text-tertiary); margin-bottom: 14px; }
+        .sub-divider { height: 1px; background: var(--color-border); margin: 16px 0; }
+        .sub-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
         .btn-upgrade-cta {
             flex: 1; min-width: 120px; padding: 11px 20px;
-            background: var(--blue); color: #fff; border: none; border-radius: 980px;
-            font-family: var(--ft); font-size: 14px; font-weight: 400; letter-spacing: -0.01em;
-            cursor: pointer; transition: all 0.3s var(--ease-smooth); text-align: center;
-            white-space: nowrap;
+            background: var(--color-accent-blue); color: #fff; border: none; border-radius: 980px;
+            font-family: var(--font-body); font-size: 14px; font-weight: 500;
+            cursor: pointer; transition: all 0.3s var(--ease-smooth); text-align: center; white-space: nowrap;
         }
         .btn-upgrade-cta:hover { background: #0077ED; transform: scale(1.01); }
         .btn-manage-cta {
-            flex: 1; min-width: 120px; padding: 11px 20px; background: rgba(0,0,0,0.05);
-            border: none; border-radius: 980px; font-family: var(--ft); font-size: 14px;
-            font-weight: 400; letter-spacing: -0.01em; color: var(--t1); cursor: pointer;
-            transition: all 0.2s var(--ease-smooth);
+            flex: 1; min-width: 120px; padding: 11px 20px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 980px;
+            font-family: var(--font-body); font-size: 14px; font-weight: 400;
+            color: var(--color-text-primary);
+            cursor: pointer; transition: all 0.2s var(--ease-smooth);
         }
-        .btn-manage-cta:hover { background: rgba(0,0,0,0.08); }
+        .btn-manage-cta:hover { background: var(--color-surface-hover); border-color: var(--color-border-hover); }
         .btn-manage-cta:disabled { opacity: 0.5; cursor: not-allowed; }
 
         /* CRM card */
         .crm-connect-btns { display: flex; flex-direction: column; gap: 10px; }
         .btn-crm {
             display: flex; align-items: center; gap: 12px; width: 100%; padding: 13px 16px;
-            border-radius: 14px; border: 1px solid var(--border-l); background: rgba(255,255,255,0.6);
-            font-family: var(--ft); font-size: 14px; font-weight: 400; color: var(--t1);
-            cursor: pointer; transition: all 0.2s var(--ease-smooth); text-align: left; letter-spacing: -0.01em;
+            border-radius: 14px;
+            border: 1px solid var(--color-border);
+            background: var(--color-surface);
+            font-family: var(--font-body); font-size: 14px; font-weight: 400;
+            color: var(--color-text-primary);
+            cursor: pointer; transition: all 0.2s var(--ease-smooth); text-align: left;
         }
-        .btn-crm:hover { border-color: var(--border); background: rgba(255,255,255,0.9); transform: scale(1.01); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+        .btn-crm:hover { border-color: var(--color-border-hover); background: var(--color-surface-hover); transform: scale(1.01); }
         .btn-crm:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-        .crm-btn-logo { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; }
-        .crm-btn-logo.hs  { background: rgba(255,122,0,0.1); color: #f07900; }
-        .crm-btn-logo.ghl { background: rgba(94,92,230,0.08); color: var(--purple); }
-        .btn-crm .arrow { margin-left: auto; color: var(--t3); font-size: 18px; }
+        .crm-btn-logo {
+            width: 32px; height: 32px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 800; flex-shrink: 0;
+        }
+        .crm-btn-logo.hs  { background: rgba(255,122,0,0.15); color: #ff8c2e; }
+        .crm-btn-logo.ghl { background: rgba(94,92,230,0.12); color: #8b8ae6; }
+        .btn-crm .arrow { margin-left: auto; color: var(--color-text-tertiary); font-size: 18px; }
 
         .crm-list-rows { display: flex; flex-direction: column; gap: 10px; }
-        .crm-row { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: rgba(0,0,0,0.03); border-radius: 14px; animation: fadeInUp 0.3s var(--ease-out); }
-        .crm-row-logo { width: 36px; height: 36px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; }
-        .crm-row-logo.hs  { background: rgba(255,122,0,0.1); color: #f07900; }
-        .crm-row-logo.ghl { background: rgba(94,92,230,0.08); color: var(--purple); }
+        .crm-row {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 14px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 14px;
+            animation: fadeInUp 0.3s var(--ease-out);
+        }
+        .crm-row-logo {
+            width: 36px; height: 36px; border-radius: 9px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 800; flex-shrink: 0;
+        }
+        .crm-row-logo.hs  { background: rgba(255,122,0,0.15); color: #ff8c2e; }
+        .crm-row-logo.ghl { background: rgba(94,92,230,0.12); color: #8b8ae6; }
         .crm-row-info { flex: 1; min-width: 0; }
-        .crm-row-name  { font-size: 14px; font-weight: 500; letter-spacing: -0.01em; }
-        .crm-row-acct  { font-size: 12px; color: var(--t2); }
-        .crm-row-date  { font-size: 11px; color: var(--t3); }
-        .dot-g { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-right: 5px; vertical-align: middle; }
-        .btn-row-danger { font-size: 12px; color: var(--red); background: none; border: none; cursor: pointer; font-family: var(--ft); font-weight: 400; padding: 5px 8px; border-radius: 8px; transition: opacity 0.2s; flex-shrink: 0; }
+        .crm-row-name  { font-size: 14px; font-weight: 500; }
+        .crm-row-acct  { font-size: 12px; color: var(--color-text-secondary); }
+        .crm-row-date  { font-size: 11px; color: var(--color-text-tertiary); }
+        .dot-g { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--color-green); margin-right: 5px; vertical-align: middle; }
+        .btn-row-danger {
+            font-size: 12px; color: var(--color-red); background: none; border: none;
+            cursor: pointer; font-family: var(--font-body); padding: 5px 8px;
+            border-radius: 8px; transition: opacity 0.2s; flex-shrink: 0;
+        }
         .btn-row-danger:hover { opacity: 0.6; }
-        .card-footer-row { display: flex; justify-content: flex-end; margin-top: 12px; }
-        .subtle-link { font-size: 12px; color: var(--t3); text-decoration: none; transition: color 0.2s; }
-        .subtle-link:hover { color: var(--blue); }
 
         /* CRM polling overlay */
         .crm-poll-overlay {
             position: absolute; inset: 0;
-            background: rgba(255,255,255,0.92);
+            background: rgba(0,0,0,0.85);
             backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             border-radius: 20px;
             display: none; flex-direction: column; align-items: center; justify-content: center; gap: 12px; z-index: 5;
         }
         .crm-poll-overlay.show { display: flex; }
-        .poll-title { font-family: var(--fd); font-size: 16px; font-weight: 600; letter-spacing: -0.03em; }
-        .poll-sub   { font-size: 13px; color: var(--t2); letter-spacing: -0.01em; }
-        .poll-cancel { background: none; border: none; font-family: var(--ft); font-size: 13px; color: var(--t3); cursor: pointer; margin-top: 4px; transition: opacity 0.2s; }
+        .poll-title { font-family: var(--font-display); font-size: 16px; font-weight: 600; letter-spacing: -0.03em; }
+        .poll-sub   { font-size: 13px; color: var(--color-text-secondary); }
+        .poll-cancel { background: none; border: none; font-family: var(--font-body); font-size: 13px; color: var(--color-text-tertiary); cursor: pointer; margin-top: 4px; transition: opacity 0.2s; }
         .poll-cancel:hover { opacity: 0.6; }
-        .poll-success-icon { width: 52px; height: 52px; background: rgba(52,199,89,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+        .poll-success-icon {
+            width: 52px; height: 52px;
+            background: rgba(52,199,89,0.15);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 28px;
+        }
 
         /* Phone card */
         .phone-list-rows { display: flex; flex-direction: column; gap: 10px; }
-        .phone-row { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: rgba(0,0,0,0.03); border-radius: 14px; animation: fadeInUp 0.3s var(--ease-out); }
-        .phone-row-icon { width: 36px; height: 36px; border-radius: 9px; background: rgba(52,199,89,0.1); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .phone-row {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 14px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 14px;
+            animation: fadeInUp 0.3s var(--ease-out);
+        }
+        .phone-row-icon {
+            width: 36px; height: 36px; border-radius: 9px;
+            background: rgba(52,199,89,0.12);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; flex-shrink: 0;
+        }
         .phone-row-info { flex: 1; min-width: 0; }
-        .phone-row-num   { font-size: 14px; font-weight: 500; letter-spacing: -0.01em; }
-        .phone-row-route { font-size: 12px; color: var(--t2); }
-        .phone-row-date  { font-size: 11px; color: var(--t3); }
+        .phone-row-num   { font-size: 14px; font-weight: 500; }
+        .phone-row-route { font-size: 12px; color: var(--color-text-secondary); }
+        .phone-row-date  { font-size: 11px; color: var(--color-text-tertiary); }
         .phone-add-wrap { margin-top: 10px; }
         .btn-add-dashed {
             display: flex; align-items: center; justify-content: center; gap: 6px;
-            width: 100%; padding: 11px 18px; background: none; border: 1px dashed var(--border);
-            border-radius: 14px; font-family: var(--ft); font-size: 13px; font-weight: 400;
-            color: var(--t2); cursor: pointer; transition: all 0.2s var(--ease-smooth); letter-spacing: -0.01em;
+            width: 100%; padding: 11px 18px;
+            background: none;
+            border: 1px dashed var(--color-border);
+            border-radius: 14px;
+            font-family: var(--font-body); font-size: 13px; font-weight: 400;
+            color: var(--color-text-secondary);
+            cursor: pointer; transition: all 0.2s var(--ease-smooth);
         }
-        .btn-add-dashed:hover { border-color: var(--t3); color: var(--t1); background: rgba(0,0,0,0.02); }
+        .btn-add-dashed:hover { border-color: var(--color-border-hover); color: var(--color-text-primary); background: rgba(255,255,255,0.02); }
         .phone-form { margin-top: 10px; }
         .input-row { display: flex; gap: 8px; }
         .input-row .field-input { flex: 1; }
-        .btn-sm-blue { padding: 11px 15px; background: var(--blue); color: #fff; border: none; border-radius: 980px; font-family: var(--ft); font-size: 13px; font-weight: 400; cursor: pointer; white-space: nowrap; transition: all 0.2s var(--ease-smooth); flex-shrink: 0; letter-spacing: -0.01em; }
-        .btn-sm-blue:hover { background: #0077ED; transform: scale(1.01); }
-        .inline-err { font-size: 12px; color: var(--red); margin-top: 6px; display: none; }
+        .btn-sm-blue {
+            padding: 11px 15px;
+            background: var(--color-accent-blue); color: #fff; border: none;
+            border-radius: 980px;
+            font-family: var(--font-body); font-size: 13px; font-weight: 500;
+            cursor: pointer; white-space: nowrap;
+            transition: all 0.2s var(--ease-smooth); flex-shrink: 0;
+        }
+        .btn-sm-blue:hover { background: #0077ED; }
+        .inline-err { font-size: 12px; color: var(--color-red); margin-top: 6px; display: none; }
 
         /* Skeleton */
-        .skel { background: linear-gradient(90deg, rgba(0,0,0,0.04) 25%, rgba(0,0,0,0.07) 50%, rgba(0,0,0,0.04) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 8px; }
+        .skel {
+            background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.4s infinite;
+            border-radius: 8px;
+        }
         @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
         /* Card error */
         .card-err { text-align: center; padding: 16px 0; }
         .card-err-icon { font-size: 28px; margin-bottom: 8px; }
-        .card-err-text { font-size: 13px; color: var(--t2); margin-bottom: 12px; }
-        .btn-retry { background: none; border: 1px solid var(--border); border-radius: 980px; padding: 7px 18px; font-family: var(--ft); font-size: 13px; color: var(--t1); cursor: pointer; transition: all 0.2s; }
-        .btn-retry:hover { background: rgba(0,0,0,0.04); }
+        .card-err-text { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 12px; }
+        .btn-retry {
+            background: none;
+            border: 1px solid var(--color-border);
+            border-radius: 980px;
+            padding: 7px 18px;
+            font-family: var(--font-body); font-size: 13px;
+            color: var(--color-text-primary);
+            cursor: pointer; transition: all 0.2s;
+        }
+        .btn-retry:hover { background: var(--color-surface); }
 
         /* ═══ PLAN MODAL ═══ */
         .modal-backdrop {
             position: fixed; inset: 0;
-            background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-            z-index: 500; display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.25s var(--ease-smooth);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            z-index: 500;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.25s var(--ease-smooth);
         }
         .modal-backdrop.open { opacity: 1; pointer-events: all; }
         .modal-sheet {
-            background: rgba(255,255,255,0.96);
-            backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-radius: 24px; padding: 32px 28px 40px;
+            background: rgba(20,20,20,0.95);
+            border: 1px solid var(--color-glass-border);
+            border-radius: 24px;
+            padding: 32px 28px 40px;
             width: 100%; max-width: 760px;
-            transform: translateY(24px) scale(0.97); transition: transform 0.3s var(--ease-out);
+            transform: translateY(40px);
+            transition: transform 0.3s var(--ease-out);
             max-height: 90vh; overflow-y: auto;
-            box-shadow: 0 8px 60px rgba(0,0,0,0.18);
         }
-        .modal-backdrop.open .modal-sheet { transform: translateY(0) scale(1); }
-        .modal-handle { display: none; }
+        .modal-backdrop.open .modal-sheet { transform: translateY(0); }
+        .modal-handle { width: 36px; height: 4px; background: var(--color-border); border-radius: 2px; margin: 0 auto 20px; }
         .modal-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
-        .modal-title { font-family: var(--fd); font-size: clamp(22px,3vw,28px); font-weight: 700; letter-spacing: -0.04em; }
-        .modal-sub { font-size: 14px; color: var(--t2); margin-bottom: 24px; letter-spacing: -0.01em; }
-        .modal-close { background: rgba(0,0,0,0.06); border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 15px; color: var(--t2); display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
-        .modal-close:hover { background: rgba(0,0,0,0.1); }
+        .modal-title { font-family: var(--font-display); font-size: clamp(22px,3vw,28px); font-weight: 700; letter-spacing: -0.04em; }
+        .modal-sub { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 24px; }
+        .modal-close {
+            background: var(--color-surface); border: none;
+            width: 28px; height: 28px; border-radius: 50%;
+            cursor: pointer; font-size: 15px; color: var(--color-text-secondary);
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .modal-close:hover { background: var(--color-surface-hover); }
 
         .plans-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
         .plan-tile {
-            border: 1px solid var(--border-l); border-radius: 20px; padding: 24px 20px;
+            border: 1px solid var(--color-border);
+            border-radius: 20px; padding: 24px 20px;
             cursor: pointer; position: relative;
             transition: all 0.25s var(--ease-smooth);
         }
-        .plan-tile:hover { border-color: var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
-        .plan-tile.popular { border-color: var(--purple); box-shadow: 0 0 0 1px rgba(94,92,230,0.3), 0 4px 20px rgba(94,92,230,0.12); }
+        .plan-tile:hover { border-color: var(--color-border-hover); background: var(--color-surface); transform: translateY(-2px); }
+        .plan-tile.popular { border-color: rgba(94,92,230,0.5); box-shadow: 0 0 0 1px rgba(94,92,230,0.2); }
         .plan-popular-tag {
             position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
-            background: var(--grad); color: #fff; font-size: 10px; font-weight: 600;
-            padding: 3px 12px; border-radius: 980px; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap;
+            background: var(--grad); color: #fff;
+            font-size: 10px; font-weight: 600;
+            padding: 3px 12px; border-radius: 980px;
+            letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap;
         }
-        .plan-tile-name { font-family: var(--fd); font-size: 15px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 6px; color: var(--t2); text-transform: uppercase; font-size: 11px; letter-spacing: 0.06em; }
-        .plan-tile-price { font-family: var(--fd); font-size: 36px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; margin-bottom: 2px; }
+        .plan-tile-name { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 6px; }
+        .plan-tile-price { font-family: var(--font-display); font-size: 36px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; margin-bottom: 2px; }
         .plan-tile-price.grad { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .plan-tile-period { font-size: 13px; color: var(--t2); margin-bottom: 14px; letter-spacing: -0.01em; }
-        .plan-tile-credits { font-size: 15px; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.02em; }
-        .plan-tile-credits span { color: var(--t2); font-weight: 400; font-size: 13px; }
-        .plan-tile-value { font-size: 12px; color: var(--t3); margin-bottom: 12px; letter-spacing: -0.01em; }
+        .plan-tile-period { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 14px; }
+        .plan-tile-credits { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+        .plan-tile-credits span { color: var(--color-text-secondary); font-weight: 400; font-size: 13px; }
+        .plan-tile-persona { font-size: 12px; color: var(--color-accent-cyan); margin-bottom: 12px; font-style: italic; }
         .plan-tile-features { list-style: none; margin-bottom: 20px; }
-        .plan-tile-features li { font-size: 13px; color: var(--t2); margin-bottom: 5px; padding-left: 16px; position: relative; letter-spacing: -0.01em; }
-        .plan-tile-features li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 11px; top: 1px; }
+        .plan-tile-features li {
+            font-size: 13px; color: var(--color-text-secondary);
+            margin-bottom: 5px; padding-left: 16px; position: relative;
+        }
+        .plan-tile-features li::before { content: '✓'; position: absolute; left: 0; color: var(--color-green); font-weight: 700; font-size: 11px; top: 1px; }
         .btn-select {
             width: 100%; padding: 12px 16px; border-radius: 980px; border: none;
-            font-family: var(--ft); font-size: 14px; font-weight: 400; letter-spacing: -0.01em;
+            font-family: var(--font-body); font-size: 14px; font-weight: 500;
             cursor: pointer; transition: all 0.3s var(--ease-smooth);
         }
         .btn-select:active { transform: scale(0.98); }
-        .btn-select.default { background: rgba(0,0,0,0.06); color: var(--t1); }
-        .btn-select.default:hover { background: rgba(0,0,0,0.1); transform: scale(1.01); }
-        .btn-select.primary { background: var(--blue); color: #fff; }
+        .btn-select.default { background: var(--color-surface); color: var(--color-text-primary); border: 1px solid var(--color-border); }
+        .btn-select.default:hover { background: var(--color-surface-hover); }
+        .btn-select.primary { background: var(--color-accent-blue); color: #fff; }
         .btn-select.primary:hover { background: #0077ED; transform: scale(1.01); }
         .btn-select:disabled { opacity: 0.45; cursor: not-allowed; transform: none !important; }
-        .modal-note { font-size: 12px; color: var(--t3); text-align: center; margin-top: 16px; letter-spacing: -0.01em; }
+        .modal-note { font-size: 12px; color: var(--color-text-tertiary); text-align: center; margin-top: 16px; }
 
         /* Spinner */
-        .spin { width: 18px; height: 18px; border: 2px solid rgba(0,0,0,0.1); border-top-color: var(--blue); border-radius: 50%; animation: rot 0.7s linear infinite; display: inline-block; flex-shrink: 0; }
-        .spin-lg { width: 36px; height: 36px; border-width: 3px; border-top-color: var(--purple); }
+        .spin { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.1); border-top-color: var(--color-accent-blue); border-radius: 50%; animation: rot 0.7s linear infinite; display: inline-block; flex-shrink: 0; }
+        .spin-lg { width: 36px; height: 36px; border-width: 3px; border-top-color: var(--color-accent-purple); }
         @keyframes rot { to { transform: rotate(360deg); } }
 
         @keyframes fadeInUp {
@@ -508,19 +615,134 @@
         #toast {
             position: fixed; bottom: 28px; left: 50%;
             transform: translateX(-50%) translateY(80px);
-            padding: 11px 22px; border-radius: 980px; font-size: 14px; font-weight: 400;
-            letter-spacing: -0.01em;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.14); transition: transform 0.3s var(--ease-out);
+            padding: 11px 22px; border-radius: 980px;
+            font-family: var(--font-body); font-size: 14px; font-weight: 400;
             z-index: 999; pointer-events: none; white-space: nowrap;
+            transition: transform 0.3s var(--ease-out);
         }
         #toast.show { transform: translateX(-50%) translateY(0); }
-        #toast.ok   { background: var(--t1); color: #fff; }
-        #toast.bad  { background: var(--red); color: #fff; }
+        #toast.ok   { background: rgba(52,199,89,0.9); color: #fff; backdrop-filter: blur(8px); }
+        #toast.bad  { background: rgba(255,59,48,0.9); color: #fff; backdrop-filter: blur(8px); }
 
+        /* Footer */
+        .portal-footer {
+            border-top: 1px solid var(--color-border);
+            padding: 24px 0 0;
+            margin-top: 48px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--color-text-tertiary);
+        }
+        .portal-footer a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            margin: 0 12px;
+        }
+        .portal-footer a:hover { color: var(--color-text-primary); }
+        .portal-footer-copy { margin-top: 12px; }
+
+        /* Getting started */
+        .getting-started { margin-bottom: clamp(20px,3vw,28px); }
+        .getting-started .card-label { margin-bottom: 16px; }
+        .gs-step {
+            display: flex; align-items: center; gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 14px;
+        }
+        .gs-step:last-child { border-bottom: none; }
+        .gs-check {
+            width: 22px; height: 22px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 700; flex-shrink: 0;
+        }
+        .gs-check.done { background: rgba(52,199,89,0.15); color: var(--color-green); }
+        .gs-check.todo { background: var(--color-surface); color: var(--color-text-tertiary); border: 1px solid var(--color-border); }
+        .gs-label { flex: 1; }
+        .gs-label.done { color: var(--color-text-tertiary); text-decoration: line-through; }
+        .gs-action {
+            font-size: 12px; font-weight: 500;
+            color: var(--color-accent-cyan);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .gs-action:hover { opacity: 0.7; }
+
+        /* ═══ ACTIVITY CARD ═══ */
+        .activity-chart { display: flex; align-items: flex-end; gap: 12px; margin-bottom: 16px; height: 100px; }
+        .activity-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+        .activity-bar-track {
+            width: 100%; height: 80px; position: relative;
+            background: rgba(255,255,255,0.03); border-radius: 6px;
+            display: flex; align-items: flex-end;
+        }
+        .activity-bar {
+            width: 100%; border-radius: 6px 6px 4px 4px;
+            background: var(--grad);
+            transition: height 0.8s var(--ease-out);
+            min-height: 2px;
+        }
+        .activity-bar-label { font-size: 11px; color: var(--color-text-tertiary); }
+        .activity-bar-value {
+            font-family: var(--font-display); font-size: 14px; font-weight: 600;
+            color: var(--color-text-primary); text-align: center; margin-bottom: 4px;
+        }
+        .activity-stats { display: flex; gap: 16px; flex-wrap: wrap; }
+        .activity-stat {
+            flex: 1; min-width: 120px;
+            padding: 12px 14px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+        }
+        .activity-stat-value {
+            font-family: var(--font-display); font-size: 22px; font-weight: 700;
+            letter-spacing: -0.03em; line-height: 1;
+        }
+        .activity-stat-label { font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; }
+
+        /* Session active indicator */
+        .crm-session-badge {
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: 11px; font-weight: 500;
+            color: var(--color-green);
+            padding: 2px 8px;
+            background: rgba(52,199,89,0.1);
+            border-radius: 980px;
+            margin-left: 6px;
+        }
+        .crm-session-badge .pulse {
+            width: 5px; height: 5px; border-radius: 50%;
+            background: var(--color-green);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .crm-row-lastactive { font-size: 11px; color: var(--color-text-tertiary); margin-top: 1px; }
+
+        /* ═══ RESPONSIVE ═══ */
         @media (max-width: 700px) {
-            .grid-top, .grid-bottom { grid-template-columns: 1fr; }
+            .dash-grid-half { grid-template-columns: 1fr; }
             .plans-grid { grid-template-columns: 1fr; }
             .modal-sheet { padding: 28px 20px 36px; }
+            .header { width: calc(100% - 24px); top: 8px; }
+            .welcome-greeting { font-size: 28px; }
+            .modal-backdrop { backdrop-filter: none; -webkit-backdrop-filter: none; }
+            .crm-poll-overlay { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(0,0,0,0.92); }
+            #toast { backdrop-filter: none; -webkit-backdrop-filter: none; }
+            .btn-cta, .btn-google, .btn-crm, .btn-sm-blue, .btn-select,
+            .btn-upgrade-cta, .btn-manage-cta, .quick-action, .btn-signout,
+            .btn-add-dashed, .btn-retry, .btn-row-danger { min-height: 44px; }
+        }
+        @media (max-width: 480px) {
+            .welcome-row { flex-direction: column; align-items: flex-start; }
+            .card { padding: clamp(16px,3vw,20px); }
+            .login-card { padding: 28px 20px; }
+            .activity-stats { flex-direction: column; }
+            .activity-stat { min-width: unset; }
+            .quick-actions { gap: 8px; }
+            .quick-action { font-size: 12px; padding: 10px 14px; }
         }
         @media (min-width: 480px) and (max-width: 700px) {
             .plans-grid { grid-template-columns: 1fr 1fr; }
@@ -529,14 +751,14 @@
 </head>
 <body>
 
-<!-- Animated background (matches main site) -->
+<!-- Animated background -->
 <div class="animated-bg">
     <div class="gradient-orb"></div>
     <div class="gradient-orb"></div>
     <div class="gradient-orb"></div>
 </div>
 
-<!-- Header (matches main site) -->
+<!-- Header -->
 <header class="header" id="header">
     <div class="header-inner">
         <a href="/" class="logo-text">FlightSuite</a>
@@ -552,10 +774,10 @@
     <div class="login-content">
         <div class="login-eyebrow">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-            Account portal
+            Command Center
         </div>
-        <h1 class="login-title">Sign in to<br>FlightSuite</h1>
-        <p class="login-sub">Manage your plan, CRM connections, and phone numbers.</p>
+        <h1 class="login-title">Sign in to your<br>command center.</h1>
+        <p class="login-sub">Manage CRM connections, messaging channels, and your subscription.</p>
 
         <div class="login-card">
             <button id="btn-google" class="btn-google" onclick="signInWithGoogle()">
@@ -590,6 +812,10 @@
                 <div class="resend-row">Didn't get it? <button class="resend-btn" onclick="requestOtp(true)">Resend code</button></div>
             </div>
         </div>
+
+        <div class="login-footer">
+            By signing in, you agree to our <a href="/terms.html">Terms of Service</a> and <a href="/privacy-policy.html">Privacy Policy</a>.
+        </div>
     </div>
 </div>
 
@@ -615,65 +841,37 @@
             </div>
         </div>
 
-        <div class="grid-top">
-            <!-- Credits -->
-            <div class="card">
-                <div class="card-label">SMS &amp; WhatsApp Credits</div>
-                <div id="cred-skel">
-                    <div class="skel" style="height:48px;width:52%;margin-bottom:8px;"></div>
-                    <div class="skel" style="height:6px;margin-bottom:10px;"></div>
-                    <div class="skel" style="height:14px;width:48%;"></div>
-                </div>
-                <div id="cred-content" class="hidden">
-                    <div style="display:flex;align-items:baseline;">
-                        <span class="cred-big" id="cred-used">—</span>
-                        <span class="cred-of" id="cred-limit-lbl"></span>
-                    </div>
-                    <div class="cred-ctx" id="cred-ctx"></div>
-                    <div class="progress-track"><div class="progress-fill" id="cred-bar" style="width:0%"></div></div>
-                    <div class="cred-rem" id="cred-rem"></div>
-                </div>
-                <div id="cred-err" class="card-err hidden">
-                    <div class="card-err-icon">⚠️</div>
-                    <div class="card-err-text">Couldn't load credits.</div>
-                    <button class="btn-retry" onclick="loadBilling()">Retry ↺</button>
-                </div>
-            </div>
+        <!-- Quick Actions (contextual) -->
+        <div class="quick-actions" id="quick-actions"></div>
 
-            <!-- Subscription -->
-            <div class="card">
-                <div class="card-label">Subscription</div>
-                <div id="sub-skel">
-                    <div class="skel" style="height:32px;width:42%;margin-bottom:10px;"></div>
-                    <div class="skel" style="height:14px;width:62%;margin-bottom:16px;"></div>
-                    <div class="skel" style="height:44px;border-radius:980px;"></div>
-                </div>
-                <div id="sub-content" class="hidden">
-                    <div class="sub-name" id="sub-plan-name">Free</div>
-                    <div class="sub-status-row">
-                        <div class="sdot none" id="sub-sdot"></div>
-                        <span id="sub-status-text">No active subscription</span>
-                    </div>
-                    <div id="sub-renew" class="sub-renew hidden"></div>
-                    <div class="sub-actions">
-                        <button id="btn-upgrade-cta" class="btn-upgrade-cta hidden" onclick="openPlanModal()">Choose a plan →</button>
-                        <button id="btn-manage-cta" class="btn-manage-cta hidden" onclick="openPortal()">Manage subscription</button>
-                    </div>
-                </div>
-                <div id="sub-err" class="card-err hidden">
-                    <div class="card-err-icon">⚠️</div>
-                    <div class="card-err-text">Couldn't load subscription.</div>
-                    <button class="btn-retry" onclick="loadBilling()">Retry ↺</button>
-                </div>
+        <!-- Getting Started (new users only) -->
+        <div class="card getting-started hidden" id="getting-started">
+            <div class="card-label">Getting started</div>
+            <div class="gs-step">
+                <div class="gs-check done">✓</div>
+                <span class="gs-label done">Create your account</span>
+            </div>
+            <div class="gs-step" id="gs-extension">
+                <div class="gs-check todo" id="gs-ext-check">2</div>
+                <span class="gs-label" id="gs-ext-label">Install the Chrome extension</span>
+                <a href="/installation-guide.html" class="gs-action" id="gs-ext-action">Install →</a>
+            </div>
+            <div class="gs-step" id="gs-crm">
+                <div class="gs-check todo" id="gs-crm-check">3</div>
+                <span class="gs-label" id="gs-crm-label">Connect your first CRM</span>
+                <span class="gs-action" id="gs-crm-action" style="cursor:pointer">Connect →</span>
+            </div>
+            <div class="gs-step" id="gs-phone">
+                <div class="gs-check todo" id="gs-phone-check">4</div>
+                <span class="gs-label" id="gs-phone-label">Add a phone number for SMS</span>
             </div>
         </div>
 
-        <div class="grid-bottom">
-            <!-- CRM connections -->
+        <!-- CRM Connections -->
+        <div class="dash-grid dash-grid-full" style="margin-bottom: clamp(12px,2vw,16px);">
             <div class="card" id="crm-card">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-                    <div class="card-label" style="margin-bottom:0;">Connected CRMs</div>
-                    <a href="/app/connect.html" class="subtle-link">Full view →</a>
+                <div class="card-header-row">
+                    <div class="card-label">Connected CRMs</div>
                 </div>
                 <div id="crm-skel">
                     <div class="skel" style="height:56px;border-radius:14px;margin-bottom:10px;"></div>
@@ -695,10 +893,13 @@
                     <button class="poll-cancel" id="poll-cancel-btn">Cancel</button>
                 </div>
             </div>
+        </div>
 
-            <!-- Phone numbers -->
+        <!-- Channels + Subscription -->
+        <div class="dash-grid dash-grid-half">
+            <!-- Messaging Channels -->
             <div class="card">
-                <div class="card-label">Phone Numbers</div>
+                <div class="card-label">Messaging Channels</div>
                 <div id="phone-skel">
                     <div class="skel" style="height:56px;border-radius:14px;margin-bottom:10px;"></div>
                 </div>
@@ -708,10 +909,94 @@
                 </div>
                 <div id="phone-err" class="card-err hidden">
                     <div class="card-err-icon">⚠️</div>
-                    <div class="card-err-text">Couldn't load phone numbers.</div>
+                    <div class="card-err-text">Couldn't load channels.</div>
                     <button class="btn-retry" onclick="loadUser()">Retry ↺</button>
                 </div>
             </div>
+
+            <!-- Subscription + Credits (merged) -->
+            <div class="card">
+                <div class="card-label">Subscription</div>
+                <div id="sub-skel">
+                    <div class="skel" style="height:32px;width:42%;margin-bottom:10px;"></div>
+                    <div class="skel" style="height:14px;width:62%;margin-bottom:16px;"></div>
+                    <div class="skel" style="height:44px;border-radius:980px;"></div>
+                </div>
+                <div id="sub-content" class="hidden">
+                    <div class="sub-name" id="sub-plan-name">Free</div>
+                    <div class="sub-status-row">
+                        <div class="sdot none" id="sub-sdot"></div>
+                        <span id="sub-status-text">No active subscription</span>
+                    </div>
+                    <div id="sub-renew" class="sub-renew hidden"></div>
+
+                    <!-- Credits inline -->
+                    <div class="sub-divider"></div>
+                    <div id="cred-skel">
+                        <div class="skel" style="height:28px;width:40%;margin-bottom:8px;"></div>
+                        <div class="skel" style="height:6px;margin-bottom:10px;"></div>
+                    </div>
+                    <div id="cred-content" class="hidden">
+                        <div style="display:flex;align-items:baseline;margin-bottom:4px;">
+                            <span class="cred-big" id="cred-used" style="font-size:32px;">—</span>
+                            <span class="cred-of" id="cred-limit-lbl" style="font-size:15px;"></span>
+                        </div>
+                        <div class="cred-ctx" id="cred-ctx" style="margin:4px 0 10px;"></div>
+                        <div class="progress-track"><div class="progress-fill" id="cred-bar" style="width:0%"></div></div>
+                        <div class="cred-rem" id="cred-rem"></div>
+                    </div>
+                    <div id="cred-err" class="card-err hidden">
+                        <div class="card-err-text">Couldn't load credits.</div>
+                        <button class="btn-retry" onclick="loadBilling()">Retry ↺</button>
+                    </div>
+
+                    <div class="sub-actions">
+                        <button id="btn-upgrade-cta" class="btn-upgrade-cta hidden" onclick="openPlanModal()">Choose a plan →</button>
+                        <button id="btn-manage-cta" class="btn-manage-cta hidden" onclick="openPortal()">Manage subscription</button>
+                    </div>
+                </div>
+                <div id="sub-err" class="card-err hidden">
+                    <div class="card-err-icon">⚠️</div>
+                    <div class="card-err-text">Couldn't load subscription.</div>
+                    <button class="btn-retry" onclick="loadBilling()">Retry ↺</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity -->
+        <div class="dash-grid dash-grid-full" style="margin-top: clamp(12px,2vw,16px);">
+            <div class="card" id="activity-card">
+                <div class="card-label">Activity</div>
+                <div id="activity-skel">
+                    <div style="display:flex;align-items:flex-end;gap:12px;height:100px;margin-bottom:16px;">
+                        <div class="skel" style="flex:1;height:40%;border-radius:6px;"></div>
+                        <div class="skel" style="flex:1;height:65%;border-radius:6px;"></div>
+                        <div class="skel" style="flex:1;height:50%;border-radius:6px;"></div>
+                    </div>
+                    <div style="display:flex;gap:16px;">
+                        <div class="skel" style="flex:1;height:56px;border-radius:12px;"></div>
+                        <div class="skel" style="flex:1;height:56px;border-radius:12px;"></div>
+                    </div>
+                </div>
+                <div id="activity-content" class="hidden"></div>
+                <div id="activity-err" class="card-err hidden">
+                    <div class="card-err-icon">⚠️</div>
+                    <div class="card-err-text">Couldn't load activity data.</div>
+                    <button class="btn-retry" onclick="loadUsage()">Retry ↺</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="portal-footer">
+            <div>
+                <a href="/">Home</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/privacy-policy.html">Privacy</a>
+                <a href="/terms.html">Terms</a>
+                <a href="https://forms.gle/4wQhEo9hgp1eJKqL7" target="_blank" rel="noopener">Support</a>
+            </div>
+            <div class="portal-footer-copy">© 2026 FlightSuite Corporation. All rights reserved.</div>
         </div>
     </div>
 </div>
@@ -730,12 +1015,11 @@
                 <div class="plan-tile-name">Starter</div>
                 <div class="plan-tile-price">$5</div>
                 <div class="plan-tile-period">per month</div>
-                <div class="plan-tile-credits">100 AI queries <span>/ month</span></div>
-                <div class="plan-tile-value">Update ~100 CRM records via text</div>
+                <div class="plan-tile-credits">100 <span>SMS/WA credits/mo</span></div>
+                <div class="plan-tile-persona">For trying SMS &amp; WhatsApp</div>
                 <ul class="plan-tile-features">
                     <li>Unlimited Chrome extension</li>
-                    <li>HubSpot &amp; GoHighLevel</li>
-                    <li>SMS &amp; WhatsApp support</li>
+                    <li>HubSpot &amp; LeadConnector</li>
                     <li>Resets monthly</li>
                 </ul>
                 <button class="btn-select default" onclick="selectPlan('starter', this)">Get Starter</button>
@@ -745,12 +1029,11 @@
                 <div class="plan-tile-name">Pro</div>
                 <div class="plan-tile-price grad">$10</div>
                 <div class="plan-tile-period">per month</div>
-                <div class="plan-tile-credits">300 AI queries <span>/ month</span></div>
-                <div class="plan-tile-value">Update ~300 CRM records via text</div>
+                <div class="plan-tile-credits">300 <span>SMS/WA credits/mo</span></div>
+                <div class="plan-tile-persona">For daily SMS users</div>
                 <ul class="plan-tile-features">
                     <li>Unlimited Chrome extension</li>
-                    <li>HubSpot &amp; GoHighLevel</li>
-                    <li>SMS &amp; WhatsApp support</li>
+                    <li>HubSpot &amp; LeadConnector</li>
                     <li>Priority support</li>
                 </ul>
                 <button class="btn-select primary" onclick="selectPlan('pro', this)">Get Pro</button>
@@ -759,12 +1042,11 @@
                 <div class="plan-tile-name">Business</div>
                 <div class="plan-tile-price">$15</div>
                 <div class="plan-tile-period">per month</div>
-                <div class="plan-tile-credits">600 AI queries <span>/ month</span></div>
-                <div class="plan-tile-value">Update ~600 CRM records via text</div>
+                <div class="plan-tile-credits">600 <span>SMS/WA credits/mo</span></div>
+                <div class="plan-tile-persona">For teams</div>
                 <ul class="plan-tile-features">
                     <li>Unlimited Chrome extension</li>
-                    <li>HubSpot &amp; GoHighLevel</li>
-                    <li>SMS &amp; WhatsApp support</li>
+                    <li>HubSpot &amp; LeadConnector</li>
                     <li>Priority support + SLA</li>
                 </ul>
                 <button class="btn-select default" onclick="selectPlan('business', this)">Get Business</button>
@@ -777,30 +1059,50 @@
 <div id="toast"></div>
 
 <script>
-const API = 'https://treasonable-refugio-uncoincidentally.ngrok-free.dev/api/v1';
+const API = 'https://prod.flightsuite.ai/api/v1';
+
+// ── State ─────────────────────────────────────────────────────────
+let _userState = { crm_links: [], channels: [], tier: 'free' };
 
 // ── Token ─────────────────────────────────────────────────────────
 function tok()     { return localStorage.getItem('fs_user_token'); }
 function setTok(t) { localStorage.setItem('fs_user_token', t); }
 function clearTok(){ localStorage.removeItem('fs_user_token'); localStorage.removeItem('fs_email'); }
-function auth()    { return { 'Authorization': 'Bearer ' + tok(), 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' }; }
-function noauth()  { return { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' }; }
+function auth()    { return { 'Authorization': 'Bearer ' + tok(), 'Content-Type': 'application/json' }; }
+function noauth()  { return { 'Content-Type': 'application/json' }; }
 
 // ── Boot ──────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
-    // Scrolled header effect (same as main site)
     window.addEventListener('scroll', () => {
         document.getElementById('header').classList.toggle('scrolled', window.scrollY > 10);
     });
 
-    initGSI(); // fallback if GIS loaded before DOMContentLoaded
+    initGSI();
     if (tok()) {
         showDash();
     } else {
         document.getElementById('login-view').style.display = 'flex';
     }
-    if (new URLSearchParams(location.search).get('subscribed') === 'true') {
+
+    // Handle deep link params
+    const params = new URLSearchParams(location.search);
+    if (params.get('subscribed') === 'true') {
         show('subscribed-banner');
+        history.replaceState({}, '', '/app');
+    }
+    if (params.get('upgrade') === 'true' && tok()) {
+        setTimeout(openPlanModal, 500);
+    }
+    // Deep link: ?connect=hubspot or ?connect=ghl
+    const connectCRM = params.get('connect');
+    if (connectCRM && tok() && ['hubspot','ghl'].includes(connectCRM)) {
+        setTimeout(() => startCRMConnect(connectCRM), 800);
+        history.replaceState({}, '', '/app');
+    }
+    // Deep link: ?pair={token} — store for SMS/WhatsApp pairing
+    const pairToken = params.get('pair');
+    if (pairToken) {
+        localStorage.setItem('fs_pair_token', pairToken);
         history.replaceState({}, '', '/app');
     }
 });
@@ -810,8 +1112,6 @@ function googleBtnInner() {
 }
 
 // ── Google Sign-In ────────────────────────────────────────────────
-// Uses OAuth2 Token Client (access token) — same flow as the extension
-// POST /auth/google { google_access_token }
 let _tokenClient = null;
 window.onGoogleLibraryLoad = initGSI;
 
@@ -827,7 +1127,6 @@ function initGSI() {
 
 function signInWithGoogle() {
     if (!_tokenClient) {
-        // GIS not loaded yet — try to init then prompt
         initGSI();
         if (!_tokenClient) { showErr('err-email', 'Google sign-in is still loading — try again in a moment.'); return; }
     }
@@ -905,8 +1204,68 @@ function showDash() {
     show('btn-signout');
     loadBilling();
     loadUser();
+    loadUsage();
+    loadSessions();
 }
 function signOut() { clearTok(); location.reload(); }
+
+// ── Quick Actions (contextual) ────────────────────────────────────
+function updateQuickActions() {
+    const el = document.getElementById('quick-actions');
+    const actions = [];
+    const hasCRM = _userState.crm_links.length > 0;
+    const hasPhone = (_userState.channels || []).some(c => c.channel_type === 'sms' || c.channel_type === 'whatsapp');
+    const isFree = _userState.tier === 'free';
+
+    if (!hasCRM) {
+        actions.push({ label: 'Connect your CRM', icon: '🔗', cls: 'primary', action: 'scrollToCRM' });
+    }
+    if (!hasPhone && hasCRM) {
+        actions.push({ label: 'Add a phone number', icon: '📱', cls: '', action: 'scrollToPhone' });
+    }
+    if (isFree && hasCRM) {
+        actions.push({ label: 'Upgrade plan', icon: '⚡', cls: '', action: 'openPlanModal' });
+    }
+
+    el.innerHTML = '';
+    actions.forEach(a => {
+        const btn = document.createElement('button');
+        btn.className = 'quick-action' + (a.cls ? ' ' + a.cls : '');
+        btn.innerHTML = `<span class="quick-action-icon">${a.icon}</span>${a.label}`;
+        btn.onclick = () => {
+            if (a.action === 'scrollToCRM') document.getElementById('crm-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            else if (a.action === 'scrollToPhone') document.querySelector('.phone-list-rows')?.closest('.card')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            else if (a.action === 'openPlanModal') openPlanModal();
+        };
+        el.appendChild(btn);
+    });
+}
+
+// ── Getting Started ───────────────────────────────────────────────
+function updateGettingStarted() {
+    const hasCRM = _userState.crm_links.length > 0;
+    const hasPhone = (_userState.channels || []).some(c => c.channel_type === 'sms' || c.channel_type === 'whatsapp');
+
+    // Only show for new-ish users (no CRM or no phone)
+    if (hasCRM && hasPhone) { hide('getting-started'); return; }
+
+    show('getting-started');
+
+    if (hasCRM) {
+        document.getElementById('gs-crm-check').className = 'gs-check done';
+        document.getElementById('gs-crm-check').textContent = '✓';
+        document.getElementById('gs-crm-label').className = 'gs-label done';
+        document.getElementById('gs-crm-action').style.display = 'none';
+    } else {
+        document.getElementById('gs-crm-action').onclick = () => document.getElementById('crm-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    if (hasPhone) {
+        document.getElementById('gs-phone-check').className = 'gs-check done';
+        document.getElementById('gs-phone-check').textContent = '✓';
+        document.getElementById('gs-phone-label').className = 'gs-label done';
+    }
+}
 
 // ── Billing ───────────────────────────────────────────────────────
 async function loadBilling() {
@@ -932,6 +1291,8 @@ function renderBilling(d) {
     const end    = d.period_end;
     const hasCust= !!d.stripe_customer_id;
 
+    _userState.tier = tier;
+
     // Tier pill
     const pill = document.getElementById('tier-pill');
     pill.className = 'tier-pill tier-' + tier;
@@ -953,9 +1314,9 @@ function renderBilling(d) {
     if (isUnlim) {
         remEl.innerHTML = '<span class="hl">Unlimited</span> credits this month';
     } else if (rem <= 0) {
-        remEl.innerHTML = '<span class="over-text">0 credits remaining</span> &nbsp;·&nbsp; <a class="inline-link" href="javascript:void(0)" onclick="openPlanModal()">Upgrade →</a>';
+        remEl.innerHTML = '<span class="over-text">0 credits remaining</span> · <a class="inline-link" onclick="openPlanModal()">Upgrade →</a>';
     } else if (rem <= 5) {
-        remEl.innerHTML = '<span class="warn-text">' + rem + ' credits remaining</span> &nbsp;·&nbsp; <a class="inline-link" href="javascript:void(0)" onclick="openPlanModal()">Upgrade →</a>';
+        remEl.innerHTML = '<span class="warn-text">' + rem + ' credits remaining</span> · <a class="inline-link" onclick="openPlanModal()">Upgrade →</a>';
     } else {
         remEl.innerHTML = '<span class="hl">' + rem + '</span> remaining';
     }
@@ -976,6 +1337,8 @@ function renderBilling(d) {
     if (hasCust && tier !== 'free') { show('btn-manage-cta'); }
     else { show('btn-upgrade-cta'); if (tier !== 'free') show('btn-manage-cta'); }
     hide('sub-skel'); show('sub-content');
+
+    updateQuickActions();
 }
 
 // ── /users/me ─────────────────────────────────────────────────────
@@ -1001,42 +1364,55 @@ function renderUser(d) {
     document.getElementById('welcome-email').textContent = email;
     document.getElementById('header-email').textContent  = email;
     localStorage.setItem('fs_email', email);
-    renderCRMs(d.crm_links || []);
-    renderPhones(d.channels || []);
+
+    _userState.crm_links = d.crm_links || [];
+    _userState.channels = d.channels || [];
+
+    renderCRMs(_userState.crm_links);
+    renderPhones(_userState.channels);
+    updateQuickActions();
+    updateGettingStarted();
 }
 
 // ── CRM ───────────────────────────────────────────────────────────
 const CRM = {
-    hubspot: { label:'HubSpot',     cls:'hs',  icon:'HS'  },
-    ghl:     { label:'GoHighLevel', cls:'ghl', icon:'GHL' },
+    hubspot: { label:'HubSpot',        cls:'hs',  icon:'HS' },
+    ghl:     { label:'LeadConnector', cls:'ghl', icon:'LC' },
 };
 function renderCRMs(links) {
     hide('crm-skel'); show('crm-content');
     const rows    = document.getElementById('crm-rows');
     const btnArea = document.getElementById('crm-connect-btns');
     rows.innerHTML = ''; btnArea.innerHTML = '';
+    const connected = new Set(links.map(l => l.crm_type));
     links.forEach(l => {
         const m = CRM[l.crm_type] || { label: l.crm_type, cls:'hs', icon:'?' };
         const date = l.linked_at ? 'Connected ' + new Date(l.linked_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
+        const session = _activeSessions[l.crm_type];
+        const sessionBadge = session && session.active ? '<span class="crm-session-badge"><span class="pulse"></span>Active</span>' : '';
+        const lastActive = session && session.last_active ? '<div class="crm-row-lastactive">' + timeAgo(session.last_active) + '</div>' : '';
         const row = document.createElement('div');
         row.className = 'crm-row';
         row.innerHTML = `
             <div class="crm-row-logo ${m.cls}">${m.icon}</div>
             <div class="crm-row-info">
-                <div class="crm-row-name"><span class="dot-g"></span>${m.label}</div>
+                <div class="crm-row-name"><span class="dot-g"></span>${m.label}${sessionBadge}</div>
                 <div class="crm-row-acct">${l.session_name || l.crm_id || ''}</div>
                 <div class="crm-row-date">${date}</div>
+                ${lastActive}
             </div>
             <button class="btn-row-danger" onclick="disconnectCRM('${l.crm_type}','${l.crm_id}')">Disconnect</button>`;
         rows.appendChild(row);
     });
-    // Always show connect buttons so users can add multiple accounts
+    // Always show connect buttons — users can connect multiple accounts per CRM
     show('crm-connect-btns');
     ['hubspot','ghl'].forEach(crm => {
         const m = CRM[crm];
         const btn = document.createElement('button');
-        btn.className = 'btn-crm'; btn.id = 'btn-connect-' + crm + '-' + Date.now();
-        btn.innerHTML = `<div class="crm-btn-logo ${m.cls}">${m.icon}</div><span>Connect ${m.label}</span><span class="arrow">›</span>`;
+        btn.className = 'btn-crm'; btn.id = 'btn-connect-' + crm;
+        const count = links.filter(l => l.crm_type === crm).length;
+        const label = count > 0 ? `Connect another ${m.label} account` : `Connect ${m.label}`;
+        btn.innerHTML = `<div class="crm-btn-logo ${m.cls}">${m.icon}</div><span>${label}</span><span class="arrow">›</span>`;
         btn.onclick = () => startCRMConnect(crm);
         btnArea.appendChild(btn);
     });
@@ -1054,7 +1430,7 @@ async function startCRMConnect(crm) {
     try {
         const r = await fetch(API + ep, { method: 'POST', headers: auth() });
         if (r.status === 401) { signOut(); return; }
-        if (!r.ok) { const d = await r.json().catch(()=>({})); const msg = typeof d.detail === 'string' ? d.detail : 'Could not start ' + m.label + ' authorization'; throw new Error(msg); }
+        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.detail || 'Could not start ' + m.label + ' authorization'); }
         const data = await r.json();
         if (!data.auth_url && !data.url) throw new Error('No authorization URL returned from server');
         window.open(data.auth_url || data.url, '_blank');
@@ -1088,7 +1464,7 @@ async function startCRMConnect(crm) {
 }
 function showCRMSuccess(label) {
     const overlay = document.getElementById('crm-poll-overlay');
-    overlay.innerHTML = `<div class="poll-success-icon">✓</div><div class="poll-title" style="color:var(--green)">${label} connected!</div><div class="poll-sub">Your CRM is linked to your account.</div>`;
+    overlay.innerHTML = `<div class="poll-success-icon">✓</div><div class="poll-title" style="color:var(--color-green)">${label} connected!</div><div class="poll-sub">Your CRM is linked to your account.</div>`;
     toast(label + ' connected!', 'ok');
     setTimeout(() => {
         hidePollOverlay();
@@ -1118,29 +1494,30 @@ async function disconnectCRM(type, id) {
 function renderPhones(channels) {
     hide('phone-skel'); show('phone-content');
     const phones = channels.filter(c => c.channel_type === 'sms' || c.channel_type === 'whatsapp');
-    // Deduplicate by channel_id (same number may appear for multiple CRMs)
-    const seen = new Set();
-    const uniquePhones = phones.filter(p => { if (seen.has(p.channel_id)) return false; seen.add(p.channel_id); return true; });
     const rowsEl = document.getElementById('phone-rows');
     const addArea = document.getElementById('phone-add-area');
     rowsEl.innerHTML = ''; addArea.innerHTML = '';
-    uniquePhones.forEach(p => {
+    phones.forEach(p => {
         const num  = formatPhone(p.channel_id || '');
+        const crm  = routeLabel(p.linked_crm || '');
         const date = p.registered_at ? 'Added ' + new Date(p.registered_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
         const row  = document.createElement('div');
         row.className = 'phone-row';
         row.innerHTML = `
-            <div class="phone-row-icon">💬</div>
+            <div class="phone-row-icon">${p.channel_type === 'sms' ? '💬' : '📱'}</div>
             <div class="phone-row-info">
                 <div class="phone-row-num"><span class="dot-g"></span>${num}</div>
-                <div class="phone-row-route">Connected to all CRM accounts</div>
+                <div class="phone-row-route">${crm}</div>
                 <div class="phone-row-date">${date}</div>
             </div>
             <button class="btn-row-danger" onclick="disconnectPhone('${p.channel_type}','${encodeURIComponent(p.channel_id)}')">Remove</button>`;
         rowsEl.appendChild(row);
     });
-    // Only show add form if no phone number is connected (limit to 1)
-    if (uniquePhones.length === 0) { addArea.appendChild(buildPhoneForm()); }
+    if (phones.length > 0) {
+        addArea.innerHTML = `<button class="btn-add-dashed" onclick="showAddPhoneForm(this)">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Add another number</button>`;
+    } else { addArea.appendChild(buildPhoneForm()); }
 }
 function showAddPhoneForm(btn) { btn.replaceWith(buildPhoneForm()); }
 function buildPhoneForm() {
@@ -1155,7 +1532,7 @@ function buildPhoneForm() {
             <div id="pf-err" class="inline-err"></div>
         </div>
         <div id="pf-step-otp" class="hidden" style="margin-top:8px;">
-            <p style="font-size:13px;color:var(--t2);margin-bottom:8px;letter-spacing:-0.01em;">Enter the 6-digit code sent to your number:</p>
+            <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:8px;">Enter the 6-digit code sent to your number:</p>
             <div class="input-row">
                 <input id="pf-otp" class="field-input" type="text" inputmode="numeric" maxlength="6" placeholder="000000">
                 <button class="btn-sm-blue" onclick="verifyPhoneCode()">Verify</button>
@@ -1183,7 +1560,7 @@ async function verifyPhoneCode() {
     try {
         const r = await fetch(API + '/channels/sms/verify-code', { method:'POST', headers:auth(), body:JSON.stringify({phone_number:_phoneNum,code}) });
         if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.detail || 'Invalid code'); }
-        toast('Phone number linked! 🎉', 'ok');
+        toast('Phone number linked!', 'ok');
         loadUser();
     } catch(e) { showInlineErr('pf-otp-err', e.message); }
 }
@@ -1211,10 +1588,7 @@ async function selectPlan(tier, btn) {
         if (!r.ok) throw new Error(d.detail || 'Could not create checkout session');
         const url = d.url || d.checkout_url;
         if (!url) throw new Error('No checkout URL returned');
-        window.open(url, '_blank');
-        closePlanModal();
-        btn.disabled = false;
-        btn.textContent = tier === 'pro' ? 'Get Pro' : tier === 'starter' ? 'Get Starter' : 'Get Business';
+        location.href = url;
     } catch(e) {
         toast(e.message, 'bad');
         btn.disabled = false;
@@ -1236,9 +1610,109 @@ async function openPortal() {
     }
 }
 
+// ── Usage & Activity ──────────────────────────────────────────
+async function loadUsage() {
+    hide('activity-err'); show('activity-skel'); hide('activity-content');
+    try {
+        const r = await fetch(API + '/users/me/usage', { headers: auth() });
+        if (r.status === 401) return;
+        if (!r.ok) throw new Error('Server error ' + r.status);
+        renderUsage(await r.json());
+    } catch(e) {
+        hide('activity-skel'); show('activity-err');
+    }
+}
+function renderUsage(d) {
+    hide('activity-skel'); show('activity-content');
+    const el = document.getElementById('activity-content');
+    const months = Array.isArray(d.monthly_usage) ? d.monthly_usage : (Array.isArray(d) ? d : []);
+    // Take last 3 months
+    const recent = months.slice(-3);
+    if (recent.length === 0) {
+        el.innerHTML = '<div style="text-align:center;padding:16px 0;font-size:14px;color:var(--color-text-secondary);">No activity data yet. Start using FlightSuite to see your stats here.</div>';
+        return;
+    }
+    const maxQ = Math.max(...recent.map(m => m.queries || 0), 1);
+    const totalQueries = recent.reduce((s, m) => s + (m.queries || 0), 0);
+    const totalSMS = recent.reduce((s, m) => s + (m.sms_sent || 0) + (m.whatsapp_sent || 0), 0);
+    const hoursSaved = Math.round((totalQueries * 3) / 60 * 10) / 10;
+
+    let chartHTML = '<div class="activity-chart">';
+    recent.forEach(m => {
+        const q = m.queries || 0;
+        const pct = Math.max((q / maxQ) * 100, 3);
+        const label = formatMonth(m.month || m.period || '');
+        chartHTML += `<div class="activity-bar-wrap">
+            <div class="activity-bar-value">${q}</div>
+            <div class="activity-bar-track"><div class="activity-bar" style="height:${pct}%"></div></div>
+            <div class="activity-bar-label">${label}</div>
+        </div>`;
+    });
+    chartHTML += '</div>';
+
+    chartHTML += `<div class="activity-stats">
+        <div class="activity-stat">
+            <div class="activity-stat-value">${totalSMS}</div>
+            <div class="activity-stat-label">SMS / WhatsApp messages sent</div>
+        </div>
+        <div class="activity-stat">
+            <div class="activity-stat-value">~${hoursSaved}h</div>
+            <div class="activity-stat-label">Estimated time saved</div>
+        </div>
+    </div>`;
+    el.innerHTML = chartHTML;
+}
+function formatMonth(str) {
+    if (!str) return '';
+    try {
+        // Handle "2026-01" or "2026-01-01" formats
+        const parts = str.split('-');
+        const date = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, 1);
+        return date.toLocaleDateString('en-US', { month: 'short' });
+    } catch(e) { return str; }
+}
+
+// ── Sessions ─────────────────────────────────────────────────
+let _activeSessions = {};
+async function loadSessions() {
+    try {
+        const r = await fetch(API + '/users/me/sessions', { headers: auth() });
+        if (r.status === 401) return;
+        if (!r.ok) return; // graceful — endpoint might not exist yet
+        const d = await r.json();
+        const sessions = Array.isArray(d) ? d : (d.sessions || []);
+        _activeSessions = {};
+        sessions.forEach(s => {
+            const type = s.crm_type || s.type || '';
+            if (type) {
+                _activeSessions[type] = {
+                    active: s.active !== false && s.status !== 'expired',
+                    last_active: s.last_active || s.last_activity || s.updated_at || null
+                };
+            }
+        });
+        // Re-render CRMs if we already have data, to add session badges
+        if (_userState.crm_links.length > 0) renderCRMs(_userState.crm_links);
+    } catch(e) {
+        // Silently ignore — sessions endpoint is optional
+    }
+}
+function timeAgo(dateStr) {
+    if (!dateStr) return '';
+    try {
+        const d = new Date(dateStr);
+        const now = new Date();
+        const diff = Math.floor((now - d) / 1000);
+        if (diff < 60) return 'Active just now';
+        if (diff < 3600) return 'Active ' + Math.floor(diff/60) + 'm ago';
+        if (diff < 86400) return 'Active ' + Math.floor(diff/3600) + 'h ago';
+        return 'Last active ' + d.toLocaleDateString('en-US', { month:'short', day:'numeric' });
+    } catch(e) { return ''; }
+}
+
 // ── Helpers ───────────────────────────────────────────────────────
 function formatPhone(p) { const d=(p||'').replace(/\D/g,''); return d.length===11&&d[0]==='1'?'+1 ('+d.slice(1,4)+') '+d.slice(4,7)+'-'+d.slice(7):p; }
-function routeLabel(l)  { if(!l)return'No CRM linked'; const s=l.toLowerCase(); if(s.includes('hubspot'))return'Routing to HubSpot'; if(s.includes('ghl')||s.includes('highlevel'))return'Routing to GoHighLevel'; return'Linked to '+l; }
+function routeLabel(l)  { if(!l)return'No CRM linked'; const s=l.toLowerCase(); if(s.includes('hubspot'))return'Routing to HubSpot'; if(s.includes('ghl')||s.includes('highlevel')||s.includes('leadconnector'))return'Routing to LeadConnector'; return'Linked to '+l; }
 function show(id){ document.getElementById(id)?.classList.remove('hidden'); }
 function hide(id){ document.getElementById(id)?.classList.add('hidden'); }
 function showErr(id,msg){ const e=document.getElementById(id); if(e){e.textContent=msg;e.style.display='block';} }
@@ -1247,8 +1721,7 @@ function showInlineErr(id,msg){ const e=document.getElementById(id); if(e){e.tex
 function clearInlineErr(id)   { const e=document.getElementById(id); if(e)e.style.display='none'; }
 function setLoading(id,txt)   { const b=document.getElementById(id); if(b){b.disabled=true;b.textContent=txt;} }
 function resetLoading(id,txt) { const b=document.getElementById(id); if(b){b.disabled=false;b.textContent=txt;} }
-function errMsg(d, fallback) { return typeof d.detail === 'string' ? d.detail : fallback; }
-function toast(msg,type) { const el=document.getElementById('toast'); el.textContent=typeof msg==='string'?msg:String(msg); el.className='show '+type; setTimeout(()=>{el.className=type;},3500); }
+function toast(msg,type) { const el=document.getElementById('toast'); el.textContent=msg; el.className='show '+type; setTimeout(()=>{el.className=type;},3500); }
 document.addEventListener('keydown', e => {
     if (e.key !== 'Enter') return;
     const id = document.activeElement?.id;

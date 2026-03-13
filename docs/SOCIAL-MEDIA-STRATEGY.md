@@ -1,5 +1,5 @@
 # FlightSuite 30-Day Social Media Plan
-## LinkedIn + Facebook Content Strategy
+## Dynamic LinkedIn + Facebook Content Strategy
 
 **Platforms**:
 - LinkedIn: https://www.linkedin.com/company/flight-suite-ai
@@ -7,83 +7,190 @@
 
 **Goal**: Build a following of sales professionals who value our content enough to follow, engage, and share.
 
-**Execution Model**: 2 days at a time when you run `/social-daily`
+**Execution**: Run `/social-daily` for 2 days of content at a time. The skill dynamically checks the blog and LinkedIn to ensure fresh, non-repetitive content.
 
 ---
 
-## Strategy Overview
+## Dynamic Content System
 
-### Content Pillars
+Unlike a rigid content calendar, this system **adapts in real-time**:
 
-| Pillar | % of Content | Purpose |
-|--------|--------------|---------|
-| **Relatable Pain Points** | 25% | Build connection through shared frustrations |
-| **Actionable Tips** | 30% | Provide immediate value |
-| **Blog/Content Promos** | 20% | Drive traffic to SEO content |
-| **Statistics & Data** | 15% | Build authority |
-| **Behind-the-Scenes/Story** | 10% | Humanize the brand |
+1. **Checks FlightSuite blog** for new content to promote
+2. **Checks LinkedIn** for recent post themes to avoid repetition
+3. **Selects from content templates** based on what's needed
+4. **Balances content mix** to hit target percentages
 
-### Posting Cadence
-- **Days 1-30**: One post per day (some days have optional bonus posts)
-- **Same post** goes to both LinkedIn and Facebook
-- **Best times**: Tuesday-Thursday, 8-10am or 5-7pm local time
+---
 
-### Engagement Requirements
-- Respond to ALL comments within 24 hours
-- Like/reply to 10-20 posts in sales/CRM space daily
-- Follow relevant accounts in the space
+## Content Pillars & Targets
+
+| Pillar | Target % | When to Use |
+|--------|----------|-------------|
+| **Blog/Content Promos** | 30% | When new SEO content exists, or to rotate evergreen |
+| **Relatable Pain Points** | 25% | When LinkedIn hasn't posted relatable content recently |
+| **Actionable Tips** | 25% | To provide immediate value |
+| **Statistics & Data** | 10% | For authority building |
+| **Engagement (Polls/Questions)** | 10% | To boost interaction |
 
 ---
 
 ## SEO Integration
 
-This social media plan is designed to amplify the SEO content being created. Key integration points:
+This social plan amplifies SEO content. Priority for blog promotion:
 
-| SEO Content | Social Media Tie-In |
-|-------------|---------------------|
-| Blog: Why Sales Reps Hate Data Entry | Day 3 & 4 posts |
-| Blog: Eliminate Manual CRM Data Entry | Day 9 & 10 posts |
-| Blog: AI CRM Automation Guide | Day 15 & 16 posts |
-| Blog: HubSpot vs Salesforce | Day 17 & 18 posts |
-| Blog: Best CRM for Your Business | Day 23 & 24 posts |
-| Comparison pages (SEO Phase 2) | Week 4-5 posts |
+### Tier 1: Promote Within 48 Hours of Publishing
+- New comparison pages (`/compare/`)
+- New alternatives pages (`/alternatives/`)
+- New industry guides (`/best-crm/`)
 
----
+### Tier 2: Promote Weekly
+- Main blog articles (rotate through)
 
-## Week 1: CRM Pain Points (Days 1-7)
-
-### Day 1: The Opening Hook
-**Theme**: Relatable pain point
-**Content Type**: Text post with statistic
-
-**Post Copy**:
-```
-Sales reps spend 5-10 hours per week on CRM data entry.
-
-That's 200-400 hours per year.
-
-Not on selling. Not on building relationships. Not on closing deals.
-
-On clicking through dashboards to log information they already know.
-
-If this feels familiar, you're not alone. This is the reality for most sales teams.
-
-The question isn't IF this is a problem.
-
-The question is: what are you doing about it?
-
-#SalesProductivity #CRM #SalesLife
-```
-
-**Thumbnail Search**: Search for "frustrated office worker at computer" or "sales rep frustrated" stock photo
-
-**Link**: None (pure engagement post)
+### Tier 3: Evergreen Rotation
+- Older content that's still relevant (promote monthly)
 
 ---
 
-### Day 2: The "I'll Update It Later" Problem
-**Theme**: Relatable behavior
-**Content Type**: Story-style post
+## Content Template Library
+
+The `/social-daily` skill pulls from these templates based on what's needed.
+
+---
+
+### TEMPLATE TYPE: Blog Promotion
+
+#### Template: New Comparison Page
+
+**Use when**: A new `/compare/` page was published
+
+**Post Structure**:
+```
+[CRM A] vs [CRM B].
+
+The debate that never ends.
+
+Here's my take after analyzing both:
+
+[CRM A]:
++ [Pro 1]
++ [Pro 2]
+- [Con 1]
+- [Con 2]
+
+[CRM B]:
++ [Pro 1]
++ [Pro 2]
+- [Con 1]
+- [Con 2]
+
+The real answer?
+
+It depends on your [key factor].
+
+We wrote a detailed comparison:
+[Link]
+
+What are you using?
+
+#CRM #[CRMA] #[CRMB]
+```
+
+**Thumbnail Search**: "[CRM A] vs [CRM B] comparison" or "versus comparison"
+
+---
+
+#### Template: New Alternatives Page
+
+**Use when**: A new `/alternatives/` page was published
+
+**Post Structure**:
+```
+Looking for [CRM] alternatives?
+
+You're not alone. [Brief reason why people look for alternatives]
+
+We researched the top 10 options:
+
+1. [Alt 1] - Best for [use case]
+2. [Alt 2] - Best for [use case]
+3. [Alt 3] - Best for [use case]
+...
+
+Full breakdown with pricing, pros/cons:
+[Link]
+
+Which alternatives have you tried?
+
+#CRM #[OriginalCRM] #SalesTech
+```
+
+**Thumbnail Search**: "[CRM] alternatives software" or "software options comparison"
+
+---
+
+#### Template: New Industry Guide
+
+**Use when**: A new `/best-crm/[industry].html` page was published
+
+**Post Structure**:
+```
+CRM tips for [industry]:
+
+[Industry] is unique. Your CRM should reflect that.
+
+Key fields to track:
+- [Industry-specific field 1]
+- [Industry-specific field 2]
+- [Industry-specific field 3]
+
+Automation must-haves:
+- [Automation 1]
+- [Automation 2]
+- [Automation 3]
+
+We created a guide for [industry] professionals:
+[Link]
+
+What CRM are [industry] pros using? Drop it below.
+
+#[Industry] #CRM #[IndustryHashtag]
+```
+
+**Thumbnail Search**: "[industry] professional technology" or "[industry] business CRM"
+
+---
+
+#### Template: Evergreen Blog Promo
+
+**Use when**: Rotating through older blog content
+
+**Post Structure**:
+```
+[Hook question or statement related to blog topic]
+
+Here's what we've learned:
+
+[Key insight 1]
+[Key insight 2]
+[Key insight 3]
+
+The full breakdown:
+[Link]
+
+What's been your experience with [topic]?
+
+#CRM #SalesProductivity #[TopicHashtag]
+```
+
+**Thumbnail Search**: "[blog topic] business" or "[blog topic] sales"
+
+---
+
+### TEMPLATE TYPE: Relatable Pain Points
+
+#### Template: "I'll Do It Later"
+
+**Use when**: Haven't posted relatable content in 5+ days
 
 **Post Copy**:
 ```
@@ -103,111 +210,82 @@ We've all been there.
 
 The problem isn't discipline. It's friction.
 
-When updating your CRM takes 3 clicks and 2 minutes per activity, of course you'll "do it later."
-
-The solution isn't "try harder."
-
-The solution is less friction.
-
 What's your CRM update routine?
 
 #Sales #CRMStruggles #SalesProductivity
 ```
 
-**Thumbnail Search**: Search for "to-do list overwhelmed" or "sticky notes on desk" stock photo
-
-**Link**: None (engagement post)
+**Thumbnail Search**: "to-do list overwhelmed" or "sticky notes on desk"
 
 ---
 
-### Day 3: Blog Promo - Why Sales Reps Hate Data Entry (Part 1)
-**Theme**: Blog promotion with insight
-**Content Type**: Value post with link
+#### Template: The Three Types
+
+**Use when**: Engagement is needed, or content is getting too serious
 
 **Post Copy**:
 ```
-We surveyed our users and asked: "What do you hate most about your CRM?"
+The 3 types of sales reps when it comes to CRM:
 
-The #1 answer? Data entry.
+TYPE 1: The Perfectionist
+- Updates CRM after every call
+- Notes are detailed and thorough
+- Also: exhausted and resentful
 
-Not the CRM itself. Not the features. Not the price.
+TYPE 2: The Optimist
+- "I'll batch update on Friday"
+- Friday comes: "Maybe Monday"
+- Pipeline accuracy: questionable
 
-Just... putting data IN.
+TYPE 3: The Rebel
+- "The CRM is for managers, not me"
+- Updates only when asked
+- Somehow still closes deals
 
-Here's why:
+Which one are you? (No judgment - we've all been all three)
 
-1. It's repetitive
-2. It interrupts your flow
-3. It feels like busywork
-4. It takes you away from selling
-
-The irony? CRMs are supposed to SAVE time.
-
-Instead, they've become time sinks.
-
-But it doesn't have to be this way.
-
-We wrote about why this happens and what to do about it:
-[Link]
-
-#CRM #SalesProductivity #DataEntry
+#SalesLife #CRM #SalesHumor
 ```
 
-**Thumbnail Search**: Search for "person typing frustrated" or "CRM dashboard" stock photo
-
-**Link**: https://flightsuite.ai/blog/why-sales-reps-hate-data-entry.html
+**Thumbnail Search**: "three people different personalities business"
 
 ---
 
-### Day 4: Blog Promo - Why Sales Reps Hate Data Entry (Part 2)
-**Theme**: Follow-up with poll
-**Content Type**: Poll + discussion
+#### Template: The Irony
 
-**Post Copy (LinkedIn)**:
+**Use when**: LinkedIn hasn't had a "hot take" recently
+
+**Post Copy**:
 ```
-Quick question for sales professionals:
+The irony of CRM:
 
-How much time do you spend on CRM data entry per week?
+Built to save time.
+Ends up consuming it.
 
-(Be honest - we're all friends here)
+Built to improve relationships.
+Ends up being about data entry.
 
-[POLL OPTIONS]:
-- Less than 2 hours
-- 2-5 hours
-- 5-10 hours
-- More than 10 hours
+Built to help you sell.
+Ends up being a chore you avoid.
 
-I'll share our findings from 500+ users in the comments.
+What if your CRM just... understood you?
 
-#SalesLife #CRM #Poll
-```
+"Called Sarah - she's buying next month."
 
-**Post Copy (Facebook - no poll, rephrase)**:
-```
-Quick question for sales professionals:
+And updated itself.
 
-How much time do you spend on CRM data entry per week?
+That's the future we're building.
 
-Drop your answer in the comments:
-A) Less than 2 hours
-B) 2-5 hours
-C) 5-10 hours
-D) More than 10 hours
-
-Be honest - we're all friends here. I'll share what we've found from surveying 500+ users.
-
-#SalesLife #CRM
+#CRM #SalesProductivity #SalesTech
 ```
 
-**Thumbnail Search**: Search for "clock time management" or "hourglass" stock photo
-
-**Link**: None (engagement post)
+**Thumbnail Search**: "irony contradiction" or "frustrated then happy"
 
 ---
 
-### Day 5: The Hidden Cost
-**Theme**: Data/statistics
-**Content Type**: Value post with math
+#### Template: The Hidden Cost
+
+**Use when**: Need data-driven content, haven't posted statistics recently
 
 **Post Copy**:
 ```
@@ -229,106 +307,21 @@ It doesn't include:
 - Missed opportunities from incomplete data
 - Inaccurate forecasts from outdated info
 - Rep frustration and turnover
-- Management time chasing down updates
-
-Real cost? Probably 2-3x higher.
 
 What's your team's CRM time costing you?
 
 #SalesOps #CRM #SalesProductivity
 ```
 
-**Thumbnail Search**: Search for "calculator money" or "business cost analysis" stock photo
-
-**Link**: None (value post)
+**Thumbnail Search**: "calculator money business cost"
 
 ---
 
-### Day 6: The 3 Types of Reps
-**Theme**: Relatable humor
-**Content Type**: Engaging list post
+### TEMPLATE TYPE: Actionable Tips
 
-**Post Copy**:
-```
-The 3 types of sales reps when it comes to CRM:
+#### Template: Quick Win - Voice Memos
 
-TYPE 1: The Perfectionist
-- Updates CRM after every call
-- Notes are detailed and thorough
-- Also: exhausted and resentful
-- Secretly wishes they could just sell
-
-TYPE 2: The Optimist
-- "I'll batch update on Friday"
-- Friday comes: "Maybe Monday"
-- Pipeline accuracy: questionable
-- Has 47 mental notes floating around
-
-TYPE 3: The Rebel
-- "The CRM is for managers, not me"
-- Updates only when asked
-- Somehow still closes deals
-- Management has no idea how
-
-Which one are you? (No judgment - we've all been all three)
-
-#SalesLife #CRM #SalesHumor
-```
-
-**Thumbnail Search**: Search for "three people different personalities" or "three businesspeople" stock photo
-
-**Link**: None (engagement post)
-
----
-
-### Day 7: The Real Problem
-**Theme**: Insight/perspective shift
-**Content Type**: Thought leadership
-
-**Post Copy**:
-```
-Hot take: Your CRM isn't the problem.
-
-Your data entry process is.
-
-Think about it:
-
-Your CRM does exactly what it's supposed to:
-- Stores contacts
-- Tracks deals
-- Manages pipeline
-- Generates reports
-
-The CRM works fine.
-
-What doesn't work is the process of getting data IN.
-
-That's a user interface problem.
-That's a workflow problem.
-That's an input method problem.
-
-Stop blaming the CRM.
-
-Start fixing the input.
-
-Voice, natural language, automation - these are the solutions.
-
-The CRM itself is just the database.
-
-#CRM #SalesOps #SalesTech
-```
-
-**Thumbnail Search**: Search for "lightbulb idea" or "perspective change" stock photo
-
-**Link**: None (thought leadership)
-
----
-
-## Week 2: Productivity Tips & Blog Promos (Days 8-14)
-
-### Day 8: Quick Win - Batching
-**Theme**: Actionable tip
-**Content Type**: How-to
+**Use when**: Need actionable content that provides immediate value
 
 **Post Copy**:
 ```
@@ -350,412 +343,18 @@ Why this works:
 - Batching = less friction
 - Voice is faster than typing
 
-Takes 2 minutes to set up. Saves 30 minutes daily.
-
 Try it today.
 
 #SalesTips #Productivity #CRM
 ```
 
-**Thumbnail Search**: Search for "voice memo phone" or "speaking into phone" stock photo
-
-**Link**: None (value post)
+**Thumbnail Search**: "voice memo phone" or "speaking into phone"
 
 ---
 
-### Day 9: Blog Promo - Eliminate Manual CRM Data Entry (Part 1)
-**Theme**: Blog promotion
-**Content Type**: Problem/solution post
+#### Template: The 80/20 of CRM
 
-**Post Copy**:
-```
-Manual CRM data entry is a solved problem.
-
-You just might not know it yet.
-
-Here's what's possible in 2026:
-
-- Update your CRM with a text message
-- Log calls with voice commands
-- Auto-sync emails and calendar
-- Natural language to database entries
-
-The technology exists. Most teams just haven't adopted it.
-
-We wrote a guide on how to eliminate manual CRM data entry:
-
-What's working for your team?
-
-[Link]
-
-#CRM #SalesAutomation #Productivity
-```
-
-**Thumbnail Search**: Search for "automation technology" or "AI assistant" stock photo
-
-**Link**: https://flightsuite.ai/blog/eliminate-manual-crm-data-entry.html
-
----
-
-### Day 10: Blog Promo - Eliminate Manual CRM Data Entry (Part 2)
-**Theme**: Follow-up with engagement
-**Content Type**: Question post
-
-**Post Copy**:
-```
-Question for CRM users:
-
-What's the ONE thing that would make you actually want to update your CRM?
-
-I'll start:
-
-"If I could just talk to it like a person and have it understand what I meant."
-
-Not clicking through dropdowns.
-Not searching for contacts.
-Not filling out 12 fields.
-
-Just: "Called Sarah, she's buying next month, following up Tuesday."
-
-And done.
-
-What's yours?
-
-#CRM #SalesLife #ProductFeedback
-```
-
-**Thumbnail Search**: Search for "conversation speech bubble" or "communication" stock photo
-
-**Link**: None (engagement)
-
----
-
-### Day 11: The Automation Ladder
-**Theme**: Educational content
-**Content Type**: Framework post
-
-**Post Copy**:
-```
-The 4 levels of CRM automation:
-
-LEVEL 0: Pure Manual
-- Click, type, click, save
-- 100% human effort
-- Most teams are here
-
-LEVEL 1: Basic Integrations
-- Email sync
-- Calendar sync
-- Some automatic logging
-- Still lots of manual work
-
-LEVEL 2: Workflow Automation
-- If/then rules
-- Auto-assign leads
-- Triggered emails
-- Reduces repetitive tasks
-
-LEVEL 3: Natural Language
-- "Called John, demo Thursday at 2pm"
-- CRM updates automatically
-- Minimal human input
-- Maximum data capture
-
-Where is your team on this ladder?
-
-Most are stuck at Level 0 or 1.
-
-Level 3 is where the magic happens.
-
-#CRMAutomation #SalesTech #Productivity
-```
-
-**Thumbnail Search**: Search for "ladder steps progression" or "levels stages" stock photo
-
-**Link**: None (educational)
-
----
-
-### Day 12: Time Tracking Challenge
-**Theme**: Interactive challenge
-**Content Type**: Engagement post
-
-**Post Copy**:
-```
-Challenge: Track your CRM time this week.
-
-For the next 5 days, write down:
-
-1. How many times you opened your CRM
-2. How many minutes you spent per session
-3. What you were doing (logging calls, updating deals, etc.)
-
-At the end of the week, add it up.
-
-I'll bet it's more than you think.
-
-When I did this, my totals were:
-
-- Opens: 47 times
-- Total time: 4 hours 12 minutes
-- Most time on: logging call notes
-
-Knowing the problem is step one to fixing it.
-
-Who's taking the challenge?
-
-#SalesChallenge #CRM #Productivity
-```
-
-**Thumbnail Search**: Search for "stopwatch timer" or "time tracking" stock photo
-
-**Link**: None (engagement)
-
----
-
-### Day 13: The Pipeline Accuracy Problem
-**Theme**: Business impact
-**Content Type**: Problem awareness
-
-**Post Copy**:
-```
-Why is your sales forecast always wrong?
-
-The answer is usually simple:
-
-Bad CRM data.
-
-Here's the chain reaction:
-
-1. Rep is too busy to update CRM
-2. Deal status gets stale
-3. Manager sees outdated pipeline
-4. Forecast is based on old data
-5. Forecast misses badly
-6. Leadership loses trust in sales
-
-The fix isn't better forecasting models.
-
-The fix is better data.
-
-And better data comes from easier data entry.
-
-When updating the CRM takes 10 seconds, reps do it.
-
-When it takes 5 minutes, they don't.
-
-It's that simple.
-
-#SalesForecasting #CRM #SalesOps
-```
-
-**Thumbnail Search**: Search for "pipeline chart" or "sales forecast graph" stock photo
-
-**Link**: None (business value)
-
----
-
-### Day 14: Sunday Reflection
-**Theme**: Motivational/reflective
-**Content Type**: Light weekend post
-
-**Post Copy**:
-```
-A thought for the weekend:
-
-The best salespeople aren't the ones who work the most hours.
-
-They're the ones who spend the most time actually selling.
-
-That means less time on:
-- CRM data entry
-- Internal meetings
-- Email admin
-- Report building
-
-And more time on:
-- Prospecting
-- Discovery calls
-- Building relationships
-- Closing deals
-
-This week, what can you eliminate or automate?
-
-#SalesLife #Productivity #WorkSmarter
-```
-
-**Thumbnail Search**: Search for "reflection thinking" or "weekend work life balance" stock photo
-
-**Link**: None (light post)
-
----
-
-## Week 3: Deep Value & Blog Promos (Days 15-21)
-
-### Day 15: Blog Promo - AI CRM Automation Guide (Part 1)
-**Theme**: Educational + blog promo
-**Content Type**: Guide promotion
-
-**Post Copy**:
-```
-AI is changing CRM. Here's how:
-
-2020: "I'll update the CRM when I have time"
-2023: "AI can transcribe my calls for notes"
-2026: "I just tell my CRM what happened in plain English"
-
-The shift from manual to AI-assisted CRM is happening now.
-
-Here's what AI can do for your CRM today:
-
-- Transcribe and summarize calls
-- Extract action items automatically
-- Update fields from natural language
-- Predict deal outcomes
-- Draft follow-up emails
-
-Most teams haven't adopted this yet.
-
-That's an opportunity.
-
-We wrote a guide on AI-powered CRM automation:
-[Link]
-
-#AI #CRM #SalesAutomation
-```
-
-**Thumbnail Search**: Search for "AI artificial intelligence" or "robot assistant" stock photo
-
-**Link**: https://flightsuite.ai/blog/ai-crm-automation-guide.html
-
----
-
-### Day 16: Blog Promo - AI CRM Automation Guide (Part 2)
-**Theme**: Counter-objections
-**Content Type**: Myth-busting
-
-**Post Copy**:
-```
-"AI will replace salespeople."
-
-No. AI will replace salespeople who refuse to use AI.
-
-Here's the reality:
-
-AI won't:
-- Build genuine relationships
-- Navigate complex politics
-- Handle emotional objections
-- Create trust with buyers
-
-AI will:
-- Handle data entry
-- Summarize meetings
-- Draft initial emails
-- Organize your pipeline
-
-The best salespeople will use AI for the busywork.
-
-So they can focus on the human work.
-
-That's not replacement. That's leverage.
-
-#AI #Sales #SalesAutomation
-```
-
-**Thumbnail Search**: Search for "human and robot handshake" or "AI collaboration" stock photo
-
-**Link**: https://flightsuite.ai/blog/ai-crm-automation-guide.html
-
----
-
-### Day 17: Blog Promo - HubSpot vs Salesforce (Part 1)
-**Theme**: Comparison content
-**Content Type**: Guide/debate
-
-**Post Copy**:
-```
-HubSpot vs Salesforce.
-
-The debate that never ends.
-
-Here's my take after using both:
-
-HUBSPOT:
-+ Easier to learn
-+ Great for small-mid teams
-+ Strong marketing integration
-- Can get expensive at scale
-- Less customizable
-
-SALESFORCE:
-+ Infinitely customizable
-+ Enterprise-grade features
-+ Massive ecosystem
-- Steep learning curve
-- Requires admin expertise
-
-The real answer?
-
-It depends on your team size, budget, and complexity needs.
-
-We wrote a detailed comparison for small teams:
-[Link]
-
-What are you using?
-
-#HubSpot #Salesforce #CRM
-```
-
-**Thumbnail Search**: Search for "comparison versus" or "HubSpot Salesforce logos" stock photo
-
-**Link**: https://flightsuite.ai/blog/hubspot-vs-salesforce-small-teams.html
-
----
-
-### Day 18: Blog Promo - HubSpot vs Salesforce (Part 2)
-**Theme**: Alternative perspective
-**Content Type**: Hot take
-
-**Post Copy**:
-```
-Unpopular opinion:
-
-The HubSpot vs Salesforce debate misses the point.
-
-Here's what actually matters:
-
-1. Will your team actually USE it?
-2. Can you get data IN easily?
-3. Can you get insights OUT?
-
-The "best" CRM is useless if:
-- It's too complex to use daily
-- Data entry is a chore
-- Your team avoids it
-
-I've seen teams succeed with "inferior" CRMs.
-
-And fail with "best-in-class" ones.
-
-The difference? Adoption.
-
-Pick the CRM your team will actually use.
-
-Then optimize the data entry process.
-
-#CRM #HubSpot #Salesforce
-```
-
-**Thumbnail Search**: Search for "making a choice decision" or "crossroads" stock photo
-
-**Link**: https://flightsuite.ai/blog/hubspot-vs-salesforce-small-teams.html
-
----
-
-### Day 19: The 80/20 of CRM
-**Theme**: Framework
-**Content Type**: Actionable insight
+**Use when**: Haven't posted framework content recently
 
 **Post Copy**:
 ```
@@ -780,175 +379,101 @@ The other 80%:
 
 Nice to have. Not essential.
 
-If you nail the 20%, you'll outperform most teams.
-
 Start simple. Add complexity only when needed.
 
 #CRM #SalesOps #Simplicity
 ```
 
-**Thumbnail Search**: Search for "80 20 rule Pareto" or "focus priorities" stock photo
-
-**Link**: None (value)
+**Thumbnail Search**: "80 20 rule Pareto" or "focus priorities"
 
 ---
 
-### Day 20: User Story Format
-**Theme**: Social proof (anonymized)
-**Content Type**: Story
+#### Template: The Automation Ladder
+
+**Use when**: Educational content needed, haven't explained automation levels
 
 **Post Copy**:
 ```
-A sales rep shared this with me:
+The 4 levels of CRM automation:
 
-"I used to spend 45 minutes at the end of each day updating my CRM.
+LEVEL 0: Pure Manual
+- Click, type, click, save
+- 100% human effort
 
-I'd try to remember what was said in 8-10 calls.
+LEVEL 1: Basic Integrations
+- Email sync, calendar sync
+- Still lots of manual work
 
-Half the time, I'd miss details.
+LEVEL 2: Workflow Automation
+- If/then rules
+- Auto-assign leads
+- Reduces repetitive tasks
 
-The other half, I'd just skip updates because I was tired.
+LEVEL 3: Natural Language
+- "Called John, demo Thursday at 2pm"
+- CRM updates automatically
+- Zero clicking
 
-Now? I update as I go using voice commands.
+Most teams are stuck at Level 0 or 1.
 
-30 seconds after each call.
+Where are you?
 
-Details captured while fresh.
-
-End of day? I'm done. CRM is current.
-
-That 45 minutes? I leave work earlier or make more calls."
-
-The game-changer wasn't a new CRM.
-
-It was a better way to get data IN.
-
-#SalesLife #CRM #Productivity
+#CRMAutomation #SalesTech #Productivity
 ```
 
-**Thumbnail Search**: Search for "testimonial success story" or "before after" stock photo
-
-**Link**: None (story)
+**Thumbnail Search**: "ladder steps progression" or "levels stages"
 
 ---
 
-### Day 21: Week 3 Wrap-up
-**Theme**: Recap + engagement
-**Content Type**: Summary
+### TEMPLATE TYPE: Engagement Posts
 
-**Post Copy**:
+#### Template: Poll - CRM Time
+
+**Use when**: Engagement is low, need interaction boost
+
+**LinkedIn Post**:
 ```
-This week's biggest insight:
+Quick question for sales professionals:
 
-The CRM isn't broken.
+How much time do you spend on CRM data entry per week?
 
-The input method is.
+[POLL OPTIONS]:
+- Less than 2 hours
+- 2-5 hours
+- 5-10 hours
+- More than 10 hours
 
-Summary of what we covered:
+I'll share our findings in the comments.
 
-- AI is making CRM data entry obsolete
-- HubSpot vs Salesforce: adoption matters more than features
-- 80% of CRM value comes from 20% of features
-- Voice commands can replace manual typing
-
-If you missed any posts, check our page.
-
-Question for next week:
-
-What's the #1 CRM feature you wish existed?
-
-Drop it in the comments - might inspire our next content.
-
-#CRM #SalesProductivity #WeeklyWrapUp
+#SalesLife #CRM #Poll
 ```
 
-**Thumbnail Search**: Search for "weekly recap summary" or "week review" stock photo
+**Facebook Post** (no poll feature):
+```
+Quick question for sales professionals:
 
-**Link**: None (engagement)
+How much time do you spend on CRM data entry per week?
+
+Drop your answer:
+A) Less than 2 hours
+B) 2-5 hours
+C) 5-10 hours
+D) More than 10 hours
+
+Be honest - we're all friends here.
+
+#SalesLife #CRM
+```
+
+**Thumbnail Search**: "clock time management" or "hourglass"
 
 ---
 
-## Week 4: Comparison Content & Industry Focus (Days 22-28)
+#### Template: Poll - Which CRM
 
-### Day 22: Choosing the Right CRM
-**Theme**: Decision-making
-**Content Type**: Framework
+**Use when**: Want to learn about audience, boost engagement
 
-**Post Copy**:
-```
-How to choose a CRM (without overthinking it):
-
-Step 1: List your non-negotiables (usually 3-5 things)
-
-Step 2: Trial your top 2 options for 2 weeks each
-
-Step 3: Ask your team: "Which one did you actually use?"
-
-Step 4: Pick that one.
-
-Common mistake: Choosing based on features you "might" need.
-
-Better approach: Choose based on what you'll actually use daily.
-
-A simple CRM used consistently beats a complex CRM used occasionally.
-
-#CRM #SalesOps #DecisionMaking
-```
-
-**Thumbnail Search**: Search for "choosing decision making" or "checklist evaluation" stock photo
-
-**Link**: None (value)
-
----
-
-### Day 23: Blog Promo - Best CRM for Your Business (Part 1)
-**Theme**: Blog promo
-**Content Type**: Guide
-
-**Post Copy**:
-```
-What's the best CRM for YOUR business?
-
-Spoiler: It depends.
-
-For small teams (1-10 people):
-- HubSpot Free/Starter
-- Pipedrive
-- Close
-
-For mid-sized teams (10-50):
-- HubSpot Professional
-- Salesforce Essentials
-- Zoho CRM
-
-For agencies:
-- GoHighLevel
-- HubSpot
-
-For enterprises (50+):
-- Salesforce
-- Microsoft Dynamics
-- HubSpot Enterprise
-
-We created a decision guide to help you choose:
-[Link]
-
-What are you using? Would you choose it again?
-
-#CRM #SmallBusiness #SalesTools
-```
-
-**Thumbnail Search**: Search for "business size growth" or "company team sizes" stock photo
-
-**Link**: https://flightsuite.ai/blog/best-crm-for-your-business.html
-
----
-
-### Day 24: Blog Promo - Best CRM for Your Business (Part 2)
-**Theme**: Follow-up poll
-**Content Type**: Poll/engagement
-
-**Post Copy (LinkedIn)**:
+**LinkedIn Post**:
 ```
 Poll: Which CRM is your team using?
 
@@ -958,16 +483,14 @@ Poll: Which CRM is your team using?
 - GoHighLevel
 - Other (comment below!)
 
-I'm curious about the breakdown here.
-
-Also interested: Would you choose the same CRM if starting over today?
+Bonus question: Would you choose the same CRM if starting over today?
 
 #CRM #SalesTech #Poll
 ```
 
-**Post Copy (Facebook)**:
+**Facebook Post**:
 ```
-Quick survey: Which CRM is your team using?
+Which CRM is your team using?
 
 A) HubSpot
 B) Salesforce
@@ -976,182 +499,88 @@ D) Other (comment which one!)
 
 Drop your answer below.
 
-Bonus question: Would you choose the same CRM if you were starting over today?
+Would you choose the same if starting over?
 
 #CRM #SalesTech
 ```
 
-**Thumbnail Search**: Search for "survey poll" or "CRM software icons" stock photo
-
-**Link**: None (engagement)
+**Thumbnail Search**: "survey poll" or "CRM software icons"
 
 ---
 
-### Day 25: Real Estate CRM Tips
-**Theme**: Industry-specific
-**Content Type**: Vertical content
+#### Template: Open Question
+
+**Use when**: Want discussion, recent posts were one-way
 
 **Post Copy**:
 ```
-CRM tips for real estate agents:
+Question for CRM users:
 
-Real estate is unique. Your CRM should reflect that.
+What's the ONE thing that would make you actually want to update your CRM?
 
-Key fields to track:
-- Property preferences (beds, baths, area)
-- Pre-approval status
-- Timeline (motivated vs. browsing)
-- How they found you
+I'll start:
 
-Automation must-haves:
-- Anniversary/birthday reminders
-- Listing alert triggers
-- Follow-up sequences for cold leads
-- Contract milestone notifications
+"If I could just talk to it like a person and have it understand what I meant."
 
-The goal: Never let a lead fall through the cracks.
+Not clicking through dropdowns.
+Not searching for contacts.
+Not filling out 12 fields.
 
-Real estate is a relationship game.
+Just: "Called Sarah, she's buying next month."
 
-Your CRM should make relationships easier, not harder.
+And done.
 
-What CRM are real estate pros using? Drop it below.
+What's yours?
 
-#RealEstate #CRM #RealtorLife
+#CRM #SalesLife #ProductFeedback
 ```
 
-**Thumbnail Search**: Search for "real estate agent technology" or "house home CRM" stock photo
-
-**Link**: (Optional: link to real estate CRM guide if published from SEO)
+**Thumbnail Search**: "conversation speech bubble" or "question mark thinking"
 
 ---
 
-### Day 26: Agency CRM Tips
-**Theme**: Industry-specific
-**Content Type**: Vertical content
+### TEMPLATE TYPE: Thought Leadership
+
+#### Template: Hot Take - CRM Isn't Broken
+
+**Use when**: LinkedIn hasn't had thought leadership recently
 
 **Post Copy**:
 ```
-CRM tips for agencies:
+Hot take: Your CRM isn't the problem.
 
-Managing clients AND leads at the same time is tricky.
+Your data entry process is.
 
-What works:
+Think about it:
 
-1. Separate pipelines for prospects vs. clients
+Your CRM does exactly what it's supposed to:
+- Stores contacts
+- Tracks deals
+- Manages pipeline
+- Generates reports
 
-2. Project milestones tracked alongside deals
+The CRM works fine.
 
-3. Client health scores (at-risk vs. happy)
+What doesn't work is getting data IN.
 
-4. Multi-contact per account (you talk to many people)
+That's a UI/UX problem.
+That's a workflow problem.
+That's an input method problem.
 
-5. Integration with project management tools
+Stop blaming the CRM.
 
-Why GoHighLevel is popular with agencies:
-- Built for multi-client management
-- White-label options
-- All-in-one (CRM + email + SMS + funnels)
+Start fixing the input.
 
-The catch: More features = more setup.
-
-Make sure someone owns the CRM.
-
-#Agency #CRM #GoHighLevel
+#CRM #SalesOps #SalesTech
 ```
 
-**Thumbnail Search**: Search for "marketing agency team" or "agency office" stock photo
-
-**Link**: (Optional: link to agency CRM guide if published from SEO)
+**Thumbnail Search**: "lightbulb idea" or "perspective change"
 
 ---
 
-### Day 27: Small Business CRM Tips
-**Theme**: Industry-specific
-**Content Type**: Vertical content
+#### Template: The Future of CRM
 
-**Post Copy**:
-```
-CRM advice for small businesses:
-
-You don't need the enterprise CRM.
-
-Here's what actually matters:
-
-Start free:
-- HubSpot Free CRM
-- Zoho Free
-- Freshsales Free
-
-Get these basics right:
-- Every lead in the system
-- Every activity logged
-- Clear next steps on every deal
-- Regular pipeline reviews
-
-Avoid these mistakes:
-- Over-customizing before you need it
-- Too many required fields
-- Complex workflows too early
-
-Simple + consistent beats complex + abandoned.
-
-You can always upgrade later.
-
-#SmallBusiness #CRM #StartupLife
-```
-
-**Thumbnail Search**: Search for "small business owner" or "entrepreneur laptop" stock photo
-
-**Link**: (Optional: link to small business CRM guide if published from SEO)
-
----
-
-### Day 28: The Follow-Up Problem
-**Theme**: Common pain point
-**Content Type**: Problem/solution
-
-**Post Copy**:
-```
-80% of sales require 5+ follow-ups.
-
-But most reps give up after 2.
-
-Why?
-
-The CRM doesn't remind them.
-
-Or they forgot to log the next step.
-
-Or the task got buried in a sea of other tasks.
-
-The fix isn't "be more disciplined."
-
-The fix is:
-
-1. ALWAYS log a next step when you update a deal
-2. Make next steps visible on your dashboard
-3. Use automation for standard follow-up sequences
-4. Block time daily for follow-up only
-
-The money is in the follow-up.
-
-Make your CRM help you, not hurt you.
-
-#SalesTips #FollowUp #CRM
-```
-
-**Thumbnail Search**: Search for "follow up reminder" or "calendar task notification" stock photo
-
-**Link**: None (value)
-
----
-
-## Week 5: Product & Community Building (Days 29-30)
-
-### Day 29: The Future of CRM
-**Theme**: Thought leadership
-**Content Type**: Vision post
+**Use when**: End of week or need inspirational content
 
 **Post Copy**:
 ```
@@ -1160,12 +589,12 @@ Where CRM is heading (my prediction):
 2026-2028: Natural Language Era
 - Voice commands standard
 - "Update my CRM" replaces clicking
-- AI summarizes all calls automatically
+- AI summarizes calls automatically
 
 2028-2030: Proactive CRM
 - CRM suggests next best actions
 - Auto-drafts follow-up emails
-- Predicts deal outcomes with high accuracy
+- Predicts deal outcomes accurately
 
 2030+: Ambient CRM
 - CRM updates itself from conversations
@@ -1174,101 +603,102 @@ Where CRM is heading (my prediction):
 
 We're in the early stages of this shift.
 
-The reps who adopt early will have an unfair advantage.
-
-Those who wait will play catch-up.
-
 Where do you see CRM going?
 
 #FutureOfSales #CRM #AI #SalesTech
 ```
 
-**Thumbnail Search**: Search for "future technology" or "AI future prediction" stock photo
-
-**Link**: None (thought leadership)
+**Thumbnail Search**: "future technology" or "AI future prediction"
 
 ---
 
-### Day 30: Community Thank You + CTA
-**Theme**: Community building
-**Content Type**: Thank you + soft CTA
+### TEMPLATE TYPE: Soft CTA (Use Sparingly)
+
+#### Template: Community Thank You
+
+**Use when**: End of month, or hitting follower milestone
 
 **Post Copy**:
 ```
-30 days of content. Here's what I've learned from you:
+[X] days of content. Here's what I've learned from you:
 
 1. CRM data entry is universally hated
 2. Everyone wants simpler, not more complex
 3. The "I'll update it later" struggle is real
-4. AI adoption is growing, but not mainstream yet
-5. You want practical tips, not theory
+4. You want practical tips, not theory
 
 Thank you for the comments, shares, and DMs.
 
-This community gets it.
+If you're looking to eliminate CRM data entry:
 
-If you're looking for a way to eliminate CRM data entry:
-
-We built FlightSuite for exactly this problem.
+We built FlightSuite for exactly this.
 
 Update GoHighLevel or HubSpot with natural language.
 
-No dashboards. No clicking. Just type or speak what happened.
+No dashboards. No clicking. Just type what happened.
 
 Try it free: flightsuite.ai
 
-But more importantly: keep the conversation going.
-
 What should we cover next?
 
-#CRM #FlightSuite #SalesProductivity #ThankYou
+#CRM #FlightSuite #SalesProductivity
 ```
 
-**Thumbnail Search**: Search for "thank you community" or "celebration milestone" stock photo
-
-**Link**: https://flightsuite.ai
+**Thumbnail Search**: "thank you community" or "celebration milestone"
 
 ---
 
-## Execution Guide
+## Day-by-Day Framework
 
-### When You Run `/social-daily`:
+The skill uses this as a **guide**, adapting based on real-time analysis:
 
-1. **I will provide 2 days of content**
-2. **For each day, I will search for a thumbnail** and provide the image URL
-3. **You download the thumbnail** and upload to your post
-4. **Post the same content** to LinkedIn AND Facebook
-5. **Engage with comments** within 24 hours
+| Day | Default Theme | Flexible? |
+|-----|---------------|-----------|
+| 1-2 | Pain Points | Yes - can swap if LinkedIn already covered |
+| 3-4 | Blog Promo (newest content) | Yes - picks based on what's new |
+| 5-6 | Statistics + Actionable Tip | Yes |
+| 7-8 | Engagement Post + Pain Point | Yes |
+| 9-10 | Blog Promo (rotate) | Yes |
+| 11-12 | Framework + Tip | Yes |
+| 13-14 | Engagement + Weekend Light | Yes |
+| 15-16 | Blog Promo (newest) | Yes |
+| 17-18 | Hot Take + Blog Promo | Yes |
+| 19-20 | Framework + Story | Yes |
+| 21-22 | Recap + Blog Promo | Yes |
+| 23-24 | Industry-Specific | Yes - based on available content |
+| 25-26 | Industry-Specific | Yes |
+| 27-28 | Pain Point + Tip | Yes |
+| 29-30 | Thought Leadership + Soft CTA | Yes |
 
-### Thumbnail Guidelines:
+---
 
-- Professional, not cheesy
-- Relevant to the topic
-- High resolution (min 1200x630)
-- Avoid heavy text in images (platforms penalize this)
+## Thumbnail Guidelines
 
-### Hashtag Strategy:
+When searching for thumbnails:
+- **Professional**, not cheesy stock photos
+- **Relevant** to the topic
+- **High resolution** (min 1200x630)
+- **Minimal text** (platforms penalize text-heavy images)
+- **Diverse representation** when showing people
 
-**LinkedIn**: 3-5 hashtags at the end
-**Facebook**: 2-3 hashtags or none (less hashtag-driven)
-
-### Best Posting Times:
-
-- Tuesday-Thursday: 8-10 AM or 5-7 PM (your audience's timezone)
-- Avoid weekends for B2B content
+**Search Sites**:
+- Unsplash (free, high quality)
+- Pexels (free, high quality)
+- Google Images (filter by usage rights)
 
 ---
 
 ## Success Metrics
 
-| Metric | Week 1 Target | Week 4 Target |
-|--------|---------------|---------------|
-| LinkedIn Followers | +50 | +200 |
-| Facebook Followers | +25 | +100 |
-| Avg. Engagement Rate | 2% | 4% |
-| Comments per Post | 3-5 | 10-15 |
-| Website Clicks | 20 | 100 |
+| Metric | Week 1 | Week 4 | Month End |
+|--------|--------|--------|-----------|
+| LinkedIn Followers | +50 | +150 | +300 |
+| Facebook Followers | +25 | +75 | +150 |
+| Avg Engagement Rate | 2% | 3% | 4% |
+| Comments per Post | 3-5 | 8-10 | 15+ |
+| Blog Clicks | 20 | 75 | 150 |
 
 ---
 
 *Document created: January 2026*
+*This is a dynamic framework - content adapts based on real-time blog and LinkedIn analysis*

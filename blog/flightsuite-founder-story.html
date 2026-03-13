@@ -16,7 +16,7 @@
     <meta property="og:url" content="https://flightsuite.ai/blog/flightsuite-founder-story">
     <meta property="og:title" content="From gBETA Accelerator to Helping 1,000 Businesses">
     <meta property="og:description" content="The FlightSuite founder story: from a seven-week accelerator to Charlotte Business Journal feature.">
-    <meta property="og:image" content="https://flightsuite.ai/Assets/cbj-news-quote.jpg">
+    <meta property="og:image" content="https://flightsuite.ai/Assets/social-preview.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
@@ -24,7 +24,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="From gBETA Accelerator to Helping 1,000 Businesses">
     <meta name="twitter:description" content="The FlightSuite founder story: from accelerator to press feature.">
-    <meta name="twitter:image" content="https://flightsuite.ai/Assets/cbj-news-quote.jpg">
+    <meta name="twitter:image" content="https://flightsuite.ai/Assets/social-preview.png">
 
     <!-- Article Schema -->
     <script type="application/ld+json">
@@ -33,7 +33,7 @@
       "@type": "Article",
       "headline": "From gBETA Accelerator to Helping 1,000 Businesses: The FlightSuite Story",
       "description": "How FlightSuite went from a seven-week accelerator to being featured in the Charlotte Business Journal.",
-      "image": "https://flightsuite.ai/Assets/cbj-news-quote.jpg",
+      "image": "https://flightsuite.ai/Assets/social-preview.png",
       "datePublished": "2026-01-31",
       "dateModified": "2026-01-31",
       "author": {
@@ -86,539 +86,32 @@
     }
     </script>
 
-    <style>
-        /* ===== CSS RESET & BASE ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --color-apple-blue: #0071E3;
-            --color-ios-purple: #5E5CE6;
-            --color-bg-primary: #FFFFFF;
-            --color-bg-secondary: #F5F5F7;
-            --color-text-primary: #1D1D1F;
-            --color-text-secondary: #6E6E73;
-            --color-border: rgba(0, 0, 0, 0.1);
-            --max-width: 1440px;
-            --content-width: 720px;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            background: var(--color-bg-primary);
-            color: var(--color-text-primary);
-            line-height: 1.8;
-        }
-
-        /* ===== NAVIGATION ===== */
-        .nav-container {
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--color-border);
-            z-index: 1000;
-        }
-
-        nav {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: clamp(1.25rem, 2vw, 1.5rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--color-text-primary);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: clamp(1.5rem, 3vw, 2.5rem);
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            font-size: clamp(0.875rem, 1.5vw, 1rem);
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--color-apple-blue);
-        }
-
-        /* ===== HERO IMAGE ===== */
-        .hero-image-container {
-            width: 100%;
-            background: var(--color-bg-secondary);
-            display: flex;
-            justify-content: center;
-            padding: clamp(1rem, 3vw, 2rem);
-        }
-
-        .hero-image {
-            max-width: 100%;
-            max-height: 600px;
-            height: auto;
-            object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-        }
-
-        /* ===== ARTICLE CONTENT ===== */
-        .article-container {
-            max-width: var(--content-width);
-            margin: 0 auto;
-            padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 4vw, 2rem);
-        }
-
-        .article-header {
-            margin-bottom: 2.5rem;
-        }
-
-        .article-category {
-            display: inline-block;
-            font-size: 0.8125rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--color-ios-purple);
-            margin-bottom: 1rem;
-        }
-
-        .article-header h1 {
-            font-size: clamp(2rem, 5vw, 2.75rem);
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            line-height: 1.15;
-            margin-bottom: 1.25rem;
-            color: var(--color-text-primary);
-        }
-
-        .article-meta {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            font-size: 0.9375rem;
-            color: var(--color-text-secondary);
-        }
-
-        .author-info {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* ===== ARTICLE BODY ===== */
-        .article-content h2 {
-            font-size: clamp(1.5rem, 3vw, 1.875rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--color-text-primary);
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .article-content h3 {
-            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-            font-weight: 600;
-            color: var(--color-text-primary);
-            margin-top: 2rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .article-content p {
-            font-size: clamp(1rem, 2vw, 1.125rem);
-            color: var(--color-text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .article-content p strong {
-            color: var(--color-text-primary);
-        }
-
-        /* ===== QUOTE BLOCK ===== */
-        .quote-block {
-            background: linear-gradient(135deg, rgba(94, 92, 230, 0.08) 0%, rgba(0, 113, 227, 0.08) 100%);
-            border-left: 4px solid var(--color-ios-purple);
-            padding: 2rem 2.5rem;
-            border-radius: 0 12px 12px 0;
-            margin: 2.5rem 0;
-        }
-
-        .quote-block blockquote {
-            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-            font-weight: 500;
-            font-style: italic;
-            color: var(--color-text-primary);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .quote-block cite {
-            font-size: 0.9375rem;
-            color: var(--color-text-secondary);
-            font-style: normal;
-        }
-
-        /* ===== TIMELINE ===== */
-        .timeline {
-            margin: 2.5rem 0;
-            padding-left: 2rem;
-            border-left: 2px solid rgba(94, 92, 230, 0.2);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-bottom: 2rem;
-        }
-
-        .timeline-item:last-child {
-            padding-bottom: 0;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.5rem;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
-            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
-            border-radius: 50%;
-        }
-
-        .timeline-date {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--color-ios-purple);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-content h4 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-content p {
-            font-size: 0.9375rem;
-            color: var(--color-text-secondary);
-            margin-bottom: 0;
-        }
-
-        /* ===== PRESS CARD ===== */
-        .press-feature {
-            background: var(--color-bg-secondary);
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2.5rem 0;
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .press-feature:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-            border-color: rgba(94, 92, 230, 0.2);
-        }
-
-        .press-feature img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 12px;
-            flex-shrink: 0;
-        }
-
-        .press-feature-content h4 {
-            font-family: "Georgia", "Times New Roman", serif;
-            font-size: 0.875rem;
-            color: var(--color-text-tertiary, #86868b);
-            margin-bottom: 0.5rem;
-        }
-
-        .press-feature-content h3 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            margin-bottom: 0.5rem;
-            margin-top: 0;
-        }
-
-        .press-feature-content p {
-            font-size: 0.9375rem;
-            color: var(--color-text-secondary);
-            margin-bottom: 0;
-        }
-
-        /* ===== CTA BOXES ===== */
-        .cta-box {
-            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
-            color: white;
-            padding: 2.5rem 2rem;
-            border-radius: 18px;
-            text-align: center;
-            margin: 3rem 0;
-            box-shadow: 0 12px 24px rgba(94, 92, 230, 0.2);
-        }
-
-        .cta-box h3 {
-            color: white;
-            margin-top: 0;
-            margin-bottom: 1rem;
-            font-size: clamp(1.5rem, 3vw, 2rem);
-        }
-
-        .cta-box p {
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 1.5rem;
-            font-size: clamp(1rem, 2vw, 1.125rem);
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: var(--color-apple-blue);
-            padding: 0.875rem 2rem;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.0625rem;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-        }
-
-        .cta-secondary {
-            background: white;
-            color: var(--color-ios-purple);
-        }
-
-        .cta-secondary:hover {
-            background: #f5f5f7;
-        }
-
-        /* PDF Download Link */
-        .pdf-download {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--color-bg-secondary);
-            color: var(--color-text-primary);
-            padding: 0.75rem 1.25rem;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 0.9375rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            border: 1px solid var(--color-border);
-        }
-
-        .pdf-download:hover {
-            background: white;
-            border-color: var(--color-apple-blue);
-            color: var(--color-apple-blue);
-        }
-
-        .pdf-download svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .article-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            align-items: center;
-            margin: 2rem 0;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 0.5rem;
-        }
-
-        /* ===== INLINE CTA ===== */
-        .inline-cta {
-            background: var(--color-bg-secondary);
-            border-radius: 12px;
-            padding: 1.5rem 2rem;
-            margin: 2rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .inline-cta-text h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .inline-cta-text p {
-            font-size: 0.875rem;
-            color: var(--color-text-secondary);
-            margin-bottom: 0;
-        }
-
-        .inline-cta-button {
-            background: var(--color-apple-blue);
-            color: #ffffff;
-            padding: 0.75rem 1.5rem;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9375rem;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 8px rgba(0, 113, 227, 0.3);
-        }
-
-        .inline-cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.4);
-            background: #0077ED;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--color-bg-secondary);
-            border-top: 1px solid var(--color-border);
-            margin-top: clamp(4rem, 8vw, 6rem);
-        }
-
-        .footer-content {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
-            text-align: center;
-        }
-
-        .footer-content p {
-            color: var(--color-text-secondary);
-            font-size: 0.9375rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .footer-links a {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            font-size: 0.9375rem;
-            transition: color 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--color-apple-blue);
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.875rem;
-            }
-
-            .article-meta {
-                flex-direction: column;
-                gap: 0.5rem;
-                align-items: flex-start;
-            }
-
-            .press-feature {
-                flex-direction: column;
-            }
-
-            .press-feature img {
-                width: 100%;
-                height: 200px;
-            }
-
-            .inline-cta {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/shared.css?v=2">
 </head>
 <body>
-    <!-- Navigation -->
-    <div class="nav-container">
-        <nav>
-            <a href="/" class="logo">FlightSuite</a>
-            <div class="nav-links">
-                <a href="/blog.html">Blog</a>
-                <a href="/experts/index.html">Expert Directory</a>
-                <a href="/#press">Press</a>
-            </div>
-        </nav>
-    </div>
+    <div class="page-bg-enhanced"></div>
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo-text">FlightSuite</a>
+            <nav class="header-nav">
+                <a href="/#demo" class="nav-link">Demo</a>
+                <a href="/capabilities.html" class="nav-link">Capabilities</a>
+                <a href="/experts/" class="nav-link">Experts</a>
+                <a href="/blog.html" class="nav-link">Blog</a>
+                <a href="/installation-guide.html" class="cta-header" data-event="install_click">Install for Chrome</a>
+            </nav>
+        </div>
+    </header>
 
     <!-- Hero Image -->
     <div class="hero-image-container">
-        <img src="/Assets/cbj-news-quote.jpg" alt="Fitzgerald Light featured in Charlotte Business Journal" class="hero-image">
+        <img src="/Assets/cbj-gbeta-cohort.png" alt="FlightSuite founder Fitzgerald Light at gBETA Charlotte accelerator" class="hero-image">
     </div>
 
     <!-- Article Content -->
     <article class="article-container">
-        <header class="article-header">
+        <header class="article-header article-hero">
             <span class="article-category">Founder Story</span>
             <h1>From gBETA Accelerator to Helping 1,000 Businesses: The FlightSuite Story</h1>
             <div class="article-meta">
@@ -693,8 +186,8 @@
                 <div class="timeline-item">
                     <div class="timeline-date">December 2025</div>
                     <div class="timeline-content">
-                        <h4>The Pivot: CRM CoPilot</h4>
-                        <p>Graduated from gBETA and decided to think bigger. Pivoted to building the CRM CoPilot—a Chrome extension that eliminates manual data entry entirely.</p>
+                        <h4>The Pivot: CRM Agent</h4>
+                        <p>Graduated from gBETA and decided to think bigger. Pivoted to building the CRM Agent—a Chrome extension that eliminates manual data entry entirely.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -718,7 +211,10 @@
             <p>It's not about the number itself. It's about the impact. Each business we help means sales reps who get to spend more time with customers instead of fighting their CRM. It means data that actually gets logged, so managers can make better decisions. It means less friction and more selling.</p>
 
             <a href="https://www.bizjournals.com/charlotte/news/2026/01/23/charlotte-small-business-ecosystem-outlook-startup.html" target="_blank" rel="noopener" class="press-feature">
-                <img src="/Assets/cbj-fitz-news-article.jpg" alt="Fitzgerald Light featured in Charlotte Business Journal">
+                <div class="hero-image-placeholder" style="aspect-ratio:16/9;">
+                    <div class="placeholder-icon">📰</div>
+                    <div class="placeholder-text">Charlotte Business Journal</div>
+                </div>
                 <div class="press-feature-content">
                     <h4>Charlotte Business Journal</h4>
                     <h3>What the city's Small Business Ecosystem Assessment says about Charlotte's startup community</h3>
@@ -768,16 +264,42 @@
         </div>
     </article>
 
-    <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="footer-content">
-            <p>FlightSuite - The Universal CRM CoPilot</p>
-            <div class="footer-links">
-                <a href="/">Home</a>
-                <a href="/blog.html">Blog</a>
-                <a href="/find-your-crm.html">CRM Quiz</a>
-                <a href="/experts/index.html">Expert Directory</a>
-                <a href="/#press">Press</a>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-name">FlightSuite</div>
+                    <p class="footer-description">The universal CRM Agent. Making CRM adoption effortless.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="/#demo" class="footer-link">Demo</a></li>
+                        <li><a href="/#faq" class="footer-link">FAQ</a></li>
+                        <li><a href="/capabilities.html" class="footer-link">Capabilities</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="/privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="/terms.html" class="footer-link">Terms of Service</a></li>
+                        <li><a href="https://forms.gle/4wQhEo9hgp1eJKqL7" class="footer-link">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/blog.html" class="footer-link">Blog</a></li>
+                        <li><a href="/installation-guide.html" class="footer-link">Installation Guide</a></li>
+                        <li><a href="/tools/crm-roi-calculator.html" class="footer-link">ROI Calculator</a></li>
+                        <li><a href="/find-your-crm.html" class="footer-link">Find Your CRM</a></li>
+                        <li><a href="/experts/" class="footer-link">CRM Experts</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 FlightSuite Corporation. All rights reserved.
             </div>
         </div>
     </footer>

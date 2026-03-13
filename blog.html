@@ -25,384 +25,30 @@
     <meta name="twitter:description" content="Expert insights on AI CRM automation, sales productivity, and data entry solutions.">
     <meta name="twitter:image" content="https://flightsuite.ai/Assets/social-preview.png">
 
-    <style>
-        /* ===== CSS RESET & BASE ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-        :root {
-            --color-apple-blue: #0071E3;
-            --color-ios-purple: #5E5CE6;
-            --color-bg-primary: #FFFFFF;
-            --color-bg-secondary: #F5F5F7;
-            --color-text-primary: #1D1D1F;
-            --color-text-secondary: #6E6E73;
-            --color-border: rgba(0, 0, 0, 0.1);
-            --max-width: 1440px;
-            --content-width: 980px;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            background: var(--color-bg-primary);
-            color: var(--color-text-primary);
-            line-height: 1.6;
-        }
-
-        /* ===== NAVIGATION ===== */
-        .nav-container {
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--color-border);
-            z-index: 1000;
-        }
-
-        nav {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: clamp(1.25rem, 2vw, 1.5rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--color-text-primary);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: clamp(1.5rem, 3vw, 2.5rem);
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            font-size: clamp(0.875rem, 1.5vw, 1rem);
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--color-apple-blue);
-        }
-
-        .nav-cta {
-            background: var(--color-apple-blue);
-            color: white !important;
-            padding: 0.5rem 1.25rem;
-            border-radius: 100px;
-            transition: all 0.2s ease;
-        }
-
-        .nav-cta:hover {
-            background: #0077ED;
-            transform: scale(1.02);
-        }
-
-        /* ===== HERO SECTION ===== */
-        .hero {
-            max-width: var(--content-width);
-            margin: 0 auto;
-            padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem);
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            margin-bottom: clamp(1rem, 2vw, 1.5rem);
-            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: clamp(1.125rem, 2vw, 1.5rem);
-            color: var(--color-text-secondary);
-            line-height: 1.5;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* ===== BLOG GRID ===== */
-        .blog-container {
-            max-width: var(--content-width);
-            margin: 0 auto;
-            padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: clamp(2rem, 4vw, 3rem);
-        }
-
-        .blog-card {
-            background: var(--color-bg-primary);
-            border: 1px solid var(--color-border);
-            border-radius: 18px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .blog-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-            border-color: var(--color-apple-blue);
-        }
-
-        .blog-card-image {
-            width: 100%;
-            height: 240px;
-            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .blog-card-image::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            top: -50%;
-            left: -50%;
-        }
-
-        .blog-card-image svg {
-            width: 80px;
-            height: 80px;
-            position: relative;
-            z-index: 2;
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
-        }
-
-        .blog-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 30%;
-        }
-
-        .blog-card-image.contain-image {
-            height: auto;
-            min-height: 200px;
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .blog-card-image.contain-image img {
-            width: auto;
-            max-width: 100%;
-            max-height: 280px;
-            height: auto;
-            object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        .blog-card-content {
-            padding: clamp(1.5rem, 3vw, 2rem);
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .blog-card-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            font-size: 0.875rem;
-            color: var(--color-text-secondary);
-        }
-
-        .blog-card-category {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(94, 92, 230, 0.1);
-            color: var(--color-ios-purple);
-            padding: 0.25rem 0.75rem;
-            border-radius: 100px;
-            font-weight: 600;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-        }
-
-        .blog-card-date {
-            color: var(--color-text-secondary);
-        }
-
-        .blog-card h2 {
-            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.3;
-            margin-bottom: 0.75rem;
-            color: var(--color-text-primary);
-        }
-
-        .blog-card p {
-            font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            flex: 1;
-        }
-
-        .blog-card-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--color-apple-blue);
-            font-weight: 600;
-            font-size: 0.9375rem;
-            margin-top: auto;
-        }
-
-        .blog-card-cta svg {
-            width: 16px;
-            height: 16px;
-            transition: transform 0.2s ease;
-        }
-
-        .blog-card:hover .blog-card-cta svg {
-            transform: translateX(4px);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--color-bg-secondary);
-            border-top: 1px solid var(--color-border);
-            margin-top: clamp(4rem, 8vw, 8rem);
-        }
-
-        .footer-content {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
-            text-align: center;
-        }
-
-        .footer-content p {
-            color: var(--color-text-secondary);
-            font-size: 0.9375rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .footer-links a {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            font-size: 0.9375rem;
-            transition: color 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--color-apple-blue);
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.875rem;
-            }
-
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .blog-card-image {
-                height: 200px;
-            }
-
-            .blog-card-image svg {
-                width: 64px;
-                height: 64px;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-links {
-                flex-wrap: wrap;
-                gap: 0.75rem;
-            }
-
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .blog-card-image {
-                height: 180px;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-    </style>
+    <!-- Shared Dark Theme Styles -->
+    <link rel="stylesheet" href="css/shared.css">
 </head>
 <body>
+    <div class="page-bg-enhanced"></div>
     <!-- Navigation -->
-    <div class="nav-container">
-        <nav>
-            <a href="/" class="logo">FlightSuite</a>
-            <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/blog.html">Blog</a>
-                <a href="/#waitlist">Get Early Access</a>
-            </div>
-        </nav>
-    </div>
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo-text">FlightSuite</a>
+            <nav class="header-nav">
+                <a href="/#demo" class="nav-link">Demo</a>
+                <a href="/capabilities.html" class="nav-link">Capabilities</a>
+                <a href="/experts/" class="nav-link">Experts</a>
+                <a href="/blog.html" class="nav-link">Blog</a>
+                <a href="/installation-guide.html" class="cta-header" data-event="install_click">Install for Chrome</a>
+            </nav>
+        </div>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="page-header">
         <h1>Insights for Modern Sales Teams</h1>
         <p>Expert guides on AI CRM automation, sales productivity, and eliminating manual data entry.</p>
     </section>
@@ -411,7 +57,7 @@
     <section class="blog-container">
         <div class="blog-grid">
             <!-- Featured: FlightSuite 1.1 Release -->
-            <a href="/blog/flightsuite-1-1-prompt-library.html" class="blog-card" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%); border: 2px solid rgba(102, 126, 234, 0.3);">
+            <a href="/blog/flightsuite-1-1-prompt-library.html" class="blog-card" style="border: 2px solid rgba(102, 126, 234, 0.3);">
                 <div class="blog-card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
                     <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 2L2 7l10 5 10-5-10-5z"/>
@@ -426,7 +72,7 @@
                         <span class="blog-card-date">January 2026</span>
                     </div>
                     <h2>FlightSuite 1.1: Prompt Library & Slash Commands</h2>
-                    <p>40+ ready-to-use prompts, slash command access, favorites system, and a premium UI refresh. The universal CRM CoPilot just got a major upgrade.</p>
+                    <p>40+ ready-to-use prompts, slash command access, favorites system, and a premium UI refresh. The universal CRM Agent just got a major upgrade.</p>
                     <span class="blog-card-cta">
                         See what's new
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -438,8 +84,8 @@
 
             <!-- Founder Story -->
             <a href="/blog/flightsuite-founder-story.html" class="blog-card" style="border: 2px solid rgba(52, 199, 89, 0.3);">
-                <div class="blog-card-image contain-image" style="background: var(--color-bg-secondary);">
-                    <img src="/Assets/cbj-news-quote.jpg" alt="Fitzgerald Light featured in Charlotte Business Journal">
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #0d3b66 0%, #1a1a3e 50%, #2d1b69 100%);">
+                    <img src="/Assets/gbeta-social-preview.png" alt="From gBETA Accelerator to Helping 1,000 Businesses" style="object-fit: cover; width: 100%; height: 100%;">
                 </div>
                 <div class="blog-card-content">
                     <div class="blog-card-meta">
@@ -459,8 +105,8 @@
 
             <!-- gBETA Accelerator -->
             <a href="/blog/gbeta-charlotte-accelerator.html" class="blog-card" style="border: 2px solid rgba(255, 149, 0, 0.3);">
-                <div class="blog-card-image" style="background: #1a1a1a;">
-                    <img src="/Assets/cbj-gbeta-cohort.png" alt="gBETA Charlotte Fall 2025 cohort at pitch night">
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #1a1a3e 0%, #2d1b69 50%, #0d3b66 100%);">
+                    <img src="/Assets/gbeta-social-preview.png" alt="FlightSuite graduates from gBETA Charlotte Accelerator" style="object-fit: cover; width: 100%; height: 100%;">
                 </div>
                 <div class="blog-card-content">
                     <div class="blog-card-meta">
@@ -616,7 +262,7 @@
 
     <!-- CRM Comparisons Section -->
     <section class="blog-container" style="padding-top: 0;">
-        <h2 style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 2rem; color: var(--color-text-primary);">CRM Comparisons</h2>
+        <h2 style="font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 2rem;">CRM Comparisons</h2>
         <div class="blog-grid">
             <!-- HubSpot vs Salesforce -->
             <a href="/compare/hubspot-vs-salesforce.html" class="blog-card">
@@ -672,7 +318,7 @@
 
     <!-- CRM Alternatives Section -->
     <section class="blog-container" style="padding-top: 0;">
-        <h2 style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 2rem; color: var(--color-text-primary);">CRM Alternatives</h2>
+        <h2 style="font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 2rem;">CRM Alternatives</h2>
         <div class="blog-grid">
             <!-- Salesforce Alternatives -->
             <a href="/alternatives/salesforce-alternatives.html" class="blog-card">
@@ -726,7 +372,7 @@
 
     <!-- Best CRM Guides Section -->
     <section class="blog-container" style="padding-top: 0;">
-        <h2 style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 2rem; color: var(--color-text-primary);">Best CRM Guides</h2>
+        <h2 style="font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 2rem;">Best CRM Guides</h2>
         <div class="blog-grid">
             <!-- Best CRM for Small Business -->
             <a href="/best-crm/small-business.html" class="blog-card">
@@ -781,13 +427,42 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2026 FlightSuite. Your AI CRM operator.</p>
-            <div class="footer-links">
-                <a href="/">Home</a>
-                <a href="/blog.html">Blog</a>
-                <a href="/#waitlist">Get Early Access</a>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-name">FlightSuite</div>
+                    <p class="footer-description">The universal CRM Agent. Making CRM adoption effortless.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="/#demo" class="footer-link">Demo</a></li>
+                        <li><a href="/#faq" class="footer-link">FAQ</a></li>
+                        <li><a href="/capabilities.html" class="footer-link">Capabilities</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="/privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="/terms.html" class="footer-link">Terms of Service</a></li>
+                        <li><a href="https://forms.gle/4wQhEo9hgp1eJKqL7" class="footer-link">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/blog.html" class="footer-link">Blog</a></li>
+                        <li><a href="/installation-guide.html" class="footer-link">Installation Guide</a></li>
+                        <li><a href="/tools/crm-roi-calculator.html" class="footer-link">ROI Calculator</a></li>
+                        <li><a href="/find-your-crm.html" class="footer-link">Find Your CRM</a></li>
+                        <li><a href="/experts/" class="footer-link">CRM Experts</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 FlightSuite Corporation. All rights reserved.
             </div>
         </div>
     </footer>

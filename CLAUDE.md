@@ -1,87 +1,140 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file is the operating manual for any AI or engineer working in this repository. Read it fully before making changes.
+
+## Mission & Design Philosophy
+
+FlightSuite's website is not a marketing page — **the site IS the product experience**. Every interaction, animation, and visual element must answer one question:
+
+> "How does this help a busy sales rep understand that FlightSuite eliminates their CRM pain?"
+
+### Design Principles (Non-Negotiable)
+
+1. **Steve Jobs standard** — Zero layout shifts, no bouncing, buttery-smooth transitions. If it's not crisp, iterate until it is.
+2. **Purpose over decoration** — Apply the Five Whys to every design decision. No element exists without serving the product story.
+3. **The boundary dissolves** — The marketing page and the product experience are the same thing. The command bar, the demo, the typing animation — visitors experience the product while learning about it.
+4. **Predict, don't replicate** — We are building what design looks like in 2027, not copying what's trendy in 2026.
+5. **50-year-old test** — Assume the reader is 50. Minimum 14px body text, high contrast, clear hierarchy.
+6. **Self-evaluate honestly** — After building, ask: "Would Steve Jobs ship this?" If not, iterate. Don't stop at 80%.
+
+### Quality Bar
+
+- Reference sites: chirpley-ai.netlify.app, 8bit.ai, petertarka.com, kriss.ai, mont-fort.com
+- Target: Awwwards-level, top 1% of sites
+- No generic SaaS templates — fundamentally new interaction patterns only
+- Mobile must feel as smooth as desktop — no second-class citizens
 
 ## Project Overview
 
-This is a static landing page for **FlightSuite** (branded as "CRM CoPilot"), a Chrome extension that automates CRM data entry through natural language. The site is deployed at https://flightsuite.ai.
+**FlightSuite** — The Universal CRM Agent. Chrome extension that turns natural language into CRM actions. Deployed at https://flightsuite.ai.
+
+| Detail | Value |
+|--------|-------|
+| Product | Chrome extension for CRM automation via natural language |
+| ICP | Sales reps at SMBs, agency CRM admins (GHL), small business owners |
+| Value Prop | Type what happened → agent logs it → save 5-10 hours/week |
+| Supported CRMs | GoHighLevel (39 tools), HubSpot (69 tools), Salesforce (coming), Zoho (coming) |
+| Channels | Chrome extension (live), SMS (launched), WhatsApp (coming) |
 
 ## Architecture
 
-**Static site with automation scripts** - No build process required for the site itself, but includes Node.js scripts for data sync.
+**Static site** — No build process. Serve directly or use `python -m http.server 8000`.
 
-- `index.html` - Main landing page (~157KB, contains all HTML/CSS/JS inline)
-- `airtable-config.js` - Form submission logic using Google Sheets webhooks
-- `blog/` - SEO blog articles (static HTML files)
-- `experts/` - Expert directory (auto-synced from Airtable)
-- `Assets/` - Images, logos, favicons
-- `docs/` - Design documentation and project summaries
-- `scripts/` - Automation scripts (Airtable sync, GHL scraper)
+### File Map
+
+```
+index.html                  # Main landing page
+css/main.css                # All styles (design tokens → components → sections → responsive)
+js/
+├── main.js                 # Core: header scroll, modals, analytics, typewriter
+├── particles.js            # CRM Universe — canvas particle system with CRM logo planets
+├── hero-demo.js            # Auto-playing demo: types commands → materializes CRM cards
+├── dataflow.js             # Demo section: terminal → energy lines → CRM cards
+├── animations.js           # GSAP ScrollTrigger entrance animations
+├── before-after.js         # Draggable before/after split-screen reveal
+├── command-bar.js          # Persistent bottom bar — type to navigate or demo CRM actions
+├── ghost-agent.js          # Floating "Agent Active" widget with live action feed
+├── spotlight.js            # Mouse-following glow effect on cards
+├── generative-seed.js      # Timestamp-seeded per-visit variations (hue, direction, speed)
+├── init.js                 # Dynamic expert count loader
+airtable-config.js          # Form submission via Google Sheets webhook
+Assets/                     # Logos (CRM SVGs), favicons, press images
+blog/                       # SEO blog articles (static HTML)
+alternatives/               # CRM alternatives pages
+compare/                    # CRM vs CRM comparison pages
+experts/                    # Auto-synced expert directory from Airtable
+scripts/                    # Automation (Airtable sync, GHL scraper)
+templates/                  # HTML templates for new comparison pages
+docs/                       # Strategy docs and progress trackers
+.claude/commands/           # Claude Code slash commands (/seo-daily, /social-daily)
+```
+
+### CRM Universe (particles.js)
+
+The signature visual element. A canvas particle system where CRM platforms are planetary orbs with real logos, floating in a cosmic star field. Scroll drives the narrative:
+
+| Section | State | Behavior |
+|---------|-------|----------|
+| Hero | Scattered | Vast star field, planets disconnected, logos visible |
+| Pain | Drifting apart | Planets expand outward, data scatters |
+| Demo | Connecting | Data pathways form between planets |
+| Capabilities | Orbiting | Planets orbit a common center |
+| CTA | Converging | All planets converge — one universe, one agent |
+
+Key technical details:
+- Logo images preloaded from `Assets/` (GoHighLevel.svg, hubspot.svg, etc.)
+- Adaptive lerp (0.06 base, ease-out curve) for fluid state transitions
+- Stars gravitationally attracted to nearest planet for "one body" cohesion
+- Mobile: `STAR_COUNT = 0`, only 5 planet orbs render
+- `backdrop-filter` disabled on mobile for scroll performance
+- All content sections have solid backgrounds + `z-index: 1-2` to layer above canvas
 
 ## Development
 
-**To develop locally:**
 ```bash
-# Open directly in browser
-open index.html
-
-# Or use any static server
+# Local development
 python -m http.server 8000
-npx serve .
-```
 
-**For automation scripts:**
-```bash
+# Cache busting: bump ?v= params in index.html after CSS/JS changes
+# Current: css/main.css?v=10, particles.js?v=7
+
+# Expert directory sync
 npm install
-npm run sync           # Sync experts from Airtable
-npm run sync:dry-run   # Preview sync without changes
+npm run sync           # Sync from Airtable
+npm run sync:dry-run   # Preview without changes
 ```
 
-## Key Integration Points
+### Deployment
 
-- **Chrome Web Store**: Primary CTA links to the FlightSuite extension
-- **Form submissions**: Posts to Google Sheets via Apps Script webhook (configured in `airtable-config.js`)
-- **Loom video embed**: Lazy-loaded demo video in product section
-- **Analytics**: `data-event` attributes on CTAs for tracking
+- **Production**: Vercel (auto-deploys from branch)
+- **Branch**: `redesign/immersive-v2` (active development)
+- All script/CSS paths must be **relative** (e.g., `js/main.js` not `/js/main.js`) for Vercel compatibility
 
-## Important Files
+### Mobile Performance Rules
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Main landing page with inline CSS/JS |
-| `airtable-config.js` | Webhook URL and form submission functions |
-| `installation-guide.html` | CRM installation instructions |
-| `blog.html` | Blog listing page |
+- No `backdrop-filter` on mobile (kills scroll performance)
+- All inputs must be `font-size: 16px` minimum (prevents iOS auto-zoom)
+- Fixed heights on containers that receive animated content (prevents layout shift)
+- Particle canvas opacity reduced to 0.3 on mobile
+- Test at 375px, 768px, 1024px, 1440px, 1920px
 
-## Design System
+## SEO — Do Not Break
 
-- **Colors**: Primary blue (`#0071E3`), iOS purple (`#5E5CE6`), near-black text (`#1D1D1F`)
-- **Typography**: System fonts (`-apple-system, BlinkMacSystemFont, "SF Pro Display"`)
-- **Breakpoints**: Mobile-first with responsive clamp() values
-- **Animations**: CSS transitions with custom easing (`--ease-smooth`, `--ease-spring`)
+**Critical**: Do not modify these without verifying SEO impact:
+- All `<head>` meta tags, Open Graph, Twitter cards
+- All JSON-LD structured data (SoftwareApplication, Organization, FAQPage)
+- URL structure (`/blog/*`, `/compare/*`, `/experts/*`, `/alternatives/*`)
+- `sitemap.xml`, `robots.txt`
+- H1 → H2 → H3 hierarchy
+- `data-event` attributes on CTAs
 
-## Notes
+## Growth Automation
 
-- All styles and scripts are inline in `index.html` for performance
-- Forms use `no-cors` mode for Google Apps Script compatibility
-- The `WEBHOOK_SETUP.md` documents the Airtable webhook integration (now using Google Sheets)
-
-## SEO/AEO 60-Day Growth Plan
-
-This project has an active SEO optimization plan spanning 60 days in two phases. Run the daily task with:
+### SEO (60-Day Plan)
 
 ```
 /seo-daily
 ```
-
-### Phases
-
-| Phase | Days | Focus |
-|-------|------|-------|
-| Phase 1 | 1-30 | On-site SEO: Schema, content, technical optimization |
-| Phase 2 | 31-60 | Off-page SEO: Backlinks, social, outreach, reviews |
-
-### Key SEO Files
 
 | File | Purpose |
 |------|---------|
@@ -89,200 +142,53 @@ This project has an active SEO optimization plan spanning 60 days in two phases.
 | `docs/SEO-PROGRESS.json` | Phase 1 progress tracker |
 | `docs/SEO-PHASE2-STRATEGY.md` | Phase 2 strategy (Days 31-60) |
 | `docs/SEO-PHASE2-PROGRESS.json` | Phase 2 progress tracker |
-| `.claude/commands/seo-daily.md` | Daily task runner skill |
 
-### Phase 2 Task Types
-
-Phase 2 introduces three task types to handle work that requires human action:
-
-| Type | Description |
-|------|-------------|
-| **CODE** | Claude executes fully (content creation, technical work) |
-| **TEAM** | Requires human action - Claude provides copy-paste ready Slack messages |
-| **HYBRID** | Claude does prep work, then provides Slack message for team portions |
-
-For TEAM and HYBRID tasks, Claude outputs ready-to-copy messages you can paste directly into Slack for your team. These include:
-- Specific people/sites to contact
-- Exact email templates
-- Step-by-step instructions
-- Goals and success metrics
-
-### How the Daily SEO Runner Works
-
-1. Detects which phase we're in based on progress
-2. Reads the appropriate strategy and progress files
-3. For CODE tasks: Executes completely
-4. For TEAM tasks: Outputs copy-paste Slack message
-5. For HYBRID tasks: Does prep work + outputs Slack message
-6. Updates progress tracker
-
-### Session Budget Targets
-
-- **Pro users**: ~44,000 tokens per 5-hour window
-- **Max5 users**: ~88,000 tokens per 5-hour window
-- **Max20 users**: ~220,000 tokens per 5-hour window
-
-The `/seo-daily` skill is designed to maximize session usage by completing substantial work.
-
-### Manual Progress Reset
-
-To restart from a specific day in Phase 1:
-```json
-// docs/SEO-PROGRESS.json
-{
-  "currentDay": 1,
-  "status": "not_started"
-}
-```
-
-To restart from a specific day in Phase 2:
-```json
-// docs/SEO-PHASE2-PROGRESS.json
-{
-  "currentDay": 31,
-  "status": "not_started"
-}
-```
-
-## Social Media 30-Day Growth Plan
-
-This project has an active social media plan for LinkedIn and Facebook. Run the daily task with:
+### Social Media (30-Day Plan)
 
 ```
 /social-daily
 ```
 
-### Platforms
-
-- **LinkedIn**: https://www.linkedin.com/company/flight-suite-ai
-- **Facebook**: https://www.facebook.com/flightsuiteai/
-
-### Key Social Media Files
-
 | File | Purpose |
 |------|---------|
 | `docs/SOCIAL-MEDIA-STRATEGY.md` | Content templates and framework |
-| `docs/SOCIAL-MEDIA-PROGRESS.json` | Progress and promotion tracker |
-| `.claude/commands/social-daily.md` | Daily task runner skill |
+| `docs/SOCIAL-MEDIA-PROGRESS.json` | Progress tracker |
 
-### Dynamic Content System
+### Expert Directory (Airtable Sync)
 
-The social media skill is **dynamic** - it adapts based on real-time analysis:
-
-1. **Fetches blog content** from https://www.flightsuite.ai/blog.html to find new posts
-2. **Checks LinkedIn** for recent post themes to avoid repetition
-3. **Selects content templates** based on what's needed
-4. **Prioritizes new SEO content** (comparison pages, alternatives, guides)
-
-### How the Daily Social Runner Works
-
-1. Fetches live blog to see current content
-2. Checks LinkedIn for recent post themes
-3. Cross-references with progress tracker
-4. Selects appropriate content (adapts if needed)
-5. Provides **2 days of posts** with thumbnail URLs
-6. Updates progress tracker
-
-### Content Mix Targets
-
-| Content Pillar | Target % |
-|----------------|----------|
-| Blog/Content Promos | 30% |
-| Relatable Pain Points | 25% |
-| Actionable Tips | 25% |
-| Statistics & Data | 10% |
-| Engagement Posts | 10% |
-
-### SEO Integration
-
-New SEO content is automatically prioritized for promotion:
-- **Tier 1**: New comparison/alternatives pages (promote within 48 hours)
-- **Tier 2**: New blog posts (promote within 1 week)
-- **Tier 3**: Evergreen content (rotate monthly)
-
-### Manual Progress Reset
-
-To restart from a specific day:
-```json
-// docs/SOCIAL-MEDIA-PROGRESS.json
-{
-  "currentDay": 1,
-  "status": "not_started",
-  "promotedBlogs": []
-}
-```
-
-## Expert Directory (Airtable Integration)
-
-The Expert Directory at `/experts/` is automatically synced from Airtable. When new CRM admin interviews are added to Airtable, they automatically appear on the website.
-
-### Airtable Configuration
+Runs daily at 6 AM UTC via GitHub Actions. See `scripts/sync-airtable.js`.
 
 | Setting | Value |
 |---------|-------|
-| Base ID | `appK4eoFrLRthiENZ` |
-| Table ID | `tbldVnfJ0SBfo0hiK` |
-| Required Secret | `AIRTABLE_API_KEY` (set in GitHub Secrets) |
+| Airtable Base | `appK4eoFrLRthiENZ` |
+| Airtable Table | `tbldVnfJ0SBfo0hiK` |
+| Secret | `AIRTABLE_API_KEY` in GitHub Secrets |
 
-### How the Sync Works
+## Key Integrations
 
-1. **GitHub Action** runs daily at 6 AM UTC (or manually triggered)
-2. **Fetches records** from Airtable via API
-3. **Scrapes GHL directory** for each expert to get ratings, reviews, certifications
-4. **Merges data** (Airtable interview data + GHL directory data)
-5. **Updates** `experts/experts-data.json`
-6. **Generates HTML pages** for any new experts
-7. **Commits and pushes** changes automatically
+| Integration | Config |
+|-------------|--------|
+| Chrome Web Store | Primary CTA — free extension install |
+| Google Sheets webhook | Form submissions (`airtable-config.js`) |
+| Airtable | Expert directory data source |
+| GSAP + ScrollTrigger | CDN, `defer` loaded |
+| Google Fonts | Space Grotesk (display), DM Sans (body) |
 
-### Key Files
+## Design System (Quick Reference)
 
-| File | Purpose |
-|------|---------|
-| `scripts/sync-airtable.js` | Main sync script |
-| `scripts/update-expert-rankings.js` | GHL scraper (standalone) |
-| `.github/workflows/sync-experts.yml` | GitHub Action for automated sync |
-| `experts/experts-data.json` | Expert data (auto-generated) |
-| `experts/*.html` | Individual expert pages (auto-generated) |
+```css
+/* Colors */
+--color-bg-primary: #000000;        /* True black */
+--color-accent-blue: #0071E3;       /* Primary CTA */
+--color-accent-purple: #5E5CE6;     /* Brand accent */
+--color-accent-cyan: #22D3EE;       /* Highlight */
 
-### Airtable Fields Mapped
+/* Typography */
+--font-display: 'Space Grotesk';    /* Headlines */
+--font-body: 'DM Sans';             /* Body text */
 
-| Airtable Column | Used For |
-|-----------------|----------|
-| Lead Name | Expert name, page title, slug |
-| CRM Type | GHL vs HubSpot classification |
-| Website or Profile Link | GHL directory URL for scraping |
-| Email | Contact (not displayed) |
-| Fathom Link | Video embed on profile |
-| Core Services | Services section |
-| Prices | Pricing section, budget tier |
-| Target Clients | "Best For" tags |
-| Booking link | CTA button |
-
-### Manual Sync
-
-To run a sync locally:
-```bash
-export AIRTABLE_API_KEY=pat...your-key-here
-npm run sync
-
-# Or dry run to preview:
-npm run sync:dry-run
-```
-
-### Triggering Sync from Airtable
-
-You can set up an Airtable automation to trigger the sync when records change:
-
-1. In Airtable, create an automation with trigger "When record is updated"
-2. Add action: "Run script"
-3. Use this script to call the GitHub webhook:
-```javascript
-let response = await fetch('https://api.github.com/repos/YOUR_ORG/YOUR_REPO/dispatches', {
-    method: 'POST',
-    headers: {
-        'Authorization': 'Bearer YOUR_GITHUB_TOKEN',
-        'Accept': 'application/vnd.github.v3+json'
-    },
-    body: JSON.stringify({ event_type: 'airtable-update' })
-});
+/* Easing */
+--ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 ```

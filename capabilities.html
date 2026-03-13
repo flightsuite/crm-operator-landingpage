@@ -7,7 +7,7 @@
     <!-- Primary Meta Tags -->
     <title>FlightSuite Capabilities | 100+ AI-Powered CRM Actions</title>
     <meta name="title" content="FlightSuite Capabilities | 100+ AI-Powered CRM Actions">
-    <meta name="description" content="Explore 100+ AI-powered capabilities FlightSuite offers across GoHighLevel (39 tools) and HubSpot (69 tools). From contact management to deals, tickets, lists, and meetings—see what the universal CRM CoPilot can do.">
+    <meta name="description" content="Explore 100+ AI-powered capabilities FlightSuite offers across GoHighLevel (39 tools) and HubSpot (69 tools). From contact management to deals, tickets, lists, and meetings—see what the universal CRM Agent can do.">
     <meta name="keywords" content="FlightSuite capabilities, CRM automation features, GoHighLevel features, HubSpot automation, CRM actions, natural language CRM">
     <meta name="author" content="FlightSuite">
     <meta name="robots" content="index, follow">
@@ -18,13 +18,13 @@
     <meta property="og:url" content="https://flightsuite.ai/capabilities.html">
     <meta property="og:site_name" content="FlightSuite">
     <meta property="og:title" content="FlightSuite Capabilities | 100+ AI-Powered CRM Actions">
-    <meta property="og:description" content="Explore 100+ AI-powered capabilities FlightSuite offers. From contacts and deals to lists, meetings, and orders—see what the universal CRM CoPilot can do.">
+    <meta property="og:description" content="Explore 100+ AI-powered capabilities FlightSuite offers. From contacts and deals to lists, meetings, and orders—see what the universal CRM Agent can do.">
     <meta property="og:image" content="https://flightsuite.ai/Assets/social-preview.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="FlightSuite Capabilities | 100+ AI-Powered CRM Actions">
-    <meta name="twitter:description" content="Explore 100+ AI-powered capabilities FlightSuite offers. From contacts and deals to lists, meetings, and orders—see what the universal CRM CoPilot can do.">
+    <meta name="twitter:description" content="Explore 100+ AI-powered capabilities FlightSuite offers. From contacts and deals to lists, meetings, and orders—see what the universal CRM Agent can do.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="Assets/Flight Suite Favicon vPurple.svg">
@@ -86,132 +86,17 @@
     }
     </script>
 
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css?v=2">
     <style>
+        /* Capabilities page-specific styles */
         :root {
-            --color-apple-blue: #0071E3;
-            --color-ios-purple: #5E5CE6;
-            --color-success: #34C759;
             --color-gold: #D4A800;
-            --color-error: #FF3B30;
-            --color-text-primary: #1D1D1F;
-            --color-text-secondary: #6E6E73;
-            --color-text-tertiary: #86868B;
-            --color-bg-primary: #FFFFFF;
-            --color-bg-secondary: #F5F5F7;
-            --color-bg-dark: #000000;
-            --color-border: #D2D2D7;
-            --color-border-light: #E8E8ED;
-            --gradient-primary: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
-            --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-            --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-            --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-            --section-spacing: clamp(40px, 6vw, 80px);
-            --container-padding: clamp(20px, 5vw, 40px);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--color-text-primary);
-            background: var(--color-bg-primary);
-            font-size: clamp(15px, 1.5vw, 17px);
-            line-height: 1.47059;
-            font-weight: 400;
-            letter-spacing: -0.022em;
-        }
-
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .header-inner {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 var(--container-padding);
-            height: clamp(48px, 8vw, 52px);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo-text {
-            font-family: var(--font-display);
-            font-size: clamp(20px, 3vw, 24px);
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            text-decoration: none;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .header-nav {
-            display: flex;
-            align-items: center;
-            gap: clamp(16px, 3vw, 32px);
-        }
-
-        .nav-link {
-            color: var(--color-text-primary);
-            text-decoration: none;
-            font-size: clamp(13px, 1.5vw, 14px);
-            font-weight: 400;
-            transition: opacity 0.2s;
-        }
-
-        .nav-link:hover {
-            opacity: 0.6;
-        }
-
-        .nav-link.active {
-            color: var(--color-ios-purple);
-            font-weight: 500;
-        }
-
-        .cta-header {
-            background: var(--color-apple-blue);
-            color: white;
-            border: none;
-            padding: clamp(6px, 1vw, 8px) clamp(12px, 2vw, 16px);
-            border-radius: 980px;
-            font-size: clamp(13px, 1.5vw, 14px);
-            font-weight: 400;
-            cursor: pointer;
-            transition: all 0.3s var(--ease-smooth);
-            text-decoration: none;
-        }
-
-        .cta-header:hover {
-            background: #0077ED;
-            transform: scale(1.02);
         }
 
         /* Hero Section */
-        .hero {
-            padding: clamp(100px, 15vw, 140px) var(--container-padding) var(--section-spacing);
+        .cap-hero {
+            padding: clamp(160px, 20vw, 200px) clamp(20px, 5vw, 40px) clamp(48px, 8vw, 80px);
             text-align: center;
             background: linear-gradient(180deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
         }
@@ -226,11 +111,11 @@
             align-items: center;
             gap: 8px;
             padding: 6px 16px;
-            background: rgba(94, 92, 230, 0.08);
+            background: rgba(94, 92, 230, 0.15);
             border-radius: 980px;
             font-size: clamp(12px, 1.5vw, 14px);
             font-weight: 500;
-            color: var(--color-ios-purple);
+            color: var(--color-accent-purple);
             margin-bottom: clamp(16px, 3vw, 24px);
         }
 
@@ -253,7 +138,8 @@
         /* CRM Tabs */
         .crm-tabs {
             display: inline-flex;
-            background: var(--color-bg-secondary);
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-glass-border);
             border-radius: 12px;
             padding: 4px;
             gap: 4px;
@@ -275,38 +161,28 @@
             gap: 8px;
         }
 
-        .crm-tab:hover {
-            color: var(--color-text-primary);
-        }
+        .crm-tab:hover { color: var(--color-text-primary); }
 
         .crm-tab.active {
-            background: white;
+            background: var(--color-bg-surface);
             color: var(--color-text-primary);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
-        .crm-tab img {
-            width: 20px;
-            height: 20px;
-            object-fit: contain;
-        }
+        .crm-tab img { width: 20px; height: 20px; object-fit: contain; }
 
         .crm-tab .tab-count {
             font-size: 12px;
             color: var(--color-text-tertiary);
-            background: var(--color-bg-secondary);
+            background: var(--color-bg-elevated);
             padding: 2px 8px;
             border-radius: 100px;
-        }
-
-        .crm-tab.active .tab-count {
-            background: var(--color-bg-secondary);
         }
 
         .crm-tab .coming-soon-badge {
             font-size: 10px;
             color: white;
-            background: var(--color-ios-purple);
+            background: var(--color-accent-purple);
             padding: 2px 8px;
             border-radius: 100px;
             font-weight: 600;
@@ -315,13 +191,9 @@
         /* What's New Section */
         .whats-new {
             padding: var(--section-spacing) var(--container-padding);
-            background: var(--color-bg-primary);
         }
 
-        .whats-new-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+        .whats-new-container { max-width: 900px; margin: 0 auto; }
 
         .whats-new-header {
             display: flex;
@@ -337,268 +209,169 @@
         }
 
         .whats-new-icon {
-            width: 28px;
-            height: 28px;
+            width: 28px; height: 28px;
             background: var(--color-gold);
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             color: white;
         }
 
-        .changelog-list {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
+        .changelog-list { display: flex; flex-direction: column; gap: 24px; }
 
         .changelog-month {
-            border-left: 2px solid var(--color-border-light);
+            border-left: 2px solid var(--color-glass-border);
             padding-left: 24px;
             position: relative;
         }
 
         .changelog-month::before {
             content: '';
-            position: absolute;
-            left: -5px;
-            top: 6px;
-            width: 8px;
-            height: 8px;
-            background: var(--color-ios-purple);
+            position: absolute; left: -5px; top: 6px;
+            width: 8px; height: 8px;
+            background: var(--color-accent-purple);
             border-radius: 50%;
         }
 
         .changelog-month-title {
-            font-weight: 600;
-            font-size: 14px;
+            font-weight: 600; font-size: 14px;
             color: var(--color-text-tertiary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            text-transform: uppercase; letter-spacing: 0.05em;
             margin-bottom: 12px;
         }
 
-        .changelog-items {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        .changelog-items { display: flex; flex-direction: column; gap: 8px; }
 
         .changelog-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            display: flex; align-items: center; gap: 12px;
             padding: 12px 16px;
-            background: var(--color-bg-secondary);
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-glass-border);
             border-radius: 10px;
         }
 
-        .changelog-item-text {
-            flex: 1;
-            font-size: 15px;
-        }
+        .changelog-item-text { flex: 1; font-size: 15px; }
 
         /* Status Badges */
         .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            border-radius: 100px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 4px 10px; border-radius: 100px;
+            font-size: 11px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.02em;
         }
 
-        .status-available {
-            background: rgba(52, 199, 89, 0.12);
-            color: var(--color-success);
-        }
+        .status-available { background: rgba(52, 199, 89, 0.15); color: var(--color-success); }
+        .status-new { background: rgba(212, 168, 0, 0.15); color: var(--color-gold); }
+        .status-new::before { content: '\2728'; font-size: 10px; }
+        .status-coming-soon { background: rgba(94, 92, 230, 0.15); color: var(--color-accent-purple); }
+        .status-requested { background: rgba(138, 138, 154, 0.15); color: var(--color-text-secondary); }
 
-        .status-new {
-            background: rgba(212, 168, 0, 0.12);
-            color: var(--color-gold);
-        }
+        /* Capabilities Content */
+        .capabilities-content { padding: var(--section-spacing) var(--container-padding); }
+        .capabilities-container { max-width: 1200px; margin: 0 auto; }
+        .crm-content { display: none; }
+        .crm-content.active { display: block; }
 
-        .status-new::before {
-            content: '✨';
-            font-size: 10px;
-        }
-
-        .status-coming-soon {
-            background: rgba(94, 92, 230, 0.12);
-            color: var(--color-ios-purple);
-        }
-
-        .status-requested {
-            background: rgba(110, 110, 115, 0.12);
-            color: var(--color-text-secondary);
-        }
-
-        /* Capabilities Sections */
-        .capabilities-content {
-            padding: var(--section-spacing) var(--container-padding);
-        }
-
-        .capabilities-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .crm-content {
-            display: none;
-        }
-
-        .crm-content.active {
-            display: block;
-        }
-
-        .phase-section {
-            margin-bottom: clamp(48px, 8vw, 64px);
-        }
+        .phase-section { margin-bottom: clamp(48px, 8vw, 64px); }
 
         .phase-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--color-border-light);
+            display: flex; align-items: center; gap: 16px;
+            margin-bottom: 24px; padding-bottom: 16px;
+            border-bottom: 1px solid var(--color-glass-border);
         }
 
         .phase-icon {
-            width: 48px;
-            height: 48px;
+            width: 48px; height: 48px;
             background: var(--gradient-primary);
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            color: white; flex-shrink: 0;
         }
 
-        .phase-info {
-            flex: 1;
-        }
+        .phase-info { flex: 1; }
 
         .phase-title {
             font-family: var(--font-display);
             font-size: clamp(20px, 3vw, 24px);
-            font-weight: 700;
-            margin-bottom: 4px;
+            font-weight: 700; margin-bottom: 4px;
         }
 
-        .phase-count {
-            font-size: 14px;
-            color: var(--color-text-tertiary);
-        }
+        .phase-count { font-size: 14px; color: var(--color-text-tertiary); }
 
         .capabilities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 0 clamp(12px, 2vw, 24px);
         }
 
         .capability-card {
-            background: white;
-            border: 1px solid var(--color-border-light);
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-glass-border);
             border-radius: 16px;
             padding: 20px;
             transition: all 0.3s var(--ease-smooth);
+            min-height: 0;
+            overflow: hidden;
         }
 
         .capability-card:hover {
-            border-color: var(--color-border);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border-color: rgba(94, 92, 230, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             transform: translateY(-2px);
         }
 
         .capability-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
+            display: flex; justify-content: space-between;
+            align-items: flex-start; margin-bottom: 12px;
         }
 
-        .capability-name {
-            font-weight: 600;
-            font-size: 16px;
-        }
+        .capability-name { font-weight: 600; font-size: 16px; }
 
         .capability-prompt {
-            font-size: 14px;
-            color: var(--color-text-secondary);
-            background: var(--color-bg-secondary);
-            padding: 10px 14px;
-            border-radius: 10px;
+            font-size: 14px; color: var(--color-text-secondary);
+            background: var(--color-bg-surface);
+            padding: 10px 14px; border-radius: 10px;
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
             line-height: 1.4;
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
 
-        .capability-prompt::before {
-            content: '"';
-            color: var(--color-ios-purple);
-        }
+        .capability-prompt::before { content: '\201C'; color: var(--color-accent-purple); }
+        .capability-prompt::after { content: '\201D'; color: var(--color-accent-purple); }
 
-        .capability-prompt::after {
-            content: '"';
-            color: var(--color-ios-purple);
-        }
-
-        /* Salesforce Coming Soon */
+        /* Coming Soon */
         .coming-soon-content {
             text-align: center;
             padding: clamp(60px, 10vw, 100px) var(--container-padding);
         }
 
         .coming-soon-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 24px;
-            background: rgba(94, 92, 230, 0.08);
+            width: 80px; height: 80px; margin: 0 auto 24px;
+            background: rgba(94, 92, 230, 0.12);
             border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        .coming-soon-icon img {
-            width: 48px;
-            height: 48px;
-            object-fit: contain;
-        }
+        .coming-soon-icon img { width: 48px; height: 48px; object-fit: contain; }
 
         .coming-soon-title {
             font-family: var(--font-display);
             font-size: clamp(24px, 4vw, 32px);
-            font-weight: 700;
-            margin-bottom: 16px;
+            font-weight: 700; margin-bottom: 16px;
         }
 
         .coming-soon-text {
-            font-size: 18px;
-            color: var(--color-text-secondary);
-            max-width: 500px;
-            margin: 0 auto 32px;
-            line-height: 1.5;
+            font-size: 18px; color: var(--color-text-secondary);
+            max-width: 500px; margin: 0 auto 32px; line-height: 1.5;
         }
 
         .waitlist-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 32px;
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            border-radius: 980px;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 16px 32px; background: var(--gradient-primary);
+            color: white; border: none; border-radius: 980px;
+            font-size: 17px; font-weight: 600;
+            cursor: pointer; text-decoration: none;
             transition: all 0.3s var(--ease-smooth);
             box-shadow: 0 4px 16px rgba(94, 92, 230, 0.3);
         }
@@ -615,158 +388,80 @@
             text-align: center;
         }
 
-        .cta-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
+        .cta-container { max-width: 700px; margin: 0 auto; }
 
         .cta-title {
             font-family: var(--font-display);
             font-size: clamp(28px, 5vw, 40px);
-            font-weight: 700;
-            color: white;
-            margin-bottom: 16px;
+            font-weight: 700; color: white; margin-bottom: 16px;
         }
 
         .cta-text {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 32px;
-            line-height: 1.5;
+            font-size: 18px; color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 32px; line-height: 1.5;
         }
 
         .cta-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
+            display: flex; gap: 16px;
+            justify-content: center; flex-wrap: wrap;
         }
 
         .cta-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 32px;
-            background: white;
-            color: var(--color-text-primary);
-            border: none;
-            border-radius: 980px;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 16px 32px; background: white;
+            color: #1D1D1F; border: none; border-radius: 980px;
+            font-size: 17px; font-weight: 600;
+            cursor: pointer; text-decoration: none;
             transition: all 0.3s var(--ease-smooth);
         }
 
         .cta-primary:hover {
             transform: scale(1.02);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            color: #1D1D1F;
         }
 
         .cta-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 32px;
-            background: transparent;
-            color: white;
-            border: 1.5px solid rgba(255, 255, 255, 0.4);
-            border-radius: 980px;
-            font-size: 17px;
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 16px 32px; background: transparent;
+            color: white; border: 1.5px solid rgba(255, 255, 255, 0.4);
+            border-radius: 980px; font-size: 17px; font-weight: 500;
+            cursor: pointer; text-decoration: none;
             transition: all 0.3s var(--ease-smooth);
         }
 
         .cta-secondary:hover {
             background: rgba(255, 255, 255, 0.1);
             border-color: rgba(255, 255, 255, 0.6);
+            color: white;
         }
 
-        /* Footer */
-        .footer {
-            padding: clamp(32px, 5vw, 40px) var(--container-padding);
-            background: var(--color-bg-secondary);
-            border-top: 1px solid var(--color-border-light);
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 16px;
-        }
-
-        .footer-link {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s;
-        }
-
-        .footer-link:hover {
-            color: var(--color-text-primary);
-        }
-
-        .footer-copyright {
-            font-size: 12px;
-            color: var(--color-text-tertiary);
-        }
-
-        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .header-nav {
-                display: none;
-            }
-
-            .crm-tabs {
-                flex-direction: column;
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .crm-tab {
-                justify-content: center;
-            }
-
-            .capabilities-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .phase-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
+            .crm-tabs { flex-direction: column; width: 100%; max-width: 300px; }
+            .crm-tab { justify-content: center; }
+            .capabilities-grid { grid-template-columns: 1fr; }
+            .phase-header { flex-direction: column; text-align: center; }
+            .cta-buttons { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <div class="page-bg-enhanced"></div>
     <header class="header">
         <div class="header-inner">
             <a href="/" class="logo-text">FlightSuite</a>
             <nav class="header-nav">
                 <a href="/#demo" class="nav-link">Demo</a>
-                <a href="/#faq" class="nav-link">FAQ</a>
-                <a href="/capabilities.html" class="nav-link active">Capabilities</a>
-                <a href="/find-your-crm" class="nav-link">Find Your CRM</a>
+                <a href="/capabilities.html" class="nav-link">Capabilities</a>
                 <a href="/experts/" class="nav-link">Experts</a>
                 <a href="/blog.html" class="nav-link">Blog</a>
-                <a href="https://chromewebstore.google.com/detail/flightsuite-crm-operator/blmnkgfabhnalpmmodfbpicmedfgdgbb?hl=en-US" class="cta-header" target="_blank">Install Free</a>
+                <a href="/installation-guide.html" class="cta-header" data-event="install_click">Install for Chrome</a>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="cap-hero">
         <div class="hero-content">
             <div class="hero-badge">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -775,7 +470,7 @@
                 Capabilities
             </div>
             <h1 class="hero-title">What FlightSuite Can Do</h1>
-            <p class="hero-subtitle">100+ AI-powered actions across your CRM. Just describe what you want—your CoPilot handles the rest.</p>
+            <p class="hero-subtitle">100+ AI-powered actions across your CRM. Just describe what you want—your Agent handles the rest.</p>
 
             <!-- CRM Tabs -->
             <div class="crm-tabs" role="tablist">
@@ -2077,16 +1772,44 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-links">
-            <a href="/" class="footer-link">Home</a>
-            <a href="/blog.html" class="footer-link">Blog</a>
-            <a href="/installation-guide.html" class="footer-link">Installation Guide</a>
-            <a href="https://flightsuite.ai/privacy-policy" class="footer-link">Privacy</a>
-            <a href="https://forms.gle/4wQhEo9hgp1eJKqL7" class="footer-link">Support</a>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-name">FlightSuite</div>
+                    <p class="footer-description">The universal CRM Agent. Making CRM adoption effortless.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="/#demo" class="footer-link">Demo</a></li>
+                        <li><a href="/#faq" class="footer-link">FAQ</a></li>
+                        <li><a href="/capabilities.html" class="footer-link">Capabilities</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="/privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="/terms.html" class="footer-link">Terms of Service</a></li>
+                        <li><a href="https://forms.gle/4wQhEo9hgp1eJKqL7" class="footer-link">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/blog.html" class="footer-link">Blog</a></li>
+                        <li><a href="/installation-guide.html" class="footer-link">Installation Guide</a></li>
+                        <li><a href="/tools/crm-roi-calculator.html" class="footer-link">ROI Calculator</a></li>
+                        <li><a href="/find-your-crm.html" class="footer-link">Find Your CRM</a></li>
+                        <li><a href="/experts/" class="footer-link">CRM Experts</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 FlightSuite Corporation. All rights reserved.
+            </div>
         </div>
-        <p class="footer-copyright">© 2026 FlightSuite Corporation. All rights reserved.</p>
     </footer>
 
     <script>
