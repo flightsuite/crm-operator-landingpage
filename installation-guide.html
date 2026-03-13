@@ -38,7 +38,7 @@
       "@context": "https://schema.org",
       "@type": "HowTo",
       "name": "How to Install FlightSuite with GoHighLevel",
-      "description": "Step-by-step guide to connect FlightSuite CRM CoPilot with your GoHighLevel account. Complete setup takes about 5 minutes and enables AI-powered CRM automation.",
+      "description": "Step-by-step guide to connect FlightSuite CRM Agent with your GoHighLevel account. Complete setup takes about 5 minutes and enables AI-powered CRM automation.",
       "image": "https://flightsuite.ai/Assets/social-preview.png",
       "totalTime": "PT5M",
       "estimatedCost": {
@@ -116,7 +116,7 @@
       "@context": "https://schema.org",
       "@type": "HowTo",
       "name": "How to Install FlightSuite with HubSpot",
-      "description": "Step-by-step guide to connect FlightSuite CRM CoPilot with your HubSpot account using Legacy Apps. Enables AI-powered contact management.",
+      "description": "Step-by-step guide to connect FlightSuite CRM Agent with your HubSpot account using Legacy Apps. Enables AI-powered contact management.",
       "image": "https://flightsuite.ai/Assets/social-preview.png",
       "estimatedCost": {
         "@type": "MonetaryAmount",
@@ -231,606 +231,27 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="Assets/Flight Suite Favicon vPurple.svg">
 
-    <style>
-        /* ===== CSS RESET & BASE ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --color-apple-blue: #0071E3;
-            --color-ios-purple: #5E5CE6;
-            --color-success: #34C759;
-            --color-bg-primary: #FFFFFF;
-            --color-bg-secondary: #F5F5F7;
-            --color-text-primary: #1D1D1F;
-            --color-text-secondary: #6E6E73;
-            --color-text-tertiary: #86868B;
-            --color-border: rgba(0, 0, 0, 0.1);
-            --max-width: 1440px;
-            --content-width: 900px;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            background: var(--color-bg-primary);
-            color: var(--color-text-primary);
-            line-height: 1.8;
-        }
-
-        /* ===== NAVIGATION ===== */
-        .nav-container {
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--color-border);
-            z-index: 1000;
-        }
-
-        nav {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: clamp(1.25rem, 2vw, 1.5rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--color-text-primary);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: clamp(1.5rem, 3vw, 2.5rem);
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            font-size: clamp(0.875rem, 1.5vw, 1rem);
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--color-apple-blue);
-        }
-
-        /* ===== PAGE HEADER ===== */
-        .page-header {
-            max-width: var(--content-width);
-            margin: 0 auto;
-            padding: clamp(3rem, 8vw, 5rem) clamp(1.5rem, 4vw, 2rem) clamp(2rem, 5vw, 3rem);
-            text-align: center;
-        }
-
-        .page-header h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            color: var(--color-text-primary);
-        }
-
-        .page-header p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* ===== CRM SELECTOR ===== */
-        .crm-selector-section {
-            max-width: var(--content-width);
-            margin: 0 auto;
-            padding: 0 clamp(1.5rem, 4vw, 2rem) clamp(2rem, 4vw, 3rem);
-        }
-
-        .crm-selector {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-
-        .crm-option {
-            flex: 1;
-            min-width: 200px;
-            max-width: 300px;
-            padding: 1.5rem;
-            border: 2px solid var(--color-border);
-            border-radius: 12px;
-            background: var(--color-bg-primary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .crm-option:hover {
-            border-color: var(--color-ios-purple);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(94, 92, 230, 0.15);
-        }
-
-        .crm-option.active {
-            border-color: var(--color-ios-purple);
-            background: rgba(94, 92, 230, 0.05);
-        }
-
-        .crm-option h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--color-text-primary);
-        }
-
-        .crm-option p {
-            font-size: 0.875rem;
-            color: var(--color-text-secondary);
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: 0.5rem;
-        }
-
-        .status-live {
-            background: rgba(52, 199, 89, 0.1);
-            color: var(--color-success);
-        }
-
-        .status-coming-soon {
-            background: rgba(134, 134, 139, 0.1);
-            color: var(--color-text-tertiary);
-        }
-
-        /* ===== INSTALLATION CONTENT ===== */
-        .installation-content {
-            max-width: var(--content-width);
-            margin: 0 auto;
-            padding: 0 clamp(1.5rem, 4vw, 2rem) clamp(3rem, 6vw, 5rem);
-        }
-
-        .crm-guide {
-            display: none;
-        }
-
-        .crm-guide.active {
-            display: block;
-        }
-
-        .installation-step {
-            margin-bottom: 3rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .installation-step:last-child {
-            border-bottom: none;
-        }
-
-        .step-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .step-number {
-            flex-shrink: 0;
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.125rem;
-        }
-
-        .step-title {
-            flex: 1;
-        }
-
-        .step-title h2 {
-            font-size: clamp(1.5rem, 3vw, 1.75rem);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--color-text-primary);
-        }
-
-        .step-description {
-            font-size: 1.0625rem;
-            color: var(--color-text-secondary);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .step-image {
-            width: 100%;
-            border-radius: 12px;
-            border: 1px solid var(--color-border);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-            margin-top: 1.5rem;
-        }
-
-        /* Image container for centering non-full-width images */
-        .step-image-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 1.5rem;
-        }
-
-        /* Banner images - wide and short, don't stretch */
-        .step-image-banner {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            border: 1px solid var(--color-border);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Sidebar images - narrow and tall */
-        .step-image-sidebar {
-            max-width: 280px;
-            height: auto;
-            border-radius: 12px;
-            border: 1px solid var(--color-border);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Modal/dialog images - medium width */
-        .step-image-modal {
-            max-width: 600px;
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            border: 1px solid var(--color-border);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Small UI element images */
-        .step-image-small {
-            max-width: 320px;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid var(--color-border);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        }
-
-        /* Multiple images in a row */
-        .step-images-row {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 1.5rem;
-        }
-
-        .step-images-row .step-image-modal {
-            flex: 1;
-            min-width: 300px;
-            max-width: 100%;
-        }
-
-        /* Scopes table dropdown */
-        .scopes-dropdown {
-            margin: 1.5rem 0;
-            border: 1px solid var(--color-border);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .scopes-dropdown summary {
-            padding: 1rem 1.25rem;
-            background: var(--color-bg-secondary);
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            list-style: none;
-        }
-
-        .scopes-dropdown summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .scopes-dropdown summary::before {
-            content: "";
-            width: 0;
-            height: 0;
-            border-left: 6px solid var(--color-text-secondary);
-            border-top: 5px solid transparent;
-            border-bottom: 5px solid transparent;
-            transition: transform 0.2s ease;
-        }
-
-        .scopes-dropdown[open] summary::before {
-            transform: rotate(90deg);
-        }
-
-        .scopes-dropdown summary:hover {
-            background: rgba(94, 92, 230, 0.08);
-        }
-
-        .scopes-dropdown .scope-count {
-            font-weight: 400;
-            color: var(--color-text-tertiary);
-            font-size: 0.875rem;
-        }
-
-        .scopes-table-container {
-            overflow-x: auto;
-        }
-
-        .scopes-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9375rem;
-            background: var(--color-bg-primary);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--color-border);
-        }
-
-        .scopes-table th {
-            background: var(--color-bg-secondary);
-            padding: 0.875rem 1rem;
-            text-align: left;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .scopes-table td {
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid var(--color-border);
-            vertical-align: top;
-        }
-
-        .scopes-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .scopes-table code {
-            background: var(--color-bg-secondary);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
-            font-size: 0.8125rem;
-            color: var(--color-ios-purple);
-            user-select: all;
-            cursor: pointer;
-        }
-
-        .scopes-table .scope-category {
-            font-weight: 600;
-            color: var(--color-text-primary);
-            background: var(--color-bg-secondary);
-        }
-
-        .scope-hint {
-            font-size: 0.8125rem;
-            color: var(--color-text-tertiary);
-            margin: 0;
-            padding: 0.75rem 1rem 1rem;
-            font-style: italic;
-        }
-
-        .scopes-dropdown .scopes-table {
-            border: none;
-            border-radius: 0;
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .coming-soon-message {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: var(--color-bg-secondary);
-            border-radius: 16px;
-            margin: 2rem 0;
-        }
-
-        .coming-soon-message h2 {
-            font-size: clamp(1.75rem, 4vw, 2.25rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--color-text-primary);
-        }
-
-        .coming-soon-message p {
-            font-size: 1.125rem;
-            color: var(--color-text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 0.875rem 2rem;
-            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 100px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(94, 92, 230, 0.3);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--color-bg-secondary);
-            border-top: 1px solid var(--color-border);
-            margin-top: 5rem;
-            padding: 3rem clamp(1.5rem, 4vw, 3rem);
-        }
-
-        .footer-content {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links a {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            font-size: 0.9375rem;
-            transition: color 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--color-apple-blue);
-        }
-
-        .footer-copyright {
-            color: var(--color-text-tertiary);
-            font-size: 0.875rem;
-        }
-
-        /* ===== VIDEO PREVIEW ===== */
-        .video-preview-section {
-            max-width: var(--content-width);
-            margin: 0 auto;
-            padding: 0 clamp(1.5rem, 4vw, 2rem) clamp(2rem, 4vw, 3rem);
-        }
-
-        .video-preview {
-            display: none;
-        }
-
-        .video-preview.active {
-            display: block;
-        }
-
-        .video-container {
-            background: var(--color-bg-secondary);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--color-border);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-        }
-
-        .video-header {
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid var(--color-border);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .video-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .video-icon svg {
-            width: 16px;
-            height: 16px;
-            fill: white;
-        }
-
-        .video-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--color-text-primary);
-        }
-
-        .video-subtitle {
-            font-size: 0.875rem;
-            color: var(--color-text-tertiary);
-            margin-left: auto;
-        }
-
-        .video-embed {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-        }
-
-        .video-embed iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .crm-selector {
-                flex-direction: column;
-            }
-
-            .crm-option {
-                max-width: 100%;
-            }
-
-            .step-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .step-number {
-                margin-bottom: 0.5rem;
-            }
-        }
-    </style>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Shared Dark Theme Styles -->
+    <link rel="stylesheet" href="css/shared.css?v=2">
 </head>
 <body>
+    <div class="page-bg-enhanced"></div>
     <!-- Navigation -->
-    <div class="nav-container">
-        <nav>
-            <a href="/" class="logo">FlightSuite</a>
-            <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/blog.html">Blog</a>
-                <a href="/#install">Install</a>
-            </div>
-        </nav>
-    </div>
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo-text">FlightSuite</a>
+            <nav class="header-nav">
+                <a href="/#demo" class="nav-link">Demo</a>
+                <a href="/capabilities.html" class="nav-link">Capabilities</a>
+                <a href="/experts/" class="nav-link">Experts</a>
+                <a href="/blog.html" class="nav-link">Blog</a>
+                <a href="/installation-guide.html" class="cta-header" data-event="install_click">Install for Chrome</a>
+            </nav>
+        </div>
+    </header>
 
     <!-- Page Header -->
     <div class="page-header">
@@ -880,7 +301,7 @@
                         <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                     </div>
                     <span class="video-title">See FlightSuite in Action</span>
-                    <span class="video-subtitle">HubSpot CoPilot Demo</span>
+                    <span class="video-subtitle">HubSpot Agent Demo</span>
                 </div>
                 <div class="video-embed">
                     <iframe src="https://www.loom.com/embed/f04a4617d2d54c3cba04428a549b0f98?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" allowfullscreen></iframe>
@@ -1296,16 +717,42 @@
     </div>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="footer-content">
-            <div class="footer-links">
-                <a href="/">Home</a>
-                <a href="/blog.html">Blog</a>
-                <a href="/installation-guide.html">Installation Guide</a>
-                <a href="/#install">Get Early Access</a>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-name">FlightSuite</div>
+                    <p class="footer-description">The universal CRM Agent. Making CRM adoption effortless.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="/#demo" class="footer-link">Demo</a></li>
+                        <li><a href="/#faq" class="footer-link">FAQ</a></li>
+                        <li><a href="/capabilities.html" class="footer-link">Capabilities</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="/privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="/terms.html" class="footer-link">Terms of Service</a></li>
+                        <li><a href="https://forms.gle/4wQhEo9hgp1eJKqL7" class="footer-link">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/blog.html" class="footer-link">Blog</a></li>
+                        <li><a href="/installation-guide.html" class="footer-link">Installation Guide</a></li>
+                        <li><a href="/tools/crm-roi-calculator.html" class="footer-link">ROI Calculator</a></li>
+                        <li><a href="/find-your-crm.html" class="footer-link">Find Your CRM</a></li>
+                        <li><a href="/experts/" class="footer-link">CRM Experts</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-copyright">
-                &copy; 2026 FlightSuite. All rights reserved.
+            <div class="footer-bottom">
+                &copy; 2026 FlightSuite Corporation. All rights reserved.
             </div>
         </div>
     </footer>

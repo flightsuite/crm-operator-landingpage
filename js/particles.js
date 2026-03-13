@@ -58,6 +58,7 @@
         'Salesforce': 'Assets/Salesforce.com_logo.svg.png',
         'WhatsApp': 'Assets/whatsapp.svg',
         'Zoho': 'Assets/zoho-logo-512.png',
+        'Zendesk': 'Assets/zendesk.svg',
     };
 
     const logoImages = {};
@@ -86,7 +87,8 @@
 
     // --- CRM Planets ---
     // Sized for logo visibility — larger than before
-    const CRM_PLANETS = [
+    // Primary CRM planets (shown on all devices)
+    const CRM_PLANETS_PRIMARY = [
         {
             name: 'GoHighLevel',
             color: '40, 167, 69',
@@ -122,14 +124,23 @@
             size: isMobile ? 26 : 35,
             mass: 1.8,
         },
+        {
+            name: 'Zendesk',
+            color: '3, 54, 61',
+            glowColor: '34, 211, 238',
+            size: isMobile ? 24 : 38,
+            mass: 2.0,
+        },
     ];
+
+    const CRM_PLANETS = CRM_PLANETS_PRIMARY;
 
     // --- Morphing States ---
     const STATES = {
         hero: {
             starDrift: 0.5, starDamping: 0.96, starAlphaBoost: 0,
             planetSpread: 1.0, planetDrift: 0.3, planetDamping: 0.985,
-            connectionStrength: 0, convergeStrength: 0, orbitStrength: 0,
+            connectionStrength: 0, convergeStrength: 0, orbitStrength: 0.25,
             expandStrength: 0, gridStrength: 0, logoVisibility: 0.45,
         },
         pain: {
@@ -350,7 +361,7 @@
             let targetX, targetY;
 
             if (lerpedState.orbitStrength > 0.1) {
-                this.orbitAngle += 0.003 * (1 / this.config.mass);
+                this.orbitAngle += 0.005 * (1 / this.config.mass);
                 targetX = cx + Math.cos(this.orbitAngle) * spread;
                 targetY = cy + Math.sin(this.orbitAngle) * spread * 0.6;
             } else {
@@ -466,7 +477,7 @@
             ctx.fillStyle = bodyGrad;
             ctx.fill();
 
-            // --- CRM Logo (image) ---
+            // --- CRM Logo (image) or Text Label fallback ---
             const logo = logoImages[this.config.name];
             if (logo && this.logoOpacity > 0.03) {
                 ctx.save();
@@ -486,6 +497,17 @@
                     logoSize,
                     logoSize
                 );
+                ctx.restore();
+            } else if (this.config.label && this.logoOpacity > 0.03) {
+                // Text label fallback for planets without logo assets
+                ctx.save();
+                ctx.globalAlpha = this.logoOpacity * pulse;
+                const fontSize = Math.max(8, effectiveSize * 0.34);
+                ctx.font = `600 ${fontSize}px 'Space Grotesk', 'DM Sans', sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillStyle = `rgba(255, 255, 255, ${0.85 * pulse})`;
+                ctx.fillText(this.config.label, this.x, this.y);
                 ctx.restore();
             }
 
@@ -554,7 +576,8 @@
 
     function initDataParticles() {
         dataParticles = [];
-        for (let i = 0; i < 8; i++) {
+        const particleCount = Math.min(planets.length * 2, 16);
+        for (let i = 0; i < particleCount; i++) {
             dataParticles.push({
                 fromPlanet: Math.floor(Math.random() * planets.length),
                 toPlanet: Math.floor(Math.random() * planets.length),
@@ -641,6 +664,25 @@
 
         // Connection lines
         drawConnections();
+
+        // Planet-to-planet soft repulsion — prevents overlapping
+        for (let i = 0; i < planets.length; i++) {
+            for (let j = i + 1; j < planets.length; j++) {
+                const dx = planets[j].x - planets[i].x;
+                const dy = planets[j].y - planets[i].y;
+                const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+                const minDist = (planets[i].config.size + planets[j].config.size) * 1.3;
+                if (dist < minDist) {
+                    const force = (minDist - dist) / minDist * 0.08;
+                    const nx = dx / dist;
+                    const ny = dy / dist;
+                    planets[i].vx -= nx * force;
+                    planets[i].vy -= ny * force;
+                    planets[j].vx += nx * force;
+                    planets[j].vy += ny * force;
+                }
+            }
+        }
 
         // Planets
         for (let i = 0; i < planets.length; i++) {

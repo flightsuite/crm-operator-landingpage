@@ -236,11 +236,9 @@ function toggleFaq(button) {
     answer.classList.toggle('open');
 }
 
-// Modal Functions
+// Install CTA — navigates to guide on desktop, email capture on mobile
 function openInstallModal() {
-    playModalSound();
-    document.getElementById('installModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
+    window.location.href = 'installation-guide.html';
 }
 
 function openCrmRequestModal() {
@@ -262,34 +260,20 @@ function openModal(modalId) {
     document.body.style.overflow = 'hidden';
 }
 
-// CRM Guide Toggle in Install Modal
-function switchCrmGuide(crm) {
-    playClickSound();
-    // Update toggle buttons
-    document.querySelectorAll('.crm-toggle-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.crm === crm);
-    });
-    // Update instructions visibility
-    document.querySelectorAll('.crm-instructions').forEach(section => {
-        section.classList.remove('active');
-    });
-    document.getElementById(crm + '-instructions').classList.add('active');
-}
 
 // Mobile Detection & Email Capture
 function isMobile() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
 }
 
-// Show mobile email capture on CTA clicks for mobile users
-const originalOpenInstallModal = openInstallModal;
-openInstallModal = function() {
-    if (isMobile()) {
+// On mobile, intercept install CTA links to show email capture instead
+document.addEventListener('click', function(e) {
+    const installLink = e.target.closest('[data-event="install_click"]');
+    if (installLink && isMobile()) {
+        e.preventDefault();
         openMobileEmailModal();
-    } else {
-        originalOpenInstallModal();
     }
-};
+});
 
 function openMobileEmailModal() {
     playClickSound();

@@ -4,13 +4,12 @@
     "linkedin": "https://www.linkedin.com/company/flight-suite-ai",
     "facebook": "https://www.facebook.com/flightsuiteai/"
   },
-  "startDate": null,
-  "currentDay": 1,
+  "startDate": "2026-01-27",
+  "currentDay": 5,
   "totalDays": 30,
-  "lastRunDate": null,
-  "status": "not_started",
+  "lastRunDate": "2026-01-30",
+  "status": "in_progress",
   "completedDays": [],
-  "notes": [],
   "metrics": {
     "linkedInFollowers": {
       "start": 0,
@@ -21,279 +20,78 @@
       "current": 0
     },
     "totalPosts": 0,
-    "totalEngagements": 0,
-    "websiteClicks": 0
+    "blogPromosCount": 1,
+    "engagementPostsCount": 2,
+    "valuePostsCount": 1
   },
-  "dayDetails": {
+  "promotedBlogs": [
+    {
+      "url": "https://www.flightsuite.ai/compare/gohighlevel-vs-hubspot.html",
+      "promotedOn": "2026-01-30",
+      "day": 3
+    }
+  ],
+  "recentLinkedInThemes": [
+    "CRM data entry costs",
+    "CRM adoption/usage problems",
+    "CRM Operator product intro",
+    "Lead gen/prospecting automation",
+    "Reputation management"
+  ],
+  "dayLog": {
     "1": {
-      "title": "The Opening Hook",
-      "theme": "Relatable pain point",
-      "status": "pending",
+      "status": "provided",
+      "title": "CRM Time Poll",
+      "plannedTheme": "Pain Points",
+      "actualTheme": "Engagement Poll",
+      "adapted": true,
+      "adaptationReason": "LinkedIn recently covered CRM problems; poll is fresh engagement format",
       "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
+      "thumbnailQuery": "clock time management business stock photo"
     },
     "2": {
-      "title": "The 'I'll Update It Later' Problem",
-      "theme": "Relatable behavior",
-      "status": "pending",
+      "status": "provided",
+      "title": "The Hidden Cost",
+      "plannedTheme": "Pain Points",
+      "actualTheme": "Statistics/Data",
+      "adapted": true,
+      "adaptationReason": "Data-driven content builds authority; fresh angle not recently covered",
       "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
+      "thumbnailQuery": "calculator money business cost analysis"
     },
     "3": {
-      "title": "Blog Promo - Why Sales Reps Hate Data Entry (Part 1)",
-      "theme": "Blog promotion",
-      "status": "pending",
-      "blogLink": "https://flightsuite.ai/blog/why-sales-reps-hate-data-entry.html",
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
+      "status": "provided",
+      "title": "GoHighLevel vs HubSpot Comparison",
+      "plannedTheme": "Blog Promo",
+      "actualTheme": "Blog Promo - Comparison Page",
+      "adapted": false,
+      "adaptationReason": "First blog promo; high-value SEO comparison content",
+      "blogLink": "https://www.flightsuite.ai/compare/gohighlevel-vs-hubspot.html",
+      "thumbnailQuery": "software comparison versus"
     },
     "4": {
-      "title": "Blog Promo - Why Sales Reps Hate Data Entry (Part 2)",
-      "theme": "Poll/engagement",
-      "status": "pending",
+      "status": "provided",
+      "title": "The Three Types of Sales Reps",
+      "plannedTheme": "Blog Promo",
+      "actualTheme": "Relatable/Engagement",
+      "adapted": true,
+      "adaptationReason": "Avoid back-to-back blog promos; humor drives engagement",
       "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "5": {
-      "title": "The Hidden Cost",
-      "theme": "Statistics/data",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "6": {
-      "title": "The 3 Types of Reps",
-      "theme": "Relatable humor",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "7": {
-      "title": "The Real Problem",
-      "theme": "Thought leadership",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "8": {
-      "title": "Quick Win - Batching",
-      "theme": "Actionable tip",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "9": {
-      "title": "Blog Promo - Eliminate Manual CRM Data Entry (Part 1)",
-      "theme": "Blog promotion",
-      "status": "pending",
-      "blogLink": "https://flightsuite.ai/blog/eliminate-manual-crm-data-entry.html",
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "10": {
-      "title": "Blog Promo - Eliminate Manual CRM Data Entry (Part 2)",
-      "theme": "Engagement question",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "11": {
-      "title": "The Automation Ladder",
-      "theme": "Educational framework",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "12": {
-      "title": "Time Tracking Challenge",
-      "theme": "Interactive challenge",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "13": {
-      "title": "The Pipeline Accuracy Problem",
-      "theme": "Business impact",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "14": {
-      "title": "Sunday Reflection",
-      "theme": "Weekend/motivational",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "15": {
-      "title": "Blog Promo - AI CRM Automation Guide (Part 1)",
-      "theme": "Blog promotion",
-      "status": "pending",
-      "blogLink": "https://flightsuite.ai/blog/ai-crm-automation-guide.html",
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "16": {
-      "title": "Blog Promo - AI CRM Automation Guide (Part 2)",
-      "theme": "Myth-busting",
-      "status": "pending",
-      "blogLink": "https://flightsuite.ai/blog/ai-crm-automation-guide.html",
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "17": {
-      "title": "Blog Promo - HubSpot vs Salesforce (Part 1)",
-      "theme": "Comparison",
-      "status": "pending",
-      "blogLink": "https://flightsuite.ai/blog/hubspot-vs-salesforce-small-teams.html",
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "18": {
-      "title": "Blog Promo - HubSpot vs Salesforce (Part 2)",
-      "theme": "Hot take",
-      "status": "pending",
-      "blogLink": "https://flightsuite.ai/blog/hubspot-vs-salesforce-small-teams.html",
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "19": {
-      "title": "The 80/20 of CRM",
-      "theme": "Framework",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "20": {
-      "title": "User Story Format",
-      "theme": "Social proof",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "21": {
-      "title": "Week 3 Wrap-up",
-      "theme": "Recap/engagement",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "22": {
-      "title": "Choosing the Right CRM",
-      "theme": "Decision framework",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "23": {
-      "title": "Blog Promo - Best CRM for Your Business (Part 1)",
-      "theme": "Blog promotion",
-      "status": "pending",
-      "blogLink": "https://flightsuite.ai/blog/best-crm-for-your-business.html",
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "24": {
-      "title": "Blog Promo - Best CRM for Your Business (Part 2)",
-      "theme": "Poll/engagement",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "25": {
-      "title": "Real Estate CRM Tips",
-      "theme": "Industry-specific",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "26": {
-      "title": "Agency CRM Tips",
-      "theme": "Industry-specific",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "27": {
-      "title": "Small Business CRM Tips",
-      "theme": "Industry-specific",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "28": {
-      "title": "The Follow-Up Problem",
-      "theme": "Pain point/solution",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "29": {
-      "title": "The Future of CRM",
-      "theme": "Thought leadership",
-      "status": "pending",
-      "blogLink": null,
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
-    },
-    "30": {
-      "title": "Community Thank You + CTA",
-      "theme": "Community building",
-      "status": "pending",
-      "blogLink": "https://flightsuite.ai",
-      "thumbnailUsed": null,
-      "postedToLinkedIn": false,
-      "postedToFacebook": false
+      "thumbnailQuery": "three business professionals different personalities"
     }
-  }
+  },
+  "contentMixActual": {
+    "blogPromos": 1,
+    "painPoints": 0,
+    "actionableTips": 0,
+    "statistics": 1,
+    "engagement": 2,
+    "thoughtLeadership": 0
+  },
+  "notes": [
+    "Day 1-2 adapted from pain points to avoid overlap with LinkedIn's recent CRM adoption posts",
+    "Day 3 promoted GoHighLevel vs HubSpot comparison - first blog promo",
+    "Day 4 switched to relatable content to avoid back-to-back promos",
+    "Days 5-6 should promote another comparison/alternatives page (Salesforce Alternatives or HubSpot Alternatives)"
+  ]
 }

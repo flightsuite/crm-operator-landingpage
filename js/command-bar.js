@@ -15,9 +15,6 @@
         'demo': '#demo',
         'show me the demo': '#demo',
         'watch demo': '#demo',
-        'pricing': '#pricing',
-        'how much': '#pricing',
-        'plans': '#pricing',
         'faq': '#faq',
         'questions': '#faq',
         'help': '#faq',
@@ -26,9 +23,7 @@
         'what can it do': '#capabilities',
         'integrations': '#integrations',
         'crms': '#integrations',
-        'testimonials': '#press',
-        'reviews': '#press',
-        'press': '#press',
+        'roadmap': '#integrations',
         'install': null, // special
         'get started': null,
         'try it': null,
@@ -52,13 +47,66 @@
         { match: /(.+) (?:wants|interested|asked about) (.+)/i, response: (m) => `✓ Updating ${m[1]}: interested in ${m[2]}` },
         { match: /delete (.+)/i, response: (m) => `✓ Removing ${m[1]}...` },
         { match: /remind me (.+)/i, response: (m) => `✓ Setting reminder: ${m[1]}` },
-        // Catch-all for natural language that looks like a CRM action
-        { match: /^(.{10,})$/i, response: (m) => `✓ Processing: "${m[1].substring(0, 40)}..."` },
     ];
 
     let isOpen = false;
 
+    // --- Cycling placeholder examples ---
+    const examples = [
+        'Add Sarah Chen as a contact...',
+        'Log my call with Mike about the proposal...',
+        'Book a demo for Tuesday at 2pm...',
+        'Move Acme Corp to Discovery stage...',
+        'Send a follow-up email to Lisa...',
+        'Show me the demo',
+        'Had a meeting with John, he wants enterprise...',
+    ];
+    let exampleIdx = 0;
+    let charIdx = 0;
+    let isTyping = true;
+    let pauseTimer = null;
+    let typeTimer = null;
+
+    function cycleplaceholder() {
+        if (isOpen || document.activeElement === inputEl) return;
+        if (isTyping) {
+            charIdx++;
+            inputEl.placeholder = examples[exampleIdx].substring(0, charIdx);
+            if (charIdx >= examples[exampleIdx].length) {
+                isTyping = false;
+                pauseTimer = setTimeout(cycleplaceholder, 2000);
+                return;
+            }
+            typeTimer = setTimeout(cycleplaceholder, 50 + Math.random() * 40);
+        } else {
+            charIdx = 0;
+            exampleIdx = (exampleIdx + 1) % examples.length;
+            isTyping = true;
+            inputEl.placeholder = '';
+            typeTimer = setTimeout(cycleplaceholder, 400);
+        }
+    }
+
+    function stopCycling() {
+        clearTimeout(pauseTimer);
+        clearTimeout(typeTimer);
+    }
+
+    function restartCycling() {
+        stopCycling();
+        if (!isOpen) {
+            charIdx = 0;
+            isTyping = true;
+            typeTimer = setTimeout(cycleplaceholder, 1000);
+        }
+    }
+
+    // Start cycling after a short delay
+    setTimeout(cycleplaceholder, 2000);
+
     function openBar() {
+        stopCycling();
+        inputEl.placeholder = 'Type a CRM command...';
         isOpen = true;
         barEl.classList.add('open');
         inputEl.focus();
@@ -69,6 +117,7 @@
         barEl.classList.remove('open');
         inputEl.blur();
         inputEl.value = '';
+        restartCycling();
     }
 
     function handleCommand(raw) {
@@ -105,8 +154,8 @@
             }
         }
 
-        // Default: treat as search/navigation hint
-        showCommandFeedback(`Try: "Had a call with Sarah" or "Book a demo for Mike"`);
+        // Default: honest fallback — this is a preview, not the real agent
+        showCommandFeedback(`This is a preview — install FlightSuite to use the real agent! Try: "Add Sarah as a contact"`);
     }
 
     function showCommandFeedback(text) {
