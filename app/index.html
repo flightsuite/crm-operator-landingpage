@@ -218,6 +218,8 @@
         }
         .field-input:focus { border-color: var(--color-accent-blue); box-shadow: 0 0 0 3px rgba(0,113,227,0.2); }
         .field-input::placeholder { color: var(--color-text-tertiary); }
+        select.field-input { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23888' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; cursor: pointer; }
+        select.field-input option { background: #1a1a1a; color: #fff; }
 
         .btn-cta {
             width: 100%; padding: 13px 20px;
@@ -275,6 +277,11 @@
         .tier-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
         .tier-free     { background: rgba(255,255,255,0.06); color: var(--color-text-secondary); }
         .tier-free .dot     { background: var(--color-text-tertiary); }
+        .tier-basic    { background: rgba(0,113,227,0.12); color: #4da3ff; }
+        .tier-basic .dot    { background: var(--color-accent-blue); }
+        .tier-unlimited { background: rgba(94,92,230,0.12); color: #8b8ae6; }
+        .tier-unlimited .dot { background: var(--color-accent-purple); }
+        /* Legacy tiers */
         .tier-starter  { background: rgba(0,113,227,0.12); color: #4da3ff; }
         .tier-starter .dot  { background: var(--color-accent-blue); }
         .tier-pro      { background: rgba(94,92,230,0.12); color: #8b8ae6; }
@@ -1011,45 +1018,34 @@
         </div>
         <p class="modal-sub">Unlock SMS &amp; WhatsApp AI credits. The Chrome extension stays free forever.</p>
         <div class="plans-grid">
-            <div class="plan-tile" data-tier="starter">
-                <div class="plan-tile-name">Starter</div>
-                <div class="plan-tile-price">$5</div>
+            <div class="plan-tile" data-tier="basic">
+                <div class="plan-tile-name">Basic</div>
+                <div class="plan-tile-price">$10</div>
                 <div class="plan-tile-period">per month</div>
-                <div class="plan-tile-credits">100 <span>SMS/WA credits/mo</span></div>
-                <div class="plan-tile-persona">For trying SMS &amp; WhatsApp</div>
+                <div class="plan-tile-credits">200 <span>SMS/WA credits/mo</span></div>
+                <div class="plan-tile-persona">For getting started with SMS &amp; WhatsApp</div>
                 <ul class="plan-tile-features">
                     <li>Unlimited Chrome extension</li>
                     <li>HubSpot &amp; LeadConnector</li>
+                    <li>200 confirmed queries/mo</li>
                     <li>Resets monthly</li>
                 </ul>
-                <button class="btn-select default" onclick="selectPlan('starter', this)">Get Starter</button>
+                <button class="btn-select default" onclick="selectPlan('basic', this)">Get Basic</button>
             </div>
-            <div class="plan-tile popular" data-tier="pro">
-                <div class="plan-popular-tag">Most Popular</div>
-                <div class="plan-tile-name">Pro</div>
-                <div class="plan-tile-price grad">$10</div>
+            <div class="plan-tile popular" data-tier="unlimited">
+                <div class="plan-popular-tag">Best Value</div>
+                <div class="plan-tile-name">Unlimited</div>
+                <div class="plan-tile-price grad">$20</div>
                 <div class="plan-tile-period">per month</div>
-                <div class="plan-tile-credits">300 <span>SMS/WA credits/mo</span></div>
-                <div class="plan-tile-persona">For daily SMS users</div>
+                <div class="plan-tile-credits">Unlimited <span>SMS/WA credits/mo</span></div>
+                <div class="plan-tile-persona">For power users</div>
                 <ul class="plan-tile-features">
                     <li>Unlimited Chrome extension</li>
                     <li>HubSpot &amp; LeadConnector</li>
+                    <li>Unlimited queries/mo</li>
                     <li>Priority support</li>
                 </ul>
-                <button class="btn-select primary" onclick="selectPlan('pro', this)">Get Pro</button>
-            </div>
-            <div class="plan-tile" data-tier="business">
-                <div class="plan-tile-name">Business</div>
-                <div class="plan-tile-price">$15</div>
-                <div class="plan-tile-period">per month</div>
-                <div class="plan-tile-credits">600 <span>SMS/WA credits/mo</span></div>
-                <div class="plan-tile-persona">For teams</div>
-                <ul class="plan-tile-features">
-                    <li>Unlimited Chrome extension</li>
-                    <li>HubSpot &amp; LeadConnector</li>
-                    <li>Priority support + SLA</li>
-                </ul>
-                <button class="btn-select default" onclick="selectPlan('business', this)">Get Business</button>
+                <button class="btn-select primary" onclick="selectPlan('unlimited', this)">Get Unlimited</button>
             </div>
         </div>
         <div class="modal-note">Cancel anytime · No contracts · Secure checkout via Stripe</div>
@@ -1296,7 +1292,7 @@ function renderBilling(d) {
     // Tier pill
     const pill = document.getElementById('tier-pill');
     pill.className = 'tier-pill tier-' + tier;
-    document.getElementById('tier-label').textContent = { free:'Free', starter:'Starter', pro:'Pro', business:'Business' }[tier] || tier;
+    document.getElementById('tier-label').textContent = { free:'Free', basic:'Basic', unlimited:'Unlimited', starter:'Starter', pro:'Pro', business:'Business' }[tier] || tier;
 
     // Credits
     const isUnlim = (limit === null || limit >= 99999);
@@ -1323,7 +1319,7 @@ function renderBilling(d) {
     hide('cred-skel'); show('cred-content');
 
     // Subscription
-    document.getElementById('sub-plan-name').textContent = { free:'Free plan', starter:'Starter', pro:'Pro', business:'Business' }[tier] || tier;
+    document.getElementById('sub-plan-name').textContent = { free:'Free plan', basic:'Basic', unlimited:'Unlimited', starter:'Starter', pro:'Pro', business:'Business' }[tier] || tier;
     const sdot = document.getElementById('sub-sdot');
     sdot.className = 'sdot ' + (status === 'active' ? 'active' : status === 'cancelled' ? 'cancelled' : 'none');
     document.getElementById('sub-status-text').textContent =
@@ -1482,9 +1478,9 @@ function hidePollOverlay() { document.getElementById('crm-poll-overlay').classLi
 async function disconnectCRM(type, id) {
     if (!confirm('Disconnect ' + (CRM[type]?.label || type) + '?')) return;
     try {
-        const r = await fetch(API + '/users/me/crm-links/' + type + '/' + id, { method: 'DELETE', headers: auth() });
+        const r = await fetch(API + '/users/me/crm-links/' + encodeURIComponent(type) + '/' + encodeURIComponent(id), { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + tok() } });
         if (r.status === 401) { signOut(); return; }
-        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.detail || 'Failed to disconnect'); }
+        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(extractDetail(d, 'Failed to disconnect')); }
         toast(CRM[type]?.label + ' disconnected', 'ok');
         loadUser();
     } catch(e) { toast(e.message, 'bad'); }
@@ -1523,11 +1519,39 @@ function showAddPhoneForm(btn) { btn.replaceWith(buildPhoneForm()); }
 function buildPhoneForm() {
     const wrap = document.createElement('div');
     wrap.className = 'phone-form';
+    // Build CRM options from connected accounts
+    const links = _userState.crm_links || [];
+    const crmOpts = links.map(l => {
+        const m = CRM[l.crm_type] || { label: l.crm_type };
+        const name = l.session_name || l.crm_id || '';
+        return `<option value="${l.crm_type}|${l.crm_id}">${m.label}${name ? ' — ' + name : ''}</option>`;
+    }).join('');
+    const crmSelect = links.length > 0
+        ? `<div style="margin-bottom:8px;">
+               <label style="font-size:12px;color:var(--color-text-secondary);display:block;margin-bottom:4px;">Route messages to:</label>
+               <select id="pf-crm" class="field-input" style="width:100%;">${crmOpts}</select>
+           </div>`
+        : '<div id="pf-crm-warn" class="inline-err" style="display:block;margin-bottom:8px;">Connect a CRM first before adding a phone number.</div>';
     wrap.innerHTML = `
         <div id="pf-step-num">
-            <div class="input-row">
-                <input id="pf-inp" class="field-input" type="tel" placeholder="+1 555 000 0000">
-                <button class="btn-sm-blue" onclick="sendPhoneCode()">Send code</button>
+            ${crmSelect}
+            <div class="input-row" style="gap:6px;">
+                <select id="pf-cc" class="field-input" style="width:80px;flex-shrink:0;padding:8px 4px;text-align:center;">
+                    <option value="+1" selected>+1</option>
+                    <option value="+44">+44</option>
+                    <option value="+61">+61</option>
+                    <option value="+91">+91</option>
+                    <option value="+33">+33</option>
+                    <option value="+49">+49</option>
+                    <option value="+52">+52</option>
+                    <option value="+55">+55</option>
+                    <option value="+81">+81</option>
+                    <option value="+82">+82</option>
+                    <option value="+86">+86</option>
+                    <option value="+971">+971</option>
+                </select>
+                <input id="pf-inp" class="field-input" type="tel" placeholder="(555) 000-0000" oninput="formatPhoneInput(this)" style="flex:1;">
+                <button class="btn-sm-blue" onclick="sendPhoneCode()"${links.length === 0 ? ' disabled' : ''}>Send code</button>
             </div>
             <div id="pf-err" class="inline-err"></div>
         </div>
@@ -1541,14 +1565,40 @@ function buildPhoneForm() {
         </div>`;
     return wrap;
 }
-let _phoneNum = '';
+function formatPhoneInput(el) {
+    const cc = document.getElementById('pf-cc')?.value || '+1';
+    let digits = el.value.replace(/\D/g, '');
+    if (cc === '+1') {
+        // US formatting: (XXX) XXX-XXXX
+        if (digits.length > 10) digits = digits.slice(0, 10);
+        if (digits.length > 6) el.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
+        else if (digits.length > 3) el.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3);
+        else if (digits.length > 0) el.value = '(' + digits;
+        else el.value = '';
+    }
+}
+let _phoneNum = '', _phoneCRM = null;
+function buildE164() {
+    const cc = document.getElementById('pf-cc')?.value || '+1';
+    const raw = document.getElementById('pf-inp')?.value || '';
+    const digits = raw.replace(/\D/g, '');
+    if (!digits) return '';
+    return cc + digits;
+}
 async function sendPhoneCode() {
-    const phone = document.getElementById('pf-inp')?.value.trim();
-    if (!phone) { showInlineErr('pf-err', 'Enter your phone number.'); return; }
+    const phone = buildE164();
+    if (!phone || phone.replace(/\D/g,'').length < 10) { showInlineErr('pf-err', 'Enter a valid phone number.'); return; }
+    // Get selected CRM
+    const crmSel = document.getElementById('pf-crm');
+    if (!crmSel) { showInlineErr('pf-err', 'Connect a CRM first.'); return; }
+    const parts = crmSel.value.split('|');
+    _phoneCRM = { type: parts[0], id: parts[1] };
     _phoneNum = phone; clearInlineErr('pf-err');
+    // Determine channel: US numbers use SMS, international use WhatsApp
+    const channel = phone.startsWith('+1') ? 'sms' : 'whatsapp';
     try {
-        const r = await fetch(API + '/channels/sms/send-code', { method:'POST', headers:auth(), body:JSON.stringify({phone_number:phone}) });
-        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.detail || 'Failed to send code'); }
+        const r = await fetch(API + '/channels/' + channel + '/send-code', { method:'POST', headers:auth(), body:JSON.stringify({phone_number:phone}) });
+        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(extractDetail(d, 'Failed to send code')); }
         hide('pf-step-num'); show('pf-step-otp');
         setTimeout(() => document.getElementById('pf-otp')?.focus(), 80);
     } catch(e) { showInlineErr('pf-err', e.message); }
@@ -1556,20 +1606,31 @@ async function sendPhoneCode() {
 async function verifyPhoneCode() {
     const code = document.getElementById('pf-otp')?.value.trim();
     if (!code || code.length !== 6) { showInlineErr('pf-otp-err', 'Enter the 6-digit code.'); return; }
+    if (!_phoneCRM) { showInlineErr('pf-otp-err', 'No CRM selected. Please start over.'); return; }
     clearInlineErr('pf-otp-err');
+    const channel = _phoneNum.startsWith('+1') ? 'sms' : 'whatsapp';
     try {
-        const r = await fetch(API + '/channels/sms/verify-code', { method:'POST', headers:auth(), body:JSON.stringify({phone_number:_phoneNum,code}) });
-        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.detail || 'Invalid code'); }
+        const r = await fetch(API + '/channels/' + channel + '/verify-code', {
+            method:'POST', headers:auth(),
+            body:JSON.stringify({
+                phone_number: _phoneNum,
+                code,
+                linked_crm_type: _phoneCRM.type,
+                linked_crm_id: _phoneCRM.id
+            })
+        });
+        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(extractDetail(d, 'Invalid code')); }
         toast('Phone number linked!', 'ok');
+        _phoneCRM = null;
         loadUser();
     } catch(e) { showInlineErr('pf-otp-err', e.message); }
 }
 async function disconnectPhone(type, enc) {
     if (!confirm('Remove this phone number?')) return;
     try {
-        const r = await fetch(API + '/channels/' + type + '/' + enc, { method:'DELETE', headers:auth() });
+        const r = await fetch(API + '/channels/' + type + '/' + enc, { method:'DELETE', headers: { 'Authorization': 'Bearer ' + tok() } });
         if (r.status === 401) { signOut(); return; }
-        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.detail || 'Failed to remove'); }
+        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(extractDetail(d, 'Failed to remove')); }
         toast('Phone number removed', 'ok'); loadUser();
     } catch(e) { toast(e.message, 'bad'); }
 }
@@ -1592,7 +1653,7 @@ async function selectPlan(tier, btn) {
     } catch(e) {
         toast(e.message, 'bad');
         btn.disabled = false;
-        btn.textContent = tier === 'pro' ? 'Get Pro' : tier === 'starter' ? 'Get Starter' : 'Get Business';
+        btn.textContent = 'Get ' + ({ basic:'Basic', unlimited:'Unlimited', starter:'Starter', pro:'Pro', business:'Business' }[tier] || tier);
     }
 }
 async function openPortal() {
@@ -1717,6 +1778,7 @@ function show(id){ document.getElementById(id)?.classList.remove('hidden'); }
 function hide(id){ document.getElementById(id)?.classList.add('hidden'); }
 function showErr(id,msg){ const e=document.getElementById(id); if(e){e.textContent=msg;e.style.display='block';} }
 function clearErr(id)   { const e=document.getElementById(id); if(e)e.style.display='none'; }
+function extractDetail(d, fallback) { if (!d || !d.detail) return fallback; if (typeof d.detail === 'string') return d.detail; if (Array.isArray(d.detail)) return d.detail.map(e => e.msg || JSON.stringify(e)).join('; '); return fallback; }
 function showInlineErr(id,msg){ const e=document.getElementById(id); if(e){e.textContent=msg;e.style.display='block';} }
 function clearInlineErr(id)   { const e=document.getElementById(id); if(e)e.style.display='none'; }
 function setLoading(id,txt)   { const b=document.getElementById(id); if(b){b.disabled=true;b.textContent=txt;} }
