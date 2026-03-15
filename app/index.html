@@ -1397,7 +1397,8 @@ function renderCRMs(links) {
                 <div class="crm-row-date">${date}</div>
                 ${lastActive}
             </div>
-            <button class="btn-row-danger" onclick="disconnectCRM('${l.crm_type}','${l.crm_id}')">Disconnect</button>`;
+            <button class="btn-row-danger">Disconnect</button>`;
+        row.querySelector('.btn-row-danger').addEventListener('click', () => disconnectCRM(l.crm_type, l.crm_id));
         rows.appendChild(row);
     });
     // Always show connect buttons — users can connect multiple accounts per CRM
@@ -1506,7 +1507,8 @@ function renderPhones(channels) {
                 <div class="phone-row-route">${crm}</div>
                 <div class="phone-row-date">${date}</div>
             </div>
-            <button class="btn-row-danger" onclick="disconnectPhone('${p.channel_type}','${encodeURIComponent(p.channel_id)}')">Remove</button>`;
+            <button class="btn-row-danger">Remove</button>`;
+        row.querySelector('.btn-row-danger').addEventListener('click', () => disconnectPhone(p.channel_type, encodeURIComponent(p.channel_id)));
         rowsEl.appendChild(row);
     });
     if (phones.length === 0) { addArea.appendChild(buildPhoneForm()); }
