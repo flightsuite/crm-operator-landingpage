@@ -1478,7 +1478,7 @@ function hidePollOverlay() { document.getElementById('crm-poll-overlay').classLi
 async function disconnectCRM(type, id) {
     if (!confirm('Disconnect ' + (CRM[type]?.label || type) + '?')) return;
     try {
-        const r = await fetch(API + '/users/me/crm-links/' + encodeURIComponent(type) + '/' + encodeURIComponent(id), { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + tok() } });
+        const r = await fetch(API + '/users/me/crm-links/' + encodeURIComponent(type) + '/' + encodeURIComponent(id), { method: 'DELETE', headers: auth() });
         if (r.status === 401) { signOut(); return; }
         if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(extractDetail(d, 'Failed to disconnect')); }
         toast(CRM[type]?.label + ' disconnected', 'ok');
@@ -1509,32 +1509,17 @@ function renderPhones(channels) {
             <button class="btn-row-danger" onclick="disconnectPhone('${p.channel_type}','${encodeURIComponent(p.channel_id)}')">Remove</button>`;
         rowsEl.appendChild(row);
     });
-    if (phones.length > 0) {
-        addArea.innerHTML = `<button class="btn-add-dashed" onclick="showAddPhoneForm(this)">
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            Add another number</button>`;
-    } else { addArea.appendChild(buildPhoneForm()); }
+    if (phones.length === 0) { addArea.appendChild(buildPhoneForm()); }
+    else { addArea.innerHTML = '<div style="font-size:12px;color:var(--color-text-tertiary);margin-top:8px;">One phone number per account. Remove the current number to add a different one.</div>'; }
 }
-function showAddPhoneForm(btn) { btn.replaceWith(buildPhoneForm()); }
 function buildPhoneForm() {
     const wrap = document.createElement('div');
     wrap.className = 'phone-form';
-    // Build CRM options from connected accounts
     const links = _userState.crm_links || [];
-    const crmOpts = links.map(l => {
-        const m = CRM[l.crm_type] || { label: l.crm_type };
-        const name = l.session_name || l.crm_id || '';
-        return `<option value="${l.crm_type}|${l.crm_id}">${m.label}${name ? ' — ' + name : ''}</option>`;
-    }).join('');
-    const crmSelect = links.length > 0
-        ? `<div style="margin-bottom:8px;">
-               <label style="font-size:12px;color:var(--color-text-secondary);display:block;margin-bottom:4px;">Route messages to:</label>
-               <select id="pf-crm" class="field-input" style="width:100%;">${crmOpts}</select>
-           </div>`
-        : '<div id="pf-crm-warn" class="inline-err" style="display:block;margin-bottom:8px;">Connect a CRM first before adding a phone number.</div>';
+    const hasCRM = links.length > 0;
     wrap.innerHTML = `
         <div id="pf-step-num">
-            ${crmSelect}
+            ${!hasCRM ? '<div class="inline-err" style="display:block;margin-bottom:8px;">Connect a CRM first before adding a phone number.</div>' : ''}
             <div class="input-row" style="gap:6px;">
                 <select id="pf-cc" class="field-input" style="width:80px;flex-shrink:0;padding:8px 4px;text-align:center;">
                     <option value="+1" selected>+1</option>
@@ -1551,8 +1536,9 @@ function buildPhoneForm() {
                     <option value="+971">+971</option>
                 </select>
                 <input id="pf-inp" class="field-input" type="tel" placeholder="(555) 000-0000" oninput="formatPhoneInput(this)" style="flex:1;">
-                <button class="btn-sm-blue" onclick="sendPhoneCode()"${links.length === 0 ? ' disabled' : ''}>Send code</button>
+                <button class="btn-sm-blue" onclick="sendPhoneCode()"${!hasCRM ? ' disabled' : ''}>Send code</button>
             </div>
+            <p style="font-size:11px;color:var(--color-text-tertiary);margin-top:6px;">Text <strong>switch</strong> to toggle between connected CRMs anytime.</p>
             <div id="pf-err" class="inline-err"></div>
         </div>
         <div id="pf-step-otp" class="hidden" style="margin-top:8px;">
@@ -1588,11 +1574,10 @@ function buildE164() {
 async function sendPhoneCode() {
     const phone = buildE164();
     if (!phone || phone.replace(/\D/g,'').length < 10) { showInlineErr('pf-err', 'Enter a valid phone number.'); return; }
-    // Get selected CRM
-    const crmSel = document.getElementById('pf-crm');
-    if (!crmSel) { showInlineErr('pf-err', 'Connect a CRM first.'); return; }
-    const parts = crmSel.value.split('|');
-    _phoneCRM = { type: parts[0], id: parts[1] };
+    // Auto-assign first connected CRM
+    const links = _userState.crm_links || [];
+    if (links.length === 0) { showInlineErr('pf-err', 'Connect a CRM first.'); return; }
+    _phoneCRM = { type: links[0].crm_type, id: links[0].crm_id };
     _phoneNum = phone; clearInlineErr('pf-err');
     // Determine channel: US numbers use SMS, international use WhatsApp
     const channel = phone.startsWith('+1') ? 'sms' : 'whatsapp';
