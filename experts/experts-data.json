@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-18",
+  "lastUpdated": "2026-03-19",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
@@ -1107,8 +1107,8 @@
     "joel-negron": {
       "name": "Joel Negron",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/virginia-beach/certified-admins/joel-negron",
-      "rating": 1,
-      "reviewCount": 1,
+      "rating": 5,
+      "reviewCount": 0,
       "certifications": [
         "Certified Admin"
       ],
