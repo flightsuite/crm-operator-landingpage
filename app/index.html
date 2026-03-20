@@ -2286,43 +2286,105 @@ function obSubmitWelcome() {
 }
 
 function renderObCRM(el) {
-    const crms = [
-        { key: 'hubspot', label: 'HubSpot', cls: 'hs', icon: 'HS', sub: '69 tools — contacts, deals, tasks, and more' },
-        { key: 'ghl', label: 'GoHighLevel', cls: 'ghl', icon: 'GHL', sub: '39 tools — contacts, opportunities, calendars' },
-        { key: 'ghl', label: 'LeadConnector', cls: 'ghl', icon: 'LC', sub: 'GHL whitelabel — same 39 tools' },
-    ];
     el.innerHTML = `
         <div class="ob-card">
             <div class="ob-title">Connect your CRM</div>
-            <div class="ob-sub">FlightSuite needs access to your CRM to log activities. This takes about 30 seconds.</div>
+            <div class="ob-sub">FlightSuite needs access to your CRM to log activities.</div>
             <div id="ob-crm-list">
-                ${crms.map((c, i) => `
-                    <div class="ob-crm-btn" id="ob-crm-${c.key}-${i}" onclick="obStartCRMConnect('${c.key}')">
-                        <div class="crm-btn-logo ${c.cls}">${c.icon}</div>
-                        <div>
-                            <div class="ob-crm-btn-label">${c.label}</div>
-                            <div class="ob-crm-btn-sub">${c.sub}</div>
-                        </div>
-                        <span class="arrow">&#8250;</span>
+                <div class="ob-crm-btn" onclick="obStartCRMConnect('hubspot')">
+                    <div class="crm-btn-logo hs">HS</div>
+                    <div>
+                        <div class="ob-crm-btn-label">HubSpot</div>
+                        <div class="ob-crm-btn-sub">One-click sign in &middot; 69 tools</div>
                     </div>
-                `).join('')}
+                    <span class="arrow">&#8250;</span>
+                </div>
+                <div class="ob-crm-btn" onclick="obShowGHLForm()">
+                    <div class="crm-btn-logo ghl">GHL</div>
+                    <div>
+                        <div class="ob-crm-btn-label">GoHighLevel</div>
+                        <div class="ob-crm-btn-sub">Private app token &middot; 39 tools</div>
+                    </div>
+                    <span class="arrow">&#8250;</span>
+                </div>
+                <div class="ob-crm-btn" onclick="obShowGHLForm()">
+                    <div class="crm-btn-logo ghl">LC</div>
+                    <div>
+                        <div class="ob-crm-btn-label">LeadConnector</div>
+                        <div class="ob-crm-btn-sub">GHL whitelabel &middot; same 39 tools</div>
+                    </div>
+                    <span class="arrow">&#8250;</span>
+                </div>
             </div>
             <button class="ob-skip" onclick="advanceOnboarding()">Skip for now</button>
         </div>`;
-    // Mark already-connected CRMs
-    if (_onboardingState.crm) {
-        const btn = document.getElementById('ob-crm-' + _onboardingState.crm);
-        if (btn) markObCRMConnected(btn, CRM[_onboardingState.crm]?.label || _onboardingState.crm);
+}
+
+function obShowGHLForm() {
+    const el = document.getElementById('ob-step-1');
+    el.innerHTML = `
+        <div class="ob-card">
+            <div class="ob-title">Connect GoHighLevel</div>
+            <div class="ob-sub">Enter your Location ID and Private App Token. These are found in your GHL sub-account settings.</div>
+            <div id="ob-ghl-form" style="text-align:left;">
+                <label style="display:block;font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;">Location ID</label>
+                <input type="text" id="ob-ghl-loc" class="field-input" placeholder="e.g., loc_abc123xyz..." style="width:100%;font-size:16px;margin-bottom:16px;">
+                <label style="display:block;font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;">Private App Token</label>
+                <div style="position:relative;">
+                    <input type="password" id="ob-ghl-pat" class="field-input" placeholder="Paste your private integration token" style="width:100%;font-size:16px;padding-right:44px;">
+                    <button type="button" onclick="const i=document.getElementById('ob-ghl-pat');i.type=i.type==='password'?'text':'password';" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--color-text-tertiary);cursor:pointer;font-size:18px;padding:4px;">&#128065;</button>
+                </div>
+                <label style="display:block;font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;margin-top:16px;">Account Name <span style="color:var(--color-text-tertiary);font-weight:400;">(optional)</span></label>
+                <input type="text" id="ob-ghl-name" class="field-input" placeholder="e.g., Main Account, Client A..." style="width:100%;font-size:16px;margin-bottom:8px;">
+                <a href="/installation-guide.html" target="_blank" style="font-size:13px;color:var(--color-accent-cyan);text-decoration:none;display:inline-block;margin-bottom:4px;">Where do I find these? &#8599;</a>
+                <div id="ob-ghl-video" style="margin-top:12px;margin-bottom:12px;">
+                    <!-- Video embed placeholder — replace src when video is ready -->
+                </div>
+                <div id="ob-ghl-err" style="font-size:13px;color:var(--color-red);display:none;margin-bottom:12px;"></div>
+            </div>
+            <button class="ob-btn" onclick="obSubmitGHL()">Connect</button>
+            <button class="ob-skip" onclick="renderObCRM(document.getElementById('ob-step-1'))">&#8592; Back to CRM list</button>
+        </div>`;
+}
+
+async function obSubmitGHL() {
+    const locId = (document.getElementById('ob-ghl-loc')?.value || '').trim();
+    const pat = (document.getElementById('ob-ghl-pat')?.value || '').trim();
+    const name = (document.getElementById('ob-ghl-name')?.value || '').trim();
+    const errEl = document.getElementById('ob-ghl-err');
+
+    if (!locId) { errEl.textContent = 'Location ID is required.'; errEl.style.display = 'block'; return; }
+    if (!pat) { errEl.textContent = 'Private App Token is required.'; errEl.style.display = 'block'; return; }
+    errEl.style.display = 'none';
+
+    const btn = document.querySelector('#ob-step-1 .ob-btn');
+    if (btn) { btn.disabled = true; btn.textContent = 'Connecting...'; }
+
+    try {
+        const r = await fetch(API + '/users/me/crm-links', {
+            method: 'POST', headers: auth(),
+            body: JSON.stringify({ crm_type: 'ghl', location_id: locId, pat_token: pat, session_name: name })
+        });
+        if (r.status === 401) { signOut(); return; }
+        if (!r.ok) {
+            const d = await r.json().catch(() => ({}));
+            throw new Error(d.detail || 'Could not connect GoHighLevel. Check your credentials.');
+        }
+        obCRMSuccess('GoHighLevel');
+    } catch(e) {
+        errEl.textContent = e.message;
+        errEl.style.display = 'block';
+        if (btn) { btn.disabled = false; btn.textContent = 'Connect'; }
     }
 }
 
 async function obStartCRMConnect(crm) {
+    // HubSpot OAuth flow
     _activeCRM = crm;
     const m = CRM[crm] || { label: crm, cls: 'hs', icon: '?' };
-    const ep   = crm === 'hubspot' ? '/auth/hubspot/oauth/start' : '/auth/ghl/oauth/start';
-    const poll = crm === 'hubspot' ? '/auth/hubspot/oauth/session' : '/auth/ghl/oauth/session';
+    const ep   = '/auth/hubspot/oauth/start';
+    const poll = '/auth/hubspot/oauth/session';
 
-    // Show loading state in the onboarding step
     const listEl = document.getElementById('ob-crm-list');
     if (listEl) listEl.innerHTML = `<div style="text-align:center;padding:40px 0;"><div class="spin spin-lg" style="margin:0 auto 16px;"></div><div class="poll-title">Authorizing ${m.label}…</div><div style="font-size:14px;color:var(--color-text-secondary);margin-top:8px;">Complete sign-in in the tab that just opened</div><button class="ob-skip" style="margin-top:20px;" onclick="cancelObCRMConnect()">Cancel</button></div>`;
 
@@ -2334,7 +2396,6 @@ async function obStartCRMConnect(crm) {
         if (!data.auth_url && !data.url) throw new Error('No authorization URL returned from server');
         window.open(data.auth_url || data.url, '_blank');
 
-        // Poll for completion
         _pollInterval = setInterval(async () => {
             try {
                 const pr = await fetch(API + poll + '?polling_token=' + encodeURIComponent(data.polling_token), { headers: auth() });
