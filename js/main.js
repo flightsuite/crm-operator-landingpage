@@ -1034,4 +1034,91 @@ document.querySelectorAll('.modal-overlay').forEach(modal => {
     });
 });
 
+// ═══ MOBILE CTA → PHONE CAPTURE ═══
+(function() {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    if (!isMobile) return;
+
+    // Intercept all install CTAs on mobile
+    document.querySelectorAll('[data-event="install_click"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            openMobileCapture();
+        });
+    });
+})();
+
+function openMobileCapture() {
+    const modal = document.getElementById('mobileCaptureModal');
+    if (modal) {
+        modal.classList.add('show');
+        setTimeout(() => {
+            const phone = document.getElementById('mcPhone');
+            if (phone) phone.focus();
+        }, 400);
+    }
+}
+
+function closeMobileCapture() {
+    const modal = document.getElementById('mobileCaptureModal');
+    if (modal) modal.classList.remove('show');
+}
+
+async function submitMobileCapture() {
+    const country = (document.getElementById('mcCountry').value || '+1').trim();
+    const phone = (document.getElementById('mcPhone').value || '').trim();
+    const errEl = document.getElementById('mcError');
+    const btn = document.getElementById('mcSubmit');
+
+    // Validate
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length < 7) {
+        errEl.textContent = 'Please enter a valid phone number';
+        errEl.style.display = 'block';
+        return;
+    }
+    errEl.style.display = 'none';
+
+    const fullNumber = country + digits;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    try {
+        const API = 'https://api.flightsuite.ai/api/v1';
+        const r = await fetch(API + '/leads/sms-setup-link', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phone_number: fullNumber }),
+        });
+
+        if (r.status === 429) {
+            errEl.textContent = 'Link already sent! Check your messages.';
+            errEl.style.display = 'block';
+            btn.disabled = false;
+            btn.textContent = 'Text me the link';
+            return;
+        }
+
+        if (!r.ok) {
+            const d = await r.json().catch(() => ({}));
+            throw new Error(d.detail || 'Could not send SMS');
+        }
+
+        // Success
+        document.getElementById('mobileCaptureForm').style.display = 'none';
+        document.getElementById('mobileCaptureSuccess').style.display = 'flex';
+    } catch (e) {
+        errEl.textContent = e.message || 'Something went wrong. Try again.';
+        errEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Text me the link';
+    }
+}
+
+// Close mobile capture on overlay click
+document.addEventListener('click', function(e) {
+    const modal = document.getElementById('mobileCaptureModal');
+    if (modal && e.target === modal) closeMobileCapture();
+});
+
 console.log('✅ FlightSuite script fully loaded - All systems ready!');

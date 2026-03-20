@@ -675,6 +675,366 @@
         }
         .gs-action:hover { opacity: 0.7; }
 
+        /* ═══ ONBOARDING ═══ */
+        .ob-view {
+            position: fixed; inset: 0; z-index: 100;
+            background: var(--color-bg-primary);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            overflow-y: auto; -webkit-overflow-scrolling: touch;
+        }
+        .ob-progress {
+            position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 101;
+            background: rgba(255,255,255,0.06);
+        }
+        .ob-progress-fill {
+            height: 100%; width: 0%;
+            background: var(--grad);
+            border-radius: 0 2px 2px 0;
+            transition: width 0.6s var(--ease-out);
+        }
+        .ob-step-label {
+            position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+            font-family: var(--font-body); font-size: 13px; font-weight: 500;
+            color: var(--color-text-tertiary); letter-spacing: 0.02em; z-index: 101;
+        }
+        .ob-back-btn {
+            position: fixed; top: 12px; left: 20px; z-index: 101;
+            background: none; border: none; color: var(--color-text-tertiary);
+            font-family: var(--font-body); font-size: 14px; cursor: pointer;
+            padding: 6px 10px; border-radius: 8px;
+            transition: color 0.2s, background 0.2s;
+        }
+        .ob-back-btn:hover { color: var(--color-text-primary); background: var(--color-surface); }
+        .ob-step {
+            width: 100%; max-width: 520px; padding: 0 24px;
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+            position: absolute; pointer-events: none;
+        }
+        .ob-step.active {
+            opacity: 1; transform: translateY(0);
+            position: relative; pointer-events: auto;
+        }
+        .ob-step.exit-left {
+            opacity: 0; transform: translateX(-60px);
+        }
+        .ob-step.exit-right {
+            opacity: 0; transform: translateX(60px);
+        }
+        .ob-card {
+            width: 100%; text-align: center;
+        }
+        .ob-title {
+            font-family: var(--font-display); font-size: 32px; font-weight: 700;
+            letter-spacing: -0.04em; line-height: 1.15;
+            color: var(--color-text-primary); margin-bottom: 10px;
+        }
+        .ob-sub {
+            font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+            color: var(--color-text-secondary); margin-bottom: 28px;
+        }
+        .ob-pills {
+            display: flex; flex-wrap: wrap; gap: 10px;
+            justify-content: center; margin-bottom: 20px;
+        }
+        .ob-pill {
+            font-family: var(--font-body); font-size: 14px; font-weight: 500;
+            color: var(--color-text-secondary);
+            background: var(--color-glass);
+            border: 1px solid var(--color-glass-border);
+            border-radius: 980px; padding: 9px 20px;
+            cursor: pointer; transition: all 0.25s var(--ease-smooth);
+            user-select: none; white-space: nowrap;
+        }
+        .ob-pill:hover {
+            background: var(--color-surface-hover);
+            border-color: var(--color-border-hover);
+            color: var(--color-text-primary);
+        }
+        .ob-pill.active {
+            background: rgba(0,113,227,0.12);
+            border-color: var(--color-accent-blue);
+            color: var(--color-text-primary);
+            box-shadow: 0 0 20px rgba(0,113,227,0.15);
+        }
+        .ob-input {
+            width: 100%; font-family: var(--font-body); font-size: 16px;
+            color: var(--color-text-primary);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px; padding: 13px 16px;
+            outline: none; transition: border-color 0.2s;
+            margin-bottom: 20px;
+        }
+        .ob-input:focus { border-color: var(--color-accent-blue); }
+        .ob-input::placeholder { color: var(--color-text-tertiary); }
+        .ob-crm-btn {
+            display: flex; align-items: center; gap: 14px;
+            width: 100%; padding: 16px 20px;
+            background: var(--color-glass);
+            border: 1px solid var(--color-glass-border);
+            border-radius: 16px; cursor: pointer;
+            transition: all 0.25s var(--ease-smooth);
+            margin-bottom: 12px; text-align: left;
+        }
+        .ob-crm-btn:hover {
+            background: var(--color-surface-hover);
+            border-color: var(--color-border-hover);
+            transform: translateY(-1px);
+        }
+        .ob-crm-btn .crm-btn-logo {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 14px; flex-shrink: 0;
+        }
+        .ob-crm-btn .crm-btn-logo.hs { background: rgba(255,122,89,0.15); color: #FF7A59; }
+        .ob-crm-btn .crm-btn-logo.ghl { background: rgba(0,113,227,0.15); color: #0071E3; }
+        .ob-crm-btn-label {
+            font-family: var(--font-display); font-size: 17px; font-weight: 600;
+            color: var(--color-text-primary);
+        }
+        .ob-crm-btn-sub {
+            font-size: 13px; color: var(--color-text-secondary); margin-top: 2px;
+        }
+        .ob-crm-btn .arrow {
+            margin-left: auto; font-size: 20px; color: var(--color-text-tertiary);
+        }
+        .ob-crm-btn.connected {
+            border-color: rgba(52,199,89,0.3);
+            background: rgba(52,199,89,0.06);
+        }
+        .ob-crm-btn.connected .crm-btn-logo { position: relative; }
+        .ob-crm-btn.connected .crm-btn-logo::after {
+            content: '✓'; position: absolute; bottom: -2px; right: -2px;
+            width: 18px; height: 18px; border-radius: 50%;
+            background: var(--color-green); color: #fff;
+            font-size: 10px; display: flex; align-items: center; justify-content: center;
+        }
+        .ob-chat {
+            width: 100%; max-width: 420px; margin: 0 auto 24px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--color-glass-border);
+            border-radius: 20px; padding: 20px 16px;
+            min-height: 220px; text-align: left;
+        }
+        .ob-bubble {
+            max-width: 82%; padding: 10px 16px;
+            border-radius: 18px; margin-bottom: 10px;
+            font-size: 15px; line-height: 1.45;
+            opacity: 0; transform: translateY(10px);
+            transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+        }
+        .ob-bubble.visible { opacity: 1; transform: translateY(0); }
+        .ob-bubble.user {
+            margin-left: auto;
+            background: var(--color-accent-blue);
+            color: #fff; border-bottom-right-radius: 6px;
+        }
+        .ob-bubble.agent {
+            margin-right: auto;
+            background: var(--color-glass);
+            color: var(--color-text-primary);
+            border-bottom-left-radius: 6px;
+        }
+        .ob-typing {
+            display: inline-flex; gap: 4px; padding: 12px 18px;
+            background: var(--color-glass); border-radius: 18px;
+            border-bottom-left-radius: 6px; margin-bottom: 10px;
+        }
+        .ob-typing span {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--color-text-tertiary);
+            animation: ob-bounce 1.2s ease-in-out infinite;
+        }
+        .ob-typing span:nth-child(2) { animation-delay: 0.15s; }
+        .ob-typing span:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes ob-bounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px); }
+        }
+        .ob-crm-card {
+            background: var(--color-glass);
+            border: 1px solid var(--color-glass-border);
+            border-radius: 14px; padding: 14px 16px;
+            margin-bottom: 10px; text-align: left;
+            opacity: 0; transform: scale(0.92);
+            transition: opacity 0.4s var(--ease-spring), transform 0.4s var(--ease-spring);
+        }
+        .ob-crm-card.visible { opacity: 1; transform: scale(1); }
+        .ob-crm-card-title {
+            font-family: var(--font-display); font-size: 14px; font-weight: 600;
+            color: var(--color-green); margin-bottom: 6px;
+        }
+        .ob-crm-card-row {
+            display: flex; justify-content: space-between;
+            font-size: 13px; padding: 3px 0;
+            color: var(--color-text-secondary);
+        }
+        .ob-crm-card-row span:last-child { color: var(--color-text-primary); font-weight: 500; }
+        .ob-ext-card {
+            display: flex; align-items: center; gap: 16px;
+            padding: 20px; background: var(--color-glass);
+            border: 1px solid var(--color-glass-border);
+            border-radius: 16px; margin-bottom: 20px;
+            text-decoration: none; color: inherit;
+            transition: all 0.25s var(--ease-smooth);
+        }
+        .ob-ext-card:hover {
+            background: var(--color-surface-hover);
+            border-color: var(--color-border-hover);
+            transform: translateY(-2px);
+        }
+        .ob-ext-icon {
+            width: 52px; height: 52px; border-radius: 14px;
+            background: linear-gradient(135deg, var(--color-accent-purple), var(--color-accent-blue));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px; flex-shrink: 0;
+        }
+        .ob-ext-info { text-align: left; }
+        .ob-ext-name {
+            font-family: var(--font-display); font-size: 16px; font-weight: 600;
+            color: var(--color-text-primary);
+        }
+        .ob-ext-sub { font-size: 13px; color: var(--color-text-secondary); margin-top: 2px; }
+        .ob-share-row {
+            display: flex; gap: 10px; justify-content: center;
+            margin-bottom: 20px;
+        }
+        .ob-share-btn {
+            display: flex; align-items: center; gap: 8px;
+            padding: 10px 18px;
+            background: var(--color-glass);
+            border: 1px solid var(--color-glass-border);
+            border-radius: 980px; cursor: pointer;
+            font-family: var(--font-body); font-size: 14px; font-weight: 500;
+            color: var(--color-text-primary);
+            transition: all 0.2s var(--ease-smooth);
+        }
+        .ob-share-btn:hover {
+            background: var(--color-surface-hover);
+            border-color: var(--color-border-hover);
+        }
+        .ob-skip {
+            background: none; border: none;
+            font-family: var(--font-body); font-size: 13px;
+            color: var(--color-text-tertiary);
+            cursor: pointer; padding: 8px 16px;
+            transition: color 0.2s;
+        }
+        .ob-skip:hover { color: var(--color-text-secondary); }
+        .ob-btn {
+            width: 100%; padding: 14px 24px;
+            font-family: var(--font-display); font-size: 16px; font-weight: 600;
+            color: #fff; background: var(--color-accent-blue);
+            border: none; border-radius: 980px; cursor: pointer;
+            transition: all 0.25s var(--ease-smooth);
+            margin-bottom: 12px;
+        }
+        .ob-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .ob-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .ob-btn.secondary {
+            background: var(--color-glass);
+            border: 1px solid var(--color-glass-border);
+            color: var(--color-text-primary);
+        }
+        .ob-btn.secondary:hover { background: var(--color-surface-hover); }
+        .ob-confetti {
+            position: fixed; inset: 0; z-index: 102; pointer-events: none;
+            overflow: hidden;
+        }
+        .ob-confetti i {
+            position: absolute; width: 8px; height: 8px;
+            border-radius: 2px; top: -10px;
+            animation: ob-fall 2.5s ease-in forwards;
+        }
+        @keyframes ob-fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        .ob-summary {
+            text-align: left; margin: 0 auto 24px;
+            max-width: 360px;
+        }
+        .ob-summary-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 15px;
+        }
+        .ob-summary-item:last-child { border-bottom: none; }
+        .ob-summary-check {
+            width: 24px; height: 24px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 700; flex-shrink: 0;
+        }
+        .ob-summary-check.done { background: rgba(52,199,89,0.15); color: var(--color-green); }
+        .ob-summary-check.skip { background: var(--color-surface); color: var(--color-text-tertiary); }
+        .ob-referral-link {
+            display: flex; align-items: center; gap: 8px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px; padding: 12px 16px;
+            margin-bottom: 16px;
+        }
+        .ob-referral-link input {
+            flex: 1; background: none; border: none; outline: none;
+            font-family: var(--font-body); font-size: 14px;
+            color: var(--color-text-primary);
+        }
+        .ob-referral-link button {
+            background: var(--color-accent-blue); border: none;
+            color: #fff; font-family: var(--font-body); font-size: 13px;
+            font-weight: 600; padding: 7px 14px; border-radius: 8px;
+            cursor: pointer; transition: filter 0.2s; white-space: nowrap;
+        }
+        .ob-referral-link button:hover { filter: brightness(1.1); }
+        .ob-phone-form { margin-bottom: 20px; text-align: left; }
+        .ob-phone-form .input-row { display: flex; gap: 6px; margin-bottom: 8px; }
+        .ob-phone-form select,
+        .ob-phone-form input[type="tel"] {
+            font-family: var(--font-body); font-size: 16px;
+            color: var(--color-text-primary);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px; padding: 12px 14px;
+            outline: none; transition: border-color 0.2s;
+        }
+        .ob-phone-form select { width: 84px; flex-shrink: 0; }
+        .ob-phone-form input[type="tel"] { flex: 1; }
+        .ob-phone-form select:focus,
+        .ob-phone-form input[type="tel"]:focus { border-color: var(--color-accent-blue); }
+        .ob-attribution {
+            margin-top: 16px; margin-bottom: 20px; text-align: left;
+        }
+        .ob-attribution label {
+            font-size: 14px; color: var(--color-text-secondary);
+            display: block; margin-bottom: 8px;
+        }
+        .ob-attribution select {
+            width: 100%; font-family: var(--font-body); font-size: 16px;
+            color: var(--color-text-primary);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px; padding: 13px 16px;
+            outline: none; transition: border-color 0.2s;
+            -webkit-appearance: none; appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%238A8A9A'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+        .ob-attribution select:focus { border-color: var(--color-accent-blue); }
+
+        @media (max-width: 600px) {
+            .ob-title { font-size: 26px; }
+            .ob-sub { font-size: 15px; }
+            .ob-pills { gap: 8px; }
+            .ob-pill { padding: 8px 16px; font-size: 13px; flex: 0 0 calc(50% - 4px); text-align: center; }
+            .ob-chat { padding: 16px 12px; }
+            .ob-share-row { flex-direction: column; align-items: stretch; }
+            .ob-ext-card { flex-direction: column; text-align: center; }
+            .ob-ext-info { text-align: center; }
+        }
+
         /* ═══ ACTIVITY CARD ═══ */
         .activity-chart { display: flex; align-items: flex-end; gap: 12px; margin-bottom: 16px; height: 100px; }
         .activity-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
@@ -823,6 +1183,21 @@
         <div class="login-footer">
             By signing in, you agree to our <a href="/terms.html">Terms of Service</a> and <a href="/privacy-policy.html">Privacy Policy</a>.
         </div>
+    </div>
+</div>
+
+<!-- ═══════════════════ ONBOARDING ═══════════════════ -->
+<div id="onboarding-view" class="ob-view hidden">
+    <div class="ob-progress"><div class="ob-progress-fill" id="ob-progress-fill"></div></div>
+    <div class="ob-step-label" id="ob-step-label"></div>
+    <button class="ob-back-btn hidden" id="ob-back-btn" onclick="goBackOnboarding()">&#8592; Back</button>
+    <div style="position:relative;width:100%;max-width:520px;display:flex;align-items:center;justify-content:center;min-height:60vh;">
+        <div class="ob-step" id="ob-step-0"></div>
+        <div class="ob-step" id="ob-step-1"></div>
+        <div class="ob-step" id="ob-step-2"></div>
+        <div class="ob-step" id="ob-step-3"></div>
+        <div class="ob-step" id="ob-step-4"></div>
+        <div class="ob-step" id="ob-step-5"></div>
     </div>
 </div>
 
@@ -1194,6 +1569,34 @@ function backToEmail() { hide('step-otp'); show('step-email'); clearErr('err-otp
 // ── Dashboard ─────────────────────────────────────────────────────
 function showDash() {
     hide('login-view');
+    hide('onboarding-view');
+    const email = localStorage.getItem('fs_email') || '';
+    document.getElementById('header-email').textContent = email;
+    show('btn-signout');
+
+    const obData = JSON.parse(localStorage.getItem('fs_onboarding') || 'null');
+    if (obData && obData.completedAt) { _showDashboard(); return; }
+
+    // Load user data to check onboarding status
+    Promise.all([
+        fetch(API + '/billing/status', { headers: auth() }).then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch(API + '/users/me', { headers: auth() }).then(r => r.ok ? r.json() : null).catch(() => null),
+    ]).then(([billing, user]) => {
+        if (billing) renderBilling(billing);
+        if (user) {
+            renderUser(user);
+            if (user.onboarding_completed) {
+                localStorage.setItem('fs_onboarding', JSON.stringify({ completedAt: new Date().toISOString() }));
+                _showDashboard();
+                return;
+            }
+        }
+        showOnboarding(obData);
+    }).catch(() => _showDashboard());
+}
+function _showDashboard() {
+    hide('login-view');
+    hide('onboarding-view');
     show('dash-view');
     const email = localStorage.getItem('fs_email') || '';
     document.getElementById('header-email').textContent = email;
@@ -1203,7 +1606,7 @@ function showDash() {
     loadUsage();
     loadSessions();
 }
-function signOut() { clearTok(); location.reload(); }
+function signOut() { localStorage.removeItem('fs_onboarding'); clearTok(); location.reload(); }
 
 // ── Quick Actions (contextual) ────────────────────────────────────
 function updateQuickActions() {
@@ -1425,7 +1828,7 @@ async function startCRMConnect(crm) {
     const btn  = document.getElementById('btn-connect-' + crm);
     if (btn) btn.disabled = true;
     try {
-        const r = await fetch(API + ep, { method: 'POST', headers: auth() });
+        const r = await fetch(API + ep, { method: 'POST', headers: auth(), body: '{}' });
         if (r.status === 401) { signOut(); return; }
         if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.detail || 'Could not start ' + m.label + ' authorization'); }
         const data = await r.json();
@@ -1460,6 +1863,7 @@ async function startCRMConnect(crm) {
     }
 }
 function showCRMSuccess(label) {
+    if (_onboardingActive) { obCRMSuccess(label); return; }
     const overlay = document.getElementById('crm-poll-overlay');
     overlay.innerHTML = `<div class="poll-success-icon">✓</div><div class="poll-title" style="color:var(--color-green)">${label} connected!</div><div class="poll-sub">Your CRM is linked to your account.</div>`;
     toast(label + ' connected!', 'ok');
@@ -1609,6 +2013,7 @@ async function verifyPhoneCode() {
         if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(extractDetail(d, 'Invalid code')); }
         toast('Phone number linked!', 'ok');
         _phoneCRM = null;
+        if (_onboardingActive) { setTimeout(() => advanceOnboarding(), 1500); return; }
         loadUser();
     } catch(e) { showInlineErr('pf-otp-err', e.message); }
 }
@@ -1756,6 +2161,495 @@ function timeAgo(dateStr) {
         if (diff < 86400) return 'Active ' + Math.floor(diff/3600) + 'h ago';
         return 'Last active ' + d.toLocaleDateString('en-US', { month:'short', day:'numeric' });
     } catch(e) { return ''; }
+}
+
+// ═══ ONBOARDING ═══
+let _onboardingActive = false;
+let _onboardingState = null;
+let _obCurrentStep = 0;
+const OB_STEPS = ['welcome','crm','phone','command','extension','referral'];
+const OB_LABELS = ['Welcome','Connect CRM','Pair phone','First command','Extension','Almost done'];
+
+function showOnboarding(savedState) {
+    _onboardingActive = true;
+    _onboardingState = savedState || { step: 0, role: null, company: '', crm: null, phone: null, command: false, extension: false };
+    _obCurrentStep = _onboardingState.step || 0;
+    hide('login-view');
+    hide('dash-view');
+    show('onboarding-view');
+    updateObProgress();
+    initOnboardingStep(_obCurrentStep);
+    // Activate the current step
+    document.querySelectorAll('.ob-step').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById('ob-step-' + _obCurrentStep);
+    if (el) { requestAnimationFrame(() => el.classList.add('active')); }
+}
+
+function saveOnboardingState() {
+    _onboardingState.step = _obCurrentStep;
+    localStorage.setItem('fs_onboarding', JSON.stringify(_onboardingState));
+}
+
+function updateObProgress() {
+    const pct = ((_obCurrentStep + 1) / OB_STEPS.length) * 100;
+    const fill = document.getElementById('ob-progress-fill');
+    if (fill) fill.style.width = pct + '%';
+    const lbl = document.getElementById('ob-step-label');
+    if (lbl) lbl.textContent = 'Step ' + (_obCurrentStep + 1) + ' of ' + OB_STEPS.length + ' — ' + OB_LABELS[_obCurrentStep];
+    const backBtn = document.getElementById('ob-back-btn');
+    if (backBtn) { if (_obCurrentStep > 0) backBtn.classList.remove('hidden'); else backBtn.classList.add('hidden'); }
+}
+
+function advanceOnboarding() {
+    if (_obCurrentStep >= OB_STEPS.length - 1) { completeOnboarding(); return; }
+    const cur = document.getElementById('ob-step-' + _obCurrentStep);
+    if (cur) { cur.classList.remove('active'); cur.classList.add('exit-left'); }
+    _obCurrentStep++;
+    saveOnboardingState();
+    updateObProgress();
+    const next = document.getElementById('ob-step-' + _obCurrentStep);
+    initOnboardingStep(_obCurrentStep);
+    setTimeout(() => {
+        if (cur) cur.classList.remove('exit-left');
+        if (next) { next.classList.add('active'); }
+    }, 300);
+}
+
+function goBackOnboarding() {
+    if (_obCurrentStep <= 0) return;
+    const cur = document.getElementById('ob-step-' + _obCurrentStep);
+    if (cur) { cur.classList.remove('active'); cur.classList.add('exit-right'); }
+    _obCurrentStep--;
+    saveOnboardingState();
+    updateObProgress();
+    const prev = document.getElementById('ob-step-' + _obCurrentStep);
+    initOnboardingStep(_obCurrentStep);
+    setTimeout(() => {
+        if (cur) cur.classList.remove('exit-right');
+        if (prev) prev.classList.add('active');
+    }, 300);
+}
+
+function initOnboardingStep(n) {
+    const el = document.getElementById('ob-step-' + n);
+    if (!el || el.dataset.rendered === 'true') return;
+    el.dataset.rendered = 'true';
+    switch(n) {
+        case 0: renderObWelcome(el); break;
+        case 1: renderObCRM(el); break;
+        case 2: renderObPhone(el); break;
+        case 3: renderObCommand(el); break;
+        case 4: renderObExtension(el); break;
+        case 5: renderObReferral(el); break;
+    }
+}
+
+function renderObWelcome(el) {
+    const roles = ['Sales Rep','Agency Owner','CRM Admin','Business Owner','Marketing','Operations','Other'];
+    el.innerHTML = `
+        <div class="ob-card">
+            <div class="ob-confetti" id="ob-welcome-confetti"></div>
+            <div style="font-size:48px;margin-bottom:16px;">&#9889;</div>
+            <div class="ob-title">Welcome to FlightSuite</div>
+            <div class="ob-sub">Tell us a bit about yourself so we can personalize your experience.</div>
+            <div class="ob-pills" id="ob-role-pills">
+                ${roles.map(r => `<div class="ob-pill" data-role="${r}">${r}</div>`).join('')}
+            </div>
+            <input class="ob-input" id="ob-company" type="text" placeholder="Company name (optional)" value="${_onboardingState.company || ''}">
+            <button class="ob-btn" id="ob-welcome-next" onclick="obSubmitWelcome()" disabled>Continue</button>
+        </div>`;
+    // Confetti
+    launchObConfetti('ob-welcome-confetti');
+    // Pill selection
+    el.querySelectorAll('.ob-pill').forEach(pill => {
+        if (_onboardingState.role === pill.dataset.role) pill.classList.add('active');
+        pill.addEventListener('click', () => {
+            el.querySelectorAll('.ob-pill').forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            _onboardingState.role = pill.dataset.role;
+            document.getElementById('ob-welcome-next').disabled = false;
+        });
+    });
+    // Auto-enable if role already selected
+    if (_onboardingState.role) document.getElementById('ob-welcome-next').disabled = false;
+}
+
+function obSubmitWelcome() {
+    _onboardingState.company = (document.getElementById('ob-company')?.value || '').trim();
+    saveOnboardingState();
+    // Fire-and-forget profile save
+    fetch(API + '/users/me/profile', {
+        method: 'PATCH', headers: { ...auth(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ role: _onboardingState.role, company: _onboardingState.company })
+    }).catch(() => {});
+    advanceOnboarding();
+}
+
+function renderObCRM(el) {
+    const crms = [
+        { key: 'hubspot', label: 'HubSpot', cls: 'hs', icon: 'HS', sub: '69 tools — contacts, deals, tasks, and more' },
+        { key: 'ghl', label: 'GoHighLevel', cls: 'ghl', icon: 'GHL', sub: '39 tools — contacts, opportunities, calendars' },
+        { key: 'ghl', label: 'LeadConnector', cls: 'ghl', icon: 'LC', sub: 'GHL whitelabel — same 39 tools' },
+    ];
+    el.innerHTML = `
+        <div class="ob-card">
+            <div class="ob-title">Connect your CRM</div>
+            <div class="ob-sub">FlightSuite needs access to your CRM to log activities. This takes about 30 seconds.</div>
+            <div id="ob-crm-list">
+                ${crms.map((c, i) => `
+                    <div class="ob-crm-btn" id="ob-crm-${c.key}-${i}" onclick="obStartCRMConnect('${c.key}')">
+                        <div class="crm-btn-logo ${c.cls}">${c.icon}</div>
+                        <div>
+                            <div class="ob-crm-btn-label">${c.label}</div>
+                            <div class="ob-crm-btn-sub">${c.sub}</div>
+                        </div>
+                        <span class="arrow">&#8250;</span>
+                    </div>
+                `).join('')}
+            </div>
+            <button class="ob-skip" onclick="advanceOnboarding()">Skip for now</button>
+        </div>`;
+    // Mark already-connected CRMs
+    if (_onboardingState.crm) {
+        const btn = document.getElementById('ob-crm-' + _onboardingState.crm);
+        if (btn) markObCRMConnected(btn, CRM[_onboardingState.crm]?.label || _onboardingState.crm);
+    }
+}
+
+async function obStartCRMConnect(crm) {
+    _activeCRM = crm;
+    const m = CRM[crm] || { label: crm, cls: 'hs', icon: '?' };
+    const ep   = crm === 'hubspot' ? '/auth/hubspot/oauth/start' : '/auth/ghl/oauth/start';
+    const poll = crm === 'hubspot' ? '/auth/hubspot/oauth/session' : '/auth/ghl/oauth/session';
+
+    // Show loading state in the onboarding step
+    const listEl = document.getElementById('ob-crm-list');
+    if (listEl) listEl.innerHTML = `<div style="text-align:center;padding:40px 0;"><div class="spin spin-lg" style="margin:0 auto 16px;"></div><div class="poll-title">Authorizing ${m.label}…</div><div style="font-size:14px;color:var(--color-text-secondary);margin-top:8px;">Complete sign-in in the tab that just opened</div><button class="ob-skip" style="margin-top:20px;" onclick="cancelObCRMConnect()">Cancel</button></div>`;
+
+    try {
+        const r = await fetch(API + ep, { method: 'POST', headers: auth(), body: '{}' });
+        if (r.status === 401) { signOut(); return; }
+        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.detail || 'Could not start ' + m.label + ' authorization'); }
+        const data = await r.json();
+        if (!data.auth_url && !data.url) throw new Error('No authorization URL returned from server');
+        window.open(data.auth_url || data.url, '_blank');
+
+        // Poll for completion
+        _pollInterval = setInterval(async () => {
+            try {
+                const pr = await fetch(API + poll + '?polling_token=' + encodeURIComponent(data.polling_token), { headers: auth() });
+                if (pr.status === 401) { cancelObCRMConnect(); signOut(); return; }
+                if (!pr.ok) return;
+                const pd = await pr.json();
+                const st = (pd.status || '').toLowerCase();
+                if (st === 'complete' || st === 'completed') {
+                    clearInterval(_pollInterval); _pollInterval = null;
+                    obCRMSuccess(m.label);
+                } else if (st === 'error' || st === 'failed') {
+                    clearInterval(_pollInterval); _pollInterval = null;
+                    toast(m.label + ' authorization failed. Please try again.', 'bad');
+                    renderObCRM(document.getElementById('ob-step-1'));
+                }
+            } catch(e) {}
+        }, 2000);
+        setTimeout(() => { if (_pollInterval) { cancelObCRMConnect(); toast('Authorization timed out.', 'bad'); } }, 300000);
+    } catch(e) {
+        toast(e.message, 'bad');
+        renderObCRM(document.getElementById('ob-step-1'));
+    }
+}
+
+function cancelObCRMConnect() {
+    if (_pollInterval) { clearInterval(_pollInterval); _pollInterval = null; }
+    renderObCRM(document.getElementById('ob-step-1'));
+}
+
+function obCRMSuccess(label) {
+    // Show success inside the onboarding step (not the dashboard overlay)
+    const listEl = document.getElementById('ob-crm-list');
+    if (listEl) listEl.innerHTML = `<div style="text-align:center;padding:40px 0;"><div style="width:56px;height:56px;border-radius:50%;background:rgba(52,199,89,0.15);display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--color-green);margin:0 auto 16px;animation:scaleIn 0.4s var(--ease-spring);">&#10003;</div><div class="poll-title" style="color:var(--color-green)">${label} connected!</div><div style="font-size:14px;color:var(--color-text-secondary);margin-top:8px;">Your CRM is linked to your account.</div></div>`;
+    toast(label + ' connected!', 'ok');
+
+    // Figure out which CRM
+    const crmKey = _activeCRM || (label.toLowerCase().includes('hubspot') ? 'hubspot' : 'ghl');
+    _onboardingState.crm = crmKey;
+    saveOnboardingState();
+
+    // Refresh user state
+    fetch(API + '/users/me', { headers: auth() }).then(r => r.ok ? r.json() : null).then(u => { if (u) renderUser(u); }).catch(() => {});
+
+    setTimeout(() => advanceOnboarding(), 1500);
+}
+
+function markObCRMConnected(btn, label) {
+    btn.classList.add('connected');
+    btn.onclick = null;
+    btn.style.cursor = 'default';
+    const arrow = btn.querySelector('.arrow');
+    if (arrow) arrow.textContent = '';
+    const sub = btn.querySelector('.ob-crm-btn-sub');
+    if (sub) sub.textContent = 'Connected';
+    if (sub) sub.style.color = 'var(--color-green)';
+}
+
+function renderObPhone(el) {
+    const hasCRM = (_userState.crm_links || []).length > 0;
+    // Remove dashboard phone form to avoid duplicate IDs (pf-inp, pf-otp, pf-cc)
+    const dashPhoneArea = document.getElementById('phone-add-area');
+    if (dashPhoneArea) dashPhoneArea.innerHTML = '';
+    el.innerHTML = `
+        <div class="ob-card">
+            <div class="ob-title">Pair your phone</div>
+            <div class="ob-sub">Send CRM commands via text message. Just text what happened and FlightSuite logs it.</div>
+            ${!hasCRM ? '<div style="padding:14px 18px;background:rgba(255,149,0,0.08);border:1px solid rgba(255,149,0,0.2);border-radius:12px;font-size:14px;color:var(--color-orange);margin-bottom:20px;text-align:left;">Connect a CRM first (previous step) to enable SMS pairing.</div>' : ''}
+            <div class="ob-phone-form" id="ob-phone-form">
+                <div id="pf-step-num">
+                    <div class="input-row">
+                        <select id="pf-cc" class="field-input" style="width:84px;flex-shrink:0;padding:12px 8px;text-align:center;font-size:16px;">
+                            <option value="+1" selected>+1</option>
+                            <option value="+44">+44</option>
+                            <option value="+61">+61</option>
+                            <option value="+91">+91</option>
+                            <option value="+33">+33</option>
+                            <option value="+49">+49</option>
+                            <option value="+52">+52</option>
+                            <option value="+55">+55</option>
+                            <option value="+81">+81</option>
+                            <option value="+82">+82</option>
+                            <option value="+86">+86</option>
+                            <option value="+971">+971</option>
+                        </select>
+                        <input id="pf-inp" class="field-input" type="tel" placeholder="(555) 000-0000" oninput="formatPhoneInput(this)" style="flex:1;font-size:16px;">
+                        <button class="btn-sm-blue" onclick="sendPhoneCode()"${!hasCRM ? ' disabled' : ''}>Send code</button>
+                    </div>
+                    <div id="pf-err" class="inline-err"></div>
+                </div>
+                <div id="pf-step-otp" class="hidden" style="margin-top:12px;">
+                    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px;">Enter the 6-digit code sent to your number:</p>
+                    <div class="input-row">
+                        <input id="pf-otp" class="field-input" type="text" inputmode="numeric" maxlength="6" placeholder="000000" style="font-size:16px;">
+                        <button class="btn-sm-blue" onclick="verifyPhoneCode()">Verify</button>
+                    </div>
+                    <div id="pf-otp-err" class="inline-err"></div>
+                </div>
+            </div>
+            <button class="ob-skip" onclick="advanceOnboarding()">Skip for now</button>
+        </div>`;
+}
+
+function renderObCommand(el) {
+    // Simulated chat demo
+    el.innerHTML = `
+        <div class="ob-card">
+            <div class="ob-title">Send your first command</div>
+            <div class="ob-sub">Watch how FlightSuite turns plain English into CRM actions.</div>
+            <div class="ob-chat" id="ob-chat"></div>
+            <button class="ob-btn hidden" id="ob-cmd-continue" onclick="advanceOnboarding()">Continue</button>
+            <button class="ob-skip" onclick="advanceOnboarding()">Skip</button>
+        </div>`;
+    renderSimulatedChat();
+}
+
+function renderSimulatedChat() {
+    const chat = document.getElementById('ob-chat');
+    if (!chat) return;
+    const userMsg = 'Met with Sarah Chen at Acme Corp, she wants a demo next Tuesday';
+    const agentMsg = 'Got it! I\'ll log that for you.';
+
+    // Build elements
+    const userBubble = document.createElement('div');
+    userBubble.className = 'ob-bubble user';
+    const typingEl = document.createElement('div');
+    typingEl.className = 'ob-typing';
+    typingEl.innerHTML = '<span></span><span></span><span></span>';
+    const agentBubble = document.createElement('div');
+    agentBubble.className = 'ob-bubble agent';
+    agentBubble.textContent = agentMsg;
+    const crmCard = document.createElement('div');
+    crmCard.className = 'ob-crm-card';
+    crmCard.innerHTML = `
+        <div class="ob-crm-card-title">&#10003; Contact &amp; Activity Created</div>
+        <div class="ob-crm-card-row"><span>Contact</span><span>Sarah Chen</span></div>
+        <div class="ob-crm-card-row"><span>Company</span><span>Acme Corp</span></div>
+        <div class="ob-crm-card-row"><span>Activity</span><span>Meeting — wants demo</span></div>
+        <div class="ob-crm-card-row"><span>Task</span><span>Demo next Tuesday</span></div>`;
+
+    // Typewriter for user message
+    let charIdx = 0;
+    chat.appendChild(userBubble);
+    userBubble.classList.add('visible');
+    const typeTimer = setInterval(() => {
+        charIdx++;
+        userBubble.textContent = userMsg.substring(0, charIdx);
+        if (charIdx >= userMsg.length) clearInterval(typeTimer);
+    }, 35);
+
+    // Typing indicator after user finishes
+    setTimeout(() => {
+        chat.appendChild(typingEl);
+        chat.scrollTop = chat.scrollHeight;
+    }, 1800);
+
+    // Agent reply
+    setTimeout(() => {
+        typingEl.remove();
+        chat.appendChild(agentBubble);
+        requestAnimationFrame(() => agentBubble.classList.add('visible'));
+        chat.scrollTop = chat.scrollHeight;
+    }, 3300);
+
+    // CRM card materializes
+    setTimeout(() => {
+        chat.appendChild(crmCard);
+        requestAnimationFrame(() => crmCard.classList.add('visible'));
+        chat.scrollTop = chat.scrollHeight;
+    }, 4500);
+
+    // Show continue button
+    setTimeout(() => {
+        const btn = document.getElementById('ob-cmd-continue');
+        if (btn) btn.classList.remove('hidden');
+    }, 5500);
+}
+
+function renderObExtension(el) {
+    el.innerHTML = `
+        <div class="ob-card">
+            <div class="ob-title">Install the Chrome extension</div>
+            <div class="ob-sub">The extension lets you use FlightSuite directly from any browser tab — type a command and it gets logged instantly.</div>
+            <a class="ob-ext-card" href="https://chromewebstore.google.com/detail/flightsuite-universal-crm/blmnkgfabhnalpmmodfbpicmedfgdgbb" target="_blank" rel="noopener" id="ob-ext-link">
+                <div class="ob-ext-icon">&#9889;</div>
+                <div class="ob-ext-info">
+                    <div class="ob-ext-name">FlightSuite — Universal CRM Agent</div>
+                    <div class="ob-ext-sub">Chrome Web Store &middot; Free</div>
+                </div>
+            </a>
+            <button class="ob-btn" onclick="_onboardingState.extension=true;saveOnboardingState();advanceOnboarding();">I've installed it</button>
+            <button class="ob-skip" onclick="advanceOnboarding()">Skip for now</button>
+        </div>`;
+}
+
+function renderObReferral(el) {
+    // Build summary
+    const items = [
+        { label: 'Account created', done: true },
+        { label: 'CRM connected', done: !!_onboardingState.crm },
+        { label: 'Phone paired', done: !!_onboardingState.phone || (_userState.channels || []).some(c => c.channel_type === 'sms' || c.channel_type === 'whatsapp') },
+        { label: 'Extension installed', done: !!_onboardingState.extension },
+    ];
+    el.innerHTML = `
+        <div class="ob-card">
+            <div style="font-size:48px;margin-bottom:12px;">&#127881;</div>
+            <div class="ob-title">You're all set!</div>
+            <div class="ob-sub">Here's what you've completed:</div>
+            <div class="ob-summary">
+                ${items.map(i => `
+                    <div class="ob-summary-item">
+                        <div class="ob-summary-check ${i.done ? 'done' : 'skip'}">${i.done ? '&#10003;' : '—'}</div>
+                        <span style="color:${i.done ? 'var(--color-text-primary)' : 'var(--color-text-tertiary)'}">${i.label}</span>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="ob-referral-link" id="ob-referral-row" style="display:none;">
+                <input type="text" readonly id="ob-referral-url" value="">
+                <button onclick="copyReferralLink()">Copy</button>
+            </div>
+            <div class="ob-share-row hidden" id="ob-share-row">
+                <button class="ob-share-btn" onclick="shareOnPlatform('twitter')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    Share
+                </button>
+                <button class="ob-share-btn" onclick="shareOnPlatform('linkedin')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    Share
+                </button>
+                <button class="ob-share-btn" onclick="shareOnPlatform('email')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    Email
+                </button>
+            </div>
+            <div class="ob-attribution">
+                <label for="ob-heard">How did you hear about FlightSuite?</label>
+                <select id="ob-heard">
+                    <option value="">Select one...</option>
+                    <option value="google">Google search</option>
+                    <option value="twitter">X / Twitter</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="youtube">YouTube</option>
+                    <option value="friend">Friend / colleague</option>
+                    <option value="podcast">Podcast</option>
+                    <option value="chrome_store">Chrome Web Store</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <button class="ob-btn" onclick="completeOnboarding()">Go to dashboard</button>
+        </div>`;
+    loadReferralLink();
+}
+
+function loadReferralLink() {
+    fetch(API + '/users/me/referral', { headers: auth() })
+        .then(r => r.ok ? r.json() : null)
+        .then(d => {
+            if (!d || !d.referral_url) return;
+            const row = document.getElementById('ob-referral-row');
+            const inp = document.getElementById('ob-referral-url');
+            const share = document.getElementById('ob-share-row');
+            if (row) row.style.display = 'flex';
+            if (inp) inp.value = d.referral_url;
+            if (share) share.classList.remove('hidden');
+        }).catch(() => {});
+}
+
+function copyReferralLink() {
+    const inp = document.getElementById('ob-referral-url');
+    if (!inp || !inp.value) return;
+    navigator.clipboard.writeText(inp.value).then(() => {
+        const btn = inp.nextElementSibling;
+        if (btn) { btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = 'Copy'; }, 2000); }
+    }).catch(() => {});
+}
+
+function shareOnPlatform(platform) {
+    const url = document.getElementById('ob-referral-url')?.value || 'https://flightsuite.ai';
+    const text = 'I just started using FlightSuite — it turns plain English into CRM actions. Check it out:';
+    if (platform === 'twitter') window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url), '_blank');
+    else if (platform === 'linkedin') window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url), '_blank');
+    else if (platform === 'email') window.open('mailto:?subject=' + encodeURIComponent('Check out FlightSuite') + '&body=' + encodeURIComponent(text + ' ' + url));
+}
+
+function completeOnboarding() {
+    const heard = document.getElementById('ob-heard')?.value || '';
+    _onboardingState.completedAt = new Date().toISOString();
+    _onboardingState.heard = heard;
+    localStorage.setItem('fs_onboarding', JSON.stringify(_onboardingState));
+    _onboardingActive = false;
+    // Fire-and-forget backend update
+    fetch(API + '/users/me/profile', {
+        method: 'PATCH', headers: { ...auth(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ onboarding_completed: true, referral_source: heard, role: _onboardingState.role, company: _onboardingState.company })
+    }).catch(() => {});
+    // Transition to dashboard
+    hide('onboarding-view');
+    _showDashboard();
+}
+
+function launchObConfetti(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const colors = ['#5E5CE6','#0071E3','#22D3EE','#34C759','#FF9500','#FF3B30'];
+    for (let i = 0; i < 40; i++) {
+        const piece = document.createElement('i');
+        piece.style.left = Math.random() * 100 + '%';
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDelay = (Math.random() * 1.5) + 's';
+        piece.style.animationDuration = (2 + Math.random() * 1.5) + 's';
+        piece.style.width = (5 + Math.random() * 6) + 'px';
+        piece.style.height = (5 + Math.random() * 6) + 'px';
+        piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        container.appendChild(piece);
+    }
+    setTimeout(() => { container.innerHTML = ''; }, 4000);
 }
 
 // ── Helpers ───────────────────────────────────────────────────────
