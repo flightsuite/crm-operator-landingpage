@@ -235,11 +235,12 @@
     </div>
 
     <!-- Row 1: KPI Cards -->
-    <div class="grid-kpi">
+    <div class="grid-kpi" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr));">
         <div class="card" id="kpi-users"><div class="card-label">Total Users</div><div class="card-value skel" style="height:48px;width:80px;"></div></div>
         <div class="card" id="kpi-paid"><div class="card-label">Paid Users</div><div class="card-value skel" style="height:48px;width:80px;"></div></div>
         <div class="card" id="kpi-mrr"><div class="card-label">MRR</div><div class="card-value skel" style="height:48px;width:100px;"></div></div>
         <div class="card" id="kpi-active"><div class="card-label">Active Users</div><div class="card-value skel" style="height:48px;width:80px;"></div></div>
+        <div class="card" id="kpi-health"><div class="card-label">Query Success</div><div class="card-value skel" style="height:48px;width:80px;"></div></div>
     </div>
 
     <!-- Row 2: Charts -->
@@ -288,7 +289,13 @@
         <div class="table-wrap" id="signups-table"></div>
     </div>
 
-    <!-- Row 6: Feedback -->
+    <!-- Row 6: Query Errors -->
+    <div class="card" style="margin-bottom:24px;">
+        <div class="card-title">Recent Query Errors</div>
+        <div id="errors-container"></div>
+    </div>
+
+    <!-- Row 7: Feedback -->
     <div class="card" style="margin-bottom:24px;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px;">
             <div class="card-title" style="margin-bottom:0;">Recent Feedback</div>
@@ -405,7 +412,7 @@ async function initDashboard() {
     document.getElementById('dash-email').textContent = localStorage.getItem('fs_admin_email') || '';
 
     try {
-        const [overview, growth, tiers, crm, channels, queries, tools, revenue, recent, engagement, retention, feedback] = await Promise.all([
+        const [overview, growth, tiers, crm, channels, queries, tools, revenue, recent, engagement, retention, feedback, queryHealth, queryErrors] = await Promise.all([
             fetchAdmin('/admin/overview'),
             fetchAdmin('/admin/users/growth?days=30'),
             fetchAdmin('/admin/users/tiers'),
@@ -418,6 +425,8 @@ async function initDashboard() {
             fetchAdmin('/admin/users/engagement'),
             fetchAdmin('/admin/retention'),
             fetchAdmin('/admin/feedback?limit=50'),
+            fetchAdmin('/admin/queries/health?days=7'),
+            fetchAdmin('/admin/queries/errors?limit=30&days=7'),
         ]);
 
         renderKPIs(overview);
@@ -431,6 +440,8 @@ async function initDashboard() {
         renderFunnel(engagement, overview);
         renderRetention(retention);
         renderFeedbackList(feedback);
+        renderQueryHealth(queryHealth);
+        renderQueryErrors(queryErrors);
     } catch (e) {
         if (e.message === '403') {
             toast('Access denied — not an admin email');
@@ -644,6 +655,36 @@ function renderRevenue(d) {
             <div class="card-sub">Paid users inactive &gt;14d</div>
         </div>
     `;
+}
+
+// ═══ QUERY HEALTH ═══
+function renderQueryHealth(d) {
+    const rate = d.success_rate;
+    const color = rate >= 90 ? 'var(--color-green)' : rate >= 80 ? 'var(--color-orange)' : 'var(--color-red)';
+    const el = document.getElementById('kpi-health');
+    el.innerHTML = `<div class="card-label">Query Success</div><div class="card-value" style="color:${color}">${rate}%</div><div class="card-sub">${d.successful}/${d.total_queries} queries (7d) · avg ${d.avg_duration_ms}ms</div>`;
+}
+
+function renderQueryErrors(d) {
+    const el = document.getElementById('errors-container');
+    if (!d.data.length) { el.innerHTML = '<div style="color:var(--color-green);font-size:13px;padding:12px 0;">No errors in the last 7 days.</div>'; return; }
+
+    const statusColor = { tool_error: '#FF9500', parse_error: '#FF3B30', max_iterations: '#5E5CE6', api_error: '#FF3B30' };
+    const fmtDate = (ts) => ts ? new Date(ts * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+
+    el.innerHTML = d.data.map(e => `
+        <div class="fb-item">
+            <div class="fb-header">
+                <span class="fb-cat" style="background:${statusColor[e.status] || '#FF3B30'}22;color:${statusColor[e.status] || '#FF3B30'}">${e.status.replace('_', ' ')}</span>
+                <span style="font-size:12px;color:var(--color-text-secondary);">${e.crm_type}</span>
+                <span style="font-size:11px;color:var(--color-text-tertiary);">${e.source} · ${e.iteration_count} iterations · ${e.duration_ms}ms</span>
+            </div>
+            ${e.error_message ? `<div class="fb-msg" style="color:var(--color-red);font-size:13px;">${e.error_message}</div>` : ''}
+            ${e.prompt_preview ? `<div style="font-size:12px;color:var(--color-text-tertiary);margin-bottom:4px;">Prompt: "${e.prompt_preview.slice(0,100)}${e.prompt_preview.length > 100 ? '...' : ''}"</div>` : ''}
+            ${e.tool_calls_detail ? `<div style="font-size:11px;color:var(--color-text-tertiary);">Tools: ${e.tool_calls_detail.map(t => `<span style="color:${t.status === 'error' ? 'var(--color-red)' : 'var(--color-text-tertiary)'}">${t.tool}</span>`).join(', ')}</div>` : ''}
+            <div class="fb-meta"><span>${fmtDate(e.created_at)}</span><span>${e.request_id.slice(0,8)}...</span></div>
+        </div>
+    `).join('');
 }
 
 // ═══ FEEDBACK ═══
