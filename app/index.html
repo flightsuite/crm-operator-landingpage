@@ -1372,6 +1372,34 @@
             </div>
         </div>
 
+        <!-- Referral -->
+        <div class="dash-grid dash-grid-full" style="margin-top: clamp(12px,2vw,16px);">
+            <div class="card" id="referral-card">
+                <div class="card-label">Refer & Earn</div>
+                <div id="referral-content">
+                    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+                        <div style="flex:1;min-width:200px;">
+                            <div style="font-family:var(--font-display);font-size:16px;font-weight:600;margin-bottom:4px;">Give a month, get a month</div>
+                            <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.5;">Share your link with a colleague. When they subscribe, you both get a free month.</div>
+                        </div>
+                        <div id="referral-count" style="text-align:center;min-width:60px;">
+                            <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--color-accent-purple);">-</div>
+                            <div style="font-size:11px;color:var(--color-text-tertiary);">Referrals</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:8px;margin-top:14px;">
+                        <input type="text" readonly id="dash-referral-url" class="field-input" value="Loading..." style="flex:1;font-size:14px;">
+                        <button onclick="copyDashReferral()" style="padding:8px 16px;border-radius:12px;border:1px solid var(--color-accent-purple);background:transparent;color:var(--color-accent-purple);font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;">Copy</button>
+                    </div>
+                    <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
+                        <button onclick="shareReferral('twitter')" style="font-size:12px;padding:6px 12px;border-radius:8px;border:1px solid var(--color-border);background:transparent;color:var(--color-text-secondary);cursor:pointer;font-family:var(--font-body);">Share on X</button>
+                        <button onclick="shareReferral('linkedin')" style="font-size:12px;padding:6px 12px;border-radius:8px;border:1px solid var(--color-border);background:transparent;color:var(--color-text-secondary);cursor:pointer;font-family:var(--font-body);">Share on LinkedIn</button>
+                        <button onclick="shareReferral('email')" style="font-size:12px;padding:6px 12px;border-radius:8px;border:1px solid var(--color-border);background:transparent;color:var(--color-text-secondary);cursor:pointer;font-family:var(--font-body);">Send via Email</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <div class="portal-footer">
             <div>
@@ -1666,6 +1694,7 @@ function _showDashboard() {
     loadUsage();
     loadSessions();
     checkInviteParam();
+    loadDashReferral();
 }
 function signOut() { localStorage.removeItem('fs_onboarding'); clearTok(); location.reload(); }
 
@@ -2210,6 +2239,32 @@ function formatMonth(str) {
         const date = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, 1);
         return date.toLocaleDateString('en-US', { month: 'short' });
     } catch(e) { return str; }
+}
+
+// ── Referral (Dashboard) ─────────────────────────────────────
+let _dashReferralUrl = '';
+function loadDashReferral() {
+    fetch(API + '/users/me/referral', { headers: auth() })
+        .then(r => { if (r.status === 401) return null; return r.ok ? r.json() : null; })
+        .then(d => {
+            if (!d || !d.referral_url) return;
+            _dashReferralUrl = d.referral_url;
+            document.getElementById('dash-referral-url').value = d.referral_url;
+            const countEl = document.getElementById('referral-count');
+            if (countEl) countEl.innerHTML = `<div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--color-accent-purple);">${d.referrals_count || 0}</div><div style="font-size:11px;color:var(--color-text-tertiary);">Referrals</div>`;
+        })
+        .catch(() => {});
+}
+function copyDashReferral() {
+    const inp = document.getElementById('dash-referral-url');
+    navigator.clipboard.writeText(inp.value).then(() => toast('Link copied!')).catch(() => { inp.select(); document.execCommand('copy'); toast('Link copied!'); });
+}
+function shareReferral(platform) {
+    const url = _dashReferralUrl;
+    const text = 'I use FlightSuite to update my CRM by just typing what happened. Try it free:';
+    if (platform === 'twitter') window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+    else if (platform === 'linkedin') window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+    else if (platform === 'email') window.open(`mailto:?subject=${encodeURIComponent('Check out FlightSuite')}&body=${encodeURIComponent(text + ' ' + url)}`);
 }
 
 // ── Invites ──────────────────────────────────────────────────
