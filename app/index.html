@@ -1430,6 +1430,35 @@
     </div>
 </div>
 
+<!-- ═══ INVITE MODAL ═══ -->
+<div id="invite-modal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);justify-content:center;align-items:center;" onclick="if(event.target===this)closeInviteModal()">
+    <div style="background:var(--color-bg-secondary);border:1px solid var(--color-glass-border);border-radius:20px;padding:32px;max-width:460px;width:90%;animation:fadeInUp 0.3s var(--ease-out);">
+        <div id="inv-form">
+            <div style="font-family:var(--font-display);font-size:18px;font-weight:600;margin-bottom:4px;">Invite your team</div>
+            <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:20px;">Generate a link that auto-connects <strong id="inv-crm-name"></strong> for anyone who clicks it. They just need to sign up — no PAT or location ID required.</div>
+            <label style="display:block;font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;">Max uses</label>
+            <select id="inv-max-uses" class="field-input" style="margin-bottom:16px;">
+                <option value="5">5 people</option>
+                <option value="10" selected>10 people</option>
+                <option value="25">25 people</option>
+                <option value="50">50 people</option>
+            </select>
+            <div id="inv-error" style="font-size:12px;color:var(--color-red);display:none;margin-bottom:8px;"></div>
+            <button id="inv-gen-btn" onclick="generateInvite()" style="width:100%;padding:12px;border-radius:12px;border:none;background:var(--color-accent-purple);color:#fff;font-family:var(--font-body);font-size:14px;font-weight:600;cursor:pointer;">Generate invite link</button>
+        </div>
+        <div id="inv-result" style="display:none;">
+            <div style="font-family:var(--font-display);font-size:18px;font-weight:600;margin-bottom:4px;">Link ready!</div>
+            <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:16px;">Share this link with your team. It expires in 72 hours.</div>
+            <div style="display:flex;gap:8px;">
+                <input id="inv-url" class="field-input" readonly style="flex:1;font-size:14px;">
+                <button onclick="copyInviteLink()" style="padding:8px 16px;border-radius:12px;border:1px solid var(--color-accent-purple);background:transparent;color:var(--color-accent-purple);font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;">Copy</button>
+            </div>
+            <div id="inv-existing" style="margin-top:20px;"></div>
+            <button onclick="closeInviteModal()" style="width:100%;margin-top:16px;padding:10px;border-radius:12px;border:1px solid var(--color-border);background:transparent;color:var(--color-text-secondary);font-family:var(--font-body);font-size:13px;cursor:pointer;">Done</button>
+        </div>
+    </div>
+</div>
+
 <!-- ═══ FEEDBACK MODAL ═══ -->
 <div id="feedback-modal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);justify-content:center;align-items:center;" onclick="if(event.target===this)closeFeedbackModal()">
     <div style="background:var(--color-bg-secondary);border:1px solid var(--color-glass-border);border-radius:20px;padding:32px;max-width:420px;width:90%;animation:fadeInUp 0.3s var(--ease-out);">
@@ -1583,7 +1612,7 @@ async function verifyOtp() {
     try {
         const r = await fetch(API + '/auth/email/verify-otp', {
             method: 'POST', headers: noauth(),
-            body: JSON.stringify({ email: _otp_email, code })
+            body: JSON.stringify({ email: _otp_email, code, referral_code: localStorage.getItem('fs_ref') || undefined })
         });
         const d = await r.json();
         if (!r.ok) throw new Error(d.detail || 'Invalid code. Please try again.');
@@ -1636,6 +1665,7 @@ function _showDashboard() {
     loadUser();
     loadUsage();
     loadSessions();
+    checkInviteParam();
 }
 function signOut() { localStorage.removeItem('fs_onboarding'); clearTok(); location.reload(); }
 
@@ -1831,8 +1861,11 @@ function renderCRMs(links) {
                 <div class="crm-row-date">${date}</div>
                 ${lastActive}
             </div>
+            ${l.crm_type === 'ghl' ? '<button class="btn-row-invite" style="font-size:11px;padding:4px 10px;border-radius:8px;border:1px solid var(--color-accent-purple);background:transparent;color:var(--color-accent-purple);cursor:pointer;font-family:var(--font-body);margin-right:6px;white-space:nowrap;">Invite team</button>' : ''}
             <button class="btn-row-danger">Disconnect</button>`;
         row.querySelector('.btn-row-danger').addEventListener('click', () => disconnectCRM(l.crm_type, l.crm_id));
+        const inviteBtn = row.querySelector('.btn-row-invite');
+        if (inviteBtn) inviteBtn.addEventListener('click', () => openInviteModal(l.crm_type, l.crm_id, l.session_name || l.crm_id));
         rows.appendChild(row);
     });
     // Always show connect buttons — users can connect multiple accounts per CRM
@@ -2154,6 +2187,80 @@ function formatMonth(str) {
         const date = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, 1);
         return date.toLocaleDateString('en-US', { month: 'short' });
     } catch(e) { return str; }
+}
+
+// ── Invites ──────────────────────────────────────────────────
+let _invCrmType = '', _invCrmId = '';
+function openInviteModal(crmType, crmId, name) {
+    _invCrmType = crmType; _invCrmId = crmId;
+    document.getElementById('inv-crm-name').textContent = name;
+    document.getElementById('inv-form').style.display = '';
+    document.getElementById('inv-result').style.display = 'none';
+    document.getElementById('inv-error').style.display = 'none';
+    document.getElementById('invite-modal').style.display = 'flex';
+}
+function closeInviteModal() { document.getElementById('invite-modal').style.display = 'none'; }
+async function generateInvite() {
+    const btn = document.getElementById('inv-gen-btn');
+    btn.disabled = true; btn.textContent = 'Generating...';
+    document.getElementById('inv-error').style.display = 'none';
+    try {
+        const r = await fetch(API + '/users/me/invites', {
+            method: 'POST', headers: auth(),
+            body: JSON.stringify({ crm_type: _invCrmType, crm_id: _invCrmId, max_uses: parseInt(document.getElementById('inv-max-uses').value) })
+        });
+        if (r.status === 401) { signOut(); return; }
+        if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.detail || 'Failed'); }
+        const d = await r.json();
+        document.getElementById('inv-url').value = d.invite_url;
+        document.getElementById('inv-form').style.display = 'none';
+        document.getElementById('inv-result').style.display = '';
+        loadExistingInvites();
+    } catch(e) {
+        document.getElementById('inv-error').textContent = e.message;
+        document.getElementById('inv-error').style.display = 'block';
+    } finally { btn.disabled = false; btn.textContent = 'Generate invite link'; }
+}
+function copyInviteLink() {
+    const inp = document.getElementById('inv-url');
+    navigator.clipboard.writeText(inp.value).then(() => toast('Link copied!')).catch(() => { inp.select(); document.execCommand('copy'); toast('Link copied!'); });
+}
+async function loadExistingInvites() {
+    try {
+        const r = await fetch(API + '/users/me/invites', { headers: auth() });
+        if (!r.ok) return;
+        const d = await r.json();
+        const el = document.getElementById('inv-existing');
+        if (!d.invites || !d.invites.length) { el.innerHTML = ''; return; }
+        el.innerHTML = '<div style="font-size:12px;color:var(--color-text-tertiary);margin-bottom:8px;">Your active invites</div>' +
+            d.invites.slice(0, 5).map(i => {
+                const expired = Date.now()/1000 > i.expires_at;
+                return `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid rgba(255,255,255,0.04);font-size:12px;">
+                    <span style="color:var(--color-text-secondary);">${i.crm_type} · ${i.session_name || i.crm_id}</span>
+                    <span style="color:${expired ? 'var(--color-red)' : 'var(--color-text-tertiary)'};">${expired ? 'Expired' : i.uses + '/' + i.max_uses + ' used'}</span>
+                </div>`;
+            }).join('');
+    } catch(e) {}
+}
+
+// Auto-redeem invite on page load
+async function checkInviteParam() {
+    const params = new URLSearchParams(window.location.search);
+    const inviteToken = params.get('invite');
+    if (!inviteToken || !tok()) return;
+    try {
+        const r = await fetch(API + '/users/me/redeem-invite', {
+            method: 'POST', headers: auth(),
+            body: JSON.stringify({ invite_token: inviteToken })
+        });
+        if (!r.ok) { const d = await r.json().catch(()=>({})); toast(d.detail || 'Invite could not be redeemed'); return; }
+        const d = await r.json();
+        toast('CRM connected! ' + d.session_name + ' is ready to use.');
+        // Clean URL
+        window.history.replaceState({}, '', '/app');
+        // Refresh dashboard
+        loadUser();
+    } catch(e) { toast('Invite error: ' + e.message); }
 }
 
 // ── Feedback ─────────────────────────────────────────────────

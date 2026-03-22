@@ -1121,4 +1121,13 @@ document.addEventListener('click', function(e) {
     if (modal && e.target === modal) closeMobileCapture();
 });
 
+// Capture referral code from URL for attribution across page loads
+(function() {
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get('ref');
+    if (ref) {
+        localStorage.setItem('fs_ref', ref);
+    }
+})();
+
 console.log('✅ FlightSuite script fully loaded - All systems ready!');
