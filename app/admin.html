@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlightSuite — Admin Dashboard</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="/Assets/Flight Suite Favicon vPurple.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" defer></script>
+    <style>
+        :root {
+            --color-bg-primary: #000000;
+            --color-bg-secondary: #0A0A0A;
+            --color-surface: rgba(255,255,255,0.04);
+            --color-surface-hover: rgba(255,255,255,0.07);
+            --color-glass: rgba(255,255,255,0.06);
+            --color-glass-border: rgba(255,255,255,0.08);
+            --color-accent-blue: #0071E3;
+            --color-accent-purple: #5E5CE6;
+            --color-accent-cyan: #22D3EE;
+            --color-green: #34C759;
+            --color-red: #FF3B30;
+            --color-orange: #FF9500;
+            --color-text-primary: #F5F5F7;
+            --color-text-secondary: #8A8A9A;
+            --color-text-tertiary: #6E6E73;
+            --color-border: rgba(255,255,255,0.08);
+            --color-border-hover: rgba(255,255,255,0.15);
+            --grad: linear-gradient(135deg, #5E5CE6 0%, #0071E3 100%);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color-scheme: dark; }
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-primary);
+            background: var(--color-bg-primary);
+            font-size: 15px;
+            line-height: 1.5;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ═══ ANIMATED BG ═══ */
+        .animated-bg { position: fixed; inset: 0; z-index: -1; background: var(--color-bg-primary); overflow: hidden; }
+        .gradient-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.35; animation: float 25s ease-in-out infinite; }
+        .gradient-orb:nth-child(1) { width: min(500px, 45vw); height: min(500px, 45vw); background: radial-gradient(circle, rgba(94,92,230,0.3), transparent 70%); top: -150px; left: -150px; }
+        .gradient-orb:nth-child(2) { width: min(400px, 35vw); height: min(400px, 35vw); background: radial-gradient(circle, rgba(0,113,227,0.2), transparent 70%); bottom: -100px; right: -100px; animation-delay: -12s; }
+        @keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(30px, -20px); } }
+
+        /* ═══ LAYOUT ═══ */
+        .shell { max-width: 1440px; margin: 0 auto; padding: clamp(16px, 3vw, 32px); }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 16px 0 24px; flex-wrap: wrap; gap: 12px; }
+        .logo { font-family: var(--font-display); font-size: 20px; font-weight: 700; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header-right { display: flex; align-items: center; gap: 12px; }
+        .header-email { font-size: 13px; color: var(--color-text-secondary); }
+        .btn-sm { font-size: 13px; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--color-border); background: transparent; color: var(--color-text-secondary); cursor: pointer; transition: all 0.2s; font-family: var(--font-body); }
+        .btn-sm:hover { border-color: var(--color-border-hover); color: var(--color-text-primary); }
+        .page-title { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); font-weight: 700; margin-bottom: 24px; }
+
+        /* ═══ GRID ═══ */
+        .grid-kpi { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 16px; margin-bottom: 24px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; margin-bottom: 24px; }
+
+        /* ═══ CARD ═══ */
+        .card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-glass-border);
+            border-radius: 16px;
+            padding: clamp(16px, 2.5vw, 24px);
+            animation: fadeInUp 0.5s var(--ease-out) both;
+        }
+        .card-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-tertiary); margin-bottom: 8px; font-weight: 600; }
+        .card-value { font-family: var(--font-display); font-size: clamp(28px, 6vw, 48px); font-weight: 700; line-height: 1.1; }
+        .card-sub { font-size: 13px; color: var(--color-text-secondary); margin-top: 4px; }
+        .card-title { font-family: var(--font-display); font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+        .trend-up { color: var(--color-green); }
+        .trend-down { color: var(--color-red); }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Stagger */
+        .card:nth-child(1) { animation-delay: 0.05s; }
+        .card:nth-child(2) { animation-delay: 0.1s; }
+        .card:nth-child(3) { animation-delay: 0.15s; }
+        .card:nth-child(4) { animation-delay: 0.2s; }
+
+        /* ═══ CHART ═══ */
+        .chart-wrap { position: relative; width: 100%; height: 280px; }
+        .chart-wrap canvas { width: 100% !important; height: 100% !important; }
+
+        /* ═══ TABLE ═══ */
+        .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th { text-align: left; padding: 10px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-tertiary); border-bottom: 1px solid var(--color-border); font-weight: 600; white-space: nowrap; }
+        td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.03); white-space: nowrap; color: var(--color-text-secondary); }
+        td:first-child { color: var(--color-text-primary); position: sticky; left: 0; background: var(--color-bg-primary); z-index: 1; }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+        .tier-badge { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+        .tier-free { background: rgba(255,255,255,0.06); color: var(--color-text-tertiary); }
+        .tier-basic { background: rgba(0,113,227,0.15); color: #4da3ff; }
+        .tier-unlimited { background: rgba(94,92,230,0.15); color: #9b99ff; }
+        .tier-legacy { background: rgba(255,149,0,0.15); color: var(--color-orange); }
+
+        /* ═══ RETENTION HEATMAP ═══ */
+        .heatmap-cell { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 500; text-align: center; min-width: 52px; }
+
+        /* ═══ FUNNEL ═══ */
+        .funnel-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .funnel-label { font-size: 13px; color: var(--color-text-secondary); min-width: 140px; }
+        .funnel-bar-bg { flex: 1; height: 28px; background: rgba(255,255,255,0.04); border-radius: 8px; overflow: hidden; }
+        .funnel-bar { height: 100%; border-radius: 8px; display: flex; align-items: center; padding-left: 10px; font-size: 12px; font-weight: 600; color: #fff; transition: width 0.8s var(--ease-out); }
+        .funnel-count { font-size: 12px; color: var(--color-text-tertiary); min-width: 40px; text-align: right; }
+
+        /* ═══ TOP TOOLS ═══ */
+        .tool-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        .tool-name { font-size: 13px; color: var(--color-text-primary); min-width: 160px; font-family: var(--font-display); font-weight: 500; }
+        .tool-bar-bg { flex: 1; height: 20px; background: rgba(255,255,255,0.04); border-radius: 6px; overflow: hidden; }
+        .tool-bar { height: 100%; background: var(--grad); border-radius: 6px; transition: width 0.6s var(--ease-out); }
+        .tool-count { font-size: 12px; color: var(--color-text-tertiary); min-width: 36px; text-align: right; }
+
+        /* ═══ LOGIN ═══ */
+        .login-wrap { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
+        .login-card { background: var(--color-surface); border: 1px solid var(--color-glass-border); border-radius: 20px; padding: 40px; max-width: 400px; width: 100%; text-align: center; }
+        .login-title { font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+        .login-sub { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 24px; }
+        .field-input { width: 100%; padding: 12px 16px; font-size: 16px; background: rgba(255,255,255,0.06); border: 1px solid var(--color-border); border-radius: 12px; color: var(--color-text-primary); font-family: var(--font-body); outline: none; transition: border-color 0.2s; }
+        .field-input:focus { border-color: var(--color-accent-blue); }
+        .btn-primary { width: 100%; padding: 14px; margin-top: 12px; font-size: 15px; font-weight: 600; border: none; border-radius: 12px; background: var(--color-accent-blue); color: #fff; cursor: pointer; font-family: var(--font-body); transition: opacity 0.2s; }
+        .btn-primary:hover { opacity: 0.9; }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+        .otp-row { display: flex; gap: 8px; margin-top: 12px; }
+        .otp-row .field-input { text-align: center; letter-spacing: 0.3em; font-family: var(--font-display); font-weight: 600; }
+        .login-error { color: var(--color-red); font-size: 13px; margin-top: 10px; }
+        .login-back { font-size: 13px; color: var(--color-text-tertiary); margin-top: 16px; cursor: pointer; }
+        .login-back:hover { color: var(--color-text-secondary); }
+
+        /* ═══ SKELETON ═══ */
+        .skel { background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 8px; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+        /* ═══ EXPORT BTN ═══ */
+        .export-row { display: flex; justify-content: flex-end; margin-bottom: 24px; }
+        .btn-export { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; font-size: 14px; font-weight: 600; border: 1px solid var(--color-border); border-radius: 10px; background: transparent; color: var(--color-text-primary); cursor: pointer; font-family: var(--font-body); transition: all 0.2s; }
+        .btn-export:hover { border-color: var(--color-accent-blue); color: var(--color-accent-blue); }
+
+        /* ═══ TOAST ═══ */
+        #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--color-surface); border: 1px solid var(--color-glass-border); color: var(--color-text-primary); padding: 12px 24px; border-radius: 12px; font-size: 14px; z-index: 999; transition: transform 0.3s var(--ease-out); pointer-events: none; }
+        #toast.show { transform: translateX(-50%) translateY(0); }
+
+        /* ═══ RESPONSIVE ═══ */
+        @media (max-width: 768px) {
+            .grid-kpi { grid-template-columns: repeat(2, 1fr); }
+            .funnel-label { min-width: 100px; font-size: 12px; }
+            .tool-name { min-width: 120px; font-size: 12px; }
+            .chart-wrap { height: 220px; }
+        }
+        @media (max-width: 480px) {
+            .grid-kpi { grid-template-columns: 1fr; }
+            .header-email { display: none; }
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+<div class="animated-bg"><div class="gradient-orb"></div><div class="gradient-orb"></div></div>
+
+<!-- ═══════════ LOGIN ═══════════ -->
+<div id="view-login" class="login-wrap">
+    <div class="login-card">
+        <div class="logo" style="font-size:28px; margin-bottom: 16px;">FlightSuite</div>
+        <div class="login-title">Admin Dashboard</div>
+        <div class="login-sub">Sign in with your @flightsuite.ai email</div>
+
+        <div id="step-email">
+            <input id="login-email" class="field-input" type="email" placeholder="you@flightsuite.ai" autocomplete="email">
+            <button id="btn-send-otp" class="btn-primary" onclick="sendOTP()">Send verification code</button>
+            <div id="login-error" class="login-error hidden"></div>
+        </div>
+
+        <div id="step-otp" class="hidden">
+            <p style="font-size:14px; color:var(--color-text-secondary); margin-bottom:12px;">Enter the 6-digit code sent to <strong id="otp-email-display"></strong></p>
+            <div class="otp-row">
+                <input id="otp-code" class="field-input" type="text" maxlength="6" placeholder="000000" inputmode="numeric" autocomplete="one-time-code">
+            </div>
+            <button id="btn-verify-otp" class="btn-primary" onclick="verifyOTP()">Verify</button>
+            <div id="otp-error" class="login-error hidden"></div>
+            <div class="login-back" onclick="showEmailStep()">Use a different email</div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════ DASHBOARD ═══════════ -->
+<div id="view-dash" class="shell hidden">
+    <header>
+        <div class="logo">FlightSuite Admin</div>
+        <div class="header-right">
+            <span class="header-email" id="dash-email"></span>
+            <button class="btn-sm" onclick="signOut()">Sign out</button>
+        </div>
+    </header>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:24px;">
+        <div class="page-title" style="margin-bottom:0;">Dashboard</div>
+        <div class="export-row" style="margin-bottom:0;">
+            <button class="btn-export" onclick="exportInvestorReport()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Export Report
+            </button>
+        </div>
+    </div>
+
+    <!-- Row 1: KPI Cards -->
+    <div class="grid-kpi">
+        <div class="card" id="kpi-users"><div class="card-label">Total Users</div><div class="card-value skel" style="height:48px;width:80px;"></div></div>
+        <div class="card" id="kpi-paid"><div class="card-label">Paid Users</div><div class="card-value skel" style="height:48px;width:80px;"></div></div>
+        <div class="card" id="kpi-mrr"><div class="card-label">MRR</div><div class="card-value skel" style="height:48px;width:100px;"></div></div>
+        <div class="card" id="kpi-active"><div class="card-label">Active Users</div><div class="card-value skel" style="height:48px;width:80px;"></div></div>
+    </div>
+
+    <!-- Row 2: Charts -->
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-title">User Growth (30 days)</div>
+            <div class="chart-wrap"><canvas id="chart-growth"></canvas></div>
+        </div>
+        <div class="card">
+            <div class="card-title">Query Volume (30 days)</div>
+            <div class="chart-wrap"><canvas id="chart-queries"></canvas></div>
+        </div>
+    </div>
+
+    <!-- Row 3: Engagement -->
+    <div class="grid-2">
+        <div class="card" id="card-funnel">
+            <div class="card-title">Activation Funnel</div>
+            <div id="funnel-container"></div>
+        </div>
+        <div class="card" id="card-retention">
+            <div class="card-title">Weekly Retention Cohorts</div>
+            <div class="table-wrap" id="retention-container"></div>
+        </div>
+    </div>
+
+    <!-- Row 4: Breakdowns -->
+    <div class="grid-3">
+        <div class="card">
+            <div class="card-title">Tier Distribution</div>
+            <div class="chart-wrap" style="height:220px;"><canvas id="chart-tiers"></canvas></div>
+        </div>
+        <div class="card">
+            <div class="card-title">CRM Connections</div>
+            <div id="crm-stats-container"></div>
+        </div>
+        <div class="card">
+            <div class="card-title">Top CRM Tools</div>
+            <div id="tools-container"></div>
+        </div>
+    </div>
+
+    <!-- Row 5: Recent Signups -->
+    <div class="card" style="margin-bottom:24px;">
+        <div class="card-title">Recent Signups</div>
+        <div class="table-wrap" id="signups-table"></div>
+    </div>
+
+    <!-- Row 6: Revenue -->
+    <div class="card" id="card-revenue" style="margin-bottom:48px;">
+        <div class="card-title">Revenue</div>
+        <div id="revenue-container" class="grid-kpi" style="margin-bottom:0;"></div>
+    </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const API = 'https://prod.flightsuite.ai/api/v1';
+const ADMIN_DOMAIN = 'flightsuite.ai';
+
+function tok() { return localStorage.getItem('fs_admin_token'); }
+function setTok(t) { localStorage.setItem('fs_admin_token', t); }
+function auth() { return { 'Authorization': 'Bearer ' + tok(), 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' }; }
+
+function show(id) { document.getElementById(id)?.classList.remove('hidden'); }
+function hide(id) { document.getElementById(id)?.classList.add('hidden'); }
+
+function toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ═══ AUTH ═══
+let _loginEmail = '';
+
+function sendOTP() {
+    const email = document.getElementById('login-email').value.trim().toLowerCase();
+    if (!email.endsWith('@' + ADMIN_DOMAIN)) {
+        document.getElementById('login-error').textContent = 'Must be a @' + ADMIN_DOMAIN + ' email';
+        show('login-error');
+        return;
+    }
+    _loginEmail = email;
+    const btn = document.getElementById('btn-send-otp');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    hide('login-error');
+
+    fetch(API + '/auth/email/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+    }).then(r => {
+        btn.disabled = false; btn.textContent = 'Send verification code';
+        if (!r.ok) throw new Error('Failed to send code');
+        document.getElementById('otp-email-display').textContent = email;
+        hide('step-email');
+        show('step-otp');
+        document.getElementById('otp-code').focus();
+    }).catch(e => {
+        btn.disabled = false; btn.textContent = 'Send verification code';
+        document.getElementById('login-error').textContent = e.message;
+        show('login-error');
+    });
+}
+
+function verifyOTP() {
+    const code = document.getElementById('otp-code').value.trim();
+    if (code.length !== 6) return;
+    const btn = document.getElementById('btn-verify-otp');
+    btn.disabled = true; btn.textContent = 'Verifying...';
+    hide('otp-error');
+
+    fetch(API + '/auth/email/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: _loginEmail, code })
+    }).then(async r => {
+        btn.disabled = false; btn.textContent = 'Verify';
+        if (!r.ok) throw new Error('Invalid code');
+        const d = await r.json();
+        setTok(d.user_token || d.token);
+        localStorage.setItem('fs_admin_email', _loginEmail);
+        initDashboard();
+    }).catch(e => {
+        btn.disabled = false; btn.textContent = 'Verify';
+        document.getElementById('otp-error').textContent = e.message;
+        show('otp-error');
+    });
+}
+
+function showEmailStep() {
+    show('step-email'); hide('step-otp');
+    document.getElementById('otp-code').value = '';
+}
+
+function signOut() {
+    localStorage.removeItem('fs_admin_token');
+    localStorage.removeItem('fs_admin_email');
+    location.reload();
+}
+
+// ═══ INIT ═══
+async function initDashboard() {
+    hide('view-login');
+    show('view-dash');
+    document.getElementById('dash-email').textContent = localStorage.getItem('fs_admin_email') || '';
+
+    try {
+        const [overview, growth, tiers, crm, channels, queries, tools, revenue, recent, engagement, retention] = await Promise.all([
+            fetchAdmin('/admin/overview'),
+            fetchAdmin('/admin/users/growth?days=30'),
+            fetchAdmin('/admin/users/tiers'),
+            fetchAdmin('/admin/crm-stats'),
+            fetchAdmin('/admin/channel-stats'),
+            fetchAdmin('/admin/queries/volume?days=30'),
+            fetchAdmin('/admin/queries/top-tools?months=3'),
+            fetchAdmin('/admin/revenue'),
+            fetchAdmin('/admin/users/recent?limit=20'),
+            fetchAdmin('/admin/users/engagement'),
+            fetchAdmin('/admin/retention'),
+        ]);
+
+        renderKPIs(overview);
+        renderGrowthChart(growth);
+        renderQueryChart(queries);
+        renderTierChart(tiers);
+        renderCRMStats(crm, overview);
+        renderTopTools(tools);
+        renderRecentTable(recent);
+        renderRevenue(revenue);
+        renderFunnel(engagement, overview);
+        renderRetention(retention);
+    } catch (e) {
+        if (e.message === '403') {
+            toast('Access denied — not an admin email');
+            setTimeout(signOut, 1500);
+        } else {
+            toast('Failed to load dashboard: ' + e.message);
+        }
+    }
+}
+
+async function fetchAdmin(path) {
+    const r = await fetch(API + path, { headers: auth() });
+    if (r.status === 401 || r.status === 403) throw new Error(String(r.status));
+    if (!r.ok) throw new Error('API error ' + r.status);
+    return r.json();
+}
+
+// ═══ KPI CARDS ═══
+function renderKPIs(d) {
+    setKPI('kpi-users', d.total_users.toLocaleString(), `${d.free_users} free / ${d.paid_users} paid`);
+    setKPI('kpi-paid', d.paid_users.toLocaleString(), d.total_users ? `${((d.paid_users / d.total_users) * 100).toFixed(1)}% conversion` : '0%');
+    setKPI('kpi-mrr', '$' + d.mrr.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}), `$${d.arr.toLocaleString()} ARR`);
+    setKPI('kpi-active', d.dau.toLocaleString(), `DAU ${d.dau} / WAU ${d.wau} / MAU ${d.mau}`);
+}
+
+function setKPI(id, value, sub) {
+    const el = document.getElementById(id);
+    el.innerHTML = `<div class="card-label">${el.querySelector('.card-label')?.textContent || ''}</div><div class="card-value">${value}</div><div class="card-sub">${sub}</div>`;
+}
+
+// ═══ USER GROWTH CHART ═══
+function renderGrowthChart(d) {
+    const ctx = document.getElementById('chart-growth').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: d.data.map(p => p.date.slice(5)),
+            datasets: [
+                { label: 'Total', data: d.data.map(p => p.total), borderColor: '#5E5CE6', backgroundColor: 'rgba(94,92,230,0.1)', fill: true, tension: 0.4, pointRadius: 0 },
+                { label: 'Paid', data: d.data.map(p => p.paid), borderColor: '#0071E3', backgroundColor: 'rgba(0,113,227,0.1)', fill: true, tension: 0.4, pointRadius: 0 },
+            ]
+        },
+        options: chartOpts('Users')
+    });
+}
+
+// ═══ QUERY VOLUME CHART ═══
+function renderQueryChart(d) {
+    const ctx = document.getElementById('chart-queries').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: d.data.map(p => p.date.slice(5)),
+            datasets: [
+                { label: 'Extension', data: d.data.map(p => p.extension), backgroundColor: '#5E5CE6', borderRadius: 4 },
+                { label: 'SMS', data: d.data.map(p => p.sms), backgroundColor: '#0071E3', borderRadius: 4 },
+                { label: 'WhatsApp', data: d.data.map(p => p.whatsapp), backgroundColor: '#22D3EE', borderRadius: 4 },
+            ]
+        },
+        options: { ...chartOpts('Queries'), scales: { ...chartOpts('Queries').scales, x: { ...chartOpts('').scales.x, stacked: true }, y: { ...chartOpts('').scales.y, stacked: true } } }
+    });
+}
+
+function chartOpts(yLabel) {
+    return {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: '#8A8A9A', font: { size: 11, family: "'DM Sans'" } } } },
+        scales: {
+            x: { ticks: { color: '#6E6E73', font: { size: 10 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 10 }, grid: { color: 'rgba(255,255,255,0.03)' } },
+            y: { ticks: { color: '#6E6E73', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.03)' }, title: { display: !!yLabel, text: yLabel, color: '#6E6E73', font: { size: 11 } } },
+        }
+    };
+}
+
+// ═══ TIER DONUT ═══
+function renderTierChart(d) {
+    const ctx = document.getElementById('chart-tiers').getContext('2d');
+    const colors = { free: '#6E6E73', basic: '#0071E3', unlimited: '#5E5CE6', starter: '#FF9500', pro: '#FF9500', business: '#FF9500' };
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: d.data.map(t => t.tier),
+            datasets: [{ data: d.data.map(t => t.count), backgroundColor: d.data.map(t => colors[t.tier] || '#444'), borderWidth: 0 }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false, cutout: '65%',
+            plugins: { legend: { position: 'bottom', labels: { color: '#8A8A9A', font: { size: 11, family: "'DM Sans'" }, padding: 16 } } }
+        }
+    });
+}
+
+// ═══ CRM STATS ═══
+function renderCRMStats(d, overview) {
+    const total = overview.total_users || 1;
+    const el = document.getElementById('crm-stats-container');
+    el.innerHTML = `
+        ${crmBar('HubSpot', d.hubspot, total, '#FF7A59')}
+        ${crmBar('GoHighLevel', d.ghl, total, '#22D3EE')}
+        ${crmBar('Both', d.both, total, '#5E5CE6')}
+        ${crmBar('No CRM', d.none, total, '#6E6E73')}
+    `;
+}
+function crmBar(label, count, total, color) {
+    const pct = Math.round(count / total * 100);
+    return `<div class="tool-row"><div class="tool-name">${label}</div><div class="tool-bar-bg"><div class="tool-bar" style="width:${pct}%;background:${color};"></div></div><div class="tool-count">${count}</div></div>`;
+}
+
+// ═══ TOP TOOLS ═══
+function renderTopTools(d) {
+    const el = document.getElementById('tools-container');
+    if (!d.data.length) { el.innerHTML = '<div style="color:var(--color-text-tertiary);font-size:13px;">No tool data yet</div>'; return; }
+    const max = d.data[0]?.count || 1;
+    el.innerHTML = d.data.slice(0, 8).map(t =>
+        `<div class="tool-row"><div class="tool-name">${t.tool}</div><div class="tool-bar-bg"><div class="tool-bar" style="width:${Math.round(t.count/max*100)}%"></div></div><div class="tool-count">${t.count}</div></div>`
+    ).join('');
+}
+
+// ═══ FUNNEL ═══
+function renderFunnel(engagement, overview) {
+    const total = overview.total_users;
+    const crmConnected = total - (overview.free_users * 0.7 || 0); // approximate
+    const active = overview.mau;
+    const activeWeek = overview.wau;
+
+    const steps = [
+        { label: 'Signed up', count: total },
+        { label: 'Onboarded', count: Math.round(total * engagement.onboarding_completion_rate / 100) },
+        { label: 'Active (30d)', count: active },
+        { label: 'Active (7d)', count: activeWeek },
+    ];
+    const maxCount = steps[0].count || 1;
+
+    const colors = ['#5E5CE6', '#0071E3', '#22D3EE', '#34C759'];
+    document.getElementById('funnel-container').innerHTML = steps.map((s, i) =>
+        `<div class="funnel-row">
+            <div class="funnel-label">${s.label}</div>
+            <div class="funnel-bar-bg"><div class="funnel-bar" style="width:${Math.round(s.count/maxCount*100)}%;background:${colors[i]}">${s.count}</div></div>
+            <div class="funnel-count">${Math.round(s.count/maxCount*100)}%</div>
+        </div>`
+    ).join('');
+}
+
+// ═══ RETENTION ═══
+function renderRetention(d) {
+    if (!d.data.length) { document.getElementById('retention-container').innerHTML = '<div style="color:var(--color-text-tertiary);font-size:13px;">Not enough data for cohort analysis</div>'; return; }
+    const heatColor = (v) => {
+        if (v === null || v === undefined) return 'background:transparent;color:var(--color-text-tertiary)';
+        if (v >= 60) return 'background:rgba(52,199,89,0.2);color:#34C759';
+        if (v >= 30) return 'background:rgba(0,113,227,0.15);color:#4da3ff';
+        if (v >= 10) return 'background:rgba(255,149,0,0.15);color:#FF9500';
+        return 'background:rgba(255,59,48,0.12);color:#FF3B30';
+    };
+    const fmt = (v) => v === null || v === undefined ? '-' : v + '%';
+
+    let html = '<table><thead><tr><th>Cohort</th><th>Size</th><th>Wk 1</th><th>Wk 2</th><th>Wk 4</th><th>Wk 8</th></tr></thead><tbody>';
+    for (const c of d.data) {
+        html += `<tr><td>${c.cohort_week}</td><td>${c.size}</td>`;
+        for (const w of [c.week_1, c.week_2, c.week_4, c.week_8]) {
+            html += `<td><span class="heatmap-cell" style="${heatColor(w)}">${fmt(w)}</span></td>`;
+        }
+        html += '</tr>';
+    }
+    html += '</tbody></table>';
+    document.getElementById('retention-container').innerHTML = html;
+}
+
+// ═══ RECENT SIGNUPS TABLE ═══
+function renderRecentTable(d) {
+    const tierClass = (t) => ['basic','unlimited'].includes(t) ? 'tier-' + t : ['starter','pro','business'].includes(t) ? 'tier-legacy' : 'tier-free';
+    const fmtDate = (ts) => ts ? new Date(ts * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '-';
+
+    let html = '<table><thead><tr><th>Email</th><th>Name</th><th>Tier</th><th>Signed up</th><th>Last active</th><th>CRM</th><th>Queries</th></tr></thead><tbody>';
+    for (const u of d.data) {
+        html += `<tr>
+            <td>${u.email}</td>
+            <td>${u.name || '-'}</td>
+            <td><span class="tier-badge ${tierClass(u.tier)}">${u.tier}</span></td>
+            <td>${fmtDate(u.created_at)}</td>
+            <td>${fmtDate(u.last_active_at)}</td>
+            <td>${u.crm_connected || '-'}</td>
+            <td>${u.queries_this_month}</td>
+        </tr>`;
+    }
+    html += '</tbody></table>';
+    document.getElementById('signups-table').innerHTML = html;
+}
+
+// ═══ REVENUE ═══
+function renderRevenue(d) {
+    document.getElementById('revenue-container').innerHTML = `
+        <div class="card" style="border:none;padding:12px 0;">
+            <div class="card-label">MRR</div>
+            <div class="card-value" style="font-size:clamp(24px,4vw,36px);">$${d.mrr.toLocaleString()}</div>
+        </div>
+        <div class="card" style="border:none;padding:12px 0;">
+            <div class="card-label">ARR</div>
+            <div class="card-value" style="font-size:clamp(24px,4vw,36px);">$${d.arr.toLocaleString()}</div>
+        </div>
+        <div class="card" style="border:none;padding:12px 0;">
+            <div class="card-label">Paying Customers</div>
+            <div class="card-value" style="font-size:clamp(24px,4vw,36px);">${d.paying_customers}</div>
+        </div>
+        <div class="card" style="border:none;padding:12px 0;">
+            <div class="card-label">ARPU</div>
+            <div class="card-value" style="font-size:clamp(24px,4vw,36px);">$${d.avg_revenue_per_user}</div>
+        </div>
+        <div class="card" style="border:none;padding:12px 0;">
+            <div class="card-label">Churn Risk</div>
+            <div class="card-value trend-down" style="font-size:clamp(24px,4vw,36px);">${d.churn_risk_count}</div>
+            <div class="card-sub">Paid users inactive &gt;14d</div>
+        </div>
+    `;
+}
+
+// ═══ EXPORT ═══
+async function exportInvestorReport() {
+    try {
+        toast('Generating report...');
+        const data = await fetchAdmin('/admin/export/investors');
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `flightsuite-metrics-${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+        toast('Report downloaded');
+    } catch (e) {
+        toast('Export failed: ' + e.message);
+    }
+}
+
+// ═══ ENTER KEY HANDLERS ═══
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        if (!document.getElementById('step-email').classList.contains('hidden')) sendOTP();
+        else if (!document.getElementById('step-otp').classList.contains('hidden')) verifyOTP();
+    }
+});
+
+// ═══ BOOT ═══
+if (tok()) {
+    initDashboard();
+} else {
+    show('view-login');
+}
+</script>
+</body>
+</html>
