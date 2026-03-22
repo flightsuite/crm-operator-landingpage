@@ -167,6 +167,21 @@
             .header-email { display: none; }
         }
 
+        /* ═══ FEEDBACK ═══ */
+        .fb-filter { font-size: 11px; padding: 4px 10px; }
+        .fb-filter.active { background: var(--color-accent-purple); color: #fff; border-color: var(--color-accent-purple); }
+        .fb-item { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .fb-item:last-child { border-bottom: none; }
+        .fb-header { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+        .fb-cat { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 10px; font-weight: 600; text-transform: uppercase; }
+        .fb-cat-bug { background: rgba(255,59,48,0.12); color: #FF3B30; }
+        .fb-cat-feature { background: rgba(94,92,230,0.15); color: #9b99ff; }
+        .fb-cat-general { background: rgba(255,255,255,0.06); color: var(--color-text-tertiary); }
+        .fb-msg { font-size: 14px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 6px; }
+        .fb-meta { font-size: 11px; color: var(--color-text-tertiary); display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+        .fb-status-btn { font-size: 10px; padding: 2px 8px; border-radius: 6px; border: 1px solid var(--color-border); background: transparent; color: var(--color-text-secondary); cursor: pointer; font-family: var(--font-body); transition: all 0.2s; }
+        .fb-status-btn:hover { border-color: var(--color-accent-blue); color: var(--color-accent-blue); }
+
         .hidden { display: none !important; }
     </style>
 </head>
@@ -273,7 +288,21 @@
         <div class="table-wrap" id="signups-table"></div>
     </div>
 
-    <!-- Row 6: Revenue -->
+    <!-- Row 6: Feedback -->
+    <div class="card" style="margin-bottom:24px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px;">
+            <div class="card-title" style="margin-bottom:0;">Recent Feedback</div>
+            <div id="feedback-filters" style="display:flex;gap:6px;flex-wrap:wrap;">
+                <button class="btn-sm fb-filter active" data-filter="" onclick="filterFeedback(this,'')">All</button>
+                <button class="btn-sm fb-filter" data-filter="bug" onclick="filterFeedback(this,'bug')">Bugs</button>
+                <button class="btn-sm fb-filter" data-filter="feature" onclick="filterFeedback(this,'feature')">Features</button>
+                <button class="btn-sm fb-filter" data-filter="general" onclick="filterFeedback(this,'general')">General</button>
+            </div>
+        </div>
+        <div id="feedback-container"></div>
+    </div>
+
+    <!-- Row 7: Revenue -->
     <div class="card" id="card-revenue" style="margin-bottom:48px;">
         <div class="card-title">Revenue</div>
         <div id="revenue-container" class="grid-kpi" style="margin-bottom:0;"></div>
@@ -376,7 +405,7 @@ async function initDashboard() {
     document.getElementById('dash-email').textContent = localStorage.getItem('fs_admin_email') || '';
 
     try {
-        const [overview, growth, tiers, crm, channels, queries, tools, revenue, recent, engagement, retention] = await Promise.all([
+        const [overview, growth, tiers, crm, channels, queries, tools, revenue, recent, engagement, retention, feedback] = await Promise.all([
             fetchAdmin('/admin/overview'),
             fetchAdmin('/admin/users/growth?days=30'),
             fetchAdmin('/admin/users/tiers'),
@@ -388,6 +417,7 @@ async function initDashboard() {
             fetchAdmin('/admin/users/recent?limit=20'),
             fetchAdmin('/admin/users/engagement'),
             fetchAdmin('/admin/retention'),
+            fetchAdmin('/admin/feedback?limit=50'),
         ]);
 
         renderKPIs(overview);
@@ -400,6 +430,7 @@ async function initDashboard() {
         renderRevenue(revenue);
         renderFunnel(engagement, overview);
         renderRetention(retention);
+        renderFeedbackList(feedback);
     } catch (e) {
         if (e.message === '403') {
             toast('Access denied — not an admin email');
@@ -613,6 +644,57 @@ function renderRevenue(d) {
             <div class="card-sub">Paid users inactive &gt;14d</div>
         </div>
     `;
+}
+
+// ═══ FEEDBACK ═══
+let _feedbackData = [];
+function renderFeedbackList(d) {
+    _feedbackData = d.data || [];
+    renderFilteredFeedback('');
+}
+function filterFeedback(btn, cat) {
+    document.querySelectorAll('.fb-filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderFilteredFeedback(cat);
+}
+function renderFilteredFeedback(cat) {
+    const items = cat ? _feedbackData.filter(f => f.category === cat) : _feedbackData;
+    const el = document.getElementById('feedback-container');
+    if (!items.length) { el.innerHTML = '<div style="color:var(--color-text-tertiary);font-size:13px;padding:12px 0;">No feedback yet.</div>'; return; }
+
+    const catClass = (c) => c === 'bug' ? 'fb-cat-bug' : c === 'feature' ? 'fb-cat-feature' : 'fb-cat-general';
+    const fmtDate = (ts) => ts ? new Date(ts * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+    const nextStatus = (s) => s === 'open' ? 'reviewed' : s === 'reviewed' ? 'resolved' : 'open';
+
+    el.innerHTML = items.slice(0, 20).map(f => `
+        <div class="fb-item">
+            <div class="fb-header">
+                <span class="fb-cat ${catClass(f.category)}">${f.category}</span>
+                <span style="font-size:12px;color:var(--color-text-primary);">${f.email}</span>
+                <span class="tier-badge ${['basic','unlimited'].includes(f.tier) ? 'tier-'+f.tier : f.tier === 'free' ? 'tier-free' : 'tier-legacy'}" style="font-size:9px;">${f.tier}</span>
+                ${f.crm_types ? `<span style="font-size:11px;color:var(--color-text-tertiary);">${f.crm_types}</span>` : ''}
+                <span style="font-size:11px;color:var(--color-text-tertiary);">via ${f.source}</span>
+            </div>
+            <div class="fb-msg">${f.message.length > 200 ? f.message.slice(0,200) + '...' : f.message}</div>
+            <div class="fb-meta">
+                <span>${fmtDate(f.created_at)}</span>
+                <button class="fb-status-btn" onclick="updateFeedbackStatus('${f.feedback_id}','${nextStatus(f.status)}',this)">${f.status} → ${nextStatus(f.status)}</button>
+            </div>
+        </div>
+    `).join('');
+}
+async function updateFeedbackStatus(id, newStatus, btn) {
+    btn.disabled = true; btn.textContent = 'Updating...';
+    try {
+        await fetch(API + '/admin/feedback/' + id, {
+            method: 'PATCH', headers: auth(),
+            body: JSON.stringify({ status: newStatus })
+        });
+        // Refresh
+        const d = await fetchAdmin('/admin/feedback?limit=50');
+        renderFeedbackList(d);
+        toast('Status updated');
+    } catch(e) { toast('Failed: ' + e.message); btn.disabled = false; }
 }
 
 // ═══ EXPORT ═══

@@ -1131,6 +1131,9 @@
         <a href="/" class="logo-text">FlightSuite</a>
         <div class="header-right">
             <span class="header-email" id="header-email"></span>
+            <button class="btn-signout hidden" id="btn-feedback" onclick="openFeedbackModal()" style="border-color:var(--color-accent-purple);">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;vertical-align:-1px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Feedback
+            </button>
             <button class="btn-signout hidden" id="btn-signout" onclick="signOut()">Sign out</button>
         </div>
     </div>
@@ -1427,6 +1430,34 @@
     </div>
 </div>
 
+<!-- ═══ FEEDBACK MODAL ═══ -->
+<div id="feedback-modal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);justify-content:center;align-items:center;" onclick="if(event.target===this)closeFeedbackModal()">
+    <div style="background:var(--color-bg-secondary);border:1px solid var(--color-glass-border);border-radius:20px;padding:32px;max-width:420px;width:90%;animation:fadeInUp 0.3s var(--ease-out);">
+        <div id="fb-form">
+            <div style="font-family:var(--font-display);font-size:18px;font-weight:600;margin-bottom:4px;">Send Feedback</div>
+            <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:20px;">Bug, feature request, or anything on your mind.</div>
+            <label style="display:block;font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;">Category</label>
+            <select id="fb-category" class="field-input" style="margin-bottom:16px;">
+                <option value="bug">Bug Report</option>
+                <option value="feature">Feature Request</option>
+                <option value="general" selected>General Feedback</option>
+            </select>
+            <label style="display:block;font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;">Message</label>
+            <textarea id="fb-message" class="field-input" rows="4" placeholder="Tell us what's on your mind..." style="resize:vertical;font-size:16px;margin-bottom:8px;"></textarea>
+            <div id="fb-error" style="font-size:12px;color:var(--color-red);display:none;margin-bottom:8px;"></div>
+            <div style="display:flex;gap:10px;margin-top:12px;">
+                <button onclick="closeFeedbackModal()" style="flex:1;padding:12px;border-radius:12px;border:1px solid var(--color-border);background:transparent;color:var(--color-text-secondary);font-family:var(--font-body);font-size:14px;cursor:pointer;">Cancel</button>
+                <button id="fb-submit" onclick="submitFeedback()" style="flex:1;padding:12px;border-radius:12px;border:none;background:var(--color-accent-blue);color:#fff;font-family:var(--font-body);font-size:14px;font-weight:600;cursor:pointer;">Submit</button>
+            </div>
+        </div>
+        <div id="fb-success" style="display:none;text-align:center;padding:24px 0;">
+            <div style="font-size:36px;margin-bottom:12px;color:var(--color-green);">&#10003;</div>
+            <div style="font-family:var(--font-display);font-size:18px;font-weight:600;margin-bottom:6px;">Thank you!</div>
+            <div style="font-size:13px;color:var(--color-text-secondary);">Your feedback has been received.</div>
+        </div>
+    </div>
+</div>
+
 <div id="toast"></div>
 
 <script>
@@ -1572,7 +1603,7 @@ function showDash() {
     hide('onboarding-view');
     const email = localStorage.getItem('fs_email') || '';
     document.getElementById('header-email').textContent = email;
-    show('btn-signout');
+    show('btn-signout'); show('btn-feedback');
 
     const obData = JSON.parse(localStorage.getItem('fs_onboarding') || 'null');
     if (obData && obData.completedAt) { _showDashboard(); return; }
@@ -1600,7 +1631,7 @@ function _showDashboard() {
     show('dash-view');
     const email = localStorage.getItem('fs_email') || '';
     document.getElementById('header-email').textContent = email;
-    show('btn-signout');
+    show('btn-signout'); show('btn-feedback');
     loadBilling();
     loadUser();
     loadUsage();
@@ -2123,6 +2154,43 @@ function formatMonth(str) {
         const date = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, 1);
         return date.toLocaleDateString('en-US', { month: 'short' });
     } catch(e) { return str; }
+}
+
+// ── Feedback ─────────────────────────────────────────────────
+function openFeedbackModal() {
+    const m = document.getElementById('feedback-modal');
+    document.getElementById('fb-form').style.display = '';
+    document.getElementById('fb-success').style.display = 'none';
+    document.getElementById('fb-message').value = '';
+    document.getElementById('fb-category').value = 'general';
+    const err = document.getElementById('fb-error');
+    err.style.display = 'none'; err.textContent = '';
+    m.style.display = 'flex';
+}
+function closeFeedbackModal() { document.getElementById('feedback-modal').style.display = 'none'; }
+async function submitFeedback() {
+    const msg = document.getElementById('fb-message').value.trim();
+    const cat = document.getElementById('fb-category').value;
+    const err = document.getElementById('fb-error');
+    if (!msg) { err.textContent = 'Please enter a message.'; err.style.display = 'block'; return; }
+    const btn = document.getElementById('fb-submit');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    err.style.display = 'none';
+    try {
+        const r = await fetch(API + '/users/me/feedback', {
+            method: 'POST', headers: auth(),
+            body: JSON.stringify({ category: cat, message: msg, source: 'portal' })
+        });
+        if (r.status === 401) { signOut(); return; }
+        if (!r.ok) { const d = await r.json().catch(() => ({})); throw new Error(d.detail || 'Failed'); }
+        document.getElementById('fb-form').style.display = 'none';
+        document.getElementById('fb-success').style.display = '';
+        setTimeout(closeFeedbackModal, 2000);
+    } catch(e) {
+        err.textContent = e.message; err.style.display = 'block';
+    } finally {
+        btn.disabled = false; btn.textContent = 'Submit';
+    }
 }
 
 // ── Sessions ─────────────────────────────────────────────────
