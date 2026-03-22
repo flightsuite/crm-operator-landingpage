@@ -2156,21 +2156,44 @@ function renderUsage(d) {
 
     let chartHTML = '<div class="activity-chart">';
     recent.forEach(m => {
-        const q = m.queries_total || m.queries || 0;
-        const pct = Math.max((q / maxQ) * 100, 3);
+        const total = m.queries_total || m.queries || 0;
+        const ext = m.queries_extension || 0;
+        const sms = m.queries_sms || 0;
+        const wa = m.queries_whatsapp || 0;
+        const pct = Math.max((total / maxQ) * 100, 3);
+        const extPct = total > 0 ? (ext / total) * pct : 0;
+        const smsPct = total > 0 ? (sms / total) * pct : 0;
+        const waPct  = total > 0 ? (wa / total) * pct : pct;
         const label = formatMonth(m.month || m.period || '');
         chartHTML += `<div class="activity-bar-wrap">
-            <div class="activity-bar-value">${q}</div>
-            <div class="activity-bar-track"><div class="activity-bar" style="height:${pct}%"></div></div>
+            <div class="activity-bar-value">${total}</div>
+            <div class="activity-bar-track">
+                <div style="width:100%;display:flex;flex-direction:column;justify-content:flex-end;height:100%;border-radius:6px 6px 4px 4px;overflow:hidden;">
+                    ${ext > 0 ? `<div style="height:${extPct}%;background:#5E5CE6;min-height:2px;" title="Extension: ${ext}"></div>` : ''}
+                    ${sms > 0 ? `<div style="height:${smsPct}%;background:#0071E3;min-height:2px;" title="SMS: ${sms}"></div>` : ''}
+                    ${wa > 0 ? `<div style="height:${waPct}%;background:#22D3EE;min-height:2px;" title="WhatsApp: ${wa}"></div>` : ''}
+                    ${total === 0 ? `<div style="height:3%;background:rgba(255,255,255,0.1);min-height:2px;"></div>` : ''}
+                </div>
+            </div>
             <div class="activity-bar-label">${label}</div>
         </div>`;
     });
     chartHTML += '</div>';
 
+    chartHTML += `<div style="display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap;">
+        <span style="font-size:11px;color:var(--color-text-tertiary);display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:2px;background:#5E5CE6;display:inline-block;"></span>Extension</span>
+        <span style="font-size:11px;color:var(--color-text-tertiary);display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:2px;background:#0071E3;display:inline-block;"></span>SMS</span>
+        <span style="font-size:11px;color:var(--color-text-tertiary);display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:2px;background:#22D3EE;display:inline-block;"></span>WhatsApp</span>
+    </div>`;
+
     chartHTML += `<div class="activity-stats">
         <div class="activity-stat">
+            <div class="activity-stat-value">${totalQueries}</div>
+            <div class="activity-stat-label">Total queries</div>
+        </div>
+        <div class="activity-stat">
             <div class="activity-stat-value">${totalSMS}</div>
-            <div class="activity-stat-label">SMS / WhatsApp messages sent</div>
+            <div class="activity-stat-label">SMS / WhatsApp</div>
         </div>
         <div class="activity-stat">
             <div class="activity-stat-value">~${hoursSaved}h</div>
