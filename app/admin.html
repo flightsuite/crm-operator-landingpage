@@ -351,7 +351,7 @@ function sendOTP() {
     btn.disabled = true; btn.textContent = 'Sending...';
     hide('login-error');
 
-    fetch(API + '/auth/email/send-otp', {
+    fetch(API + '/auth/email/request-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
