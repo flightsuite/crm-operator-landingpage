@@ -93,12 +93,17 @@
                     <tr>
                         <td><strong>Contact Information</strong></td>
                         <td>Name, email address</td>
-                        <td>Early access sign-up, contact forms</td>
+                        <td>Account creation via Google OAuth or email sign-in</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google OAuth Data</strong></td>
+                        <td>Google account name, email address, and a unique account identifier</td>
+                        <td>When you sign in with Google. We use the Chrome Identity API (<code>chrome.identity</code>) to authenticate you via Google OAuth 2.0. We receive only your name, email, and Google account ID — we do not access Gmail, Google Drive, or any other Google services. Your Google access token is used solely to verify your identity and is not stored after authentication.</td>
                     </tr>
                     <tr>
                         <td><strong>Account Credentials</strong></td>
-                        <td>Authentication tokens for connected CRM platforms</td>
-                        <td>When you connect a CRM account</td>
+                        <td>Authentication tokens for connected CRM platforms (GoHighLevel, LeadConnector, HubSpot)</td>
+                        <td>When you connect a CRM account. CRM credentials are encrypted at rest using Fernet symmetric encryption and are never exposed in URLs or client-side storage.</td>
                     </tr>
                     <tr>
                         <td><strong>Natural Language Commands</strong></td>
@@ -246,13 +251,21 @@
 
             <h3>Chrome Extension</h3>
             <p>The FlightSuite Chrome extension does not use advertising cookies or cross-site tracking. It accesses browser storage only to maintain your settings and session state.</p>
+            <p><strong>Extension permissions:</strong> The extension requests the following Chrome permissions:</p>
+            <ul>
+                <li><strong>Identity:</strong> Used for Google OAuth sign-in via <code>chrome.identity</code>. Accesses only your name, email, and Google account ID. Does not access Gmail, Drive, or other Google services.</li>
+                <li><strong>Storage:</strong> Used to save your preferences, session state, and CRM connection settings locally on your device.</li>
+                <li><strong>Tabs:</strong> Used to open the extension in a fullscreen tab (for expanded view and microphone access). The extension does not read, modify, or monitor your browsing activity or tab URLs.</li>
+                <li><strong>Side Panel:</strong> Used to display the FlightSuite interface in Chrome's side panel.</li>
+            </ul>
         </div>
 
         <div class="section" id="retention">
             <h2><span class="section-num">7</span> Data Retention</h2>
             <p>We retain your information for as long as necessary to provide the Service and fulfill the purposes described in this Policy, unless a longer retention period is required by law.</p>
             <ul>
-                <li><strong>Account and contact information:</strong> Retained while your account is active and for up to 2 years after account closure for legal and compliance purposes.</li>
+                <li><strong>Account and contact information:</strong> Retained while your account is active and for up to 2 years after account closure for legal and compliance purposes. This includes your name and email address collected via Google OAuth or email sign-in.</li>
+                <li><strong>Google OAuth tokens:</strong> Access tokens are used only during the authentication request and are not persisted. Only your name, email, and account identifier are retained as part of your account profile.</li>
                 <li><strong>Usage and log data:</strong> Typically retained for 12 months.</li>
                 <li><strong>Support communications:</strong> Retained for 3 years after resolution.</li>
                 <li><strong>Natural language command logs:</strong> Retained for up to 90 days for debugging purposes, then deleted or anonymized.</li>
