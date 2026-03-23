@@ -2618,10 +2618,10 @@ function renderObCRM(el) {
 function sendSetupEmail() {
     const email = localStorage.getItem('fs_email') || '';
     const subject = encodeURIComponent('Complete your FlightSuite setup');
-    const body = encodeURIComponent('Open this link on your computer to connect your CRM:\\n\\nhttps://flightsuite.ai/app\\n\\nYou\\'ll need your CRM credentials (Location ID + Private App Token for GoHighLevel, or sign in with HubSpot).');
+    const body = encodeURIComponent("Open this link on your computer to connect your CRM:\n\nhttps://flightsuite.ai/app\n\nYou will need your CRM credentials (Location ID + Private App Token for GoHighLevel, or sign in with HubSpot).");
     window.open('mailto:' + email + '?subject=' + subject + '&body=' + body);
     toast('Opening email...', 'ok');
-    setTimeout(() => advanceOnboarding(), 1500);
+    setTimeout(function() { advanceOnboarding(); }, 1500);
 }
 
 function obShowGHLForm() {
@@ -2908,10 +2908,10 @@ function renderObExtension(el) {
 function sendExtensionEmail() {
     const email = localStorage.getItem('fs_email') || '';
     const subject = encodeURIComponent('Install FlightSuite Chrome Extension');
-    const body = encodeURIComponent('Here\\'s your link to install the FlightSuite Chrome extension:\\n\\nhttps://chromewebstore.google.com/detail/flightsuite-universal-crm/blmnkgfabhnalpmmodfbpicmedfgdgbb\\n\\nOpen this on your computer to install.');
+    const body = encodeURIComponent("Here is your link to install the FlightSuite Chrome extension:\n\nhttps://chromewebstore.google.com/detail/flightsuite-universal-crm/blmnkgfabhnalpmmodfbpicmedfgdgbb\n\nOpen this on your computer to install.");
     window.open('mailto:' + email + '?subject=' + subject + '&body=' + body);
     toast('Opening email...', 'ok');
-    setTimeout(() => advanceOnboarding(), 1500);
+    setTimeout(function() { advanceOnboarding(); }, 1500);
 }
 
 function renderObReferral(el) {
