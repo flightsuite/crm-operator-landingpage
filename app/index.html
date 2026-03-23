@@ -1143,11 +1143,11 @@
 <div id="login-view">
     <div class="login-content">
         <div class="login-eyebrow">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-            Command Center
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+            FlightSuite
         </div>
-        <h1 class="login-title">Sign in to your<br>command center.</h1>
-        <p class="login-sub">Manage CRM connections, messaging channels, and your subscription.</p>
+        <h1 class="login-title">Welcome to FlightSuite</h1>
+        <p class="login-sub">Sign in or create your free account in seconds.</p>
 
         <div class="login-card">
             <button id="btn-google" class="btn-google" onclick="signInWithGoogle()">
@@ -2561,10 +2561,31 @@ function obSubmitWelcome() {
 }
 
 function renderObCRM(el) {
+    // Check if CRM was already connected via invite link
+    const hasInviteCRM = (_userState.crm_links || []).length > 0;
+    if (hasInviteCRM) {
+        const link = _userState.crm_links[0];
+        el.innerHTML = `
+            <div class="ob-card" style="text-align:center;">
+                <div style="font-size:48px;margin-bottom:12px;">&#10003;</div>
+                <div class="ob-title">CRM Connected</div>
+                <div class="ob-sub">${link.session_name || link.crm_type} is ready to use.</div>
+                <button class="ob-btn" onclick="advanceOnboarding()">Continue</button>
+            </div>`;
+        return;
+    }
+
+    const isMobile = window.innerWidth < 768;
+    const mobileOptions = isMobile ? `
+        <div style="margin-top:12px;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;">
+            <button class="ob-skip" onclick="advanceOnboarding()" style="margin-bottom:8px;">My admin will send me an invite link</button>
+            <button class="ob-skip" onclick="sendSetupEmail()">Email me setup instructions</button>
+        </div>` : '';
+
     el.innerHTML = `
         <div class="ob-card">
             <div class="ob-title">Connect your CRM</div>
-            <div class="ob-sub">FlightSuite needs access to your CRM to log activities.</div>
+            <div class="ob-sub">${isMobile ? 'Choose an option below, or have your admin send you an invite link.' : 'FlightSuite needs access to your CRM to log activities.'}</div>
             <div id="ob-crm-list">
                 <div class="ob-crm-btn" onclick="obStartCRMConnect('hubspot')">
                     <div class="crm-btn-logo hs">HS</div>
@@ -2591,8 +2612,16 @@ function renderObCRM(el) {
                     <span class="arrow">&#8250;</span>
                 </div>
             </div>
-            <button class="ob-skip" onclick="advanceOnboarding()">Skip for now</button>
+            ${isMobile ? mobileOptions : '<button class="ob-skip" onclick="advanceOnboarding()">Skip for now</button>'}
         </div>`;
+}
+function sendSetupEmail() {
+    const email = localStorage.getItem('fs_email') || '';
+    const subject = encodeURIComponent('Complete your FlightSuite setup');
+    const body = encodeURIComponent('Open this link on your computer to connect your CRM:\\n\\nhttps://flightsuite.ai/app\\n\\nYou\\'ll need your CRM credentials (Location ID + Private App Token for GoHighLevel, or sign in with HubSpot).');
+    window.open('mailto:' + email + '?subject=' + subject + '&body=' + body);
+    toast('Opening email...', 'ok');
+    setTimeout(() => advanceOnboarding(), 1500);
 }
 
 function obShowGHLForm() {
@@ -2850,20 +2879,39 @@ function renderSimulatedChat() {
 }
 
 function renderObExtension(el) {
-    el.innerHTML = `
-        <div class="ob-card">
-            <div class="ob-title">Install the Chrome extension</div>
-            <div class="ob-sub">The extension lets you use FlightSuite directly from any browser tab — type a command and it gets logged instantly.</div>
-            <a class="ob-ext-card" href="https://chromewebstore.google.com/detail/flightsuite-universal-crm/blmnkgfabhnalpmmodfbpicmedfgdgbb" target="_blank" rel="noopener" id="ob-ext-link">
-                <div class="ob-ext-icon">&#9889;</div>
-                <div class="ob-ext-info">
-                    <div class="ob-ext-name">FlightSuite — Universal CRM Agent</div>
-                    <div class="ob-ext-sub">Chrome Web Store &middot; Free</div>
-                </div>
-            </a>
-            <button class="ob-btn" onclick="_onboardingState.extension=true;saveOnboardingState();advanceOnboarding();">I've installed it</button>
-            <button class="ob-skip" onclick="advanceOnboarding()">Skip for now</button>
-        </div>`;
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+        el.innerHTML = `
+            <div class="ob-card">
+                <div class="ob-title">Get the Chrome extension</div>
+                <div class="ob-sub">The extension works on desktop browsers. We'll email you the install link when you're at your computer.</div>
+                <button class="ob-btn" onclick="sendExtensionEmail()">Send to my email</button>
+                <button class="ob-skip" onclick="advanceOnboarding()">Skip — I'll use SMS / WhatsApp</button>
+            </div>`;
+    } else {
+        el.innerHTML = `
+            <div class="ob-card">
+                <div class="ob-title">Install the Chrome extension</div>
+                <div class="ob-sub">The extension lets you use FlightSuite directly from any browser tab — type a command and it gets logged instantly.</div>
+                <a class="ob-ext-card" href="https://chromewebstore.google.com/detail/flightsuite-universal-crm/blmnkgfabhnalpmmodfbpicmedfgdgbb" target="_blank" rel="noopener" id="ob-ext-link">
+                    <div class="ob-ext-icon">&#9889;</div>
+                    <div class="ob-ext-info">
+                        <div class="ob-ext-name">FlightSuite — Universal CRM Agent</div>
+                        <div class="ob-ext-sub">Chrome Web Store &middot; Free</div>
+                    </div>
+                </a>
+                <button class="ob-btn" onclick="_onboardingState.extension=true;saveOnboardingState();advanceOnboarding();">I've installed it</button>
+                <button class="ob-skip" onclick="advanceOnboarding()">Skip for now</button>
+            </div>`;
+    }
+}
+function sendExtensionEmail() {
+    const email = localStorage.getItem('fs_email') || '';
+    const subject = encodeURIComponent('Install FlightSuite Chrome Extension');
+    const body = encodeURIComponent('Here\\'s your link to install the FlightSuite Chrome extension:\\n\\nhttps://chromewebstore.google.com/detail/flightsuite-universal-crm/blmnkgfabhnalpmmodfbpicmedfgdgbb\\n\\nOpen this on your computer to install.');
+    window.open('mailto:' + email + '?subject=' + subject + '&body=' + body);
+    toast('Opening email...', 'ok');
+    setTimeout(() => advanceOnboarding(), 1500);
 }
 
 function renderObReferral(el) {
