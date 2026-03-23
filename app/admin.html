@@ -764,8 +764,82 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// ═══ DEMO MODE ═══
+function getDemoData() {
+    const days = [];
+    for (let i = 30; i >= 0; i--) {
+        const d = new Date(Date.now() - i * 86400000);
+        const ds = d.toISOString().slice(0, 10);
+        const base = 30 + Math.floor((30 - i) * 1.8);
+        days.push({ date: ds, total: base, paid: Math.floor(base * 0.22), free: base - Math.floor(base * 0.22) });
+    }
+    const qDays = [];
+    for (let i = 30; i >= 0; i--) {
+        const d = new Date(Date.now() - i * 86400000);
+        qDays.push({ date: d.toISOString().slice(0, 10), total: 8 + Math.floor(Math.random() * 25), extension: 5 + Math.floor(Math.random() * 15), sms: Math.floor(Math.random() * 8), whatsapp: Math.floor(Math.random() * 3) });
+    }
+    return {
+        overview: { total_users: 84, paid_users: 18, free_users: 66, mrr: 280, arr: 3360, queries_today: 34, queries_this_month: 612, dau: 12, wau: 31, mau: 58 },
+        growth: { data: days },
+        tiers: { data: [{ tier: 'free', count: 66, percentage: 78.6 }, { tier: 'basic', count: 11, percentage: 13.1 }, { tier: 'unlimited', count: 7, percentage: 8.3 }] },
+        crm: { hubspot: 28, ghl: 41, both: 5, none: 15 },
+        channels: { sms: 22, whatsapp: 0, extension_only: 62 },
+        queries: { data: qDays },
+        tools: { data: [{ tool: 'create_contact', count: 187 }, { tool: 'search_contacts', count: 143 }, { tool: 'create_note', count: 98 }, { tool: 'update_contact', count: 76 }, { tool: 'create_task', count: 54 }, { tool: 'search_deals', count: 41 }, { tool: 'create_deal', count: 29 }, { tool: 'log_call', count: 22 }] },
+        revenue: { mrr: 280, arr: 3360, paying_customers: 18, avg_revenue_per_user: 15.56, churn_risk_count: 3 },
+        recent: { data: [
+            { user_id: 'd1', email: 'sarah@acmesales.com', name: 'Sarah Chen', tier: 'unlimited', created_at: Date.now()/1000 - 86400, last_active_at: Date.now()/1000 - 3600, crm_connected: 'hubspot', queries_this_month: 89 },
+            { user_id: 'd2', email: 'mike@realtypros.com', name: 'Mike Johnson', tier: 'basic', created_at: Date.now()/1000 - 172800, last_active_at: Date.now()/1000 - 7200, crm_connected: 'ghl', queries_this_month: 34 },
+            { user_id: 'd3', email: 'lisa@techstart.io', name: 'Lisa Park', tier: 'free', created_at: Date.now()/1000 - 259200, last_active_at: Date.now()/1000 - 86400, crm_connected: 'hubspot', queries_this_month: 8 },
+            { user_id: 'd4', email: 'james@solaragency.com', name: 'James Wright', tier: 'unlimited', created_at: Date.now()/1000 - 345600, last_active_at: Date.now()/1000 - 1800, crm_connected: 'ghl', queries_this_month: 112 },
+            { user_id: 'd5', email: 'ana@growthco.com', name: 'Ana Rivera', tier: 'basic', created_at: Date.now()/1000 - 432000, last_active_at: null, crm_connected: null, queries_this_month: 0 },
+        ]},
+        engagement: { dau: 12, wau: 31, mau: 58, activation_rate: 69.0, onboarding_completion_rate: 54.8, avg_activation_hours: 18.4, churn_risk_count: 3 },
+        retention: { data: [
+            { cohort_week: '2026-03-16', size: 14, week_1: 71.4, week_2: null, week_4: null, week_8: null },
+            { cohort_week: '2026-03-09', size: 11, week_1: 63.6, week_2: 54.5, week_4: null, week_8: null },
+            { cohort_week: '2026-03-02', size: 9, week_1: 77.8, week_2: 55.6, week_4: 44.4, week_8: null },
+            { cohort_week: '2026-02-23', size: 12, week_1: 66.7, week_2: 50.0, week_4: 41.7, week_8: null },
+            { cohort_week: '2026-02-16', size: 8, week_1: 75.0, week_2: 62.5, week_4: 50.0, week_8: 37.5 },
+        ]},
+        feedback: { data: [
+            { feedback_id: 'f1', user_id: 'd1', email: 'sarah@acmesales.com', tier: 'unlimited', crm_types: 'hubspot', category: 'feature', message: 'Would love to be able to create deals from SMS — right now I can only do contacts and notes.', source: 'extension', status: 'open', created_at: Date.now()/1000 - 7200 },
+            { feedback_id: 'f2', user_id: 'd4', email: 'james@solaragency.com', tier: 'unlimited', crm_types: 'ghl', category: 'bug', message: 'Getting an error when trying to update a contact phone number in GHL. Works fine for email updates.', source: 'portal', status: 'open', created_at: Date.now()/1000 - 18000 },
+            { feedback_id: 'f3', user_id: 'd2', email: 'mike@realtypros.com', tier: 'basic', crm_types: 'ghl', category: 'general', message: 'This is saving me so much time. Just texting my notes after each showing instead of logging into GHL.', source: 'extension', status: 'reviewed', created_at: Date.now()/1000 - 86400 },
+        ], total: 3 },
+        queryHealth: { total_queries: 612, successful: 571, failed: 41, success_rate: 93.3, error_breakdown: { tool_error: 28, parse_error: 7, max_iterations: 4, api_error: 2 }, avg_duration_ms: 3200 },
+        queryErrors: { data: [
+            { request_id: 'a1b2c3d4', user_id: 'd2', crm_type: 'ghl', source: 'sms', prompt_preview: 'update contact phone for Mike to 555-0123', status: 'tool_error', error_message: 'Error executing tool \'ghl_update_contact\': field phone_number not found', tool_calls_detail: [{ tool: 'ghl_search_contacts', status: 'success' }, { tool: 'ghl_update_contact', status: 'error' }], iteration_count: 3, duration_ms: 4200, created_at: Date.now()/1000 - 3600 },
+            { request_id: 'e5f6g7h8', user_id: 'd3', crm_type: 'hubspot', source: 'extension', prompt_preview: 'log call with prospect about pricing discussion', status: 'api_error', error_message: 'Gemini API error: 503 Service Unavailable', tool_calls_detail: null, iteration_count: 1, duration_ms: 12000, created_at: Date.now()/1000 - 14400 },
+        ], total: 2 },
+    };
+}
+
+async function initDemoMode() {
+    hide('view-login');
+    show('view-dash');
+    document.getElementById('dash-email').textContent = 'demo@flightsuite.ai';
+
+    const d = getDemoData();
+    renderKPIs(d.overview);
+    renderGrowthChart(d.growth);
+    renderQueryChart(d.queries);
+    renderTierChart(d.tiers);
+    renderCRMStats(d.crm, d.overview);
+    renderTopTools(d.tools);
+    renderRecentTable(d.recent);
+    renderRevenue(d.revenue);
+    renderFunnel(d.engagement, d.overview);
+    renderRetention(d.retention);
+    renderFeedbackList(d.feedback);
+    renderQueryHealth(d.queryHealth);
+    renderQueryErrors(d.queryErrors);
+}
+
 // ═══ BOOT ═══
-if (tok()) {
+if (new URLSearchParams(window.location.search).get('demo') === 'true') {
+    initDemoMode();
+} else if (tok()) {
     initDashboard();
 } else {
     show('view-login');
