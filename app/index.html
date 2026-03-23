@@ -2050,6 +2050,7 @@ function buildPhoneForm() {
                 <button class="btn-sm-blue" onclick="verifyPhoneCode()">Verify</button>
             </div>
             <div id="pf-otp-err" class="inline-err"></div>
+            <button onclick="resetPhoneStep()" style="background:none;border:none;color:var(--color-text-tertiary);font-size:12px;margin-top:8px;cursor:pointer;font-family:var(--font-body);">Use a different number</button>
         </div>`;
     return wrap;
 }
@@ -2081,6 +2082,13 @@ function updateChannelHint() {
 }
 // Attach to both dashboard and onboarding country code selectors
 document.addEventListener('change', (e) => { if (e.target.id === 'pf-cc' || e.target.id === 'ob-cc') updateChannelHint(); });
+
+function resetPhoneStep() {
+    show('pf-step-num'); hide('pf-step-otp');
+    clearInlineErr('pf-err'); clearInlineErr('pf-otp-err');
+    const otpInput = document.getElementById('pf-otp');
+    if (otpInput) otpInput.value = '';
+}
 
 async function sendPhoneCode() {
     const phone = buildE164();
@@ -2759,6 +2767,7 @@ function renderObPhone(el) {
                         <button class="btn-sm-blue" onclick="verifyPhoneCode()">Verify</button>
                     </div>
                     <div id="pf-otp-err" class="inline-err"></div>
+                    <button onclick="resetPhoneStep()" style="background:none;border:none;color:var(--color-text-tertiary);font-size:12px;margin-top:8px;cursor:pointer;font-family:var(--font-body);">Use a different number</button>
                 </div>
             </div>
             <button class="ob-skip" onclick="advanceOnboarding()">Skip for now</button>
