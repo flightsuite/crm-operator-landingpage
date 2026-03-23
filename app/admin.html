@@ -614,12 +614,14 @@ function renderRecentTable(d) {
     const tierClass = (t) => ['basic','unlimited'].includes(t) ? 'tier-' + t : ['starter','pro','business'].includes(t) ? 'tier-legacy' : 'tier-free';
     const fmtDate = (ts) => ts ? new Date(ts * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '-';
 
-    let html = '<table><thead><tr><th>Email</th><th>Name</th><th>Tier</th><th>Signed up</th><th>Last active</th><th>CRM</th><th>Queries</th></tr></thead><tbody>';
+    let html = '<table><thead><tr><th>Email</th><th>Name</th><th>Tier</th><th>Source</th><th>Role</th><th>Signed up</th><th>Last active</th><th>CRM</th><th>Queries</th></tr></thead><tbody>';
     for (const u of d.data) {
         html += `<tr>
             <td>${u.email}</td>
             <td>${u.name || '-'}</td>
             <td><span class="tier-badge ${tierClass(u.tier)}">${u.tier}</span></td>
+            <td>${u.referral_source || '-'}</td>
+            <td>${u.role || '-'}</td>
             <td>${fmtDate(u.created_at)}</td>
             <td>${fmtDate(u.last_active_at)}</td>
             <td>${u.crm_connected || '-'}</td>

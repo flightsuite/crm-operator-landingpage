@@ -1915,30 +1915,34 @@ function renderCRMs(links) {
 
 // ── Dashboard GHL PAT Form (no OAuth) ────────────────────────────
 function showDashGHLForm() {
-    const overlay = document.getElementById('crm-poll-overlay');
-    overlay.innerHTML = `
-        <div style="text-align:left;max-width:360px;width:100%;padding:20px;">
-            <div style="font-family:var(--font-display);font-size:16px;font-weight:600;margin-bottom:4px;">Connect GoHighLevel</div>
-            <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:16px;">Enter your Location ID and Private App Token.</div>
-            <label style="display:block;font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:4px;">Location ID</label>
-            <input type="text" id="dash-ghl-loc" class="field-input" placeholder="e.g., loc_abc123xyz..." style="width:100%;font-size:16px;margin-bottom:12px;">
-            <label style="display:block;font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:4px;">Private App Token</label>
-            <input type="password" id="dash-ghl-pat" class="field-input" placeholder="Paste your token" style="width:100%;font-size:16px;margin-bottom:12px;">
-            <label style="display:block;font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:4px;">Account Name <span style="color:var(--color-text-tertiary);font-weight:400;">(optional)</span></label>
-            <input type="text" id="dash-ghl-name" class="field-input" placeholder="e.g., Main Account" style="width:100%;font-size:16px;margin-bottom:12px;">
+    // Use the feedback modal pattern — full-screen overlay with centered card
+    const existing = document.getElementById('ghl-connect-modal');
+    if (existing) existing.remove();
+    const modal = document.createElement('div');
+    modal.id = 'ghl-connect-modal';
+    modal.style.cssText = 'display:flex;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);justify-content:center;align-items:center;';
+    modal.onclick = (e) => { if (e.target === modal) closeDashGHLForm(); };
+    modal.innerHTML = `
+        <div style="background:var(--color-bg-secondary);border:1px solid var(--color-glass-border);border-radius:20px;padding:32px;max-width:420px;width:90%;animation:fadeInUp 0.3s var(--ease-out);">
+            <div style="font-family:var(--font-display);font-size:18px;font-weight:600;margin-bottom:4px;">Connect GoHighLevel</div>
+            <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:20px;">Enter your Location ID and Private App Token. Found in your GHL sub-account settings.</div>
+            <label style="display:block;font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;">Location ID</label>
+            <input type="text" id="dash-ghl-loc" class="field-input" placeholder="e.g., loc_abc123xyz..." style="width:100%;font-size:16px;margin-bottom:16px;">
+            <label style="display:block;font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;">Private App Token</label>
+            <input type="password" id="dash-ghl-pat" class="field-input" placeholder="Paste your private integration token" style="width:100%;font-size:16px;margin-bottom:16px;">
+            <label style="display:block;font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;">Account Name <span style="color:var(--color-text-tertiary);font-weight:400;">(optional)</span></label>
+            <input type="text" id="dash-ghl-name" class="field-input" placeholder="e.g., Main Account, Client A..." style="width:100%;font-size:16px;margin-bottom:8px;">
             <div id="dash-ghl-err" style="font-size:12px;color:var(--color-red);display:none;margin-bottom:8px;"></div>
-            <div style="display:flex;gap:8px;">
-                <button onclick="closeDashGHLForm()" style="flex:1;padding:10px;border-radius:12px;border:1px solid var(--color-border);background:transparent;color:var(--color-text-secondary);font-family:var(--font-body);font-size:13px;cursor:pointer;">Cancel</button>
-                <button id="dash-ghl-submit" onclick="submitDashGHL()" style="flex:1;padding:10px;border-radius:12px;border:none;background:var(--color-accent-blue);color:#fff;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;">Connect</button>
+            <div style="display:flex;gap:10px;margin-top:12px;">
+                <button onclick="closeDashGHLForm()" style="flex:1;padding:12px;border-radius:12px;border:1px solid var(--color-border);background:transparent;color:var(--color-text-secondary);font-family:var(--font-body);font-size:14px;cursor:pointer;">Cancel</button>
+                <button id="dash-ghl-submit" onclick="submitDashGHL()" style="flex:1;padding:12px;border-radius:12px;border:none;background:var(--color-accent-blue);color:#fff;font-family:var(--font-body);font-size:14px;font-weight:600;cursor:pointer;">Connect</button>
             </div>
         </div>`;
-    overlay.classList.add('show');
+    document.body.appendChild(modal);
 }
 function closeDashGHLForm() {
-    const overlay = document.getElementById('crm-poll-overlay');
-    overlay.classList.remove('show');
-    // Restore original overlay content
-    overlay.innerHTML = '<div class="spin spin-lg"></div><div class="poll-title" id="poll-title">Authorizing…</div><div class="poll-sub">Complete sign-in in the tab that just opened</div><button class="poll-cancel" id="poll-cancel-btn">Cancel</button>';
+    const modal = document.getElementById('ghl-connect-modal');
+    if (modal) modal.remove();
 }
 async function submitDashGHL() {
     const loc = document.getElementById('dash-ghl-loc')?.value.trim();
