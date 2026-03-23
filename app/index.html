@@ -2039,7 +2039,8 @@ function buildPhoneForm() {
                 <input id="pf-inp" class="field-input" type="tel" placeholder="(555) 000-0000" oninput="formatPhoneInput(this)" style="flex:1;">
                 <button class="btn-sm-blue" onclick="sendPhoneCode()"${!hasCRM ? ' disabled' : ''}>Send code</button>
             </div>
-            <p style="font-size:11px;color:var(--color-text-tertiary);margin-top:6px;">Text <strong>switch</strong> to toggle between connected CRMs anytime.</p>
+            <div id="pf-channel-hint" style="font-size:12px;color:var(--color-accent-cyan);margin-top:6px;">We'll use SMS for your US number</div>
+            <p style="font-size:11px;color:var(--color-text-tertiary);margin-top:4px;">Text <strong>switch</strong> to toggle between connected CRMs anytime.</p>
             <div id="pf-err" class="inline-err"></div>
         </div>
         <div id="pf-step-otp" class="hidden" style="margin-top:8px;">
@@ -2072,6 +2073,15 @@ function buildE164() {
     if (!digits) return '';
     return cc + digits;
 }
+function updateChannelHint() {
+    const cc = document.getElementById('pf-cc');
+    const hint = document.getElementById('pf-channel-hint');
+    if (!cc || !hint) return;
+    hint.textContent = cc.value === '+1' ? "We'll use SMS for your US number" : "We'll use WhatsApp for your international number";
+}
+// Attach to both dashboard and onboarding country code selectors
+document.addEventListener('change', (e) => { if (e.target.id === 'pf-cc' || e.target.id === 'ob-cc') updateChannelHint(); });
+
 async function sendPhoneCode() {
     const phone = buildE164();
     if (!phone || phone.replace(/\D/g,'').length < 10) { showInlineErr('pf-err', 'Enter a valid phone number.'); return; }
@@ -2718,7 +2728,7 @@ function renderObPhone(el) {
     el.innerHTML = `
         <div class="ob-card">
             <div class="ob-title">Pair your phone</div>
-            <div class="ob-sub">Send CRM commands via text message. Just text what happened and FlightSuite logs it.</div>
+            <div class="ob-sub">Send CRM commands from your phone. US numbers use SMS, international numbers use WhatsApp — we detect it automatically.</div>
             ${!hasCRM ? '<div style="padding:14px 18px;background:rgba(255,149,0,0.08);border:1px solid rgba(255,149,0,0.2);border-radius:12px;font-size:14px;color:var(--color-orange);margin-bottom:20px;text-align:left;">Connect a CRM first (previous step) to enable SMS pairing.</div>' : ''}
             <div class="ob-phone-form" id="ob-phone-form">
                 <div id="pf-step-num">
