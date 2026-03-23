@@ -411,45 +411,39 @@ async function initDashboard() {
     show('view-dash');
     document.getElementById('dash-email').textContent = localStorage.getItem('fs_admin_email') || '';
 
-    try {
-        const [overview, growth, tiers, crm, channels, queries, tools, revenue, recent, engagement, retention, feedback, queryHealth, queryErrors] = await Promise.all([
-            fetchAdmin('/admin/overview'),
-            fetchAdmin('/admin/users/growth?days=30'),
-            fetchAdmin('/admin/users/tiers'),
-            fetchAdmin('/admin/crm-stats'),
-            fetchAdmin('/admin/channel-stats'),
-            fetchAdmin('/admin/queries/volume?days=30'),
-            fetchAdmin('/admin/queries/top-tools?months=3'),
-            fetchAdmin('/admin/revenue'),
-            fetchAdmin('/admin/users/recent?limit=20'),
-            fetchAdmin('/admin/users/engagement'),
-            fetchAdmin('/admin/retention'),
-            fetchAdmin('/admin/feedback?limit=50'),
-            fetchAdmin('/admin/queries/health?days=7'),
-            fetchAdmin('/admin/queries/errors?limit=30&days=7'),
-        ]);
+    // Load each section independently — one failure doesn't block the rest
+    const safe = (fn) => fn.catch(e => { if (e.message === '403') { toast('Access denied'); setTimeout(signOut, 1500); } return null; });
 
-        renderKPIs(overview);
-        renderGrowthChart(growth);
-        renderQueryChart(queries);
-        renderTierChart(tiers);
-        renderCRMStats(crm, overview);
-        renderTopTools(tools);
-        renderRecentTable(recent);
-        renderRevenue(revenue);
-        renderFunnel(engagement, overview);
-        renderRetention(retention);
-        renderFeedbackList(feedback);
-        renderQueryHealth(queryHealth);
-        renderQueryErrors(queryErrors);
-    } catch (e) {
-        if (e.message === '403') {
-            toast('Access denied — not an admin email');
-            setTimeout(signOut, 1500);
-        } else {
-            toast('Failed to load dashboard: ' + e.message);
-        }
-    }
+    const [overview, growth, tiers, crm, channels, queries, tools, revenue, recent, engagement, retention, feedback, queryHealth, queryErrors] = await Promise.all([
+        safe(fetchAdmin('/admin/overview')),
+        safe(fetchAdmin('/admin/users/growth?days=30')),
+        safe(fetchAdmin('/admin/users/tiers')),
+        safe(fetchAdmin('/admin/crm-stats')),
+        safe(fetchAdmin('/admin/channel-stats')),
+        safe(fetchAdmin('/admin/queries/volume?days=30')),
+        safe(fetchAdmin('/admin/queries/top-tools?months=3')),
+        safe(fetchAdmin('/admin/revenue')),
+        safe(fetchAdmin('/admin/users/recent?limit=20')),
+        safe(fetchAdmin('/admin/users/engagement')),
+        safe(fetchAdmin('/admin/retention')),
+        safe(fetchAdmin('/admin/feedback?limit=50')),
+        safe(fetchAdmin('/admin/queries/health?days=7')),
+        safe(fetchAdmin('/admin/queries/errors?limit=30&days=7')),
+    ]);
+
+    if (overview) renderKPIs(overview);
+    if (growth) renderGrowthChart(growth);
+    if (queries) renderQueryChart(queries);
+    if (tiers) renderTierChart(tiers);
+    if (crm && overview) renderCRMStats(crm, overview);
+    if (tools) renderTopTools(tools);
+    if (recent) renderRecentTable(recent);
+    if (revenue) renderRevenue(revenue);
+    if (engagement && overview) renderFunnel(engagement, overview);
+    if (retention) renderRetention(retention);
+    if (feedback) renderFeedbackList(feedback);
+    if (queryHealth) renderQueryHealth(queryHealth);
+    if (queryErrors) renderQueryErrors(queryErrors);
 }
 
 async function fetchAdmin(path) {
