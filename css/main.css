@@ -360,9 +360,17 @@ body::before {
 .hero-badge-dot {
     width: 6px;
     height: 6px;
+    flex-shrink: 0;
     background: var(--color-success);
     border-radius: 50%;
     animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.hero-badge-mobile { display: none; }
+
+@media (max-width: 768px) {
+    .hero-badge-desktop { display: none; }
+    .hero-badge-mobile { display: inline; }
 }
 
 @keyframes pulse-dot {
