@@ -837,13 +837,17 @@ async function initDemoMode() {
 }
 
 // ═══ BOOT ═══
-if (new URLSearchParams(window.location.search).get('demo') === 'true') {
-    initDemoMode();
-} else if (tok()) {
-    initDashboard();
-} else {
-    show('view-login');
+function boot() {
+    if (new URLSearchParams(window.location.search).get('demo') === 'true') {
+        initDemoMode();
+    } else if (tok()) {
+        initDashboard();
+    } else {
+        show('view-login');
+    }
 }
+if (typeof Chart !== 'undefined') { boot(); }
+else { window.addEventListener('load', boot); }
 </script>
 </body>
 </html>
