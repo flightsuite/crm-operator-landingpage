@@ -266,14 +266,7 @@ function isMobile() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
 }
 
-// On mobile, intercept install CTA links to show email capture instead
-document.addEventListener('click', function(e) {
-    const installLink = e.target.closest('[data-event="install_click"]');
-    if (installLink && isMobile()) {
-        e.preventDefault();
-        openMobileEmailModal();
-    }
-});
+// Mobile users go directly to /app portal — no intercept needed.
 
 function openMobileEmailModal() {
     playClickSound();
