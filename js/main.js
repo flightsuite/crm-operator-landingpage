@@ -1034,19 +1034,9 @@ document.querySelectorAll('.modal-overlay').forEach(modal => {
     });
 });
 
-// ═══ MOBILE CTA → PHONE CAPTURE ═══
-(function() {
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768;
-    if (!isMobile) return;
-
-    // Intercept all install CTAs on mobile
-    document.querySelectorAll('[data-event="install_click"]').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            openMobileCapture();
-        });
-    });
-})();
+// ═══ MOBILE CTA ═══
+// Mobile users now go directly to /app portal (supports full signup on mobile).
+// Phone capture modal removed — portal handles SMS/WhatsApp pairing in onboarding.
 
 function openMobileCapture() {
     const modal = document.getElementById('mobileCaptureModal');
