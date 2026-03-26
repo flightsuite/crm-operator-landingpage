@@ -1915,9 +1915,7 @@ function renderCRMs(links) {
 
 // ── Dashboard GHL PAT Form (no OAuth) ────────────────────────────
 function startLCOAuth() {
-    const LC_OAUTH_URL = 'https://marketplace.gohighlevel.com/oauth/chooselocation?response_type=code&redirect_uri=https%3A%2F%2Fprod.flightsuite.ai%2Fapi%2Fv1%2Fauth%2Fleadconnector%2Foauth%2Fcallback&client_id=69b3a89c81d1b3fdd0911979-mmoi6wfp&scope=associations.write+associations.readonly+associations%2Frelation.readonly+associations%2Frelation.write+calendars.readonly+calendars.write+calendars%2Fevents.readonly+calendars%2Fevents.write+calendars%2Fgroups.readonly+calendars%2Fgroups.write+contacts.readonly+contacts.write+businesses.readonly+businesses.write+conversations.readonly+conversations.write+conversations%2Fmessage.readonly+conversations%2Fmessage.write+locations%2FcustomFields.readonly+locations%2FcustomFields.write+locations.readonly+locations%2Ftasks.readonly+locations%2Ftasks.write+locations%2Ftags.readonly+locations%2Ftags.write+oauth.write+oauth.readonly+objects%2Fschema.readonly+objects%2Fschema.write+objects%2Frecord.readonly+objects%2Frecord.write+opportunities.readonly+opportunities.write+phonenumbers.read+users.readonly+workflows.readonly&version_id=69b3a89c81d1b3fdd0911979';
-    window.open(LC_OAUTH_URL, '_blank');
-    toast('Complete sign-in in the tab that just opened.', 'ok');
+    startCRMConnect('ghl');
 }
 
 function showDashGHLForm() {
@@ -2737,19 +2735,7 @@ async function obSubmitGHL() {
 }
 
 function obStartLCOAuth() {
-    const LC_OAUTH_URL = 'https://marketplace.gohighlevel.com/oauth/chooselocation?response_type=code&redirect_uri=https%3A%2F%2Fprod.flightsuite.ai%2Fapi%2Fv1%2Fauth%2Fleadconnector%2Foauth%2Fcallback&client_id=69b3a89c81d1b3fdd0911979-mmoi6wfp&scope=associations.write+associations.readonly+associations%2Frelation.readonly+associations%2Frelation.write+calendars.readonly+calendars.write+calendars%2Fevents.readonly+calendars%2Fevents.write+calendars%2Fgroups.readonly+calendars%2Fgroups.write+contacts.readonly+contacts.write+businesses.readonly+businesses.write+conversations.readonly+conversations.write+conversations%2Fmessage.readonly+conversations%2Fmessage.write+locations%2FcustomFields.readonly+locations%2FcustomFields.write+locations.readonly+locations%2Ftasks.readonly+locations%2Ftasks.write+locations%2Ftags.readonly+locations%2Ftags.write+oauth.write+oauth.readonly+objects%2Fschema.readonly+objects%2Fschema.write+objects%2Frecord.readonly+objects%2Frecord.write+opportunities.readonly+opportunities.write+phonenumbers.read+users.readonly+workflows.readonly&version_id=69b3a89c81d1b3fdd0911979';
-    window.open(LC_OAUTH_URL, '_blank');
-    // Show waiting state
-    const el = document.getElementById('ob-step-1');
-    if (el) {
-        el.innerHTML = `
-            <div class="ob-card" style="text-align:center;">
-                <div class="spin spin-lg" style="margin:0 auto 16px;"></div>
-                <div class="ob-title">Connecting LeadConnector</div>
-                <div class="ob-sub">Complete sign-in in the tab that just opened. This page will update automatically.</div>
-                <button class="ob-skip" onclick="renderObCRM(document.getElementById('ob-step-1'))">Cancel</button>
-            </div>`;
-    }
+    obStartCRMConnect('ghl');
 }
 
 async function obStartCRMConnect(crm) {
