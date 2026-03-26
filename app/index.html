@@ -1924,8 +1924,8 @@ function showDashGHLForm() {
     modal.onclick = (e) => { if (e.target === modal) closeDashGHLForm(); };
     modal.innerHTML = `
         <div style="background:var(--color-bg-secondary);border:1px solid var(--color-glass-border);border-radius:20px;padding:32px;max-width:420px;width:90%;animation:fadeInUp 0.3s var(--ease-out);">
-            <div style="font-family:var(--font-display);font-size:18px;font-weight:600;margin-bottom:4px;">Connect GoHighLevel</div>
-            <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:20px;">Enter your Location ID and Private App Token. Found in your GHL sub-account settings.</div>
+            <div style="font-family:var(--font-display);font-size:18px;font-weight:600;margin-bottom:4px;">Connect LeadConnector</div>
+            <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:20px;">Enter your Location ID and Private App Token. Found in your sub-account settings.</div>
             <label style="display:block;font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;">Location ID</label>
             <input type="text" id="dash-ghl-loc" class="field-input" placeholder="e.g., loc_abc123xyz..." style="width:100%;font-size:16px;margin-bottom:16px;">
             <label style="display:block;font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;">Private App Token</label>
@@ -1960,7 +1960,7 @@ async function submitDashGHL() {
         });
         if (r.status === 401) { signOut(); return; }
         if (!r.ok) { const d = await r.json().catch(() => ({})); throw new Error(d.detail || 'Connection failed'); }
-        toast('GoHighLevel connected!', 'ok');
+        toast('LeadConnector connected!', 'ok');
         closeDashGHLForm();
         loadUser();
     } catch(e) {
@@ -2643,27 +2643,19 @@ function renderObCRM(el) {
             <div class="ob-title">Connect your CRM</div>
             <div class="ob-sub">${isMobile ? 'Choose an option below, or have your admin send you an invite link.' : 'FlightSuite needs access to your CRM to log activities.'}</div>
             <div id="ob-crm-list">
+                <div class="ob-crm-btn" onclick="obStartLCOAuth()">
+                    <div class="crm-btn-logo ghl">LC</div>
+                    <div>
+                        <div class="ob-crm-btn-label">LeadConnector</div>
+                        <div class="ob-crm-btn-sub">One-click sign in &middot; 39 tools</div>
+                    </div>
+                    <span class="arrow">&#8250;</span>
+                </div>
                 <div class="ob-crm-btn" onclick="obStartCRMConnect('hubspot')">
                     <div class="crm-btn-logo hs">HS</div>
                     <div>
                         <div class="ob-crm-btn-label">HubSpot</div>
                         <div class="ob-crm-btn-sub">One-click sign in &middot; 69 tools</div>
-                    </div>
-                    <span class="arrow">&#8250;</span>
-                </div>
-                <div class="ob-crm-btn" onclick="obShowGHLForm()">
-                    <div class="crm-btn-logo ghl">GHL</div>
-                    <div>
-                        <div class="ob-crm-btn-label">GoHighLevel</div>
-                        <div class="ob-crm-btn-sub">Private app token &middot; 39 tools</div>
-                    </div>
-                    <span class="arrow">&#8250;</span>
-                </div>
-                <div class="ob-crm-btn" onclick="obShowGHLForm()">
-                    <div class="crm-btn-logo ghl">LC</div>
-                    <div>
-                        <div class="ob-crm-btn-label">LeadConnector</div>
-                        <div class="ob-crm-btn-sub">Private app token &middot; 39 tools</div>
                     </div>
                     <span class="arrow">&#8250;</span>
                 </div>
@@ -2674,7 +2666,7 @@ function renderObCRM(el) {
 function sendSetupEmail() {
     const email = localStorage.getItem('fs_email') || '';
     const subject = encodeURIComponent('Complete your FlightSuite setup');
-    const body = encodeURIComponent("Open this link on your computer to connect your CRM:\n\nhttps://flightsuite.ai/app\n\nYou will need your CRM credentials (Location ID + Private App Token for GoHighLevel, or sign in with HubSpot).");
+    const body = encodeURIComponent("Open this link on your computer to connect your CRM:\n\nhttps://flightsuite.ai/app\n\nYou can sign in with LeadConnector or HubSpot in one click.");
     window.open('mailto:' + email + '?subject=' + subject + '&body=' + body);
     toast('Opening email...', 'ok');
     setTimeout(function() { advanceOnboarding(); }, 1500);
@@ -2684,8 +2676,8 @@ function obShowGHLForm() {
     const el = document.getElementById('ob-step-1');
     el.innerHTML = `
         <div class="ob-card">
-            <div class="ob-title">Connect GoHighLevel</div>
-            <div class="ob-sub">Enter your Location ID and Private App Token. These are found in your GHL sub-account settings.</div>
+            <div class="ob-title">Connect LeadConnector</div>
+            <div class="ob-sub">Enter your Location ID and Private App Token. Found in your sub-account settings.</div>
             <div id="ob-ghl-form" style="text-align:left;">
                 <label style="display:block;font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;">Location ID</label>
                 <input type="text" id="ob-ghl-loc" class="field-input" placeholder="e.g., loc_abc123xyz..." style="width:100%;font-size:16px;margin-bottom:16px;">
@@ -2728,13 +2720,29 @@ async function obSubmitGHL() {
         if (r.status === 401) { signOut(); return; }
         if (!r.ok) {
             const d = await r.json().catch(() => ({}));
-            throw new Error(d.detail || 'Could not connect GoHighLevel. Check your credentials.');
+            throw new Error(d.detail || 'Could not connect. Check your credentials.');
         }
-        obCRMSuccess('GoHighLevel');
+        obCRMSuccess('LeadConnector');
     } catch(e) {
         errEl.textContent = e.message;
         errEl.style.display = 'block';
         if (btn) { btn.disabled = false; btn.textContent = 'Connect'; }
+    }
+}
+
+function obStartLCOAuth() {
+    const LC_OAUTH_URL = 'https://marketplace.gohighlevel.com/oauth/chooselocation?response_type=code&redirect_uri=https%3A%2F%2Fprod.flightsuite.ai%2Fapi%2Fv1%2Fauth%2Fleadconnector%2Foauth%2Fcallback&client_id=69b3a89c81d1b3fdd0911979-mmoi6wfp&scope=associations.write+associations.readonly+associations%2Frelation.readonly+associations%2Frelation.write+calendars.readonly+calendars.write+calendars%2Fevents.readonly+calendars%2Fevents.write+calendars%2Fgroups.readonly+calendars%2Fgroups.write+contacts.readonly+contacts.write+businesses.readonly+businesses.write+conversations.readonly+conversations.write+conversations%2Fmessage.readonly+conversations%2Fmessage.write+locations%2FcustomFields.readonly+locations%2FcustomFields.write+locations.readonly+locations%2Ftasks.readonly+locations%2Ftasks.write+locations%2Ftags.readonly+locations%2Ftags.write+oauth.write+oauth.readonly+objects%2Fschema.readonly+objects%2Fschema.write+objects%2Frecord.readonly+objects%2Frecord.write+opportunities.readonly+opportunities.write+phonenumbers.read+users.readonly+workflows.readonly&version_id=69b3a89c81d1b3fdd0911979';
+    window.open(LC_OAUTH_URL, '_blank');
+    // Show waiting state
+    const el = document.getElementById('ob-step-1');
+    if (el) {
+        el.innerHTML = `
+            <div class="ob-card" style="text-align:center;">
+                <div class="spin spin-lg" style="margin:0 auto 16px;"></div>
+                <div class="ob-title">Connecting LeadConnector</div>
+                <div class="ob-sub">Complete sign-in in the tab that just opened. This page will update automatically.</div>
+                <button class="ob-skip" onclick="renderObCRM(document.getElementById('ob-step-1'))">Cancel</button>
+            </div>`;
     }
 }
 
