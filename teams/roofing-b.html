@@ -835,8 +835,13 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(()=>{form.style.display='none';ok.style.display='block'});
     });
 
-    // Skip 3D on mobile
-    if(window.innerWidth < 769) return;
+    // On mobile: set scorecard bars immediately since GSAP scroll is skipped
+    if(window.innerWidth < 769) {
+        document.querySelectorAll('.sc-fill').forEach(el => {
+            el.style.width = el.dataset.w + '%';
+        });
+        return;
+    }
     gsap.registerPlugin(ScrollTrigger);
 
     const tunnelScroll = document.getElementById('tunnelScroll');
