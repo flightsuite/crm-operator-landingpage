@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlightSuite Teams — Pipeline Intelligence for Roofing Sales</title>
+    <meta name="description" content="FlightSuite helps roofing sales teams meet quota with automatic CRM capture, activity scoring, and revenue forecasting.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flightsuite.ai/teams/roofing-b.html">
+    <meta property="og:title" content="FlightSuite Teams — Pipeline Intelligence for Roofing Sales">
+    <meta property="og:description" content="Your reps should be closing jobs, not updating a CRM. FlightSuite sits on top of JobNimbus or AccuLynx — reps text what happened, we handle the rest.">
+    <meta property="og:image" content="https://flightsuite.ai/teams/assets/social-preview-teams.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="FlightSuite Teams — Pipeline Intelligence for Roofing Sales Teams">
+    <meta property="og:image:type" content="image/png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FlightSuite Teams — Pipeline Intelligence for Roofing Sales">
+    <meta name="twitter:description" content="Your reps should be closing jobs, not updating a CRM. FlightSuite sits on top of JobNimbus or AccuLynx — reps text what happened, we handle the rest.">
+    <meta name="twitter:image" content="https://flightsuite.ai/teams/assets/social-preview-teams.png">
+    <meta name="twitter:image:alt" content="FlightSuite Teams — Pipeline Intelligence for Roofing Sales Teams">
+
+    <link rel="icon" type="image/svg+xml" href="/Assets/Flight Suite Favicon vPurple.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CSY283V4Y"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-0CSY283V4Y');</script>
+    <style>
+        :root{
+            --bg:#050507;--surface:#0C0C10;--glass:rgba(255,255,255,.03);--gb:rgba(255,255,255,.07);
+            --t1:#F5F5F7;--t2:#86868B;--t3:#6E6E73;
+            --purple:#5E5CE6;--blue:#0071E3;--cyan:#22D3EE;--green:#34C759;--red:#FF3B30;--gold:#D4A846;
+            --grad:linear-gradient(135deg,#5E5CE6,#0071E3);
+            --fd:'Space Grotesk',sans-serif;--fb:'DM Sans',sans-serif;
+            --eo:cubic-bezier(.16,1,.3,1);
+        }
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{-webkit-font-smoothing:antialiased}
+        body{font-family:var(--fb);color:var(--t1);background:var(--bg);overflow-x:hidden;font-size:18px;line-height:1.6}
+
+        /* BG */
+        .bg-orbs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+        .orb{position:absolute;border-radius:50%;filter:blur(140px)}
+        .orb-1{width:800px;height:800px;background:var(--purple);opacity:.08;top:-300px;left:-200px;animation:d1 24s ease-in-out infinite}
+        .orb-2{width:700px;height:700px;background:var(--blue);opacity:.06;bottom:-250px;right:-150px;animation:d2 28s ease-in-out infinite}
+        @keyframes d1{0%,100%{transform:translate(0)}50%{transform:translate(120px,80px)}}
+        @keyframes d2{0%,100%{transform:translate(0)}50%{transform:translate(-100px,-70px)}}
+        .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:512px}
+
+        /* Animated gradient border utility */
+        @keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+        .glow-border{position:relative}
+        .glow-border::before{content:'';position:absolute;inset:-1px;border-radius:inherit;background:linear-gradient(135deg,var(--purple),var(--gold),var(--cyan),var(--purple));background-size:300% 300%;animation:gradient-shift 6s ease infinite;z-index:-1;opacity:0.5}
+
+        /* Smooth hover lift for all interactive cards */
+        .lift{transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s}
+        .lift:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,.3)}
+
+        /* Nav */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,5,7,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+        .logo{font-family:var(--fd);font-size:20px;font-weight:700;text-decoration:none;display:flex;align-items:baseline}
+        .logo-main{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .logo-teams{color:var(--gold);font-size:20px;font-weight:700;margin-left:8px}
+        .nav-cta{font-size:15px;font-weight:600;padding:10px 22px;background:var(--gold);color:#0A0A0A;border-radius:980px;text-decoration:none;transition:all .3s;box-shadow:0 2px 12px rgba(212,168,70,.2)}
+        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(212,168,70,.35)}
+
+        .wrap{position:relative;z-index:2}
+
+        /* ═══ HERO ═══ */
+        .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;position:relative;overflow:hidden}
+
+        /* 3D Wireframe House Canvas */
+        .hero-house-canvas{position:absolute;inset:0;z-index:0;pointer-events:none}
+        .hero>*:not(.hero-house-canvas){position:relative;z-index:1}
+        .hero-badge{display:inline-flex;padding:8px 16px;background:rgba(212,168,70,.1);color:var(--gold);border-radius:980px;font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:28px}
+        .hero h1{font-family:var(--fd);font-size:clamp(40px,8vw,72px);font-weight:700;letter-spacing:-.045em;line-height:1.05;margin-bottom:24px;max-width:780px}
+        .hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--red),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .hero-sub{font-size:clamp(18px,2.5vw,22px);color:var(--t2);max-width:580px;line-height:1.6;margin-bottom:48px}
+        .scroll-cue{display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--t3);font-size:15px}
+        .scroll-cue .line{width:1px;height:48px;background:linear-gradient(to bottom,var(--t3),transparent);animation:pl 2s ease-in-out infinite}
+        @keyframes pl{0%,100%{opacity:.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.2)}}
+
+        /* ═══════════════════════════════════════════════════
+           THE 3D PIPE TUNNEL
+           Uses CSS perspective + translateZ for real depth.
+           Rings at different z-positions form the pipe walls.
+           GSAP ScrollTrigger drives the camera through.
+           ═══════════════════════════════════════════════════ */
+        .tunnel-scroll{position:relative;height:700vh}
+        .tunnel-viewport{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+
+        /* 3D scene */
+        .tunnel-scene{
+            position:absolute;inset:0;
+            perspective:600px;
+            perspective-origin:50% 50%;
+            overflow:hidden;
+        }
+        .tunnel-camera{
+            position:absolute;
+            width:100%;height:100%;
+            transform-style:preserve-3d;
+            /* GSAP animates translateZ to move through the tunnel */
+        }
+
+        /* Pipe rings — the visible structure */
+        .pipe-ring{
+            position:absolute;
+            left:50%;top:50%;
+            border-radius:50%;
+            border-style:solid;
+            transform-style:preserve-3d;
+            /* Each ring is centered and placed at a different Z depth */
+        }
+
+        /* Ring sizing: they get progressively larger and further away */
+        /* When camera moves forward (translateZ increases), rings rush past */
+
+        /* Content layers inside the tunnel */
+        .tunnel-content{
+            position:absolute;inset:0;z-index:10;
+            display:flex;align-items:center;justify-content:center;
+            pointer-events:none;
+        }
+        .tunnel-content>*{pointer-events:auto}
+
+        /* Panel styling */
+        .t-panel{
+            position:absolute;
+            width:100%;max-width:600px;
+            text-align:center;padding:24px;
+            opacity:0;
+            transition:opacity .6s;
+        }
+        .t-panel.active{opacity:1}
+        .t-panel-label{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+        .t-panel-label.red{color:var(--red)}.t-panel-label.cyan{color:var(--cyan)}.t-panel-label.green{color:var(--green)}.t-panel-label.gold{color:var(--gold)}
+        .t-panel h2{font-family:var(--fd);font-size:clamp(32px,6vw,52px);font-weight:700;letter-spacing:-.035em;line-height:1.12;margin-bottom:16px}
+        .t-panel p{font-size:clamp(16px,2vw,20px);color:var(--t2);max-width:540px;margin:0 auto 24px;line-height:1.65}
+        .t-panel-stat{font-family:var(--fd);font-size:clamp(52px,11vw,80px);font-weight:700;line-height:1;margin-bottom:10px;background:linear-gradient(135deg,#FF6B6B,#FF3B30);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+        /* Fix cards */
+        .t-fix{background:rgba(5,5,7,.75);border:1px solid rgba(52,199,89,.2);border-radius:14px;padding:20px 24px;max-width:520px;margin:0 auto;text-align:left;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+        .t-fix h3{font-family:var(--fd);font-size:16px;font-weight:600;color:var(--green);margin-bottom:8px}
+        .t-fix p{font-size:16px;color:var(--t2);line-height:1.6;margin:0}
+
+        /* Scorecards */
+        .sc-row{display:flex;gap:10px;justify-content:center;margin-bottom:16px;flex-wrap:wrap}
+        .sc{background:rgba(5,5,7,.6);border:1px solid var(--gb);border-radius:12px;padding:14px 18px;min-width:130px;text-align:center;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:transform .3s cubic-bezier(.34,1.56,.64,1),border-color .3s}
+        .sc:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.12)}
+        .sc-name{font-size:14px;color:var(--t2);margin-bottom:6px}
+        .sc-bar{height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-bottom:6px}
+        .sc-fill{height:100%;border-radius:3px;width:0;transition:width 1.2s var(--eo)}
+        .sc-fill.g{background:var(--green)}.sc-fill.y{background:var(--gold)}.sc-fill.r{background:var(--red)}
+        .sc-val{font-family:var(--fd);font-size:18px;font-weight:700}
+
+        /* Dashboard */
+        .dash{display:flex;gap:10px;justify-content:center;margin-bottom:16px;flex-wrap:wrap}
+        .dash-c{background:rgba(5,5,7,.7);border:1px solid var(--gb);border-radius:10px;padding:12px 16px;min-width:120px;text-align:center;backdrop-filter:blur(12px)}
+        .dash-l{font-size:13px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+        .dash-v{font-family:var(--fd);font-size:32px;font-weight:700}
+
+        /* Insight cards — what FlightSuite sees that your CRM doesn't */
+        .insight-cards{display:flex;flex-direction:column;gap:12px;max-width:520px;margin:0 auto 20px}
+        .insight-card{background:rgba(5,5,7,.65);border-left:3px solid;padding:16px 20px;border-radius:0 12px 12px 0;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);text-align:left;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+        .insight-card:hover{transform:translateX(4px)}
+        .insight-card.alert{border-color:var(--red);box-shadow:inset 3px 0 12px rgba(255,59,48,.08)}
+        .insight-card.warn{border-color:var(--gold);box-shadow:inset 3px 0 12px rgba(212,168,70,.08)}
+        .insight-card.good{border-color:var(--green);box-shadow:inset 3px 0 12px rgba(52,199,89,.08)}
+        .insight-card-lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+        .insight-card.alert .insight-card-lbl{color:var(--red)}
+        .insight-card.warn .insight-card-lbl{color:var(--gold)}
+        .insight-card.good .insight-card-lbl{color:var(--green)}
+        .insight-card-txt{font-size:15px;color:var(--t1);font-weight:500;line-height:1.4}
+        .insight-card-sub{font-size:13px;color:var(--t3);margin-top:2px}
+
+        /* Pipeline gap visual */
+        .gap-row{display:flex;gap:14px;justify-content:center;align-items:center;margin-bottom:20px;flex-wrap:wrap}
+        .gap-box{background:rgba(5,5,7,.7);border:1px solid var(--gb);border-radius:12px;padding:16px 22px;text-align:center;backdrop-filter:blur(12px)}
+        .gap-lbl{font-size:12px;color:var(--t3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+        .gap-val{font-family:var(--fd);font-size:28px;font-weight:700}
+        .gap-arrow{font-size:22px;color:var(--t3)}
+
+        /* Compare */
+        .cmp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:600px;margin:0 auto}
+        .cmp-c{background:rgba(5,5,7,.7);border:1px solid var(--gb);border-radius:14px;padding:22px 16px;text-align:center;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,border-color .3s}
+        .cmp-c:hover{transform:translateY(-5px);box-shadow:0 12px 36px rgba(0,0,0,.25)}
+        .cmp-c.hl{border-color:var(--gold);background:rgba(212,168,70,.06);box-shadow:0 0 40px rgba(212,168,70,.12)}
+        .cmp-c.hl:hover{box-shadow:0 0 60px rgba(212,168,70,.2),0 12px 36px rgba(0,0,0,.2)}
+        .cmp-t{font-size:14px;color:var(--t3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px;font-weight:600}
+        .cmp-p{font-family:var(--fd);font-size:28px;font-weight:700;margin-bottom:4px}
+        .cmp-p.exp{color:var(--red)}.cmp-p.aff{color:var(--gold)}
+        .cmp-n{font-size:14px;color:var(--t3)}
+
+        /* ═══ POST-JOURNEY ═══ */
+        .section{padding:100px 24px;max-width:760px;margin:0 auto}
+        .sl{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-align:center;margin-bottom:14px}
+        .sh{font-family:var(--fd);font-size:clamp(30px,6vw,48px);font-weight:700;letter-spacing:-.03em;text-align:center;margin-bottom:16px}
+        .sp{font-size:18px;color:var(--t2);text-align:center;line-height:1.6;margin-bottom:48px}
+        .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+        .step{background:var(--glass);border:1px solid var(--gb);border-radius:16px;padding:28px 22px;text-align:center;transition:transform .4s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .3s}
+        .step:hover{transform:translateY(-6px);border-color:rgba(212,168,70,.2);box-shadow:0 12px 40px rgba(0,0,0,.2),0 0 0 1px rgba(212,168,70,.1)}
+        .step-n{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--gold);margin-bottom:10px}
+        .step-t{font-family:var(--fd);font-size:20px;font-weight:600;margin-bottom:8px}
+        .step-d{font-size:16px;color:var(--t2);line-height:1.6}
+        .ms-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+        .ms{background:var(--glass);border:1px solid var(--gb);border-radius:14px;padding:22px 16px;text-align:center;transition:transform .3s}
+        .ms:hover{transform:translateY(-2px)}
+        .ms-q{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--gold);margin-bottom:8px}
+        .ms-a{font-family:var(--fd);font-size:28px;font-weight:700;margin-bottom:4px}
+        .ms-n{font-size:14px;color:var(--t3);line-height:1.5}
+        .ms-checks{max-width:540px;margin:28px auto 0;background:var(--glass);border:1px solid var(--gb);border-radius:12px;padding:20px 24px;font-size:16px;color:var(--t2);line-height:2.2}
+        .trust{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;font-size:15px;color:var(--t3);padding:48px 24px}
+        .form-wrap{padding:100px 24px;max-width:560px;margin:0 auto;text-align:center}
+        .form-wrap h2{font-family:var(--fd);font-size:clamp(32px,6vw,48px);font-weight:700;letter-spacing:-.03em;margin-bottom:16px}
+        .form-wrap>p{font-size:18px;color:var(--t2);margin-bottom:36px;line-height:1.6}
+        .pb{background:rgba(212,168,70,.04);border:1.5px solid rgba(212,168,70,.2);border-radius:16px;padding:32px;margin-bottom:36px;position:relative;overflow:hidden}
+        .pb::before{content:'';position:absolute;inset:-2px;border-radius:18px;background:linear-gradient(135deg,rgba(212,168,70,.3),rgba(94,92,230,.2),rgba(34,211,238,.2),rgba(212,168,70,.3));background-size:300% 300%;animation:gradient-shift 8s ease infinite;z-index:0;opacity:0.4}
+        .pb>*{position:relative;z-index:1}
+        .pb-price{font-family:var(--fd);font-size:52px;font-weight:700;color:var(--gold);line-height:1}
+        .pb-per{font-size:18px;color:var(--t2);font-weight:400}
+        .pb-sub{font-size:16px;color:var(--t3);margin-top:10px}
+        .pb-impl{font-size:15px;color:var(--t3);margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06);line-height:1.6}
+        .pb-impl strong{color:var(--t2)}
+        .pf{display:flex;flex-direction:column;gap:16px;text-align:left}
+        .pf-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .pf-f{display:flex;flex-direction:column;gap:6px}
+        .pf-f label{font-size:14px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.04em}
+        .pf-f input,.pf-f select,.pf-f textarea{background:var(--surface);border:1.5px solid var(--gb);border-radius:10px;padding:14px 16px;color:var(--t1);font-family:var(--fb);font-size:16px;transition:border-color .2s;outline:none;-webkit-appearance:none}
+        .pf-f input:focus,.pf-f select:focus,.pf-f textarea:focus{border-color:var(--gold)}
+        .pf-f textarea{resize:vertical;min-height:80px}
+        .pf-btn{width:100%;padding:18px;background:var(--gold);color:#0A0A0A;border:none;border-radius:12px;font-family:var(--fb);font-size:18px;font-weight:700;cursor:pointer;transition:all .3s cubic-bezier(.34,1.56,.64,1);box-shadow:0 4px 20px rgba(212,168,70,.3);position:relative;overflow:hidden}
+        .pf-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,.15) 50%,transparent 60%);transform:translateX(-100%);transition:transform .6s}
+        .pf-btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(212,168,70,.4)}
+        .pf-btn:hover::after{transform:translateX(100%)}
+        .pf-btn:active{transform:scale(.97)}
+        .form-ok{display:none;padding:48px 24px;text-align:center}
+        .form-ok h3{font-family:var(--fd);font-size:24px;font-weight:700;color:var(--green);margin-bottom:8px}
+        .form-ok p{color:var(--t2)}
+        .footer{padding:40px 24px;text-align:center;font-size:15px;color:var(--t3);border-top:1px solid var(--gb)}.footer a{color:var(--t3)}
+
+        /* Mobile: flatten to vertical sections */
+        @media(max-width:768px){
+            .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
+            /* Tunnel becomes vertical scroll */
+            .tunnel-scroll{height:auto!important}
+            .tunnel-viewport{position:relative!important;height:auto!important}
+            .tunnel-scene{display:none}
+            .tunnel-content{position:relative;display:flex;flex-direction:column}
+            .t-panel{position:relative!important;opacity:1!important;filter:none!important;transform:none!important;padding:56px 20px;border-bottom:1px solid var(--gb)}
+            .t-panel h2{font-size:26px}
+            .t-panel p{font-size:16px}
+            .t-panel-stat{font-size:48px}
+            /* Cards readable on mobile */
+            .insight-cards{max-width:100%}
+            .insight-card{padding:14px 16px}
+            .insight-card-txt{font-size:15px}
+            .insight-card-sub{font-size:13px}
+            .gap-row{flex-direction:column;gap:8px}
+            .gap-arrow{transform:rotate(90deg)}
+            .gap-val{font-size:24px}
+            .cmp{grid-template-columns:1fr;max-width:100%}.cmp-c.hl{order:-1}
+            .sc-row,.dash{flex-direction:column;align-items:center;gap:10px}
+            .sc,.dash-c{width:100%;max-width:100%}
+            /* Post-journey */
+            .steps{grid-template-columns:1fr}
+            .ms-grid{grid-template-columns:1fr 1fr}
+            .pf-row{grid-template-columns:1fr}
+            /* Performance: no blur on mobile */
+            .t-fix,.sc,.dash-c,.cmp-c,.insight-card,.gap-box{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--glass)}
+            .orb{filter:blur(80px);opacity:.05}
+            /* Hero adjustments */
+            .hero-house-canvas{opacity:0.35}
+            .hero{padding:100px 20px 48px}
+            .hero h1{font-size:32px}
+            .hero-sub{font-size:16px;margin-bottom:28px}
+            .hero-badge{font-size:12px}
+            /* Section text */
+            .sh{font-size:26px}
+            .sp{font-size:16px}
+            .step-t{font-size:17px}
+            .step-d{font-size:15px}
+            .ms-a{font-size:22px}
+            .pb-price{font-size:38px}
+            .form-wrap h2{font-size:28px}
+        }
+        @media(max-width:375px){.hero{padding:100px 20px 60px}.hero h1{font-size:32px}.t-panel h2{font-size:28px}}
+        @media(prefers-reduced-motion:reduce){.orb{animation:none}.scroll-cue .line{animation:none}}
+    </style>
+</head>
+<body>
+
+<div class="bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+<div class="grain"></div>
+
+<div class="wrap">
+
+<nav class="nav">
+    <a href="/" class="logo"><span class="logo-main">FlightSuite</span><span class="logo-teams">Teams</span></a>
+    <a href="#apply" class="nav-cta">Get on the List</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="heroSection">
+    <canvas class="hero-house-canvas" id="houseCanvas"></canvas>
+    <div class="hero-badge">Built for Roofing Sales Teams on JobNimbus & AccuLynx</div>
+    <h1>Your reps should be closing jobs. Not <em>updating a CRM.</em></h1>
+    <p class="hero-sub">FlightSuite sits on top of JobNimbus or AccuLynx. Reps text what happened from the truck — FlightSuite logs it, scores activity, and shows you what's actually going to close.</p>
+    <div class="scroll-cue">
+        <span>See how it works</span>
+        <div class="line"></div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     3D PIPE TUNNEL
+     Rings at different Z-depths form visible pipe walls.
+     GSAP ScrollTrigger moves the camera through the pipe.
+     ═══════════════════════════════════════════════════════════ -->
+<div class="tunnel-scroll" id="tunnelScroll">
+    <div class="tunnel-viewport" id="tunnelViewport">
+
+        <!-- 3D Scene: pipe rings -->
+        <div class="tunnel-scene" id="tunnelScene">
+            <div class="tunnel-camera" id="tunnelCamera">
+                <!-- Rings are generated by JS — 20 rings at different Z positions -->
+            </div>
+        </div>
+
+        <!-- Content panels overlaid on the tunnel -->
+        <div class="tunnel-content">
+            <div class="t-panel active" id="tp1">
+                <div class="t-panel-label red">Your Pipeline</div>
+                <h2>Your CRM says $2.4M in pipeline.<br>The real number? Probably 25% lower.</h2>
+                <div class="gap-row">
+                    <div class="gap-box">
+                        <div class="gap-lbl">JobNimbus says</div>
+                        <div class="gap-val" style="color:var(--t1)">$2.4M</div>
+                    </div>
+                    <div class="gap-arrow">→</div>
+                    <div class="gap-box" style="border-color:rgba(255,59,48,.3)">
+                        <div class="gap-lbl">Reality</div>
+                        <div class="gap-val" style="color:var(--red)">$1.8M</div>
+                    </div>
+                </div>
+                <p>$600K of your pipeline is stale deals, missed follow-ups, and estimates that went cold. Your CRM can't tell you that — because the data never got in.</p>
+            </div>
+            <div class="t-panel" id="tp2">
+                <div class="t-panel-label red">Get the Data In</div>
+                <h2>Your reps do the work all day. They log it whenever they remember.</h2>
+                <p>Estimates at 9am, on a roof at 11, driving to the next job by 1. Nobody's pulling over to open JobNimbus. By Friday, half the week's activity is gone — or logged wrong.</p>
+                <div class="insight-cards">
+                    <div class="insight-card alert">
+                        <div class="insight-card-lbl">JobNimbus Today</div>
+                        <div class="insight-card-txt">Reps log activity at 8pm from memory — details are wrong, follow-ups forgotten</div>
+                        <div class="insight-card-sub">You're making decisions on incomplete, stale data</div>
+                    </div>
+                    <div class="insight-card good">
+                        <div class="insight-card-lbl">With FlightSuite</div>
+                        <div class="insight-card-txt">Rep texts from the truck: "Henderson estimate, $14K, moving forward, follow up Thursday"</div>
+                        <div class="insight-card-sub">Contact, note, deal stage, and follow-up logged in seconds — while the details are fresh</div>
+                    </div>
+                    <div class="insight-card good">
+                        <div class="insight-card-lbl">Via SMS & WhatsApp</div>
+                        <div class="insight-card-txt">No app to open. No login. Your reps already text — now those texts update JobNimbus automatically.</div>
+                        <div class="insight-card-sub">FlightSuite layers on top of your CRM. Nothing changes for your reps except the data gets in. All messages encrypted.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="t-panel" id="tp3">
+                <div class="t-panel-label cyan">See Who's Working</div>
+                <h2>Your CRM shows deals. FlightSuite shows who's actually working them.</h2>
+                <p>JobNimbus tells you what's in the pipeline. FlightSuite tells you which reps are moving it forward — and which ones aren't.</p>
+                <div class="sc-row">
+                    <div class="sc"><div class="sc-name">Jake M.</div><div class="sc-bar"><div class="sc-fill g" data-w="92"></div></div><div class="sc-val" style="color:var(--green)">92%</div></div>
+                    <div class="sc"><div class="sc-name">Tom R.</div><div class="sc-bar"><div class="sc-fill y" data-w="67"></div></div><div class="sc-val" style="color:var(--gold)">67%</div></div>
+                    <div class="sc"><div class="sc-name">Dave K.</div><div class="sc-bar"><div class="sc-fill r" data-w="31"></div></div><div class="sc-val" style="color:var(--red)">31%</div></div>
+                </div>
+                <div class="insight-cards">
+                    <div class="insight-card alert">
+                        <div class="insight-card-lbl">Alert</div>
+                        <div class="insight-card-txt">Dave K. has 5 estimates with no follow-up in 7+ days</div>
+                        <div class="insight-card-sub">$68K at risk · JobNimbus can't see this</div>
+                    </div>
+                    <div class="insight-card warn">
+                        <div class="insight-card-lbl">Coaching needed</div>
+                        <div class="insight-card-txt">Tom R. is 40% below his weekly call target</div>
+                        <div class="insight-card-sub">Activity trend declining 3 weeks straight</div>
+                    </div>
+                </div>
+            </div>
+            <div class="t-panel" id="tp4">
+                <div class="t-panel-label cyan">Know What's Closing</div>
+                <h2>Your CRM shows pipeline. FlightSuite shows what's actually going to close.</h2>
+                <p>JobNimbus says $2.4M in pipeline. But which deals are real? FlightSuite scores every deal based on actual rep activity — not just what stage it's sitting in.</p>
+                <div class="gap-row">
+                    <div class="gap-box">
+                        <div class="gap-lbl">CRM Pipeline</div>
+                        <div class="gap-val" style="color:var(--t1)">$2.4M</div>
+                    </div>
+                    <div class="gap-arrow">→</div>
+                    <div class="gap-box" style="border-color:rgba(52,199,89,.3)">
+                        <div class="gap-lbl">Verified to Close</div>
+                        <div class="gap-val" style="color:var(--green)">$1.8M</div>
+                    </div>
+                </div>
+                <div class="insight-cards">
+                    <div class="insight-card good">
+                        <div class="insight-card-lbl">Forecast</div>
+                        <div class="insight-card-txt">$380K likely to close this month based on rep activity</div>
+                        <div class="insight-card-sub">Based on actual follow-up activity, not just what stage it's sitting in</div>
+                    </div>
+                    <div class="insight-card alert">
+                        <div class="insight-card-lbl">At Risk</div>
+                        <div class="insight-card-txt">3 deals ($142K) showing low follow-up activity</div>
+                        <div class="insight-card-sub">Likely to slip to next month without intervention</div>
+                    </div>
+                    <div class="insight-card warn">
+                        <div class="insight-card-lbl">Opportunity</div>
+                        <div class="insight-card-txt">Jake M. has 2 warm leads ready for a close push</div>
+                        <div class="insight-card-sub">High activity score + homeowner engaged in last 48hrs</div>
+                    </div>
+                </div>
+            </div>
+            <div class="t-panel" id="tp5">
+                <div class="t-panel-label green">Pipeline Repaired</div>
+                <h2>Now you know the real number.</h2>
+                <p>$2.4M pipeline → $1.8M verified → $380K closing this month. Every rep scored. Every deal tracked. Every forecast backed by real activity — not gut feel.</p>
+                <div class="insight-cards">
+                    <div class="insight-card good">
+                        <div class="insight-card-lbl">What changed</div>
+                        <div class="insight-card-txt">FlightSuite sits on top of JobNimbus. Your CRM stays the same. The intelligence layer is new.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="t-panel" id="tp6">
+                <div class="t-panel-label gold">The Investment</div>
+                <h2>What this intelligence normally costs</h2>
+                <div class="cmp" style="margin-top:12px">
+                    <div class="cmp-c"><div class="cmp-t">Sales Ops Mgr</div><div class="cmp-p exp">$6-8K/mo</div><div class="cmp-n">Full-time hire</div></div>
+                    <div class="cmp-c"><div class="cmp-t">Fractional VP</div><div class="cmp-p exp">$10-15K/mo</div><div class="cmp-n">Part-time</div></div>
+                    <div class="cmp-c hl"><div class="cmp-t">FlightSuite</div><div class="cmp-p aff">$69/seat</div><div class="cmp-n">Built for field sales</div></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Gradient separator -->
+<div style="height:2px;max-width:200px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.4"></div>
+
+<!-- Post-journey -->
+<div class="trust">
+    <span>Currently piloting with roofing sales teams in NC, SC, and GA</span><span>·</span>
+    <span>Works with JobNimbus & AccuLynx</span><span>·</span>
+    <span>Your data is encrypted and never shared</span>
+</div>
+
+<section class="section">
+    <div class="sl">How It Works</div>
+    <h2 class="sh">Running in days. Real results in weeks.</h2>
+    <p class="sp">FlightSuite sits on top of JobNimbus or AccuLynx. Nothing changes for your reps except the data gets in.</p>
+    <div class="steps">
+        <div class="step"><div class="step-n">01</div><div class="step-t">Set Up</div><div class="step-d">We connect to your CRM. Your reps get a number to text. Takes 30 minutes, not 30 days.</div></div>
+        <div class="step"><div class="step-n">02</div><div class="step-t">Train</div><div class="step-d">First quarter, we learn your sales process, establish baselines, and get your team comfortable texting updates instead of typing them.</div></div>
+        <div class="step"><div class="step-n">03</div><div class="step-t">See Results</div><div class="step-d">By Q2, you see which reps are working, which deals are at risk, and what's actually going to close — by rep and by team.</div></div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="sl">Milestone Structure</div>
+    <h2 class="sh">Our implementation normally costs $20,000. For you, we tie it to results.</h2>
+    <p class="sp">Q1 covers setup and training. Q2-Q4 payouts only happen when we hit milestones together. We're putting our confidence in the product to deliver.</p>
+    <div class="ms-grid">
+        <div class="ms"><div class="ms-q">Q1</div><div class="ms-a">$5,000</div><div class="ms-n">Training & setup. Baselines established.</div></div>
+        <div class="ms"><div class="ms-q">Q2</div><div class="ms-a">$5,000</div><div class="ms-n">If 2/3 milestones hit</div></div>
+        <div class="ms"><div class="ms-q">Q3</div><div class="ms-a">$5,000</div><div class="ms-n">If 2/3 milestones hit</div></div>
+        <div class="ms"><div class="ms-q">Q4</div><div class="ms-a">$5,000</div><div class="ms-n">If 2/3 milestones hit</div></div>
+    </div>
+    <div class="ms-checks">
+        <span style="color:var(--green)">✓</span> Quota attainment improves 10%+<br>
+        <span style="color:var(--green)">✓</span> Forecast accuracy within 10%<br>
+        <span style="color:var(--green)">✓</span> 90%+ activity logging compliance
+    </div>
+</section>
+
+<div style="height:2px;max-width:200px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.4"></div>
+
+<section class="form-wrap" id="apply">
+    <h2>See it on your pipeline.</h2>
+    <p>We'll walk you through FlightSuite on your actual JobNimbus or AccuLynx data. Tell us about your team and we'll set up a 20-minute call.</p>
+    <div class="pb">
+        <div class="pb-price">$69<span class="pb-per">/seat/month</span></div>
+        <div class="pb-sub">Annual contract · Billed monthly</div>
+        <div class="pb-impl"><strong>Implementation normally costs $20,000.</strong> For pilot partners, we put our confidence in the product. $5K for Q1 setup and training, then $5K/quarter — only when we hit 2 of 3 milestones together.</div>
+    </div>
+    <form class="pf" id="pilotForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <input type="hidden" name="_subject" value="[FlightSuite Teams] New Roofing Interest ($69/seat)">
+        <input type="hidden" name="pricing_variation" value="B-69">
+        <div class="pf-row">
+            <div class="pf-f"><label>Your Name</label><input type="text" name="name" required placeholder="John Smith"></div>
+            <div class="pf-f"><label>Company</label><input type="text" name="company" required placeholder="Apex Roofing"></div>
+        </div>
+        <div class="pf-f"><label>Email</label><input type="email" name="email" required placeholder="john@apexroofing.com"></div>
+        <div class="pf-row">
+            <div class="pf-f"><label>Sales Team Size</label><select name="team_size" required><option value="" disabled selected>Select</option><option>5-10 reps</option><option>11-20 reps</option><option>21-50 reps</option><option>50+ reps</option></select></div>
+            <div class="pf-f"><label>Current CRM</label><select name="crm" required><option value="" disabled selected>Select</option><option>JobNimbus</option><option>AccuLynx</option><option>Salesforce</option><option>HubSpot</option><option>Other</option></select></div>
+        </div>
+        <div class="pf-f"><label>Biggest pipeline challenge (optional)</label><textarea name="challenge" placeholder="e.g. Reps don't log activity, can't forecast revenue accurately..."></textarea></div>
+        <button type="submit" class="pf-btn">Get on the List →</button>
+    </form>
+    <div class="form-ok" id="formOk"><h3>We'll be in touch within 24 hours.</h3><p>We'll review and get back to you within 24 hours.</p></div>
+</section>
+
+<footer class="footer">© 2026 FlightSuite Corporation · <a href="/">flightsuite.ai</a></footer>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     3D WIREFRAME HOUSE — Reactive hero element
+     ═══════════════════════════════════════════ -->
+<script>
+(function() {
+    const canvas = document.getElementById('houseCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, mouseX = 0.5, mouseY = 0.5, time = 0;
+    const dpr = Math.min(window.devicePixelRatio, 2);
+
+    function resize() {
+        const hero = document.getElementById('heroSection');
+        W = hero.offsetWidth;
+        H = hero.offsetHeight;
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        canvas.style.width = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Mouse tracking (normalized 0-1)
+    document.addEventListener('mousemove', e => {
+        mouseX = e.clientX / window.innerWidth;
+        mouseY = e.clientY / window.innerHeight;
+    });
+
+    // 3D house vertices (centered at origin)
+    // A simple house: rectangular base + triangular roof
+    const s = 1; // scale factor applied later
+    const vertices = [
+        // Base (bottom face)
+        [-1, -0.6, -0.8],  // 0: front-left-bottom
+        [ 1, -0.6, -0.8],  // 1: front-right-bottom
+        [ 1, -0.6,  0.8],  // 2: back-right-bottom
+        [-1, -0.6,  0.8],  // 3: back-left-bottom
+        // Walls (top of walls)
+        [-1,  0.3, -0.8],  // 4: front-left-top
+        [ 1,  0.3, -0.8],  // 5: front-right-top
+        [ 1,  0.3,  0.8],  // 6: back-right-top
+        [-1,  0.3,  0.8],  // 7: back-left-top
+        // Roof peak
+        [ 0,  0.9,  0.8],  // 8: back peak
+        [ 0,  0.9, -0.8],  // 9: front peak
+    ];
+
+    // Edges: pairs of vertex indices
+    const edges = [
+        // Base
+        [0,1],[1,2],[2,3],[3,0],
+        // Vertical walls
+        [0,4],[1,5],[2,6],[3,7],
+        // Top of walls
+        [4,5],[5,6],[6,7],[7,4],
+        // Roof edges
+        [4,9],[5,9], // front roof slopes
+        [7,8],[6,8], // back roof slopes
+        [8,9],       // ridge
+    ];
+
+    // Floating ambient particles
+    const particles = [];
+    for (let i = 0; i < 30; i++) {
+        particles.push({
+            x: (Math.random() - 0.5) * 4,
+            y: (Math.random() - 0.5) * 3,
+            z: (Math.random() - 0.5) * 3,
+            size: 1 + Math.random() * 2,
+            speed: 0.2 + Math.random() * 0.5,
+            phase: Math.random() * Math.PI * 2
+        });
+    }
+
+    // Roof shingles — tiles that fly in and lay flat along the roof slopes
+    // Left slope angle: from (-1, 0.3) to (0, 0.9) = atan2(0.6, 1) ≈ 31 degrees
+    const shingles = [];
+    const roofAngle = Math.atan2(0.6, 1); // ~31 deg — the slope of the roof
+
+    for (let row = 0; row < 6; row++) {
+        for (let col = 0; col < 7; col++) {
+            const t = (row + 0.5) / 6; // position along slope (bottom to peak)
+            const zPos = -0.7 + (col / 6) * 1.4;
+            const shingleW = 0.14;
+            const shingleH = 0.06;
+
+            // Left slope: bottom-left(-1, 0.3) to peak(0, 0.9)
+            const lx = -1 + t * 1;
+            const ly = 0.3 + t * 0.6;
+            shingles.push({
+                targetX: lx, targetY: ly, targetZ: zPos,
+                startX: lx - 1 - Math.random() * 1.5,
+                startY: ly + 0.8 + Math.random() * 1,
+                startZ: zPos + (Math.random() - 0.5) * 1,
+                delay: row * 0.06 + col * 0.02 + Math.random() * 0.08,
+                w: shingleW, h: shingleH,
+                angle: -roofAngle,
+                side: 'left'
+            });
+
+            // Right slope
+            const rx = 1 - t * 1;
+            shingles.push({
+                targetX: rx, targetY: ly, targetZ: zPos,
+                startX: rx + 1.5 + Math.random() * 2,
+                startY: ly + 1 + Math.random() * 1.5,
+                startZ: zPos + (Math.random() - 0.5) * 1.5,
+                delay: row * 0.06 + col * 0.02 + 0.04 + Math.random() * 0.08,
+                w: shingleW, h: shingleH,
+                angle: roofAngle, // right slope tilts right
+                side: 'right'
+            });
+        }
+    }
+
+    // Simple 3D projection
+    function project(x, y, z, rotX, rotY) {
+        // Rotate around Y axis (mouse horizontal)
+        let cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+        let x1 = x * cosY - z * sinY;
+        let z1 = x * sinY + z * cosY;
+
+        // Rotate around X axis (mouse vertical)
+        let cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+        let y1 = y * cosX - z1 * sinX;
+        let z2 = y * sinX + z1 * cosX;
+
+        // Perspective projection
+        const fov = 3;
+        const depth = fov + z2;
+        const scale = fov / Math.max(depth, 0.1);
+
+        return {
+            x: x1 * scale,
+            y: -y1 * scale, // flip Y
+            z: z2,
+            scale: scale
+        };
+    }
+
+    function draw() {
+        time += 0.008;
+        ctx.clearRect(0, 0, W, H);
+
+        // Mouse-driven rotation (subtle, reactive)
+        const targetRotY = (mouseX - 0.5) * 0.6;
+        const targetRotX = (mouseY - 0.5) * 0.3;
+        // Add gentle auto-rotation
+        const rotY = targetRotY + Math.sin(time * 0.5) * 0.08;
+        const rotX = targetRotX + Math.cos(time * 0.7) * 0.04 - 0.15;
+
+        const centerX = W * 0.5;
+        const centerY = H * 0.48;
+        const houseScale = Math.min(W, H) * 0.22;
+
+        // Float offset
+        const floatY = Math.sin(time * 0.8) * 8;
+
+        // Draw particles first (behind house)
+        particles.forEach(p => {
+            const px = p.x + Math.sin(time * p.speed + p.phase) * 0.3;
+            const py = p.y + Math.cos(time * p.speed * 0.7 + p.phase) * 0.2;
+            const pz = p.z + Math.sin(time * p.speed * 0.5 + p.phase) * 0.2;
+            const proj = project(px, py, pz, rotX, rotY);
+            const sx = centerX + proj.x * houseScale;
+            const sy = centerY + proj.y * houseScale + floatY;
+            const alpha = Math.max(0, Math.min(0.4, proj.scale * 0.15));
+            ctx.beginPath();
+            ctx.arc(sx, sy, p.size * proj.scale, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(94, 92, 230, ${alpha})`;
+            ctx.fill();
+        });
+
+        // Project all house vertices
+        const projected = vertices.map(v => {
+            const p = project(v[0], v[1], v[2], rotX, rotY);
+            return {
+                x: centerX + p.x * houseScale,
+                y: centerY + p.y * houseScale + floatY,
+                z: p.z,
+                scale: p.scale
+            };
+        });
+
+        // Draw edges with glow
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        edges.forEach(([a, b]) => {
+            const pa = projected[a];
+            const pb = projected[b];
+            const avgDepth = (pa.scale + pb.scale) / 2;
+            const alpha = Math.max(0.08, Math.min(0.5, avgDepth * 0.25));
+
+            // Determine if this is a roof edge (involves vertices 8 or 9)
+            const isRoof = a >= 8 || b >= 8 || (a >= 4 && b >= 8) || (a >= 4 && b >= 9);
+
+            // Glow layer
+            ctx.beginPath();
+            ctx.moveTo(pa.x, pa.y);
+            ctx.lineTo(pb.x, pb.y);
+            ctx.strokeStyle = isRoof
+                ? `rgba(212, 168, 70, ${alpha * 0.3})`
+                : `rgba(94, 92, 230, ${alpha * 0.3})`;
+            ctx.lineWidth = 6;
+            ctx.stroke();
+
+            // Main line
+            ctx.beginPath();
+            ctx.moveTo(pa.x, pa.y);
+            ctx.lineTo(pb.x, pb.y);
+            ctx.strokeStyle = isRoof
+                ? `rgba(212, 168, 70, ${alpha})`
+                : `rgba(94, 92, 230, ${alpha})`;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+        });
+
+        // Draw shingles — tiles flying in and laying flush on the roof slopes
+        const shingleStart = 0.3; // start almost immediately
+        shingles.forEach(sh => {
+            const elapsed = time - shingleStart - sh.delay;
+            let p = Math.max(0, Math.min(1, elapsed * 1.8)); // faster
+            p = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; // smooth ease-in-out
+
+            if (p <= 0) return;
+
+            const cx = sh.startX + (sh.targetX - sh.startX) * p;
+            const cy = sh.startY + (sh.targetY - sh.startY) * p;
+            const cz = sh.startZ + (sh.targetZ - sh.startZ) * p;
+
+            const proj = project(cx, cy, cz, rotX, rotY);
+            const sx = centerX + proj.x * houseScale;
+            const sy = centerY + proj.y * houseScale + floatY;
+
+            const alpha = Math.max(0, Math.min(p < 0.9 ? 0.5 : 0.4, proj.scale * 0.35));
+            const sw = sh.w * houseScale * proj.scale;
+            const sht = sh.h * houseScale * proj.scale;
+
+            // Smooth rotation: gently align to roof angle
+            const angle = sh.angle * p; // starts flat, rotates to roof angle
+
+            ctx.save();
+            ctx.translate(sx, sy);
+            ctx.rotate(angle);
+            ctx.globalAlpha = alpha;
+
+            // Shingle body
+            ctx.fillStyle = p >= 0.9
+                ? 'rgba(212, 168, 70, 0.9)' // gold when placed
+                : 'rgba(140, 130, 200, 0.7)'; // muted purple while flying
+            ctx.fillRect(-sw, -sht / 2, sw * 2, sht);
+
+            // Thin edge line for definition
+            ctx.strokeStyle = p >= 0.9
+                ? 'rgba(212, 168, 70, 0.4)'
+                : 'rgba(94, 92, 230, 0.3)';
+            ctx.lineWidth = 0.5;
+            ctx.strokeRect(-sw, -sht / 2, sw * 2, sht);
+
+            ctx.globalAlpha = 1;
+            ctx.restore();
+        });
+
+        // Draw vertex points
+        projected.forEach((p, i) => {
+            const alpha = Math.max(0.1, Math.min(0.6, p.scale * 0.3));
+            const isRoof = i >= 8;
+            const color = isRoof ? '212, 168, 70' : '94, 92, 230';
+
+            // Glow
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${color}, ${alpha * 0.3})`;
+            ctx.fill();
+
+            // Point
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${color}, ${alpha})`;
+            ctx.fill();
+        });
+
+        requestAnimationFrame(draw);
+    }
+
+    // Reduce motion check
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Start after a short delay
+    setTimeout(draw, 300);
+})();
+</script>
+
+<!-- ═══════════════════════════════════════════
+     3D TUNNEL ENGINE
+     ═══════════════════════════════════════════ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Form
+    const form = document.getElementById('pilotForm');
+    const ok = document.getElementById('formOk');
+    if(form) form.addEventListener('submit', e => {
+        e.preventDefault();
+        fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+        .then(r=>{if(r.ok){form.style.display='none';ok.style.display='block'}})
+        .catch(()=>{form.style.display='none';ok.style.display='block'});
+    });
+
+    // Skip 3D on mobile
+    if(window.innerWidth < 769) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const tunnelScroll = document.getElementById('tunnelScroll');
+    const viewport = document.getElementById('tunnelViewport');
+    const scene = document.getElementById('tunnelScene');
+    const camera = document.getElementById('tunnelCamera');
+    const panels = ['tp1','tp2','tp3','tp4','tp5','tp6'].map(id => document.getElementById(id));
+
+    // ── Generate pipe rings ──
+    const RING_COUNT = 24;
+    const RING_SPACING = 200;  // px between rings in z-space
+    const TOTAL_DEPTH = RING_COUNT * RING_SPACING; // total z-distance to travel
+
+    for (let i = 0; i < RING_COUNT; i++) {
+        const ring = document.createElement('div');
+        ring.className = 'pipe-ring';
+        const z = -i * RING_SPACING;  // rings recede into the screen
+        const size = 800; // large enough to surround viewport
+
+        // Color: first 8 red (broken), 8-16 transition, 16-24 green (healthy)
+        let borderColor;
+        if (i < 8) {
+            const intensity = 0.15 + (i / 8) * 0.15;
+            borderColor = `rgba(255, 59, 48, ${intensity})`;
+        } else if (i < 16) {
+            const t = (i - 8) / 8;
+            const r = Math.round(255 - t * 200);
+            const g = Math.round(59 + t * 140);
+            const b = Math.round(48 + t * 41);
+            borderColor = `rgba(${r}, ${g}, ${b}, 0.2)`;
+        } else {
+            const intensity = 0.15 + ((i - 16) / 8) * 0.1;
+            borderColor = `rgba(52, 199, 89, ${intensity})`;
+        }
+
+        ring.style.cssText = `
+            width: ${size}px;
+            height: ${size}px;
+            margin-left: -${size/2}px;
+            margin-top: -${size/2}px;
+            border: 3px solid ${borderColor};
+            box-shadow: 0 0 ${20 + i * 2}px ${borderColor}, inset 0 0 ${15 + i}px ${borderColor};
+            transform: translateZ(${z}px);
+            opacity: 0.9;
+        `;
+
+        camera.appendChild(ring);
+    }
+
+    // ── Pin the viewport ──
+    ScrollTrigger.create({
+        trigger: tunnelScroll,
+        start: 'top top',
+        end: 'bottom bottom',
+        pin: viewport,
+        pinSpacing: false
+    });
+
+    // ── Drive camera through the tunnel ──
+    const cameraPos = { z: 0 };
+
+    ScrollTrigger.create({
+        trigger: tunnelScroll,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1.5,
+        onUpdate: self => {
+            const p = self.progress;
+
+            // Move camera forward through the rings
+            const targetZ = p * TOTAL_DEPTH;
+            camera.style.transform = `translateZ(${targetZ}px)`;
+
+            // Determine which panel to show based on progress
+            let activePanel;
+            if (p < 0.12) activePanel = 0;       // Broken pipeline
+            else if (p < 0.30) activePanel = 1;   // Layer 1: Data
+            else if (p < 0.50) activePanel = 2;   // Layer 2: Scoring
+            else if (p < 0.68) activePanel = 3;   // Layer 3: Intelligence
+            else if (p < 0.82) activePanel = 4;   // Repaired
+            else activePanel = 5;                  // Comparison
+
+            panels.forEach((panel, i) => {
+                if (i === activePanel) {
+                    panel.classList.add('active');
+                } else {
+                    panel.classList.remove('active');
+                }
+            });
+
+            // Animate scorecard fills when panel 3 (scoring) is active
+            if (activePanel === 2) {
+                document.querySelectorAll('.sc-fill').forEach(el => {
+                    el.style.width = el.dataset.w + '%';
+                });
+            }
+        }
+    });
+});
+</script>
+
+</body>
+</html>
