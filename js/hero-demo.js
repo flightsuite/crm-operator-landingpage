@@ -14,26 +14,29 @@
     // --- Demo sequences: real CRM commands → real CRM results ---
     const sequences = [
         {
-            text: 'Had a call with Sarah Chen. She wants the enterprise plan. Move her to Discovery.',
+            text: 'Just got off the phone with Jessica about the roofing estimate. She wants to move forward. Schedule follow-up for Thursday.',
             cards: [
-                { type: 'contact', label: 'Contact Updated', name: 'Sarah Chen', detail: 'Enterprise Plan Interest', color: '#5E5CE6' },
-                { type: 'note', label: 'Note Logged', name: 'Call Summary', detail: 'Discussed enterprise pricing and timeline', color: '#0071E3' },
-                { type: 'pipeline', label: 'Pipeline Moved', name: 'Sarah Chen → Discovery', detail: 'From: New Lead', color: '#30D158' }
-            ]
+                { type: 'note', label: 'Note Logged', name: 'Call with Jessica', detail: 'Roofing estimate — wants to move forward', color: '#0071E3' },
+                { type: 'pipeline', label: 'Pipeline Moved', name: 'Jessica Baker → Estimate Sent', detail: 'From: New Lead', color: '#30D158' },
+                { type: 'appointment', label: 'Follow-up Set', name: 'Jessica Baker', detail: 'Thursday, 10:00 AM', color: '#FF9F0A' }
+            ],
+            timeSaved: '3 actions in 2.4 seconds — would take ~4 minutes manually'
         },
         {
-            text: 'Create a contact for Mike Johnson at Acme Corp. Email mike@acme.com, phone (704) 555-0142.',
+            text: 'New lead from Facebook — Tom Baker, (704) 555-0199, interested in the HVAC maintenance plan.',
             cards: [
-                { type: 'contact', label: 'Contact Created', name: 'Mike Johnson', detail: 'Acme Corp', color: '#5E5CE6' },
-                { type: 'detail', label: 'Details Added', name: 'mike@acme.com', detail: '(704) 555-0142', color: '#0071E3' }
-            ]
+                { type: 'contact', label: 'Contact Created', name: 'Tom Baker', detail: '(704) 555-0199', color: '#5E5CE6' },
+                { type: 'source', label: 'Source Tagged', name: 'Inbound: Facebook', detail: 'HVAC Maintenance Plan', color: '#30D158' }
+            ],
+            timeSaved: '2 actions in 1.8 seconds — would take ~3 minutes manually'
         },
         {
-            text: 'Book a demo for Lisa Park next Tuesday at 2pm. She found us through the blog.',
+            text: 'Mark called back. He\'s ready to sign. Move him to Closed Won and log the $4,200 deal.',
             cards: [
-                { type: 'appointment', label: 'Appointment Booked', name: 'Lisa Park — Demo', detail: 'Tuesday, 2:00 PM', color: '#FF9F0A' },
-                { type: 'source', label: 'Source Tagged', name: 'Inbound: Blog', detail: 'Attribution tracked', color: '#30D158' }
-            ]
+                { type: 'pipeline', label: 'Deal Closed', name: 'Mark Rivera → Closed Won', detail: '$4,200', color: '#30D158' },
+                { type: 'note', label: 'Note Logged', name: 'Mark Rivera', detail: 'Called back, ready to sign', color: '#0071E3' }
+            ],
+            timeSaved: '2 actions in 1.5 seconds — would take ~3 minutes manually'
         }
     ];
 
@@ -63,7 +66,7 @@
     }
 
     // --- Card materialization ---
-    function materializeCards(cards) {
+    function materializeCards(cards, timeSaved) {
         outputEl.innerHTML = '';
         cards.forEach((card, i) => {
             const cardEl = document.createElement('div');
@@ -78,11 +81,23 @@
             `;
             outputEl.appendChild(cardEl);
 
-            // Stagger the materialization
+            // Clean 200ms stagger
             setTimeout(() => {
                 cardEl.classList.add('visible');
-            }, 300 + i * 400);
+            }, 200 + i * 200);
         });
+
+        // Show time-saved counter after all cards visible
+        if (timeSaved) {
+            const delay = 200 + cards.length * 200 + 400;
+            setTimeout(() => {
+                const counterEl = document.createElement('div');
+                counterEl.className = 'hero-time-saved';
+                counterEl.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${timeSaved}`;
+                outputEl.appendChild(counterEl);
+                setTimeout(() => counterEl.classList.add('visible'), 50);
+            }, delay);
+        }
     }
 
     // --- Particle trail effect (text → cards) ---
@@ -170,9 +185,8 @@
         if (trailCtx) trailCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
 
         typeText(seq.text, () => {
-            // After typing completes, spawn particle trails then materialize cards
-            spawnTrails(seq.cards.length);
-            setTimeout(() => materializeCards(seq.cards), 200);
+            // After typing completes, materialize cards cleanly
+            setTimeout(() => materializeCards(seq.cards, seq.timeSaved), 200);
 
             // After cards are visible, wait then move to next sequence
             setTimeout(() => {

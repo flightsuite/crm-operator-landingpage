@@ -189,7 +189,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/main.css?v=10">
+    <link rel="stylesheet" href="css/main.css?v=11">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CSY283V4Y"></script>
@@ -222,7 +222,7 @@
                 <a href="/find-your-crm.html" class="nav-link">Find Your CRM</a>
                 <a href="/experts/" class="nav-link">Experts</a>
                 <a href="/blog.html" class="nav-link">Blog</a>
-                <a href="/app" class="cta-header" data-event="install_click"><span class="cta-desktop-text">Install for Chrome</span><span class="cta-mobile-text">Get Started Free</span></a>
+                <a href="/app" class="cta-header" data-event="install_click"><span class="cta-desktop-text">Get Your CRM Admin</span><span class="cta-mobile-text">Get Started</span></a>
             </nav>
         </div>
     </header>
@@ -233,11 +233,12 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="hero-badge-dot"></span>
-                <span class="hero-badge-desktop">Live Now — GoHighLevel, LeadConnector, HubSpot, SMS & WhatsApp</span>
-                <span class="hero-badge-mobile">Live Now — 5 Integrations</span>
+                <span class="hero-badge-desktop">Free Chrome Extension · GoHighLevel & HubSpot</span>
+                <span class="hero-badge-mobile">Free · GHL & HubSpot</span>
             </div>
-            <h1 class="hero-title">The Universal CRM Agent</h1>
-            <p class="hero-subtitle">Just type what happened. Your agent handles the rest.</p>
+            <h1 class="hero-title">Your AI CRM Admin</h1>
+            <p class="hero-subtitle">Logs calls. Updates contacts. Sends follow-ups. While you sell.</p>
+            <p class="hero-sub-subtitle">Update your CRM by text, WhatsApp, or Chrome — in seconds.</p>
 
             <!-- Hero Live Demo — the product IS the hero -->
             <div class="hero-demo">
@@ -259,11 +260,11 @@
 
             <div class="hero-cta-group">
                 <a href="/app" class="cta-primary" data-event="install_click">
-                    <span class="cta-desktop-text">Add to Chrome — It's Free</span><span class="cta-mobile-text">Get Started Free</span>
+                    <span class="cta-desktop-text">Get Your CRM Admin — Free</span><span class="cta-mobile-text">Get Your CRM Admin — Free</span>
                     <span class="cta-arrow">→</span>
                 </a>
                 <a href="/subscribe.html" class="cta-secondary" data-event="pricing_click" style="text-decoration:none;">
-                    See Plans & Pricing
+                    See Plans
                 </a>
             </div>
 
@@ -276,10 +277,34 @@
                         <path d="M12 2c5.52 0 10 4.48 10 10h-10" stroke="#34A853" stroke-width="2" stroke-linecap="round"/>
                         <path d="M12 22c5.52 0 10-4.48 10-10H12" stroke="#FBBC05" stroke-width="2" stroke-linecap="round"/>
                     </svg>
-                    <span>Trusted by <strong id="userCount">100+</strong> Chrome users</span>
+                    <span>Trusted by <strong id="userCount">100+</strong> sales pros</span>
                 </div>
                 <a href="#press" class="trust-pill trust-pill-press">
                     As seen in <strong>Charlotte Business Journal</strong>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar — social proof immediately after hero -->
+    <section class="press-strip" id="press">
+        <div class="press-strip-inner">
+            <span class="press-strip-label">As featured in</span>
+            <div class="press-strip-items">
+                <a href="/blog/flightsuite-founder-story.html" class="press-strip-item">
+                    <span class="press-strip-pub">Charlotte Business Journal</span>
+                    <span class="press-strip-divider">/</span>
+                    <span class="press-strip-title">What's Holding Back Small Businesses in Charlotte</span>
+                </a>
+                <a href="/blog/gbeta-charlotte-accelerator.html" class="press-strip-item">
+                    <span class="press-strip-pub">gBETA Charlotte</span>
+                    <span class="press-strip-divider">/</span>
+                    <span class="press-strip-title">Fall 2025 Cohort</span>
+                </a>
+                <a href="/blog/gbeta-charlotte-accelerator.html" class="press-strip-item">
+                    <span class="press-strip-pub">NEV Elevate X</span>
+                    <span class="press-strip-divider">/</span>
+                    <span class="press-strip-title">Batch 15 Accelerator</span>
                 </a>
             </div>
         </div>
@@ -289,7 +314,7 @@
     <div class="ghost-agent" id="ghostAgent">
         <div class="ghost-agent-status">
             <span class="ghost-agent-dot"></span>
-            <span class="ghost-agent-label">Agent Active</span>
+            <span class="ghost-agent-label">CRM Admin Active</span>
         </div>
         <div class="ghost-agent-feed" id="ghostAgentFeed">
             <!-- Actions appear here via JS -->
@@ -305,34 +330,70 @@
         </div>
     </div>
 
-    <!-- Pain Section — The CRM Problem -->
+    <!-- Pain Section — Individual Cost -->
     <section class="pain-section">
         <div class="pain-container">
-            <div class="pain-label">The CRM Problem</div>
-            <h2 class="pain-title text-reveal">Your team hates CRM data entry. So they just... don't do it.</h2>
-            <p class="pain-subtitle">The result? Lost deals, bad data, and wasted hours. Sound familiar?</p>
+            <div class="pain-label">The Real Cost</div>
+            <h2 class="pain-title text-reveal">The real cost of "I'll update it later"</h2>
+            <p class="pain-subtitle">You know the routine. After every call, you tell yourself you'll log it tonight. But tonight turns into next week — and by then, the deal is cold.</p>
             <div class="pain-grid">
                 <div class="pain-card spotlight-card tilt-card">
-                    <div class="pain-stat-number" data-count="71">0</div>
-                    <div class="pain-stat-suffix">%</div>
-                    <div class="pain-stat-label">of sales reps say CRM data entry is the biggest waste of their time</div>
-                </div>
-                <div class="pain-card spotlight-card tilt-card">
-                    <div class="pain-stat-number" data-count="5" data-suffix="-10">0</div>
+                    <div class="pain-stat-inline">
+                        <span class="pain-stat-number" data-count="5">0</span><span class="pain-stat-number-static">-10</span>
+                    </div>
                     <div class="pain-stat-suffix">hrs/week</div>
-                    <div class="pain-stat-label">spent per rep on manual CRM updates instead of selling</div>
+                    <div class="pain-stat-label">of your time on CRM admin instead of selling</div>
+                </div>
+                <div class="pain-card spotlight-card tilt-card pain-card-highlight">
+                    <div class="pain-stat-inline">
+                        <span class="pain-stat-prefix">$</span><span class="pain-stat-number" data-count="1083">0</span>
+                    </div>
+                    <div class="pain-stat-suffix">/month</div>
+                    <div class="pain-stat-label">of your time at $50/hr · <span class="pain-math">5.5 hrs × $50 × 4.3 weeks</span></div>
                 </div>
                 <div class="pain-card spotlight-card tilt-card">
                     <div class="pain-stat-number" data-count="40">0</div>
                     <div class="pain-stat-suffix">%</div>
-                    <div class="pain-stat-label">of CRM data goes unentered — leads fall through the cracks</div>
+                    <div class="pain-stat-label">of your deals have no recent activity logged — follow-ups slip</div>
                 </div>
             </div>
             <div class="pain-solution">
                 <div class="pain-arrow">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
                 </div>
-                <p class="pain-solution-text">FlightSuite eliminates this entirely. Just type what happened — your Agent handles the rest.</p>
+                <p class="pain-solution-text">What if you had a CRM admin that never forgot, never clocked out, and cost less than lunch?</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works — 3 steps, near-zero activation cost -->
+    <section class="how-it-works-section" id="how-it-works">
+        <div class="how-it-works-container">
+            <div class="section-label">How It Works</div>
+            <h2 class="section-title text-reveal">Up and running in 30 seconds</h2>
+            <p class="section-description">No onboarding calls. No setup wizard. No training your AI.</p>
+            <div class="how-steps">
+                <div class="how-step">
+                    <div class="how-step-number">1</div>
+                    <h3 class="how-step-title">Add the Chrome extension</h3>
+                    <p class="how-step-detail">30 seconds. One click from the Chrome Web Store.</p>
+                </div>
+                <div class="how-step-connector">
+                    <svg width="40" height="2" viewBox="0 0 40 2"><line x1="0" y1="1" x2="40" y2="1" stroke="var(--color-border)" stroke-width="2" stroke-dasharray="4 4"/></svg>
+                </div>
+                <div class="how-step">
+                    <div class="how-step-number">2</div>
+                    <h3 class="how-step-title">Connect your CRM</h3>
+                    <p class="how-step-detail">One click for GoHighLevel or HubSpot.</p>
+                </div>
+                <div class="how-step-connector">
+                    <svg width="40" height="2" viewBox="0 0 40 2"><line x1="0" y1="1" x2="40" y2="1" stroke="var(--color-border)" stroke-width="2" stroke-dasharray="4 4"/></svg>
+                </div>
+                <div class="how-step">
+                    <div class="how-step-number active">3</div>
+                    <h3 class="how-step-title">Tell your admin what happened</h3>
+                    <p class="how-step-detail">Type naturally. By Chrome, text, or WhatsApp. Your admin handles the rest.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -341,14 +402,14 @@
     <section class="before-after-section" id="before-after">
         <div class="before-after-container">
             <div class="section-label">See the Difference</div>
-            <h2 class="before-after-title text-reveal">Drag to reveal the future of CRM</h2>
-            <p class="before-after-subtitle">Left: your current reality. Right: life with FlightSuite.</p>
+            <h2 class="before-after-title text-reveal">Drag to see the difference</h2>
+            <p class="before-after-subtitle">Left: your CRM today. Right: your CRM with an AI admin.</p>
 
             <div class="ba-comparison" id="baComparison">
                 <!-- Before side (CRM pain) -->
                 <div class="ba-before">
                     <div class="ba-panel ba-panel-before">
-                        <div class="ba-panel-label">WITHOUT FLIGHTSUITE</div>
+                        <div class="ba-panel-label">YOUR CRM TODAY</div>
                         <div class="ba-crm-nightmare">
                             <div class="ba-crm-header">
                                 <span class="ba-crm-tab ba-crm-tab-active">Contacts</span>
@@ -369,16 +430,16 @@
                                     <span>Name</span><span>Email</span><span>Phone</span><span>Stage</span><span>Last Activity</span>
                                 </div>
                                 <div class="ba-crm-row ba-crm-row-stale">
-                                    <span>Sarah Chen</span><span>sarah@acme...</span><span>—</span><span class="ba-badge-warn">Stale</span><span class="ba-text-danger">47 days ago</span>
+                                    <span>Jessica Baker</span><span>jess@baker...</span><span>—</span><span class="ba-badge-warn">Stale</span><span class="ba-text-danger">47 days ago</span>
                                 </div>
                                 <div class="ba-crm-row ba-crm-row-stale">
-                                    <span>Mike Johnson</span><span>mike@...</span><span>555-01...</span><span class="ba-badge-warn">Stale</span><span class="ba-text-danger">23 days ago</span>
+                                    <span>Tom Baker</span><span>tom@...</span><span>555-01...</span><span class="ba-badge-warn">Stale</span><span class="ba-text-danger">23 days ago</span>
                                 </div>
                                 <div class="ba-crm-row">
-                                    <span>Lisa Park</span><span>—</span><span>—</span><span class="ba-badge-empty">No Stage</span><span>—</span>
+                                    <span>Rachel Torres</span><span>—</span><span>—</span><span class="ba-badge-empty">No Stage</span><span>—</span>
                                 </div>
                                 <div class="ba-crm-row ba-crm-row-stale">
-                                    <span>David W.</span><span>david@...</span><span>—</span><span class="ba-badge-warn">Stale</span><span class="ba-text-danger">31 days ago</span>
+                                    <span>Kevin Park</span><span>kevin@...</span><span>—</span><span class="ba-badge-warn">Stale</span><span class="ba-text-danger">31 days ago</span>
                                 </div>
                                 <div class="ba-crm-row">
                                     <span>New Lead</span><span>—</span><span>—</span><span class="ba-badge-empty">—</span><span>—</span>
@@ -395,45 +456,45 @@
                 <!-- After side (FlightSuite) -->
                 <div class="ba-after">
                     <div class="ba-panel ba-panel-after">
-                        <div class="ba-panel-label ba-panel-label-glow">WITH FLIGHTSUITE</div>
+                        <div class="ba-panel-label ba-panel-label-glow">WITH YOUR AI CRM ADMIN</div>
                         <div class="ba-flightsuite-clean">
                             <div class="ba-fs-input">
                                 <div class="ba-fs-prompt">›</div>
-                                <div class="ba-fs-text">Had a call with Sarah Chen. She's interested in the enterprise plan. Move her to Discovery stage. Also book a demo with Lisa Park next Tuesday at 2pm.</div>
+                                <div class="ba-fs-text">Just finished the walkthrough with the Hendersons. They love the kitchen layout. Schedule follow-up for Saturday. Also create a contact for Rachel Torres — new lead from Google Ads.</div>
                             </div>
                             <div class="ba-fs-results">
                                 <div class="ba-fs-card ba-fs-card-success">
                                     <div class="ba-fs-card-icon">✓</div>
                                     <div class="ba-fs-card-content">
-                                        <div class="ba-fs-card-title">Contact Updated</div>
-                                        <div class="ba-fs-card-detail">Sarah Chen → Enterprise Plan Interest</div>
-                                    </div>
-                                </div>
-                                <div class="ba-fs-card ba-fs-card-success">
-                                    <div class="ba-fs-card-icon">✓</div>
-                                    <div class="ba-fs-card-content">
-                                        <div class="ba-fs-card-title">Pipeline Moved</div>
-                                        <div class="ba-fs-card-detail">Sarah Chen → Discovery Stage</div>
-                                    </div>
-                                </div>
-                                <div class="ba-fs-card ba-fs-card-success">
-                                    <div class="ba-fs-card-icon">✓</div>
-                                    <div class="ba-fs-card-content">
                                         <div class="ba-fs-card-title">Note Logged</div>
-                                        <div class="ba-fs-card-detail">Call summary added to Sarah Chen</div>
+                                        <div class="ba-fs-card-detail">Henderson walkthrough — kitchen layout positive</div>
                                     </div>
                                 </div>
                                 <div class="ba-fs-card ba-fs-card-success">
                                     <div class="ba-fs-card-icon">✓</div>
                                     <div class="ba-fs-card-content">
-                                        <div class="ba-fs-card-title">Appointment Booked</div>
-                                        <div class="ba-fs-card-detail">Lisa Park — Demo — Tue 2:00 PM</div>
+                                        <div class="ba-fs-card-title">Follow-up Set</div>
+                                        <div class="ba-fs-card-detail">Henderson Family — Saturday, 11:00 AM</div>
+                                    </div>
+                                </div>
+                                <div class="ba-fs-card ba-fs-card-success">
+                                    <div class="ba-fs-card-icon">✓</div>
+                                    <div class="ba-fs-card-content">
+                                        <div class="ba-fs-card-title">Contact Created</div>
+                                        <div class="ba-fs-card-detail">Rachel Torres — Google Ads lead</div>
+                                    </div>
+                                </div>
+                                <div class="ba-fs-card ba-fs-card-success">
+                                    <div class="ba-fs-card-icon">✓</div>
+                                    <div class="ba-fs-card-content">
+                                        <div class="ba-fs-card-title">Source Tagged</div>
+                                        <div class="ba-fs-card-detail">Rachel Torres — Inbound: Google Ads</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="ba-fs-time">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                                4 actions completed in 3 seconds
+                                4 actions completed in 3 seconds — your admin handled it
                             </div>
                         </div>
                     </div>
@@ -459,9 +520,9 @@
     <section class="demo-section" id="demo">
         <div class="demo-container">
             <div class="demo-header">
-                <div class="demo-label">How It Works</div>
-                <h2 class="demo-title">Type naturally. Watch your CRM update.</h2>
-                <p class="demo-description">No clicks, no dashboards. FlightSuite turns your words into structured CRM data instantly.</p>
+                <div class="demo-label">Your Admin in Action</div>
+                <h2 class="demo-title">Tell your CRM admin what happened. It handles the rest.</h2>
+                <p class="demo-description">No logging in. No clicking through forms. Just say it — your admin does the data entry.</p>
             </div>
 
             <!-- Data Flow Scene -->
@@ -472,7 +533,7 @@
                         <div class="dataflow-terminal-dots">
                             <span></span><span></span><span></span>
                         </div>
-                        <div class="dataflow-terminal-title">FlightSuite Agent</div>
+                        <div class="dataflow-terminal-title">Your CRM Admin</div>
                     </div>
                     <div class="dataflow-terminal-body">
                         <div class="dataflow-prompt">
@@ -543,7 +604,7 @@
             <!-- Demo CTA -->
             <div class="demo-cta" id="demoCta">
                 <a href="/app" class="cta-primary" data-event="install_click">
-                    <span class="cta-desktop-text">Add to Chrome — Free</span><span class="cta-mobile-text">Get Started Free</span>
+                    <span class="cta-desktop-text">Get Your CRM Admin — Free</span><span class="cta-mobile-text">Get Started Free</span>
                     <span>→</span>
                 </a>
                 <a href="/app" class="demo-cta-secondary">Get Started Free</a>
@@ -580,25 +641,95 @@
     </section>
     -->
 
-    <!-- Press Strip — minimal social proof -->
-    <section class="press-strip" id="press">
-        <div class="press-strip-inner">
-            <span class="press-strip-label">As featured in</span>
-            <div class="press-strip-items">
-                <a href="/blog/flightsuite-founder-story.html" class="press-strip-item">
-                    <span class="press-strip-pub">Charlotte Business Journal</span>
-                    <span class="press-strip-divider">/</span>
-                    <span class="press-strip-title">What's Holding Back Small Businesses in Charlotte</span>
-                </a>
-                <a href="/blog/gbeta-charlotte-accelerator.html" class="press-strip-item">
-                    <span class="press-strip-pub">gBETA Charlotte</span>
-                    <span class="press-strip-divider">/</span>
-                    <span class="press-strip-title">Fall 2025 Cohort</span>
-                </a>
-                <a href="/blog/gbeta-charlotte-accelerator.html" class="press-strip-item">
-                    <span class="press-strip-pub">NEV Elevate X</span>
-                    <span class="press-strip-divider">/</span>
-                    <span class="press-strip-title">Batch 15 Accelerator</span>
+    <!-- Value Anchor — 3-Column Comparison -->
+    <section class="value-anchor-section" id="value-anchor">
+        <div class="value-anchor-container">
+            <div class="section-label">The Comparison</div>
+            <h2 class="section-title text-reveal">What would you pay someone to manage your CRM?</h2>
+            <div class="value-anchor-grid">
+                <!-- DIY Column -->
+                <div class="value-anchor-card value-anchor-diy">
+                    <div class="value-anchor-card-header">
+                        <h3 class="value-anchor-card-title">Do It Yourself</h3>
+                        <div class="value-anchor-card-price">$0/mo <span class="value-anchor-price-note">+ your time</span></div>
+                    </div>
+                    <ul class="value-anchor-list">
+                        <li class="value-anchor-item value-anchor-neg">
+                            <span class="value-anchor-icon">✗</span>
+                            <span>5-10 hours/week of YOUR time</span>
+                        </li>
+                        <li class="value-anchor-item value-anchor-neg">
+                            <span class="value-anchor-icon">✗</span>
+                            <span>Updates when you remember</span>
+                        </li>
+                        <li class="value-anchor-item value-anchor-neg">
+                            <span class="value-anchor-icon">✗</span>
+                            <span>You figure out every field</span>
+                        </li>
+                        <li class="value-anchor-item value-anchor-neg">
+                            <span class="value-anchor-icon">✗</span>
+                            <span>"I'll do it later"</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- VA Column -->
+                <div class="value-anchor-card value-anchor-va">
+                    <div class="value-anchor-card-header">
+                        <h3 class="value-anchor-card-title">Hire a Virtual Assistant</h3>
+                        <div class="value-anchor-card-price">$200-500/mo</div>
+                    </div>
+                    <ul class="value-anchor-list">
+                        <li class="value-anchor-item value-anchor-neutral">
+                            <span class="value-anchor-icon">~</span>
+                            <span>Needs CRM training</span>
+                        </li>
+                        <li class="value-anchor-item value-anchor-neutral">
+                            <span class="value-anchor-icon">~</span>
+                            <span>Business hours only</span>
+                        </li>
+                        <li class="value-anchor-item value-anchor-neutral">
+                            <span class="value-anchor-icon">~</span>
+                            <span>One CRM platform</span>
+                        </li>
+                        <li class="value-anchor-item value-anchor-neutral">
+                            <span class="value-anchor-icon">~</span>
+                            <span>"Let me check with my VA"</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- FlightSuite Column -->
+                <div class="value-anchor-card value-anchor-fs">
+                    <div class="value-anchor-badge">Your AI CRM Admin</div>
+                    <div class="value-anchor-card-header">
+                        <h3 class="value-anchor-card-title">FlightSuite</h3>
+                        <div class="value-anchor-card-price">From $19/mo <span class="value-anchor-price-note">starts free</span></div>
+                    </div>
+                    <ul class="value-anchor-list">
+                        <li class="value-anchor-item value-anchor-pos">
+                            <span class="value-anchor-icon">✓</span>
+                            <span>0 hours — fully automated</span>
+                        </li>
+                        <li class="value-anchor-item value-anchor-pos">
+                            <span class="value-anchor-icon">✓</span>
+                            <span>24/7 — text from anywhere</span>
+                        </li>
+                        <li class="value-anchor-item value-anchor-pos">
+                            <span class="value-anchor-icon">✓</span>
+                            <span>Knows GHL & HubSpot day one</span>
+                        </li>
+                        <li class="value-anchor-item value-anchor-pos">
+                            <span class="value-anchor-icon">✓</span>
+                            <span>"Already done"</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="value-anchor-cta">
+                <a href="/app" class="cta-primary" data-event="install_click">
+                    Get Your CRM Admin — Free
+                    <span class="cta-arrow">→</span>
                 </a>
             </div>
         </div>
@@ -638,7 +769,7 @@
             <div style="background: linear-gradient(135deg, var(--color-ios-purple) 0%, var(--color-apple-blue) 100%); border-radius: 24px; padding: clamp(32px, 5vw, 48px); display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;" id="calculator-cta">
                 <div style="color: white;">
                     <h2 style="font-size: clamp(24px, 4vw, 32px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2;">Calculate Your Data Entry Cost</h2>
-                    <p style="font-size: 16px; line-height: 1.6; opacity: 0.9; margin-bottom: 24px;">See exactly how much time and money your team loses to CRM data entry - and what you could save with automation.</p>
+                    <p style="font-size: 16px; line-height: 1.6; opacity: 0.9; margin-bottom: 24px;">See exactly how much time and money you lose to CRM data entry — and what you could save with an AI CRM admin.</p>
                     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
                         <a href="/tools/crm-roi-calculator.html" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gradient-primary); color: white; padding: 14px 24px; border-radius: 980px; font-weight: 600; font-size: 15px; text-decoration: none; transition: all 0.2s ease;">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -744,6 +875,28 @@
                         </div>
                     </div>
                 </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+                        <span>Is this worth it for one person?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Most solopreneurs spend 5-10 hours a week on CRM admin. At $50/hr, that's $1,083/month in lost selling time. FlightSuite Pro at $49/mo pays for itself in under an hour of recaptured time — every month.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+                        <span>Can I update my CRM from my phone?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes — text FlightSuite via SMS (US) or WhatsApp (international). No app to download. Just text what happened and your CRM admin handles the rest.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -752,8 +905,8 @@
     <section class="capabilities-preview" id="capabilities">
         <div class="capabilities-container">
             <div class="section-label">Capabilities</div>
-            <h2 class="section-title">42+ AI-Powered Actions</h2>
-            <p class="section-description">From creating contacts to booking appointments—just describe what you want.</p>
+            <h2 class="section-title">Everything a CRM admin does — automated</h2>
+            <p class="section-description">Contacts, follow-ups, pipeline updates, scheduling — tell your admin what to do in plain English.</p>
 
             <div class="cap-grid">
                 <!-- Contacts Card -->
@@ -831,7 +984,7 @@
             </div>
 
             <a href="/capabilities.html" class="cap-view-all">
-                View All 42+ Capabilities
+                View All Capabilities
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
@@ -989,18 +1142,18 @@
             <div class="marquee-track marquee-left">
                 <div class="marquee-card">
                     <div class="marquee-stars">★★★★★</div>
-                    <p>"This is incredible. I just typed what happened in my meeting and it updated everything in GHL."</p>
+                    <p>"It's like the assistant you don't have to train. It just knows what to do with your CRM."</p>
+                    <div class="marquee-author">Jerry N. <span>Sales Manager</span></div>
+                </div>
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"I just typed what happened in my meeting and it updated everything in GHL."</p>
                     <div class="marquee-author">Dale F. <span>Agency Owner</span></div>
                 </div>
                 <div class="marquee-card">
                     <div class="marquee-stars">★★★★★</div>
                     <p>"Saved me at least 5 hours a week. I actually keep my CRM updated now."</p>
                     <div class="marquee-author">Marcus T. <span>Account Executive</span></div>
-                </div>
-                <div class="marquee-card">
-                    <div class="marquee-stars">★★★★★</div>
-                    <p>"My team went from 40% CRM compliance to nearly 100% in two weeks."</p>
-                    <div class="marquee-author">Sarah K. <span>Sales Director</span></div>
                 </div>
                 <div class="marquee-card">
                     <div class="marquee-stars">★★★★★</div>
@@ -1010,18 +1163,18 @@
                 <!-- Duplicate set for seamless loop -->
                 <div class="marquee-card">
                     <div class="marquee-stars">★★★★★</div>
-                    <p>"This is incredible. I just typed what happened in my meeting and it updated everything in GHL."</p>
+                    <p>"It's like the assistant you don't have to train. It just knows what to do with your CRM."</p>
+                    <div class="marquee-author">Jerry N. <span>Sales Manager</span></div>
+                </div>
+                <div class="marquee-card">
+                    <div class="marquee-stars">★★★★★</div>
+                    <p>"I just typed what happened in my meeting and it updated everything in GHL."</p>
                     <div class="marquee-author">Dale F. <span>Agency Owner</span></div>
                 </div>
                 <div class="marquee-card">
                     <div class="marquee-stars">★★★★★</div>
                     <p>"Saved me at least 5 hours a week. I actually keep my CRM updated now."</p>
                     <div class="marquee-author">Marcus T. <span>Account Executive</span></div>
-                </div>
-                <div class="marquee-card">
-                    <div class="marquee-stars">★★★★★</div>
-                    <p>"My team went from 40% CRM compliance to nearly 100% in two weeks."</p>
-                    <div class="marquee-author">Sarah K. <span>Sales Director</span></div>
                 </div>
                 <div class="marquee-card">
                     <div class="marquee-stars">★★★★★</div>
@@ -1035,8 +1188,8 @@
             <div class="marquee-track marquee-right">
                 <div class="marquee-card">
                     <div class="marquee-stars">★★★★★</div>
-                    <p>"OMG it's like the assistant you don't have to train. It just knows what to do with your CRM."</p>
-                    <div class="marquee-author">Jerry N. <span>Sales Manager</span></div>
+                    <p>"My CRM went from 40% compliance to nearly 100% in two weeks. Game changer."</p>
+                    <div class="marquee-author">Sarah K. <span>Sales Director</span></div>
                 </div>
                 <div class="marquee-card">
                     <div class="marquee-stars">★★★★★</div>
@@ -1056,8 +1209,8 @@
                 <!-- Duplicate set for seamless loop -->
                 <div class="marquee-card">
                     <div class="marquee-stars">★★★★★</div>
-                    <p>"OMG it's like the assistant you don't have to train. It just knows what to do with your CRM."</p>
-                    <div class="marquee-author">Jerry N. <span>Sales Manager</span></div>
+                    <p>"My CRM went from 40% compliance to nearly 100% in two weeks. Game changer."</p>
+                    <div class="marquee-author">Sarah K. <span>Sales Director</span></div>
                 </div>
                 <div class="marquee-card">
                     <div class="marquee-stars">★★★★★</div>
@@ -1109,17 +1262,16 @@
     <!-- Final CTA -->
     <section class="final-cta">
         <div class="final-cta-content">
-            <div class="final-cta-label">The Universal CRM Agent</div>
-            <h2 class="final-cta-title">Make CRM adoption effortless</h2>
-            <p class="final-cta-description">No more logging into dashboards and clicking around. Just type what happened—FlightSuite handles the rest. Save 5-10 hours every week.</p>
-            <p style="font-size:14px;color:rgba(255,255,255,0.5);margin-top:-8px;margin-bottom:16px;">Chrome extension free forever · SMS & WhatsApp plans from $10/mo · <a href="/subscribe.html" style="color:rgba(255,255,255,0.6);text-decoration:underline;">See pricing</a></p>
+            <div class="final-cta-label">Your AI CRM Admin</div>
+            <h2 class="final-cta-title">Get your AI CRM admin</h2>
+            <p class="final-cta-description">A virtual CRM assistant costs $200-500/month. Yours starts free — and never needs training.</p>
             <div class="final-cta-buttons">
                 <a href="/app" class="cta-large" data-event="install_click">
-                    <span class="cta-desktop-text">Add to Chrome - It's Free</span><span class="cta-mobile-text">Get Started Free</span>
+                    <span class="cta-desktop-text">Get Your CRM Admin — Free</span><span class="cta-mobile-text">Get Started Free</span>
                     <span>→</span>
                 </a>
                 <a href="/subscribe.html" class="cta-secondary" data-event="pricing_click" style="background: rgba(255, 255, 255, 0.1); border: 1.5px solid rgba(255, 255, 255, 0.3); color: white; text-decoration:none;">
-                    See Plans & Pricing
+                    See Plans
                 </a>
             </div>
             <div class="cta-trust">
@@ -1194,7 +1346,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="footer-brand-name">FlightSuite</div>
-                    <p class="footer-description">The universal CRM Agent. Making CRM adoption effortless.</p>
+                    <p class="footer-description">Your AI CRM Admin. Logs calls. Updates contacts. Sends follow-ups.</p>
                 </div>
                 <div class="footer-column">
                     <h4>Product</h4>
@@ -1400,11 +1552,11 @@
     <script src="js/generative-seed.js" defer></script>
     <script src="js/particles.js?v=10" defer></script>
     <script src="js/spotlight.js" defer></script>
-    <script src="js/hero-demo.js" defer></script>
-    <script src="js/dataflow.js" defer></script>
+    <script src="js/hero-demo.js?v=2" defer></script>
+    <script src="js/dataflow.js?v=2" defer></script>
     <script src="js/before-after.js" defer></script>
-    <script src="js/ghost-agent.js" defer></script>
-    <script src="js/command-bar.js" defer></script>
+    <script src="js/ghost-agent.js?v=2" defer></script>
+    <script src="js/command-bar.js?v=2" defer></script>
 
     <!-- Airtable Integration -->
     <script src="airtable-config.js"></script>

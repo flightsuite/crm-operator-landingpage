@@ -13,18 +13,18 @@
 
     // --- CRM actions the agent "performs" as user browses ---
     const actions = [
-        { text: 'Contact synced — Sarah Chen', icon: '✓', delay: 0 },
-        { text: 'Note logged — Call summary', icon: '✓', delay: 0 },
-        { text: 'Pipeline updated — Discovery', icon: '✓', delay: 0 },
-        { text: 'Scanning for new leads...', icon: '◌', delay: 0 },
-        { text: 'Appointment created — Demo call', icon: '✓', delay: 0 },
-        { text: 'Email tagged — Follow-up', icon: '✓', delay: 0 },
+        { text: 'Contact synced — Jessica Baker', icon: '✓', delay: 0 },
+        { text: 'Note logged — Roofing estimate call', icon: '✓', delay: 0 },
+        { text: 'Pipeline updated — Estimate Sent', icon: '✓', delay: 0 },
+        { text: 'Checking for stale follow-ups...', icon: '◌', delay: 0 },
+        { text: 'Follow-up set — Tom Baker, Thursday', icon: '✓', delay: 0 },
+        { text: 'Deal closed — Mark Rivera, $4,200', icon: '✓', delay: 0 },
         { text: 'Duplicate merged — 2 contacts', icon: '✓', delay: 0 },
-        { text: 'Task created — Send proposal', icon: '✓', delay: 0 },
-        { text: 'Deal value updated — $24,000', icon: '✓', delay: 0 },
-        { text: 'Activity logged — LinkedIn visit', icon: '✓', delay: 0 },
-        { text: 'Smart tag applied — Enterprise', icon: '✓', delay: 0 },
-        { text: 'Contact enriched — Company data', icon: '✓', delay: 0 },
+        { text: 'Task created — Send quote to Henderson', icon: '✓', delay: 0 },
+        { text: 'Lead enriched — Rachel Torres, company data', icon: '✓', delay: 0 },
+        { text: 'Email sent — Onboarding welcome', icon: '✓', delay: 0 },
+        { text: 'Source tagged — Google Ads lead', icon: '✓', delay: 0 },
+        { text: 'Activity logged — 3 calls today', icon: '✓', delay: 0 },
     ];
 
     let actionIndex = 0;

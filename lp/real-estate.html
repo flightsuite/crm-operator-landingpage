@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlightSuite for Real Estate — Your AI CRM Admin</title>
+    <meta name="description" content="Update your CRM between showings. Just text what happened — FlightSuite logs it to HubSpot or GoHighLevel instantly. Free to start.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="/Assets/Flight Suite Favicon vPurple.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CSY283V4Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0CSY283V4Y');
+    </script>
+
+    <!-- Meta Pixel (replace PIXEL_ID with actual) -->
+    <!-- <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'PIXEL_ID');
+    fbq('track', 'PageView');
+    </script> -->
+
+    <style>
+        :root {
+            --bg: #0A0A0A;
+            --surface: #111111;
+            --glass: rgba(255,255,255,0.04);
+            --glass-border: rgba(255,255,255,0.08);
+            --text-primary: #F5F5F7;
+            --text-secondary: #86868B;
+            --text-tertiary: #6E6E73;
+            --accent-blue: #0071E3;
+            --accent-purple: #5E5CE6;
+            --accent-cyan: #22D3EE;
+            --accent-green: #34C759;
+            --accent-gold: #D4A846;
+            --gradient: linear-gradient(135deg, #5E5CE6 0%, #0071E3 100%);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+        body { font-family: var(--font-body); color: var(--text-primary); background: var(--bg); font-size: 16px; line-height: 1.5; overflow-x: hidden; }
+
+        /* Animated gradient orbs */
+        .lp-bg-orbs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        .lp-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.15; }
+        .lp-orb-1 { width: 600px; height: 600px; background: var(--accent-purple); top: -200px; left: -100px; animation: orb-float-1 18s ease-in-out infinite; }
+        .lp-orb-2 { width: 500px; height: 500px; background: var(--accent-blue); bottom: -150px; right: -100px; animation: orb-float-2 22s ease-in-out infinite; }
+        .lp-orb-3 { width: 400px; height: 400px; background: var(--accent-cyan); top: 40%; left: 50%; transform: translateX(-50%); animation: orb-float-3 15s ease-in-out infinite; opacity: 0.08; }
+        @keyframes orb-float-1 { 0%, 100% { transform: translate(0, 0); } 33% { transform: translate(80px, 60px); } 66% { transform: translate(-40px, 120px); } }
+        @keyframes orb-float-2 { 0%, 100% { transform: translate(0, 0); } 33% { transform: translate(-60px, -80px); } 66% { transform: translate(40px, -40px); } }
+        @keyframes orb-float-3 { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-80px); } }
+
+        /* Noise grain overlay */
+        .lp-grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 256px 256px; }
+
+        /* Entrance animations */
+        .lp-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+        .lp-reveal.visible { opacity: 1; transform: translateY(0); }
+        .lp-reveal-delay-1 { transition-delay: 0.1s; }
+        .lp-reveal-delay-2 { transition-delay: 0.2s; }
+        .lp-reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* All content above orbs */
+        .lp-content { position: relative; z-index: 2; }
+
+        /* Nav */
+        .lp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .lp-logo { font-family: var(--font-display); font-size: 20px; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+        .lp-nav-cta { font-size: 14px; font-weight: 600; padding: 8px 20px; background: var(--accent-gold); color: #0A0A0A; border-radius: 980px; text-decoration: none; transition: opacity 0.15s; }
+        .lp-nav-cta:hover { opacity: 0.88; }
+
+        /* Hero */
+        .lp-hero { padding: 120px 24px 64px; text-align: center; max-width: 640px; margin: 0 auto; }
+        .lp-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(94,92,230,0.1); color: var(--accent-purple); border-radius: 980px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 24px; }
+        .lp-h1 { font-family: var(--font-display); font-size: clamp(36px, 8vw, 56px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.08; margin-bottom: 16px; }
+        .lp-sub { font-size: clamp(16px, 2.5vw, 20px); color: var(--text-secondary); margin-bottom: 32px; line-height: 1.5; }
+        .lp-cta { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; background: var(--accent-gold); color: #0A0A0A; border-radius: 980px; font-size: 17px; font-weight: 700; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 20px rgba(212,168,70,0.3); }
+        .lp-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,168,70,0.4); }
+        .lp-cta-note { font-size: 13px; color: var(--text-tertiary); margin-top: 12px; }
+
+        /* Pain */
+        .lp-pain { padding: 64px 24px; max-width: 800px; margin: 0 auto; }
+        .lp-pain-copy { font-size: 18px; color: var(--text-secondary); text-align: center; margin-bottom: 40px; line-height: 1.6; }
+        .lp-pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .lp-pain-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px 20px; text-align: center; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s; cursor: default; }
+        .lp-pain-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(94,92,230,0.12); border-color: rgba(255,255,255,0.12); }
+        .lp-pain-stat { font-family: var(--font-display); font-size: clamp(28px, 6vw, 40px); font-weight: 700; background: linear-gradient(135deg, #FF6B6B, #FF3B30); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .lp-pain-label { font-size: 14px; color: var(--text-secondary); margin-top: 8px; line-height: 1.4; }
+
+        /* Demo */
+        .lp-demo { padding: 64px 24px; max-width: 720px; margin: 0 auto; }
+        .lp-demo-header { text-align: center; margin-bottom: 32px; }
+        .lp-section-label { font-size: 12px; font-weight: 700; color: var(--accent-purple); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+        .lp-h2 { font-family: var(--font-display); font-size: clamp(24px, 5vw, 36px); font-weight: 700; letter-spacing: -0.03em; }
+
+        .lp-terminal { background: rgba(17,17,17,0.8); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+        .lp-terminal-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--glass-border); }
+        .lp-terminal-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .lp-terminal-dot:nth-child(1) { background: #FF5F57; }
+        .lp-terminal-dot:nth-child(2) { background: #FEBC2E; }
+        .lp-terminal-dot:nth-child(3) { background: #28C840; }
+        .lp-terminal-title { font-size: 12px; color: var(--text-tertiary); margin-left: auto; margin-right: auto; }
+        .lp-terminal-body { padding: 20px; min-height: 200px; }
+        .lp-prompt { display: flex; align-items: flex-start; gap: 8px; }
+        .lp-prompt-icon { color: var(--accent-purple); font-family: monospace; font-size: 16px; }
+        .lp-typed { font-size: 15px; color: var(--text-primary); line-height: 1.5; }
+        .lp-caret { display: inline-block; width: 2px; height: 18px; background: var(--accent-purple); animation: blink 1s step-end infinite; vertical-align: text-bottom; margin-left: 2px; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .lp-cards { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+        .lp-card { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: rgba(52,199,89,0.06); border: 1px solid rgba(52,199,89,0.15); border-radius: 10px; opacity: 0; transform: translateY(8px); transition: opacity 0.3s var(--ease), transform 0.3s var(--ease); }
+        .lp-card.visible { opacity: 1; transform: translateY(0); }
+        .lp-card-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-green); flex-shrink: 0; }
+        .lp-card-label { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+        .lp-card-detail { font-size: 12px; color: var(--text-secondary); }
+        .lp-time-saved { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--accent-cyan); padding: 8px 12px; background: rgba(34,211,238,0.06); border-radius: 8px; margin-top: 12px; opacity: 0; transform: translateY(8px); transition: opacity 0.4s var(--ease), transform 0.4s var(--ease); }
+        .lp-time-saved.visible { opacity: 1; transform: translateY(0); }
+
+        /* Value Anchor */
+        .lp-value { padding: 64px 24px; max-width: 640px; margin: 0 auto; text-align: center; }
+        .lp-value-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+        .lp-value-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px 20px; text-align: left; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s var(--ease), box-shadow 0.3s; }
+        .lp-value-card:hover { transform: translateY(-4px); }
+        .lp-value-card.highlight { border-color: var(--accent-gold); background: rgba(212,168,70,0.05); box-shadow: 0 0 40px rgba(212,168,70,0.12); }
+        .lp-value-card.highlight:hover { box-shadow: 0 0 60px rgba(212,168,70,0.2); }
+        .lp-value-card-title { font-size: 13px; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+        .lp-value-price { font-family: var(--font-display); font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+        .lp-value-price.expensive { color: #FF6B6B; }
+        .lp-value-price.affordable { color: var(--accent-gold); }
+        .lp-value-list { list-style: none; }
+        .lp-value-list li { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .lp-value-list li::before { position: absolute; left: 0; }
+        .lp-value-card:not(.highlight) .lp-value-list li::before { content: '✗'; color: #FF3B30; }
+        .lp-value-card.highlight .lp-value-list li::before { content: '✓'; color: var(--accent-green); }
+
+        /* Social Proof */
+        .lp-proof { padding: 64px 24px; max-width: 640px; margin: 0 auto; }
+        .lp-testimonial { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px; margin-bottom: 16px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s var(--ease), border-color 0.3s; }
+        .lp-testimonial:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.12); }
+        .lp-testimonial-stars { color: #FFD60A; font-size: 14px; margin-bottom: 8px; }
+        .lp-testimonial-text { font-size: 16px; color: var(--text-primary); line-height: 1.6; font-style: italic; margin-bottom: 12px; }
+        .lp-testimonial-author { font-size: 14px; color: var(--text-tertiary); }
+        .lp-testimonial-author strong { color: var(--text-secondary); font-weight: 600; }
+        .lp-trust { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 13px; color: var(--text-tertiary); padding-top: 24px; border-top: 1px solid var(--glass-border); margin-top: 32px; }
+
+        /* Final CTA */
+        .lp-final { padding: 80px 24px; text-align: center; background: linear-gradient(180deg, var(--bg) 0%, #0D0D0F 100%); }
+        .lp-final-h2 { font-family: var(--font-display); font-size: clamp(28px, 6vw, 44px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; }
+        .lp-final-sub { font-size: 17px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.5; }
+        .lp-final-badge { font-size: 13px; color: var(--text-tertiary); margin-top: 16px; }
+        .lp-final-trust { display: flex; align-items: center; justify-content: center; gap: 24px; margin-top: 24px; font-size: 13px; color: var(--text-tertiary); }
+        .lp-final-trust span { display: flex; align-items: center; gap: 4px; }
+        .lp-check { color: var(--accent-green); }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .lp-pain-grid { grid-template-columns: 1fr; max-width: 340px; margin-left: auto; margin-right: auto; }
+            .lp-value-compare { grid-template-columns: 1fr; max-width: 360px; margin-left: auto; margin-right: auto; }
+            .lp-value-card.highlight { order: -1; }
+            .lp-cta { width: 100%; justify-content: center; font-size: 16px; padding: 16px 24px; }
+            .lp-nav { backdrop-filter: none; -webkit-backdrop-filter: none; }
+            .lp-pain-card, .lp-terminal, .lp-value-card, .lp-testimonial { backdrop-filter: none; -webkit-backdrop-filter: none; }
+            .lp-orb { filter: blur(80px); opacity: 0.1; }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .lp-orb { animation: none; }
+            .lp-reveal { opacity: 1; transform: none; transition: none; }
+        }
+
+        @media (max-width: 375px) {
+            .lp-hero { padding: 100px 20px 48px; }
+            .lp-h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Animated Background -->
+<div class="lp-bg-orbs">
+    <div class="lp-orb lp-orb-1"></div>
+    <div class="lp-orb lp-orb-2"></div>
+    <div class="lp-orb lp-orb-3"></div>
+</div>
+<div class="lp-grain"></div>
+
+<div class="lp-content">
+
+<!-- Nav -->
+<nav class="lp-nav">
+    <a href="/" class="lp-logo">FlightSuite</a>
+    <a href="/app" class="lp-nav-cta" data-event="lp_re_nav_cta">Try Free</a>
+</nav>
+
+<!-- Hero -->
+<section class="lp-hero">
+    <div class="lp-badge">Works with HubSpot & GoHighLevel</div>
+    <h1 class="lp-h1 lp-reveal">Your CRM admin.<br>Always on.</h1>
+    <p class="lp-sub lp-reveal lp-reveal-delay-1">Update your CRM between showings — just text what happened. No laptop. No logging in. Done before you start the car.</p>
+    <a href="/app" class="lp-cta lp-reveal lp-reveal-delay-2" data-event="lp_re_hero_cta">Try Free →</a>
+    <p class="lp-cta-note lp-reveal lp-reveal-delay-3">Free Chrome extension. No credit card.</p>
+</section>
+
+<!-- Pain Mirror -->
+<section class="lp-pain">
+    <p class="lp-pain-copy">You're paying for a CRM you never touch. Not because you don't care — because you're too busy showing homes.</p>
+    <div class="lp-pain-grid">
+        <div class="lp-pain-card">
+            <div class="lp-pain-stat">$450</div>
+            <div class="lp-pain-label">per month for your CRM</div>
+        </div>
+        <div class="lp-pain-card">
+            <div class="lp-pain-stat">3 wks</div>
+            <div class="lp-pain-label">since your last CRM update</div>
+        </div>
+        <div class="lp-pain-card">
+            <div class="lp-pain-stat">2 hrs</div>
+            <div class="lp-pain-label">per week you could spend on showings</div>
+        </div>
+    </div>
+</section>
+
+<!-- Demo -->
+<section class="lp-demo">
+    <div class="lp-demo-header">
+        <div class="lp-section-label">Your Admin in Action</div>
+        <h2 class="lp-h2">Text what happened. CRM updated.</h2>
+    </div>
+    <div class="lp-terminal">
+        <div class="lp-terminal-bar">
+            <span class="lp-terminal-dot"></span>
+            <span class="lp-terminal-dot"></span>
+            <span class="lp-terminal-dot"></span>
+            <span class="lp-terminal-title">Your CRM Admin</span>
+        </div>
+        <div class="lp-terminal-body">
+            <div class="lp-prompt">
+                <span class="lp-prompt-icon">›</span>
+                <span class="lp-typed" id="lpTyped"></span>
+                <span class="lp-caret"></span>
+            </div>
+            <div class="lp-cards" id="lpCards"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Value Anchor -->
+<section class="lp-value">
+    <div class="lp-section-label">The Comparison</div>
+    <h2 class="lp-h2">What you're really paying for CRM help</h2>
+    <div class="lp-value-compare">
+        <div class="lp-value-card">
+            <div class="lp-value-card-title">Hire an Assistant</div>
+            <div class="lp-value-price expensive">$500-1,000/mo</div>
+            <ul class="lp-value-list">
+                <li>Needs CRM training</li>
+                <li>Business hours only</li>
+                <li>Can't text from your car</li>
+                <li>Still needs oversight</li>
+            </ul>
+        </div>
+        <div class="lp-value-card highlight">
+            <div class="lp-value-card-title">Your AI CRM Admin</div>
+            <div class="lp-value-price affordable">Free to start</div>
+            <ul class="lp-value-list">
+                <li>Knows your CRM day one</li>
+                <li>Available 24/7</li>
+                <li>Text from anywhere</li>
+                <li>Zero training needed</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Social Proof -->
+<section class="lp-proof">
+    <div class="lp-testimonial">
+        <div class="lp-testimonial-stars">★★★★★</div>
+        <p class="lp-testimonial-text">"Finally something that makes CRM not feel like homework."</p>
+        <div class="lp-testimonial-author"><strong>Jenifer J.</strong> · Real Estate Agent</div>
+    </div>
+    <div class="lp-testimonial">
+        <div class="lp-testimonial-stars">★★★★★</div>
+        <p class="lp-testimonial-text">"It's like the assistant you don't have to train. It just knows what to do with your CRM."</p>
+        <div class="lp-testimonial-author"><strong>Jerry N.</strong> · Sales Manager</div>
+    </div>
+    <div class="lp-trust">
+        <span>As featured in Charlotte Business Journal</span>
+        <span>·</span>
+        <span>gBETA Charlotte</span>
+        <span>·</span>
+        <span>Trusted by 100+ sales pros</span>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="lp-final">
+    <h2 class="lp-final-h2">Your CRM admin.</h2>
+    <p class="lp-final-sub">Just text what happened. We'll update it for you.</p>
+    <a href="/app" class="lp-cta" data-event="lp_re_final_cta">Try Free →</a>
+    <p class="lp-final-badge">Works with HubSpot & GoHighLevel</p>
+    <div class="lp-final-trust">
+        <span><span class="lp-check">✓</span> Free to start</span>
+        <span><span class="lp-check">✓</span> No credit card</span>
+        <span><span class="lp-check">✓</span> 30-second install</span>
+    </div>
+</section>
+
+</div><!-- end lp-content -->
+
+<!-- Reveal Animation Observer -->
+<script>
+(function() {
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.lp-reveal').forEach(el => obs.observe(el));
+})();
+</script>
+
+<!-- Demo Script -->
+<script>
+(function() {
+    const typedEl = document.getElementById('lpTyped');
+    const cardsEl = document.getElementById('lpCards');
+    if (!typedEl || !cardsEl) return;
+
+    const sequences = [
+        {
+            text: 'Just showed Oak Park to the Millers. They want to offer $485K. Schedule follow-up for tomorrow morning.',
+            cards: [
+                { label: 'Note Logged', detail: 'Millers — Oak Park showing, $485K offer interest' },
+                { label: 'Pipeline Updated', detail: 'Millers → Active Buyer' },
+                { label: 'Follow-up Set', detail: 'Tomorrow, 9:00 AM' }
+            ],
+            time: '3 actions in 2.4s — would take ~4 min manually'
+        },
+        {
+            text: 'New lead from Zillow — Karen Chen, looking for 3BR in Ballantyne under $400K.',
+            cards: [
+                { label: 'Contact Created', detail: 'Karen Chen — Zillow lead' },
+                { label: 'Source Tagged', detail: 'Inbound: Zillow · 3BR Ballantyne <$400K' }
+            ],
+            time: '2 actions in 1.8s — would take ~3 min manually'
+        },
+        {
+            text: 'The Johnsons accepted the counter. Move to Under Contract. Send congrats email.',
+            cards: [
+                { label: 'Deal Updated', detail: 'Johnson → Under Contract' },
+                { label: 'Email Sent', detail: 'Congratulations template → johnsons@email.com' }
+            ],
+            time: '2 actions in 1.5s — would take ~3 min manually'
+        }
+    ];
+
+    let current = 0;
+
+    function typeText(text, cb) {
+        typedEl.textContent = '';
+        let i = 0;
+        const speed = 28 + Math.random() * 15;
+        function tick() {
+            if (i < text.length) {
+                typedEl.textContent += text[i++];
+                setTimeout(tick, '.!?,'.includes(text[i-1]) ? speed * 5 : speed);
+            } else if (cb) cb();
+        }
+        tick();
+    }
+
+    function showCards(cards, time) {
+        cardsEl.innerHTML = '';
+        cards.forEach((c, i) => {
+            const el = document.createElement('div');
+            el.className = 'lp-card';
+            el.innerHTML = `<span class="lp-card-dot"></span><div><div class="lp-card-label">${c.label}</div><div class="lp-card-detail">${c.detail}</div></div>`;
+            cardsEl.appendChild(el);
+            setTimeout(() => el.classList.add('visible'), 200 + i * 200);
+        });
+        if (time) {
+            const t = document.createElement('div');
+            t.className = 'lp-time-saved';
+            t.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${time}`;
+            cardsEl.appendChild(t);
+            setTimeout(() => t.classList.add('visible'), 200 + cards.length * 200 + 400);
+        }
+    }
+
+    function run() {
+        const seq = sequences[current];
+        cardsEl.innerHTML = '';
+        typeText(seq.text, () => {
+            setTimeout(() => showCards(seq.cards, seq.time), 200);
+            setTimeout(() => {
+                current = (current + 1) % sequences.length;
+                cardsEl.querySelectorAll('.lp-card, .lp-time-saved').forEach(c => { c.style.opacity = '0'; c.style.transform = 'translateY(8px)'; });
+                setTimeout(run, 800);
+            }, 5000);
+        });
+    }
+
+    setTimeout(run, 1000);
+})();
+</script>
+
+</body>
+</html>

@@ -53,11 +53,11 @@
 
     // --- Cycling placeholder examples ---
     const examples = [
-        'Add Sarah Chen as a contact...',
-        'Log my call with Mike about the proposal...',
-        'Book a demo for Tuesday at 2pm...',
-        'Move Acme Corp to Discovery stage...',
-        'Send a follow-up email to Lisa...',
+        'Just finished a call with Jessica about the estimate...',
+        'New lead from Facebook — Tom Baker...',
+        'Mark called back, ready to sign...',
+        'Schedule a follow-up with Henderson for Saturday...',
+        'Log my call with Rachel about the HVAC install...',
         'Show me the demo',
         'Had a meeting with John, he wants enterprise...',
     ];

@@ -170,7 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     ease: 'power2.out',
                     onUpdate: function() {
                         const progress = this.progress();
-                        el.textContent = prefix + Math.round(progress * target) + suffix;
+                        const val = Math.round(progress * target);
+                        el.textContent = prefix + (target >= 1000 ? val.toLocaleString() : val) + suffix;
                     }
                 });
             }

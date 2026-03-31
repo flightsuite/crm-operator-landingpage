@@ -18,25 +18,25 @@
 
     const sequences = [
         {
-            text: 'Had a call with Sarah Chen. She wants the enterprise plan. Move her to Discovery.',
+            text: 'Just finished a walkthrough with the Hendersons. They love the kitchen layout. Schedule follow-up for Saturday.',
             cards: [
-                { label: 'Contact Updated', name: 'Sarah Chen', detail: 'Enterprise Plan Interest', color: '#5E5CE6' },
-                { label: 'Note Logged', name: 'Call Summary', detail: 'Discussed enterprise pricing', color: '#0071E3' },
-                { label: 'Pipeline Moved', name: 'Sarah Chen → Discovery', detail: 'From: New Lead', color: '#30D158' }
+                { label: 'Note Logged', name: 'Henderson Walkthrough', detail: 'Kitchen layout positive feedback', color: '#0071E3' },
+                { label: 'Pipeline Updated', name: 'Henderson → Showing Complete', detail: 'From: Scheduled', color: '#30D158' },
+                { label: 'Follow-up Set', name: 'Henderson Family', detail: 'Saturday, 11:00 AM', color: '#FF9F0A' }
             ]
         },
         {
-            text: 'Create a contact for Mike Johnson at Acme Corp. Email mike@acme.com, phone (704) 555-0142.',
+            text: 'New lead from Google Ads — Rachel Torres, (980) 555-0233, wants a quote on full HVAC install.',
             cards: [
-                { label: 'Contact Created', name: 'Mike Johnson', detail: 'Acme Corp', color: '#5E5CE6' },
-                { label: 'Details Added', name: 'mike@acme.com', detail: '(704) 555-0142', color: '#0071E3' }
+                { label: 'Contact Created', name: 'Rachel Torres', detail: '(980) 555-0233', color: '#5E5CE6' },
+                { label: 'Source Tagged', name: 'Inbound: Google Ads', detail: 'Full HVAC Install', color: '#30D158' }
             ]
         },
         {
-            text: 'Book a demo for Lisa Park next Tuesday at 2pm. She found us through the blog.',
+            text: 'Kevin confirmed the $8,500 contract. Move to Closed Won. Send him the onboarding email.',
             cards: [
-                { label: 'Appointment Booked', name: 'Lisa Park — Demo', detail: 'Tuesday, 2:00 PM', color: '#FF9F0A' },
-                { label: 'Source Tagged', name: 'Inbound: Blog', detail: 'Attribution tracked', color: '#30D158' }
+                { label: 'Deal Closed', name: 'Kevin Park → Closed Won', detail: '$8,500', color: '#30D158' },
+                { label: 'Email Sent', name: 'Onboarding Welcome', detail: 'Sent to kevin@parkdesign.com', color: '#0071E3' }
             ]
         }
     ];
