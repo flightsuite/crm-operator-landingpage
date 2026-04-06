@@ -437,7 +437,7 @@ async function initDashboard() {
         safe(fetchAdmin('/admin/queries/volume?days=30')),
         safe(fetchAdmin('/admin/queries/top-tools?months=3')),
         safe(fetchAdmin('/admin/revenue')),
-        safe(fetchAdmin('/admin/users/recent?limit=20')),
+        safe(fetchAdmin('/admin/users/recent?limit=50')),
         safe(fetchAdmin('/admin/users/engagement')),
         safe(fetchAdmin('/admin/retention')),
         safe(fetchAdmin('/admin/feedback?limit=50')),
@@ -685,7 +685,7 @@ async function banDomain(idx, btn) {
         });
         if (!r.ok) { const d = await r.json().catch(() => ({})); throw new Error(d.detail || 'Failed to ban domain'); }
         toast('Banned domain @' + domain + '. All users from this domain will be blocked.');
-        const recent = await fetchAdmin('/admin/users/recent?limit=20');
+        const recent = await fetchAdmin('/admin/users/recent?limit=50');
         if (recent) renderRecentTable(recent);
     } catch(e) {
         toast(e.message, 'bad');
