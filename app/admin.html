@@ -437,7 +437,7 @@ async function initDashboard() {
         safe(fetchAdmin('/admin/queries/volume?days=30')),
         safe(fetchAdmin('/admin/queries/top-tools?months=3')),
         safe(fetchAdmin('/admin/revenue')),
-        safe(fetchAdmin('/admin/users/recent?limit=200')),
+        safe(fetchAdmin('/admin/users/recent?limit=20')),
         safe(fetchAdmin('/admin/users/engagement')),
         safe(fetchAdmin('/admin/retention')),
         safe(fetchAdmin('/admin/feedback?limit=50')),
@@ -629,11 +629,12 @@ function renderRecentTable(d) {
     if (countEl) countEl.textContent = `(${_usersData.length} users)`;
 
     let html = '<table><thead><tr><th>Email</th><th>Name</th><th>Tier</th><th>Source</th><th>Role</th><th>Signed up</th><th>Last active</th><th>CRM</th><th>Queries</th><th>Actions</th></tr></thead><tbody>';
-    for (const u of _usersData) {
+    for (let i = 0; i < _usersData.length; i++) {
+        const u = _usersData[i];
         const domain = getDomain(u.email);
         const isBanned = u.status === 'banned';
         html += `<tr>
-            <td>${u.email}</td>
+            <td>${u.email || '-'}</td>
             <td>${u.name || '-'}</td>
             <td><span class="tier-badge ${tierClass(u.tier)}">${u.tier}</span></td>
             <td>${u.referral_source || '-'}</td>
@@ -641,10 +642,10 @@ function renderRecentTable(d) {
             <td>${fmtDate(u.created_at)}</td>
             <td>${fmtDate(u.last_active_at)}</td>
             <td>${u.crm_connected || '-'}</td>
-            <td>${u.queries_this_month}</td>
+            <td>${u.queries_this_month || 0}</td>
             <td style="white-space:nowrap;">${isBanned
                 ? '<span class="status-banned">Banned</span>'
-                : `<button class="btn-ban" onclick="banUser('${u.user_id}','${u.email}',this)">Ban</button> <button class="btn-ban-domain" onclick="banDomain('${domain}',this)">Ban @${domain}</button>`
+                : `<button class="btn-ban" onclick="banUser(${i},this)">Ban</button> <button class="btn-ban-domain" onclick="banDomain(${i},this)">Ban @${domain}</button>`
             }</td>
         </tr>`;
     }
@@ -652,39 +653,43 @@ function renderRecentTable(d) {
     document.getElementById('signups-table').innerHTML = html;
 }
 
-async function banUser(userId, email, btn) {
-    if (!confirm(`Ban user ${email}? This will revoke their session and block their account.`)) return;
+async function banUser(idx, btn) {
+    const u = _usersData[idx];
+    if (!u) return;
+    if (!confirm('Ban user ' + u.email + '? This will revoke their session and block their account.')) return;
     btn.disabled = true; btn.textContent = 'Banning...';
     try {
-        const r = await fetch(API + '/admin/users/' + userId + '/ban', {
+        const r = await fetch(API + '/admin/users/' + u.user_id + '/ban', {
             method: 'POST', headers: auth(),
             body: JSON.stringify({ reason: 'manual_admin_ban' })
         });
         if (!r.ok) { const d = await r.json().catch(() => ({})); throw new Error(d.detail || 'Failed to ban'); }
         btn.closest('td').innerHTML = '<span class="status-banned">Banned</span>';
-        toast(`Banned ${email}`);
+        toast('Banned ' + u.email);
     } catch(e) {
         toast(e.message, 'bad');
         btn.disabled = false; btn.textContent = 'Ban';
     }
 }
 
-async function banDomain(domain, btn) {
-    if (!confirm(`Ban all users from @${domain}? This will block all current and future signups from this domain.`)) return;
+async function banDomain(idx, btn) {
+    const u = _usersData[idx];
+    if (!u) return;
+    const domain = u.email.split('@')[1] || '';
+    if (!confirm('Ban all users from @' + domain + '? This will block all current and future signups from this domain.')) return;
     btn.disabled = true; btn.textContent = 'Banning...';
     try {
         const r = await fetch(API + '/admin/domains/ban', {
             method: 'POST', headers: auth(),
-            body: JSON.stringify({ domain, reason: 'manual_admin_ban' })
+            body: JSON.stringify({ domain: domain, reason: 'manual_admin_ban' })
         });
         if (!r.ok) { const d = await r.json().catch(() => ({})); throw new Error(d.detail || 'Failed to ban domain'); }
-        toast(`Banned domain @${domain}. All users from this domain will be blocked.`);
-        // Refresh the table to show updated statuses
-        const recent = await fetchAdmin('/admin/users/recent?limit=200');
+        toast('Banned domain @' + domain + '. All users from this domain will be blocked.');
+        const recent = await fetchAdmin('/admin/users/recent?limit=20');
         if (recent) renderRecentTable(recent);
     } catch(e) {
         toast(e.message, 'bad');
-        btn.disabled = false; btn.textContent = `Ban @${domain}`;
+        btn.disabled = false; btn.textContent = 'Ban @' + domain;
     }
 }
 
