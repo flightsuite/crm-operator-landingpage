@@ -109,6 +109,13 @@
         .tier-basic { background: rgba(0,113,227,0.15); color: #4da3ff; }
         .tier-unlimited { background: rgba(94,92,230,0.15); color: #9b99ff; }
         .tier-legacy { background: rgba(255,149,0,0.15); color: var(--color-orange); }
+        .btn-ban { padding: 4px 10px; font-size: 11px; font-weight: 600; border: 1px solid rgba(255,59,48,0.3); border-radius: 6px; background: rgba(255,59,48,0.08); color: #FF3B30; cursor: pointer; font-family: var(--font-body); transition: all 0.2s; white-space: nowrap; }
+        .btn-ban:hover { background: rgba(255,59,48,0.2); border-color: #FF3B30; }
+        .btn-ban:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-ban-domain { padding: 4px 10px; font-size: 11px; font-weight: 600; border: 1px solid rgba(255,149,0,0.3); border-radius: 6px; background: rgba(255,149,0,0.08); color: #FF9500; cursor: pointer; font-family: var(--font-body); transition: all 0.2s; white-space: nowrap; }
+        .btn-ban-domain:hover { background: rgba(255,149,0,0.2); border-color: #FF9500; }
+        .btn-ban-domain:disabled { opacity: 0.4; cursor: not-allowed; }
+        .status-banned { color: #FF3B30; font-size: 11px; font-weight: 600; }
 
         /* ═══ RETENTION HEATMAP ═══ */
         .heatmap-cell { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 500; text-align: center; min-width: 52px; }
@@ -616,12 +623,15 @@ function renderRecentTable(d) {
     _usersData = d.data || [];
     const tierClass = (t) => ['basic','unlimited'].includes(t) ? 'tier-' + t : ['starter','pro','business'].includes(t) ? 'tier-legacy' : 'tier-free';
     const fmtDate = (ts) => ts ? new Date(ts * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '-';
+    const getDomain = (email) => email ? email.split('@')[1] || '' : '';
 
     const countEl = document.getElementById('signups-count');
     if (countEl) countEl.textContent = `(${_usersData.length} users)`;
 
-    let html = '<table><thead><tr><th>Email</th><th>Name</th><th>Tier</th><th>Source</th><th>Role</th><th>Signed up</th><th>Last active</th><th>CRM</th><th>Queries</th></tr></thead><tbody>';
+    let html = '<table><thead><tr><th>Email</th><th>Name</th><th>Tier</th><th>Source</th><th>Role</th><th>Signed up</th><th>Last active</th><th>CRM</th><th>Queries</th><th>Actions</th></tr></thead><tbody>';
     for (const u of _usersData) {
+        const domain = getDomain(u.email);
+        const isBanned = u.status === 'banned';
         html += `<tr>
             <td>${u.email}</td>
             <td>${u.name || '-'}</td>
@@ -632,10 +642,50 @@ function renderRecentTable(d) {
             <td>${fmtDate(u.last_active_at)}</td>
             <td>${u.crm_connected || '-'}</td>
             <td>${u.queries_this_month}</td>
+            <td style="white-space:nowrap;">${isBanned
+                ? '<span class="status-banned">Banned</span>'
+                : `<button class="btn-ban" onclick="banUser('${u.user_id}','${u.email}',this)">Ban</button> <button class="btn-ban-domain" onclick="banDomain('${domain}',this)">Ban @${domain}</button>`
+            }</td>
         </tr>`;
     }
     html += '</tbody></table>';
     document.getElementById('signups-table').innerHTML = html;
+}
+
+async function banUser(userId, email, btn) {
+    if (!confirm(`Ban user ${email}? This will revoke their session and block their account.`)) return;
+    btn.disabled = true; btn.textContent = 'Banning...';
+    try {
+        const r = await fetch(API + '/admin/users/' + userId + '/ban', {
+            method: 'POST', headers: auth(),
+            body: JSON.stringify({ reason: 'manual_admin_ban' })
+        });
+        if (!r.ok) { const d = await r.json().catch(() => ({})); throw new Error(d.detail || 'Failed to ban'); }
+        btn.closest('td').innerHTML = '<span class="status-banned">Banned</span>';
+        toast(`Banned ${email}`);
+    } catch(e) {
+        toast(e.message, 'bad');
+        btn.disabled = false; btn.textContent = 'Ban';
+    }
+}
+
+async function banDomain(domain, btn) {
+    if (!confirm(`Ban all users from @${domain}? This will block all current and future signups from this domain.`)) return;
+    btn.disabled = true; btn.textContent = 'Banning...';
+    try {
+        const r = await fetch(API + '/admin/domains/ban', {
+            method: 'POST', headers: auth(),
+            body: JSON.stringify({ domain, reason: 'manual_admin_ban' })
+        });
+        if (!r.ok) { const d = await r.json().catch(() => ({})); throw new Error(d.detail || 'Failed to ban domain'); }
+        toast(`Banned domain @${domain}. All users from this domain will be blocked.`);
+        // Refresh the table to show updated statuses
+        const recent = await fetchAdmin('/admin/users/recent?limit=200');
+        if (recent) renderRecentTable(recent);
+    } catch(e) {
+        toast(e.message, 'bad');
+        btn.disabled = false; btn.textContent = `Ban @${domain}`;
+    }
 }
 
 function exportUsersCSV() {
