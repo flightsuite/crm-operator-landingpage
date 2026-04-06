@@ -97,7 +97,8 @@
         .chart-wrap canvas { width: 100% !important; height: 100% !important; }
 
         /* ═══ TABLE ═══ */
-        .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; max-height: 600px; overflow-y: auto; }
+        .table-wrap thead th { position: sticky; top: 0; background: var(--color-bg-primary); z-index: 2; }
         table { width: 100%; border-collapse: collapse; font-size: 13px; }
         th { text-align: left; padding: 10px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-tertiary); border-bottom: 1px solid var(--color-border); font-weight: 600; white-space: nowrap; }
         td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.03); white-space: nowrap; color: var(--color-text-secondary); }
@@ -285,7 +286,13 @@
 
     <!-- Row 5: Recent Signups -->
     <div class="card" style="margin-bottom:24px;">
-        <div class="card-title">Recent Signups</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+            <div class="card-title" style="margin-bottom:0;">Recent Signups <span id="signups-count" style="font-size:12px;color:var(--color-text-tertiary);font-weight:400;"></span></div>
+            <button class="btn-export" onclick="exportUsersCSV()" style="padding:6px 14px;font-size:12px;">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v9m0 0L4 7m3 3l3-3M1 11v1a1 1 0 001 1h10a1 1 0 001-1v-1"/></svg>
+                Export CSV
+            </button>
+        </div>
         <div class="table-wrap" id="signups-table"></div>
     </div>
 
@@ -423,7 +430,7 @@ async function initDashboard() {
         safe(fetchAdmin('/admin/queries/volume?days=30')),
         safe(fetchAdmin('/admin/queries/top-tools?months=3')),
         safe(fetchAdmin('/admin/revenue')),
-        safe(fetchAdmin('/admin/users/recent?limit=20')),
+        safe(fetchAdmin('/admin/users/recent?limit=200')),
         safe(fetchAdmin('/admin/users/engagement')),
         safe(fetchAdmin('/admin/retention')),
         safe(fetchAdmin('/admin/feedback?limit=50')),
@@ -604,12 +611,17 @@ function renderRetention(d) {
 }
 
 // ═══ RECENT SIGNUPS TABLE ═══
+let _usersData = [];
 function renderRecentTable(d) {
+    _usersData = d.data || [];
     const tierClass = (t) => ['basic','unlimited'].includes(t) ? 'tier-' + t : ['starter','pro','business'].includes(t) ? 'tier-legacy' : 'tier-free';
-    const fmtDate = (ts) => ts ? new Date(ts * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '-';
+    const fmtDate = (ts) => ts ? new Date(ts * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '-';
+
+    const countEl = document.getElementById('signups-count');
+    if (countEl) countEl.textContent = `(${_usersData.length} users)`;
 
     let html = '<table><thead><tr><th>Email</th><th>Name</th><th>Tier</th><th>Source</th><th>Role</th><th>Signed up</th><th>Last active</th><th>CRM</th><th>Queries</th></tr></thead><tbody>';
-    for (const u of d.data) {
+    for (const u of _usersData) {
         html += `<tr>
             <td>${u.email}</td>
             <td>${u.name || '-'}</td>
@@ -624,6 +636,23 @@ function renderRecentTable(d) {
     }
     html += '</tbody></table>';
     document.getElementById('signups-table').innerHTML = html;
+}
+
+function exportUsersCSV() {
+    if (!_usersData.length) { toast('No user data to export'); return; }
+    const fmtDate = (ts) => ts ? new Date(ts * 1000).toISOString().slice(0, 10) : '';
+    const esc = (s) => '"' + String(s || '').replace(/"/g, '""') + '"';
+    const headers = ['Email','Name','Tier','Source','Role','Signed Up','Last Active','CRM','Queries This Month'];
+    const rows = _usersData.map(u => [esc(u.email), esc(u.name), esc(u.tier), esc(u.referral_source), esc(u.role), fmtDate(u.created_at), fmtDate(u.last_active_at), esc(u.crm_connected), u.queries_this_month || 0].join(','));
+    const csv = [headers.join(','), ...rows].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `flightsuite-users-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    toast('CSV exported');
 }
 
 // ═══ REVENUE ═══
