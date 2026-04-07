@@ -4,28 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlightSuite for Real Estate — Your AI CRM Admin</title>
-    <meta name="description" content="Update your CRM between showings. Just text what happened — FlightSuite logs it to HubSpot or GoHighLevel instantly. Free to start.">
+    <meta name="description" content="Update your CRM between showings. Just text what happened — FlightSuite logs it to HubSpot or GoHighLevel instantly.">
     <meta name="robots" content="noindex, nofollow">
 
-    <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://flightsuite.ai/lp/real-estate.html">
     <meta property="og:title" content="FlightSuite — Your AI CRM Admin for Real Estate">
-    <meta property="og:description" content="Update your CRM between showings — just text what happened. FlightSuite logs it to HubSpot or GoHighLevel instantly. Free to start.">
+    <meta property="og:description" content="Update your CRM between showings — just text what happened. FlightSuite logs it to HubSpot or GoHighLevel instantly.">
     <meta property="og:image" content="https://flightsuite.ai/lp/assets/social-preview-real-estate.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="FlightSuite — Your AI CRM Admin for Real Estate">
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="FlightSuite — Your AI CRM Admin for Real Estate">
-    <meta name="twitter:description" content="Update your CRM between showings — just text what happened. Free to start.">
     <meta name="twitter:image" content="https://flightsuite.ai/lp/assets/social-preview-real-estate.png">
 
     <link rel="icon" type="image/svg+xml" href="/Assets/Flight Suite Favicon vPurple.svg">
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -39,23 +32,12 @@
       gtag('config', 'G-ZNT18C1S4Q');
     </script>
 
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '3963553383916372');
-    fbq('track', 'PageView');
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','3963553383916372');fbq('track','PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=3963553383916372&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3963553383916372&ev=PageView&noscript=1"/></noscript>
 
     <style>
         :root {
@@ -66,8 +48,8 @@
             --text-primary: #F5F5F7;
             --text-secondary: #86868B;
             --text-tertiary: #6E6E73;
-            --accent-blue: #0071E3;
             --accent-purple: #5E5CE6;
+            --accent-blue: #0071E3;
             --accent-cyan: #22D3EE;
             --accent-green: #34C759;
             --accent-gold: #D4A846;
@@ -82,100 +64,158 @@
         html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
         body { font-family: var(--font-body); color: var(--text-primary); background: var(--bg); font-size: 16px; line-height: 1.5; overflow-x: hidden; }
 
-        /* Animated gradient orbs */
-        .lp-bg-orbs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-        .lp-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.15; }
-        .lp-orb-1 { width: 600px; height: 600px; background: var(--accent-purple); top: -200px; left: -100px; animation: orb-float-1 18s ease-in-out infinite; }
-        .lp-orb-2 { width: 500px; height: 500px; background: var(--accent-blue); bottom: -150px; right: -100px; animation: orb-float-2 22s ease-in-out infinite; }
-        .lp-orb-3 { width: 400px; height: 400px; background: var(--accent-cyan); top: 40%; left: 50%; transform: translateX(-50%); animation: orb-float-3 15s ease-in-out infinite; opacity: 0.08; }
-        @keyframes orb-float-1 { 0%, 100% { transform: translate(0, 0); } 33% { transform: translate(80px, 60px); } 66% { transform: translate(-40px, 120px); } }
-        @keyframes orb-float-2 { 0%, 100% { transform: translate(0, 0); } 33% { transform: translate(-60px, -80px); } 66% { transform: translate(40px, -40px); } }
-        @keyframes orb-float-3 { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-80px); } }
-
-        /* Noise grain overlay */
-        .lp-grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 256px 256px; }
-
-        /* Entrance animations */
+        /* Animations */
         .lp-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
         .lp-reveal.visible { opacity: 1; transform: translateY(0); }
-        .lp-reveal-delay-1 { transition-delay: 0.1s; }
-        .lp-reveal-delay-2 { transition-delay: 0.2s; }
-        .lp-reveal-delay-3 { transition-delay: 0.3s; }
+        .lp-reveal-delay-1 { transition-delay: 0.12s; }
+        .lp-reveal-delay-2 { transition-delay: 0.24s; }
+        .lp-reveal-delay-3 { transition-delay: 0.36s; }
 
-        /* All content above orbs */
-        .lp-content { position: relative; z-index: 2; }
+        @keyframes bubble-in { from { opacity: 0; transform: translateY(8px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(212,168,70,0.2); } 50% { box-shadow: 0 0 40px rgba(212,168,70,0.4); } }
 
-        /* Nav */
-        .lp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        /* ═══════════════════════════════════════
+           NAV
+           ═══════════════════════════════════════ */
+        .lp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,10,0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
         .lp-logo { font-family: var(--font-display); font-size: 20px; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
         .lp-nav-cta { font-size: 14px; font-weight: 600; padding: 8px 20px; background: var(--accent-gold); color: #0A0A0A; border-radius: 980px; text-decoration: none; transition: opacity 0.15s; }
         .lp-nav-cta:hover { opacity: 0.88; }
 
-        /* Hero */
-        .lp-hero { padding: 120px 24px 64px; text-align: center; max-width: 640px; margin: 0 auto; }
-        .lp-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(94,92,230,0.1); color: var(--accent-purple); border-radius: 980px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 24px; }
-        .lp-h1 { font-family: var(--font-display); font-size: clamp(36px, 8vw, 56px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.08; margin-bottom: 16px; }
-        .lp-sub { font-size: clamp(16px, 2.5vw, 20px); color: var(--text-secondary); margin-bottom: 32px; line-height: 1.5; }
-        .lp-cta { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; background: var(--accent-gold); color: #0A0A0A; border-radius: 980px; font-size: 17px; font-weight: 700; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 20px rgba(212,168,70,0.3); }
-        .lp-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,168,70,0.4); }
-        .lp-cta-note { font-size: 13px; color: var(--text-tertiary); margin-top: 12px; }
+        /* ═══════════════════════════════════════
+           HERO — Full-bleed cinematic
+           ═══════════════════════════════════════ */
+        .lp-hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .lp-hero-bg { position: absolute; inset: 0; }
+        .lp-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .lp-hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.78) 50%, rgba(10,10,10,0.97) 100%); }
+        .lp-hero-content { position: relative; z-index: 2; text-align: center; max-width: 680px; padding: 120px 24px 80px; }
+        .lp-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(94,92,230,0.15); border: 1px solid rgba(94,92,230,0.3); color: var(--accent-purple); border-radius: 980px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 24px; }
+        .lp-h1 { font-family: var(--font-display); font-size: clamp(40px, 9vw, 64px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 20px; text-shadow: 0 2px 20px rgba(0,0,0,0.6); }
+        .lp-h1 em { font-style: normal; color: var(--accent-gold); }
+        .lp-sub { font-size: clamp(17px, 2.5vw, 21px); color: #B0B0B5; margin-bottom: 36px; line-height: 1.55; max-width: 500px; margin-left: auto; margin-right: auto; text-shadow: 0 1px 12px rgba(0,0,0,0.5); }
+        .lp-hero-cta { display: inline-flex; align-items: center; gap: 8px; padding: 18px 36px; background: var(--accent-gold); color: #0A0A0A; border-radius: 980px; font-size: 17px; font-weight: 700; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 24px rgba(212,168,70,0.35); animation: pulse-glow 3s ease-in-out infinite; }
+        .lp-hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(212,168,70,0.5); }
+        .lp-hero-note { font-size: 13px; color: var(--text-tertiary); margin-top: 14px; }
 
-        /* Pain */
-        .lp-pain { padding: 64px 24px; max-width: 800px; margin: 0 auto; }
-        .lp-pain-copy { font-size: 18px; color: var(--text-secondary); text-align: center; margin-bottom: 40px; line-height: 1.6; }
-        .lp-pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-        .lp-pain-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px 20px; text-align: center; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s; cursor: default; }
-        .lp-pain-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(94,92,230,0.12); border-color: rgba(255,255,255,0.12); }
-        .lp-pain-stat { font-family: var(--font-display); font-size: clamp(28px, 6vw, 40px); font-weight: 700; background: linear-gradient(135deg, #FF6B6B, #FF3B30); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .lp-pain-label { font-size: 14px; color: var(--text-secondary); margin-top: 8px; line-height: 1.4; }
+        .lp-scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 2; animation: float 2s ease-in-out infinite; }
+        .lp-scroll-hint svg { opacity: 0.4; }
 
-        /* Demo */
-        .lp-demo { padding: 64px 24px; max-width: 720px; margin: 0 auto; }
-        .lp-demo-header { text-align: center; margin-bottom: 32px; }
+        /* ═══════════════════════════════════════
+           PAIN — Image-backed emotional section
+           ═══════════════════════════════════════ */
+        .lp-pain { position: relative; padding: 0; overflow: hidden; }
+        .lp-pain-bg { width: 100%; height: 480px; object-fit: cover; display: block; }
+        .lp-pain-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg) 0%, rgba(10,10,10,0.65) 25%, rgba(10,10,10,0.65) 75%, var(--bg) 100%); }
+        .lp-pain-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 24px; z-index: 2; }
+        .lp-pain-headline { font-family: var(--font-display); font-size: clamp(26px, 5vw, 40px); font-weight: 700; text-align: center; letter-spacing: -0.03em; margin-bottom: 8px; text-shadow: 0 2px 16px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.4); }
+        .lp-pain-headline em { font-style: normal; color: #FF6B6B; }
+        .lp-pain-sub { font-size: 17px; color: #B0B0B5; text-align: center; max-width: 460px; text-shadow: 0 1px 12px rgba(0,0,0,0.6); }
+
+        .lp-pain-stats { display: flex; gap: 32px; margin-top: 32px; }
+        .lp-pain-stat { text-align: center; }
+        .lp-pain-stat-num { font-family: var(--font-display); font-size: clamp(32px, 6vw, 48px); font-weight: 700; background: linear-gradient(135deg, #FF6B6B, #FF3B30); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
+        .lp-pain-stat-label { font-size: 13px; color: #B0B0B5; margin-top: 4px; text-shadow: 0 1px 8px rgba(0,0,0,0.6); }
+
+        /* ═══════════════════════════════════════
+           SOLUTION — Split: visual + iMessage
+           ═══════════════════════════════════════ */
+        .lp-solution { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
+        .lp-solution-header { text-align: center; margin-bottom: 48px; }
         .lp-section-label { font-size: 12px; font-weight: 700; color: var(--accent-purple); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
-        .lp-h2 { font-family: var(--font-display); font-size: clamp(24px, 5vw, 36px); font-weight: 700; letter-spacing: -0.03em; }
+        .lp-h2 { font-family: var(--font-display); font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.03em; }
 
-        .lp-terminal { background: rgba(17,17,17,0.8); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
-        .lp-terminal-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--glass-border); }
-        .lp-terminal-dot { width: 8px; height: 8px; border-radius: 50%; }
-        .lp-terminal-dot:nth-child(1) { background: #FF5F57; }
-        .lp-terminal-dot:nth-child(2) { background: #FEBC2E; }
-        .lp-terminal-dot:nth-child(3) { background: #28C840; }
-        .lp-terminal-title { font-size: 12px; color: var(--text-tertiary); margin-left: auto; margin-right: auto; }
-        .lp-terminal-body { padding: 20px; min-height: 200px; }
-        .lp-prompt { display: flex; align-items: flex-start; gap: 8px; }
-        .lp-prompt-icon { color: var(--accent-purple); font-family: monospace; font-size: 16px; }
-        .lp-typed { font-size: 15px; color: var(--text-primary); line-height: 1.5; }
-        .lp-caret { display: inline-block; width: 2px; height: 18px; background: var(--accent-purple); animation: blink 1s step-end infinite; vertical-align: text-bottom; margin-left: 2px; }
-        @keyframes blink { 50% { opacity: 0; } }
+        .lp-split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+        .lp-split-visual { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 16px 64px rgba(0,0,0,0.5); }
+        .lp-split-visual img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 400px; }
+        .lp-split-visual-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.1) 0%, rgba(10,10,10,0.8) 100%); }
+        .lp-split-visual-text { position: absolute; bottom: 24px; left: 24px; right: 24px; z-index: 2; }
+        .lp-split-visual-text p { font-size: 18px; font-weight: 600; line-height: 1.4; text-shadow: 0 1px 12px rgba(0,0,0,0.7); }
+        .lp-split-visual-text span { font-size: 14px; color: #B0B0B5; text-shadow: 0 1px 8px rgba(0,0,0,0.6); }
 
-        .lp-cards { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
-        .lp-card { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: rgba(52,199,89,0.06); border: 1px solid rgba(52,199,89,0.15); border-radius: 10px; opacity: 0; transform: translateY(8px); transition: opacity 0.3s var(--ease), transform 0.3s var(--ease); }
-        .lp-card.visible { opacity: 1; transform: translateY(0); }
-        .lp-card-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-green); flex-shrink: 0; }
-        .lp-card-label { font-size: 13px; font-weight: 600; color: var(--text-primary); }
-        .lp-card-detail { font-size: 12px; color: var(--text-secondary); }
-        .lp-time-saved { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--accent-cyan); padding: 8px 12px; background: rgba(34,211,238,0.06); border-radius: 8px; margin-top: 12px; opacity: 0; transform: translateY(8px); transition: opacity 0.4s var(--ease), transform 0.4s var(--ease); }
-        .lp-time-saved.visible { opacity: 1; transform: translateY(0); }
+        /* iMessage Phone */
+        .lp-phone { background: #1C1C1E; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 12px 48px rgba(0,0,0,0.6); }
+        .lp-phone-header { display: flex; align-items: center; gap: 10px; padding: 16px 16px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .lp-phone-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: white; flex-shrink: 0; }
+        .lp-phone-name { font-size: 15px; font-weight: 600; }
+        .lp-phone-status { font-size: 11px; color: var(--accent-green); }
+        .lp-phone-body { padding: 16px; min-height: 340px; display: flex; flex-direction: column; gap: 8px; }
 
-        /* Value Anchor */
-        .lp-value { padding: 64px 24px; max-width: 640px; margin: 0 auto; text-align: center; }
-        .lp-value-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
-        .lp-value-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px 20px; text-align: left; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s var(--ease), box-shadow 0.3s; }
-        .lp-value-card:hover { transform: translateY(-4px); }
-        .lp-value-card.highlight { border-color: var(--accent-gold); background: rgba(212,168,70,0.05); box-shadow: 0 0 40px rgba(212,168,70,0.12); }
-        .lp-value-card.highlight:hover { box-shadow: 0 0 60px rgba(212,168,70,0.2); }
-        .lp-value-card-title { font-size: 13px; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
-        .lp-value-price { font-family: var(--font-display); font-size: 28px; font-weight: 700; margin-bottom: 16px; }
-        .lp-value-price.expensive { color: #FF6B6B; }
-        .lp-value-price.affordable { color: var(--accent-gold); }
-        .lp-value-list { list-style: none; }
-        .lp-value-list li { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; padding-left: 20px; position: relative; }
-        .lp-value-list li::before { position: absolute; left: 0; }
-        .lp-value-card:not(.highlight) .lp-value-list li::before { content: '✗'; color: #FF3B30; }
-        .lp-value-card.highlight .lp-value-list li::before { content: '✓'; color: var(--accent-green); }
+        .lp-bubble { max-width: 85%; padding: 10px 14px; border-radius: 18px; font-size: 15px; line-height: 1.45; animation: bubble-in 0.3s var(--ease-out); }
+        .lp-bubble-user { align-self: flex-end; background: #0071E3; color: white; border-bottom-right-radius: 4px; }
+        .lp-bubble-reply { align-self: flex-start; background: #2C2C2E; color: var(--text-primary); border-bottom-left-radius: 4px; }
+        .lp-action-item { display: flex; align-items: center; gap: 6px; font-size: 13px; padding: 3px 0; }
+        .lp-action-check { color: var(--accent-green); font-size: 12px; }
 
-        /* Social Proof */
+        /* ═══════════════════════════════════════
+           VIDEO SECTION
+           ═══════════════════════════════════════ */
+        .lp-video-section { padding: 80px 24px; text-align: center; }
+        .lp-video-container { max-width: 800px; margin: 32px auto 0; position: relative; border-radius: 20px; overflow: hidden; background: var(--surface); border: 1px solid var(--glass-border); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 12px 48px rgba(0,0,0,0.5); }
+        .lp-video-container video { width: 100%; height: 100%; object-fit: cover; }
+        .lp-video-placeholder { display: flex; flex-direction: column; align-items: center; gap: 16px; color: var(--text-tertiary); }
+        .lp-play-btn { width: 80px; height: 80px; border-radius: 50%; background: rgba(212,168,70,0.12); border: 2px solid var(--accent-gold); display: flex; align-items: center; justify-content: center; transition: transform 0.2s, background 0.2s; }
+        .lp-play-btn:hover { transform: scale(1.08); background: rgba(212,168,70,0.25); }
+        .lp-play-btn svg { margin-left: 4px; }
+        .lp-video-caption { font-size: 13px; color: var(--text-tertiary); margin-top: 16px; }
+
+        /* ═══════════════════════════════════════
+           PRICING
+           ═══════════════════════════════════════ */
+        .lp-pricing { padding: 80px 24px; max-width: 720px; margin: 0 auto; }
+        .lp-pricing-header { text-align: center; margin-bottom: 48px; }
+        .lp-pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        .lp-price-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 20px; padding: 32px 24px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s var(--ease), box-shadow 0.3s; position: relative; }
+        .lp-price-card:hover { transform: translateY(-4px); }
+        .lp-price-card.recommended { border-color: var(--accent-gold); box-shadow: 0 0 48px rgba(212,168,70,0.15); }
+        .lp-price-card.recommended:hover { box-shadow: 0 0 64px rgba(212,168,70,0.25); }
+
+        .lp-price-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent-gold); color: #0A0A0A; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 980px; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
+        .lp-price-name { font-family: var(--font-display); font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+        .lp-price-amount { font-family: var(--font-display); font-size: 48px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+        .lp-price-amount span { font-size: 18px; font-weight: 400; color: var(--text-tertiary); }
+        .lp-price-amount.gold { color: var(--accent-gold); }
+        .lp-price-desc { font-size: 14px; color: var(--text-secondary); margin: 12px 0 20px; line-height: 1.5; }
+        .lp-price-features { list-style: none; margin-bottom: 24px; }
+        .lp-price-features li { font-size: 14px; color: var(--text-secondary); padding: 6px 0 6px 22px; position: relative; }
+        .lp-price-features li::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; }
+        .lp-price-card:not(.recommended) .lp-price-features li::before { background: rgba(134,134,139,0.2); }
+        .lp-price-card.recommended .lp-price-features li::before { background: rgba(52,199,89,0.2); }
+        .lp-price-features li::after { content: ''; position: absolute; left: 4px; top: 50%; transform: translateY(-50%); width: 6px; height: 6px; border-radius: 50%; }
+        .lp-price-card:not(.recommended) .lp-price-features li::after { background: var(--text-tertiary); }
+        .lp-price-card.recommended .lp-price-features li::after { background: var(--accent-green); }
+
+        .lp-price-cta { display: block; width: 100%; text-align: center; padding: 14px 24px; border-radius: 980px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; border: none; cursor: pointer; }
+        .lp-price-cta:hover { transform: translateY(-2px); }
+        .lp-price-cta.primary { background: var(--accent-gold); color: #0A0A0A; box-shadow: 0 4px 20px rgba(212,168,70,0.3); }
+        .lp-price-cta.primary:hover { box-shadow: 0 8px 32px rgba(212,168,70,0.4); }
+        .lp-price-cta.secondary { background: rgba(255,255,255,0.06); color: var(--text-primary); border: 1px solid var(--glass-border); }
+        .lp-price-cta.secondary:hover { background: rgba(255,255,255,0.1); }
+
+        /* ═══════════════════════════════════════
+           SIGNUP
+           ═══════════════════════════════════════ */
+        .lp-signup { padding: 64px 24px; max-width: 520px; margin: 0 auto; }
+        .lp-signup-box { background: rgba(17,17,17,0.8); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px 32px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); text-align: center; }
+        .lp-signup-box .lp-h2 { font-size: clamp(22px, 4vw, 30px); margin-bottom: 8px; }
+        .lp-signup-sub { font-size: 15px; color: var(--text-secondary); margin-bottom: 24px; }
+        .lp-form { display: flex; flex-direction: column; gap: 12px; }
+        .lp-input { width: 100%; padding: 14px 16px; background: rgba(255,255,255,0.06); border: 1px solid var(--glass-border); border-radius: 12px; color: var(--text-primary); font-size: 16px; font-family: var(--font-body); outline: none; transition: border-color 0.2s; }
+        .lp-input:focus { border-color: var(--accent-purple); }
+        .lp-input::placeholder { color: var(--text-tertiary); }
+        .lp-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236E6E73' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+        .lp-submit { width: 100%; padding: 16px 24px; background: var(--accent-gold); color: #0A0A0A; border: none; border-radius: 980px; font-size: 17px; font-weight: 700; font-family: var(--font-body); cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 20px rgba(212,168,70,0.3); margin-top: 4px; }
+        .lp-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,168,70,0.4); }
+        .lp-form-note { font-size: 12px; color: var(--text-tertiary); margin-top: 8px; }
+
+        .lp-connecting-spinner { width: 48px; height: 48px; border: 3px solid var(--glass-border); border-top-color: var(--accent-gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ═══════════════════════════════════════
+           SOCIAL PROOF
+           ═══════════════════════════════════════ */
         .lp-proof { padding: 64px 24px; max-width: 640px; margin: 0 auto; }
         .lp-testimonial { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px; margin-bottom: 16px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s var(--ease), border-color 0.3s; }
         .lp-testimonial:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.12); }
@@ -185,173 +225,318 @@
         .lp-testimonial-author strong { color: var(--text-secondary); font-weight: 600; }
         .lp-trust { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 13px; color: var(--text-tertiary); padding-top: 24px; border-top: 1px solid var(--glass-border); margin-top: 32px; }
 
-        /* Final CTA */
-        .lp-final { padding: 80px 24px; text-align: center; background: linear-gradient(180deg, var(--bg) 0%, #0D0D0F 100%); }
-        .lp-final-h2 { font-family: var(--font-display); font-size: clamp(28px, 6vw, 44px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; }
-        .lp-final-sub { font-size: 17px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.5; }
-        .lp-final-badge { font-size: 13px; color: var(--text-tertiary); margin-top: 16px; }
+        /* ═══════════════════════════════════════
+           FINAL CTA
+           ═══════════════════════════════════════ */
+        .lp-final { position: relative; padding: 100px 24px; text-align: center; overflow: hidden; }
+        .lp-final-bg { position: absolute; inset: 0; }
+        .lp-final-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .lp-final-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg) 0%, rgba(10,10,10,0.75) 50%, var(--bg) 100%); }
+        .lp-final-content { position: relative; z-index: 2; }
+        .lp-final-h2 { font-family: var(--font-display); font-size: clamp(32px, 7vw, 52px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 16px; text-shadow: 0 2px 20px rgba(0,0,0,0.6); }
+        .lp-final-sub { font-size: 18px; color: #B0B0B5; margin-bottom: 36px; line-height: 1.5; text-shadow: 0 1px 12px rgba(0,0,0,0.5); }
+        .lp-cta { display: inline-flex; align-items: center; gap: 8px; padding: 18px 36px; background: var(--accent-gold); color: #0A0A0A; border-radius: 980px; font-size: 17px; font-weight: 700; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 24px rgba(212,168,70,0.35); }
+        .lp-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(212,168,70,0.5); }
         .lp-final-trust { display: flex; align-items: center; justify-content: center; gap: 24px; margin-top: 24px; font-size: 13px; color: var(--text-tertiary); }
         .lp-final-trust span { display: flex; align-items: center; gap: 4px; }
         .lp-check { color: var(--accent-green); }
 
-        /* Mobile */
+        /* ═══════════════════════════════════════
+           MOBILE
+           ═══════════════════════════════════════ */
         @media (max-width: 768px) {
-            .lp-pain-grid { grid-template-columns: 1fr; max-width: 340px; margin-left: auto; margin-right: auto; }
-            .lp-value-compare { grid-template-columns: 1fr; max-width: 360px; margin-left: auto; margin-right: auto; }
-            .lp-value-card.highlight { order: -1; }
-            .lp-cta { width: 100%; justify-content: center; font-size: 16px; padding: 16px 24px; }
+            .lp-split { grid-template-columns: 1fr; gap: 32px; }
+            .lp-split-visual { order: -1; }
+            .lp-split-visual img { min-height: 280px; }
+            .lp-pricing-grid { grid-template-columns: 1fr; max-width: 380px; margin-left: auto; margin-right: auto; }
+            .lp-price-card.recommended { order: -1; }
+            .lp-pain-stats { gap: 16px; }
+            .lp-pain-bg { height: 420px; }
+            .lp-hero-cta, .lp-cta { width: 100%; justify-content: center; }
             .lp-nav { backdrop-filter: none; -webkit-backdrop-filter: none; }
-            .lp-pain-card, .lp-terminal, .lp-value-card, .lp-testimonial { backdrop-filter: none; -webkit-backdrop-filter: none; }
-            .lp-orb { filter: blur(80px); opacity: 0.1; }
+            .lp-price-card, .lp-testimonial, .lp-signup-box { backdrop-filter: none; -webkit-backdrop-filter: none; }
+            .lp-final-trust { flex-direction: column; gap: 8px; }
+            .lp-signup-box { padding: 32px 20px; }
+
+            /* Stronger overlays on mobile for text readability */
+            .lp-hero-overlay { background: linear-gradient(180deg, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.85) 50%, rgba(10,10,10,0.98) 100%); }
+            .lp-pain-overlay { background: linear-gradient(180deg, var(--bg) 0%, rgba(10,10,10,0.78) 20%, rgba(10,10,10,0.78) 80%, var(--bg) 100%); }
+            .lp-final-overlay { background: linear-gradient(180deg, var(--bg) 0%, rgba(10,10,10,0.85) 50%, var(--bg) 100%); }
+
+            /* Bump mobile font sizes for image-backed sections */
+            .lp-h1 { text-shadow: 0 2px 24px rgba(0,0,0,0.8); }
+            .lp-sub { text-shadow: 0 1px 16px rgba(0,0,0,0.7); }
+            .lp-pain-headline { font-size: clamp(24px, 6vw, 36px); text-shadow: 0 2px 20px rgba(0,0,0,0.8), 0 0 48px rgba(0,0,0,0.5); }
+            .lp-pain-sub { font-size: 16px; text-shadow: 0 1px 16px rgba(0,0,0,0.7); }
+            .lp-pain-stat-label { font-size: 12px; }
+            .lp-final-h2 { text-shadow: 0 2px 24px rgba(0,0,0,0.8); }
         }
 
-        /* Reduced motion */
         @media (prefers-reduced-motion: reduce) {
-            .lp-orb { animation: none; }
             .lp-reveal { opacity: 1; transform: none; transition: none; }
+            .lp-scroll-hint, .lp-hero-cta { animation: none; }
         }
 
         @media (max-width: 375px) {
-            .lp-hero { padding: 100px 20px 48px; }
-            .lp-h1 { font-size: 32px; }
+            .lp-h1 { font-size: 36px; }
+            .lp-hero-content { padding: 100px 20px 60px; }
         }
     </style>
 </head>
 <body>
 
-<!-- Animated Background -->
-<div class="lp-bg-orbs">
-    <div class="lp-orb lp-orb-1"></div>
-    <div class="lp-orb lp-orb-2"></div>
-    <div class="lp-orb lp-orb-3"></div>
-</div>
-<div class="lp-grain"></div>
-
-<div class="lp-content">
-
 <!-- Nav -->
 <nav class="lp-nav">
     <a href="/" class="lp-logo">FlightSuite</a>
-    <a href="/app" class="lp-nav-cta" data-event="lp_re_nav_cta">Try Free</a>
+    <a href="#signup" class="lp-nav-cta" data-event="lp_re_nav_cta">Get Started</a>
 </nav>
 
-<!-- Hero -->
+<!-- ═══════════════════════════════════════
+     HERO — Full-bleed cinematic
+     ═══════════════════════════════════════ -->
 <section class="lp-hero">
-    <div class="lp-badge">Works with HubSpot & GoHighLevel</div>
-    <h1 class="lp-h1 lp-reveal">Your CRM admin.<br>Always on.</h1>
-    <p class="lp-sub lp-reveal lp-reveal-delay-1">Update your CRM between showings — just text what happened. No laptop. No logging in. Done before you start the car.</p>
-    <a href="/app" class="lp-cta lp-reveal lp-reveal-delay-2" data-event="lp_re_hero_cta">Try Free →</a>
-    <p class="lp-cta-note lp-reveal lp-reveal-delay-3">Free Chrome extension. No credit card.</p>
+    <div class="lp-hero-bg">
+        <img src="assets/hero-re.png" alt="" loading="eager">
+    </div>
+    <div class="lp-hero-overlay"></div>
+    <div class="lp-hero-content">
+        <div class="lp-badge lp-reveal">Works with HubSpot & GoHighLevel</div>
+        <h1 class="lp-h1 lp-reveal lp-reveal-delay-1">Update your CRM<br><em>from the car.</em></h1>
+        <p class="lp-sub lp-reveal lp-reveal-delay-2">One text after every showing. Contacts, pipeline, follow-ups — updated before you start the engine.</p>
+        <a href="#signup" class="lp-hero-cta lp-reveal lp-reveal-delay-3" data-event="lp_re_hero_cta">Get My CRM Admin</a>
+        <p class="lp-hero-note lp-reveal lp-reveal-delay-3">Starts at $29/mo. Cancel anytime.</p>
+    </div>
+    <div class="lp-scroll-hint">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
 </section>
 
-<!-- Pain Mirror -->
+<!-- ═══════════════════════════════════════
+     PAIN — Image-backed
+     ═══════════════════════════════════════ -->
 <section class="lp-pain">
-    <p class="lp-pain-copy">You're paying for a CRM you never touch. Not because you don't care — because you're too busy showing homes.</p>
-    <div class="lp-pain-grid">
-        <div class="lp-pain-card">
-            <div class="lp-pain-stat">$450</div>
-            <div class="lp-pain-label">per month for your CRM</div>
-        </div>
-        <div class="lp-pain-card">
-            <div class="lp-pain-stat">3 wks</div>
-            <div class="lp-pain-label">since your last CRM update</div>
-        </div>
-        <div class="lp-pain-card">
-            <div class="lp-pain-stat">2 hrs</div>
-            <div class="lp-pain-label">per week you could spend on showings</div>
-        </div>
-    </div>
-</section>
-
-<!-- Demo -->
-<section class="lp-demo">
-    <div class="lp-demo-header">
-        <div class="lp-section-label">Your Admin in Action</div>
-        <h2 class="lp-h2">Text what happened. CRM updated.</h2>
-    </div>
-    <div class="lp-terminal">
-        <div class="lp-terminal-bar">
-            <span class="lp-terminal-dot"></span>
-            <span class="lp-terminal-dot"></span>
-            <span class="lp-terminal-dot"></span>
-            <span class="lp-terminal-title">Your CRM Admin</span>
-        </div>
-        <div class="lp-terminal-body">
-            <div class="lp-prompt">
-                <span class="lp-prompt-icon">›</span>
-                <span class="lp-typed" id="lpTyped"></span>
-                <span class="lp-caret"></span>
+    <img src="assets/pain-re.png" alt="" class="lp-pain-bg" loading="lazy">
+    <div class="lp-pain-overlay"></div>
+    <div class="lp-pain-content">
+        <h2 class="lp-pain-headline lp-reveal">You're paying for a CRM<br>you <em>never update.</em></h2>
+        <p class="lp-pain-sub lp-reveal lp-reveal-delay-1">Not because you don't care. Because you're always between showings.</p>
+        <div class="lp-pain-stats lp-reveal lp-reveal-delay-2">
+            <div class="lp-pain-stat">
+                <div class="lp-pain-stat-num">$450</div>
+                <div class="lp-pain-stat-label">per month for your CRM</div>
             </div>
-            <div class="lp-cards" id="lpCards"></div>
+            <div class="lp-pain-stat">
+                <div class="lp-pain-stat-num">23 days</div>
+                <div class="lp-pain-stat-label">since your last update</div>
+            </div>
+            <div class="lp-pain-stat">
+                <div class="lp-pain-stat-num">$10K+</div>
+                <div class="lp-pain-stat-label">lost per missed follow-up</div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Value Anchor -->
-<section class="lp-value">
-    <div class="lp-section-label">The Comparison</div>
-    <h2 class="lp-h2">What you're really paying for CRM help</h2>
-    <div class="lp-value-compare">
-        <div class="lp-value-card">
-            <div class="lp-value-card-title">Hire an Assistant</div>
-            <div class="lp-value-price expensive">$500-1,000/mo</div>
-            <ul class="lp-value-list">
-                <li>Needs CRM training</li>
-                <li>Business hours only</li>
-                <li>Can't text from your car</li>
-                <li>Still needs oversight</li>
-            </ul>
+<!-- ═══════════════════════════════════════
+     SOLUTION — Split visual + iMessage
+     ═══════════════════════════════════════ -->
+<section class="lp-solution">
+    <div class="lp-solution-header">
+        <div class="lp-section-label lp-reveal">How It Works</div>
+        <h2 class="lp-h2 lp-reveal lp-reveal-delay-1">One text. Everything updated.</h2>
+    </div>
+    <div class="lp-split">
+        <div class="lp-split-visual lp-reveal">
+            <img src="assets/relief-re.png" alt="Agent texting in car after showing" loading="lazy">
+            <div class="lp-split-visual-overlay"></div>
+            <div class="lp-split-visual-text">
+                <p>"CRM updated before I started the car."</p>
+                <span>Between showings. Between calls. Between closings.</span>
+            </div>
         </div>
-        <div class="lp-value-card highlight">
-            <div class="lp-value-card-title">Your AI CRM Admin</div>
-            <div class="lp-value-price affordable">Free to start</div>
-            <ul class="lp-value-list">
-                <li>Knows your CRM day one</li>
-                <li>Available 24/7</li>
-                <li>Text from anywhere</li>
-                <li>Zero training needed</li>
-            </ul>
+        <div class="lp-reveal lp-reveal-delay-1">
+            <div class="lp-phone">
+                <div class="lp-phone-header">
+                    <div class="lp-phone-avatar">FS</div>
+                    <div>
+                        <div class="lp-phone-name">Your CRM Admin</div>
+                        <div class="lp-phone-status">Online</div>
+                    </div>
+                </div>
+                <div class="lp-phone-body" id="chatBody"></div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Social Proof -->
+<!-- ═══════════════════════════════════════
+     VIDEO — Screen recording proof
+     ═══════════════════════════════════════ -->
+<section class="lp-video-section">
+    <div class="lp-section-label lp-reveal">See It In Action</div>
+    <h2 class="lp-h2 lp-reveal lp-reveal-delay-1">Real phone. Real CRM. Real update.</h2>
+    <div class="lp-video-container lp-reveal lp-reveal-delay-2" id="videoContainer">
+        <video id="demoVideo" playsinline preload="metadata" controls style="width:100%;height:100%;object-fit:contain;background:#000;">
+            <source src="assets/demo-re.mp4" type="video/mp4">
+        </video>
+    </div>
+    <p class="lp-video-caption lp-reveal lp-reveal-delay-3">Real screen recording. No mockups. No scripts.</p>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PRICING
+     ═══════════════════════════════════════ -->
+<section class="lp-pricing" id="pricing">
+    <div class="lp-pricing-header">
+        <div class="lp-section-label lp-reveal">Simple Pricing</div>
+        <h2 class="lp-h2 lp-reveal lp-reveal-delay-1">Less than one coffee a day</h2>
+    </div>
+    <div class="lp-pricing-grid">
+        <div class="lp-price-card lp-reveal lp-reveal-delay-1">
+            <div class="lp-price-name">Basic</div>
+            <div class="lp-price-amount">$29<span>/mo</span></div>
+            <p class="lp-price-desc">For agents who want to keep their CRM current without the laptop.</p>
+            <ul class="lp-price-features">
+                <li>50 SMS/WhatsApp updates per month</li>
+                <li>Chrome extension included</li>
+                <li>1 CRM connected</li>
+                <li>Contact & pipeline updates</li>
+                <li>Activity logging</li>
+            </ul>
+            <a href="#signup" class="lp-price-cta secondary" data-event="lp_re_pricing_basic">Get Started</a>
+        </div>
+        <div class="lp-price-card recommended lp-reveal lp-reveal-delay-2">
+            <div class="lp-price-badge">Most Popular</div>
+            <div class="lp-price-name">Pro</div>
+            <div class="lp-price-amount gold">$49<span>/mo</span></div>
+            <p class="lp-price-desc">For top producers who need their CRM running as hard as they do.</p>
+            <ul class="lp-price-features">
+                <li>Unlimited SMS/WhatsApp updates</li>
+                <li>Chrome extension included</li>
+                <li>Multiple CRMs connected</li>
+                <li>Follow-up reminders</li>
+                <li>Pipeline summaries on demand</li>
+                <li>Priority support</li>
+            </ul>
+            <a href="#signup" class="lp-price-cta primary" data-event="lp_re_pricing_pro">Get Started</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SIGNUP FORM — Inline account creation
+     ═══════════════════════════════════════ -->
+<section class="lp-signup" id="signup">
+    <div class="lp-signup-box lp-reveal">
+
+        <!-- Step 1: Collect info -->
+        <div id="signup-step-info">
+            <h2 class="lp-h2">Get started in 30 seconds</h2>
+            <p class="lp-signup-sub">We'll create your CRM admin and connect your CRM right now.</p>
+            <form class="lp-form" id="signupForm">
+                <input type="text" class="lp-input" id="su-name" name="name" placeholder="Your name" required>
+                <input type="email" class="lp-input" id="su-email" name="email" placeholder="Email address" required>
+                <input type="tel" class="lp-input" id="su-phone" name="phone" placeholder="Phone number (for SMS access)">
+                <select class="lp-input lp-select" id="su-crm" name="crm" required>
+                    <option value="" disabled selected>Which CRM do you use?</option>
+                    <option value="hubspot">HubSpot</option>
+                    <option value="ghl">GoHighLevel</option>
+                    <option value="ghl">Lead Connector (GHL)</option>
+                    <option value="other">Other</option>
+                </select>
+                <select class="lp-input lp-select" id="su-plan" name="plan">
+                    <option value="" disabled selected>Which plan interests you?</option>
+                    <option value="basic">Basic — $29/mo</option>
+                    <option value="pro">Pro — $49/mo</option>
+                    <option value="unsure">Not sure yet</option>
+                </select>
+                <button type="submit" class="lp-submit" id="su-btn" data-event="lp_re_signup_btn">Get My CRM Admin</button>
+                <div class="lp-form-error" id="su-error" style="display:none;color:#FF6B6B;font-size:13px;text-align:center;margin-top:4px;"></div>
+            </form>
+            <p class="lp-form-note">Cancel anytime. We'll connect your CRM in under 5 minutes.</p>
+        </div>
+
+        <!-- Step 2: OTP verification -->
+        <div id="signup-step-otp" style="display:none;">
+            <h2 class="lp-h2">Check your email</h2>
+            <p class="lp-signup-sub">We sent a 6-digit code to <strong id="otp-email-display"></strong></p>
+            <div class="lp-form">
+                <input type="text" class="lp-input" id="su-otp" placeholder="Enter 6-digit code" maxlength="6" inputmode="numeric" autocomplete="one-time-code" style="text-align:center;font-size:24px;letter-spacing:8px;font-family:var(--font-display);">
+                <button type="button" class="lp-submit" id="su-verify-btn" onclick="verifyOtpAndConnect()">Verify & Connect My CRM</button>
+                <div class="lp-form-error" id="otp-error" style="display:none;color:#FF6B6B;font-size:13px;text-align:center;margin-top:4px;"></div>
+                <p style="text-align:center;margin-top:8px;">
+                    <button type="button" onclick="resendOtp()" style="background:none;border:none;color:var(--accent-purple);font-size:13px;cursor:pointer;font-family:var(--font-body);">Didn't get it? Resend code</button>
+                    <span style="color:var(--text-tertiary);margin:0 8px;">·</span>
+                    <button type="button" onclick="backToInfo()" style="background:none;border:none;color:var(--text-tertiary);font-size:13px;cursor:pointer;font-family:var(--font-body);">Change email</button>
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 3: Connecting CRM -->
+        <div id="signup-step-connecting" style="display:none;">
+            <div style="text-align:center;padding:32px 0;">
+                <div class="lp-connecting-spinner"></div>
+                <h2 class="lp-h2" style="margin-top:20px;">Account created!</h2>
+                <p class="lp-signup-sub">Connecting your <strong id="connecting-crm-name"></strong> now...</p>
+                <p style="font-size:13px;color:var(--text-tertiary);">A new window will open for CRM authorization. Complete it there and you're done.</p>
+            </div>
+        </div>
+
+        <!-- Step 4: Done -->
+        <div id="signup-step-done" style="display:none;">
+            <div style="text-align:center;padding:24px 0;">
+                <div style="font-size:48px;margin-bottom:12px;">✓</div>
+                <h2 class="lp-h2" style="margin-bottom:8px;">You're all set.</h2>
+                <p class="lp-signup-sub">Your CRM admin is ready. Text us what happened — we'll update your CRM.</p>
+                <a href="/app" class="lp-submit" style="display:inline-block;text-decoration:none;text-align:center;margin-top:12px;">Go to My Account</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SOCIAL PROOF
+     ═══════════════════════════════════════ -->
 <section class="lp-proof">
-    <div class="lp-testimonial">
+    <div class="lp-testimonial lp-reveal">
         <div class="lp-testimonial-stars">★★★★★</div>
         <p class="lp-testimonial-text">"Finally something that makes CRM not feel like homework."</p>
         <div class="lp-testimonial-author"><strong>Jenifer J.</strong> · Real Estate Agent</div>
     </div>
-    <div class="lp-testimonial">
+    <div class="lp-testimonial lp-reveal lp-reveal-delay-1">
         <div class="lp-testimonial-stars">★★★★★</div>
-        <p class="lp-testimonial-text">"It's like the assistant you don't have to train. It just knows what to do with your CRM."</p>
+        <p class="lp-testimonial-text">"I texted what happened at the showing and my CRM was updated before I got to the car."</p>
         <div class="lp-testimonial-author"><strong>Jerry N.</strong> · Sales Manager</div>
     </div>
-    <div class="lp-trust">
+    <div class="lp-trust lp-reveal lp-reveal-delay-2">
         <span>As featured in Charlotte Business Journal</span>
         <span>·</span>
         <span>gBETA Charlotte</span>
-        <span>·</span>
-        <span>Trusted by 100+ sales pros</span>
     </div>
 </section>
 
-<!-- Final CTA -->
+<!-- ═══════════════════════════════════════
+     FINAL CTA — Image-backed
+     ═══════════════════════════════════════ -->
 <section class="lp-final">
-    <h2 class="lp-final-h2">Your CRM admin.</h2>
-    <p class="lp-final-sub">Just text what happened. We'll update it for you.</p>
-    <a href="/app" class="lp-cta" data-event="lp_re_final_cta">Try Free →</a>
-    <p class="lp-final-badge">Works with HubSpot & GoHighLevel</p>
-    <div class="lp-final-trust">
-        <span><span class="lp-check">✓</span> Free to start</span>
-        <span><span class="lp-check">✓</span> No credit card</span>
-        <span><span class="lp-check">✓</span> 30-second install</span>
+    <div class="lp-final-bg">
+        <img src="assets/hero-re.png" alt="" loading="lazy">
+    </div>
+    <div class="lp-final-overlay"></div>
+    <div class="lp-final-content">
+        <h2 class="lp-final-h2 lp-reveal">Your CRM admin is ready.</h2>
+        <p class="lp-final-sub lp-reveal lp-reveal-delay-1">One text after every showing. That's it.</p>
+        <a href="#signup" class="lp-cta lp-reveal lp-reveal-delay-2" data-event="lp_re_final_cta">Get Started</a>
+        <div class="lp-final-trust lp-reveal lp-reveal-delay-3">
+            <span><span class="lp-check">✓</span> Works with HubSpot & GHL</span>
+            <span><span class="lp-check">✓</span> Cancel anytime</span>
+            <span><span class="lp-check">✓</span> 5-minute setup</span>
+        </div>
     </div>
 </section>
 
-</div><!-- end lp-content -->
-
-<!-- Reveal Animation Observer -->
+<!-- Reveal Observer -->
 <script>
 (function() {
     const obs = new IntersectionObserver((entries) => {
@@ -361,88 +546,261 @@
 })();
 </script>
 
-<!-- Demo Script -->
+<!-- iMessage Chat Demo -->
 <script>
 (function() {
-    const typedEl = document.getElementById('lpTyped');
-    const cardsEl = document.getElementById('lpCards');
-    if (!typedEl || !cardsEl) return;
+    const chatBody = document.getElementById('chatBody');
+    if (!chatBody) return;
 
-    const sequences = [
+    const conversations = [
         {
-            text: 'Just showed Oak Park to the Millers. They want to offer $485K. Schedule follow-up for tomorrow morning.',
-            cards: [
-                { label: 'Note Logged', detail: 'Millers — Oak Park showing, $485K offer interest' },
-                { label: 'Pipeline Updated', detail: 'Millers → Active Buyer' },
-                { label: 'Follow-up Set', detail: 'Tomorrow, 9:00 AM' }
-            ],
-            time: '3 actions in 2.4s — would take ~4 min manually'
+            messages: [
+                { type: 'user', text: 'Just showed Oak Park to the Millers. They loved it. Cash offer $485K. Follow up tomorrow 9am.' },
+                { type: 'reply', html: '<div class="lp-action-item"><span class="lp-action-check">✓</span> Showing logged — Oak Park, Millers</div><div class="lp-action-item"><span class="lp-action-check">✓</span> Millers moved to Active Buyer</div><div class="lp-action-item"><span class="lp-action-check">✓</span> Offer recorded — $485K cash</div><div class="lp-action-item"><span class="lp-action-check">✓</span> Follow-up set — Tomorrow, 9:00 AM</div>' }
+            ]
         },
         {
-            text: 'New lead from Zillow — Karen Chen, looking for 3BR in Ballantyne under $400K.',
-            cards: [
-                { label: 'Contact Created', detail: 'Karen Chen — Zillow lead' },
-                { label: 'Source Tagged', detail: 'Inbound: Zillow · 3BR Ballantyne <$400K' }
-            ],
-            time: '2 actions in 1.8s — would take ~3 min manually'
+            messages: [
+                { type: 'user', text: 'New lead from Zillow. Karen Chen, looking for 3BR in Ballantyne under $400K.' },
+                { type: 'reply', html: '<div class="lp-action-item"><span class="lp-action-check">✓</span> Contact created — Karen Chen</div><div class="lp-action-item"><span class="lp-action-check">✓</span> Source: Zillow inbound</div><div class="lp-action-item"><span class="lp-action-check">✓</span> Tagged: 3BR, Ballantyne, &lt;$400K</div>' }
+            ]
         },
         {
-            text: 'The Johnsons accepted the counter. Move to Under Contract. Send congrats email.',
-            cards: [
-                { label: 'Deal Updated', detail: 'Johnson → Under Contract' },
-                { label: 'Email Sent', detail: 'Congratulations template → johnsons@email.com' }
-            ],
-            time: '2 actions in 1.5s — would take ~3 min manually'
+            messages: [
+                { type: 'user', text: 'Johnsons accepted the counter. Move to Under Contract. Send congrats email.' },
+                { type: 'reply', html: '<div class="lp-action-item"><span class="lp-action-check">✓</span> Johnson deal → Under Contract</div><div class="lp-action-item"><span class="lp-action-check">✓</span> Congratulations email sent</div>' }
+            ]
         }
     ];
 
     let current = 0;
-
-    function typeText(text, cb) {
-        typedEl.textContent = '';
-        let i = 0;
-        const speed = 28 + Math.random() * 15;
-        function tick() {
-            if (i < text.length) {
-                typedEl.textContent += text[i++];
-                setTimeout(tick, '.!?,'.includes(text[i-1]) ? speed * 5 : speed);
-            } else if (cb) cb();
-        }
-        tick();
-    }
-
-    function showCards(cards, time) {
-        cardsEl.innerHTML = '';
-        cards.forEach((c, i) => {
-            const el = document.createElement('div');
-            el.className = 'lp-card';
-            el.innerHTML = `<span class="lp-card-dot"></span><div><div class="lp-card-label">${c.label}</div><div class="lp-card-detail">${c.detail}</div></div>`;
-            cardsEl.appendChild(el);
-            setTimeout(() => el.classList.add('visible'), 200 + i * 200);
+    function showConversation(conv) {
+        chatBody.innerHTML = '';
+        let delay = 0;
+        conv.messages.forEach((msg) => {
+            delay += msg.type === 'user' ? 300 : 800;
+            setTimeout(() => {
+                const bubble = document.createElement('div');
+                bubble.className = 'lp-bubble lp-bubble-' + msg.type;
+                if (msg.html) bubble.innerHTML = msg.html;
+                else bubble.textContent = msg.text;
+                chatBody.appendChild(bubble);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, delay);
         });
-        if (time) {
-            const t = document.createElement('div');
-            t.className = 'lp-time-saved';
-            t.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${time}`;
-            cardsEl.appendChild(t);
-            setTimeout(() => t.classList.add('visible'), 200 + cards.length * 200 + 400);
-        }
+        return delay + 3500;
     }
 
     function run() {
-        const seq = sequences[current];
-        cardsEl.innerHTML = '';
-        typeText(seq.text, () => {
-            setTimeout(() => showCards(seq.cards, seq.time), 200);
-            setTimeout(() => {
-                current = (current + 1) % sequences.length;
-                cardsEl.querySelectorAll('.lp-card, .lp-time-saved').forEach(c => { c.style.opacity = '0'; c.style.transform = 'translateY(8px)'; });
-                setTimeout(run, 800);
-            }, 5000);
-        });
+        const totalDelay = showConversation(conversations[current]);
+        current = (current + 1) % conversations.length;
+        setTimeout(() => {
+            chatBody.querySelectorAll('.lp-bubble').forEach(b => {
+                b.style.opacity = '0'; b.style.transform = 'translateY(8px)'; b.style.transition = 'opacity 0.3s, transform 0.3s';
+            });
+            setTimeout(run, 600);
+        }, totalDelay);
+    }
+    setTimeout(run, 800);
+})();
+</script>
+
+<!-- Inline Account Creation + CRM Connect -->
+<script>
+(function() {
+    const API = 'https://prod.flightsuite.ai/api/v1';
+    let _signupData = {};
+
+    // Step 1: Collect info → request OTP
+    const form = document.getElementById('signupForm');
+    if (!form) return;
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const errEl = document.getElementById('su-error');
+        errEl.style.display = 'none';
+
+        _signupData = {
+            name: document.getElementById('su-name').value.trim(),
+            email: document.getElementById('su-email').value.trim(),
+            phone: document.getElementById('su-phone').value.trim(),
+            crm: document.getElementById('su-crm').value,
+            plan: document.getElementById('su-plan').value || 'unsure'
+        };
+
+        if (!_signupData.email || !_signupData.crm) return;
+
+        const btn = document.getElementById('su-btn');
+        btn.disabled = true;
+        btn.textContent = 'Sending code…';
+
+        try {
+            const r = await fetch(API + '/auth/email/request-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: _signupData.email })
+            });
+            const d = await r.json();
+            if (!r.ok) throw new Error(d.detail || 'Failed to send code.');
+
+            // Fire tracking events
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Lead', { content_name: 'RE Landing Page Signup', content_category: 'real_estate', value: _signupData.plan === 'pro' ? 49 : 29, currency: 'USD' });
+            }
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'sign_up', { method: 'lp_re_form', plan: _signupData.plan, crm: _signupData.crm });
+            }
+
+            // Also log to Google Sheets for your records
+            fetch('https://script.google.com/macros/s/AKfycbzUYVOCdHMDsFpfMHQDe6W-Rw-k5-sGhhIBfKlzaFb7LhzqQGjgPYaY9KJpBeSQQ0bW/exec', {
+                method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: _signupData.name, email: _signupData.email, phone: _signupData.phone, crm: _signupData.crm, plan: _signupData.plan, source: 'lp_real_estate', timestamp: new Date().toISOString() })
+            });
+
+            // Show OTP step
+            document.getElementById('signup-step-info').style.display = 'none';
+            document.getElementById('signup-step-otp').style.display = 'block';
+            document.getElementById('otp-email-display').textContent = _signupData.email;
+            setTimeout(() => document.getElementById('su-otp').focus(), 100);
+
+        } catch(err) {
+            errEl.textContent = err.message;
+            errEl.style.display = 'block';
+            btn.disabled = false;
+            btn.textContent = 'Get My CRM Admin';
+        }
+    });
+
+    // Step 2: Verify OTP → create account → start CRM connect
+    window.verifyOtpAndConnect = async function() {
+        const code = document.getElementById('su-otp').value.trim();
+        const errEl = document.getElementById('otp-error');
+        errEl.style.display = 'none';
+
+        if (code.length !== 6) {
+            errEl.textContent = 'Enter the 6-digit code from your email.';
+            errEl.style.display = 'block';
+            return;
+        }
+
+        const btn = document.getElementById('su-verify-btn');
+        btn.disabled = true;
+        btn.textContent = 'Verifying…';
+
+        try {
+            const r = await fetch(API + '/auth/email/verify-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: _signupData.email, code: code })
+            });
+            const d = await r.json();
+            if (!r.ok) throw new Error(d.detail || 'Invalid code. Please try again.');
+
+            // Store token — they're now logged in
+            localStorage.setItem('fs_user_token', d.user_token);
+            if (d.email) localStorage.setItem('fs_email', d.email);
+
+            // Fire CompleteRegistration pixel
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'CompleteRegistration', { content_name: 'RE LP Account Created', value: _signupData.plan === 'pro' ? 49 : 29, currency: 'USD' });
+            }
+
+            // Determine CRM to connect
+            const crm = _signupData.crm;
+            if (crm === 'hubspot' || crm === 'ghl') {
+                // Show connecting step
+                document.getElementById('signup-step-otp').style.display = 'none';
+                document.getElementById('signup-step-connecting').style.display = 'block';
+                document.getElementById('connecting-crm-name').textContent = crm === 'hubspot' ? 'HubSpot' : 'GoHighLevel';
+
+                // Start CRM OAuth
+                const ep = crm === 'hubspot' ? '/auth/hubspot/oauth/start' : '/auth/ghl/oauth/start';
+                const authHeaders = { 'Authorization': 'Bearer ' + d.user_token, 'Content-Type': 'application/json' };
+
+                try {
+                    const cr = await fetch(API + ep, { method: 'POST', headers: authHeaders, body: '{}' });
+                    const cd = await cr.json();
+                    if (!cr.ok) throw new Error(cd.detail || 'Failed to start CRM connection.');
+
+                    // Open OAuth window
+                    if (cd.authorization_url) {
+                        window.open(cd.authorization_url, '_blank', 'width=600,height=700');
+                    }
+
+                    // Poll for completion
+                    const pollEp = crm === 'hubspot' ? '/auth/hubspot/oauth/session' : '/auth/ghl/oauth/session';
+                    let attempts = 0;
+                    const pollInterval = setInterval(async () => {
+                        attempts++;
+                        if (attempts > 60) { // 2 min timeout
+                            clearInterval(pollInterval);
+                            showDone();
+                            return;
+                        }
+                        try {
+                            const pr = await fetch(API + pollEp + '?polling_token=' + encodeURIComponent(cd.polling_token), { headers: authHeaders });
+                            if (pr.ok) {
+                                const pd = await pr.json();
+                                if (pd.status === 'connected' || pd.connected) {
+                                    clearInterval(pollInterval);
+                                    if (typeof fbq !== 'undefined') {
+                                        fbq('trackCustom', 'CRMConnected', { crm: crm });
+                                    }
+                                    showDone();
+                                }
+                            }
+                        } catch(_) {}
+                    }, 2000);
+
+                } catch(crmErr) {
+                    // CRM connect failed — still show done, they can connect from /app
+                    showDone();
+                }
+            } else {
+                // "Other" CRM — just show done
+                showDone();
+            }
+
+        } catch(err) {
+            errEl.textContent = err.message;
+            errEl.style.display = 'block';
+            btn.disabled = false;
+            btn.textContent = 'Verify & Connect My CRM';
+        }
+    };
+
+    window.resendOtp = async function() {
+        try {
+            await fetch(API + '/auth/email/request-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: _signupData.email })
+            });
+        } catch(_) {}
+    };
+
+    window.backToInfo = function() {
+        document.getElementById('signup-step-otp').style.display = 'none';
+        document.getElementById('signup-step-info').style.display = 'block';
+        document.getElementById('su-btn').disabled = false;
+        document.getElementById('su-btn').textContent = 'Get My CRM Admin';
+    };
+
+    function showDone() {
+        document.getElementById('signup-step-connecting').style.display = 'none';
+        document.getElementById('signup-step-otp').style.display = 'none';
+        document.getElementById('signup-step-done').style.display = 'block';
     }
 
-    setTimeout(run, 1000);
+    // Auto-verify on 6th digit
+    const otpInput = document.getElementById('su-otp');
+    if (otpInput) {
+        otpInput.addEventListener('input', function() {
+            if (this.value.length === 6) {
+                verifyOtpAndConnect();
+            }
+        });
+    }
 })();
 </script>
 
