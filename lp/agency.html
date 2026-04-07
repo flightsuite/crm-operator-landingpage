@@ -467,6 +467,7 @@
         <div id="signup-step-otp" style="display:none;">
             <h2 class="lp-h2">Check your email</h2>
             <p class="lp-signup-sub">We sent a 6-digit code to <strong id="otp-email-display"></strong></p>
+            <p style="font-size:13px;color:var(--text-tertiary);margin-bottom:16px;">Don't see it? Check your spam or promotions folder.</p>
             <div class="lp-form">
                 <input type="text" class="lp-input" id="su-otp" placeholder="Enter 6-digit code" maxlength="6" inputmode="numeric" autocomplete="one-time-code" style="text-align:center;font-size:24px;letter-spacing:8px;font-family:var(--font-display);">
                 <button type="button" class="lp-submit" id="su-verify-btn" onclick="verifyOtpAndConnect()">Verify & Connect My CRM</button>
@@ -659,9 +660,9 @@
                 gtag('event', 'sign_up', { method: 'lp_agency_form', plan: _signupData.plan, crm: _signupData.crm });
             }
 
-            // Log to Google Sheets
-            fetch('https://script.google.com/macros/s/AKfycbzUYVOCdHMDsFpfMHQDe6W-Rw-k5-sGhhIBfKlzaFb7LhzqQGjgPYaY9KJpBeSQQ0bW/exec', {
-                method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
+            // Log to Formspree
+            fetch('https://formspree.io/f/mzdkwblz', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name: _signupData.name, email: _signupData.email, phone: _signupData.phone, crm: _signupData.crm, clients: _signupData.clients, plan: _signupData.plan, source: 'lp_agency', timestamp: new Date().toISOString() })
             });
 
