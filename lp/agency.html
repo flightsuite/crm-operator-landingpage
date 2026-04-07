@@ -99,6 +99,18 @@
         .lp-hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(212,168,70,0.5); }
         .lp-hero-note { font-size: 13px; color: var(--text-tertiary); margin-top: 14px; }
 
+        .lp-hero-form { display: flex; gap: 8px; max-width: 480px; margin: 0 auto; flex-wrap: wrap; }
+        .lp-hero-form .lp-input { flex: 1; min-width: 140px; padding: 14px 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; color: var(--text-primary); font-size: 16px; font-family: var(--font-body); outline: none; transition: border-color 0.2s; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        .lp-hero-form .lp-input:focus { border-color: var(--accent-gold); }
+        .lp-hero-form .lp-input::placeholder { color: rgba(255,255,255,0.4); }
+        .lp-hero-form-btn { width: 100%; padding: 16px 24px; background: var(--accent-gold); color: #0A0A0A; border: none; border-radius: 980px; font-size: 17px; font-weight: 700; font-family: var(--font-body); cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 20px rgba(212,168,70,0.3); animation: pulse-glow 3s ease-in-out infinite; }
+        .lp-hero-form-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,168,70,0.4); }
+        .lp-hero-form-error { width: 100%; font-size: 13px; color: #FF6B6B; text-align: center; }
+        .lp-hero-done { text-align: center; }
+        .lp-hero-done-check { font-size: 48px; margin-bottom: 8px; }
+        .lp-hero-done-text { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+        .lp-hero-done-sub { font-size: 15px; color: #B0B0B5; }
+
         .lp-scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 2; animation: float 2s ease-in-out infinite; }
         .lp-scroll-hint svg { opacity: 0.4; }
 
@@ -252,7 +264,10 @@
             .lp-price-card.recommended { order: -1; }
             .lp-pain-stats { gap: 16px; }
             .lp-pain-bg { height: 420px; }
-            .lp-hero-cta, .lp-cta { width: 100%; justify-content: center; }
+            .lp-hero-form .lp-input { backdrop-filter: none; -webkit-backdrop-filter: none; }
+            .lp-hero-form { gap: 8px; }
+            .lp-hero-form .lp-input { min-width: 100%; }
+            .lp-cta { width: 100%; justify-content: center; }
             .lp-nav { backdrop-filter: none; -webkit-backdrop-filter: none; }
             .lp-price-card, .lp-testimonial, .lp-signup-box { backdrop-filter: none; -webkit-backdrop-filter: none; }
             .lp-final-trust { flex-direction: column; gap: 8px; }
@@ -303,8 +318,21 @@
         <div class="lp-badge lp-reveal">Works with GoHighLevel, Lead Connector & HubSpot</div>
         <h1 class="lp-h1 lp-reveal lp-reveal-delay-1">Stop being your clients'<br><em>CRM help desk.</em></h1>
         <p class="lp-sub lp-reveal lp-reveal-delay-2">One text updates multiple client CRMs. Contacts, pipelines, follow-ups — done before they even ask.</p>
-        <a href="#signup" class="lp-hero-cta lp-reveal lp-reveal-delay-3" data-event="lp_agency_hero_cta">Give My Clients a CRM Admin</a>
-        <p class="lp-hero-note lp-reveal lp-reveal-delay-3">Starts at $29/mo. Cancel anytime.</p>
+        <div class="lp-reveal lp-reveal-delay-3" id="hero-form-wrap">
+            <form class="lp-hero-form" id="heroForm">
+                <input type="text" class="lp-input" id="hero-name" placeholder="Your name" required>
+                <input type="email" class="lp-input" id="hero-email" placeholder="Email" required>
+                <input type="tel" class="lp-input" id="hero-phone" placeholder="Phone" required>
+                <button type="submit" class="lp-hero-form-btn" id="hero-btn" data-event="lp_agency_hero_cta">Give My Clients a CRM Admin</button>
+                <div class="lp-hero-form-error" id="hero-error" style="display:none;"></div>
+            </form>
+            <p class="lp-hero-note" style="margin-top:14px;">No credit card required. We'll reach out today.</p>
+        </div>
+        <div class="lp-reveal lp-reveal-delay-3 lp-hero-done" id="hero-done" style="display:none;">
+            <div class="lp-hero-done-check">✓</div>
+            <div class="lp-hero-done-text">You're in.</div>
+            <div class="lp-hero-done-sub">We'll reach out shortly to get your clients' CRMs connected.</div>
+        </div>
     </div>
     <div class="lp-scroll-hint">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
@@ -566,55 +594,87 @@
 <!-- Lead Capture -->
 <script>
 (function() {
-    const form = document.getElementById('signupForm');
-    if (!form) return;
+    var submitted = false;
+    var SOURCE = 'lp_agency';
 
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const errEl = document.getElementById('su-error');
-        errEl.style.display = 'none';
+    function showAllSuccess() {
+        submitted = true;
+        var heroWrap = document.getElementById('hero-form-wrap');
+        var heroDone = document.getElementById('hero-done');
+        var stepInfo = document.getElementById('signup-step-info');
+        var stepDone = document.getElementById('signup-step-done');
+        if (heroWrap) heroWrap.style.display = 'none';
+        if (heroDone) heroDone.style.display = 'block';
+        if (stepInfo) stepInfo.style.display = 'none';
+        if (stepDone) stepDone.style.display = 'block';
+    }
 
-        const data = {
-            name: document.getElementById('su-name').value.trim(),
-            email: document.getElementById('su-email').value.trim(),
-            phone: document.getElementById('su-phone').value.trim(),
-            source: 'lp_agency',
-            timestamp: new Date().toISOString()
-        };
+    function fireTracking() {
+        if (typeof fbq !== 'undefined') {
+            fbq('track', 'Lead', { content_name: 'Agency Landing Page Signup', content_category: 'agency', value: 49, currency: 'USD' });
+        }
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'sign_up', { method: 'lp_agency_form' });
+        }
+    }
 
-        if (!data.name || !data.email || !data.phone) return;
-
-        const btn = document.getElementById('su-btn');
+    async function submitLead(data, btn, errEl, originalText) {
+        if (submitted) return;
         btn.disabled = true;
         btn.textContent = 'Submitting…';
 
         try {
-            const r = await fetch('https://formspree.io/f/mzdkwblz', {
+            var r = await fetch('https://formspree.io/f/mzdkwblz', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
             if (!r.ok) throw new Error('Something went wrong. Please try again.');
-
-            // Fire tracking
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'Lead', { content_name: 'Agency Landing Page Signup', content_category: 'agency', value: 49, currency: 'USD' });
-            }
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'sign_up', { method: 'lp_agency_form' });
-            }
-
-            // Show success
-            document.getElementById('signup-step-info').style.display = 'none';
-            document.getElementById('signup-step-done').style.display = 'block';
-
+            fireTracking();
+            showAllSuccess();
         } catch(err) {
             errEl.textContent = err.message;
             errEl.style.display = 'block';
             btn.disabled = false;
-            btn.textContent = 'Give My Clients a CRM Admin';
+            btn.textContent = originalText;
         }
-    });
+    }
+
+    // Hero form
+    var heroForm = document.getElementById('heroForm');
+    if (heroForm) {
+        heroForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var errEl = document.getElementById('hero-error');
+            errEl.style.display = 'none';
+            var data = {
+                name: document.getElementById('hero-name').value.trim(),
+                email: document.getElementById('hero-email').value.trim(),
+                phone: document.getElementById('hero-phone').value.trim(),
+                source: SOURCE, timestamp: new Date().toISOString()
+            };
+            if (!data.name || !data.email || !data.phone) return;
+            submitLead(data, document.getElementById('hero-btn'), errEl, 'Give My Clients a CRM Admin');
+        });
+    }
+
+    // Bottom form
+    var signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var errEl = document.getElementById('su-error');
+            errEl.style.display = 'none';
+            var data = {
+                name: document.getElementById('su-name').value.trim(),
+                email: document.getElementById('su-email').value.trim(),
+                phone: document.getElementById('su-phone').value.trim(),
+                source: SOURCE, timestamp: new Date().toISOString()
+            };
+            if (!data.name || !data.email || !data.phone) return;
+            submitLead(data, document.getElementById('su-btn'), errEl, 'Give My Clients a CRM Admin');
+        });
+    }
 })();
 </script>
 
