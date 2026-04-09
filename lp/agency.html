@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlightSuite for Agencies — Give Every Client a CRM Admin</title>
-    <meta name="description" content="Stop being the CRM help desk. FlightSuite updates your clients' GoHighLevel, Lead Connector & HubSpot — they just text what happened.">
+    <meta name="description" content="Stop being your clients' CRM help desk. FlightSuite updates their GHL, LeadConnector, or white-label CRM — they just text what happened. Free to start.">
     <meta name="robots" content="noindex, nofollow">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://flightsuite.ai/lp/agency.html">
     <meta property="og:title" content="FlightSuite — Give Every Client a CRM Admin">
-    <meta property="og:description" content="Stop being the CRM help desk. FlightSuite updates your clients' CRM — they just text what happened.">
+    <meta property="og:description" content="Stop being your clients' CRM help desk. FlightSuite updates their GHL or white-label CRM — they just text what happened. Free to start.">
     <meta property="og:image" content="https://flightsuite.ai/lp/assets/social-preview-agency.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="FlightSuite — Give Every Client a CRM Admin">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="FlightSuite — Give Every Client a CRM Admin">
+    <meta name="twitter:description" content="Stop being your clients' CRM help desk. They just text what happened. Free to start.">
     <meta name="twitter:image" content="https://flightsuite.ai/lp/assets/social-preview-agency.png">
 
     <link rel="icon" type="image/svg+xml" href="/Assets/Flight Suite Favicon vPurple.svg">
@@ -48,8 +50,8 @@
             --text-primary: #F5F5F7;
             --text-secondary: #86868B;
             --text-tertiary: #6E6E73;
-            --accent-purple: #5E5CE6;
             --accent-blue: #0071E3;
+            --accent-purple: #5E5CE6;
             --accent-cyan: #22D3EE;
             --accent-green: #34C759;
             --accent-gold: #D4A846;
@@ -64,87 +66,46 @@
         html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
         body { font-family: var(--font-body); color: var(--text-primary); background: var(--bg); font-size: 16px; line-height: 1.5; overflow-x: hidden; }
 
-        /* Animations */
+        /* Animated gradient orbs */
+        .lp-bg-orbs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        .lp-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.15; }
+        .lp-orb-1 { width: 600px; height: 600px; background: var(--accent-purple); top: -200px; left: -100px; animation: orb-float-1 18s ease-in-out infinite; }
+        .lp-orb-2 { width: 500px; height: 500px; background: var(--accent-blue); bottom: -150px; right: -100px; animation: orb-float-2 22s ease-in-out infinite; }
+        .lp-orb-3 { width: 400px; height: 400px; background: var(--accent-cyan); top: 40%; left: 50%; transform: translateX(-50%); animation: orb-float-3 15s ease-in-out infinite; opacity: 0.08; }
+        @keyframes orb-float-1 { 0%, 100% { transform: translate(0, 0); } 33% { transform: translate(80px, 60px); } 66% { transform: translate(-40px, 120px); } }
+        @keyframes orb-float-2 { 0%, 100% { transform: translate(0, 0); } 33% { transform: translate(-60px, -80px); } 66% { transform: translate(40px, -40px); } }
+        @keyframes orb-float-3 { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-80px); } }
+
+        /* Noise grain overlay */
+        .lp-grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 256px 256px; }
+
+        /* Entrance animations */
         .lp-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
         .lp-reveal.visible { opacity: 1; transform: translateY(0); }
-        .lp-reveal-delay-1 { transition-delay: 0.12s; }
-        .lp-reveal-delay-2 { transition-delay: 0.24s; }
-        .lp-reveal-delay-3 { transition-delay: 0.36s; }
+        .lp-reveal-delay-1 { transition-delay: 0.1s; }
+        .lp-reveal-delay-2 { transition-delay: 0.2s; }
+        .lp-reveal-delay-3 { transition-delay: 0.3s; }
 
         @keyframes bubble-in { from { opacity: 0; transform: translateY(8px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
         @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(212,168,70,0.2); } 50% { box-shadow: 0 0 40px rgba(212,168,70,0.4); } }
 
-        /* ═══════════════════════════════════════
-           NAV
-           ═══════════════════════════════════════ */
-        .lp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,10,0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+        .lp-content { position: relative; z-index: 2; }
+
+        /* Nav */
+        .lp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         .lp-logo { font-family: var(--font-display); font-size: 20px; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
         .lp-nav-cta { font-size: 14px; font-weight: 600; padding: 8px 20px; background: var(--accent-gold); color: #0A0A0A; border-radius: 980px; text-decoration: none; transition: opacity 0.15s; }
         .lp-nav-cta:hover { opacity: 0.88; }
 
-        /* ═══════════════════════════════════════
-           HERO — Full-bleed cinematic
-           ═══════════════════════════════════════ */
-        .lp-hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .lp-hero-bg { position: absolute; inset: 0; }
-        .lp-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
-        .lp-hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.78) 50%, rgba(10,10,10,0.97) 100%); }
-        .lp-hero-content { position: relative; z-index: 2; text-align: center; max-width: 680px; padding: 120px 24px 80px; }
-        .lp-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(94,92,230,0.15); border: 1px solid rgba(94,92,230,0.3); color: var(--accent-purple); border-radius: 980px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 24px; }
-        .lp-h1 { font-family: var(--font-display); font-size: clamp(40px, 9vw, 64px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 20px; text-shadow: 0 2px 20px rgba(0,0,0,0.6); }
-        .lp-h1 em { font-style: normal; color: var(--accent-gold); }
-        .lp-sub { font-size: clamp(17px, 2.5vw, 21px); color: #B0B0B5; margin-bottom: 36px; line-height: 1.55; max-width: 500px; margin-left: auto; margin-right: auto; text-shadow: 0 1px 12px rgba(0,0,0,0.5); }
-        .lp-hero-cta { display: inline-flex; align-items: center; gap: 8px; padding: 18px 36px; background: var(--accent-gold); color: #0A0A0A; border-radius: 980px; font-size: 17px; font-weight: 700; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 24px rgba(212,168,70,0.35); animation: pulse-glow 3s ease-in-out infinite; }
-        .lp-hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(212,168,70,0.5); }
-        .lp-hero-note { font-size: 13px; color: var(--text-tertiary); margin-top: 14px; }
-
-        .lp-hero-form { display: flex; gap: 8px; max-width: 480px; margin: 0 auto; flex-wrap: wrap; }
-        .lp-hero-form .lp-input { flex: 1; min-width: 140px; padding: 14px 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; color: var(--text-primary); font-size: 16px; font-family: var(--font-body); outline: none; transition: border-color 0.2s; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-        .lp-hero-form .lp-input:focus { border-color: var(--accent-gold); }
-        .lp-hero-form .lp-input::placeholder { color: rgba(255,255,255,0.4); }
-        .lp-hero-form-btn { width: 100%; padding: 16px 24px; background: var(--accent-gold); color: #0A0A0A; border: none; border-radius: 980px; font-size: 17px; font-weight: 700; font-family: var(--font-body); cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 20px rgba(212,168,70,0.3); animation: pulse-glow 3s ease-in-out infinite; }
-        .lp-hero-form-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,168,70,0.4); }
-        .lp-hero-form-error { width: 100%; font-size: 13px; color: #FF6B6B; text-align: center; }
-        .lp-hero-done { text-align: center; }
-        .lp-hero-done-check { font-size: 48px; margin-bottom: 8px; }
-        .lp-hero-done-text { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
-        .lp-hero-done-sub { font-size: 15px; color: #B0B0B5; }
-
-        .lp-scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 2; animation: float 2s ease-in-out infinite; }
-        .lp-scroll-hint svg { opacity: 0.4; }
-
-        /* ═══════════════════════════════════════
-           PAIN — Image-backed emotional section
-           ═══════════════════════════════════════ */
-        .lp-pain { position: relative; padding: 0; overflow: hidden; }
-        .lp-pain-bg { width: 100%; height: 480px; object-fit: cover; display: block; }
-        .lp-pain-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg) 0%, rgba(10,10,10,0.65) 25%, rgba(10,10,10,0.65) 75%, var(--bg) 100%); }
-        .lp-pain-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 24px; z-index: 2; }
-        .lp-pain-headline { font-family: var(--font-display); font-size: clamp(26px, 5vw, 40px); font-weight: 700; text-align: center; letter-spacing: -0.03em; margin-bottom: 8px; text-shadow: 0 2px 16px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.4); }
-        .lp-pain-headline em { font-style: normal; color: #FF6B6B; }
-        .lp-pain-sub { font-size: 17px; color: #B0B0B5; text-align: center; max-width: 460px; text-shadow: 0 1px 12px rgba(0,0,0,0.6); }
-
-        .lp-pain-stats { display: flex; gap: 32px; margin-top: 32px; }
-        .lp-pain-stat { text-align: center; }
-        .lp-pain-stat-num { font-family: var(--font-display); font-size: clamp(32px, 6vw, 48px); font-weight: 700; background: linear-gradient(135deg, #FF6B6B, #FF3B30); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
-        .lp-pain-stat-label { font-size: 13px; color: #B0B0B5; margin-top: 4px; text-shadow: 0 1px 8px rgba(0,0,0,0.6); }
-
-        /* ═══════════════════════════════════════
-           SOLUTION — Split: visual + iMessage
-           ═══════════════════════════════════════ */
-        .lp-solution { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
-        .lp-solution-header { text-align: center; margin-bottom: 48px; }
-        .lp-section-label { font-size: 12px; font-weight: 700; color: var(--accent-purple); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
-        .lp-h2 { font-family: var(--font-display); font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.03em; }
-
-        .lp-split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-        .lp-split-visual { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 16px 64px rgba(0,0,0,0.5); }
-        .lp-split-visual img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 400px; }
-        .lp-split-visual-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.1) 0%, rgba(10,10,10,0.8) 100%); }
-        .lp-split-visual-text { position: absolute; bottom: 24px; left: 24px; right: 24px; z-index: 2; }
-        .lp-split-visual-text p { font-size: 18px; font-weight: 600; line-height: 1.4; text-shadow: 0 1px 12px rgba(0,0,0,0.7); }
-        .lp-split-visual-text span { font-size: 14px; color: #B0B0B5; text-shadow: 0 1px 8px rgba(0,0,0,0.6); }
+        /* Hero — split layout */
+        .lp-hero { padding: 120px 24px 64px; max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+        .lp-hero-copy { }
+        .lp-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(94,92,230,0.1); color: var(--accent-purple); border-radius: 980px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 24px; }
+        .lp-h1 { font-family: var(--font-display); font-size: clamp(36px, 8vw, 56px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.08; margin-bottom: 16px; }
+        .lp-sub { font-size: clamp(16px, 2.5vw, 20px); color: var(--text-secondary); margin-bottom: 32px; line-height: 1.5; }
+        .lp-cta { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; background: var(--accent-gold); color: #0A0A0A; border-radius: 980px; font-size: 17px; font-weight: 700; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 20px rgba(212,168,70,0.3); animation: pulse-glow 3s ease-in-out infinite; }
+        .lp-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,168,70,0.4); }
+        .lp-cta-note { font-size: 13px; color: var(--text-tertiary); margin-top: 12px; }
 
         /* iMessage Phone */
         .lp-phone { background: #1C1C1E; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 12px 48px rgba(0,0,0,0.6); }
@@ -152,7 +113,7 @@
         .lp-phone-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: white; flex-shrink: 0; }
         .lp-phone-name { font-size: 15px; font-weight: 600; }
         .lp-phone-status { font-size: 11px; color: var(--accent-green); }
-        .lp-phone-body { padding: 16px; min-height: 340px; display: flex; flex-direction: column; gap: 8px; }
+        .lp-phone-body { padding: 16px; min-height: 300px; display: flex; flex-direction: column; gap: 8px; }
 
         .lp-bubble { max-width: 85%; padding: 10px 14px; border-radius: 18px; font-size: 15px; line-height: 1.45; animation: bubble-in 0.3s var(--ease-out); }
         .lp-bubble-user { align-self: flex-end; background: #0071E3; color: white; border-bottom-right-radius: 4px; }
@@ -160,74 +121,53 @@
         .lp-action-item { display: flex; align-items: center; gap: 6px; font-size: 13px; padding: 3px 0; }
         .lp-action-check { color: var(--accent-green); font-size: 12px; }
 
-        /* ═══════════════════════════════════════
-           VIDEO SECTION
-           ═══════════════════════════════════════ */
+        /* Pain */
+        .lp-pain { padding: 64px 24px; max-width: 800px; margin: 0 auto; }
+        .lp-pain-copy { font-size: 18px; color: var(--text-secondary); text-align: center; margin-bottom: 40px; line-height: 1.6; }
+        .lp-pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .lp-pain-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px 20px; text-align: center; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s; cursor: default; }
+        .lp-pain-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(94,92,230,0.12); border-color: rgba(255,255,255,0.12); }
+        .lp-pain-stat { font-family: var(--font-display); font-size: clamp(28px, 6vw, 40px); font-weight: 700; background: linear-gradient(135deg, #FF6B6B, #FF3B30); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .lp-pain-label { font-size: 14px; color: var(--text-secondary); margin-top: 8px; line-height: 1.4; }
+
+        /* Video */
         .lp-video-section { padding: 80px 24px; text-align: center; }
+        .lp-section-label { font-size: 12px; font-weight: 700; color: var(--accent-purple); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+        .lp-h2 { font-family: var(--font-display); font-size: clamp(24px, 5vw, 36px); font-weight: 700; letter-spacing: -0.03em; }
         .lp-video-container { max-width: 800px; margin: 32px auto 0; position: relative; border-radius: 20px; overflow: hidden; background: var(--surface); border: 1px solid var(--glass-border); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 12px 48px rgba(0,0,0,0.5); }
         .lp-video-container video { width: 100%; height: 100%; object-fit: cover; }
-        .lp-video-placeholder { display: flex; flex-direction: column; align-items: center; gap: 16px; color: var(--text-tertiary); }
         .lp-play-btn { width: 80px; height: 80px; border-radius: 50%; background: rgba(212,168,70,0.12); border: 2px solid var(--accent-gold); display: flex; align-items: center; justify-content: center; transition: transform 0.2s, background 0.2s; }
         .lp-play-btn:hover { transform: scale(1.08); background: rgba(212,168,70,0.25); }
         .lp-play-btn svg { margin-left: 4px; }
+        .lp-video-placeholder { display: flex; flex-direction: column; align-items: center; gap: 16px; color: var(--text-tertiary); }
         .lp-video-caption { font-size: 13px; color: var(--text-tertiary); margin-top: 16px; }
 
-        /* ═══════════════════════════════════════
-           PRICING
-           ═══════════════════════════════════════ */
-        .lp-pricing { padding: 80px 24px; max-width: 720px; margin: 0 auto; }
-        .lp-pricing-header { text-align: center; margin-bottom: 48px; }
-        .lp-pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        /* How It Works */
+        .lp-steps { padding: 64px 24px; max-width: 800px; margin: 0 auto; text-align: center; }
+        .lp-steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+        .lp-step { text-align: center; }
+        .lp-step-num { width: 44px; height: 44px; border-radius: 50%; background: rgba(94,92,230,0.12); color: var(--accent-purple); display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 17px; margin-bottom: 16px; }
+        .lp-step-title { font-family: var(--font-display); font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+        .lp-step-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
 
-        .lp-price-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 20px; padding: 32px 24px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s var(--ease), box-shadow 0.3s; position: relative; }
-        .lp-price-card:hover { transform: translateY(-4px); }
-        .lp-price-card.recommended { border-color: var(--accent-gold); box-shadow: 0 0 48px rgba(212,168,70,0.15); }
-        .lp-price-card.recommended:hover { box-shadow: 0 0 64px rgba(212,168,70,0.25); }
+        /* Value Anchor */
+        .lp-value { padding: 64px 24px; max-width: 640px; margin: 0 auto; text-align: center; }
+        .lp-value-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+        .lp-value-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px 20px; text-align: left; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s var(--ease), box-shadow 0.3s; }
+        .lp-value-card:hover { transform: translateY(-4px); }
+        .lp-value-card.highlight { border-color: var(--accent-gold); background: rgba(212,168,70,0.05); box-shadow: 0 0 40px rgba(212,168,70,0.12); }
+        .lp-value-card.highlight:hover { box-shadow: 0 0 60px rgba(212,168,70,0.2); }
+        .lp-value-card-title { font-size: 13px; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+        .lp-value-price { font-family: var(--font-display); font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+        .lp-value-price.expensive { color: #FF6B6B; }
+        .lp-value-price.affordable { color: var(--accent-gold); }
+        .lp-value-list { list-style: none; }
+        .lp-value-list li { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .lp-value-list li::before { position: absolute; left: 0; }
+        .lp-value-card:not(.highlight) .lp-value-list li::before { content: '\2717'; color: #FF3B30; }
+        .lp-value-card.highlight .lp-value-list li::before { content: '\2713'; color: var(--accent-green); }
 
-        .lp-price-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent-gold); color: #0A0A0A; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 980px; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
-        .lp-price-name { font-family: var(--font-display); font-size: 18px; font-weight: 600; margin-bottom: 8px; }
-        .lp-price-amount { font-family: var(--font-display); font-size: 48px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
-        .lp-price-amount span { font-size: 18px; font-weight: 400; color: var(--text-tertiary); }
-        .lp-price-amount.gold { color: var(--accent-gold); }
-        .lp-price-desc { font-size: 14px; color: var(--text-secondary); margin: 12px 0 20px; line-height: 1.5; }
-        .lp-price-features { list-style: none; margin-bottom: 24px; }
-        .lp-price-features li { font-size: 14px; color: var(--text-secondary); padding: 6px 0 6px 22px; position: relative; }
-        .lp-price-features li::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; }
-        .lp-price-card:not(.recommended) .lp-price-features li::before { background: rgba(134,134,139,0.2); }
-        .lp-price-card.recommended .lp-price-features li::before { background: rgba(52,199,89,0.2); }
-        .lp-price-features li::after { content: ''; position: absolute; left: 4px; top: 50%; transform: translateY(-50%); width: 6px; height: 6px; border-radius: 50%; }
-        .lp-price-card:not(.recommended) .lp-price-features li::after { background: var(--text-tertiary); }
-        .lp-price-card.recommended .lp-price-features li::after { background: var(--accent-green); }
-
-        .lp-price-cta { display: block; width: 100%; text-align: center; padding: 14px 24px; border-radius: 980px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; border: none; cursor: pointer; }
-        .lp-price-cta:hover { transform: translateY(-2px); }
-        .lp-price-cta.primary { background: var(--accent-gold); color: #0A0A0A; box-shadow: 0 4px 20px rgba(212,168,70,0.3); }
-        .lp-price-cta.primary:hover { box-shadow: 0 8px 32px rgba(212,168,70,0.4); }
-        .lp-price-cta.secondary { background: rgba(255,255,255,0.06); color: var(--text-primary); border: 1px solid var(--glass-border); }
-        .lp-price-cta.secondary:hover { background: rgba(255,255,255,0.1); }
-
-        /* ═══════════════════════════════════════
-           SIGNUP
-           ═══════════════════════════════════════ */
-        .lp-signup { padding: 64px 24px; max-width: 520px; margin: 0 auto; }
-        .lp-signup-box { background: rgba(17,17,17,0.8); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px 32px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); text-align: center; }
-        .lp-signup-box .lp-h2 { font-size: clamp(22px, 4vw, 30px); margin-bottom: 8px; }
-        .lp-signup-sub { font-size: 15px; color: var(--text-secondary); margin-bottom: 24px; }
-        .lp-form { display: flex; flex-direction: column; gap: 12px; }
-        .lp-input { width: 100%; padding: 14px 16px; background: rgba(255,255,255,0.06); border: 1px solid var(--glass-border); border-radius: 12px; color: var(--text-primary); font-size: 16px; font-family: var(--font-body); outline: none; transition: border-color 0.2s; }
-        .lp-input:focus { border-color: var(--accent-purple); }
-        .lp-input::placeholder { color: var(--text-tertiary); }
-        .lp-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236E6E73' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
-        .lp-submit { width: 100%; padding: 16px 24px; background: var(--accent-gold); color: #0A0A0A; border: none; border-radius: 980px; font-size: 17px; font-weight: 700; font-family: var(--font-body); cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 20px rgba(212,168,70,0.3); margin-top: 4px; }
-        .lp-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,168,70,0.4); }
-        .lp-form-note { font-size: 12px; color: var(--text-tertiary); margin-top: 8px; }
-
-        .lp-connecting-spinner { width: 48px; height: 48px; border: 3px solid var(--glass-border); border-top-color: var(--accent-gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* ═══════════════════════════════════════
-           SOCIAL PROOF
-           ═══════════════════════════════════════ */
+        /* Social Proof */
         .lp-proof { padding: 64px 24px; max-width: 640px; margin: 0 auto; }
         .lp-testimonial { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px; margin-bottom: 16px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s var(--ease), border-color 0.3s; }
         .lp-testimonial:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.12); }
@@ -237,336 +177,282 @@
         .lp-testimonial-author strong { color: var(--text-secondary); font-weight: 600; }
         .lp-trust { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 13px; color: var(--text-tertiary); padding-top: 24px; border-top: 1px solid var(--glass-border); margin-top: 32px; }
 
-        /* ═══════════════════════════════════════
-           FINAL CTA
-           ═══════════════════════════════════════ */
-        .lp-final { position: relative; padding: 100px 24px; text-align: center; overflow: hidden; }
-        .lp-final-bg { position: absolute; inset: 0; }
-        .lp-final-bg img { width: 100%; height: 100%; object-fit: cover; }
-        .lp-final-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg) 0%, rgba(10,10,10,0.75) 50%, var(--bg) 100%); }
-        .lp-final-content { position: relative; z-index: 2; }
-        .lp-final-h2 { font-family: var(--font-display); font-size: clamp(32px, 7vw, 52px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 16px; text-shadow: 0 2px 20px rgba(0,0,0,0.6); }
-        .lp-final-sub { font-size: 18px; color: #B0B0B5; margin-bottom: 36px; line-height: 1.5; text-shadow: 0 1px 12px rgba(0,0,0,0.5); }
-        .lp-cta { display: inline-flex; align-items: center; gap: 8px; padding: 18px 36px; background: var(--accent-gold); color: #0A0A0A; border-radius: 980px; font-size: 17px; font-weight: 700; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 24px rgba(212,168,70,0.35); }
-        .lp-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(212,168,70,0.5); }
+        /* Email Capture */
+        .lp-email-capture { padding: 64px 24px; max-width: 480px; margin: 0 auto; text-align: center; }
+        .lp-email-form { display: flex; gap: 8px; margin-top: 20px; }
+        .lp-input { width: 100%; padding: 14px 16px; background: rgba(255,255,255,0.06); border: 1px solid var(--glass-border); border-radius: 12px; color: var(--text-primary); font-size: 16px; font-family: var(--font-body); outline: none; transition: border-color 0.2s; }
+        .lp-input:focus { border-color: var(--accent-purple); }
+        .lp-input::placeholder { color: var(--text-tertiary); }
+        .lp-email-submit { padding: 14px 24px; background: var(--accent-gold); color: #0A0A0A; border: none; border-radius: 980px; font-size: 15px; font-weight: 700; font-family: var(--font-body); cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 20px rgba(212,168,70,0.3); white-space: nowrap; }
+        .lp-email-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,168,70,0.4); }
+        .lp-form-note { font-size: 12px; color: var(--text-tertiary); margin-top: 10px; }
+
+        /* Final CTA */
+        .lp-final { padding: 80px 24px; text-align: center; background: linear-gradient(180deg, var(--bg) 0%, #0D0D0F 100%); }
+        .lp-final-h2 { font-family: var(--font-display); font-size: clamp(28px, 6vw, 44px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; }
+        .lp-final-sub { font-size: 17px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.5; }
+        .lp-final-badge { font-size: 13px; color: var(--text-tertiary); margin-top: 16px; }
         .lp-final-trust { display: flex; align-items: center; justify-content: center; gap: 24px; margin-top: 24px; font-size: 13px; color: var(--text-tertiary); }
         .lp-final-trust span { display: flex; align-items: center; gap: 4px; }
         .lp-check { color: var(--accent-green); }
 
-        /* ═══════════════════════════════════════
-           MOBILE
-           ═══════════════════════════════════════ */
+        /* Mobile */
         @media (max-width: 768px) {
-            .lp-split { grid-template-columns: 1fr; gap: 32px; }
-            .lp-split-visual { order: -1; }
-            .lp-split-visual img { min-height: 280px; }
-            .lp-pricing-grid { grid-template-columns: 1fr; max-width: 380px; margin-left: auto; margin-right: auto; }
-            .lp-price-card.recommended { order: -1; }
-            .lp-pain-stats { gap: 16px; }
-            .lp-pain-bg { height: 420px; }
-            .lp-hero-form .lp-input { backdrop-filter: none; -webkit-backdrop-filter: none; }
-            .lp-hero-form { gap: 8px; }
-            .lp-hero-form .lp-input { min-width: 100%; }
-            .lp-cta { width: 100%; justify-content: center; }
+            .lp-hero { grid-template-columns: 1fr; gap: 32px; text-align: center; padding: 120px 24px 48px; }
+            .lp-hero-copy { order: 0; }
+            .lp-hero-phone { order: 1; max-width: 340px; margin: 0 auto; }
+            .lp-pain-grid { grid-template-columns: 1fr; max-width: 340px; margin-left: auto; margin-right: auto; }
+            .lp-steps-grid { grid-template-columns: 1fr; max-width: 300px; margin-left: auto; margin-right: auto; }
+            .lp-value-compare { grid-template-columns: 1fr; max-width: 360px; margin-left: auto; margin-right: auto; }
+            .lp-value-card.highlight { order: -1; }
+            .lp-cta { width: 100%; justify-content: center; font-size: 16px; padding: 16px 24px; }
+            .lp-email-form { flex-direction: column; }
             .lp-nav { backdrop-filter: none; -webkit-backdrop-filter: none; }
-            .lp-price-card, .lp-testimonial, .lp-signup-box { backdrop-filter: none; -webkit-backdrop-filter: none; }
+            .lp-pain-card, .lp-value-card, .lp-testimonial { backdrop-filter: none; -webkit-backdrop-filter: none; }
+            .lp-orb { filter: blur(80px); opacity: 0.1; }
             .lp-final-trust { flex-direction: column; gap: 8px; }
-            .lp-signup-box { padding: 32px 20px; }
-
-            /* Stronger overlays on mobile for text readability */
-            .lp-hero-overlay { background: linear-gradient(180deg, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.85) 50%, rgba(10,10,10,0.98) 100%); }
-            .lp-pain-overlay { background: linear-gradient(180deg, var(--bg) 0%, rgba(10,10,10,0.78) 20%, rgba(10,10,10,0.78) 80%, var(--bg) 100%); }
-            .lp-final-overlay { background: linear-gradient(180deg, var(--bg) 0%, rgba(10,10,10,0.85) 50%, var(--bg) 100%); }
-
-            /* Bump mobile font sizes for image-backed sections */
-            .lp-h1 { text-shadow: 0 2px 24px rgba(0,0,0,0.8); }
-            .lp-sub { text-shadow: 0 1px 16px rgba(0,0,0,0.7); }
-            .lp-pain-headline { font-size: clamp(24px, 6vw, 36px); text-shadow: 0 2px 20px rgba(0,0,0,0.8), 0 0 48px rgba(0,0,0,0.5); }
-            .lp-pain-sub { font-size: 16px; text-shadow: 0 1px 16px rgba(0,0,0,0.7); }
-            .lp-pain-stat-label { font-size: 12px; }
-            .lp-final-h2 { text-shadow: 0 2px 24px rgba(0,0,0,0.8); }
         }
 
         @media (prefers-reduced-motion: reduce) {
+            .lp-orb { animation: none; }
             .lp-reveal { opacity: 1; transform: none; transition: none; }
-            .lp-scroll-hint, .lp-hero-cta { animation: none; }
+            .lp-cta { animation: none; }
         }
 
         @media (max-width: 375px) {
-            .lp-h1 { font-size: 36px; }
-            .lp-hero-content { padding: 100px 20px 60px; }
+            .lp-hero { padding: 100px 20px 40px; }
+            .lp-h1 { font-size: 32px; }
         }
     </style>
 </head>
 <body>
 
+<!-- Animated Background -->
+<div class="lp-bg-orbs">
+    <div class="lp-orb lp-orb-1"></div>
+    <div class="lp-orb lp-orb-2"></div>
+    <div class="lp-orb lp-orb-3"></div>
+</div>
+<div class="lp-grain"></div>
+
+<div class="lp-content">
+
 <!-- Nav -->
 <nav class="lp-nav">
     <a href="/" class="lp-logo">FlightSuite</a>
-    <a href="#signup" class="lp-nav-cta" data-event="lp_agency_nav_cta">Get Started</a>
+    <a href="/app" class="lp-nav-cta" data-event="lp_agency_nav_cta">Try Free</a>
 </nav>
 
-<!-- ═══════════════════════════════════════
-     HERO — Full-bleed cinematic
-     ═══════════════════════════════════════ -->
+<!-- Hero — split: copy left, phone right -->
 <section class="lp-hero">
-    <div class="lp-hero-bg">
-        <img src="assets/hero-agency.png" alt="" loading="eager">
+    <div class="lp-hero-copy">
+        <div class="lp-badge lp-reveal">Works with GoHighLevel & White-Label CRMs</div>
+        <h1 class="lp-h1 lp-reveal lp-reveal-delay-1">Give every client<br>a CRM admin.</h1>
+        <p class="lp-sub lp-reveal lp-reveal-delay-2">Stop being the CRM help desk. FlightSuite updates your clients' CRM — whether it's GHL, LeadConnector, or your own white-label. They just text what happened.</p>
+        <a href="/app" class="lp-cta lp-reveal lp-reveal-delay-3" data-event="lp_agency_hero_cta">Try Free →</a>
+        <p class="lp-cta-note lp-reveal lp-reveal-delay-3">Free Chrome extension. No credit card.</p>
     </div>
-    <div class="lp-hero-overlay"></div>
-    <div class="lp-hero-content">
-        <div class="lp-badge lp-reveal">Works with GoHighLevel, Lead Connector & HubSpot</div>
-        <h1 class="lp-h1 lp-reveal lp-reveal-delay-1">Stop being your clients'<br><em>CRM help desk.</em></h1>
-        <p class="lp-sub lp-reveal lp-reveal-delay-2">One text updates multiple client CRMs. Contacts, pipelines, follow-ups — done before they even ask.</p>
-        <div class="lp-reveal lp-reveal-delay-3" id="hero-form-wrap">
-            <form class="lp-hero-form" id="heroForm">
-                <input type="text" class="lp-input" id="hero-name" placeholder="Your name" required>
-                <input type="email" class="lp-input" id="hero-email" placeholder="Email" required>
-                <input type="tel" class="lp-input" id="hero-phone" placeholder="Phone" required>
-                <button type="submit" class="lp-hero-form-btn" id="hero-btn" data-event="lp_agency_hero_cta">Give My Clients a CRM Admin</button>
-                <div class="lp-hero-form-error" id="hero-error" style="display:none;"></div>
-            </form>
-            <p class="lp-hero-note" style="margin-top:14px;">No credit card required. We'll reach out today.</p>
-        </div>
-        <div class="lp-reveal lp-reveal-delay-3 lp-hero-done" id="hero-done" style="display:none;">
-            <div class="lp-hero-done-check">✓</div>
-            <div class="lp-hero-done-text">You're in.</div>
-            <div class="lp-hero-done-sub">We'll reach out shortly to get your clients' CRMs connected.</div>
-        </div>
-    </div>
-    <div class="lp-scroll-hint">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     PAIN — Image-backed
-     ═══════════════════════════════════════ -->
-<section class="lp-pain">
-    <img src="assets/pain-agency.png" alt="" class="lp-pain-bg" loading="lazy">
-    <div class="lp-pain-overlay"></div>
-    <div class="lp-pain-content">
-        <h2 class="lp-pain-headline lp-reveal">15 clients. <em>45 CRM requests.</em><br>Every single week.</h2>
-        <p class="lp-pain-sub lp-reveal lp-reveal-delay-1">You signed up to grow their business, not be their unpaid CRM admin.</p>
-        <div class="lp-pain-stats lp-reveal lp-reveal-delay-2">
-            <div class="lp-pain-stat">
-                <div class="lp-pain-stat-num">11pm</div>
-                <div class="lp-pain-stat-label">still updating CRMs</div>
-            </div>
-            <div class="lp-pain-stat">
-                <div class="lp-pain-stat-num">45+</div>
-                <div class="lp-pain-stat-label">requests per week</div>
-            </div>
-            <div class="lp-pain-stat">
-                <div class="lp-pain-stat-num">5 hrs</div>
-                <div class="lp-pain-stat-label">wasted every week</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     SOLUTION — Split visual + iMessage
-     ═══════════════════════════════════════ -->
-<section class="lp-solution">
-    <div class="lp-solution-header">
-        <div class="lp-section-label lp-reveal">How It Works</div>
-        <h2 class="lp-h2 lp-reveal lp-reveal-delay-1">One text. Multiple CRMs updated.</h2>
-    </div>
-    <div class="lp-split">
-        <div class="lp-split-visual lp-reveal">
-            <img src="assets/hero-agency.png" alt="Agency owner managing client CRMs" loading="lazy">
-            <div class="lp-split-visual-overlay"></div>
-            <div class="lp-split-visual-text">
-                <p>"3 client CRMs updated. One text."</p>
-                <span>Renovate Pro. Brightside Dental. Apex Roofing. All done.</span>
-            </div>
-        </div>
-        <div class="lp-reveal lp-reveal-delay-1">
-            <div class="lp-phone">
-                <div class="lp-phone-header">
-                    <div class="lp-phone-avatar">FS</div>
-                    <div>
-                        <div class="lp-phone-name">Your CRM Admin</div>
-                        <div class="lp-phone-status">Online</div>
-                    </div>
+    <div class="lp-hero-phone lp-reveal lp-reveal-delay-2">
+        <div class="lp-phone">
+            <div class="lp-phone-header">
+                <div class="lp-phone-avatar">FS</div>
+                <div>
+                    <div class="lp-phone-name">Your CRM Admin</div>
+                    <div class="lp-phone-status">Online</div>
                 </div>
-                <div class="lp-phone-body" id="chatBody"></div>
             </div>
+            <div class="lp-phone-body" id="chatBody"></div>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     VIDEO — Screen recording proof
-     ═══════════════════════════════════════ -->
+<!-- Pain Mirror -->
+<section class="lp-pain">
+    <p class="lp-pain-copy lp-reveal">Your clients didn't hire you to be their CRM data entry person. You built them a system — but they keep texting YOU to update it.</p>
+    <div class="lp-pain-grid">
+        <div class="lp-pain-card lp-reveal">
+            <div class="lp-pain-stat">11pm</div>
+            <div class="lp-pain-label">when clients text you about CRM updates</div>
+        </div>
+        <div class="lp-pain-card lp-reveal lp-reveal-delay-1">
+            <div class="lp-pain-stat">5+ hrs</div>
+            <div class="lp-pain-label">per week being the CRM help desk</div>
+        </div>
+        <div class="lp-pain-card lp-reveal lp-reveal-delay-2">
+            <div class="lp-pain-stat">3</div>
+            <div class="lp-pain-label">clients who texted you tonight to update "their" CRM</div>
+        </div>
+    </div>
+</section>
+
+<!-- Video -->
 <section class="lp-video-section">
     <div class="lp-section-label lp-reveal">See It In Action</div>
     <h2 class="lp-h2 lp-reveal lp-reveal-delay-1">Real phone. Real CRM. Real update.</h2>
     <div class="lp-video-container lp-reveal lp-reveal-delay-2" id="videoContainer">
-        <video id="demoVideo" playsinline preload="metadata" controls style="width:100%;height:100%;object-fit:contain;background:#000;">
+        <video id="demoVideo" playsinline preload="metadata" controls>
             <source src="assets/demo-re.mp4" type="video/mp4">
         </video>
+        <div class="lp-video-placeholder" id="videoPlaceholder">
+            <div class="lp-play-btn">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--accent-gold)"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <span>Watch the 30-second demo</span>
+        </div>
     </div>
     <p class="lp-video-caption lp-reveal lp-reveal-delay-3">Real screen recording. No mockups. No scripts.</p>
 </section>
 
-<!-- ═══════════════════════════════════════
-     PRICING
-     ═══════════════════════════════════════ -->
-<section class="lp-pricing" id="pricing">
-    <div class="lp-pricing-header">
-        <div class="lp-section-label lp-reveal">Simple Pricing</div>
-        <h2 class="lp-h2 lp-reveal lp-reveal-delay-1">Less than one coffee a day</h2>
-    </div>
-    <div class="lp-pricing-grid">
-        <div class="lp-price-card lp-reveal lp-reveal-delay-1">
-            <div class="lp-price-name">Basic</div>
-            <div class="lp-price-amount">$29<span>/mo</span></div>
-            <p class="lp-price-desc">For agencies managing a single client CRM.</p>
-            <ul class="lp-price-features">
-                <li>1 client CRM connected</li>
-                <li>50 updates per month</li>
-                <li>Chrome extension included</li>
-                <li>Contact & pipeline updates</li>
-                <li>Activity logging</li>
-            </ul>
-            <a href="#signup" class="lp-price-cta secondary" data-event="lp_agency_pricing_basic">Give My Clients a CRM Admin</a>
+<!-- How It Works -->
+<section class="lp-steps">
+    <div class="lp-section-label lp-reveal">How It Works</div>
+    <h2 class="lp-h2 lp-reveal lp-reveal-delay-1">Three steps. That's it.</h2>
+    <div class="lp-steps-grid">
+        <div class="lp-step lp-reveal">
+            <div class="lp-step-num">1</div>
+            <div class="lp-step-title">Your client texts FlightSuite</div>
+            <div class="lp-step-desc">After a meeting, they text what happened — like texting an assistant.</div>
         </div>
-        <div class="lp-price-card recommended lp-reveal lp-reveal-delay-2">
-            <div class="lp-price-badge">Most Popular</div>
-            <div class="lp-price-name">Pro</div>
-            <div class="lp-price-amount gold">$49<span>/mo</span></div>
-            <p class="lp-price-desc">For agencies juggling multiple client CRMs. Clients text directly — you're out of the loop.</p>
-            <ul class="lp-price-features">
-                <li>Multiple client CRMs connected</li>
-                <li>Unlimited updates</li>
-                <li>Clients text directly to update</li>
-                <li>Chrome extension included</li>
-                <li>Follow-up reminders</li>
-                <li>Priority support</li>
-            </ul>
-            <a href="#signup" class="lp-price-cta primary" data-event="lp_agency_pricing_pro">Give My Clients a CRM Admin</a>
+        <div class="lp-step lp-reveal lp-reveal-delay-1">
+            <div class="lp-step-num">2</div>
+            <div class="lp-step-title">Their CRM updates automatically</div>
+            <div class="lp-step-desc">Contacts, deals, follow-ups — logged across GHL, LeadConnector, or your white-label.</div>
+        </div>
+        <div class="lp-step lp-reveal lp-reveal-delay-2">
+            <div class="lp-step-num">3</div>
+            <div class="lp-step-title">You're out of the loop</div>
+            <div class="lp-step-desc">No more 11pm CRM requests. Their CRM stays current without you.</div>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     SIGNUP FORM — Lead capture
-     ═══════════════════════════════════════ -->
-<section class="lp-signup" id="signup">
-    <div class="lp-signup-box lp-reveal">
-
-        <div id="signup-step-info">
-            <h2 class="lp-h2">Give your clients a CRM admin</h2>
-            <p class="lp-signup-sub">Tell us where to reach you. We'll get you set up today.</p>
-            <form class="lp-form" id="signupForm">
-                <input type="text" class="lp-input" id="su-name" name="name" placeholder="Your name" required>
-                <input type="email" class="lp-input" id="su-email" name="email" placeholder="Email address" required>
-                <input type="tel" class="lp-input" id="su-phone" name="phone" placeholder="Phone number" required>
-                <button type="submit" class="lp-submit" id="su-btn" data-event="lp_agency_signup_btn">Give My Clients a CRM Admin</button>
-                <div class="lp-form-error" id="su-error" style="display:none;color:#FF6B6B;font-size:13px;text-align:center;margin-top:4px;"></div>
-            </form>
-            <p class="lp-form-note">No credit card required. We'll reach out to connect your clients' CRMs.</p>
+<!-- Value Comparison -->
+<section class="lp-value">
+    <div class="lp-section-label lp-reveal">The Comparison</div>
+    <h2 class="lp-h2 lp-reveal lp-reveal-delay-1">What CRM help actually costs per client</h2>
+    <div class="lp-value-compare">
+        <div class="lp-value-card lp-reveal">
+            <div class="lp-value-card-title">Train a VA per Client</div>
+            <div class="lp-value-price expensive">$500-1,500/mo</div>
+            <ul class="lp-value-list">
+                <li>Needs training on each client's CRM</li>
+                <li>Business hours only</li>
+                <li>Doesn't scale with your client count</li>
+                <li>Still needs your oversight</li>
+            </ul>
         </div>
-
-        <div id="signup-step-done" style="display:none;">
-            <div style="text-align:center;padding:24px 0;">
-                <div style="font-size:48px;margin-bottom:12px;">✓</div>
-                <h2 class="lp-h2" style="margin-bottom:8px;">You're in.</h2>
-                <p class="lp-signup-sub">We'll reach out shortly to get your clients' CRMs connected. Keep an eye on your inbox.</p>
-            </div>
+        <div class="lp-value-card highlight lp-reveal lp-reveal-delay-1">
+            <div class="lp-value-card-title">AI CRM Admin per Client</div>
+            <div class="lp-value-price affordable">Free to start</div>
+            <ul class="lp-value-list">
+                <li>Works with GHL, LeadConnector, or your white-label</li>
+                <li>Available 24/7 — clients text on their schedule</li>
+                <li>Scales to every client automatically</li>
+                <li>You stop being the help desk</li>
+            </ul>
         </div>
-
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     SOCIAL PROOF
-     ═══════════════════════════════════════ -->
+<!-- Social Proof -->
 <section class="lp-proof">
     <div class="lp-testimonial lp-reveal">
         <div class="lp-testimonial-stars">★★★★★</div>
-        <p class="lp-testimonial-text">"I used to spend every Friday night updating 12 client CRMs. Now my clients text their updates and it just happens."</p>
+        <p class="lp-testimonial-text">"I just typed what happened in my meeting and it updated everything in GHL."</p>
         <div class="lp-testimonial-author"><strong>Dale F.</strong> · Agency Owner</div>
     </div>
     <div class="lp-testimonial lp-reveal lp-reveal-delay-1">
         <div class="lp-testimonial-stars">★★★★★</div>
-        <p class="lp-testimonial-text">"I texted what happened at the showing and my CRM was updated before I got to the car."</p>
+        <p class="lp-testimonial-text">"It's like the assistant you don't have to train. It just knows what to do with your CRM."</p>
         <div class="lp-testimonial-author"><strong>Jerry N.</strong> · Sales Manager</div>
     </div>
     <div class="lp-trust lp-reveal lp-reveal-delay-2">
         <span>As featured in Charlotte Business Journal</span>
         <span>·</span>
         <span>gBETA Charlotte</span>
+        <span>·</span>
+        <span>Trusted by 100+ sales pros</span>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     FINAL CTA — Image-backed
-     ═══════════════════════════════════════ -->
-<section class="lp-final">
-    <div class="lp-final-bg">
-        <img src="assets/hero-agency.png" alt="" loading="lazy">
+<!-- Email Capture -->
+<section class="lp-email-capture" id="signup">
+    <div id="capture-wrap">
+        <h2 class="lp-h2 lp-reveal">Not ready to start?</h2>
+        <p class="lp-sub lp-reveal lp-reveal-delay-1" style="margin-bottom:0;">Drop your email. We'll send you a setup guide.</p>
+        <form class="lp-email-form lp-reveal lp-reveal-delay-2" id="emailForm">
+            <input type="email" class="lp-input" id="capture-email" name="email" placeholder="you@email.com" required>
+            <button type="submit" class="lp-email-submit" id="capture-btn">Send Guide</button>
+        </form>
+        <p class="lp-form-note lp-reveal lp-reveal-delay-2">No spam. Just the guide.</p>
     </div>
-    <div class="lp-final-overlay"></div>
-    <div class="lp-final-content">
-        <h2 class="lp-final-h2 lp-reveal">Give them a CRM admin.</h2>
-        <p class="lp-final-sub lp-reveal lp-reveal-delay-1">One text updates every client's CRM. That's it.</p>
-        <a href="#signup" class="lp-cta lp-reveal lp-reveal-delay-2" data-event="lp_agency_final_cta">Give My Clients a CRM Admin</a>
-        <div class="lp-final-trust lp-reveal lp-reveal-delay-3">
-            <span><span class="lp-check">✓</span> Works with GHL, Lead Connector & HubSpot</span>
-            <span><span class="lp-check">✓</span> Cancel anytime</span>
-            <span><span class="lp-check">✓</span> 5-minute setup</span>
-        </div>
+    <div id="capture-done" style="display:none;">
+        <div style="font-size:48px;margin-bottom:8px;">✓</div>
+        <p style="font-size:17px;font-weight:600;">Check your inbox.</p>
+        <p style="font-size:14px;color:var(--text-secondary);">We sent you the setup guide.</p>
     </div>
 </section>
+
+<!-- Final CTA -->
+<section class="lp-final">
+    <h2 class="lp-final-h2 lp-reveal">Give them a CRM admin.</h2>
+    <p class="lp-final-sub lp-reveal lp-reveal-delay-1">Just text us. We'll update it.</p>
+    <a href="/app" class="lp-cta lp-reveal lp-reveal-delay-2" data-event="lp_agency_final_cta">Try Free →</a>
+    <p class="lp-final-badge lp-reveal lp-reveal-delay-3">Works with GoHighLevel, LeadConnector & white-label CRMs</p>
+    <div class="lp-final-trust lp-reveal lp-reveal-delay-3">
+        <span><span class="lp-check">✓</span> Free to start</span>
+        <span><span class="lp-check">✓</span> No credit card</span>
+        <span><span class="lp-check">✓</span> 30-second install</span>
+    </div>
+</section>
+
+</div><!-- end lp-content -->
 
 <!-- Reveal Observer -->
 <script>
 (function() {
-    const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.lp-reveal').forEach(el => obs.observe(el));
+    document.querySelectorAll('.lp-reveal').forEach(function(el) { obs.observe(el); });
 })();
 </script>
 
 <!-- iMessage Chat Demo -->
 <script>
 (function() {
-    const chatBody = document.getElementById('chatBody');
+    var chatBody = document.getElementById('chatBody');
     if (!chatBody) return;
 
-    const conversations = [
+    var conversations = [
         {
             messages: [
                 { type: 'user', text: 'Renovate Pro got 3 new leads from their Google campaign. Log them and set follow-ups for Monday.' },
-                { type: 'reply', html: '<div class="lp-action-item"><span class="lp-action-check">✓</span> Renovate Pro GHL — 3 contacts created</div><div class="lp-action-item"><span class="lp-action-check">✓</span> Source: Google Ads campaign</div><div class="lp-action-item"><span class="lp-action-check">✓</span> Follow-ups set — Monday, 9:00 AM</div>' }
+                { type: 'reply', html: '<div class="lp-action-item"><span class="lp-action-check">\u2713</span> Renovate Pro GHL \u2014 3 contacts created</div><div class="lp-action-item"><span class="lp-action-check">\u2713</span> Source: Google Ads campaign</div><div class="lp-action-item"><span class="lp-action-check">\u2713</span> Follow-ups set \u2014 Monday, 9:00 AM</div>' }
             ]
         },
         {
             messages: [
-                { type: 'user', text: 'Brightside Dental closed the Hernandez family. Move to Won. Apex Roofing — new estimate request from Mike Torres, $12K roof replacement.' },
-                { type: 'reply', html: '<div class="lp-action-item"><span class="lp-action-check">✓</span> Brightside Dental — Hernandez → Won</div><div class="lp-action-item"><span class="lp-action-check">✓</span> Apex Roofing — Contact created: Mike Torres</div><div class="lp-action-item"><span class="lp-action-check">✓</span> Estimate logged — $12K roof replacement</div><div class="lp-action-item"><span class="lp-action-check">✓</span> 2 client CRMs updated in one text</div>' }
+                { type: 'user', text: 'Brightside Dental closed the Hernandez family. Move to Won. Apex Roofing \u2014 new estimate request from Mike Torres, $12K roof replacement.' },
+                { type: 'reply', html: '<div class="lp-action-item"><span class="lp-action-check">\u2713</span> Brightside Dental \u2014 Hernandez \u2192 Won</div><div class="lp-action-item"><span class="lp-action-check">\u2713</span> Apex Roofing \u2014 Contact created: Mike Torres</div><div class="lp-action-item"><span class="lp-action-check">\u2713</span> Estimate logged \u2014 $12K roof replacement</div><div class="lp-action-item"><span class="lp-action-check">\u2713</span> 2 client CRMs updated in one text</div>' }
             ]
         },
         {
             messages: [
-                { type: 'user', text: 'Apex Roofing pipeline summary — what\'s pending this week?' },
-                { type: 'reply', html: '<div class="lp-action-item"><span class="lp-action-check">✓</span> Apex Roofing — 4 open estimates</div><div class="lp-action-item"><span class="lp-action-check">✓</span> 2 follow-ups due tomorrow</div><div class="lp-action-item"><span class="lp-action-check">✓</span> Pipeline value: $47,200</div>' }
+                { type: 'user', text: 'Apex Roofing pipeline summary \u2014 what\'s pending this week?' },
+                { type: 'reply', html: '<div class="lp-action-item"><span class="lp-action-check">\u2713</span> Apex Roofing \u2014 4 open estimates</div><div class="lp-action-item"><span class="lp-action-check">\u2713</span> 2 follow-ups due tomorrow</div><div class="lp-action-item"><span class="lp-action-check">\u2713</span> Pipeline value: $47,200</div>' }
             ]
         }
     ];
 
-    let current = 0;
+    var current = 0;
     function showConversation(conv) {
         chatBody.innerHTML = '';
-        let delay = 0;
-        conv.messages.forEach((msg) => {
+        var delay = 0;
+        conv.messages.forEach(function(msg) {
             delay += msg.type === 'user' ? 300 : 800;
-            setTimeout(() => {
-                const bubble = document.createElement('div');
+            setTimeout(function() {
+                var bubble = document.createElement('div');
                 bubble.className = 'lp-bubble lp-bubble-' + msg.type;
                 if (msg.html) bubble.innerHTML = msg.html;
                 else bubble.textContent = msg.text;
@@ -578,10 +464,10 @@
     }
 
     function run() {
-        const totalDelay = showConversation(conversations[current]);
+        var totalDelay = showConversation(conversations[current]);
         current = (current + 1) % conversations.length;
-        setTimeout(() => {
-            chatBody.querySelectorAll('.lp-bubble').forEach(b => {
+        setTimeout(function() {
+            chatBody.querySelectorAll('.lp-bubble').forEach(function(b) {
                 b.style.opacity = '0'; b.style.transform = 'translateY(8px)'; b.style.transition = 'opacity 0.3s, transform 0.3s';
             });
             setTimeout(run, 600);
@@ -591,90 +477,63 @@
 })();
 </script>
 
-<!-- Lead Capture -->
+<!-- Video Player -->
 <script>
 (function() {
-    var submitted = false;
+    var container = document.getElementById('videoContainer');
+    var video = document.getElementById('demoVideo');
+    var placeholder = document.getElementById('videoPlaceholder');
+    if (!container || !video || !placeholder) return;
+
+    video.style.display = 'none';
+    container.addEventListener('click', function() {
+        placeholder.style.display = 'none';
+        video.style.display = 'block';
+        video.play();
+    });
+})();
+</script>
+
+<!-- Email Capture -->
+<script>
+(function() {
     var SOURCE = 'lp_agency';
+    var form = document.getElementById('emailForm');
+    var done = document.getElementById('capture-done');
+    var wrap = document.getElementById('capture-wrap');
+    if (!form) return;
 
-    function showAllSuccess() {
-        submitted = true;
-        var heroWrap = document.getElementById('hero-form-wrap');
-        var heroDone = document.getElementById('hero-done');
-        var stepInfo = document.getElementById('signup-step-info');
-        var stepDone = document.getElementById('signup-step-done');
-        if (heroWrap) heroWrap.style.display = 'none';
-        if (heroDone) heroDone.style.display = 'block';
-        if (stepInfo) stepInfo.style.display = 'none';
-        if (stepDone) stepDone.style.display = 'block';
-    }
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var btn = document.getElementById('capture-btn');
+        var email = document.getElementById('capture-email').value.trim();
+        if (!email) return;
 
-    function fireTracking() {
-        if (typeof fbq !== 'undefined') {
-            fbq('track', 'Lead', { content_name: 'Agency Landing Page Signup', content_category: 'agency', value: 49, currency: 'USD' });
-        }
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'sign_up', { method: 'lp_agency_form' });
-        }
-    }
-
-    async function submitLead(data, btn, errEl, originalText) {
-        if (submitted) return;
         btn.disabled = true;
-        btn.textContent = 'Submitting…';
+        btn.textContent = 'Sending\u2026';
 
         try {
             var r = await fetch('https://formspree.io/f/mzdkwblz', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
+                body: JSON.stringify({ email: email, source: SOURCE, type: 'guide_request', timestamp: new Date().toISOString() })
             });
-            if (!r.ok) throw new Error('Something went wrong. Please try again.');
-            fireTracking();
-            showAllSuccess();
+            if (!r.ok) throw new Error('fail');
+
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Lead', { content_name: SOURCE + '_guide', content_category: 'agency' });
+            }
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'generate_lead', { method: SOURCE + '_email' });
+            }
+
+            wrap.style.display = 'none';
+            done.style.display = 'block';
         } catch(err) {
-            errEl.textContent = err.message;
-            errEl.style.display = 'block';
             btn.disabled = false;
-            btn.textContent = originalText;
+            btn.textContent = 'Send Guide';
         }
-    }
-
-    // Hero form
-    var heroForm = document.getElementById('heroForm');
-    if (heroForm) {
-        heroForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            var errEl = document.getElementById('hero-error');
-            errEl.style.display = 'none';
-            var data = {
-                name: document.getElementById('hero-name').value.trim(),
-                email: document.getElementById('hero-email').value.trim(),
-                phone: document.getElementById('hero-phone').value.trim(),
-                source: SOURCE, timestamp: new Date().toISOString()
-            };
-            if (!data.name || !data.email || !data.phone) return;
-            submitLead(data, document.getElementById('hero-btn'), errEl, 'Give My Clients a CRM Admin');
-        });
-    }
-
-    // Bottom form
-    var signupForm = document.getElementById('signupForm');
-    if (signupForm) {
-        signupForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            var errEl = document.getElementById('su-error');
-            errEl.style.display = 'none';
-            var data = {
-                name: document.getElementById('su-name').value.trim(),
-                email: document.getElementById('su-email').value.trim(),
-                phone: document.getElementById('su-phone').value.trim(),
-                source: SOURCE, timestamp: new Date().toISOString()
-            };
-            if (!data.name || !data.email || !data.phone) return;
-            submitLead(data, document.getElementById('su-btn'), errEl, 'Give My Clients a CRM Admin');
-        });
-    }
+    });
 })();
 </script>
 
