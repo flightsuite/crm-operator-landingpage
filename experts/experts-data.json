@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-09",
+  "lastUpdated": "2026-04-10",
   "experts": {
     "noli-aquino": {
       "name": "Noli Aquino",
@@ -881,8 +881,8 @@
     "erieka-sato": {
       "name": "Erieka Sato",
       "ghlDirectoryUrl": "https://directory.gohighlevel.com/certified-admins/erieka-sato",
-      "rating": 5,
-      "reviewCount": 0,
+      "rating": 2,
+      "reviewCount": 2,
       "certifications": [
         "Certified Admin"
       ],
