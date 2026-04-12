@@ -85,6 +85,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:32px;heigh
 .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--t3);margin-top:8px;padding:12px;font-size:14px;}
 .btn-disabled{opacity:.35;pointer-events:none;}
 
+/* Sticky nav at bottom */
+.step-nav{padding:16px 0;margin-top:auto;position:sticky;bottom:0;background:linear-gradient(transparent 0%,var(--bg) 30%);padding-top:32px;z-index:10;}
+
 /* ===== DELIVERABLE SLIDES ===== */
 .slides{display:none;}
 .slides.on{display:block;}
@@ -530,6 +533,7 @@ function selVert(el,v){
   document.querySelectorAll('#vertOpts .opt').forEach(o=>o.classList.remove('on'));
   el.classList.add('on');V=v;CRMs=[];
   document.getElementById('btn1').classList.remove('btn-disabled');
+  setTimeout(()=>goStep(2),400);
 }
 
 function goStep(n){
