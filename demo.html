@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>FlightSuite - See Your Monday Morning</title>
+<style>
+:root{--bg:#0a0e17;--card:#111827;--surface:#0d1321;--border:#1e293b;--bordergold:#d4a54a33;--gold:#d4a54a;--goldglow:#d4a54a15;--green:#22c55e;--greenbg:#22c55e10;--red:#ef4444;--redbg:#ef444410;--yellow:#eab308;--yellowbg:#eab30810;--blue:#3b82f6;--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+.page{max-width:480px;margin:0 auto;min-height:100vh;position:relative;}
+
+/* ===== WIZARD ===== */
+.wiz{min-height:100vh;display:flex;flex-direction:column;}
+.wiz-head{padding:20px 20px 0;text-align:center;}
+.logo{display:inline-flex;align-items:center;gap:8px;}
+.logo-m{width:28px;height:28px;background:linear-gradient(135deg,var(--gold),#e8c168);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#0a0e17;}
+.logo-t{font-size:17px;font-weight:700;}
+.logo-t span{color:var(--gold);}
+
+/* Progress bar */
+.prog{margin:20px 20px 0;height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .4s ease;}
+
+/* Steps */
+.step{flex:1;padding:24px 20px;display:none;flex-direction:column;}
+.step.on{display:flex;}
+.step-label{font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;}
+.step-q{font-size:22px;font-weight:800;margin:12px 0 20px;line-height:1.3;}
+.step-sub{font-size:14px;color:var(--t2);margin:-12px 0 20px;line-height:1.5;}
+
+/* Option cards */
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.opt{padding:16px 12px;border-radius:12px;border:2px solid var(--border);background:var(--card);color:var(--t2);font-size:14px;font-weight:500;cursor:pointer;text-align:center;transition:all .15s;-webkit-tap-highlight-color:transparent;}
+.opt:active{transform:scale(.97);}
+.opt.on{border-color:var(--gold);background:var(--gold);color:#0a0e17;font-weight:700;}
+.opt-icon{font-size:28px;display:block;margin-bottom:6px;}
+.opt-sub{font-size:11px;display:block;margin-top:3px;opacity:.6;}
+
+/* CRM pills */
+.crm-pills{display:flex;gap:8px;flex-wrap:wrap;}
+.crm-pill{padding:10px 16px;border-radius:10px;border:2px solid var(--border);background:var(--card);color:var(--t2);font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent;}
+.crm-pill:active{transform:scale(.97);}
+.crm-pill.on{border-color:var(--gold);background:var(--goldglow);color:var(--gold);font-weight:600;}
+
+/* Data pull list */
+.dpull{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-top:16px;overflow:hidden;max-height:0;transition:max-height .4s ease;overflow-y:auto;}
+.dpull.open{max-height:400px;}
+.dpull-head{padding:10px 14px;background:var(--card);border-bottom:1px solid var(--border);font-size:11px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.dpull-row{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--border);font-size:13px;}
+.dpull-row:last-child{border-bottom:none;}
+.dpull-check{color:var(--green);font-size:14px;}
+.dpull-metric{flex:1;color:var(--t2);}
+.dpull-src{font-size:10px;color:var(--t3);padding:2px 6px;border-radius:4px;background:var(--card);border:1px solid var(--border);}
+
+/* Sliders */
+.slider-group{margin-bottom:24px;}
+.slider-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+.slider-q{font-size:15px;font-weight:600;}
+.slider-val{font-size:28px;font-weight:800;color:var(--gold);min-width:50px;text-align:right;}
+.slider-wrap{position:relative;padding:8px 0;}
+input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;background:var(--border);outline:none;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:32px;height:32px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid var(--bg);box-shadow:0 0 10px rgba(212,165,74,.3);}
+.slider-marks{display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:var(--t3);}
+
+/* Funnel auto-generated */
+.auto-funnel{margin:16px 0;}
+.af-stage{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.af-label{font-size:11px;color:var(--t3);width:80px;text-align:right;flex-shrink:0;}
+.af-bar-wrap{flex:1;height:28px;background:var(--surface);border-radius:6px;overflow:hidden;position:relative;}
+.af-bar{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;font-size:12px;font-weight:700;transition:width .5s ease;min-width:30px;}
+.af-num{font-size:13px;font-weight:700;min-width:35px;text-align:right;}
+
+/* Funnel insight */
+.funnel-insight{background:var(--goldglow);border:1px solid var(--bordergold);border-radius:10px;padding:14px 16px;margin-top:16px;font-size:14px;color:var(--t1);line-height:1.6;}
+.funnel-insight b{color:var(--gold);}
+
+/* Next button */
+.step-nav{padding:16px 0;margin-top:auto;}
+.btn-next{width:100%;padding:16px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all .15s;}
+.btn-next:active{transform:scale(.98);}
+.btn-gold{background:var(--gold);color:#0a0e17;}
+.btn-green{background:var(--green);color:white;}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--t3);margin-top:8px;padding:12px;font-size:14px;}
+.btn-disabled{opacity:.35;pointer-events:none;}
+
+/* ===== DELIVERABLE SLIDES ===== */
+.slides{display:none;}
+.slides.on{display:block;}
+
+/* Slide progress */
+.slide-prog{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border);padding:12px 20px;}
+.slide-prog-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:8px;}
+.slide-prog-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .3s;}
+.slide-prog-label{display:flex;justify-content:space-between;font-size:11px;color:var(--t3);}
+.slide-prog-title{color:var(--gold);font-weight:600;}
+
+/* Individual slide */
+.slide{display:none;padding:20px;}
+.slide.on{display:block;}
+
+/* Shared report elements */
+.r-boss{background:var(--goldglow);border:1px solid var(--bordergold);border-radius:10px;padding:14px;margin-bottom:14px;}
+.r-boss-label{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin-bottom:5px;}
+.r-boss-text{font-size:15px;line-height:1.5;}
+
+.r-scores{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px;}
+.r-sc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;}
+.r-sc-val{font-size:26px;font-weight:800;line-height:1;}
+.r-sc-label{font-size:10px;color:var(--t3);text-transform:uppercase;margin-top:3px;}
+.r-sc-delta{font-size:10px;font-weight:600;margin-top:2px;}
+
+.r-act{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;}
+.r-act-do{padding:12px 14px;background:var(--surface);border-bottom:1px solid var(--border);font-size:14px;color:var(--gold);font-weight:600;line-height:1.4;}
+.r-act-body{padding:12px 14px;}
+.r-act-title{font-size:15px;font-weight:700;margin-bottom:4px;}
+.r-act-desc{font-size:13px;color:var(--t2);line-height:1.5;}
+.r-act-tag{display:inline-block;padding:3px 8px;border-radius:5px;font-size:11px;font-weight:600;margin-top:8px;}
+.r-act-tag.risk{background:var(--redbg);color:var(--red);}
+.r-act-tag.opp{background:var(--greenbg);color:var(--green);}
+.r-act-crm{display:inline-flex;align-items:center;gap:3px;padding:4px 10px;border-radius:6px;background:var(--surface);border:1px solid var(--border);font-size:11px;color:var(--gold);font-weight:600;margin-top:8px;margin-left:6px;}
+
+/* Leaderboard */
+.r-lb{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.r-lb-title{padding:12px 14px;border-bottom:1px solid var(--border);font-size:12px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;text-align:center;}
+.r-lb-row{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--border);}
+.r-lb-row:last-child{border-bottom:none;}
+.r-lb-rank{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex-shrink:0;}
+.r1{background:var(--gold);color:#0a0e17;}.r2{background:#64748b;color:white;}.r3{background:#92400e;color:#fde68a;}.r4,.r5{background:var(--bg);color:var(--t3);border:1px solid var(--border);}
+.r-lb-info{flex:1;min-width:0;}
+.r-lb-name{font-size:14px;font-weight:700;}
+.r-lb-meta{font-size:11px;color:var(--t3);}
+.r-lb-val{text-align:right;}
+.r-lb-num{font-size:18px;font-weight:800;}
+.r-lb-trend{font-size:10px;font-weight:600;}
+
+/* Meeting prep */
+.r-meet{background:var(--card);border:1px solid var(--bordergold);border-radius:12px;overflow:hidden;}
+.r-meet-block{padding:14px;border-bottom:1px solid var(--border);}
+.r-meet-block:last-child{border-bottom:none;}
+.r-meet-time{font-size:10px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.r-meet-title{font-size:15px;font-weight:700;margin-bottom:6px;}
+.r-meet-desc{font-size:13px;color:var(--t2);line-height:1.5;margin-bottom:8px;}
+.r-meet-say{padding:10px 12px;background:var(--surface);border-radius:8px;font-size:13px;color:var(--gold);line-height:1.5;}
+
+/* Rep profile */
+.r-rep{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:10px;}
+.r-rep-head{padding:14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.r-rep-name{font-size:18px;font-weight:800;}
+.r-rep-badge{padding:4px 10px;border-radius:8px;font-size:11px;font-weight:600;}
+.r-rep-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+.r-rep-stat{background:var(--surface);padding:12px;text-align:center;}
+.r-rep-stat-val{font-size:22px;font-weight:800;line-height:1;}
+.r-rep-stat-label{font-size:10px;color:var(--t3);text-transform:uppercase;margin-top:3px;}
+.r-rep-body{padding:14px;}
+.r-rep-section{font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.5px;margin:12px 0 6px;}
+.r-rep-section:first-child{margin-top:0;}
+.r-rep-text{font-size:13px;color:var(--t2);line-height:1.6;}
+.r-rep-q{font-size:13px;color:var(--t2);line-height:1.7;padding-left:12px;border-left:3px solid var(--bordergold);margin-top:6px;}
+
+/* Rep selector (tappable) */
+.rep-tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 0 12px;-webkit-overflow-scrolling:touch;}
+.rep-tab{padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);font-size:12px;font-weight:500;color:var(--t2);cursor:pointer;white-space:nowrap;flex-shrink:0;-webkit-tap-highlight-color:transparent;}
+.rep-tab.on{background:var(--gold);color:#0a0e17;border-color:var(--gold);font-weight:700;}
+
+/* Tracker */
+.r-track{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.r-track:last-child{border-bottom:none;}
+.r-track-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.r-track-text{flex:1;color:var(--t2);line-height:1.4;}
+.r-track-result{font-size:12px;font-weight:600;white-space:nowrap;}
+
+/* Slide nav button */
+.slide-nav{padding:16px 20px 32px;position:sticky;bottom:0;background:linear-gradient(transparent,var(--bg) 20%);z-index:50;}
+.slide-nav .btn-next{box-shadow:0 -4px 20px rgba(0,0,0,.5);}
+
+/* Section title in slides */
+.r-sec{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin:20px 0 10px;}
+.r-sec:first-child{margin-top:0;}
+
+/* Pain point */
+.pain{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
+.pain:last-child{border-bottom:none;}
+.pain-icon{font-size:18px;flex-shrink:0;}
+.pain-text{font-size:14px;color:var(--t2);line-height:1.5;}
+.pain-text b{color:var(--t1);}
+
+/* Final CTA */
+.cta-final{text-align:center;padding:32px 20px;}
+.cta-h{font-size:24px;font-weight:800;margin-bottom:8px;}
+.cta-sub{font-size:15px;color:var(--t2);margin-bottom:6px;line-height:1.5;}
+.cta-list{text-align:left;margin:20px 0;font-size:14px;color:var(--t2);line-height:2.2;}
+.cta-list b{color:var(--t1);}
+.cta-check{color:var(--gold);margin-right:6px;}
+.cta-price{font-size:40px;font-weight:800;color:var(--gold);margin:16px 0 4px;}
+.cta-price-sub{font-size:14px;color:var(--t2);}
+.cta-guarantee{font-size:12px;color:var(--t3);margin-top:12px;line-height:1.5;}
+
+/* Guide callout */
+.guide{background:var(--goldglow);border:1px solid var(--bordergold);border-radius:10px;padding:14px;margin-bottom:16px;position:relative;}
+.guide-icon{position:absolute;top:-10px;left:14px;background:var(--gold);color:#0a0e17;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;}
+.guide-title{font-size:12px;font-weight:700;color:var(--gold);margin-bottom:4px;}
+.guide-text{font-size:13px;color:var(--t2);line-height:1.5;}
+.guide-text b{color:var(--t1);}
+
+/* Benchmark note */
+.bench-note{font-size:12px;color:var(--t3);line-height:1.5;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;margin:12px 0;}
+.bench-note b{color:var(--t2);}
+
+/* ROI box */
+.roi-box{background:var(--card);border:2px solid var(--green);border-radius:14px;padding:20px;text-align:center;margin:16px 0;}
+.roi-label{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;}
+.roi-val{font-size:36px;font-weight:800;color:var(--green);margin:4px 0;}
+.roi-sub{font-size:13px;color:var(--t2);line-height:1.5;}
+.roi-math{font-size:12px;color:var(--t3);margin-top:10px;line-height:1.6;text-align:left;}
+
+/* Conversion toggle */
+.conv-toggle{display:flex;align-items:center;justify-content:space-between;padding:8px 0;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.conv-toggle-text{font-size:12px;color:var(--gold);font-weight:600;}
+.conv-toggle-arrow{font-size:14px;color:var(--gold);transition:transform .2s;}
+.conv-toggle-arrow.open{transform:rotate(180deg);}
+.conv-rates{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.conv-rates.open{max-height:300px;}
+.conv-row{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:12px;color:var(--t2);}
+.conv-row input{width:55px;padding:4px 6px;border-radius:5px;border:1px solid var(--border);background:var(--card);color:var(--t1);font-size:13px;font-weight:600;text-align:center;font-family:inherit;}
+.conv-row input:focus{outline:none;border-color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ===================================================== -->
+<!-- WIZARD -->
+<!-- ===================================================== -->
+<div class="wiz" id="wizard">
+  <div class="wiz-head">
+    <div class="logo"><div class="logo-m">F</div><div class="logo-t">Flight<span>Suite</span></div></div>
+  </div>
+  <div class="prog"><div class="prog-fill" id="progFill" style="width:33%"></div></div>
+
+  <!-- STEP 1: Industry -->
+  <div class="step on" id="s1">
+    <div class="step-label">Step 1 of 3</div>
+    <div class="step-q">What does your team sell?</div>
+    <div class="opts" id="vertOpts"></div>
+    <div class="step-nav">
+      <button class="btn-next btn-gold btn-disabled" id="btn1" onclick="goStep(2)">Next</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: CRM -->
+  <div class="step" id="s2">
+    <div class="step-label">Step 2 of 3</div>
+    <div class="step-q">What tools do you use?</div>
+    <div class="step-sub">Tap all that apply. We'll show you what data we pull from each one.</div>
+    <div class="crm-pills" id="crmPills"></div>
+    <div class="dpull" id="dpull"></div>
+    <div class="step-nav">
+      <button class="btn-next btn-gold" onclick="goStep(3)">Next</button>
+      <button class="btn-next btn-ghost" onclick="goStep(1)">Back</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Team Size + Volume (Sliders) -->
+  <div class="step" id="s3">
+    <div class="step-label">Step 3 of 3</div>
+    <div class="step-q" id="s3title">About your team</div>
+
+    <div class="slider-group">
+      <div class="slider-label">
+        <div class="slider-q">How many sales reps?</div>
+        <div class="slider-val" id="repVal">8</div>
+      </div>
+      <div class="slider-wrap">
+        <input type="range" min="2" max="50" value="8" id="repSlider" oninput="updateSliders()">
+      </div>
+      <div class="slider-marks"><span>2</span><span>10</span><span>25</span><span>50</span></div>
+    </div>
+
+    <div class="slider-group">
+      <div class="slider-label">
+        <div class="slider-q" id="volLabel">Deals closed per month?</div>
+        <div class="slider-val" id="volVal">20</div>
+      </div>
+      <div class="slider-wrap">
+        <input type="range" min="2" max="200" value="20" id="volSlider" oninput="updateSliders()">
+      </div>
+      <div class="slider-marks" id="volMarks"><span>2</span><span>50</span><span>100</span><span>200</span></div>
+    </div>
+
+    <div class="slider-group">
+      <div class="slider-label">
+        <div class="slider-q" id="dealLabel">Average deal size?</div>
+        <div class="slider-val" id="dealVal">$12K</div>
+      </div>
+      <div class="slider-wrap">
+        <input type="range" min="500" max="100000" value="12000" step="500" id="dealSlider" oninput="updateSliders()">
+      </div>
+      <div class="slider-marks" id="dealMarks"><span>$500</span><span>$25K</span><span>$50K</span><span>$100K</span></div>
+    </div>
+
+    <div class="bench-note" id="benchNote">
+      <b>How this works:</b> The pipeline below is built from industry benchmarks for your vertical. We use average conversion rates to show what your typical funnel looks like at your volume.
+    </div>
+
+    <div id="autoFunnel" class="auto-funnel"></div>
+
+    <!-- Optional conversion editing -->
+    <div class="conv-toggle" onclick="toggleConv()">
+      <div class="conv-toggle-text">Adjust conversion rates for your team</div>
+      <div class="conv-toggle-arrow" id="convArrow">&#9660;</div>
+    </div>
+    <div class="conv-rates" id="convRates"></div>
+
+    <div id="funnelInsight"></div>
+    <div id="roiCalc"></div>
+
+    <div class="step-nav">
+      <button class="btn-next btn-green" onclick="launchSlides()">See My Monday Morning &#8594;</button>
+      <button class="btn-next btn-ghost" onclick="goStep(2)">Back</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- DELIVERABLE SLIDES -->
+<!-- ===================================================== -->
+<div class="slides" id="slides">
+  <!-- Progress -->
+  <div class="slide-prog">
+    <div class="slide-prog-bar"><div class="slide-prog-fill" id="slideProg" style="width:16.6%"></div></div>
+    <div class="slide-prog-label">
+      <span class="slide-prog-title" id="slideTitle">Weekly Intelligence</span>
+      <span id="slideCount">1 of 6</span>
+    </div>
+  </div>
+
+  <!-- Slide 1: Intelligence Report -->
+  <div class="slide on" id="sl1"></div>
+  <!-- Slide 2: Leaderboard -->
+  <div class="slide" id="sl2"></div>
+  <!-- Slide 3: Meeting Prep -->
+  <div class="slide" id="sl3"></div>
+  <!-- Slide 4: Rep Deep Dive -->
+  <div class="slide" id="sl4"></div>
+  <!-- Slide 5: ROI + CTA -->
+  <div class="slide" id="sl5"></div>
+
+  <div class="slide-nav">
+    <button class="btn-next btn-gold" id="slideBtn" onclick="nextSlide()">Next: Leaderboard &#8594;</button>
+  </div>
+</div>
+
+</div><!-- end page -->
+
+<script>
+// ============================================
+// DATA
+// ============================================
+const D={
+roofing:{label:'Roofing',icon:'&#127968;',sub:'Storm + Retail',
+crms:['JobNimbus','AccuLynx','SalesRabbit','GHL','HubSpot','Spreadsheet'],
+crmData:{JobNimbus:['Leads by source','Inspections scheduled','Estimates sent & signed','Revenue per job','Job stage tracking','Rep assignment'],AccuLynx:['Leads & referrals','Appointments set','Estimates created','Contracts signed','Production schedule','Revenue by rep'],SalesRabbit:['Doors knocked per rep','Contacts made','Appointments set from door','GPS territory data','Canvassing heatmaps','Lead dispositions'],GHL:['Pipeline stages','Email/SMS activity','Call logs','Opportunity tracking','Revenue attribution','Automation triggers'],HubSpot:['Contact & deal records','Email sequences','Call logging','Pipeline stages','Revenue forecasts','Activity timeline'],Spreadsheet:['Manual entry','(We help set up tracking)']},
+stages:['Leads/Doors','Inspections','Estimates Sent','Negotiating','Signed'],
+ratios:[1,.18,.75,.36,.70],
+colors:['#3b82f6','#6366f1','#d4a54a','#eab308','#22c55e'],
+volLabel:'Estimates sent per month?',volMax:150,volDefault:30,volMarks:['5','40','80','150'],
+dealLabel:'Average job size?',dealDefault:12000,dealMax:50000,dealMarks:['$2K','$12K','$25K','$50K'],
+reps:[
+{name:'Sarah M.',val:'$66.2K',met:'48% close',det:'Follows up in 24hrs',rank:1,status:'Top Performer',color:'var(--green)',stats:[{v:'$66.2K',l:'Closed MTD'},{v:'48%',l:'Close Rate'},{v:'2.1',l:'Avg Follow-ups'},{v:'78%',l:'Quota'}],insight:'Sarah follows up within 24 hours on every estimate and leads with insurance timelines. Her 2.1 touchpoints to close vs team avg 3.4 shows efficiency, not luck.',q1:'What do you say in your first follow-up call after sending an estimate?',q2:'How do you handle "I need to think about it"?',q3:'Would you be willing to share your process at the Monday meeting?'},
+{name:'Jake R.',val:'$54.4K',met:'38% close',det:'Strong pipeline $67K',rank:2,status:'On Track',color:'var(--gold)',stats:[{v:'$54.4K',l:'Closed MTD'},{v:'38%',l:'Close Rate'},{v:'3.2',l:'Avg Follow-ups'},{v:'64%',l:'Quota'}],insight:'Jake has the biggest pipeline on the team ($67K). His close rate is solid. Henderson deal ($18.2K) is his make-or-break this month with an insurance deadline.',q1:'Henderson called back yet? What\'s the wife saying?',q2:'Ramirez said yes Thursday. What\'s holding up the contract?',q3:'You need $30K in 20 days. Which of your 7 deals can you push to signed this week?'},
+{name:'Marcus D.',val:'$38.2K',met:'28% close',det:'0-for-6 on $10K+',rank:4,status:'Needs Coaching',color:'var(--yellow)',stats:[{v:'$38.2K',l:'Closed MTD'},{v:'28%',l:'Close Rate'},{v:'0/6',l:'$10K+ Closed'},{v:'$84K',l:'Pipeline'}],insight:'Marcus closes 42% on jobs under $5K but 0% above $10K. The pattern: he emails estimates on big jobs instead of doing in-home presentations. This is one habit, not a performance issue.',q1:'Walk me through your last $10K+ estimate. How did you present it?',q2:'What\'s different about how you handle a $4K job vs a $15K one?',q3:'Morrison is $18K Wednesday. I\'m riding with you. Full in-home walkthrough. Cool?'},
+{name:'Brian K.',val:'$16.8K',met:'19% close',det:'1.4 follow-ups/deal',rank:5,status:'At Risk',color:'var(--red)',stats:[{v:'$16.8K',l:'Closed MTD'},{v:'19%',l:'Close Rate'},{v:'1.4',l:'Avg Follow-ups'},{v:'28%',l:'Quota'}],insight:'Brian\'s follow-up rate (1.4/deal) is less than half team avg (3.4). He gives up after the first objection. This is week 3 of declining numbers. Effort issue, not skill.',q1:'When a homeowner says "I need to think about it," what do you do next?',q2:'How many times do you follow up before moving on?',q3:'This week: 3 follow-ups minimum per deal. Non-negotiable. Can you commit?'},
+],
+actions:[
+{border:'var(--red)',do:'Call 3 stale estimates TODAY. Garcia ($14.1K) to Jake, Thompson ($8.9K) to Sarah, Williams ($11.3K) to Marcus.',title:'$34.3K in estimates past the 5-day danger zone',desc:'Your close rate drops from 41% to 12% after day 5. These are still recoverable if called today.',tag:'$34.3K at risk',risk:true},
+{border:'var(--red)',do:'Jake closes Henderson ($18.2K) by Friday. Lead with the insurance deadline.',title:'Henderson has an insurance claim expiring in 9 days',desc:'Homeowner reviewing with wife. If the claim expires, this becomes a "maybe next year" deal.',tag:'$18.2K time-sensitive',risk:true},
+{border:'var(--yellow)',do:'Ride-along with Marcus on Morrison ($18K) Wednesday. He presents in person, not by email.',title:'Marcus is 0-for-6 on $10K+ deals this quarter',desc:'42% close on small jobs, 0% on big. He skips in-home presentations on large estimates. One ride-along breaks the pattern.',tag:'$64K lost from this habit',risk:true},
+],
+boss:'Closed <b>$187K</b> of $300K target (day 10). Projected: <b>$278K</b> (87% confidence). Close rate up 3pts. Risk: <b>$52K needs action</b> this week.',
+scores:[{v:'$187K',l:'Closed MTD',d:'&#9650; +18%',c:'var(--gold)'},{v:'34%',l:'Close Rate',d:'&#9650; +3pts',c:'var(--green)'},{v:'$482K',l:'Pipeline',d:'&#9650; +$38K new',c:'var(--t1)'},{v:'$52K',l:'At Risk',d:'4 deals',c:'var(--red)'}],
+meetTopic:'Follow-Up Speed',meetWhy:'24hr follow-up closes at 41%. After 5 days: 12%. Three estimates sitting 7+ days.',meetSay:'"Every estimate gets a follow-up within 24 hours. No exceptions. I\'m tracking it. Sarah, tell the team your process."',
+tracker:[{icon:'&#9989;',text:'Call Ortega stale estimate ($12.4K)',result:'Closed $12.4K',good:true},{icon:'&#9989;',text:'Pair Tyler with Sarah for ride-alongs',result:'2 done',good:true},{icon:'&#10060;',text:'Performance conversation with Brian',result:'Skipped',good:false}],
+repText:{name:'Jake',quota:'$85K',closed:'$54,400',pct:64,ahead:true,actions:['Henderson ($18.2K) - estimate sent 4 days ago, no reply. Call today.','Ramirez ($12.8K) - insurance approved, close this week.','Oak Valley ($9.5K) - send estimate before EOD.'],tip:'Lead with the insurance deadline on Henderson, not the price.'},
+},
+hvac:{label:'HVAC',icon:'&#10052;&#65039;',sub:'Service + Install',
+crms:['ServiceTitan','Housecall Pro','GHL','HubSpot','Spreadsheet'],
+crmData:{ServiceTitan:['Calls booked','Jobs dispatched','Estimates generated & sold','Average ticket','Membership conversions','Revenue by technician'],'Housecall Pro':['Jobs scheduled','Estimates created','Invoices sent','Revenue per job','Customer history','Online booking'],GHL:['Pipeline stages','Email/SMS activity','Call logs','Opportunity tracking','Revenue attribution','Automation triggers'],HubSpot:['Contact & deal records','Email activity','Call logging','Pipeline stages','Revenue forecasts','Activity timeline'],Spreadsheet:['Manual entry','(We help set up tracking)']},
+stages:['Calls Booked','Dispatched','Estimate Given','Sold','Membership'],
+ratios:[1,.88,.60,.35,.45],
+colors:['#3b82f6','#6366f1','#d4a54a','#22c55e','#10b981'],
+volLabel:'Service calls per month?',volMax:300,volDefault:80,volMarks:['10','80','200','300'],
+dealLabel:'Average ticket size?',dealDefault:3500,dealMax:20000,dealMarks:['$500','$3.5K','$10K','$20K'],
+reps:[
+{name:'Mike T.',val:'$48.2K',met:'$4,200 avg ticket',det:'38% estimate close',rank:1,status:'Top Performer',color:'var(--green)',stats:[{v:'$48.2K',l:'Revenue MTD'},{v:'$4,200',l:'Avg Ticket'},{v:'38%',l:'Est Close Rate'},{v:'42%',l:'Membership Conv'}],insight:'Mike presents 3 options on every call (good/better/best). His avg ticket is $1,000 above team average. This is a process, not talent. Teachable.',q1:'Walk us through your 3-option presentation. What do you say for each tier?',q2:'How do you bring up the replacement option on a repair call?',q3:'Would you role-play your pitch at Monday\'s meeting?'},
+{name:'Danny R.',val:'$39.1K',met:'$3,800 avg ticket',det:'Best membership rate',rank:2,status:'On Track',color:'var(--gold)',stats:[{v:'$39.1K',l:'Revenue MTD'},{v:'$3,800',l:'Avg Ticket'},{v:'34%',l:'Est Close Rate'},{v:'48%',l:'Membership Conv'}],insight:'Danny converts almost half his calls to maintenance plans. His recurring revenue generation is the best on the team. If the team matched his rate, that\'s $16.8K/yr added.',q1:'How do you bring up the maintenance plan? At what point in the call?',q2:'What\'s your response when they say "I don\'t need a plan"?',q3:'You and Mike should compare approaches. You\'re both strong in different areas.'},
+{name:'Tommy S.',val:'$18.4K',met:'$2,200 avg ticket',det:'Not presenting options',rank:4,status:'Needs Coaching',color:'var(--yellow)',stats:[{v:'$18.4K',l:'Revenue MTD'},{v:'$2,200',l:'Avg Ticket'},{v:'22%',l:'Est Close Rate'},{v:'8%',l:'Membership Conv'}],insight:'Tommy is a great technician. He fixes the problem and moves on. He doesn\'t see himself as a salesperson. He ran 12 service calls last week and only presented estimates on 4.',q1:'Walk me through your last 3 calls. How many did you present a replacement option on?',q2:'When you diagnose a system that\'s 15+ years old, what do you say?',q3:'This week: every system 10+ years, you present the replacement option. I\'ll check Friday.'},
+{name:'Alex P.',val:'$8.1K',met:'$1,800 avg ticket',det:'Week 3, ramping',rank:5,status:'New',color:'var(--blue)',stats:[{v:'$8.1K',l:'Revenue MTD'},{v:'$1,800',l:'Avg Ticket'},{v:'18%',l:'Est Close Rate'},{v:'5%',l:'Membership Conv'}],insight:'Alex is week 3. Activity is solid. Needs ride-alongs to learn the sales conversation during service calls. Pair with Mike for 3 days.',q1:'How are you feeling on the calls? What\'s the hardest part?',q2:'Have you tried presenting a replacement option yet? What happened?',q3:'You\'re riding with Mike Tuesday and Thursday. Watch how he presents options.'},
+],
+actions:[
+{border:'var(--red)',do:'Talk to Tommy today. 12 calls last week, estimates on only 4. He\'s leaving $16-24K on the table weekly.',title:'Tommy isn\'t presenting options on service calls',desc:'He diagnoses and fixes without mentioning replacements. 8 missed estimates = potential $16-24K in revenue left behind every week.',tag:'$20K+/week missed',risk:true},
+{border:'var(--yellow)',do:'Push membership conversions. Team rate: 18%. Target: 30%. Danny is at 48%. Have him share his pitch.',title:'Membership conversion is half of target',desc:'Every plan is $189-$299/yr recurring. Going from 18% to 30% on 80 calls/month adds $1,400/month in recurring revenue.',tag:'$16.8K/yr opportunity',risk:false},
+{border:'var(--green)',do:'Recognize Mike T. on Monday. Highest ticket on team. Ask him to demo his 3-option presentation.',title:'Mike\'s avg ticket is $1,000 above team average',desc:'He presents good/better/best on every call. Other techs present one fix. This is the single biggest revenue lever on your team.',tag:'$12K/mo team uplift potential',risk:false},
+],
+boss:'Revenue: <b>$145K</b> of $200K target (day 10). Avg ticket: <b>$3,200</b> (+$200). Main issue: <b>Tommy running calls without presenting estimates.</b> Membership at 18%, target 30%.',
+scores:[{v:'$145K',l:'Revenue MTD',d:'&#9650; +12%',c:'var(--gold)'},{v:'$3.2K',l:'Avg Ticket',d:'&#9650; +$200',c:'var(--green)'},{v:'36%',l:'Est Close Rate',d:'&#9650; +4pts',c:'var(--green)'},{v:'18%',l:'Membership',d:'&#9660; Target: 30%',c:'var(--red)'}],
+meetTopic:'Presenting 3 Options on Every Call',meetWhy:'Mike presents 3 options: $4,200 avg ticket. Tommy presents 1 option: $2,200. That\'s $2K/call difference.',meetSay:'"Every call this week: good, better, best. Three options, every time. Mike, walk us through your presentation right now."',
+tracker:[{icon:'&#9989;',text:'Schedule ride-along for Alex with Mike',result:'Done, Tue/Thu',good:true},{icon:'&#9989;',text:'Review Tommy\'s estimate presentations',result:'4 of 12 presented',good:false},{icon:'&#10060;',text:'Run membership conversion contest',result:'Not started',good:false}],
+repText:{name:'Danny',quota:'$50K',closed:'$39,100',pct:78,ahead:true,actions:['Rivera AC install ($8.4K) - customer said yes, send contract NOW.','Dawson maintenance renewal ($189/yr) - expires this week.','Follow up: Garcia furnace quote ($6,200) sent 3 days ago.'],tip:'Rivera said yes Thursday. Don\'t let it cool. Send the contract first thing.'},
+},
+solar:{label:'Solar',icon:'&#9728;&#65039;',sub:'D2D Residential',
+crms:['SalesRabbit','GHL','Enerflo','HubSpot','Spreadsheet'],
+crmData:{SalesRabbit:['Doors knocked per rep','Contact rate by area','Appointments set','GPS territory heatmaps','Rep activity tracking','Lead dispositions'],GHL:['Pipeline stages','Proposals sent','Contract status','Email/SMS activity','Revenue tracking','Automation triggers'],Enerflo:['Proposals generated','Contract status','Install scheduling','Utility data','Commission tracking','Cancellation rate'],HubSpot:['Contact & deal records','Email activity','Pipeline stages','Revenue forecasts','Activity timeline','Call logging'],Spreadsheet:['Manual entry','(We help set up tracking)']},
+stages:['Doors','Contacts','Sits','Proposals','Contracts','Installed'],
+ratios:[1,.20,.25,.48,.50,.83],
+colors:['#3b82f6','#6366f1','#8b5cf6','#d4a54a','#eab308','#22c55e'],
+volLabel:'Contracts signed per month?',volMax:80,volDefault:15,volMarks:['2','20','40','80'],
+dealLabel:'Average system value?',dealDefault:30000,dealMax:60000,dealMarks:['$15K','$30K','$45K','$60K'],
+reps:[
+{name:'Marco V.',val:'14 contracts',met:'52% sit-to-close',det:'Best door-to-sit ratio',rank:1,status:'Top Performer',color:'var(--green)',stats:[{v:'14',l:'Contracts MTD'},{v:'52%',l:'Sit-to-Close'},{v:'95%',l:'Retention'},{v:'32%',l:'Sit Rate'}],insight:'Marco has the best door-to-sit conversion AND the highest close rate. His secret: he pre-qualifies hard at the door. Fewer sits, but every sit is a real buyer.',q1:'What questions do you ask at the door before setting the appointment?',q2:'How do you decide a homeowner is worth a full sit vs. a pass?',q3:'Would you train the new reps on your door approach this week?'},
+{name:'Jaylen D.',val:'11 contracts',met:'44% sit-to-close',det:'Highest door volume',rank:2,status:'Strong',color:'var(--gold)',stats:[{v:'11',l:'Contracts MTD'},{v:'44%',l:'Sit-to-Close'},{v:'82%',l:'Retention'},{v:'22%',l:'Sit Rate'}],insight:'Jaylen knocks more doors than anyone (120+/day). Volume compensates for lower conversion. Retention at 82% is below target - need to check if he\'s rushing the close.',q1:'Your volume is great. But 18% of your contracts are canceling. What\'s happening?',q2:'Are you walking through the full contract terms at the table?',q3:'This week: slow down on the close. Spend 5 extra minutes on contract review.'},
+{name:'DeShawn M.',val:'5 contracts',met:'22% sit-to-close',det:'Wrong territory',rank:4,status:'Territory Issue',color:'var(--yellow)',stats:[{v:'5',l:'Contracts MTD'},{v:'22%',l:'Sit-to-Close'},{v:'88%',l:'Retention'},{v:'8%',l:'Sit Rate (Maple)'}],insight:'DeShawn\'s activity is excellent (100+ doors/day). His conversion in Oakview matches top performers. He\'s in the wrong territory, not the wrong role. Maple Ridge contact rate: 8%. Oakview: 28%.',q1:'How are you feeling about Maple Ridge? What\'s different about those homeowners?',q2:'Compare that to when you worked Oakview. What changed?',q3:'I\'m moving you to Oakview full-time. Same effort, better territory.'},
+{name:'Tyler R.',val:'2 contracts',met:'18% sit-to-close',det:'Week 3',rank:5,status:'Ramping',color:'var(--blue)',stats:[{v:'2',l:'Contracts MTD'},{v:'18%',l:'Sit-to-Close'},{v:'100%',l:'Retention'},{v:'20%',l:'Sit Rate'}],insight:'Tyler is week 3. His sit rate is actually on pace. Close rate will improve with experience. Pair with Marco for 2 days to learn the in-home pitch.',q1:'What\'s been the hardest part of the pitch so far?',q2:'When the homeowner objects on price, what do you say?',q3:'You\'re shadowing Marco Tuesday and Wednesday. Watch how he handles the financing conversation.'},
+],
+actions:[
+{border:'var(--red)',do:'Move DeShawn from Maple Ridge to Oakview immediately. His contact rate is 8% vs 28%.',title:'DeShawn is canvassing a dead territory',desc:'80 doors in Maple Ridge last week: 2 contacts, 0 sits. Same rep in Oakview: 14 contacts, 4 sits per 50 doors. Territory is the problem.',tag:'15+ lost sits/month',risk:true},
+{border:'var(--red)',do:'Call Henderson and Patel contracts. Both 3+ weeks post-sign, no install scheduled. Cancel risk.',title:'2 contracts in the cancellation danger zone',desc:'Average cancel happens day 21-28 post-contract. Both are past that with no install date. A check-in call saves these.',tag:'$48K in contracts at risk',risk:true},
+{border:'var(--green)',do:'Have Priya share her post-contract follow-up. Her cancel rate is 5% vs team avg 18%.',title:'Priya\'s retention secret: a 30-second video text after signing',desc:'She sends a personal video and calls at day 14. Simple. If the team adopted this, save 3-4 cancels/month.',tag:'$72K/yr saved',risk:false},
+],
+boss:'<b>41 contracts</b> MTD, target 55. Cancel rate: <b>18%</b> (target 10%). <b>2 contracts in danger zone</b> (3+ weeks, no install). DeShawn needs a territory reassignment.',
+scores:[{v:'41',l:'Contracts MTD',d:'75% of target',c:'var(--gold)'},{v:'38%',l:'Sit-to-Close',d:'&#9650; +5pts',c:'var(--green)'},{v:'18%',l:'Cancel Rate',d:'&#9660; Target: 10%',c:'var(--red)'},{v:'$1.2M',l:'Install Pipeline',d:'28 pending',c:'var(--t1)'}],
+meetTopic:'Post-Contract Retention',meetWhy:'Cancel rate is 18%. Priya\'s is 5%. She sends a video text after signing and checks in at day 14.',meetSay:'"Every contract this week: personal video text within 24 hours, check-in call at day 14. Priya, show us your template now."',
+tracker:[{icon:'&#9989;',text:'Reassign DeShawn\'s territory to Riverside',result:'Done',good:true},{icon:'&#10060;',text:'Call at-risk contracts (Henderson, Patel)',result:'Not done',good:false},{icon:'&#9989;',text:'Document Priya\'s retention process',result:'Done, shared to team',good:true}],
+repText:{name:'Marco',quota:'18 contracts',closed:'14',pct:78,ahead:true,actions:['Follow up: Chen proposal ($32K) - they wanted to check utility rates.','New sit: Morrison family tomorrow 2pm - pre-qualify on utility bill.','Check in: Davidson contract (day 12) - retention call.'],tip:'Chen asked about utility savings. Pull their last 12 months and show the comparison chart.'},
+},
+it:{label:'IT Services',icon:'&#128187;',sub:'MSP / Reseller',
+crms:['HubSpot','Salesforce','ConnectWise','Custom CRM','Spreadsheet'],
+crmData:{HubSpot:['Contact & company records','Email sequences & opens','Call logging','Deal pipeline','Revenue forecasts','Meeting scheduling'],Salesforce:['Accounts & opportunities','Activity timeline','Forecasting & reports','Territory management','Email integration','Custom dashboards'],'ConnectWise':['Companies & contacts','Opportunities','Service tickets','MRR agreements','Project tracking','Sales pipeline'],'Custom CRM':['Varies by system','Contacts, deals, activity','(We normalize any data source)','Whatever fields you track'],Spreadsheet:['Manual entry','(We help set up tracking)']},
+stages:['Leads','Discovery','Proposal','Negotiation','Closed'],
+ratios:[1,.40,.50,.50,.50],
+colors:['#3b82f6','#6366f1','#d4a54a','#eab308','#22c55e'],
+volLabel:'Deals closed per month?',volMax:20,volDefault:3,volMarks:['1','5','10','20'],
+dealLabel:'Average deal MRR?',dealDefault:5000,dealMax:20000,dealMarks:['$1K','$5K','$10K','$20K'],
+reps:[
+{name:'Amanda L.',val:'$3.8K MRR',met:'31% close rate',det:'62% proposal rate',rank:1,status:'Top Closer',color:'var(--green)',stats:[{v:'$3.8K',l:'New MRR Won'},{v:'31%',l:'Close Rate'},{v:'62%',l:'Proposal Rate'},{v:'$78K',l:'Pipeline'}],insight:'Amanda pre-qualifies ruthlessly. She proposes less often but closes more. Her pipeline is smaller but cleaner. Quality over quantity.',q1:'How do you decide when a deal is ready for a proposal?',q2:'What\'s your disqualification criteria? When do you walk away?',q3:'Can you document your qualification checklist so we can train the team on it?'},
+{name:'Kevin P.',val:'$0 MRR',met:'0% close rate',det:'42 calls, qualification loop',rank:4,status:'Stuck',color:'var(--red)',stats:[{v:'$0',l:'New MRR Won'},{v:'0%',l:'Close Rate'},{v:'12%',l:'Proposal Rate'},{v:'$112K',l:'Pipeline'}],insight:'Kevin is the busiest rep on the team and the least productive. 42 calls, zero proposals. He\'s having great conversations but never asking for the next step. His calls end with "let me know" instead of "I\'ll send the proposal Thursday."',q1:'Walk me through your last 3 discovery calls. What happened at the end?',q2:'When you finish a call, what\'s your specific next step?',q3:'Pick 3 deals. Send proposals on all 3 by Friday. No more discovery.'},
+{name:'David R.',val:'$2.1K MRR',met:'24% close rate',det:'Steady',rank:3,status:'On Track',color:'var(--gold)',stats:[{v:'$2.1K',l:'New MRR Won'},{v:'24%',l:'Close Rate'},{v:'44%',l:'Proposal Rate'},{v:'$54K',l:'Pipeline'}],insight:'David is consistent. Not flashy but reliable. Could improve proposal rate. Deals in his pipeline tend to be well-qualified.',q1:'What\'s keeping your 3 proposal-stage deals from closing?',q2:'Any of them have budget concerns we should address?',q3:'Let\'s pick the one closest to close and strategize the next call together.'},
+],
+actions:[
+{border:'var(--red)',do:'Save the Midwest Mfg deal ($48K MRR). Proposal sent 12 days ago, ZERO follow-up. Call this week.',title:'Your biggest deal is dying in silence',desc:'Decision maker went dark after pricing review. This isn\'t "thinking about it." This is an unvoiced objection. Need executive sponsor call or phased pricing.',tag:'$48K MRR ($576K/yr)',risk:true},
+{border:'var(--yellow)',do:'Listen to 3 of Kevin\'s calls. He\'s not asking for next steps. Give him a 2-call rule.',title:'Kevin: 42 calls, zero closed. Stuck in qualification loops.',desc:'12% proposal rate vs team avg 45%. Great conversations but no advancement. Needs to qualify or disqualify within 2 calls.',tag:'$112K pipeline stuck',risk:true},
+{border:'var(--green)',do:'Assign 3 upcoming renewals to Amanda. Cross-sell security stack.',title:'Easy $2-4K MRR from existing client renewals',desc:'Parkview Medical, CrestLine Legal, Summit Accounting. Annual reviews due. None have your security offering. Warm conversations.',tag:'$2-4K new MRR',risk:false},
+],
+boss:'New MRR: <b>$8.4K</b> of $20K target. Pipeline: <b>$342K</b>. <b>Proposal-to-close dropped 5pts.</b> Biggest deal ($48K MRR) needs intervention. Kevin is busy but not producing.',
+scores:[{v:'$8.4K',l:'New MRR',d:'42% of target',c:'var(--gold)'},{v:'22%',l:'Close Rate',d:'&#9660; -5pts',c:'var(--red)'},{v:'$342K',l:'Pipeline',d:'18 deals',c:'var(--t1)'},{v:'38d',l:'Avg Cycle',d:'&#9660; +6 days',c:'var(--red)'}],
+meetTopic:'Moving Deals Past Discovery',meetWhy:'Kevin has 8 deals stuck in discovery for 22+ days. Team avg: 8 days. He\'s having the same conversation 3 times.',meetSay:'"New rule: 2 discovery calls max. After that, you send a proposal or you disqualify. Kevin, which 3 deals are you proposing this week?"',
+tracker:[{icon:'&#9989;',text:'Executive outreach on Midwest Mfg deal',result:'Meeting set Thurs',good:true},{icon:'&#10060;',text:'Review Kevin\'s discovery calls',result:'Not done',good:false},{icon:'&#9989;',text:'Assign renewal cross-sells to Amanda',result:'3 scheduled',good:true}],
+repText:{name:'Amanda',quota:'$5K MRR',closed:'$3,800',pct:76,ahead:true,actions:['Parkview Medical renewal + security upsell (meeting Wed).','CrestLine Legal renewal call (due this week).','Follow up: DataBridge proposal ($4.2K MRR) sent 3 days ago.'],tip:'Parkview has had 2 security incidents this year. Lead with that. "Based on what happened in March, here\'s what we\'d put in place."'},
+},
+pest:{label:'Pest Control',icon:'&#128030;',sub:'D2D Residential',
+crms:['SalesRabbit','PestPac','FieldRoutes','GHL','Spreadsheet'],
+crmData:{SalesRabbit:['Doors knocked per rep','Contact rate by territory','Presentations given','Agreements signed','GPS heatmaps','Rep tracking'],PestPac:['Service agreements','Recurring billing','Cancellation tracking','Route optimization','Customer lifecycle','Revenue per account'],FieldRoutes:['Agreements & billing','Service scheduling','Cancel rate by source','Customer lifecycle','Revenue reports','Route efficiency'],GHL:['Pipeline stages','Email/SMS activity','Call logs','Opportunity tracking','Revenue attribution','Automations'],Spreadsheet:['Manual entry','(We help set up tracking)']},
+stages:['Doors','Contacts','Pitches','Agreements','Retained 30d'],
+ratios:[1,.26,.28,.40,.78],
+colors:['#3b82f6','#6366f1','#d4a54a','#eab308','#22c55e'],
+volLabel:'Agreements signed per month?',volMax:100,volDefault:40,volMarks:['5','25','50','100'],
+dealLabel:'Annual contract value?',dealDefault:600,dealMax:2000,dealMarks:['$200','$600','$1K','$2K'],
+reps:[
+{name:'Josh H.',val:'18 agreements',met:'32% close on contacts',det:'92% retention',rank:1,status:'Top Performer',color:'var(--green)',stats:[{v:'18',l:'Agreements/Wk'},{v:'32%',l:'Contact Close'},{v:'92%',l:'30-Day Retention'},{v:'350',l:'Doors/Wk'}],insight:'Josh\'s retention is 3x better than Kyle. He spends 3 extra minutes walking through the service agreement at the door. Those 3 minutes save $200+ per customer.',q1:'What do you say when you explain the service schedule?',q2:'How do you handle "I want to think about it"?',q3:'Can you role-play your pitch for the team Monday?'},
+{name:'Kyle B.',val:'11 agreements',met:'24% close',det:'62% retention - problem',rank:4,status:'Retention Issue',color:'var(--red)',stats:[{v:'11',l:'Agreements/Wk'},{v:'24%',l:'Contact Close'},{v:'62%',l:'30-Day Retention'},{v:'320',l:'Doors/Wk'}],insight:'Kyle closes on pressure, not fit. His cancel rate (38%) means his NET agreements are worse than the new hire. He\'s costing you money in acquisition cost per lost customer.',q1:'When you sign someone, walk me through what you say about the service schedule.',q2:'What do customers say when they cancel? What\'s the #1 reason?',q3:'This week: after every sign, text the customer a welcome message with their first service date.'},
+{name:'Trey W.',val:'12 agreements',met:'25% close',det:'Territory saturated',rank:3,status:'Territory Issue',color:'var(--yellow)',stats:[{v:'12',l:'Agreements/Wk'},{v:'25%',l:'Contact Close'},{v:'85%',l:'30-Day Retention'},{v:'420',l:'Doors/Wk'}],insight:'Trey knocks more doors than anyone (420+/wk). Contact rate dropped from 28% to 15% over 3 weeks in Westfield. Territory is burned. Needs fresh area.',q1:'Westfield feeling tougher lately? What\'s changed?',q2:'If I moved you to the new Riverside area, how would you approach it?',q3:'You\'re in Riverside starting Monday. Same energy, fresh doors.'},
+{name:'Sam R.',val:'4 agreements',met:'15% close',det:'Week 2',rank:5,status:'New',color:'var(--blue)',stats:[{v:'4',l:'Agreements/Wk'},{v:'15%',l:'Contact Close'},{v:'100%',l:'30-Day Retention'},{v:'280',l:'Doors/Wk'}],insight:'Sam is week 2. Door volume is building. Close rate will improve with pitch practice. Pair with Josh for 2 days.',q1:'What\'s the hardest objection you\'re getting at the door?',q2:'How many presentations are you getting into per day?',q3:'Shadow Josh tomorrow. Focus on how he transitions from introduction to pitch.'},
+],
+actions:[
+{border:'var(--red)',do:'Sit down with Kyle. 11 agreements but 62% retention. His NET is worse than the new hire.',title:'Kyle\'s cancel rate is costing more than he\'s earning',desc:'He\'s closing on pressure. Customers don\'t understand what they signed. 38% cancel = $2,400/yr in wasted acquisition costs.',tag:'$2,400/yr lost per week',risk:true},
+{border:'var(--yellow)',do:'Move Trey from Westfield to Riverside. Contact rate dropped to 15%.',title:'Trey is burning energy in a saturated territory',desc:'400+ doors/week but territory is exhausted. Riverside has 22% avg contact rate. Same effort, way more results.',tag:'10+ extra contacts/week',risk:false},
+{border:'var(--green)',do:'Document Josh\'s pitch and make it the team standard. His retention is 30 points above Kyle.',title:'Josh\'s 3-minute service explanation is the retention secret',desc:'He walks through the agreement in detail. Takes 3 extra minutes. Saves $200+ per customer in acquisition cost.',tag:'Save 3-4 cancels/wk',risk:false},
+],
+boss:'<b>59 agreements</b> this week. But <b>30-day retention is 78%</b> (target 88%). NET agreements: 46. Kyle\'s 38% cancel rate is dragging the team. Trey needs a territory move.',
+scores:[{v:'59',l:'Agreements/Wk',d:'&#9650; +8 vs last',c:'var(--gold)'},{v:'78%',l:'30-Day Retain',d:'&#9660; Target: 88%',c:'var(--red)'},{v:'26%',l:'Contact Rate',d:'Steady',c:'var(--t1)'},{v:'46',l:'Net Agreements',d:'After cancels',c:'var(--yellow)'}],
+meetTopic:'Selling for Retention',meetWhy:'Kyle signs 11/wk at 62% retention. Josh signs 18/wk at 92%. Difference: Josh spends 3 extra minutes on the service explanation.',meetSay:'"Every agreement this week: walk through the service schedule with the customer. Josh, demo your pitch right now."',
+tracker:[{icon:'&#9989;',text:'Move Trey to Riverside territory',result:'Done',good:true},{icon:'&#10060;',text:'Kyle retention coaching conversation',result:'Not done yet',good:false},{icon:'&#9989;',text:'Document Josh\'s pitch as team template',result:'Done, shared',good:true}],
+repText:{name:'Josh',quota:'20 agreements',closed:'18',pct:90,ahead:true,actions:['Oakwood neighborhood - 40 doors left in the block, finish today.','Follow up: Martinez callback requested for Thursday.','Check retention: 3 customers hitting day 25, send check-in texts.'],tip:'Martinez asked about pet safety. Lead with "our products are pet-friendly within 30 minutes of application."'},
+},
+insurance:{label:'Insurance',icon:'&#128220;',sub:'Independent Agency',
+crms:['Applied Epic','Hawksoft','GHL','HubSpot','Spreadsheet'],
+crmData:{'Applied Epic':['Policies in force','Premium volume','Quotes generated & bound','Retention rate','Cross-sell tracking','Commission data','Renewal pipeline'],'Hawksoft':['Client records','Policy management','Activity tracking','Premium reports','Renewal lists','Cross-sell opportunities'],GHL:['Pipeline stages','Email/SMS activity','Call logs','Opportunity tracking','Revenue attribution','Automations'],HubSpot:['Contact & deal records','Email activity','Pipeline stages','Revenue forecasts','Activity timeline','Call logging'],Spreadsheet:['Manual entry','(We help set up tracking)']},
+stages:['Leads','Quoted','Sold','Cross-Sell','Renewed'],
+ratios:[1,.63,.40,.67,.85],
+colors:['#3b82f6','#6366f1','#d4a54a','#8b5cf6','#22c55e'],
+volLabel:'Policies sold per month?',volMax:80,volDefault:30,volMarks:['5','20','40','80'],
+dealLabel:'Average premium per policy?',dealDefault:2000,dealMax:10000,dealMarks:['$500','$2K','$5K','$10K'],
+reps:[
+{name:'Rachel A.',val:'$82K premium',met:'52% bind rate',det:'38% cross-sell',rank:1,status:'Top Producer',color:'var(--green)',stats:[{v:'$82K',l:'Premium MTD'},{v:'52%',l:'Bind Rate'},{v:'38%',l:'Cross-Sell'},{v:'18',l:'Quotes/Wk'}],insight:'Rachel pre-qualifies hard before quoting. Fewer quotes, higher bind rate. She also asks every auto client about home and umbrella. Her policies-per-household is 2.1 vs team avg 1.4.',q1:'How do you bring up cross-selling without it feeling pushy?',q2:'What\'s your qualifying process before you run a quote?',q3:'Would you share your cross-sell talk track at Monday\'s meeting?'},
+{name:'Steve L.',val:'$28K premium',met:'25% bind rate',det:'5 quotes/week - low',rank:4,status:'Low Activity',color:'var(--red)',stats:[{v:'$28K',l:'Premium MTD'},{v:'25%',l:'Bind Rate'},{v:'8%',l:'Cross-Sell'},{v:'5',l:'Quotes/Wk'}],insight:'Steve\'s bind rate is actually OK (25%). The problem is pure volume. 5 quotes/week vs Rachel\'s 18. He\'s spending time on service calls and admin instead of quoting. Time-blocking issue, not sales skill.',q1:'Walk me through a typical day. Where does your time go?',q2:'How much time are you spending on service calls vs new business?',q3:'This week: 15 quotes minimum. 3 per day. Block 9-11am for quoting only.'},
+{name:'Mark S.',val:'$64K premium',met:'44% bind rate',det:'Strong on commercial',rank:2,status:'Strong',color:'var(--gold)',stats:[{v:'$64K',l:'Premium MTD'},{v:'44%',l:'Bind Rate'},{v:'22%',l:'Cross-Sell'},{v:'14',l:'Quotes/Wk'}],insight:'Mark is strongest on commercial lines. His cross-sell rate could improve. He tends to quote the asked-for line and not mention others.',q1:'When you quote a commercial client, do you ask about other coverages?',q2:'What would it take to bump from 14 to 18 quotes this week?',q3:'I want you to ask every commercial client about cyber liability this week.'},
+],
+actions:[
+{border:'var(--red)',do:'Activity conversation with Steve. 5 quotes/week vs team avg 15. Block his mornings for quoting.',title:'Steve\'s pipeline is starving from low activity',desc:'25% bind rate is fine. But 5 quotes/week = 1-2 policies. Rachel does 18 quotes at 52% close. The math doesn\'t work at low volume.',tag:'$36K premium gap vs avg',risk:true},
+{border:'var(--yellow)',do:'Run the cross-sell list. Every auto-only client gets a home/umbrella quote offer this month.',title:'Cross-sell rate is 15% vs 40% target',desc:'180+ auto-only clients. If 20% add home at $1,200 avg premium: $43K in new premium from people who already trust you.',tag:'$43K untapped premium',risk:false},
+{border:'var(--green)',do:'Rachel mentors Steve for 2 weeks. Her quoting process is teachable.',title:'Rachel\'s bind rate is double the team avg',desc:'She pre-qualifies before quoting. Fewer wasted quotes, higher close. If Steve adopted her process at 15 quotes/week, he\'d bind 7-8.',tag:'Team close rate +5pts',risk:false},
+],
+boss:'New premium: <b>$225K</b> of $320K target. Bind rate: <b>40%</b>. Cross-sell at <b>15%</b> (target 40%). <b>Steve needs volume.</b> 14 renewals due this month.',
+scores:[{v:'$225K',l:'Premium MTD',d:'70% of target',c:'var(--gold)'},{v:'40%',l:'Bind Rate',d:'&#9650; +3pts',c:'var(--green)'},{v:'15%',l:'Cross-Sell',d:'&#9660; Target: 40%',c:'var(--red)'},{v:'14',l:'Renewals Due',d:'This month',c:'var(--yellow)'}],
+meetTopic:'Cross-Selling Existing Clients',meetWhy:'Cross-sell rate: 15%. Target: 40%. 180+ auto-only clients. Each home add is $1,200 avg premium.',meetSay:'"Everyone pull your auto-only list. 5 cross-sell calls each this week. Rachel, show us your 30-second transition."',
+tracker:[{icon:'&#10060;',text:'Steve activity plan (15 quotes/week)',result:'Hit 7 last week',good:false},{icon:'&#9989;',text:'Pull auto-only client cross-sell list',result:'184 clients flagged',good:true},{icon:'&#9989;',text:'Rachel + Steve mentorship pairing',result:'Started Monday',good:true}],
+repText:{name:'Rachel',quota:'$100K premium',closed:'$82,000',pct:82,ahead:true,actions:['Quote Henderson commercial package ($8K premium) - meeting at 2pm.','Cross-sell: Call Davis (auto-only) about homeowners quote.','Follow up: Patel umbrella policy quote sent Monday.'],tip:'Henderson asked about cyber liability. Bundle it with the BOP. "Most businesses your size add cyber. Here\'s why."'},
+}
+};
+
+// ============================================
+// STATE
+// ============================================
+let V=null,CRMs=[],curSlide=1,customRatios=null;
+const SLIDES=['Weekly Intelligence','Leaderboard','Meeting Prep','Rep Deep Dive','Get Started'];
+const TOTAL_SLIDES=5;
+
+// Build initial vert options
+(function(){
+  let h='';
+  for(let k in D){
+    const d=D[k];
+    h+=`<div class="opt" onclick="selVert(this,'${k}')"><span class="opt-icon">${d.icon}</span>${d.label}<span class="opt-sub">${d.sub}</span></div>`;
+  }
+  document.getElementById('vertOpts').innerHTML=h;
+})();
+
+function selVert(el,v){
+  document.querySelectorAll('#vertOpts .opt').forEach(o=>o.classList.remove('on'));
+  el.classList.add('on');V=v;CRMs=[];
+  document.getElementById('btn1').classList.remove('btn-disabled');
+}
+
+function goStep(n){
+  if(n===2&&!V)return;
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('on'));
+  document.getElementById('s'+n).classList.add('on');
+  document.getElementById('progFill').style.width=(n*33.3)+'%';
+  if(n===2)buildCRM();
+  if(n===3)buildSliders();
+}
+
+function buildCRM(){
+  const d=D[V];
+  let h='';d.crms.forEach(c=>{h+=`<div class="crm-pill" onclick="togCRM(this,'${c}')">${c}</div>`;});
+  document.getElementById('crmPills').innerHTML=h;
+  document.getElementById('dpull').innerHTML='';
+  document.getElementById('dpull').classList.remove('open');
+  CRMs=[];
+}
+
+function togCRM(el,crm){
+  el.classList.toggle('on');
+  if(CRMs.includes(crm))CRMs=CRMs.filter(c=>c!==crm);else CRMs.push(crm);
+  const d=D[V],dp=document.getElementById('dpull');
+  if(!CRMs.length){dp.classList.remove('open');dp.innerHTML='';return;}
+  let h='<div class="dpull-head">Data we pull from your tools</div>';
+  let seen=new Set();
+  CRMs.forEach(c=>{(d.crmData[c]||[]).forEach(m=>{if(!seen.has(m)){seen.add(m);h+=`<div class="dpull-row"><div class="dpull-check">&#10003;</div><div class="dpull-metric">${m}</div><div class="dpull-src">${c}</div></div>`;}});});
+  dp.innerHTML=h;dp.classList.add('open');
+}
+
+function buildSliders(){
+  const d=D[V];
+  customRatios=null;
+  document.getElementById('s3title').textContent='About your '+d.label.toLowerCase()+' team';
+  document.getElementById('volLabel').textContent=d.volLabel;
+  document.getElementById('volSlider').max=d.volMax;
+  document.getElementById('volSlider').value=d.volDefault;
+  document.getElementById('volVal').textContent=d.volDefault;
+  let marks='';d.volMarks.forEach(m=>{marks+=`<span>${m}</span>`;});
+  document.getElementById('volMarks').innerHTML=marks;
+  // Deal size
+  document.getElementById('dealLabel').textContent=d.dealLabel;
+  document.getElementById('dealSlider').max=d.dealMax;
+  document.getElementById('dealSlider').value=d.dealDefault;
+  document.getElementById('dealSlider').min=Math.round(d.dealMax*0.01);
+  document.getElementById('dealSlider').step=d.dealDefault<2000?50:500;
+  document.getElementById('dealVal').textContent=fmtDeal(d.dealDefault);
+  let dm='';d.dealMarks.forEach(m=>{dm+=`<span>${m}</span>`;});
+  document.getElementById('dealMarks').innerHTML=dm;
+  // Benchmark note
+  document.getElementById('benchNote').innerHTML='<b>How this works:</b> The pipeline below uses average conversion rates for '+d.label.toLowerCase()+' sales teams. Your actual numbers may vary. <span style="color:var(--gold);cursor:pointer;" onclick="toggleConv()">Tap here to adjust rates for your team.</span>';
+  // Build conv rates editor
+  const st=d.stages,r=d.ratios;
+  let ch='';
+  for(let i=1;i<st.length;i++){
+    ch+=`<div class="conv-row"><span style="flex:1">${st[i-1]} &#8594; ${st[i]}</span><input type="number" value="${Math.round(r[i]*100)}" id="cr${i}" onchange="onConvChange()">%</div>`;
+  }
+  document.getElementById('convRates').innerHTML=ch;
+  document.getElementById('convRates').classList.remove('open');
+  document.getElementById('convArrow').classList.remove('open');
+  updateSliders();
+}
+function fmtDeal(v){return v>=1000?'$'+Math.round(v/1000)+'K':'$'+v;}
+function toggleConv(){
+  document.getElementById('convRates').classList.toggle('open');
+  document.getElementById('convArrow').classList.toggle('open');
+}
+function onConvChange(){
+  const d=D[V];
+  customRatios=[d.ratios[0]];
+  for(let i=1;i<d.stages.length;i++){
+    const v=parseInt(document.getElementById('cr'+i).value)||0;
+    customRatios.push(Math.min(v,100)/100);
+  }
+  updateSliders();
+}
+
+function updateSliders(){
+  const d=D[V];
+  const reps=parseInt(document.getElementById('repSlider').value);
+  const vol=parseInt(document.getElementById('volSlider').value);
+  const dealSize=parseInt(document.getElementById('dealSlider').value);
+  document.getElementById('repVal').textContent=reps;
+  document.getElementById('volVal').textContent=vol;
+  document.getElementById('dealVal').textContent=fmtDeal(dealSize);
+
+  const stages=d.stages;
+  const r=customRatios||d.ratios;
+  let vals=new Array(stages.length);
+  vals[stages.length-1]=vol;
+  for(let i=stages.length-2;i>=0;i--){
+    vals[i]=Math.round(vals[i+1]/r[i+1]);
+  }
+
+  const maxV=vals[0]||1;
+  let fh='';
+  vals.forEach((v,i)=>{
+    const pct=Math.max((v/maxV)*100,12);
+    const conv=i>0?Math.round((v/vals[i-1])*100)+'%':'';
+    fh+=`<div class="af-stage">
+      <div class="af-label">${stages[i]}</div>
+      <div class="af-bar-wrap"><div class="af-bar" style="width:${pct}%;background:${d.colors[i]};color:${pct>30?'white':'var(--t1)'};">${v}</div></div>
+      <div class="af-num">${conv}</div>
+    </div>`;
+  });
+  document.getElementById('autoFunnel').innerHTML=fh;
+
+  // Weakest stage insight
+  let worstI=1,worstR=1;
+  for(let i=1;i<vals.length;i++){
+    const rate=vals[i-1]>0?vals[i]/vals[i-1]:1;
+    if(rate<worstR){worstR=rate;worstI=i;}
+  }
+  const improvable=Math.round(vals[worstI-1]*0.05);
+  const extraRev=improvable*dealSize;
+  document.getElementById('funnelInsight').innerHTML=`<div class="funnel-insight">
+    Your biggest drop-off: <b>${stages[worstI-1]}</b> &#8594; <b>${stages[worstI]}</b> at <b>${Math.round(worstR*100)}%</b>.<br><br>
+    Improving that by just 5 points = <b>${improvable} more ${stages[worstI].toLowerCase()}</b>/month.<br><br>
+    <b>That is exactly what we find and fix every Monday.</b>
+  </div>`;
+
+  // ROI calc
+  const monthlyRev=vol*dealSize;
+  const improvedRev=(vol+improvable)*dealSize;
+  const annualGain=(improvedRev-monthlyRev)*12;
+  const roi=Math.round(annualGain/(750*12));
+  document.getElementById('roiCalc').innerHTML=`<div class="roi-box">
+    <div class="roi-label">If we help you close ${improvable} more per month</div>
+    <div class="roi-val">+${fmtMoney(annualGain)}/yr</div>
+    <div class="roi-sub">in additional revenue from the same pipeline</div>
+    <div class="roi-math">
+      <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);"><span>Current: ${vol} closes x ${fmtDeal(dealSize)}</span><span style="color:var(--t1)">${fmtMoney(monthlyRev)}/mo</span></div>
+      <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);"><span>With FlightSuite: ${vol+improvable} closes x ${fmtDeal(dealSize)}</span><span style="color:var(--green)">${fmtMoney(improvedRev)}/mo</span></div>
+      <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);"><span>Annual gain</span><span style="color:var(--green);font-weight:700">${fmtMoney(annualGain)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:4px 0;"><span>FlightSuite cost</span><span>$9,000/yr</span></div>
+      <div style="text-align:center;margin-top:8px;font-size:14px;color:var(--gold);font-weight:700;">${roi}x ROI</div>
+    </div>
+  </div>`;
+  // Store for use in slides
+  window._roi={reps,vol,dealSize,improvable,annualGain,roi,monthlyRev,improvedRev};
+}
+function fmtMoney(v){
+  if(v>=1000000)return '$'+Math.round(v/100000)/10+'M';
+  if(v>=1000)return '$'+Math.round(v/1000)+'K';
+  return '$'+v;
+}
+
+// ============================================
+// SLIDES
+// ============================================
+function launchSlides(){
+  document.getElementById('wizard').style.display='none';
+  document.getElementById('slides').classList.add('on');
+  curSlide=1;
+  buildAllSlides();
+  showSlide(1);
+}
+
+function showSlide(n){
+  curSlide=n;
+  document.querySelectorAll('.slide').forEach(s=>s.classList.remove('on'));
+  document.getElementById('sl'+n).classList.add('on');
+  document.getElementById('slideProg').style.width=((n/TOTAL_SLIDES)*100)+'%';
+  document.getElementById('slideCount').textContent=n+' of '+TOTAL_SLIDES;
+  document.getElementById('slideTitle').textContent=SLIDES[n-1];
+  const btn=document.getElementById('slideBtn');
+  if(n<TOTAL_SLIDES){btn.textContent='Next: '+SLIDES[n]+' \u2192';btn.className='btn-next btn-gold';btn.onclick=()=>nextSlide();}
+  else{btn.textContent='Book a 15-Min Call';btn.className='btn-next btn-green';btn.onclick=()=>window.open('https://calendly.com','_blank');}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function nextSlide(){if(curSlide<TOTAL_SLIDES)showSlide(curSlide+1);}
+
+function buildAllSlides(){
+  const d=D[V];
+  buildSlide1(d);buildSlide2(d);buildSlide3(d);buildSlide4(d);buildSlide5(d);
+}
+
+function makeGuide(title,text){
+  return '<div class="guide"><div class="guide-icon">i</div><div class="guide-title">'+title+'</div><div class="guide-text">'+text+'</div></div>';
+}
+
+// Slide 1: Intelligence Report
+function buildSlide1(d){
+  let h='';
+  h+=makeGuide('Why this matters','This replaces the 2+ hours you spend every Monday pulling CRM reports and building spreadsheets. <b>Every number links back to your CRM.</b> Every action has a name, a dollar amount, and a specific next step.');
+  h+=`<div class="r-sec">Weekly Intelligence Report</div>`;
+  h+=`<div class="r-boss"><div class="r-boss-label">&#128172; Copy-paste for your owner</div><div class="r-boss-text">${d.boss}</div></div>`;
+  h+=`<div class="r-scores">`;
+  d.scores.forEach(s=>{h+=`<div class="r-sc"><div class="r-sc-val" style="color:${s.c}">${s.v}</div><div class="r-sc-label">${s.l}</div><div class="r-sc-delta" style="color:${s.d.includes('&#9650;')?'var(--green)':s.d.includes('&#9660;')?'var(--red)':'var(--t3)'}">${s.d}</div></div>`;});
+  h+=`</div>`;
+  // Tracker
+  h+=`<div class="r-sec">Last Week's Follow-up</div><div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:14px;">`;
+  d.tracker.forEach(t=>{h+=`<div class="r-track"><div class="r-track-icon">${t.icon}</div><div class="r-track-text">${t.text}</div><div class="r-track-result" style="color:${t.good?'var(--green)':'var(--red)'}">${t.result}</div></div>`;});
+  h+=`</div>`;
+  // Actions
+  h+=`<div class="r-sec">3 Actions This Week</div>`;
+  d.actions.forEach(a=>{h+=`<div class="r-act" style="border-left:3px solid ${a.border}"><div class="r-act-do">&#9758; ${a.do}</div><div class="r-act-body"><div class="r-act-title">${a.title}</div><div class="r-act-desc">${a.desc}</div><div class="r-act-tag ${a.risk?'risk':'opp'}">${a.tag}</div><span class="r-act-crm">Open in ${CRMs[0]||'CRM'} &#8599;</span></div></div>`;});
+  document.getElementById('sl1').innerHTML=h;
+}
+
+// Slide 2: Leaderboard
+function buildSlide2(d){
+  let h=makeGuide('Why this matters','This gets shared with your entire team. Screenshot it, text it to the group chat, post it on the whiteboard. <b>Nobody hides from their number.</b> Your top performers compete harder. Your underperformers feel the pressure without you saying a word.');
+  h+=`<div class="r-sec">Team Leaderboard</div>`;
+  h+=`<div class="r-lb"><div class="r-lb-title">Revenue Ranked - This Month</div>`;
+  d.reps.forEach(r=>{h+=`<div class="r-lb-row"><div class="r-lb-rank r${r.rank}">${r.rank}</div><div class="r-lb-info"><div class="r-lb-name">${r.name}</div><div class="r-lb-meta">${r.met} &middot; ${r.det}</div></div><div class="r-lb-val"><div class="r-lb-num" style="${r.rank===1?'color:var(--gold)':r.rank>=4?'color:var(--red)':''}">${r.val}</div><div class="r-lb-trend" style="color:${r.rank<=2?'var(--green)':r.rank>=4?'var(--red)':'var(--t3)'};">${r.rank<=2?'&#9650;':r.rank>=4?'&#9660;':'&#9654;'}</div></div></div>`;});
+  h+=`</div>`;
+  h+=`<div style="margin-top:14px;background:var(--goldglow);border:1px solid var(--bordergold);border-radius:10px;padding:14px;font-size:14px;color:var(--t1);line-height:1.6;">
+    <b style="color:var(--gold);">Why this works:</b> ${d.reps[0].name.split(' ')[0]} sees she's #1 and keeps pushing. ${d.reps[1].name.split(' ')[0]} sees he's #2 and wants to flip it. ${d.reps[d.reps.length-1].name.split(' ')[0]} sees the bottom and feels it. Competition drives behavior better than any speech.
+  </div>`;
+  document.getElementById('sl2').innerHTML=h;
+}
+
+// Slide 3: Meeting Prep
+function buildSlide3(d){
+  let h=makeGuide('Why this matters','Most sales managers wing their Monday meeting. This gives you a <b>structured 30-minute agenda</b> with word-for-word talking points. The teaching topic is pulled from your data, not a textbook. Walk in and run it.');
+  h+=`<div class="r-sec">Monday Morning Meeting Prep</div>`;
+  h+=`<div style="font-size:13px;color:var(--t2);margin-bottom:14px;">30-minute structured agenda. Word-for-word talking points. Walk in and run it.</div>`;
+  h+=`<div class="r-meet">`;
+  h+=`<div class="r-meet-block"><div class="r-meet-time">5 min - Results</div><div class="r-meet-title">Read the Leaderboard + Wins</div><div class="r-meet-say"><b>Say:</b> "Let's look at the numbers. ${d.reps[0].name.split(' ')[0]} led with ${d.reps[0].val}. Nice week."</div></div>`;
+  h+=`<div class="r-meet-block"><div class="r-meet-time">3 min - Shout-Out</div><div class="r-meet-title">${d.reps[0].name}: What's Working</div><div class="r-meet-say"><b>Say:</b> "${d.reps[0].name.split(' ')[0]}, tell the team: what are you doing differently? What's your process?"</div></div>`;
+  h+=`<div class="r-meet-block"><div class="r-meet-time">10 min - Teaching</div><div class="r-meet-title">This Week: ${d.meetTopic}</div><div class="r-meet-desc">${d.meetWhy}</div><div class="r-meet-say"><b>Say:</b> ${d.meetSay}</div></div>`;
+  h+=`<div class="r-meet-block"><div class="r-meet-time">7 min - Targets</div><div class="r-meet-title">This Week's Assignments</div><div class="r-meet-say"><b>Say:</b> "Here are this week's priorities. [Reference the 3 actions from the intelligence report]. Questions? Let's go."</div></div>`;
+  h+=`</div>`;
+  document.getElementById('sl3').innerHTML=h;
+}
+
+// Slide 4: Rep Deep Dive
+function buildSlide4(d){
+  let h=makeGuide('Why this matters','Every rep gets their own prep sheet for your weekly 1-on-1. <b>You never walk into a meeting unprepared again.</b> Their numbers, their pipeline, their specific coaching need, and the exact questions to ask. Tap a name below to see it.');
+  h+=`<div class="r-sec">Rep Deep Dive</div>`;
+  h+=`<div class="rep-tabs" id="repTabs">`;
+  d.reps.forEach((r,i)=>{h+=`<div class="rep-tab ${i===0?'on':''}" onclick="switchRep(${i})">${r.name}</div>`;});
+  h+=`</div><div id="repContent"></div>`;
+  document.getElementById('sl4').innerHTML=h;
+  switchRep(0);
+}
+
+function switchRep(i){
+  const d=D[V],r=d.reps[i];
+  document.querySelectorAll('#repTabs .rep-tab').forEach((t,j)=>{t.classList.toggle('on',j===i);});
+  let h=`<div class="r-rep" style="border-left:3px solid ${r.color};">`;
+  h+=`<div class="r-rep-head"><div class="r-rep-name">${r.name}</div><div class="r-rep-badge" style="background:${r.color}22;color:${r.color};">${r.status}</div></div>`;
+  h+=`<div class="r-rep-stats">`;
+  r.stats.forEach(s=>{h+=`<div class="r-rep-stat"><div class="r-rep-stat-val">${s.v}</div><div class="r-rep-stat-label">${s.l}</div></div>`;});
+  h+=`</div><div class="r-rep-body">`;
+  h+=`<div class="r-rep-section">Coaching Insight</div><div class="r-rep-text">${r.insight}</div>`;
+  h+=`<div class="r-rep-section">Questions for Your 1-on-1</div><div class="r-rep-q">"${r.q1}"<br><br>"${r.q2}"<br><br>"${r.q3}"</div>`;
+  h+=`</div></div>`;
+  document.getElementById('repContent').innerHTML=h;
+}
+
+// Slide 5: Rep Morning Text
+// Slide 5: ROI + CTA
+function buildSlide5(d){
+  const crmList=CRMs.length?CRMs.join(', '):'your CRM';
+  const r=window._roi||{reps:8,vol:20,dealSize:12000,improvable:2,annualGain:288000,roi:32,monthlyRev:240000,improvedRev:264000};
+  let h=`<div class="cta-final">`;
+  h+=`<div class="cta-h">Your ROI at a glance.</div>`;
+  h+=`<div class="cta-sub">Based on your numbers: ${r.reps} reps, ${r.vol} closes/month, ${fmtDeal(r.dealSize)} avg deal.</div>`;
+  // ROI box
+  h+=`<div class="roi-box" style="margin:20px 0;">
+    <div class="roi-label">If we help you close ${r.improvable} more per month</div>
+    <div class="roi-val">+${fmtMoney(r.annualGain)}/yr</div>
+    <div class="roi-sub">in additional revenue from the same pipeline</div>
+    <div style="margin-top:12px;font-size:20px;font-weight:800;color:var(--gold);">${r.roi}x ROI on FlightSuite</div>
+  </div>`;
+  h+=`<div style="font-size:14px;color:var(--t2);line-height:1.8;text-align:left;margin:20px 0;">`;
+  h+=`<div style="font-size:11px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">What you get every Monday</div>`;
+  h+=`<div><span class="cta-check">&#10003;</span> <b>Intelligence Report</b> - 3 actions, CRM links, accountability tracker</div>`;
+  h+=`<div><span class="cta-check">&#10003;</span> <b>Team Leaderboard</b> - shareable, drives competition</div>`;
+  h+=`<div><span class="cta-check">&#10003;</span> <b>Meeting Prep</b> - 30-min agenda with "say this" scripts</div>`;
+  h+=`<div><span class="cta-check">&#10003;</span> <b>Rep 1-on-1 Sheets</b> - per rep pipeline, coaching flags, questions</div>`;
+  h+=`<div><span class="cta-check">&#10003;</span> <b>90-Day ROI Review</b> - before/after proof your numbers improved</div>`;
+  h+=`</div>`;
+  h+=`<div class="cta-price">$750<span style="font-size:16px;color:var(--t2);font-weight:400;">/mo</span></div>`;
+  h+=`<div class="cta-price-sub">Up to 15 reps. We handle ${crmList} integration.</div>`;
+  h+=`<div style="margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;">`;
+  h+=`<div style="font-size:13px;color:var(--t2);line-height:1.6;">`;
+  h+=`<div style="display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);"><span style="font-size:16px;">1</span><div><b style="color:var(--t1);">15-min call.</b> We ask 5 questions. If you can not answer them, you need this.</div></div>`;
+  h+=`<div style="display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);"><span style="font-size:16px;">2</span><div><b style="color:var(--t1);">Give us CRM access.</b> We connect, take a baseline. You do nothing.</div></div>`;
+  h+=`<div style="display:flex;gap:10px;padding:6px 0;"><span style="font-size:16px;">3</span><div><b style="color:var(--t1);">Monday morning, your first report lands.</b> Intelligence + prep + leaderboard.</div></div>`;
+  h+=`</div></div>`;
+  h+=`<div class="cta-guarantee">3-month pilot. If your numbers do not improve by day 90, walk away. No questions.</div>`;
+  h+=`</div>`;
+  document.getElementById('sl5').innerHTML=h;
+}
+
+// Touch swipe support
+let touchStartX=0;
+document.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',e=>{
+  if(!document.getElementById('slides').classList.contains('on'))return;
+  const diff=touchStartX-e.changedTouches[0].clientX;
+  if(Math.abs(diff)>60){
+    if(diff>0&&curSlide<TOTAL_SLIDES)showSlide(curSlide+1);
+    if(diff<0&&curSlide>1)showSlide(curSlide-1);
+  }
+},{passive:true});
+</script>
+</body>
+</html>
