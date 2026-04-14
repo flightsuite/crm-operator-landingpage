@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>SalesComp - Manage Your Sales Team Like a Fantasy Roster</title>
-<meta name="description" content="SalesComp turns your sales team into a fantasy roster. See player cards, skill assessments, head-to-head matchups, and AI-powered coaching playbooks for every 1-on-1.">
-<meta property="og:title" content="SalesComp - Manage Your Sales Team Like a Fantasy Roster">
-<meta property="og:description" content="Player cards. Skill assessments. Head-to-head matchups. AI coaching playbooks. Manage your sales team the way you manage your fantasy roster.">
+<title>SalesComp - Every Rep Hits Quota. Every 1-on-1 Lands.</title>
+<meta name="description" content="See exactly who needs coaching, what to say, and where the revenue is hiding. Your entire team's performance on one screen.">
+<meta property="og:title" content="SalesComp - Every Rep Hits Quota. Every 1-on-1 Lands.">
+<meta property="og:description" content="See exactly who needs coaching, what to say, and where the revenue is hiding. Your entire team's performance on one screen.">
 <meta property="og:image" content="https://flightsuite.ai/salescomp/assets/og-image.png">
 <meta property="og:url" content="https://flightsuite.ai/salescomp/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="SalesComp - Manage Your Sales Team Like a Fantasy Roster">
-<meta name="twitter:description" content="Player cards. Skill assessments. Head-to-head matchups. AI coaching playbooks for every 1-on-1.">
+<meta name="twitter:title" content="SalesComp - Every Rep Hits Quota. Every 1-on-1 Lands.">
+<meta name="twitter:description" content="See exactly who needs coaching, what to say, and where the revenue is hiding. Your entire team's performance on one screen.">
 <meta name="twitter:image" content="https://flightsuite.ai/salescomp/assets/og-image.png">
 <meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -490,15 +490,6 @@ body{
 <div class="app">
 
 <!-- iOS Bar -->
-<div class="ios-bar">
-  <div class="ios-time">9:41</div>
-  <div class="ios-right">
-    <svg width="16" height="12" fill="none" viewBox="0 0 16 12"><rect x="0" y="3" width="3" height="9" rx="1" fill="#fff"/><rect x="4.5" y="1.5" width="3" height="10.5" rx="1" fill="#fff"/><rect x="9" y="0" width="3" height="12" rx="1" fill="#fff"/><rect x="13.5" y="0" width="2.5" height="12" rx=".5" fill="#fff" opacity=".3"/></svg>
-    <svg width="16" height="12" fill="none" viewBox="0 0 16 12"><path d="M8 3C10.2 3 12.2 4 13.5 5.5L8 11.5 2.5 5.5C3.8 4 5.8 3 8 3Z" fill="#fff"/></svg>
-    <svg width="25" height="12" fill="none" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="2" stroke="#fff" stroke-width="1" fill="none"/><rect x="22" y="4" width="2" height="4" rx=".5" fill="#fff" opacity=".4"/><rect x="1.5" y="2.5" width="14" height="7" rx="1" fill="#34D399"/></svg>
-  </div>
-</div>
-
 <!-- Header -->
 <div class="hdr">
   <div class="hdr-brand">
@@ -523,7 +514,7 @@ body{
   <div class="team-card">
     <div class="tc-top">
       <div class="tc-info"><div class="tc-name">Apex Solutions</div><div class="tc-mgr">Managed by Fitz Light</div></div>
-      <div class="tc-score"><div class="tc-score-val">847</div><div class="tc-score-lbl">Week Score</div><div class="tc-trend up">+12% vs last week</div></div>
+      <div class="tc-score"><div class="tc-score-val" style="color:var(--green)">72</div><div class="tc-score-lbl">Team Score</div><div class="tc-trend up">+5 vs last week</div></div>
     </div>
     <div class="tc-stats">
       <div class="tc-stat"><div class="tc-sv">$334K</div><div class="tc-sl">Revenue</div></div>
@@ -661,46 +652,51 @@ body{
 
 <script>
 const D=[
-{id:0,name:'Marcus Thompson',sh:'M. Thompson',f:'Marcus',img:'assets/marcus-thompson.png',role:'Closer',ten:'3yr',co:'Apex Solutions',fpts:214,avg:187,szn:2618,tr:'+18%',td:'up',st:'Hot',sc:'b-hot',dot:'var(--green)',sub:'7 deals this week',
+{id:0,name:'Marcus Thompson',sh:'M. Thompson',f:'Marcus',img:'assets/marcus-thompson.png',role:'Closer',ten:'3yr',co:'Apex Solutions',score:91,avg:84,szn:87,tr:'+8',td:'up',st:'Hot',sc:'b-hot',dot:'var(--green)',sub:'7 deals this week',
+scoreBreakdown:{rev:95,pipe:72,activity:88,efficiency:96},
 stats:{d:7,r:'$142K',p:'$89K',c:'38%'},
 skills:[{l:'Closing',v:92,c:'var(--green)'},{l:'Negotiation',v:88,c:'var(--green)'},{l:'Relationships',v:78,c:'var(--blue)'},{l:'Pipeline Mgmt',v:65,c:'var(--amber)'},{l:'Prospecting',v:48,c:'var(--red)'},{l:'CRM Discipline',v:72,c:'var(--blue)'}],
 take:'Marcus is your <strong>top performer</strong>. Elite close rate and handles pressure situations well. The gap is prospecting volume, 22% below team average. He fills fewer seats at the top of the funnel than anyone but converts at the highest rate. Challenge him to add 5 more outbound touches per week. Model projects +$40-50K incremental revenue this quarter.',
 outlook:'Projecting a career-best quarter. Three deals in final stages ($87K combined). Expressed interest in enterprise accounts and his data supports the move: 38% close rate on deals over $30K vs 28% team average. Meridian silence is the one watch item.',
 fb:{t:'"Feeling really good about Q2. Got 3 deals closing this week. Meridian went dark after the proposal though. Also want to talk about getting more enterprise leads."',time:'Apr 11, 2:14 PM'},
 agenda:[{topic:'1. Open With the Win',d:'Marcus is projecting 3 closes this week ($87K combined). His confidence is high. Start here.',s:'"Walk me through what clicked with Henderson. That was a tough one and you made it look easy."'},{topic:'2. Meridian Silence',d:'Went dark 9 days post-proposal ($45K). Contact opened proposal 3x but hasn\'t responded.',s:'"You mentioned Meridian. I see they\'ve opened your proposal three times. What do you think that tells us?"'},{topic:'3. Enterprise Stretch',d:'He wants bigger deals. Data supports it: 38% close rate on $30K+ vs 28% team avg.',s:'"Your numbers above $30K are stronger than mid-market. Let\'s pick one enterprise account to test."'},{topic:'4. Prospecting Gap',d:'22% below team average on outbound. Layer this in after the wins.',s:'"If we bump your outbound by even 20%, the math says another $40-50K this quarter."'}],
-gl:[{w:'Wk 14',d:7,r:'$142K',p:'$89K',s:214},{w:'Wk 13',d:5,r:'$98K',p:'$112K',s:192},{w:'Wk 12',d:6,r:'$118K',p:'$67K',s:201},{w:'Wk 11',d:4,r:'$76K',p:'$95K',s:168},{w:'Wk 10',d:5,r:'$102K',p:'$78K',s:186}]},
-{id:1,name:'Sarah Chen',sh:'S. Chen',f:'Sarah',img:'assets/sarah-chen.png',role:'Pipeline Builder',ten:'2yr',co:'Apex Solutions',fpts:198,avg:172,szn:2408,tr:'+12%',td:'up',st:'Streak',sc:'b-str',dot:'var(--amber)',sub:'$178K new pipeline',
+gl:[{w:'Wk 14',d:7,r:'$142K',p:'$89K',s:91},{w:'Wk 13',d:5,r:'$98K',p:'$112K',s:86},{w:'Wk 12',d:6,r:'$118K',p:'$67K',s:88},{w:'Wk 11',d:4,r:'$76K',p:'$95K',s:78},{w:'Wk 10',d:5,r:'$102K',p:'$78K',s:84}]},
+{id:1,name:'Sarah Chen',sh:'S. Chen',f:'Sarah',img:'assets/sarah-chen.png',role:'Pipeline Builder',ten:'2yr',co:'Apex Solutions',score:82,avg:74,szn:76,tr:'+6',td:'up',st:'Streak',sc:'b-str',dot:'var(--amber)',sub:'$178K new pipeline',
+scoreBreakdown:{rev:62,pipe:96,activity:92,efficiency:68},
 stats:{d:3,r:'$48K',p:'$178K',c:'24%'},
 skills:[{l:'Closing',v:55,c:'var(--amber)'},{l:'Negotiation',v:62,c:'var(--amber)'},{l:'Relationships',v:74,c:'var(--blue)'},{l:'Pipeline Mgmt',v:94,c:'var(--green)'},{l:'Prospecting',v:91,c:'var(--green)'},{l:'CRM Discipline',v:88,c:'var(--green)'}],
 take:'Sarah is your <strong>pipeline engine</strong>. She creates more opportunities than anyone and her CRM discipline is best-in-class. The development area is closing. She generates but doesn\'t always finish. Consider pairing her with Marcus on a co-sell for exposure. That approach could accelerate her close skills faster than any training program.',
 outlook:'On a 4-week scoring streak. Pipeline creation is 34% above season average. Close rate improving (18% to 24%) but still below 31% team average. The trajectory is right.',
 fb:{t:'"Pipeline is looking strong. I\'m worried about my close rate though. Deals stall when pricing comes up. Can we role play some pricing conversations?"',time:'Apr 11, 3:22 PM'},
 agenda:[{topic:'1. Celebrate the Streak',d:'4-week scoring streak. Pipeline 34% above average.',s:'"$210K in new pipeline this month. That\'s elite. Let\'s talk about how we turn more of that into closed revenue."'},{topic:'2. Pricing Role Play',d:'She flagged pricing as a sticking point. Close rate improving but below team avg.',s:'"Let\'s do a quick role play. I\'ll be the prospect. Hit me with the pricing conversation from the Vertex deal."'},{topic:'3. Co-Sell With Marcus',d:'Pair her with Marcus on a larger deal for closing exposure.',s:'"What if you and Marcus co-sold the Pinnacle account? You build, he closes. You\'d see his process up close."'}],
-gl:[{w:'Wk 14',d:3,r:'$48K',p:'$178K',s:198},{w:'Wk 13',d:2,r:'$31K',p:'$156K',s:182},{w:'Wk 12',d:4,r:'$62K',p:'$142K',s:194},{w:'Wk 11',d:2,r:'$28K',p:'$168K',s:176},{w:'Wk 10',d:3,r:'$44K',p:'$132K',s:170}]},
-{id:2,name:'Jake Rivera',sh:'J. Rivera',f:'Jake',img:'assets/jake-rivera.png',role:'Account Manager',ten:'4yr',co:'Apex Solutions',fpts:176,avg:168,szn:2352,tr:'+5%',td:'up',st:null,sc:null,dot:null,sub:'94% account retention',
+gl:[{w:'Wk 14',d:3,r:'$48K',p:'$178K',s:82},{w:'Wk 13',d:2,r:'$31K',p:'$156K',s:76},{w:'Wk 12',d:4,r:'$62K',p:'$142K',s:80},{w:'Wk 11',d:2,r:'$28K',p:'$168K',s:72},{w:'Wk 10',d:3,r:'$44K',p:'$132K',s:70}]},
+{id:2,name:'Jake Rivera',sh:'J. Rivera',f:'Jake',img:'assets/jake-rivera.png',role:'Account Manager',ten:'4yr',co:'Apex Solutions',score:75,avg:72,szn:73,tr:'+3',td:'up',st:null,sc:null,dot:null,sub:'94% account retention',
+scoreBreakdown:{rev:78,pipe:70,activity:72,efficiency:80},
 stats:{d:4,r:'$82K',p:'$65K',c:'32%'},
 skills:[{l:'Closing',v:72,c:'var(--blue)'},{l:'Negotiation',v:70,c:'var(--blue)'},{l:'Relationships',v:85,c:'var(--green)'},{l:'Pipeline Mgmt',v:75,c:'var(--blue)'},{l:'Prospecting',v:68,c:'var(--blue)'},{l:'CRM Discipline',v:80,c:'var(--green)'}],
 take:'Jake is your <strong>steady contributor</strong>. Consistent 168 avg, never has a terrible week, but rarely breaks out either. His ceiling is higher than his output. He\'s coasting on relationship selling and existing accounts. Challenge him with one net-new enterprise pursuit this quarter.',
 outlook:'12 consecutive weeks above 150. Account retention 94%, highest on team. Expansion revenue strong ($120K this quarter). Growth opportunity is new business.',
 fb:{t:'"Solid week. Got the Apex renewal done. Comfortable with my book but wondering about a path to team lead. Can we talk career growth?"',time:'Apr 11, 4:01 PM'},
 agenda:[{topic:'1. The Apex Renewal',d:'Key account closed. 94% retention is best on team.',s:'"The Apex renewal was huge. Walk me through how you handled the pricing pushback."'},{topic:'2. Career Growth',d:'He asked about team lead path. Tenure + relationship skills. Retention conversation.',s:'"What does team lead look like to you? Let me share what I\'d need to see to advocate for that."'},{topic:'3. Push Past Comfortable',d:'12 straight weeks above 150 but zero breakouts. Coasting.',s:'"Your consistency is rare. But your ceiling is higher. What if we targeted one net-new enterprise account?"'}],
-gl:[{w:'Wk 14',d:4,r:'$82K',p:'$65K',s:176},{w:'Wk 13',d:4,r:'$78K',p:'$58K',s:172},{w:'Wk 12',d:3,r:'$71K',p:'$72K',s:168},{w:'Wk 11',d:4,r:'$80K',p:'$54K',s:170},{w:'Wk 10',d:3,r:'$68K',p:'$62K',s:164}]},
-{id:3,name:'DeAndra Williams',sh:'D. Williams',f:'DeAndra',img:'assets/deandra-williams.png',role:'SDR',ten:'6mo',co:'Apex Solutions',fpts:148,avg:118,szn:1652,tr:'+24%',td:'up',st:'Questionable',sc:'b-q',dot:'var(--amber)',sub:'3 deals in late stage',
+gl:[{w:'Wk 14',d:4,r:'$82K',p:'$65K',s:75},{w:'Wk 13',d:4,r:'$78K',p:'$58K',s:73},{w:'Wk 12',d:3,r:'$71K',p:'$72K',s:72},{w:'Wk 11',d:4,r:'$80K',p:'$54K',s:74},{w:'Wk 10',d:3,r:'$68K',p:'$62K',s:70}]},
+{id:3,name:'DeAndra Williams',sh:'D. Williams',f:'DeAndra',img:'assets/deandra-williams.png',role:'SDR',ten:'6mo',co:'Apex Solutions',score:64,avg:52,szn:55,tr:'+12',td:'up',st:'Questionable',sc:'b-q',dot:'var(--amber)',sub:'3 deals in late stage',
+scoreBreakdown:{rev:42,pipe:78,activity:88,efficiency:38},
 stats:{d:2,r:'$24K',p:'$134K',c:'18%'},
 skills:[{l:'Closing',v:42,c:'var(--red)'},{l:'Negotiation',v:38,c:'var(--red)'},{l:'Relationships',v:58,c:'var(--amber)'},{l:'Pipeline Mgmt',v:55,c:'var(--amber)'},{l:'Prospecting',v:85,c:'var(--green)'},{l:'CRM Discipline',v:70,c:'var(--blue)'}],
 take:'DeAndra is your <strong>breakout candidate</strong>. Six months in and trending up 24% week-over-week. Activity volume is elite (85th percentile in prospecting), but she books meetings and struggles past discovery. She needs a framework for the second meeting. Pair her with Marcus for a shadow session. High upside play.',
 outlook:'Most exciting trajectory on the roster. Went from 92 in Week 8 to 148 this week. 3 deals in late stage could go either way. If they close, she\'s looking at 200+. If they stall, she needs closing support.',
 fb:{t:'"The closing part is still intimidating. I book tons of meetings but freeze up when it\'s time to ask. Is there a way to shadow Marcus on a close?"',time:'Apr 11, 5:45 PM'},
 agenda:[{topic:'1. Name the Growth',d:'92 to 148 in 6 weeks. That trajectory deserves recognition.',s:'"You\'ve nearly doubled your score in 6 weeks. That\'s not luck. That\'s work. I see it."'},{topic:'2. Close Confidence',d:'She flagged being intimidated. Activity is elite but needs a closing framework.',s:'"Closing isn\'t about being pushy. It\'s about earning the right to ask. Let\'s practice together."'},{topic:'3. Shadow Marcus',d:'She asked for it. High-leverage development play.',s:'"I\'m pairing you with Marcus on his next close. Observe. Then we debrief."'},{topic:'4. The 3 Late-Stage Deals',d:'3 deals that could go either way. Maximum coaching leverage.',s:'"Walk me through each one. What\'s the single thing between each deal and a close?"'}],
-gl:[{w:'Wk 14',d:2,r:'$24K',p:'$134K',s:148},{w:'Wk 13',d:1,r:'$12K',p:'$118K',s:128},{w:'Wk 12',d:2,r:'$28K',p:'$98K',s:136},{w:'Wk 11',d:1,r:'$15K',p:'$142K',s:122},{w:'Wk 10',d:1,r:'$10K',p:'$108K',s:104}]},
-{id:4,name:'Tyler Brooks',sh:'T. Brooks',f:'Tyler',img:'assets/tyler-brooks.png',role:'Veteran',ten:'7yr',co:'Apex Solutions',fpts:111,avg:142,szn:1988,tr:'-14%',td:'down',st:'Cold',sc:'b-cold',dot:'var(--red)',sub:'CRM 3 weeks behind',
+gl:[{w:'Wk 14',d:2,r:'$24K',p:'$134K',s:64},{w:'Wk 13',d:1,r:'$12K',p:'$118K',s:56},{w:'Wk 12',d:2,r:'$28K',p:'$98K',s:58},{w:'Wk 11',d:1,r:'$15K',p:'$142K',s:50},{w:'Wk 10',d:1,r:'$10K',p:'$108K',s:44}]},
+{id:4,name:'Tyler Brooks',sh:'T. Brooks',f:'Tyler',img:'assets/tyler-brooks.png',role:'Veteran',ten:'7yr',co:'Apex Solutions',score:48,avg:62,szn:58,tr:'-14',td:'down',st:'Cold',sc:'b-cold',dot:'var(--red)',sub:'CRM 3 weeks behind',
+scoreBreakdown:{rev:55,pipe:32,activity:28,efficiency:72},
 stats:{d:2,r:'$38K',p:'$12K',c:'25%'},
 skills:[{l:'Closing',v:68,c:'var(--blue)'},{l:'Negotiation',v:82,c:'var(--green)'},{l:'Relationships',v:90,c:'var(--green)'},{l:'Pipeline Mgmt',v:45,c:'var(--red)'},{l:'Prospecting',v:32,c:'var(--red)'},{l:'CRM Discipline',v:28,c:'var(--red)'}],
 take:'Tyler is on a <strong>3-week decline</strong>. Most tenured rep but numbers are sliding. Relationship and negotiation skills are elite (top 10%), but prospecting, pipeline management, and CRM discipline are in the red. He\'s running on fumes from old relationships. Frame it as "the game has changed" not "you\'re failing."',
 outlook:'At a crossroads. Existing accounts love him (NPS 92) but new business is nearly zero. CRM 3 weeks behind. He offered to mentor DeAndra, keeps him engaged and gives the team value beyond his numbers.',
 fb:{t:'"I know my numbers aren\'t where they should be. The CRM stuff is busy work. My clients trust me. But I\'m open to hearing what the data says. Happy to mentor the new rep if useful."',time:'Apr 12, 9:15 AM'},
 agenda:[{topic:'1. Acknowledge It Directly',d:'Tyler knows. He said so. Don\'t dance around it. He respects directness.',s:'"You said your numbers aren\'t where they should be. I agree. Let\'s look at why together."'},{topic:'2. CRM Reality',d:'3 weeks behind. Frame as visibility, not compliance.',s:'"When I can\'t see your pipeline, I can\'t go to bat for you on resource decisions. Let\'s get current this week."'},{topic:'3. Mentorship Play',d:'He offered to mentor DeAndra. Take him up on it.',s:'"DeAndra asked to learn from you. Your relationship skills are the best on the team. Would you take her under your wing?"'},{topic:'4. The Standard',d:'3 more weeks of decline means a roster conversation. Be honest.',s:'"I believe in you. But numbers don\'t grade on tenure. I need an uptick in 3 weeks. What do you need from me?"'}],
-gl:[{w:'Wk 14',d:2,r:'$38K',p:'$12K',s:111},{w:'Wk 13',d:2,r:'$42K',p:'$18K',s:118},{w:'Wk 12',d:3,r:'$56K',p:'$22K',s:138},{w:'Wk 11',d:3,r:'$48K',p:'$28K',s:132},{w:'Wk 10',d:3,r:'$52K',p:'$30K',s:140}]}
+gl:[{w:'Wk 14',d:2,r:'$38K',p:'$12K',s:48},{w:'Wk 13',d:2,r:'$42K',p:'$18K',s:54},{w:'Wk 12',d:3,r:'$56K',p:'$22K',s:62},{w:'Wk 11',d:3,r:'$48K',p:'$28K',s:60},{w:'Wk 10',d:3,r:'$52K',p:'$30K',s:64}]}
 ];
 
 // V3: Quota & projection data
@@ -710,7 +706,7 @@ D.forEach(p=>{
   p.quota=q.quota; p.qActual=q.actual; p.qProj=q.proj;
   p.qPct=Math.round(q.actual/q.quota*100);
   p.qProjPct=Math.round(q.proj/q.quota*100);
-  // Sparkline data (last 5 weeks FPTS)
+  // Sparkline data (last 5 weeks Score)
   p.spark=p.gl.map(g=>g.s).reverse();
   // Meeting times
   const times=['9:00 AM','9:45 AM','10:30 AM','11:15 AM','2:00 PM'];
@@ -756,9 +752,9 @@ function renderRoster(){
       <div class="p-nums" style="display:flex;align-items:center;gap:8px;">
         ${sparkSVG(p.spark)}
         <div>
-          <div class="p-pts">${p.fpts}</div>
-          <div class="p-pts-l">FPTS</div>
-          <div class="p-trend ${p.td}">${p.tr}</div>
+          <div class="p-pts" style="color:${p.score>=80?'var(--green)':p.score>=60?'var(--amber)':'var(--red)'}">${p.score}</div>
+          <div class="p-pts-l">Score</div>
+          <div class="p-trend ${p.td}">${p.tr} pts</div>
         </div>
       </div>
     </div>`;
@@ -818,8 +814,8 @@ function openCard(i){
   const qColor=p.qPct>=90?'var(--green)':p.qPct>=70?'var(--amber)':'var(--red)';
   document.getElementById('cmQRow').innerHTML=`
     <div class="cm-qrow">
-      <div class="cm-qs"><div class="cm-qs-v">${p.fpts}</div><div class="cm-qs-l">This Week</div><div class="cm-qs-d ${p.td}">${p.tr}</div></div>
-      <div class="cm-qs"><div class="cm-qs-v">${p.avg}</div><div class="cm-qs-l">Avg FPTS</div></div>
+      <div class="cm-qs"><div class="cm-qs-v" style="color:${p.score>=80?'var(--green)':p.score>=60?'var(--amber)':'var(--red)'}">${p.score}</div><div class="cm-qs-l">This Week</div><div class="cm-qs-d ${p.td}">${p.tr} pts</div></div>
+      <div class="cm-qs"><div class="cm-qs-v">${p.avg}</div><div class="cm-qs-l">Avg Score</div><div class="cm-qs-d" style="color:var(--t3)">Team: 68</div></div>
       <div class="cm-qs"><div class="cm-qs-v">${p.qPct}%</div><div class="cm-qs-l">To Quota</div><div class="cm-qs-d" style="color:${qColor}">${p.qPct>=100?'On target':'$'+(Math.round((p.quota-p.qActual)/1000))+'K remaining'}</div></div>
       <div class="cm-qs"><div class="cm-qs-v">${p.stats.c}</div><div class="cm-qs-l">Close Rate</div></div>
     </div>
@@ -840,8 +836,23 @@ function openCard(i){
     </div>
   `;
 
-  // Overview: Radar + Take + CTA
+  // Overview: Score Breakdown + Radar + Take + CTA
+  const sb=p.scoreBreakdown;
+  const sColor=v=>v>=80?'var(--green)':v>=60?'var(--amber)':'var(--red)';
   document.getElementById('cpRadar').innerHTML=`
+    <div class="sh"><div class="sh-t">Performance Score Breakdown</div><div class="sh-a">Team avg: 68</div></div>
+    <div style="margin:0 16px 16px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;">
+      <div style="text-align:center;margin-bottom:14px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:900;color:${sColor(p.score)};line-height:1;">${p.score}</div>
+        <div style="font-size:11px;color:var(--t3);margin-top:4px;text-transform:uppercase;letter-spacing:1px;">Overall Score</div>
+      </div>
+      <div class="sk-list" style="padding:0;">
+        <div class="sk-row"><div class="sk-lbl">Revenue (30%)</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.rev}%;background:${sColor(sb.rev)}"></div></div><div class="sk-val" style="color:${sColor(sb.rev)}">${sb.rev}</div></div>
+        <div class="sk-row"><div class="sk-lbl">Pipeline (25%)</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.pipe}%;background:${sColor(sb.pipe)}"></div></div><div class="sk-val" style="color:${sColor(sb.pipe)}">${sb.pipe}</div></div>
+        <div class="sk-row"><div class="sk-lbl">Activity (25%)</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.activity}%;background:${sColor(sb.activity)}"></div></div><div class="sk-val" style="color:${sColor(sb.activity)}">${sb.activity}</div></div>
+        <div class="sk-row"><div class="sk-lbl">Efficiency (20%)</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.efficiency}%;background:${sColor(sb.efficiency)}"></div></div><div class="sk-val" style="color:${sColor(sb.efficiency)}">${sb.efficiency}</div></div>
+      </div>
+    </div>
     <div class="radar-wrap">
       <div class="radar-title">Skills Assessment</div>
       ${radarSVG(p.skills)}
@@ -901,7 +912,7 @@ function openCard(i){
   document.getElementById('cpGamelog').innerHTML=`
     <div class="sh"><div class="sh-t">Game Log</div></div>
     <div class="gl-table">
-      <div class="gl-h"><span>Week</span><span>Deals</span><span>Rev</span><span>Pipe</span><span>FPTS</span></div>
+      <div class="gl-h"><span>Week</span><span>Deals</span><span>Rev</span><span>Pipe</span><span>Score</span></div>
       ${p.gl.map(g=>`<div class="gl-r"><span>${g.w}</span><span>${g.d}</span><span>${g.r}</span><span>${g.p}</span><span>${g.s}</span></div>`).join('')}
     </div>
   `;
@@ -957,10 +968,10 @@ function setMU(a,b,el){
     {l:'Revenue',vA:pA.stats.r,vB:pB.stats.r},
     {l:'Pipeline Created',vA:pA.stats.p,vB:pB.stats.p},
     {l:'Close Rate',vA:pA.stats.c,vB:pB.stats.c},
-    {l:'Weekly Score',vA:pA.fpts,vB:pB.fpts}
+    {l:'Overall Score',vA:pA.score,vB:pB.score}
   ];
   const pv=v=>typeof v==='string'?parseFloat(v.replace(/[$K%,]/g,'')):v;
-  const aW=pA.fpts>pB.fpts;
+  const aW=pA.score>pB.score;
 
   document.getElementById('muContent').innerHTML=`
     <div class="mu-vs">
@@ -971,9 +982,9 @@ function setMU(a,b,el){
       </div>
       <div class="mu-center">
         <div class="mu-sc-row">
-          <div class="mu-sc ${aW?'win':'lose'}">${pA.fpts}</div>
+          <div class="mu-sc ${aW?'win':'lose'}">${pA.score}</div>
           <div class="mu-vs-txt">VS</div>
-          <div class="mu-sc ${!aW?'win':'lose'}">${pB.fpts}</div>
+          <div class="mu-sc ${!aW?'win':'lose'}">${pB.score}</div>
         </div>
         <div class="mu-winner-bar" style="background:${aW?'var(--green)':'var(--red)'};"></div>
       </div>
