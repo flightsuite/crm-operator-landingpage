@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>SalesComp - Manage Your Sales Team Like a Fantasy Roster</title>
+<meta name="description" content="SalesComp turns your sales team into a fantasy roster. See player cards, skill assessments, head-to-head matchups, and AI-powered coaching playbooks for every 1-on-1.">
+<meta property="og:title" content="SalesComp - Manage Your Sales Team Like a Fantasy Roster">
+<meta property="og:description" content="Player cards. Skill assessments. Head-to-head matchups. AI coaching playbooks. Manage your sales team the way you manage your fantasy roster.">
+<meta property="og:image" content="https://flightsuite.ai/salescomp/assets/og-image.png">
+<meta property="og:url" content="https://flightsuite.ai/salescomp/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SalesComp - Manage Your Sales Team Like a Fantasy Roster">
+<meta name="twitter:description" content="Player cards. Skill assessments. Head-to-head matchups. AI coaching playbooks for every 1-on-1.">
+<meta name="twitter:image" content="https://flightsuite.ai/salescomp/assets/og-image.png">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #000000;
+  --card: #111111;
+  --surface: #080808;
+  --elevated: #1a1a1a;
+  --hover: #222222;
+  --border: #222222;
+  --border-l: #333333;
+
+  --white: #FFFFFF;
+  --t1: #F0F0F0;
+  --t2: #999999;
+  --t3: #666666;
+  --t4: #444444;
+
+  --green: #00C853;
+  --green-bg: rgba(0,200,83,0.10);
+  --red: #FF3B30;
+  --red-bg: rgba(255,59,48,0.10);
+  --amber: #FF9500;
+  --amber-bg: rgba(255,149,0,0.10);
+  --blue: #007AFF;
+  --blue-bg: rgba(0,122,255,0.10);
+}
+
+/* ===== V3 ADDITIONS ===== */
+
+/* Focus Cards */
+.focus-cards{display:flex;gap:8px;padding:0 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:12px;}
+.focus-card{flex-shrink:0;width:280px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;display:flex;gap:12px;align-items:center;cursor:pointer;}
+.focus-card:active{opacity:.7;}
+.focus-card.alert{border-color:rgba(255,59,48,0.3);}
+.focus-card.opp{border-color:rgba(0,200,83,0.3);}
+.fc-photo{width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--elevated);}
+.fc-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.fc-info{flex:1;min-width:0;}
+.fc-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;}
+.fc-reason{font-size:12px;color:var(--t2);margin-top:2px;line-height:1.4;}
+.fc-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.fc-icon svg{width:14px;height:14px;}
+
+/* Quota Ring */
+.quota-ring{width:44px;height:44px;flex-shrink:0;position:relative;}
+.quota-ring svg{width:100%;height:100%;transform:rotate(-90deg);}
+.quota-ring-val{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:800;line-height:1;}
+.quota-ring-sm{width:36px;height:36px;}
+.quota-ring-sm .quota-ring-val{font-size:10px;}
+
+/* Sparkline */
+.sparkline{display:flex;align-items:flex-end;gap:2px;height:20px;}
+.spark-bar{width:4px;border-radius:1px;background:var(--t4);transition:height .3s;}
+
+/* Projection on card */
+.proj-box{margin:0 16px 12px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;}
+.proj-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.proj-row:last-child{margin-bottom:0;}
+.proj-label{font-size:12px;color:var(--t3);}
+.proj-val{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;}
+.proj-bar-bg{width:100%;height:8px;background:var(--elevated);border-radius:4px;overflow:hidden;margin-top:8px;}
+.proj-bar-fill{height:100%;border-radius:4px;transition:width .5s ease;}
+
+/* Monday Morning Brief */
+.brief-card{margin:0 16px 10px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;}
+.brief-card:active{opacity:.7;}
+.brief-top{padding:14px 16px;display:flex;align-items:center;gap:12px;}
+.brief-photo{width:40px;height:40px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--elevated);}
+.brief-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.brief-info{flex:1;min-width:0;}
+.brief-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;}
+.brief-time{font-size:11px;color:var(--t3);}
+.brief-quota{flex-shrink:0;}
+.brief-bottom{padding:10px 16px;border-top:1px solid var(--border);background:var(--surface);}
+.brief-point{font-size:12px;color:var(--t2);line-height:1.4;display:flex;align-items:flex-start;gap:6px;}
+.brief-point svg{width:14px;height:14px;flex-shrink:0;margin-top:1px;color:var(--t3);}
+
+/* ===== V4: POLISH & ANIMATIONS ===== */
+.scr{animation:fadeIn .2s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.card-modal.on{animation:slideIn .3s cubic-bezier(.22,1,.36,1);}
+@keyframes slideIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* Player card hero gradient bg */
+.cm-hero-bg{background:linear-gradient(180deg,#1a1a2e 0%,#000 100%);padding:20px 20px 24px;border-radius:0 0 20px 20px;position:relative;overflow:hidden;}
+.cm-hero-bg::before{content:'';position:absolute;top:-20px;right:-20px;width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,0.04) 0%,transparent 70%);pointer-events:none;}
+
+/* Matchup winner banner */
+.mu-winner{margin:0 16px 12px;padding:16px;background:linear-gradient(135deg,#0a1a0a,#111);border:1px solid rgba(0,200,83,0.2);border-radius:14px;display:flex;align-items:center;gap:12px;}
+.mu-winner-icon{width:40px;height:40px;border-radius:50%;background:var(--green-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.mu-winner-icon svg{width:20px;height:20px;color:var(--green);}
+.mu-winner-info{}
+.mu-winner-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;color:var(--green);}
+.mu-winner-sub{font-size:12px;color:var(--t3);margin-top:1px;}
+
+/* Smooth animations */
+.sk-fill{transition:width .8s cubic-bezier(.22,1,.36,1) !important;}
+.proj-bar-fill{transition:width .8s cubic-bezier(.22,1,.36,1) !important;}
+.mu-cat-bar{transition:width .6s cubic-bezier(.22,1,.36,1) !important;}
+.sms-bubble{animation:bubbleIn .3s ease both;}
+.sms-bubble:nth-child(2){animation-delay:.1s;}
+.sms-bubble:nth-child(3){animation-delay:.2s;}
+.sms-bubble:nth-child(4){animation-delay:.3s;}
+@keyframes bubbleIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* Tap effects */
+.p-row{transition:background .15s;}
+.focus-card{transition:transform .15s;}
+.focus-card:active{transform:scale(.98);}
+
+/* Notif pulse */
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.3);}}
+.hdr-dot{animation:pulse 2s infinite;}
+
+/* Focus card glow */
+.focus-card.alert{box-shadow:0 0 20px rgba(255,59,48,0.05);}
+.focus-card.opp{box-shadow:0 0 20px rgba(0,200,83,0.05);}
+
+/* Quota ring transition */
+.quota-ring svg circle:last-child{transition:stroke-dasharray .8s cubic-bezier(.22,1,.36,1);}
+
+/* ===== V5: FINAL DENSITY & MATCHUP DRAMA ===== */
+
+/* Tighter padding globally */
+.sh{padding:14px 16px 6px;}
+.feed-item{padding:10px 0;}
+.p-row{padding:12px 0;}
+
+/* Larger matchup photos */
+.mu-side-photo{width:80px;height:80px;border-width:3px;}
+.mu-sc{font-size:44px;}
+.mu-vs{padding:28px 16px 20px;}
+
+/* Week selector */
+.mu-weeks{display:flex;gap:4px;padding:0 16px 10px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.mu-week{padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--t3);cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s;}
+.mu-week.on{background:var(--white);border-color:var(--white);color:var(--bg);}
+.mu-week:active{opacity:.7;}
+
+/* Matchup stat highlights */
+.mu-cat-highlight{position:relative;}
+.mu-cat-v{font-size:17px;}
+.mu-cat-label{font-size:10px;letter-spacing:.8px;}
+.mu-cat{padding:14px 0;}
+
+/* Score emphasis on roster */
+.p-pts{font-size:26px;}
+
+/* Tighter brief cards */
+.brief-card{margin:0 16px 8px;}
+.brief-top{padding:12px 14px;}
+.brief-bottom{padding:8px 14px;}
+
+/* Better focus card layout */
+.focus-card{width:270px;padding:12px;}
+.fc-reason{font-size:11px;line-height:1.35;}
+
+/* Final polish on player card */
+.cm-hero-bg{padding:16px 20px 20px;}
+.cm-hero-name{font-size:28px;}
+.cm-qrow{margin:0 16px;}
+.cm-qs{padding:12px 6px;}
+.cm-qs-v{font-size:19px;}
+
+/* Agenda item tighter */
+.ag-item{padding:14px;}
+.ag-topic{font-size:14px;}
+.ag-detail{font-size:12px;margin-bottom:8px;}
+.ag-say{padding:10px 12px;font-size:12px;}
+
+/* Bottom tab bar height adjustment */
+.tbar{padding:6px 0 8px;}
+.tbar{padding-bottom:max(8px,env(safe-area-inset-bottom));}
+
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  font-family:'Barlow',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);color:var(--t1);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.app{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;}
+
+/* ===== iOS STATUS BAR ===== */
+.ios-bar{display:flex;justify-content:space-between;align-items:center;padding:8px 24px 4px;font-size:14px;font-weight:600;}
+.ios-time{font-variant-numeric:tabular-nums;}
+.ios-right{display:flex;gap:5px;align-items:center;}
+
+/* ===== HEADER ===== */
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:6px 16px 10px;}
+.hdr-brand{display:flex;align-items:center;gap:8px;}
+.hdr-mark{width:30px;height:30px;background:var(--white);border-radius:7px;display:flex;align-items:center;justify-content:center;}
+.hdr-mark svg{width:18px;height:18px;}
+.hdr-name{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;}
+.hdr-actions{display:flex;gap:6px;}
+.hdr-btn{width:34px;height:34px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;}
+.hdr-btn svg{width:17px;height:17px;color:var(--t2);}
+.hdr-btn:active{background:var(--hover);}
+.hdr-dot{position:absolute;top:-1px;right:-1px;width:9px;height:9px;background:var(--red);border-radius:50%;border:2px solid var(--bg);}
+
+/* ===== TOP NAV ===== */
+.tnav{display:flex;border-bottom:1px solid var(--border);padding:0 16px;}
+.tnav-i{padding:11px 16px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--t4);cursor:pointer;border-bottom:2px solid transparent;transition:color .15s;}
+.tnav-i.on{color:var(--white);border-bottom-color:var(--white);}
+.tnav-i:active{color:var(--t2);}
+
+/* ===== SCREENS ===== */
+.scr{display:none;padding-bottom:76px;}
+.scr.on{display:block;}
+
+/* ===== SECTION ===== */
+.sh{display:flex;align-items:center;justify-content:space-between;padding:18px 16px 8px;}
+.sh-t{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3);}
+.sh-a{font-size:12px;font-weight:600;color:var(--t4);cursor:pointer;}
+
+/* ===== ROSTER ===== */
+
+/* Team Summary */
+.team-card{margin:14px 16px 0;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.tc-top{padding:18px 18px 14px;display:flex;align-items:center;justify-content:space-between;}
+.tc-info{}
+.tc-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;}
+.tc-mgr{font-size:12px;color:var(--t3);margin-top:2px;}
+.tc-score{text-align:right;}
+.tc-score-val{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;line-height:1;}
+.tc-score-lbl{font-size:10px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;}
+.tc-trend{font-size:11px;font-weight:600;margin-top:2px;}
+.tc-stats{display:flex;border-top:1px solid var(--border);}
+.tc-stat{flex:1;padding:12px 8px;text-align:center;border-right:1px solid var(--border);}
+.tc-stat:last-child{border-right:none;}
+.tc-sv{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;}
+.tc-sl{font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+
+/* Activity Feed */
+.feed{padding:0 16px;}
+.feed-item{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.feed-item:last-child{border-bottom:none;}
+.feed-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.feed-text{font-size:13px;color:var(--t2);line-height:1.5;flex:1;}
+.feed-text strong{color:var(--t1);font-weight:600;}
+.feed-time{font-size:10px;color:var(--t4);flex-shrink:0;margin-top:2px;}
+
+/* Player Row */
+.p-list{padding:0 16px;}
+.p-row{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+.p-row:last-child{border-bottom:none;}
+.p-row:active{opacity:.7;}
+.p-photo{width:50px;height:50px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--elevated);border:2px solid var(--border-l);}
+.p-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.p-meta{flex:1;min-width:0;}
+.p-name-row{display:flex;align-items:center;gap:6px;}
+.p-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;text-transform:uppercase;}
+.p-badge{display:inline-flex;padding:2px 7px;border-radius:3px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;}
+.b-hot{background:var(--green-bg);color:var(--green);}
+.b-cold{background:var(--red-bg);color:var(--red);}
+.b-str{background:var(--amber-bg);color:var(--amber);}
+.b-q{background:var(--amber-bg);color:var(--amber);}
+.p-sub{font-size:12px;color:var(--t3);margin-top:1px;}
+.p-nums{text-align:right;flex-shrink:0;}
+.p-pts{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;line-height:1;}
+.p-pts-l{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.3px;}
+.p-trend{font-size:11px;font-weight:600;margin-top:1px;}
+.up{color:var(--green);}.down{color:var(--red);}
+
+/* ===== PLAYER CARD (ESPN STYLE) ===== */
+.card-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:var(--bg);z-index:200;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.card-modal.on{display:block;}
+.card-modal .app-inner{max-width:430px;margin:0 auto;padding-bottom:40px;}
+
+/* Card top bar */
+.cm-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;position:sticky;top:0;z-index:10;background:var(--bg);}
+.cm-back{display:flex;align-items:center;gap:4px;font-size:14px;font-weight:500;color:var(--t2);cursor:pointer;}
+.cm-back svg{width:20px;height:20px;}
+.cm-back:active{opacity:.6;}
+.cm-close{width:30px;height:30px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.cm-close svg{width:16px;height:16px;color:var(--t2);}
+
+/* ESPN-style card hero: name left, photo right */
+.cm-hero{padding:0 20px 20px;display:flex;justify-content:space-between;align-items:flex-start;}
+.cm-hero-info{flex:1;padding-top:4px;padding-right:12px;}
+.cm-hero-name{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:900;text-transform:uppercase;line-height:1.05;letter-spacing:.5px;}
+.cm-hero-role{font-size:13px;color:var(--t3);margin-top:6px;}
+.cm-hero-role span{color:var(--t2);}
+.cm-hero-company{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 12px;background:var(--elevated);border:1px solid var(--border);border-radius:6px;font-size:11px;font-weight:600;color:var(--t2);}
+.cm-hero-badges{display:flex;gap:6px;margin-top:10px;align-items:center;}
+.cm-status-badge{padding:4px 10px;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+
+.cm-hero-photo{width:100px;height:100px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--elevated);border:3px solid var(--border-l);position:relative;}
+.cm-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+
+/* Quick stat row */
+.cm-qrow{display:flex;margin:0 16px 0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.cm-qs{flex:1;padding:14px 6px;text-align:center;border-right:1px solid var(--border);}
+.cm-qs:last-child{border-right:none;}
+.cm-qs-v{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;line-height:1;}
+.cm-qs-l{font-size:9px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:.3px;margin-top:4px;}
+.cm-qs-d{font-size:10px;font-weight:600;margin-top:2px;}
+
+/* Status bar */
+.cm-status-bar{margin:12px 16px;padding:10px 14px;border-radius:8px;display:flex;align-items:center;justify-content:space-between;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+
+/* Card sub-nav */
+.cm-nav{display:flex;margin:16px 16px 0;border-bottom:1px solid var(--border);}
+.cm-nav-i{padding:10px 0;margin-right:20px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--t4);cursor:pointer;border-bottom:2px solid transparent;}
+.cm-nav-i.on{color:var(--white);border-bottom-color:var(--white);}
+
+.cm-panel{display:none;}
+.cm-panel.on{display:block;}
+
+/* Radar Chart */
+.radar-wrap{margin:16px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 16px;}
+.radar-title{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--t3);text-align:center;margin-bottom:16px;}
+.radar-svg{display:block;margin:0 auto;max-width:260px;width:100%;}
+.radar-legend{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;margin-top:16px;}
+.radar-leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t2);}
+.radar-leg-dot{width:8px;height:8px;border-radius:50%;}
+
+/* Skill bars */
+.sk-list{padding:0 16px 16px;}
+.sk-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.sk-lbl{font-size:12px;font-weight:500;color:var(--t2);width:95px;flex-shrink:0;}
+.sk-trk{flex:1;height:5px;background:var(--elevated);border-radius:3px;overflow:hidden;}
+.sk-fill{height:100%;border-radius:3px;transition:width .6s cubic-bezier(.22,1,.36,1);}
+.sk-val{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;width:28px;text-align:right;flex-shrink:0;}
+
+/* Take card on player profile */
+.take-box{margin:0 16px 12px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.take-box-hdr{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.take-box-icon{width:26px;height:26px;background:var(--white);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.take-box-icon svg{width:14px;height:14px;}
+.take-box-lbl{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;}
+.take-box-body{padding:16px;}
+.take-box-txt{font-size:14px;color:var(--t2);line-height:1.65;}
+.take-box-txt strong{color:var(--t1);font-weight:600;}
+
+/* CTA Button */
+.cta-btn{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 16px;padding:14px;background:var(--white);border-radius:12px;color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;cursor:pointer;border:none;width:calc(100% - 32px);}
+.cta-btn:active{transform:scale(.98);opacity:.9;}
+.cta-btn svg{width:18px;height:18px;}
+
+/* Gamelog */
+.gl-table{margin:0 16px 16px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.gl-h{display:flex;padding:10px 14px;border-bottom:1px solid var(--border);background:var(--surface);}
+.gl-h span{font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.5px;text-align:center;flex:1;}
+.gl-h span:first-child{text-align:left;}
+.gl-r{display:flex;padding:12px 14px;border-bottom:1px solid var(--border);align-items:center;}
+.gl-r:last-child{border-bottom:none;}
+.gl-r span{flex:1;font-size:13px;text-align:center;color:var(--t2);}
+.gl-r span:first-child{text-align:left;color:var(--t3);font-size:12px;}
+.gl-r span:last-child{font-weight:700;color:var(--t1);}
+
+/* Outlook */
+.outlook{margin:0 16px 12px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;}
+.outlook-t{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--t3);margin-bottom:8px;}
+.outlook-txt{font-size:14px;color:var(--t2);line-height:1.65;}
+
+/* Agenda */
+.ag-card{margin:0 16px 16px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.ag-hdr{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.ag-hdr svg{width:16px;height:16px;color:var(--t2);}
+.ag-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;}
+.ag-item{padding:16px;border-bottom:1px solid var(--border);}
+.ag-item:last-child{border-bottom:none;}
+.ag-topic{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px;text-transform:uppercase;}
+.ag-detail{font-size:13px;color:var(--t2);line-height:1.55;margin-bottom:10px;}
+.ag-say{padding:12px 14px;background:var(--surface);border-left:3px solid var(--t4);border-radius:0 8px 8px 0;font-size:13px;color:var(--t1);line-height:1.55;font-style:italic;}
+
+/* ===== MATCHUP SCREEN ===== */
+.mu-banner{padding:24px 16px 16px;text-align:center;border-bottom:1px solid var(--border);}
+.mu-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--t4);}
+.mu-title{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;text-transform:uppercase;margin-top:4px;}
+.mu-period{font-size:12px;color:var(--t3);margin-top:4px;}
+
+.mu-pills{display:flex;gap:6px;padding:14px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.mu-pill{display:flex;align-items:center;gap:6px;padding:6px 12px 6px 6px;border-radius:24px;border:1px solid var(--border);background:var(--card);cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s;}
+.mu-pill.on{background:var(--white);border-color:var(--white);}
+.mu-pill.on .mu-pill-n{color:var(--bg);}
+.mu-pill-img{width:24px;height:24px;border-radius:50%;overflow:hidden;background:var(--elevated);}
+.mu-pill-img img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.mu-pill-n{font-size:12px;font-weight:600;color:var(--t2);}
+
+/* VS Header */
+.mu-vs{display:flex;align-items:center;padding:20px 16px;gap:8px;}
+.mu-side{flex:1;text-align:center;}
+.mu-side-photo{width:72px;height:72px;border-radius:50%;overflow:hidden;margin:0 auto 8px;border:3px solid var(--border-l);background:var(--elevated);}
+.mu-side-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.mu-side-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;text-transform:uppercase;}
+.mu-side-role{font-size:11px;color:var(--t3);}
+.mu-center{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;min-width:90px;}
+.mu-sc{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:900;line-height:1;}
+.mu-sc.win{color:var(--white);}
+.mu-sc.lose{color:var(--t4);}
+.mu-sc-row{display:flex;align-items:center;gap:6px;}
+.mu-vs-txt{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:1px;}
+.mu-winner-bar{height:3px;width:60px;border-radius:2px;margin-top:4px;}
+
+/* Category rows */
+.mu-cats{padding:0 16px;}
+.mu-cat{display:flex;align-items:center;padding:16px 0;border-bottom:1px solid var(--border);}
+.mu-cat:last-child{border-bottom:none;}
+.mu-cat-v{width:55px;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;text-align:center;}
+.mu-cat-v.w{color:var(--green);}
+.mu-cat-mid{flex:1;text-align:center;}
+.mu-cat-label{font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.mu-cat-bars{display:flex;gap:4px;height:6px;border-radius:3px;overflow:hidden;}
+.mu-cat-bar{height:100%;border-radius:3px;transition:width .5s ease;}
+
+/* ===== THE TAKE SCREEN ===== */
+.tk-hdr{padding:24px 16px 12px;}
+.tk-title{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;text-transform:uppercase;}
+.tk-sub{font-size:13px;color:var(--t3);margin-top:4px;line-height:1.55;}
+.tk-pills{display:flex;gap:6px;padding:0 16px 14px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.tk-pill{display:flex;align-items:center;gap:6px;padding:6px 12px 6px 6px;border-radius:24px;border:1px solid var(--border);background:var(--card);cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.tk-pill.on{background:var(--white);border-color:var(--white);}
+.tk-pill.on .tk-pill-n{color:var(--bg);}
+.tk-pill-img{width:24px;height:24px;border-radius:50%;overflow:hidden;background:var(--elevated);}
+.tk-pill-img img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.tk-pill-n{font-size:12px;font-weight:600;color:var(--t2);}
+
+/* Feedback */
+.fb-card{margin:0 16px 12px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.fb-hdr{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.fb-lbl{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--blue);}
+.fb-time{font-size:11px;color:var(--t4);}
+.fb-body{padding:16px;}
+.fb-txt{font-size:14px;color:var(--t2);line-height:1.6;font-style:italic;}
+
+/* SMS */
+.sms-card{margin:0 16px 12px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.sms-hdr{padding:12px 16px;border-bottom:1px solid var(--border);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--t3);}
+.sms-thread{padding:16px;}
+.sms-time{font-size:10px;color:var(--t4);text-align:center;margin-bottom:8px;}
+.sms-bubble{padding:10px 14px;border-radius:16px;font-size:13px;line-height:1.5;max-width:82%;margin-bottom:6px;}
+.sms-out{background:var(--white);color:var(--bg);margin-left:auto;border-bottom-right-radius:4px;font-weight:500;}
+.sms-in{background:var(--elevated);border:1px solid var(--border);color:var(--t1);border-bottom-left-radius:4px;}
+
+/* ===== BOTTOM TAB BAR ===== */
+.tbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;display:flex;background:rgba(8,8,8,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);z-index:100;padding-bottom:env(safe-area-inset-bottom,0);}
+.tbar-i{flex:1;padding:8px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;}
+.tbar-icon{width:22px;height:22px;color:var(--t4);}
+.tbar-i.on .tbar-icon{color:var(--white);}
+.tbar-l{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.3px;color:var(--t4);}
+.tbar-i.on .tbar-l{color:var(--white);}
+
+/* ===== MODAL ===== */
+.m-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:300;align-items:flex-end;justify-content:center;}
+.m-overlay.on{display:flex;}
+.m-sheet{width:100%;max-width:430px;background:var(--card);border-radius:16px 16px 0 0;padding:20px 16px 36px;animation:su .25s ease;}
+@keyframes su{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.m-handle{width:36px;height:4px;background:var(--t4);border-radius:2px;margin:0 auto 16px;}
+.m-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;text-transform:uppercase;margin-bottom:4px;}
+.m-sub{font-size:13px;color:var(--t3);margin-bottom:14px;}
+.m-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.m-chip{padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--t2);font-size:12px;font-weight:500;cursor:pointer;}
+.m-chip:active{border-color:var(--t3);color:var(--t1);}
+.m-ta{width:100%;min-height:90px;padding:14px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--t1);font-size:14px;font-family:'Barlow',sans-serif;resize:none;margin-bottom:12px;}
+.m-ta:focus{outline:none;border-color:var(--t3);}
+.m-send{width:100%;padding:14px;border-radius:12px;border:none;background:var(--white);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;}
+.m-send:active{opacity:.9;transform:scale(.99);}
+
+/* Toast */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(40px);background:var(--green);color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;z-index:400;opacity:0;transition:all .25s ease;white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- iOS Bar -->
+<div class="ios-bar">
+  <div class="ios-time">9:41</div>
+  <div class="ios-right">
+    <svg width="16" height="12" fill="none" viewBox="0 0 16 12"><rect x="0" y="3" width="3" height="9" rx="1" fill="#fff"/><rect x="4.5" y="1.5" width="3" height="10.5" rx="1" fill="#fff"/><rect x="9" y="0" width="3" height="12" rx="1" fill="#fff"/><rect x="13.5" y="0" width="2.5" height="12" rx=".5" fill="#fff" opacity=".3"/></svg>
+    <svg width="16" height="12" fill="none" viewBox="0 0 16 12"><path d="M8 3C10.2 3 12.2 4 13.5 5.5L8 11.5 2.5 5.5C3.8 4 5.8 3 8 3Z" fill="#fff"/></svg>
+    <svg width="25" height="12" fill="none" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="2" stroke="#fff" stroke-width="1" fill="none"/><rect x="22" y="4" width="2" height="4" rx=".5" fill="#fff" opacity=".4"/><rect x="1.5" y="2.5" width="14" height="7" rx="1" fill="#34D399"/></svg>
+  </div>
+</div>
+
+<!-- Header -->
+<div class="hdr">
+  <div class="hdr-brand">
+    <div class="hdr-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+    <div class="hdr-name">SalesComp</div>
+  </div>
+  <div class="hdr-actions">
+    <div class="hdr-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg></div>
+    <div class="hdr-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 00-4-5.7V5a2 2 0 10-4 0v.3C7.7 6.2 6 8.4 6 11v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg><div class="hdr-dot"></div></div>
+  </div>
+</div>
+
+<!-- Top Nav -->
+<div class="tnav">
+  <div class="tnav-i on" onclick="go('roster')">Roster</div>
+  <div class="tnav-i" onclick="go('matchup')">Matchup</div>
+  <div class="tnav-i" onclick="go('take')">The Take</div>
+</div>
+
+<!-- ===== ROSTER ===== -->
+<div class="scr on" id="scr-roster">
+  <div class="team-card">
+    <div class="tc-top">
+      <div class="tc-info"><div class="tc-name">Apex Solutions</div><div class="tc-mgr">Managed by Fitz Light</div></div>
+      <div class="tc-score"><div class="tc-score-val">847</div><div class="tc-score-lbl">Week Score</div><div class="tc-trend up">+12% vs last week</div></div>
+    </div>
+    <div class="tc-stats">
+      <div class="tc-stat"><div class="tc-sv">$334K</div><div class="tc-sl">Revenue</div></div>
+      <div class="tc-stat"><div class="tc-sv">78%</div><div class="tc-sl">To Quota</div></div>
+      <div class="tc-stat"><div class="tc-sv">$478K</div><div class="tc-sl">Pipeline</div></div>
+      <div class="tc-stat"><div class="tc-sv">31%</div><div class="tc-sl">Close Rate</div></div>
+    </div>
+  </div>
+
+  <!-- Focus This Week -->
+  <div class="sh"><div class="sh-t">Focus This Week</div></div>
+  <div class="focus-cards">
+    <div class="focus-card alert" onclick="openCard(4)">
+      <div class="fc-photo"><img src="assets/tyler-brooks.png"></div>
+      <div class="fc-info">
+        <div class="fc-name">T. Brooks</div>
+        <div class="fc-reason">3-week decline. CRM 3 weeks behind. Needs a direct conversation about standards.</div>
+      </div>
+      <div class="fc-icon" style="background:var(--red-bg)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+    </div>
+    <div class="focus-card opp" onclick="openCard(3)">
+      <div class="fc-photo"><img src="assets/deandra-williams.png"></div>
+      <div class="fc-info">
+        <div class="fc-name">D. Williams</div>
+        <div class="fc-reason">3 late-stage deals could push her to 200+. Needs closing support now.</div>
+      </div>
+      <div class="fc-icon" style="background:var(--green-bg)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></div>
+    </div>
+  </div>
+
+  <!-- Activity Feed -->
+  <div class="sh"><div class="sh-t">Recent Activity</div><div class="sh-a">View All</div></div>
+  <div class="feed">
+    <div class="feed-item"><div class="feed-dot" style="background:var(--green)"></div><div class="feed-text"><strong>Marcus Thompson</strong> closed the Henderson deal for $45K</div><div class="feed-time">2h ago</div></div>
+    <div class="feed-item"><div class="feed-dot" style="background:var(--amber)"></div><div class="feed-text"><strong>DeAndra Williams</strong> has 3 deals in late stage that need attention</div><div class="feed-time">4h ago</div></div>
+    <div class="feed-item"><div class="feed-dot" style="background:var(--red)"></div><div class="feed-text"><strong>Tyler Brooks</strong> hasn't updated CRM in 5 days</div><div class="feed-time">1d ago</div></div>
+    <div class="feed-item"><div class="feed-dot" style="background:var(--green)"></div><div class="feed-text"><strong>Sarah Chen</strong> created $62K in new pipeline this week</div><div class="feed-time">1d ago</div></div>
+  </div>
+
+  <div class="sh"><div class="sh-t">Your Roster</div><div class="sh-a">Sort</div></div>
+  <div class="p-list" id="rosterList"></div>
+</div>
+
+<!-- ===== MATCHUP ===== -->
+<div class="scr" id="scr-matchup">
+  <div class="mu-banner">
+    <div class="mu-label">Head to Head</div>
+    <div class="mu-title">Weekly Rep Matchup</div>
+    <div class="mu-period">Apr 7 - Apr 13, 2026</div>
+  </div>
+  <div class="mu-weeks">
+    <div class="mu-week">Wk 11</div>
+    <div class="mu-week">Wk 12</div>
+    <div class="mu-week">Wk 13</div>
+    <div class="mu-week on">Wk 14</div>
+  </div>
+  <div class="mu-pills" id="muPills"></div>
+  <div id="muContent"></div>
+</div>
+
+<!-- ===== THE TAKE ===== -->
+<div class="scr" id="scr-take">
+  <div class="tk-hdr">
+    <div class="tk-title">The Take</div>
+    <div class="tk-sub">Your 1-on-1 coaching playbook. Built from CRM data, rep feedback, and performance trends.</div>
+  </div>
+
+  <!-- Monday Morning Brief -->
+  <div class="sh"><div class="sh-t">Today's 1-on-1s</div><div class="sh-a">Monday, Apr 14</div></div>
+  <div id="briefCards"></div>
+
+  <div class="sh" style="margin-top:8px;"><div class="sh-t">Deep Dive</div></div>
+  <div class="tk-pills" id="tkPills"></div>
+  <div id="tkContent"></div>
+</div>
+
+<!-- ===== PLAYER CARD MODAL ===== -->
+<div class="card-modal" id="cardModal">
+  <div class="app-inner">
+    <div class="cm-bar">
+      <div class="cm-back" onclick="closeCard()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 19l-7-7 7-7"/></svg>Roster</div>
+      <div class="cm-close" onclick="closeCard()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg></div>
+    </div>
+    <div id="cmHero"></div>
+    <div id="cmQRow"></div>
+    <div id="cmStatusBar"></div>
+    <div class="cm-nav" id="cmNav">
+      <div class="cm-nav-i on" onclick="cPanel('overview')">Overview</div>
+      <div class="cm-nav-i" onclick="cPanel('stats')">Stats</div>
+      <div class="cm-nav-i" onclick="cPanel('gamelog')">Game Log</div>
+      <div class="cm-nav-i" onclick="cPanel('coaching')">Coaching</div>
+    </div>
+    <div class="cm-panel on" id="cp-overview"><div id="cpRadar"></div><div id="cpTake"></div><div id="cpCta"></div></div>
+    <div class="cm-panel" id="cp-stats"><div id="cpSkills"></div></div>
+    <div class="cm-panel" id="cp-gamelog"><div id="cpGamelog"></div></div>
+    <div class="cm-panel" id="cp-coaching"><div id="cpOutlook"></div><div id="cpAgenda"></div></div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="m-overlay" id="msgModal">
+  <div class="m-sheet">
+    <div class="m-handle"></div>
+    <div class="m-title" id="mmTitle">Send Message</div>
+    <div class="m-sub" id="mmSub">Send via the SalesComp agent.</div>
+    <div class="m-chips">
+      <div class="m-chip" onclick="fMsg('Great momentum this week. Keep pushing through Friday.')">Momentum</div>
+      <div class="m-chip" onclick="fMsg('I noticed a gap in follow-ups. Let\\'s tighten that up.')">Follow-up</div>
+      <div class="m-chip" onclick="fMsg('You\\'re 2 deals from target. What do you need from me?')">Target Push</div>
+      <div class="m-chip" onclick="fMsg('Pulse check: how are you feeling about your pipeline?')">Pulse Check</div>
+    </div>
+    <textarea class="m-ta" id="msgTA" placeholder="Type a message or tap a template..."></textarea>
+    <button class="m-send" onclick="sendM()">Send via Agent</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<!-- Bottom Tab Bar -->
+<div class="tbar">
+  <div class="tbar-i on" onclick="go('roster')">
+    <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+    <span class="tbar-l">Roster</span>
+  </div>
+  <div class="tbar-i" onclick="go('matchup')">
+    <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+    <span class="tbar-l">Matchup</span>
+  </div>
+  <div class="tbar-i" onclick="go('take')">
+    <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+    <span class="tbar-l">The Take</span>
+  </div>
+</div>
+
+</div>
+
+<script>
+const D=[
+{id:0,name:'Marcus Thompson',sh:'M. Thompson',f:'Marcus',img:'assets/marcus-thompson.png',role:'Closer',ten:'3yr',co:'Apex Solutions',fpts:214,avg:187,szn:2618,tr:'+18%',td:'up',st:'Hot',sc:'b-hot',dot:'var(--green)',sub:'7 deals this week',
+stats:{d:7,r:'$142K',p:'$89K',c:'38%'},
+skills:[{l:'Closing',v:92,c:'var(--green)'},{l:'Negotiation',v:88,c:'var(--green)'},{l:'Relationships',v:78,c:'var(--blue)'},{l:'Pipeline Mgmt',v:65,c:'var(--amber)'},{l:'Prospecting',v:48,c:'var(--red)'},{l:'CRM Discipline',v:72,c:'var(--blue)'}],
+take:'Marcus is your <strong>top performer</strong>. Elite close rate and handles pressure situations well. The gap is prospecting volume, 22% below team average. He fills fewer seats at the top of the funnel than anyone but converts at the highest rate. Challenge him to add 5 more outbound touches per week. Model projects +$40-50K incremental revenue this quarter.',
+outlook:'Projecting a career-best quarter. Three deals in final stages ($87K combined). Expressed interest in enterprise accounts and his data supports the move: 38% close rate on deals over $30K vs 28% team average. Meridian silence is the one watch item.',
+fb:{t:'"Feeling really good about Q2. Got 3 deals closing this week. Meridian went dark after the proposal though. Also want to talk about getting more enterprise leads."',time:'Apr 11, 2:14 PM'},
+agenda:[{topic:'1. Open With the Win',d:'Marcus is projecting 3 closes this week ($87K combined). His confidence is high. Start here.',s:'"Walk me through what clicked with Henderson. That was a tough one and you made it look easy."'},{topic:'2. Meridian Silence',d:'Went dark 9 days post-proposal ($45K). Contact opened proposal 3x but hasn\'t responded.',s:'"You mentioned Meridian. I see they\'ve opened your proposal three times. What do you think that tells us?"'},{topic:'3. Enterprise Stretch',d:'He wants bigger deals. Data supports it: 38% close rate on $30K+ vs 28% team avg.',s:'"Your numbers above $30K are stronger than mid-market. Let\'s pick one enterprise account to test."'},{topic:'4. Prospecting Gap',d:'22% below team average on outbound. Layer this in after the wins.',s:'"If we bump your outbound by even 20%, the math says another $40-50K this quarter."'}],
+gl:[{w:'Wk 14',d:7,r:'$142K',p:'$89K',s:214},{w:'Wk 13',d:5,r:'$98K',p:'$112K',s:192},{w:'Wk 12',d:6,r:'$118K',p:'$67K',s:201},{w:'Wk 11',d:4,r:'$76K',p:'$95K',s:168},{w:'Wk 10',d:5,r:'$102K',p:'$78K',s:186}]},
+{id:1,name:'Sarah Chen',sh:'S. Chen',f:'Sarah',img:'assets/sarah-chen.png',role:'Pipeline Builder',ten:'2yr',co:'Apex Solutions',fpts:198,avg:172,szn:2408,tr:'+12%',td:'up',st:'Streak',sc:'b-str',dot:'var(--amber)',sub:'$178K new pipeline',
+stats:{d:3,r:'$48K',p:'$178K',c:'24%'},
+skills:[{l:'Closing',v:55,c:'var(--amber)'},{l:'Negotiation',v:62,c:'var(--amber)'},{l:'Relationships',v:74,c:'var(--blue)'},{l:'Pipeline Mgmt',v:94,c:'var(--green)'},{l:'Prospecting',v:91,c:'var(--green)'},{l:'CRM Discipline',v:88,c:'var(--green)'}],
+take:'Sarah is your <strong>pipeline engine</strong>. She creates more opportunities than anyone and her CRM discipline is best-in-class. The development area is closing. She generates but doesn\'t always finish. Consider pairing her with Marcus on a co-sell for exposure. That approach could accelerate her close skills faster than any training program.',
+outlook:'On a 4-week scoring streak. Pipeline creation is 34% above season average. Close rate improving (18% to 24%) but still below 31% team average. The trajectory is right.',
+fb:{t:'"Pipeline is looking strong. I\'m worried about my close rate though. Deals stall when pricing comes up. Can we role play some pricing conversations?"',time:'Apr 11, 3:22 PM'},
+agenda:[{topic:'1. Celebrate the Streak',d:'4-week scoring streak. Pipeline 34% above average.',s:'"$210K in new pipeline this month. That\'s elite. Let\'s talk about how we turn more of that into closed revenue."'},{topic:'2. Pricing Role Play',d:'She flagged pricing as a sticking point. Close rate improving but below team avg.',s:'"Let\'s do a quick role play. I\'ll be the prospect. Hit me with the pricing conversation from the Vertex deal."'},{topic:'3. Co-Sell With Marcus',d:'Pair her with Marcus on a larger deal for closing exposure.',s:'"What if you and Marcus co-sold the Pinnacle account? You build, he closes. You\'d see his process up close."'}],
+gl:[{w:'Wk 14',d:3,r:'$48K',p:'$178K',s:198},{w:'Wk 13',d:2,r:'$31K',p:'$156K',s:182},{w:'Wk 12',d:4,r:'$62K',p:'$142K',s:194},{w:'Wk 11',d:2,r:'$28K',p:'$168K',s:176},{w:'Wk 10',d:3,r:'$44K',p:'$132K',s:170}]},
+{id:2,name:'Jake Rivera',sh:'J. Rivera',f:'Jake',img:'assets/jake-rivera.png',role:'Account Manager',ten:'4yr',co:'Apex Solutions',fpts:176,avg:168,szn:2352,tr:'+5%',td:'up',st:null,sc:null,dot:null,sub:'94% account retention',
+stats:{d:4,r:'$82K',p:'$65K',c:'32%'},
+skills:[{l:'Closing',v:72,c:'var(--blue)'},{l:'Negotiation',v:70,c:'var(--blue)'},{l:'Relationships',v:85,c:'var(--green)'},{l:'Pipeline Mgmt',v:75,c:'var(--blue)'},{l:'Prospecting',v:68,c:'var(--blue)'},{l:'CRM Discipline',v:80,c:'var(--green)'}],
+take:'Jake is your <strong>steady contributor</strong>. Consistent 168 avg, never has a terrible week, but rarely breaks out either. His ceiling is higher than his output. He\'s coasting on relationship selling and existing accounts. Challenge him with one net-new enterprise pursuit this quarter.',
+outlook:'12 consecutive weeks above 150. Account retention 94%, highest on team. Expansion revenue strong ($120K this quarter). Growth opportunity is new business.',
+fb:{t:'"Solid week. Got the Apex renewal done. Comfortable with my book but wondering about a path to team lead. Can we talk career growth?"',time:'Apr 11, 4:01 PM'},
+agenda:[{topic:'1. The Apex Renewal',d:'Key account closed. 94% retention is best on team.',s:'"The Apex renewal was huge. Walk me through how you handled the pricing pushback."'},{topic:'2. Career Growth',d:'He asked about team lead path. Tenure + relationship skills. Retention conversation.',s:'"What does team lead look like to you? Let me share what I\'d need to see to advocate for that."'},{topic:'3. Push Past Comfortable',d:'12 straight weeks above 150 but zero breakouts. Coasting.',s:'"Your consistency is rare. But your ceiling is higher. What if we targeted one net-new enterprise account?"'}],
+gl:[{w:'Wk 14',d:4,r:'$82K',p:'$65K',s:176},{w:'Wk 13',d:4,r:'$78K',p:'$58K',s:172},{w:'Wk 12',d:3,r:'$71K',p:'$72K',s:168},{w:'Wk 11',d:4,r:'$80K',p:'$54K',s:170},{w:'Wk 10',d:3,r:'$68K',p:'$62K',s:164}]},
+{id:3,name:'DeAndra Williams',sh:'D. Williams',f:'DeAndra',img:'assets/deandra-williams.png',role:'SDR',ten:'6mo',co:'Apex Solutions',fpts:148,avg:118,szn:1652,tr:'+24%',td:'up',st:'Questionable',sc:'b-q',dot:'var(--amber)',sub:'3 deals in late stage',
+stats:{d:2,r:'$24K',p:'$134K',c:'18%'},
+skills:[{l:'Closing',v:42,c:'var(--red)'},{l:'Negotiation',v:38,c:'var(--red)'},{l:'Relationships',v:58,c:'var(--amber)'},{l:'Pipeline Mgmt',v:55,c:'var(--amber)'},{l:'Prospecting',v:85,c:'var(--green)'},{l:'CRM Discipline',v:70,c:'var(--blue)'}],
+take:'DeAndra is your <strong>breakout candidate</strong>. Six months in and trending up 24% week-over-week. Activity volume is elite (85th percentile in prospecting), but she books meetings and struggles past discovery. She needs a framework for the second meeting. Pair her with Marcus for a shadow session. High upside play.',
+outlook:'Most exciting trajectory on the roster. Went from 92 in Week 8 to 148 this week. 3 deals in late stage could go either way. If they close, she\'s looking at 200+. If they stall, she needs closing support.',
+fb:{t:'"The closing part is still intimidating. I book tons of meetings but freeze up when it\'s time to ask. Is there a way to shadow Marcus on a close?"',time:'Apr 11, 5:45 PM'},
+agenda:[{topic:'1. Name the Growth',d:'92 to 148 in 6 weeks. That trajectory deserves recognition.',s:'"You\'ve nearly doubled your score in 6 weeks. That\'s not luck. That\'s work. I see it."'},{topic:'2. Close Confidence',d:'She flagged being intimidated. Activity is elite but needs a closing framework.',s:'"Closing isn\'t about being pushy. It\'s about earning the right to ask. Let\'s practice together."'},{topic:'3. Shadow Marcus',d:'She asked for it. High-leverage development play.',s:'"I\'m pairing you with Marcus on his next close. Observe. Then we debrief."'},{topic:'4. The 3 Late-Stage Deals',d:'3 deals that could go either way. Maximum coaching leverage.',s:'"Walk me through each one. What\'s the single thing between each deal and a close?"'}],
+gl:[{w:'Wk 14',d:2,r:'$24K',p:'$134K',s:148},{w:'Wk 13',d:1,r:'$12K',p:'$118K',s:128},{w:'Wk 12',d:2,r:'$28K',p:'$98K',s:136},{w:'Wk 11',d:1,r:'$15K',p:'$142K',s:122},{w:'Wk 10',d:1,r:'$10K',p:'$108K',s:104}]},
+{id:4,name:'Tyler Brooks',sh:'T. Brooks',f:'Tyler',img:'assets/tyler-brooks.png',role:'Veteran',ten:'7yr',co:'Apex Solutions',fpts:111,avg:142,szn:1988,tr:'-14%',td:'down',st:'Cold',sc:'b-cold',dot:'var(--red)',sub:'CRM 3 weeks behind',
+stats:{d:2,r:'$38K',p:'$12K',c:'25%'},
+skills:[{l:'Closing',v:68,c:'var(--blue)'},{l:'Negotiation',v:82,c:'var(--green)'},{l:'Relationships',v:90,c:'var(--green)'},{l:'Pipeline Mgmt',v:45,c:'var(--red)'},{l:'Prospecting',v:32,c:'var(--red)'},{l:'CRM Discipline',v:28,c:'var(--red)'}],
+take:'Tyler is on a <strong>3-week decline</strong>. Most tenured rep but numbers are sliding. Relationship and negotiation skills are elite (top 10%), but prospecting, pipeline management, and CRM discipline are in the red. He\'s running on fumes from old relationships. Frame it as "the game has changed" not "you\'re failing."',
+outlook:'At a crossroads. Existing accounts love him (NPS 92) but new business is nearly zero. CRM 3 weeks behind. He offered to mentor DeAndra, keeps him engaged and gives the team value beyond his numbers.',
+fb:{t:'"I know my numbers aren\'t where they should be. The CRM stuff is busy work. My clients trust me. But I\'m open to hearing what the data says. Happy to mentor the new rep if useful."',time:'Apr 12, 9:15 AM'},
+agenda:[{topic:'1. Acknowledge It Directly',d:'Tyler knows. He said so. Don\'t dance around it. He respects directness.',s:'"You said your numbers aren\'t where they should be. I agree. Let\'s look at why together."'},{topic:'2. CRM Reality',d:'3 weeks behind. Frame as visibility, not compliance.',s:'"When I can\'t see your pipeline, I can\'t go to bat for you on resource decisions. Let\'s get current this week."'},{topic:'3. Mentorship Play',d:'He offered to mentor DeAndra. Take him up on it.',s:'"DeAndra asked to learn from you. Your relationship skills are the best on the team. Would you take her under your wing?"'},{topic:'4. The Standard',d:'3 more weeks of decline means a roster conversation. Be honest.',s:'"I believe in you. But numbers don\'t grade on tenure. I need an uptick in 3 weeks. What do you need from me?"'}],
+gl:[{w:'Wk 14',d:2,r:'$38K',p:'$12K',s:111},{w:'Wk 13',d:2,r:'$42K',p:'$18K',s:118},{w:'Wk 12',d:3,r:'$56K',p:'$22K',s:138},{w:'Wk 11',d:3,r:'$48K',p:'$28K',s:132},{w:'Wk 10',d:3,r:'$52K',p:'$30K',s:140}]}
+];
+
+// V3: Quota & projection data
+D.forEach(p=>{
+  const qtaMap={0:{quota:180000,actual:142000,proj:195000},1:{quota:120000,actual:98000,proj:135000},2:{quota:150000,actual:122000,proj:158000},3:{quota:80000,actual:48000,proj:92000},4:{quota:160000,actual:98000,proj:115000}};
+  const q=qtaMap[p.id];
+  p.quota=q.quota; p.qActual=q.actual; p.qProj=q.proj;
+  p.qPct=Math.round(q.actual/q.quota*100);
+  p.qProjPct=Math.round(q.proj/q.quota*100);
+  // Sparkline data (last 5 weeks FPTS)
+  p.spark=p.gl.map(g=>g.s).reverse();
+  // Meeting times
+  const times=['9:00 AM','9:45 AM','10:30 AM','11:15 AM','2:00 PM'];
+  p.meetTime=times[p.id];
+  // Top talking point
+  p.topPoint=p.agenda[0]?p.agenda[0].topic+': '+p.agenda[0].d:'';
+});
+
+let cur=0;
+
+// ===== RENDER ROSTER =====
+function quotaRingSVG(pct,size,color){
+  const r=size/2-3,c=size/2,circ=2*Math.PI*r;
+  const fill=Math.min(pct/100,1)*circ;
+  return `<div class="quota-ring${size<40?' quota-ring-sm':''}" style="width:${size}px;height:${size}px;">
+    <svg viewBox="0 0 ${size} ${size}"><circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="#222" stroke-width="3"/><circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${color}" stroke-width="3" stroke-dasharray="${fill} ${circ}" stroke-linecap="round"/></svg>
+    <div class="quota-ring-val">${pct}%</div>
+  </div>`;
+}
+
+function sparkSVG(data){
+  if(!data||data.length<2)return '';
+  const max=Math.max(...data),min=Math.min(...data),range=max-min||1;
+  return `<div class="sparkline">${data.map(v=>{
+    const h=4+((v-min)/range)*16;
+    const c=v>=data[data.length-1]?'var(--green)':'var(--t4)';
+    return `<div class="spark-bar" style="height:${h}px;background:${v===data[data.length-1]?'var(--white)':c};"></div>`;
+  }).join('')}</div>`;
+}
+
+function renderRoster(){
+  document.getElementById('rosterList').innerHTML=D.map((p,i)=>{
+    const qColor=p.qPct>=90?'var(--green)':p.qPct>=70?'var(--amber)':'var(--red)';
+    return `<div class="p-row" onclick="openCard(${i})">
+      <div class="p-photo"><img src="${p.img}" alt="${p.name}"></div>
+      <div class="p-meta">
+        <div class="p-name-row">
+          <span class="p-name">${p.sh}</span>
+          ${p.st?`<span class="p-badge ${p.sc}">${p.st}</span>`:''}
+        </div>
+        <div class="p-sub">${p.role} &middot; ${p.ten} &middot; ${p.qPct}% to quota</div>
+      </div>
+      <div class="p-nums" style="display:flex;align-items:center;gap:8px;">
+        ${sparkSVG(p.spark)}
+        <div>
+          <div class="p-pts">${p.fpts}</div>
+          <div class="p-pts-l">FPTS</div>
+          <div class="p-trend ${p.td}">${p.tr}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ===== RADAR CHART =====
+function radarSVG(skills){
+  const n=skills.length, cx=180, cy=160, R=90;
+  const angles=skills.map((_,i)=> -Math.PI/2 + (2*Math.PI*i/n));
+  const rings=[25,50,75,100];
+
+  let svg=`<svg viewBox="0 0 360 320" class="radar-svg">`;
+  // Grid rings
+  rings.forEach(r=>{
+    const pts=angles.map(a=>`${cx+R*(r/100)*Math.cos(a)},${cy+R*(r/100)*Math.sin(a)}`).join(' ');
+    svg+=`<polygon points="${pts}" fill="none" stroke="#333" stroke-width="0.5"/>`;
+  });
+  // Axes
+  angles.forEach(a=>{
+    svg+=`<line x1="${cx}" y1="${cy}" x2="${cx+R*Math.cos(a)}" y2="${cy+R*Math.sin(a)}" stroke="#333" stroke-width="0.5"/>`;
+  });
+  // Data polygon
+  const dataPts=skills.map((s,i)=>`${cx+R*(s.v/100)*Math.cos(angles[i])},${cy+R*(s.v/100)*Math.sin(angles[i])}`).join(' ');
+  svg+=`<polygon points="${dataPts}" fill="rgba(255,255,255,0.08)" stroke="#fff" stroke-width="1.5"/>`;
+  // Data dots + labels
+  skills.forEach((s,i)=>{
+    const x=cx+R*(s.v/100)*Math.cos(angles[i]);
+    const y=cy+R*(s.v/100)*Math.sin(angles[i]);
+    svg+=`<circle cx="${x}" cy="${y}" r="4" fill="${s.c}" stroke="#000" stroke-width="2"/>`;
+    const lx=cx+R*1.3*Math.cos(angles[i]);
+    const ly=cy+R*1.3*Math.sin(angles[i]);
+    const anchor=Math.abs(angles[i])<0.1||Math.abs(angles[i]-Math.PI)<0.1?'middle':angles[i]>-Math.PI/2&&angles[i]<Math.PI/2?'start':'end';
+    svg+=`<text x="${lx}" y="${ly}" fill="#999" font-size="11" font-family="Barlow Condensed" font-weight="600" text-anchor="${anchor}" dominant-baseline="central">${s.l}</text>`;
+  });
+  svg+=`</svg>`;
+  return svg;
+}
+
+// ===== PLAYER CARD =====
+function openCard(i){
+  cur=i;const p=D[i];
+  document.getElementById('cmHero').innerHTML=`
+    <div class="cm-hero-bg">
+      <div class="cm-hero">
+        <div class="cm-hero-info">
+          <div class="cm-hero-name">${p.name}</div>
+          <div class="cm-hero-role">${p.role} <span>&middot; ${p.ten}</span></div>
+          <div class="cm-hero-company"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 7v14m6-14v14m6-14v14m6-14v14M3 7l9-4 9 4"/></svg>${p.co}</div>
+          ${p.st?`<div class="cm-hero-badges"><div class="cm-status-badge" style="background:${p.st==='Hot'?'var(--green-bg)':p.st==='Cold'?'var(--red-bg)':'var(--amber-bg)'};color:${p.st==='Hot'?'var(--green)':p.st==='Cold'?'var(--red)':'var(--amber)'};">${p.st}</div></div>`:''}
+        </div>
+        <div class="cm-hero-photo"><img src="${p.img}" alt="${p.name}"></div>
+      </div>
+    </div>
+  `;
+
+  const qColor=p.qPct>=90?'var(--green)':p.qPct>=70?'var(--amber)':'var(--red)';
+  document.getElementById('cmQRow').innerHTML=`
+    <div class="cm-qrow">
+      <div class="cm-qs"><div class="cm-qs-v">${p.fpts}</div><div class="cm-qs-l">This Week</div><div class="cm-qs-d ${p.td}">${p.tr}</div></div>
+      <div class="cm-qs"><div class="cm-qs-v">${p.avg}</div><div class="cm-qs-l">Avg FPTS</div></div>
+      <div class="cm-qs"><div class="cm-qs-v">${p.qPct}%</div><div class="cm-qs-l">To Quota</div><div class="cm-qs-d" style="color:${qColor}">${p.qPct>=100?'On target':'$'+(Math.round((p.quota-p.qActual)/1000))+'K remaining'}</div></div>
+      <div class="cm-qs"><div class="cm-qs-v">${p.stats.c}</div><div class="cm-qs-l">Close Rate</div></div>
+    </div>
+  `;
+
+  // Quota progress bar
+  document.getElementById('cmStatusBar').innerHTML=`
+    <div style="margin:12px 16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span style="font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;">Quarter Quota Progress</span>
+        <span style="font-size:12px;font-weight:700;color:${qColor}">$${Math.round(p.qActual/1000)}K / $${Math.round(p.quota/1000)}K</span>
+      </div>
+      <div class="proj-bar-bg"><div class="proj-bar-fill" style="width:${Math.min(p.qPct,100)}%;background:${qColor};"></div></div>
+      <div style="display:flex;justify-content:space-between;margin-top:4px;">
+        <span style="font-size:10px;color:var(--t4);">Projected: $${Math.round(p.qProj/1000)}K (${p.qProjPct}%)</span>
+        <span style="font-size:10px;color:var(--t4);">6 weeks remaining</span>
+      </div>
+    </div>
+  `;
+
+  // Overview: Radar + Take + CTA
+  document.getElementById('cpRadar').innerHTML=`
+    <div class="radar-wrap">
+      <div class="radar-title">Skills Assessment</div>
+      ${radarSVG(p.skills)}
+    </div>
+  `;
+  document.getElementById('cpTake').innerHTML=`
+    <div class="take-box">
+      <div class="take-box-hdr">
+        <div class="take-box-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div>
+        <div class="take-box-lbl">The Take</div>
+      </div>
+      <div class="take-box-body"><div class="take-box-txt">${p.take}</div></div>
+    </div>
+  `;
+  document.getElementById('cpCta').innerHTML=`
+    <button class="cta-btn" onclick="openMsg(${i})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>Send Accountability Message</button>
+  `;
+
+  // Stats: skill bars with team avg
+  const teamAvg={Closing:66,Negotiation:68,Relationships:77,'Pipeline Mgmt':67,Prospecting:65,'CRM Discipline':68};
+  document.getElementById('cpSkills').innerHTML=`
+    <div class="sh"><div class="sh-t">Performance Breakdown</div></div>
+    <div class="sk-list">${p.skills.map(s=>{
+      const avg=teamAvg[s.l]||65;
+      const diff=s.v-avg;
+      const diffLabel=diff>0?`+${diff} vs team`:`${diff} vs team`;
+      return `<div class="sk-row">
+        <div class="sk-lbl">${s.l}</div>
+        <div class="sk-trk" style="position:relative;">
+          <div class="sk-fill" style="width:${s.v}%;background:${s.c}"></div>
+          <div style="position:absolute;left:${avg}%;top:-2px;width:2px;height:9px;background:var(--t3);border-radius:1px;" title="Team avg: ${avg}"></div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;min-width:55px;">
+          <div class="sk-val" style="color:${s.c};display:inline;">${s.v}</div>
+          <div style="font-size:9px;color:${diff>=0?'var(--green)':'var(--red)'};font-weight:600;">${diffLabel}</div>
+        </div>
+      </div>`;
+    }).join('')}</div>
+    <div class="sh"><div class="sh-t">Season Stats</div></div>
+    <div class="cm-qrow" style="margin-bottom:16px;">
+      <div class="cm-qs"><div class="cm-qs-v">${p.stats.d}</div><div class="cm-qs-l">Deals/Wk</div></div>
+      <div class="cm-qs"><div class="cm-qs-v">${p.stats.r}</div><div class="cm-qs-l">Revenue</div></div>
+      <div class="cm-qs"><div class="cm-qs-v">${p.stats.p}</div><div class="cm-qs-l">Pipeline</div></div>
+      <div class="cm-qs"><div class="cm-qs-v">${p.stats.c}</div><div class="cm-qs-l">Close %</div></div>
+    </div>
+    <div class="sh"><div class="sh-t">Q2 Projection</div></div>
+    <div class="proj-box">
+      <div class="proj-row"><div class="proj-label">Current Revenue</div><div class="proj-val">$${Math.round(p.qActual/1000)}K</div></div>
+      <div class="proj-row"><div class="proj-label">Quota Target</div><div class="proj-val">$${Math.round(p.quota/1000)}K</div></div>
+      <div class="proj-row"><div class="proj-label">Projected Finish</div><div class="proj-val" style="color:${p.qProjPct>=100?'var(--green)':p.qProjPct>=85?'var(--amber)':'var(--red)'}">$${Math.round(p.qProj/1000)}K (${p.qProjPct}%)</div></div>
+      <div class="proj-bar-bg"><div class="proj-bar-fill" style="width:${Math.min(p.qProjPct,100)}%;background:${p.qProjPct>=100?'var(--green)':p.qProjPct>=85?'var(--amber)':'var(--red)'}"></div></div>
+      <div style="font-size:11px;color:var(--t3);margin-top:8px;line-height:1.5;">Based on ${p.gl.length}-week rolling average. ${p.qProjPct>=100?'On track to exceed quota.':p.qProjPct>=85?'Within striking distance. Needs a strong close.':'At risk of missing. Intervention recommended.'}</div>
+    </div>
+  `;
+
+  // Gamelog
+  document.getElementById('cpGamelog').innerHTML=`
+    <div class="sh"><div class="sh-t">Game Log</div></div>
+    <div class="gl-table">
+      <div class="gl-h"><span>Week</span><span>Deals</span><span>Rev</span><span>Pipe</span><span>FPTS</span></div>
+      ${p.gl.map(g=>`<div class="gl-r"><span>${g.w}</span><span>${g.d}</span><span>${g.r}</span><span>${g.p}</span><span>${g.s}</span></div>`).join('')}
+    </div>
+  `;
+
+  // Coaching
+  document.getElementById('cpOutlook').innerHTML=`
+    <div class="sh"><div class="sh-t">Outlook</div></div>
+    <div class="outlook"><div class="outlook-txt">${p.outlook}</div></div>
+  `;
+  document.getElementById('cpAgenda').innerHTML=`
+    <div class="sh"><div class="sh-t">Coaching Playbook</div></div>
+    <div class="ag-card">
+      <div class="ag-hdr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg><div class="ag-title">1-on-1 Prep: ${p.f}</div></div>
+      ${p.agenda.map(a=>`<div class="ag-item"><div class="ag-topic">${a.topic}</div><div class="ag-detail">${a.d}</div><div class="ag-say">${a.s}</div></div>`).join('')}
+    </div>
+    <button class="cta-btn" onclick="openMsg(${i})" style="margin-bottom:20px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>Message ${p.f}</button>
+  `;
+
+  cPanel('overview');
+  document.getElementById('cardModal').classList.add('on');
+  document.getElementById('cardModal').scrollTop=0;
+}
+
+function closeCard(){document.getElementById('cardModal').classList.remove('on');}
+
+function cPanel(id){
+  document.querySelectorAll('.cm-panel').forEach(p=>p.classList.remove('on'));
+  document.getElementById('cp-'+id).classList.add('on');
+  document.querySelectorAll('.cm-nav-i').forEach(n=>n.classList.remove('on'));
+  const m={overview:0,stats:1,gamelog:2,coaching:3};
+  document.querySelectorAll('.cm-nav-i')[m[id]].classList.add('on');
+}
+
+// ===== MATCHUP =====
+const matchups=[[0,4],[1,3],[0,2],[1,4],[2,3]];
+function renderMU(){
+  document.getElementById('muPills').innerHTML=matchups.map((m,i)=>`
+    <div class="mu-pill ${i===0?'on':''}" onclick="setMU(${m[0]},${m[1]},this)">
+      <div class="mu-pill-img"><img src="${D[m[0]].img}"></div>
+      <span class="mu-pill-n">${D[m[0]].f} vs ${D[m[1]].f}</span>
+    </div>
+  `).join('');
+  setMU(0,4,document.querySelector('.mu-pill'));
+}
+
+function setMU(a,b,el){
+  const pA=D[a],pB=D[b];
+  document.querySelectorAll('.mu-pill').forEach(p=>p.classList.remove('on'));
+  if(el)el.classList.add('on');
+
+  const cats=[
+    {l:'Deals Closed',vA:pA.stats.d,vB:pB.stats.d},
+    {l:'Revenue',vA:pA.stats.r,vB:pB.stats.r},
+    {l:'Pipeline Created',vA:pA.stats.p,vB:pB.stats.p},
+    {l:'Close Rate',vA:pA.stats.c,vB:pB.stats.c},
+    {l:'Weekly Score',vA:pA.fpts,vB:pB.fpts}
+  ];
+  const pv=v=>typeof v==='string'?parseFloat(v.replace(/[$K%,]/g,'')):v;
+  const aW=pA.fpts>pB.fpts;
+
+  document.getElementById('muContent').innerHTML=`
+    <div class="mu-vs">
+      <div class="mu-side">
+        <div class="mu-side-photo"><img src="${pA.img}"></div>
+        <div class="mu-side-name">${pA.sh}</div>
+        <div class="mu-side-role">${pA.role}</div>
+      </div>
+      <div class="mu-center">
+        <div class="mu-sc-row">
+          <div class="mu-sc ${aW?'win':'lose'}">${pA.fpts}</div>
+          <div class="mu-vs-txt">VS</div>
+          <div class="mu-sc ${!aW?'win':'lose'}">${pB.fpts}</div>
+        </div>
+        <div class="mu-winner-bar" style="background:${aW?'var(--green)':'var(--red)'};"></div>
+      </div>
+      <div class="mu-side">
+        <div class="mu-side-photo"><img src="${pB.img}"></div>
+        <div class="mu-side-name">${pB.sh}</div>
+        <div class="mu-side-role">${pB.role}</div>
+      </div>
+    </div>
+    <div class="mu-winner">
+      <div class="mu-winner-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8m-4-4v4m-5.2-4h10.4c1.7 0 2.5 0 3.1-.3a3 3 0 001.3-1.3c.4-.6.4-1.4.4-3.1V7.8c0-1.7 0-2.5-.3-3.1a3 3 0 00-1.3-1.3C16.7 3 15.9 3 14.2 3H9.8c-1.7 0-2.5 0-3.1.3a3 3 0 00-1.3 1.3C5 5.3 5 6.1 5 7.8v4.4c0 1.7 0 2.5.3 3.1.3.6.7 1 1.3 1.3.6.4 1.4.4 3.1.4z"/></svg></div>
+      <div class="mu-winner-info">
+        <div class="mu-winner-name">${aW?pA.sh:pB.sh} Leads</div>
+        <div class="mu-winner-sub">Winning ${cats.filter(c=>{const vA2=pv(c.vA),vB2=pv(c.vB);return aW?vA2>vB2:vB2>vA2;}).length} of ${cats.length} categories</div>
+      </div>
+    </div>
+    <div class="sh"><div class="sh-t">Category Breakdown</div></div>
+    <div class="mu-cats">
+      ${cats.map(c=>{
+        const vA=pv(c.vA),vB=pv(c.vB);
+        const aL=vA>vB;
+        const tot=vA+vB||1;
+        return `<div class="mu-cat">
+          <div class="mu-cat-v ${aL?'w':''}">${c.vA}</div>
+          <div class="mu-cat-mid">
+            <div class="mu-cat-label">${c.l}</div>
+            <div class="mu-cat-bars">
+              <div class="mu-cat-bar" style="width:${vA/tot*100}%;background:${aL?'var(--green)':'var(--t4)'}"></div>
+              <div class="mu-cat-bar" style="width:${vB/tot*100}%;background:${!aL?'var(--green)':'var(--t4)'}"></div>
+            </div>
+          </div>
+          <div class="mu-cat-v ${!aL?'w':''}">${c.vB}</div>
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+}
+
+// ===== THE TAKE =====
+function renderTK(idx){
+  const p=D[idx];
+  document.getElementById('tkPills').innerHTML=D.map((pl,i)=>`
+    <div class="tk-pill ${i===idx?'on':''}" onclick="renderTK(${i})">
+      <div class="tk-pill-img"><img src="${pl.img}"></div>
+      <span class="tk-pill-n">${pl.f}</span>
+    </div>
+  `).join('');
+
+  document.getElementById('tkContent').innerHTML=`
+    <div class="sh"><div class="sh-t">Rep's Mindset</div></div>
+    <div class="fb-card">
+      <div class="fb-hdr"><div class="fb-lbl">Self-Report via Agent</div><div class="fb-time">${p.fb.time}</div></div>
+      <div class="fb-body"><div class="fb-txt">${p.fb.t}</div></div>
+    </div>
+    <div class="sh"><div class="sh-t">Coaching Playbook</div></div>
+    <div class="ag-card">
+      <div class="ag-hdr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg><div class="ag-title">Game Plan: ${p.f}</div></div>
+      ${p.agenda.map(a=>`<div class="ag-item"><div class="ag-topic">${a.topic}</div><div class="ag-detail">${a.d}</div><div class="ag-say">${a.s}</div></div>`).join('')}
+    </div>
+    <div class="sh"><div class="sh-t">Agent SMS Thread</div></div>
+    <div class="sms-card">
+      <div class="sms-hdr">SalesComp Agent &harr; ${p.f}</div>
+      <div class="sms-thread">
+        <div class="sms-time">Friday, Apr 11</div>
+        <div class="sms-bubble sms-out">Hey ${p.f}, quick pulse check before your Monday 1:1. How are you feeling about your pipeline heading into next week? Anything you want to make sure gets covered?</div>
+        <div class="sms-bubble sms-in">${p.fb.t.replace(/"/g,'')}</div>
+        <div class="sms-bubble sms-out">Thanks for sharing. I've flagged this for your manager. Looking forward to a productive conversation Monday.</div>
+      </div>
+    </div>
+    <button class="cta-btn" onclick="openMsg(${idx})" style="margin-bottom:20px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>Message ${p.f}</button>
+  `;
+}
+
+// ===== NAV =====
+function go(id){
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  document.getElementById('scr-'+id).classList.add('on');
+  document.querySelectorAll('.tnav-i').forEach(n=>n.classList.remove('on'));
+  document.querySelectorAll('.tbar-i').forEach(t=>t.classList.remove('on'));
+  const m={roster:0,matchup:1,take:2};
+  document.querySelectorAll('.tnav-i')[m[id]].classList.add('on');
+  document.querySelectorAll('.tbar-i')[m[id]].classList.add('on');
+  if(id==='matchup')renderMU();
+  if(id==='take'){renderBrief();renderTK(0);}
+  window.scrollTo(0,0);
+}
+
+// ===== MODAL =====
+function openMsg(i){
+  cur=i;const p=D[i];
+  document.getElementById('mmTitle').textContent='Message '+p.f;
+  document.getElementById('mmSub').textContent='Send via the SalesComp agent to '+p.name+'.';
+  document.getElementById('msgTA').value='';
+  document.getElementById('msgModal').classList.add('on');
+}
+function fMsg(t){document.getElementById('msgTA').value=t;}
+function sendM(){
+  document.getElementById('msgModal').classList.remove('on');
+  const t=document.getElementById('toast');
+  t.textContent='Message sent to '+D[cur].f;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+document.getElementById('msgModal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
+
+// ===== MONDAY BRIEF =====
+function renderBrief(){
+  const el=document.getElementById('briefCards');
+  if(!el)return;
+  el.innerHTML=D.map((p,i)=>{
+    const qColor=p.qPct>=90?'var(--green)':p.qPct>=70?'var(--amber)':'var(--red)';
+    return `<div class="brief-card" onclick="renderTK(${i})">
+      <div class="brief-top">
+        <div class="brief-photo"><img src="${p.img}"></div>
+        <div class="brief-info">
+          <div class="brief-name">${p.sh}</div>
+          <div class="brief-time">${p.meetTime} &middot; ${p.role}</div>
+        </div>
+        <div class="brief-quota">${quotaRingSVG(p.qPct,36,qColor)}</div>
+      </div>
+      <div class="brief-bottom">
+        <div class="brief-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>${p.agenda[0]?p.agenda[0].topic:''}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// Init
+renderRoster();
+</script>
+</body>
+</html>
