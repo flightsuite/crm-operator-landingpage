@@ -212,14 +212,42 @@ body{
 /* ===== HEADER ===== */
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:6px 16px 10px;}
 .hdr-brand{display:flex;align-items:center;gap:8px;}
-.hdr-mark{width:30px;height:30px;background:var(--white);border-radius:7px;display:flex;align-items:center;justify-content:center;}
-.hdr-mark svg{width:18px;height:18px;}
+.hdr-mark{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hdr-mark img{width:100%;height:100%;object-fit:cover;border-radius:7px;}
 .hdr-name{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;}
-.hdr-actions{display:flex;gap:6px;}
+.hdr-actions{display:flex;gap:6px;align-items:center;}
 .hdr-btn{width:34px;height:34px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;}
 .hdr-btn svg{width:17px;height:17px;color:var(--t2);}
 .hdr-btn:active{background:var(--hover);}
 .hdr-dot{position:absolute;top:-1px;right:-1px;width:9px;height:9px;background:var(--red);border-radius:50%;border:2px solid var(--bg);}
+
+/* ===== V6: LANGUAGE TOGGLE ===== */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  overflow: hidden;
+  height: 34px;
+  cursor: pointer;
+}
+.lang-opt {
+  padding: 0 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: var(--t3);
+  transition: all .15s;
+}
+.lang-opt.on {
+  background: var(--white);
+  color: var(--bg);
+}
 
 /* ===== TOP NAV ===== */
 .tnav{display:flex;border-bottom:1px solid var(--border);padding:0 16px;}
@@ -484,6 +512,49 @@ body{
 /* Toast */
 .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(40px);background:var(--green);color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;z-index:400;opacity:0;transition:all .25s ease;white-space:nowrap;}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+
+/* ===== V6: GUIDED TOUR ===== */
+.tour-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:500;pointer-events:none;}
+.tour-overlay.on{display:block;}
+.tour-backdrop{position:fixed;top:0;left:0;width:100%;height:100%;z-index:501;pointer-events:auto;}
+.tour-spotlight{position:absolute;z-index:502;border-radius:16px;box-shadow:0 0 0 9999px rgba(0,0,0,0.85);pointer-events:none;transition:all .4s cubic-bezier(.22,1,.36,1);}
+.tour-tooltip{position:absolute;z-index:503;width:320px;max-width:calc(100vw - 32px);background:linear-gradient(135deg,#1a1a1a,#111);border:1px solid #333;border-radius:16px;padding:20px;pointer-events:auto;animation:tourIn .35s cubic-bezier(.22,1,.36,1);}
+@keyframes tourIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.tour-tooltip::before{content:'';position:absolute;width:12px;height:12px;background:#1a1a1a;border:1px solid #333;transform:rotate(45deg);}
+.tour-tooltip.arrow-top::before{top:-7px;left:var(--arrow-left,32px);border-right:none;border-bottom:none;}
+.tour-tooltip.arrow-bottom::before{bottom:-7px;left:var(--arrow-left,32px);border-left:none;border-top:none;}
+.tour-tooltip.arrow-left::before{left:-7px;top:20px;border-right:none;border-top:none;}
+.tour-step-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,0.08);font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.tour-step-badge .tour-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);}
+.tour-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--white);margin-bottom:6px;}
+.tour-desc{font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:16px;}
+.tour-actions{display:flex;align-items:center;justify-content:space-between;}
+.tour-next{padding:10px 24px;border-radius:10px;border:none;background:var(--white);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;transition:transform .1s;}
+.tour-next:active{transform:scale(.97);}
+.tour-skip{font-size:12px;color:var(--t4);cursor:pointer;font-weight:500;transition:color .15s;}
+.tour-skip:hover{color:var(--t2);}
+.tour-dots{display:flex;gap:5px;align-items:center;}
+.tour-dots span{width:6px;height:6px;border-radius:50%;background:var(--t4);transition:all .2s;}
+.tour-dots span.on{background:var(--white);width:18px;border-radius:3px;}
+
+/* Welcome screen */
+.tour-welcome{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:510;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;pointer-events:auto;}
+.tour-welcome.on{display:flex;}
+.tour-welcome-card{text-align:center;max-width:340px;padding:40px 24px;animation:tourIn .5s cubic-bezier(.22,1,.36,1);}
+.tour-welcome-icon{width:80px;height:80px;border-radius:20px;margin:0 auto 20px;overflow:hidden;border:2px solid #333;box-shadow:0 8px 32px rgba(0,0,0,0.4);}
+.tour-welcome-icon img{width:100%;height:100%;object-fit:cover;}
+.tour-welcome-title{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:var(--white);margin-bottom:8px;}
+.tour-welcome-sub{font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:28px;}
+.tour-welcome-start{padding:14px 40px;border-radius:12px;border:none;background:var(--white);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:1px;cursor:pointer;transition:transform .1s;margin-bottom:12px;}
+.tour-welcome-start:active{transform:scale(.97);}
+.tour-welcome-dismiss{font-size:12px;color:var(--t4);cursor:pointer;display:block;margin-top:4px;}
+.tour-welcome-dismiss:hover{color:var(--t2);}
+
+/* Tour restart button in header */
+.tour-restart{display:none;width:34px;height:34px;border-radius:50%;background:var(--card);border:1px solid var(--border);align-items:center;justify-content:center;cursor:pointer;}
+.tour-restart.show{display:flex;}
+.tour-restart svg{width:17px;height:17px;color:var(--t2);}
+.tour-restart:active{background:var(--hover);}
 </style>
 </head>
 <body>
@@ -493,76 +564,59 @@ body{
 <!-- Header -->
 <div class="hdr">
   <div class="hdr-brand">
-    <div class="hdr-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+    <div class="hdr-mark"><img src="assets/salescomp-icon.png" alt="SalesComp"></div>
     <div class="hdr-name">SalesComp</div>
   </div>
   <div class="hdr-actions">
+    <div class="lang-toggle" id="langToggle">
+      <div class="lang-opt on" data-lang="en" onclick="setLang('en')">EN</div>
+      <div class="lang-opt" data-lang="jp" onclick="setLang('jp')">JP</div>
+    </div>
     <div class="hdr-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg></div>
     <div class="hdr-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 00-4-5.7V5a2 2 0 10-4 0v.3C7.7 6.2 6 8.4 6 11v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg><div class="hdr-dot"></div></div>
+    <div class="tour-restart" id="tourRestartBtn" onclick="tourRestart()" title="Replay tour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/></svg></div>
   </div>
 </div>
 
 <!-- Top Nav -->
 <div class="tnav">
-  <div class="tnav-i on" onclick="go('roster')">Roster</div>
-  <div class="tnav-i" onclick="go('matchup')">Matchup</div>
-  <div class="tnav-i" onclick="go('take')">The Take</div>
+  <div class="tnav-i on" onclick="go('roster')" data-i18n="nav_roster">Roster</div>
+  <div class="tnav-i" onclick="go('matchup')" data-i18n="nav_matchup">Matchup</div>
+  <div class="tnav-i" onclick="go('take')" data-i18n="nav_take">The Take</div>
 </div>
 
 <!-- ===== ROSTER ===== -->
 <div class="scr on" id="scr-roster">
   <div class="team-card">
     <div class="tc-top">
-      <div class="tc-info"><div class="tc-name">Apex Solutions</div><div class="tc-mgr">Managed by Fitz Light</div></div>
-      <div class="tc-score"><div class="tc-score-val" style="color:var(--green)">72</div><div class="tc-score-lbl">Team Score</div><div class="tc-trend up">+5 vs last week</div></div>
+      <div class="tc-info"><div class="tc-name">Apex Solutions</div><div class="tc-mgr" data-i18n="team_mgr">Managed by Fitz Light</div></div>
+      <div class="tc-score"><div class="tc-score-val" style="color:var(--green)">72</div><div class="tc-score-lbl" data-i18n="team_score">Team Score</div><div class="tc-trend up" data-i18n="team_trend">+5 vs last week</div></div>
     </div>
     <div class="tc-stats">
-      <div class="tc-stat"><div class="tc-sv">$334K</div><div class="tc-sl">Revenue</div></div>
-      <div class="tc-stat"><div class="tc-sv">78%</div><div class="tc-sl">To Quota</div></div>
-      <div class="tc-stat"><div class="tc-sv">$478K</div><div class="tc-sl">Pipeline</div></div>
-      <div class="tc-stat"><div class="tc-sv">31%</div><div class="tc-sl">Close Rate</div></div>
+      <div class="tc-stat"><div class="tc-sv">$334K</div><div class="tc-sl" data-i18n="stat_revenue">Revenue</div></div>
+      <div class="tc-stat"><div class="tc-sv">78%</div><div class="tc-sl" data-i18n="stat_to_quota">To Quota</div></div>
+      <div class="tc-stat"><div class="tc-sv">$478K</div><div class="tc-sl" data-i18n="stat_pipeline">Pipeline</div></div>
+      <div class="tc-stat"><div class="tc-sv">31%</div><div class="tc-sl" data-i18n="stat_close_rate">Close Rate</div></div>
     </div>
   </div>
 
   <!-- Focus This Week -->
-  <div class="sh"><div class="sh-t">Focus This Week</div></div>
-  <div class="focus-cards">
-    <div class="focus-card alert" onclick="openCard(4)">
-      <div class="fc-photo"><img src="assets/tyler-brooks.png"></div>
-      <div class="fc-info">
-        <div class="fc-name">T. Brooks</div>
-        <div class="fc-reason">3-week decline. CRM 3 weeks behind. Needs a direct conversation about standards.</div>
-      </div>
-      <div class="fc-icon" style="background:var(--red-bg)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-    </div>
-    <div class="focus-card opp" onclick="openCard(3)">
-      <div class="fc-photo"><img src="assets/deandra-williams.png"></div>
-      <div class="fc-info">
-        <div class="fc-name">D. Williams</div>
-        <div class="fc-reason">3 late-stage deals could push her to 200+. Needs closing support now.</div>
-      </div>
-      <div class="fc-icon" style="background:var(--green-bg)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></div>
-    </div>
-  </div>
+  <div class="sh"><div class="sh-t" data-i18n="focus_this_week">Focus This Week</div></div>
+  <div class="focus-cards" id="focusCards"></div>
 
   <!-- Activity Feed -->
-  <div class="sh"><div class="sh-t">Recent Activity</div><div class="sh-a">View All</div></div>
-  <div class="feed">
-    <div class="feed-item"><div class="feed-dot" style="background:var(--green)"></div><div class="feed-text"><strong>Marcus Thompson</strong> closed the Henderson deal for $45K</div><div class="feed-time">2h ago</div></div>
-    <div class="feed-item"><div class="feed-dot" style="background:var(--amber)"></div><div class="feed-text"><strong>DeAndra Williams</strong> has 3 deals in late stage that need attention</div><div class="feed-time">4h ago</div></div>
-    <div class="feed-item"><div class="feed-dot" style="background:var(--red)"></div><div class="feed-text"><strong>Tyler Brooks</strong> hasn't updated CRM in 5 days</div><div class="feed-time">1d ago</div></div>
-    <div class="feed-item"><div class="feed-dot" style="background:var(--green)"></div><div class="feed-text"><strong>Sarah Chen</strong> created $62K in new pipeline this week</div><div class="feed-time">1d ago</div></div>
-  </div>
+  <div class="sh"><div class="sh-t" data-i18n="recent_activity">Recent Activity</div><div class="sh-a" data-i18n="view_all">View All</div></div>
+  <div class="feed" id="activityFeed"></div>
 
-  <div class="sh"><div class="sh-t">Your Roster</div><div class="sh-a">Sort</div></div>
+  <div class="sh"><div class="sh-t" data-i18n="your_roster">Your Roster</div><div class="sh-a" data-i18n="sort">Sort</div></div>
   <div class="p-list" id="rosterList"></div>
 </div>
 
 <!-- ===== MATCHUP ===== -->
 <div class="scr" id="scr-matchup">
   <div class="mu-banner">
-    <div class="mu-label">Head to Head</div>
-    <div class="mu-title">Weekly Rep Matchup</div>
+    <div class="mu-label" data-i18n="mu_label">Head to Head</div>
+    <div class="mu-title" data-i18n="mu_title">Weekly Rep Matchup</div>
     <div class="mu-period">Apr 7 - Apr 13, 2026</div>
   </div>
   <div class="mu-weeks">
@@ -578,15 +632,15 @@ body{
 <!-- ===== THE TAKE ===== -->
 <div class="scr" id="scr-take">
   <div class="tk-hdr">
-    <div class="tk-title">The Take</div>
-    <div class="tk-sub">Your 1-on-1 coaching playbook. Built from CRM data, rep feedback, and performance trends.</div>
+    <div class="tk-title" data-i18n="tk_title">The Take</div>
+    <div class="tk-sub" data-i18n="tk_sub">Your 1-on-1 coaching playbook. Built from CRM data, rep feedback, and performance trends.</div>
   </div>
 
   <!-- Monday Morning Brief -->
-  <div class="sh"><div class="sh-t">Today's 1-on-1s</div><div class="sh-a">Monday, Apr 14</div></div>
+  <div class="sh"><div class="sh-t" data-i18n="todays_1on1s">Today's 1-on-1s</div><div class="sh-a">Monday, Apr 14</div></div>
   <div id="briefCards"></div>
 
-  <div class="sh" style="margin-top:8px;"><div class="sh-t">Deep Dive</div></div>
+  <div class="sh" style="margin-top:8px;"><div class="sh-t" data-i18n="deep_dive">Deep Dive</div></div>
   <div class="tk-pills" id="tkPills"></div>
   <div id="tkContent"></div>
 </div>
@@ -595,17 +649,17 @@ body{
 <div class="card-modal" id="cardModal">
   <div class="app-inner">
     <div class="cm-bar">
-      <div class="cm-back" onclick="closeCard()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 19l-7-7 7-7"/></svg>Roster</div>
+      <div class="cm-back" onclick="closeCard()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 19l-7-7 7-7"/></svg><span data-i18n="nav_roster">Roster</span></div>
       <div class="cm-close" onclick="closeCard()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg></div>
     </div>
     <div id="cmHero"></div>
     <div id="cmQRow"></div>
     <div id="cmStatusBar"></div>
     <div class="cm-nav" id="cmNav">
-      <div class="cm-nav-i on" onclick="cPanel('overview')">Overview</div>
-      <div class="cm-nav-i" onclick="cPanel('stats')">Stats</div>
-      <div class="cm-nav-i" onclick="cPanel('gamelog')">Game Log</div>
-      <div class="cm-nav-i" onclick="cPanel('coaching')">Coaching</div>
+      <div class="cm-nav-i on" onclick="cPanel('overview')" data-i18n="card_overview">Overview</div>
+      <div class="cm-nav-i" onclick="cPanel('stats')" data-i18n="card_stats">Stats</div>
+      <div class="cm-nav-i" onclick="cPanel('gamelog')" data-i18n="card_gamelog">Game Log</div>
+      <div class="cm-nav-i" onclick="cPanel('coaching')" data-i18n="card_coaching">Coaching</div>
     </div>
     <div class="cm-panel on" id="cp-overview"><div id="cpRadar"></div><div id="cpTake"></div><div id="cpCta"></div></div>
     <div class="cm-panel" id="cp-stats"><div id="cpSkills"></div></div>
@@ -620,82 +674,512 @@ body{
     <div class="m-handle"></div>
     <div class="m-title" id="mmTitle">Send Message</div>
     <div class="m-sub" id="mmSub">Send via the SalesComp agent.</div>
-    <div class="m-chips">
-      <div class="m-chip" onclick="fMsg('Great momentum this week. Keep pushing through Friday.')">Momentum</div>
-      <div class="m-chip" onclick="fMsg('I noticed a gap in follow-ups. Let\\'s tighten that up.')">Follow-up</div>
-      <div class="m-chip" onclick="fMsg('You\\'re 2 deals from target. What do you need from me?')">Target Push</div>
-      <div class="m-chip" onclick="fMsg('Pulse check: how are you feeling about your pipeline?')">Pulse Check</div>
-    </div>
+    <div class="m-chips" id="msgChips"></div>
     <textarea class="m-ta" id="msgTA" placeholder="Type a message or tap a template..."></textarea>
-    <button class="m-send" onclick="sendM()">Send via Agent</button>
+    <button class="m-send" onclick="sendM()" data-i18n="send_via_agent">Send via Agent</button>
   </div>
 </div>
 <div class="toast" id="toast"></div>
+
+<!-- ===== GUIDED TOUR ===== -->
+<div class="tour-welcome on" id="tourWelcome">
+  <div class="tour-welcome-card">
+    <div class="tour-welcome-icon"><img src="assets/salescomp-icon.png" alt="SalesComp"></div>
+    <div class="tour-welcome-title" id="twTitle">Welcome to SalesComp</div>
+    <div class="tour-welcome-sub" id="twSub">Your sales team, scored like athletes. AI-powered coaching for every 1-on-1. Let's show you around.</div>
+    <button class="tour-welcome-start" id="twStart" onclick="tourStart()">Take the Tour</button>
+    <span class="tour-welcome-dismiss" id="twDismiss" onclick="tourEnd()">Skip for now</span>
+  </div>
+</div>
+<div class="tour-overlay" id="tourOverlay">
+  <div class="tour-backdrop" onclick="tourNext()"></div>
+  <div class="tour-spotlight" id="tourSpot"></div>
+  <div class="tour-tooltip" id="tourTip">
+    <div class="tour-step-badge"><div class="tour-dot"></div><span id="tourStepLabel">Step 1 of 6</span></div>
+    <div class="tour-title" id="tourTitle"></div>
+    <div class="tour-desc" id="tourDesc"></div>
+    <div class="tour-actions">
+      <div class="tour-dots" id="tourDots"></div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <span class="tour-skip" onclick="tourEnd()">Skip</span>
+        <button class="tour-next" id="tourNextBtn" onclick="tourNext()">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Bottom Tab Bar -->
 <div class="tbar">
   <div class="tbar-i on" onclick="go('roster')">
     <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-    <span class="tbar-l">Roster</span>
+    <span class="tbar-l" data-i18n="nav_roster">Roster</span>
   </div>
   <div class="tbar-i" onclick="go('matchup')">
     <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
-    <span class="tbar-l">Matchup</span>
+    <span class="tbar-l" data-i18n="nav_matchup">Matchup</span>
   </div>
   <div class="tbar-i" onclick="go('take')">
     <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
-    <span class="tbar-l">The Take</span>
+    <span class="tbar-l" data-i18n="nav_take">The Take</span>
   </div>
 </div>
 
 </div>
 
 <script>
+// ===== i18n SYSTEM =====
+let lang = 'en';
+
+const T = {
+  en: {
+    // Nav
+    nav_roster: 'Roster',
+    nav_matchup: 'Matchup',
+    nav_take: 'The Take',
+
+    // Team Card
+    team_mgr: 'Managed by Fitz Light',
+    team_score: 'Team Score',
+    team_trend: '+5 vs last week',
+    stat_revenue: 'Revenue',
+    stat_to_quota: 'To Quota',
+    stat_pipeline: 'Pipeline',
+    stat_close_rate: 'Close Rate',
+
+    // Roster sections
+    focus_this_week: 'Focus This Week',
+    recent_activity: 'Recent Activity',
+    view_all: 'View All',
+    your_roster: 'Your Roster',
+    sort: 'Sort',
+    score: 'Score',
+    pts: 'pts',
+    deals_wk: 'Deals/Wk',
+
+    // Status badges
+    hot: 'Hot',
+    cold: 'Cold',
+    streak: 'Streak',
+    questionable: 'Questionable',
+
+    // Roles
+    role_closer: 'Closer',
+    role_pipeline_builder: 'Pipeline Builder',
+    role_account_manager: 'Account Manager',
+    role_sdr: 'SDR',
+    role_veteran: 'Veteran',
+
+    // Focus cards
+    focus_tyler: '3-week decline. CRM 3 weeks behind. Needs a direct conversation about standards.',
+    focus_deandra: '3 late-stage deals could push her to 200+. Needs closing support now.',
+
+    // Activity feed
+    activity_marcus: 'closed the Henderson deal for $45K',
+    activity_deandra: 'has 3 deals in late stage that need attention',
+    activity_tyler: 'hasn\'t updated CRM in 5 days',
+    activity_sarah: 'created $62K in new pipeline this week',
+    time_2h: '2h ago',
+    time_4h: '4h ago',
+    time_1d: '1d ago',
+
+    // Matchup
+    mu_label: 'Head to Head',
+    mu_title: 'Weekly Rep Matchup',
+    mu_leads: 'Leads',
+    mu_winning_x_of_y: 'Winning {x} of {y} categories',
+    mu_category_breakdown: 'Category Breakdown',
+    mu_deals_closed: 'Deals Closed',
+    mu_revenue: 'Revenue',
+    mu_pipeline_created: 'Pipeline Created',
+    mu_close_rate: 'Close Rate',
+    mu_overall_score: 'Overall Score',
+    mu_vs: 'VS',
+
+    // The Take
+    tk_title: 'The Take',
+    tk_sub: 'Your 1-on-1 coaching playbook. Built from CRM data, rep feedback, and performance trends.',
+    todays_1on1s: "Today's 1-on-1s",
+    deep_dive: 'Deep Dive',
+    reps_mindset: "Rep's Mindset",
+    self_report_via_agent: 'Self-Report via Agent',
+    coaching_playbook: 'Coaching Playbook',
+    game_plan: 'Game Plan',
+    agent_sms_thread: 'Agent SMS Thread',
+    salescomp_agent: 'SalesComp Agent',
+
+    // Player Card Modal
+    card_overview: 'Overview',
+    card_stats: 'Stats',
+    card_gamelog: 'Game Log',
+    card_coaching: 'Coaching',
+    perf_score_breakdown: 'Performance Score Breakdown',
+    team_avg: 'Team avg',
+    overall_score: 'Overall Score',
+    revenue_30: 'Revenue (30%)',
+    pipeline_25: 'Pipeline (25%)',
+    activity_25: 'Activity (25%)',
+    efficiency_20: 'Efficiency (20%)',
+    skills_assessment: 'Skills Assessment',
+    skill_closing: 'Closing',
+    skill_negotiation: 'Negotiation',
+    skill_relationships: 'Relationships',
+    skill_pipeline_mgmt: 'Pipeline Mgmt',
+    skill_prospecting: 'Prospecting',
+    skill_crm_discipline: 'CRM Discipline',
+    the_take: 'The Take',
+    send_accountability_msg: 'Send Accountability Message',
+    perf_breakdown: 'Performance Breakdown',
+    season_stats: 'Season Stats',
+    q2_projection: 'Q2 Projection',
+    quarter_quota_progress: 'Quarter Quota Progress',
+    current_revenue: 'Current Revenue',
+    quota_target: 'Quota Target',
+    projected_finish: 'Projected Finish',
+    game_log: 'Game Log',
+    gl_week: 'Week',
+    gl_deals: 'Deals',
+    gl_rev: 'Rev',
+    gl_pipe: 'Pipe',
+    gl_score: 'Score',
+    outlook: 'Outlook',
+    coaching_playbook_header: 'Coaching Playbook',
+    one_on_one_prep: '1-on-1 Prep',
+    this_week: 'This Week',
+    avg_score: 'Avg Score',
+    to_quota: 'To Quota',
+    close_rate_label: 'Close Rate',
+    close_pct: 'Close %',
+    remaining: 'remaining',
+    on_target: 'On target',
+    projected: 'Projected',
+    weeks_remaining: 'weeks remaining',
+    on_track: 'On track to exceed quota.',
+    within_striking: 'Within striking distance. Needs a strong close.',
+    at_risk: 'At risk of missing. Intervention recommended.',
+    based_on_rolling: 'Based on {n}-week rolling average.',
+    vs_team: 'vs team',
+    team_colon: 'Team:',
+
+    // Modal
+    send_message: 'Send Message',
+    send_via_agent_desc: 'Send via the SalesComp agent',
+    chip_momentum: 'Momentum',
+    chip_followup: 'Follow-up',
+    chip_target_push: 'Target Push',
+    chip_pulse_check: 'Pulse Check',
+    msg_momentum: 'Great momentum this week. Keep pushing through Friday.',
+    msg_followup: 'I noticed a gap in follow-ups. Let\'s tighten that up.',
+    msg_target_push: 'You\'re 2 deals from target. What do you need from me?',
+    msg_pulse_check: 'Pulse check: how are you feeling about your pipeline?',
+    send_via_agent: 'Send via Agent',
+    message_sent_to: 'Message sent to {name}',
+    message_prefix: 'Message',
+    send_via_desc_prefix: 'Send via the SalesComp agent to',
+
+    // SMS
+    sms_pulse_check_msg: 'Hey {name}, quick pulse check before your Monday 1:1. How are you feeling about your pipeline heading into next week? Anything you want to make sure gets covered?',
+    sms_thanks: 'Thanks for sharing. I\'ve flagged this for your manager. Looking forward to a productive conversation Monday.',
+    sms_date: 'Friday, Apr 11',
+
+    // Agenda topics (per rep, stored in data)
+    // (These are stored directly in the D array and toggled via jp-specific versions below)
+  },
+  jp: {
+    // Nav
+    nav_roster: 'チーム一覧',
+    nav_matchup: 'パフォーマンス比較',
+    nav_take: 'コーチング・インサイト',
+
+    // Team Card
+    team_mgr: 'マネージャー: Fitz Light',
+    team_score: 'チームスコア',
+    team_trend: '先週比 +5',
+    stat_revenue: '売上',
+    stat_to_quota: '目標達成率',
+    stat_pipeline: 'パイプライン',
+    stat_close_rate: '成約率',
+
+    // Roster sections
+    focus_this_week: '今週の注目ポイント',
+    recent_activity: '最近のアクティビティ',
+    view_all: 'すべて表示',
+    your_roster: 'チームメンバー',
+    sort: '並べ替え',
+    score: 'スコア',
+    pts: 'ポイント',
+    deals_wk: '成約/週',
+
+    // Status badges
+    hot: '好調',
+    cold: '不調',
+    streak: '連勝中',
+    questionable: '要注目',
+
+    // Roles
+    role_closer: 'クローザー',
+    role_pipeline_builder: 'パイプライン構築',
+    role_account_manager: 'アカウントマネージャー',
+    role_sdr: 'SDR',
+    role_veteran: 'ベテラン',
+
+    // Focus cards
+    focus_tyler: '3週間の下降傾向。CRM更新が3週間遅れ。基準について率直な対話が必要。',
+    focus_deandra: '最終段階の3件の案件で200超えの可能性。クロージングサポートが必要。',
+
+    // Activity feed
+    activity_marcus: 'ヘンダーソン案件を$45Kで成約',
+    activity_deandra: '最終段階の3件の案件に注目が必要',
+    activity_tyler: '5日間CRM未更新',
+    activity_sarah: '今週$62Kの新規パイプラインを創出',
+    time_2h: '2時間前',
+    time_4h: '4時間前',
+    time_1d: '1日前',
+
+    // Matchup
+    mu_label: '比較分析',
+    mu_title: '週間パフォーマンス比較',
+    mu_leads: 'リード中',
+    mu_winning_x_of_y: '{x} / {y} カテゴリーで上回る',
+    mu_category_breakdown: 'カテゴリー別分析',
+    mu_deals_closed: '成約件数',
+    mu_revenue: '売上',
+    mu_pipeline_created: 'パイプライン創出',
+    mu_close_rate: '成約率',
+    mu_overall_score: '総合スコア',
+    mu_vs: 'VS',
+
+    // The Take
+    tk_title: 'コーチング・インサイト',
+    tk_sub: '1on1ミーティングのための戦略ブリーフ。CRMデータ、担当者フィードバック、パフォーマンストレンドに基づく分析。',
+    todays_1on1s: '本日の1on1ミーティング',
+    deep_dive: '詳細分析',
+    reps_mindset: '担当者の現状認識',
+    self_report_via_agent: 'エージェント経由の自己報告',
+    coaching_playbook: 'コーチング戦略',
+    game_plan: 'アクションプラン',
+    agent_sms_thread: 'エージェントメッセージ',
+    salescomp_agent: 'SalesCompエージェント',
+
+    // Player Card Modal
+    card_overview: '概要',
+    card_stats: '統計',
+    card_gamelog: '実績記録',
+    card_coaching: 'コーチング',
+    perf_score_breakdown: 'パフォーマンススコア内訳',
+    team_avg: 'チーム平均',
+    overall_score: '総合スコア',
+    revenue_30: '売上 (30%)',
+    pipeline_25: 'パイプライン (25%)',
+    activity_25: '活動量 (25%)',
+    efficiency_20: '効率性 (20%)',
+    skills_assessment: 'スキル評価',
+    skill_closing: 'クロージング',
+    skill_negotiation: '交渉力',
+    skill_relationships: '関係構築',
+    skill_pipeline_mgmt: 'パイプライン管理',
+    skill_prospecting: '見込み客開拓',
+    skill_crm_discipline: 'CRM管理',
+    the_take: '分析サマリー',
+    send_accountability_msg: 'フォローアップメッセージを送信',
+    perf_breakdown: 'パフォーマンス詳細',
+    season_stats: '四半期統計',
+    q2_projection: 'Q2 予測',
+    quarter_quota_progress: '四半期目標進捗',
+    current_revenue: '現在の売上',
+    quota_target: '目標額',
+    projected_finish: '予測着地',
+    game_log: '実績記録',
+    gl_week: '週',
+    gl_deals: '成約',
+    gl_rev: '売上',
+    gl_pipe: '案件',
+    gl_score: 'スコア',
+    outlook: '見通し',
+    coaching_playbook_header: 'コーチング戦略',
+    one_on_one_prep: '1on1 準備資料',
+    this_week: '今週',
+    avg_score: '平均スコア',
+    to_quota: '目標達成率',
+    close_rate_label: '成約率',
+    close_pct: '成約率',
+    remaining: '残り',
+    on_target: '目標達成',
+    projected: '予測',
+    weeks_remaining: '週間残り',
+    on_track: '目標超過の見込み。',
+    within_striking: '達成圏内。強い追い込みが必要。',
+    at_risk: '未達のリスクあり。介入を推奨。',
+    based_on_rolling: '直近{n}週間のデータに基づく。',
+    vs_team: 'チーム比',
+    team_colon: 'チーム:',
+
+    // Modal
+    send_message: 'メッセージ送信',
+    send_via_agent_desc: 'SalesCompエージェント経由で送信',
+    chip_momentum: '勢い',
+    chip_followup: 'フォローアップ',
+    chip_target_push: '目標達成',
+    chip_pulse_check: '状況確認',
+    msg_momentum: '今週の勢いは素晴らしいです。金曜日まで引き続きよろしくお願いします。',
+    msg_followup: 'フォローアップに少し間が空いているようです。一緒に見直しましょう。',
+    msg_target_push: '目標まであと2件です。サポートできることはありますか？',
+    msg_pulse_check: '状況確認です。パイプラインの調子はいかがですか？',
+    send_via_agent: 'エージェント経由で送信',
+    message_sent_to: '{name}にメッセージを送信しました',
+    message_prefix: 'メッセージ',
+    send_via_desc_prefix: 'SalesCompエージェント経由で送信:',
+
+    // SMS
+    sms_pulse_check_msg: '{name}さん、月曜の1on1前に簡単な状況確認です。来週に向けてパイプラインの調子はいかがですか？話しておきたいことがあればお聞かせください。',
+    sms_thanks: 'ご報告ありがとうございます。マネージャーに共有しました。月曜日の有意義な対話を楽しみにしています。',
+    sms_date: '4月11日（金）',
+  }
+};
+
+// Skill label mapping for i18n
+const skillLabelMap = {
+  'Closing': 'skill_closing',
+  'Negotiation': 'skill_negotiation',
+  'Relationships': 'skill_relationships',
+  'Pipeline Mgmt': 'skill_pipeline_mgmt',
+  'Prospecting': 'skill_prospecting',
+  'CRM Discipline': 'skill_crm_discipline'
+};
+
+// Role mapping for i18n
+const roleMap = {
+  'Closer': 'role_closer',
+  'Pipeline Builder': 'role_pipeline_builder',
+  'Account Manager': 'role_account_manager',
+  'SDR': 'role_sdr',
+  'Veteran': 'role_veteran'
+};
+
+// Status badge mapping
+const statusMap = {
+  'Hot': 'hot',
+  'Cold': 'cold',
+  'Streak': 'streak',
+  'Questionable': 'questionable'
+};
+
+function t(key, replacements) {
+  let str = T[lang][key] || T['en'][key] || key;
+  if (replacements) {
+    Object.keys(replacements).forEach(k => {
+      str = str.replace('{' + k + '}', replacements[k]);
+    });
+  }
+  return str;
+}
+
+function tRole(role) {
+  return roleMap[role] ? t(roleMap[role]) : role;
+}
+
+function tStatus(st) {
+  return statusMap[st] ? t(statusMap[st]) : st;
+}
+
+function tSkill(label) {
+  return skillLabelMap[label] ? t(skillLabelMap[label]) : label;
+}
+
+function applyStaticI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang][key]) {
+      el.textContent = T[lang][key];
+    }
+  });
+}
+
+function setLang(l) {
+  lang = l;
+  document.documentElement.lang = l === 'jp' ? 'ja' : 'en';
+  // Update toggle UI
+  document.querySelectorAll('.lang-opt').forEach(opt => {
+    opt.classList.toggle('on', opt.getAttribute('data-lang') === l);
+  });
+  // Apply static i18n
+  applyStaticI18n();
+  // Re-render dynamic content
+  renderFocusCards();
+  renderActivityFeed();
+  renderRoster();
+  // Re-render current screen-specific content
+  const activeScr = document.querySelector('.scr.on');
+  if (activeScr && activeScr.id === 'scr-matchup') renderMU();
+  if (activeScr && activeScr.id === 'scr-take') { renderBrief(); renderTK(currentTkIdx || 0); }
+  // Re-render player card if open
+  if (document.getElementById('cardModal').classList.contains('on')) {
+    openCard(cur);
+  }
+}
+
+let currentTkIdx = 0;
+
+// ===== DATA =====
 const D=[
 {id:0,name:'Marcus Thompson',sh:'M. Thompson',f:'Marcus',img:'assets/marcus-thompson.png',role:'Closer',ten:'3yr',co:'Apex Solutions',score:91,avg:84,szn:87,tr:'+8',td:'up',st:'Hot',sc:'b-hot',dot:'var(--green)',sub:'7 deals this week',
 scoreBreakdown:{rev:95,pipe:72,activity:88,efficiency:96},
 stats:{d:7,r:'$142K',p:'$89K',c:'38%'},
 skills:[{l:'Closing',v:92,c:'var(--green)'},{l:'Negotiation',v:88,c:'var(--green)'},{l:'Relationships',v:78,c:'var(--blue)'},{l:'Pipeline Mgmt',v:65,c:'var(--amber)'},{l:'Prospecting',v:48,c:'var(--red)'},{l:'CRM Discipline',v:72,c:'var(--blue)'}],
 take:'Marcus is your <strong>top performer</strong>. Elite close rate and handles pressure situations well. The gap is prospecting volume, 22% below team average. He fills fewer seats at the top of the funnel than anyone but converts at the highest rate. Challenge him to add 5 more outbound touches per week. Model projects +$40-50K incremental revenue this quarter.',
+takeJp:'Marcusはチームの<strong>トップパフォーマー</strong>です。高い成約率で、プレッシャーのある場面でも力を発揮します。課題は見込み客開拓の量で、チーム平均を22%下回っています。ファネルの上部を埋める活動量は最少ですが、コンバージョン率は最高です。週5件のアウトバウンド追加を提案してみましょう。モデル予測では今四半期+$40-50Kの増収が見込めます。',
 outlook:'Projecting a career-best quarter. Three deals in final stages ($87K combined). Expressed interest in enterprise accounts and his data supports the move: 38% close rate on deals over $30K vs 28% team average. Meridian silence is the one watch item.',
+outlookJp:'キャリアベストの四半期を予測。最終段階の3件（合計$87K）。エンタープライズ案件への関心を示しており、データもそれを支持：$30K超の案件で38%の成約率（チーム平均28%）。メリディアンの沈黙が唯一の注意点。',
 fb:{t:'"Feeling really good about Q2. Got 3 deals closing this week. Meridian went dark after the proposal though. Also want to talk about getting more enterprise leads."',time:'Apr 11, 2:14 PM'},
 agenda:[{topic:'1. Open With the Win',d:'Marcus is projecting 3 closes this week ($87K combined). His confidence is high. Start here.',s:'"Walk me through what clicked with Henderson. That was a tough one and you made it look easy."'},{topic:'2. Meridian Silence',d:'Went dark 9 days post-proposal ($45K). Contact opened proposal 3x but hasn\'t responded.',s:'"You mentioned Meridian. I see they\'ve opened your proposal three times. What do you think that tells us?"'},{topic:'3. Enterprise Stretch',d:'He wants bigger deals. Data supports it: 38% close rate on $30K+ vs 28% team avg.',s:'"Your numbers above $30K are stronger than mid-market. Let\'s pick one enterprise account to test."'},{topic:'4. Prospecting Gap',d:'22% below team average on outbound. Layer this in after the wins.',s:'"If we bump your outbound by even 20%, the math says another $40-50K this quarter."'}],
+agendaJp:[{topic:'1. 成功の共有から',d:'今週3件のクロージングを予測（合計$87K）。自信に満ちている。ここから始めましょう。',s:'"ヘンダーソンの案件、見事でした。成功のポイントを教えていただけますか？"'},{topic:'2. メリディアンの状況',d:'提案後9日間の沈黙（$45K）。担当者は提案書を3回開封しているが未返信。',s:'"メリディアンの件ですが、提案書を3回開封されているようです。どう解釈されますか？"'},{topic:'3. エンタープライズへの挑戦',d:'より大きな案件を希望。データも後押し：$30K超で38%の成約率（チーム平均28%）。',s:'"$30K以上の案件での成約率がミッドマーケットより高いですね。一緒にエンタープライズ案件を一つ選んでみましょう。"'},{topic:'4. 見込み客開拓の強化',d:'アウトバウンドがチーム平均を22%下回っている。成功の後にこの話題を。',s:'"アウトバウンドを20%増やすだけで、今四半期さらに$40-50Kの上積みが見込めます。一緒に取り組みましょう。"'}],
 gl:[{w:'Wk 14',d:7,r:'$142K',p:'$89K',s:91},{w:'Wk 13',d:5,r:'$98K',p:'$112K',s:86},{w:'Wk 12',d:6,r:'$118K',p:'$67K',s:88},{w:'Wk 11',d:4,r:'$76K',p:'$95K',s:78},{w:'Wk 10',d:5,r:'$102K',p:'$78K',s:84}]},
 {id:1,name:'Sarah Chen',sh:'S. Chen',f:'Sarah',img:'assets/sarah-chen.png',role:'Pipeline Builder',ten:'2yr',co:'Apex Solutions',score:82,avg:74,szn:76,tr:'+6',td:'up',st:'Streak',sc:'b-str',dot:'var(--amber)',sub:'$178K new pipeline',
 scoreBreakdown:{rev:62,pipe:96,activity:92,efficiency:68},
 stats:{d:3,r:'$48K',p:'$178K',c:'24%'},
 skills:[{l:'Closing',v:55,c:'var(--amber)'},{l:'Negotiation',v:62,c:'var(--amber)'},{l:'Relationships',v:74,c:'var(--blue)'},{l:'Pipeline Mgmt',v:94,c:'var(--green)'},{l:'Prospecting',v:91,c:'var(--green)'},{l:'CRM Discipline',v:88,c:'var(--green)'}],
 take:'Sarah is your <strong>pipeline engine</strong>. She creates more opportunities than anyone and her CRM discipline is best-in-class. The development area is closing. She generates but doesn\'t always finish. Consider pairing her with Marcus on a co-sell for exposure. That approach could accelerate her close skills faster than any training program.',
+takeJp:'Sarahはチームの<strong>パイプラインエンジン</strong>です。誰よりも多くの商談を生み出し、CRM管理は最高水準です。成長課題はクロージング。商談を作るものの完結させきれないことがあります。Marcusとの共同セリングでの経験が、どの研修より早くクロージング力を伸ばすでしょう。',
 outlook:'On a 4-week scoring streak. Pipeline creation is 34% above season average. Close rate improving (18% to 24%) but still below 31% team average. The trajectory is right.',
+outlookJp:'4週連続のスコア上昇中。パイプライン創出はシーズン平均を34%上回る。成約率は改善中（18%から24%）だが、チーム平均31%にはまだ及ばず。方向性は正しい。',
 fb:{t:'"Pipeline is looking strong. I\'m worried about my close rate though. Deals stall when pricing comes up. Can we role play some pricing conversations?"',time:'Apr 11, 3:22 PM'},
 agenda:[{topic:'1. Celebrate the Streak',d:'4-week scoring streak. Pipeline 34% above average.',s:'"$210K in new pipeline this month. That\'s elite. Let\'s talk about how we turn more of that into closed revenue."'},{topic:'2. Pricing Role Play',d:'She flagged pricing as a sticking point. Close rate improving but below team avg.',s:'"Let\'s do a quick role play. I\'ll be the prospect. Hit me with the pricing conversation from the Vertex deal."'},{topic:'3. Co-Sell With Marcus',d:'Pair her with Marcus on a larger deal for closing exposure.',s:'"What if you and Marcus co-sold the Pinnacle account? You build, he closes. You\'d see his process up close."'}],
+agendaJp:[{topic:'1. 成果の承認',d:'4週連続のスコア上昇。パイプライン創出は平均を34%上回る。',s:'"今月$210Kの新規パイプライン、素晴らしい成果です。これをさらに成約に繋げる方法を一緒に考えましょう。"'},{topic:'2. 価格交渉のロールプレイ',d:'価格が課題と本人が認識。成約率は改善中だがチーム平均以下。',s:'"簡単なロールプレイをしましょう。私が見込み客役をやります。Vertexの案件での価格提示を再現してみてください。"'},{topic:'3. Marcusとの共同セリング',d:'より大きな案件でMarcusとペアを組み、クロージングの経験を積む。',s:'"Pinnacleの案件をMarcusと一緒に進めてみてはどうですか？構築はあなた、クロージングはMarcus。近くでプロセスを学べます。"'}],
 gl:[{w:'Wk 14',d:3,r:'$48K',p:'$178K',s:82},{w:'Wk 13',d:2,r:'$31K',p:'$156K',s:76},{w:'Wk 12',d:4,r:'$62K',p:'$142K',s:80},{w:'Wk 11',d:2,r:'$28K',p:'$168K',s:72},{w:'Wk 10',d:3,r:'$44K',p:'$132K',s:70}]},
 {id:2,name:'Jake Rivera',sh:'J. Rivera',f:'Jake',img:'assets/jake-rivera.png',role:'Account Manager',ten:'4yr',co:'Apex Solutions',score:75,avg:72,szn:73,tr:'+3',td:'up',st:null,sc:null,dot:null,sub:'94% account retention',
 scoreBreakdown:{rev:78,pipe:70,activity:72,efficiency:80},
 stats:{d:4,r:'$82K',p:'$65K',c:'32%'},
 skills:[{l:'Closing',v:72,c:'var(--blue)'},{l:'Negotiation',v:70,c:'var(--blue)'},{l:'Relationships',v:85,c:'var(--green)'},{l:'Pipeline Mgmt',v:75,c:'var(--blue)'},{l:'Prospecting',v:68,c:'var(--blue)'},{l:'CRM Discipline',v:80,c:'var(--green)'}],
 take:'Jake is your <strong>steady contributor</strong>. Consistent 168 avg, never has a terrible week, but rarely breaks out either. His ceiling is higher than his output. He\'s coasting on relationship selling and existing accounts. Challenge him with one net-new enterprise pursuit this quarter.',
+takeJp:'Jakeはチームの<strong>安定した貢献者</strong>です。平均168で安定しており、悪い週はないものの、ブレイクスルーも少ない。ポテンシャルは実績を上回っています。既存の関係性と既存顧客に頼る傾向があります。今四半期、一つの新規エンタープライズ案件に挑戦してもらいましょう。',
 outlook:'12 consecutive weeks above 150. Account retention 94%, highest on team. Expansion revenue strong ($120K this quarter). Growth opportunity is new business.',
+outlookJp:'12週連続で150超え。アカウント維持率94%はチーム最高。拡大収益は好調（今四半期$120K）。成長機会は新規ビジネスにあり。',
 fb:{t:'"Solid week. Got the Apex renewal done. Comfortable with my book but wondering about a path to team lead. Can we talk career growth?"',time:'Apr 11, 4:01 PM'},
 agenda:[{topic:'1. The Apex Renewal',d:'Key account closed. 94% retention is best on team.',s:'"The Apex renewal was huge. Walk me through how you handled the pricing pushback."'},{topic:'2. Career Growth',d:'He asked about team lead path. Tenure + relationship skills. Retention conversation.',s:'"What does team lead look like to you? Let me share what I\'d need to see to advocate for that."'},{topic:'3. Push Past Comfortable',d:'12 straight weeks above 150 but zero breakouts. Coasting.',s:'"Your consistency is rare. But your ceiling is higher. What if we targeted one net-new enterprise account?"'}],
+agendaJp:[{topic:'1. Apex更新の成果',d:'主要アカウントの更新完了。94%の維持率はチーム最高。',s:'"Apexの更新、大きな成果です。価格面での交渉をどう乗り越えたか、教えていただけますか？"'},{topic:'2. キャリア成長',d:'チームリーダーへのパスについて質問あり。在籍年数と関係構築力が武器。',s:'"チームリーダーの役割について、どのようなイメージをお持ちですか？私から見て必要なことを共有させてください。"'},{topic:'3. 次のステージへ',d:'12週連続150超えだがブレイクスルーはゼロ。安定圏に留まっている。',s:'"この安定感は素晴らしいです。でも、まだ伸びしろがあると思います。新規エンタープライズ案件を一つ、一緒に狙ってみませんか？"'}],
 gl:[{w:'Wk 14',d:4,r:'$82K',p:'$65K',s:75},{w:'Wk 13',d:4,r:'$78K',p:'$58K',s:73},{w:'Wk 12',d:3,r:'$71K',p:'$72K',s:72},{w:'Wk 11',d:4,r:'$80K',p:'$54K',s:74},{w:'Wk 10',d:3,r:'$68K',p:'$62K',s:70}]},
 {id:3,name:'DeAndra Williams',sh:'D. Williams',f:'DeAndra',img:'assets/deandra-williams.png',role:'SDR',ten:'6mo',co:'Apex Solutions',score:64,avg:52,szn:55,tr:'+12',td:'up',st:'Questionable',sc:'b-q',dot:'var(--amber)',sub:'3 deals in late stage',
 scoreBreakdown:{rev:42,pipe:78,activity:88,efficiency:38},
 stats:{d:2,r:'$24K',p:'$134K',c:'18%'},
 skills:[{l:'Closing',v:42,c:'var(--red)'},{l:'Negotiation',v:38,c:'var(--red)'},{l:'Relationships',v:58,c:'var(--amber)'},{l:'Pipeline Mgmt',v:55,c:'var(--amber)'},{l:'Prospecting',v:85,c:'var(--green)'},{l:'CRM Discipline',v:70,c:'var(--blue)'}],
 take:'DeAndra is your <strong>breakout candidate</strong>. Six months in and trending up 24% week-over-week. Activity volume is elite (85th percentile in prospecting), but she books meetings and struggles past discovery. She needs a framework for the second meeting. Pair her with Marcus for a shadow session. High upside play.',
+takeJp:'DeAndraは<strong>ブレイクアウト候補</strong>です。入社6ヶ月で週次24%の上昇トレンド。活動量はエリート級（見込み客開拓で85パーセンタイル）ですが、商談設定後のディスカバリー段階で詰まっています。2回目の商談のフレームワークが必要です。Marcusのシャドーセッションが有効でしょう。',
 outlook:'Most exciting trajectory on the roster. Went from 92 in Week 8 to 148 this week. 3 deals in late stage could go either way. If they close, she\'s looking at 200+. If they stall, she needs closing support.',
+outlookJp:'チーム内で最も期待できる成長曲線。第8週の92から今週148へ。最終段階の3件の案件はどちらにも転ぶ可能性あり。成約すれば200超え、停滞すればクロージングサポートが必要。',
 fb:{t:'"The closing part is still intimidating. I book tons of meetings but freeze up when it\'s time to ask. Is there a way to shadow Marcus on a close?"',time:'Apr 11, 5:45 PM'},
 agenda:[{topic:'1. Name the Growth',d:'92 to 148 in 6 weeks. That trajectory deserves recognition.',s:'"You\'ve nearly doubled your score in 6 weeks. That\'s not luck. That\'s work. I see it."'},{topic:'2. Close Confidence',d:'She flagged being intimidated. Activity is elite but needs a closing framework.',s:'"Closing isn\'t about being pushy. It\'s about earning the right to ask. Let\'s practice together."'},{topic:'3. Shadow Marcus',d:'She asked for it. High-leverage development play.',s:'"I\'m pairing you with Marcus on his next close. Observe. Then we debrief."'},{topic:'4. The 3 Late-Stage Deals',d:'3 deals that could go either way. Maximum coaching leverage.',s:'"Walk me through each one. What\'s the single thing between each deal and a close?"'}],
+agendaJp:[{topic:'1. 成長の承認',d:'6週間で92から148へ。この軌道は認められるべき。',s:'"6週間でスコアがほぼ倍になりました。これは運ではなく、努力の結果です。私はそれをしっかり見ています。"'},{topic:'2. クロージングへの自信',d:'本人が不安を感じていると報告。活動量はエリート級だがクロージングの型が必要。',s:'"クロージングは信頼の積み重ねです。一緒に練習しましょう。"'},{topic:'3. Marcusのシャドーイング',d:'本人から希望あり。高いレバレッジの育成施策。',s:'"Marcusの次のクロージングに同席してもらいます。観察して、その後一緒に振り返りましょう。"'},{topic:'4. 最終段階の3件',d:'どちらにも転ぶ3件の案件。コーチングの最大レバレッジポイント。',s:'"一件ずつ見ていきましょう。成約までの最大の障壁は何だと思いますか？"'}],
 gl:[{w:'Wk 14',d:2,r:'$24K',p:'$134K',s:64},{w:'Wk 13',d:1,r:'$12K',p:'$118K',s:56},{w:'Wk 12',d:2,r:'$28K',p:'$98K',s:58},{w:'Wk 11',d:1,r:'$15K',p:'$142K',s:50},{w:'Wk 10',d:1,r:'$10K',p:'$108K',s:44}]},
 {id:4,name:'Tyler Brooks',sh:'T. Brooks',f:'Tyler',img:'assets/tyler-brooks.png',role:'Veteran',ten:'7yr',co:'Apex Solutions',score:48,avg:62,szn:58,tr:'-14',td:'down',st:'Cold',sc:'b-cold',dot:'var(--red)',sub:'CRM 3 weeks behind',
 scoreBreakdown:{rev:55,pipe:32,activity:28,efficiency:72},
 stats:{d:2,r:'$38K',p:'$12K',c:'25%'},
 skills:[{l:'Closing',v:68,c:'var(--blue)'},{l:'Negotiation',v:82,c:'var(--green)'},{l:'Relationships',v:90,c:'var(--green)'},{l:'Pipeline Mgmt',v:45,c:'var(--red)'},{l:'Prospecting',v:32,c:'var(--red)'},{l:'CRM Discipline',v:28,c:'var(--red)'}],
 take:'Tyler is on a <strong>3-week decline</strong>. Most tenured rep but numbers are sliding. Relationship and negotiation skills are elite (top 10%), but prospecting, pipeline management, and CRM discipline are in the red. He\'s running on fumes from old relationships. Frame it as "the game has changed" not "you\'re failing."',
+takeJp:'Tylerは<strong>3週連続の下降</strong>にあります。最も在籍年数の長い担当者ですが、数字は下降中。関係構築と交渉力はエリート（上位10%）ですが、見込み客開拓、パイプライン管理、CRM管理が赤信号です。過去の関係性に頼って走っています。「あなたが悪い」ではなく「ゲームが変わった」というフレームで話しましょう。',
 outlook:'At a crossroads. Existing accounts love him (NPS 92) but new business is nearly zero. CRM 3 weeks behind. He offered to mentor DeAndra, keeps him engaged and gives the team value beyond his numbers.',
+outlookJp:'岐路に立っている。既存顧客からの評価は高い（NPS 92）が、新規ビジネスはほぼゼロ。CRMは3週間遅れ。DeAndraのメンタリングを申し出ており、エンゲージメントの維持と数字以外のチームへの価値提供になる。',
 fb:{t:'"I know my numbers aren\'t where they should be. The CRM stuff is busy work. My clients trust me. But I\'m open to hearing what the data says. Happy to mentor the new rep if useful."',time:'Apr 12, 9:15 AM'},
 agenda:[{topic:'1. Acknowledge It Directly',d:'Tyler knows. He said so. Don\'t dance around it. He respects directness.',s:'"You said your numbers aren\'t where they should be. I agree. Let\'s look at why together."'},{topic:'2. CRM Reality',d:'3 weeks behind. Frame as visibility, not compliance.',s:'"When I can\'t see your pipeline, I can\'t go to bat for you on resource decisions. Let\'s get current this week."'},{topic:'3. Mentorship Play',d:'He offered to mentor DeAndra. Take him up on it.',s:'"DeAndra asked to learn from you. Your relationship skills are the best on the team. Would you take her under your wing?"'},{topic:'4. The Standard',d:'3 more weeks of decline means a roster conversation. Be honest.',s:'"I believe in you. But numbers don\'t grade on tenure. I need an uptick in 3 weeks. What do you need from me?"'}],
+agendaJp:[{topic:'1. 率直な対話',d:'Tyler自身が認識している。遠回しにしない。率直さを尊重する人。',s:'"データを一緒に確認して、改善の道筋を考えましょう。率直にお話しさせてください。"'},{topic:'2. CRMの重要性',d:'3週間の遅れ。コンプライアンスではなく「可視性」としてフレーム。',s:'"パイプラインが見えないと、リソース配分であなたのために動くことができません。今週中に追いつきましょう。"'},{topic:'3. メンタリングの提案',d:'DeAndraのメンターを本人から申し出。受け入れましょう。',s:'"DeAndraがあなたから学びたいと言っています。関係構築のスキルはチーム一です。彼女を指導していただけますか？"'},{topic:'4. 期待の明確化',d:'さらに3週間の下降はロスター見直しの対話につながる。正直に。',s:'"あなたの力を信じています。しかし、数字は在籍年数では評価されません。3週間以内の改善を一緒に目指しましょう。必要なサポートは何ですか？"'}],
 gl:[{w:'Wk 14',d:2,r:'$38K',p:'$12K',s:48},{w:'Wk 13',d:2,r:'$42K',p:'$18K',s:54},{w:'Wk 12',d:3,r:'$56K',p:'$22K',s:62},{w:'Wk 11',d:3,r:'$48K',p:'$28K',s:60},{w:'Wk 10',d:3,r:'$52K',p:'$30K',s:64}]}
 ];
 
@@ -716,6 +1200,38 @@ D.forEach(p=>{
 });
 
 let cur=0;
+
+// ===== RENDER FOCUS CARDS =====
+function renderFocusCards() {
+  document.getElementById('focusCards').innerHTML = `
+    <div class="focus-card alert" onclick="openCard(4)">
+      <div class="fc-photo"><img src="assets/tyler-brooks.png"></div>
+      <div class="fc-info">
+        <div class="fc-name">T. Brooks</div>
+        <div class="fc-reason">${t('focus_tyler')}</div>
+      </div>
+      <div class="fc-icon" style="background:var(--red-bg)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+    </div>
+    <div class="focus-card opp" onclick="openCard(3)">
+      <div class="fc-photo"><img src="assets/deandra-williams.png"></div>
+      <div class="fc-info">
+        <div class="fc-name">D. Williams</div>
+        <div class="fc-reason">${t('focus_deandra')}</div>
+      </div>
+      <div class="fc-icon" style="background:var(--green-bg)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></div>
+    </div>
+  `;
+}
+
+// ===== RENDER ACTIVITY FEED =====
+function renderActivityFeed() {
+  document.getElementById('activityFeed').innerHTML = `
+    <div class="feed-item"><div class="feed-dot" style="background:var(--green)"></div><div class="feed-text"><strong>Marcus Thompson</strong> ${t('activity_marcus')}</div><div class="feed-time">${t('time_2h')}</div></div>
+    <div class="feed-item"><div class="feed-dot" style="background:var(--amber)"></div><div class="feed-text"><strong>DeAndra Williams</strong> ${t('activity_deandra')}</div><div class="feed-time">${t('time_4h')}</div></div>
+    <div class="feed-item"><div class="feed-dot" style="background:var(--red)"></div><div class="feed-text"><strong>Tyler Brooks</strong> ${t('activity_tyler')}</div><div class="feed-time">${t('time_1d')}</div></div>
+    <div class="feed-item"><div class="feed-dot" style="background:var(--green)"></div><div class="feed-text"><strong>Sarah Chen</strong> ${t('activity_sarah')}</div><div class="feed-time">${t('time_1d')}</div></div>
+  `;
+}
 
 // ===== RENDER ROSTER =====
 function quotaRingSVG(pct,size,color){
@@ -740,21 +1256,23 @@ function sparkSVG(data){
 function renderRoster(){
   document.getElementById('rosterList').innerHTML=D.map((p,i)=>{
     const qColor=p.qPct>=90?'var(--green)':p.qPct>=70?'var(--amber)':'var(--red)';
+    const roleTxt = tRole(p.role);
+    const statusTxt = p.st ? tStatus(p.st) : null;
     return `<div class="p-row" onclick="openCard(${i})">
       <div class="p-photo"><img src="${p.img}" alt="${p.name}"></div>
       <div class="p-meta">
         <div class="p-name-row">
           <span class="p-name">${p.sh}</span>
-          ${p.st?`<span class="p-badge ${p.sc}">${p.st}</span>`:''}
+          ${statusTxt?`<span class="p-badge ${p.sc}">${statusTxt}</span>`:''}
         </div>
-        <div class="p-sub">${p.role} &middot; ${p.ten} &middot; ${p.qPct}% to quota</div>
+        <div class="p-sub">${roleTxt} &middot; ${p.ten} &middot; ${p.qPct}% ${t('to_quota').toLowerCase()}</div>
       </div>
       <div class="p-nums" style="display:flex;align-items:center;gap:8px;">
         ${sparkSVG(p.spark)}
         <div>
           <div class="p-pts" style="color:${p.score>=80?'var(--green)':p.score>=60?'var(--amber)':'var(--red)'}">${p.score}</div>
-          <div class="p-pts-l">Score</div>
-          <div class="p-trend ${p.td}">${p.tr} pts</div>
+          <div class="p-pts-l">${t('score')}</div>
+          <div class="p-trend ${p.td}">${p.tr} ${t('pts')}</div>
         </div>
       </div>
     </div>`;
@@ -788,7 +1306,7 @@ function radarSVG(skills){
     const lx=cx+R*1.3*Math.cos(angles[i]);
     const ly=cy+R*1.3*Math.sin(angles[i]);
     const anchor=Math.abs(angles[i])<0.1||Math.abs(angles[i]-Math.PI)<0.1?'middle':angles[i]>-Math.PI/2&&angles[i]<Math.PI/2?'start':'end';
-    svg+=`<text x="${lx}" y="${ly}" fill="#999" font-size="11" font-family="Barlow Condensed" font-weight="600" text-anchor="${anchor}" dominant-baseline="central">${s.l}</text>`;
+    svg+=`<text x="${lx}" y="${ly}" fill="#999" font-size="11" font-family="Barlow Condensed" font-weight="600" text-anchor="${anchor}" dominant-baseline="central">${tSkill(s.l)}</text>`;
   });
   svg+=`</svg>`;
   return svg;
@@ -797,14 +1315,17 @@ function radarSVG(skills){
 // ===== PLAYER CARD =====
 function openCard(i){
   cur=i;const p=D[i];
+  const roleTxt = tRole(p.role);
+  const statusTxt = p.st ? tStatus(p.st) : null;
+
   document.getElementById('cmHero').innerHTML=`
     <div class="cm-hero-bg">
       <div class="cm-hero">
         <div class="cm-hero-info">
           <div class="cm-hero-name">${p.name}</div>
-          <div class="cm-hero-role">${p.role} <span>&middot; ${p.ten}</span></div>
+          <div class="cm-hero-role">${roleTxt} <span>&middot; ${p.ten}</span></div>
           <div class="cm-hero-company"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 7v14m6-14v14m6-14v14m6-14v14M3 7l9-4 9 4"/></svg>${p.co}</div>
-          ${p.st?`<div class="cm-hero-badges"><div class="cm-status-badge" style="background:${p.st==='Hot'?'var(--green-bg)':p.st==='Cold'?'var(--red-bg)':'var(--amber-bg)'};color:${p.st==='Hot'?'var(--green)':p.st==='Cold'?'var(--red)':'var(--amber)'};">${p.st}</div></div>`:''}
+          ${statusTxt?`<div class="cm-hero-badges"><div class="cm-status-badge" style="background:${p.st==='Hot'?'var(--green-bg)':p.st==='Cold'?'var(--red-bg)':'var(--amber-bg)'};color:${p.st==='Hot'?'var(--green)':p.st==='Cold'?'var(--red)':'var(--amber)'};">${statusTxt}</div></div>`:''}
         </div>
         <div class="cm-hero-photo"><img src="${p.img}" alt="${p.name}"></div>
       </div>
@@ -814,10 +1335,10 @@ function openCard(i){
   const qColor=p.qPct>=90?'var(--green)':p.qPct>=70?'var(--amber)':'var(--red)';
   document.getElementById('cmQRow').innerHTML=`
     <div class="cm-qrow">
-      <div class="cm-qs"><div class="cm-qs-v" style="color:${p.score>=80?'var(--green)':p.score>=60?'var(--amber)':'var(--red)'}">${p.score}</div><div class="cm-qs-l">This Week</div><div class="cm-qs-d ${p.td}">${p.tr} pts</div></div>
-      <div class="cm-qs"><div class="cm-qs-v">${p.avg}</div><div class="cm-qs-l">Avg Score</div><div class="cm-qs-d" style="color:var(--t3)">Team: 68</div></div>
-      <div class="cm-qs"><div class="cm-qs-v">${p.qPct}%</div><div class="cm-qs-l">To Quota</div><div class="cm-qs-d" style="color:${qColor}">${p.qPct>=100?'On target':'$'+(Math.round((p.quota-p.qActual)/1000))+'K remaining'}</div></div>
-      <div class="cm-qs"><div class="cm-qs-v">${p.stats.c}</div><div class="cm-qs-l">Close Rate</div></div>
+      <div class="cm-qs"><div class="cm-qs-v" style="color:${p.score>=80?'var(--green)':p.score>=60?'var(--amber)':'var(--red)'}">${p.score}</div><div class="cm-qs-l">${t('this_week')}</div><div class="cm-qs-d ${p.td}">${p.tr} ${t('pts')}</div></div>
+      <div class="cm-qs"><div class="cm-qs-v">${p.avg}</div><div class="cm-qs-l">${t('avg_score')}</div><div class="cm-qs-d" style="color:var(--t3)">${t('team_colon')} 68</div></div>
+      <div class="cm-qs"><div class="cm-qs-v">${p.qPct}%</div><div class="cm-qs-l">${t('to_quota')}</div><div class="cm-qs-d" style="color:${qColor}">${p.qPct>=100?t('on_target'):'$'+(Math.round((p.quota-p.qActual)/1000))+'K '+t('remaining')}</div></div>
+      <div class="cm-qs"><div class="cm-qs-v">${p.stats.c}</div><div class="cm-qs-l">${t('close_rate_label')}</div></div>
     </div>
   `;
 
@@ -825,13 +1346,13 @@ function openCard(i){
   document.getElementById('cmStatusBar').innerHTML=`
     <div style="margin:12px 16px;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-        <span style="font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;">Quarter Quota Progress</span>
+        <span style="font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;">${t('quarter_quota_progress')}</span>
         <span style="font-size:12px;font-weight:700;color:${qColor}">$${Math.round(p.qActual/1000)}K / $${Math.round(p.quota/1000)}K</span>
       </div>
       <div class="proj-bar-bg"><div class="proj-bar-fill" style="width:${Math.min(p.qPct,100)}%;background:${qColor};"></div></div>
       <div style="display:flex;justify-content:space-between;margin-top:4px;">
-        <span style="font-size:10px;color:var(--t4);">Projected: $${Math.round(p.qProj/1000)}K (${p.qProjPct}%)</span>
-        <span style="font-size:10px;color:var(--t4);">6 weeks remaining</span>
+        <span style="font-size:10px;color:var(--t4);">${t('projected')}: $${Math.round(p.qProj/1000)}K (${p.qProjPct}%)</span>
+        <span style="font-size:10px;color:var(--t4);">6 ${t('weeks_remaining')}</span>
       </div>
     </div>
   `;
@@ -840,50 +1361,52 @@ function openCard(i){
   const sb=p.scoreBreakdown;
   const sColor=v=>v>=80?'var(--green)':v>=60?'var(--amber)':'var(--red)';
   document.getElementById('cpRadar').innerHTML=`
-    <div class="sh"><div class="sh-t">Performance Score Breakdown</div><div class="sh-a">Team avg: 68</div></div>
+    <div class="sh"><div class="sh-t">${t('perf_score_breakdown')}</div><div class="sh-a">${t('team_avg')}: 68</div></div>
     <div style="margin:0 16px 16px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;">
       <div style="text-align:center;margin-bottom:14px;">
         <div style="font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:900;color:${sColor(p.score)};line-height:1;">${p.score}</div>
-        <div style="font-size:11px;color:var(--t3);margin-top:4px;text-transform:uppercase;letter-spacing:1px;">Overall Score</div>
+        <div style="font-size:11px;color:var(--t3);margin-top:4px;text-transform:uppercase;letter-spacing:1px;">${t('overall_score')}</div>
       </div>
       <div class="sk-list" style="padding:0;">
-        <div class="sk-row"><div class="sk-lbl">Revenue (30%)</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.rev}%;background:${sColor(sb.rev)}"></div></div><div class="sk-val" style="color:${sColor(sb.rev)}">${sb.rev}</div></div>
-        <div class="sk-row"><div class="sk-lbl">Pipeline (25%)</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.pipe}%;background:${sColor(sb.pipe)}"></div></div><div class="sk-val" style="color:${sColor(sb.pipe)}">${sb.pipe}</div></div>
-        <div class="sk-row"><div class="sk-lbl">Activity (25%)</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.activity}%;background:${sColor(sb.activity)}"></div></div><div class="sk-val" style="color:${sColor(sb.activity)}">${sb.activity}</div></div>
-        <div class="sk-row"><div class="sk-lbl">Efficiency (20%)</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.efficiency}%;background:${sColor(sb.efficiency)}"></div></div><div class="sk-val" style="color:${sColor(sb.efficiency)}">${sb.efficiency}</div></div>
+        <div class="sk-row"><div class="sk-lbl">${t('revenue_30')}</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.rev}%;background:${sColor(sb.rev)}"></div></div><div class="sk-val" style="color:${sColor(sb.rev)}">${sb.rev}</div></div>
+        <div class="sk-row"><div class="sk-lbl">${t('pipeline_25')}</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.pipe}%;background:${sColor(sb.pipe)}"></div></div><div class="sk-val" style="color:${sColor(sb.pipe)}">${sb.pipe}</div></div>
+        <div class="sk-row"><div class="sk-lbl">${t('activity_25')}</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.activity}%;background:${sColor(sb.activity)}"></div></div><div class="sk-val" style="color:${sColor(sb.activity)}">${sb.activity}</div></div>
+        <div class="sk-row"><div class="sk-lbl">${t('efficiency_20')}</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.efficiency}%;background:${sColor(sb.efficiency)}"></div></div><div class="sk-val" style="color:${sColor(sb.efficiency)}">${sb.efficiency}</div></div>
       </div>
     </div>
     <div class="radar-wrap">
-      <div class="radar-title">Skills Assessment</div>
+      <div class="radar-title">${t('skills_assessment')}</div>
       ${radarSVG(p.skills)}
     </div>
   `;
+
+  const takeText = lang === 'jp' ? p.takeJp : p.take;
   document.getElementById('cpTake').innerHTML=`
     <div class="take-box">
       <div class="take-box-hdr">
         <div class="take-box-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div>
-        <div class="take-box-lbl">The Take</div>
+        <div class="take-box-lbl">${t('the_take')}</div>
       </div>
-      <div class="take-box-body"><div class="take-box-txt">${p.take}</div></div>
+      <div class="take-box-body"><div class="take-box-txt">${takeText}</div></div>
     </div>
   `;
   document.getElementById('cpCta').innerHTML=`
-    <button class="cta-btn" onclick="openMsg(${i})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>Send Accountability Message</button>
+    <button class="cta-btn" onclick="openMsg(${i})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>${t('send_accountability_msg')}</button>
   `;
 
   // Stats: skill bars with team avg
   const teamAvg={Closing:66,Negotiation:68,Relationships:77,'Pipeline Mgmt':67,Prospecting:65,'CRM Discipline':68};
   document.getElementById('cpSkills').innerHTML=`
-    <div class="sh"><div class="sh-t">Performance Breakdown</div></div>
+    <div class="sh"><div class="sh-t">${t('perf_breakdown')}</div></div>
     <div class="sk-list">${p.skills.map(s=>{
       const avg=teamAvg[s.l]||65;
       const diff=s.v-avg;
-      const diffLabel=diff>0?`+${diff} vs team`:`${diff} vs team`;
+      const diffLabel=diff>0?`+${diff} ${t('vs_team')}`:`${diff} ${t('vs_team')}`;
       return `<div class="sk-row">
-        <div class="sk-lbl">${s.l}</div>
+        <div class="sk-lbl">${tSkill(s.l)}</div>
         <div class="sk-trk" style="position:relative;">
           <div class="sk-fill" style="width:${s.v}%;background:${s.c}"></div>
-          <div style="position:absolute;left:${avg}%;top:-2px;width:2px;height:9px;background:var(--t3);border-radius:1px;" title="Team avg: ${avg}"></div>
+          <div style="position:absolute;left:${avg}%;top:-2px;width:2px;height:9px;background:var(--t3);border-radius:1px;" title="${t('team_avg')}: ${avg}"></div>
         </div>
         <div style="text-align:right;flex-shrink:0;min-width:55px;">
           <div class="sk-val" style="color:${s.c};display:inline;">${s.v}</div>
@@ -891,44 +1414,46 @@ function openCard(i){
         </div>
       </div>`;
     }).join('')}</div>
-    <div class="sh"><div class="sh-t">Season Stats</div></div>
+    <div class="sh"><div class="sh-t">${t('season_stats')}</div></div>
     <div class="cm-qrow" style="margin-bottom:16px;">
-      <div class="cm-qs"><div class="cm-qs-v">${p.stats.d}</div><div class="cm-qs-l">Deals/Wk</div></div>
-      <div class="cm-qs"><div class="cm-qs-v">${p.stats.r}</div><div class="cm-qs-l">Revenue</div></div>
-      <div class="cm-qs"><div class="cm-qs-v">${p.stats.p}</div><div class="cm-qs-l">Pipeline</div></div>
-      <div class="cm-qs"><div class="cm-qs-v">${p.stats.c}</div><div class="cm-qs-l">Close %</div></div>
+      <div class="cm-qs"><div class="cm-qs-v">${p.stats.d}</div><div class="cm-qs-l">${t('deals_wk')}</div></div>
+      <div class="cm-qs"><div class="cm-qs-v">${p.stats.r}</div><div class="cm-qs-l">${t('stat_revenue')}</div></div>
+      <div class="cm-qs"><div class="cm-qs-v">${p.stats.p}</div><div class="cm-qs-l">${t('stat_pipeline')}</div></div>
+      <div class="cm-qs"><div class="cm-qs-v">${p.stats.c}</div><div class="cm-qs-l">${t('close_pct')}</div></div>
     </div>
-    <div class="sh"><div class="sh-t">Q2 Projection</div></div>
+    <div class="sh"><div class="sh-t">${t('q2_projection')}</div></div>
     <div class="proj-box">
-      <div class="proj-row"><div class="proj-label">Current Revenue</div><div class="proj-val">$${Math.round(p.qActual/1000)}K</div></div>
-      <div class="proj-row"><div class="proj-label">Quota Target</div><div class="proj-val">$${Math.round(p.quota/1000)}K</div></div>
-      <div class="proj-row"><div class="proj-label">Projected Finish</div><div class="proj-val" style="color:${p.qProjPct>=100?'var(--green)':p.qProjPct>=85?'var(--amber)':'var(--red)'}">$${Math.round(p.qProj/1000)}K (${p.qProjPct}%)</div></div>
+      <div class="proj-row"><div class="proj-label">${t('current_revenue')}</div><div class="proj-val">$${Math.round(p.qActual/1000)}K</div></div>
+      <div class="proj-row"><div class="proj-label">${t('quota_target')}</div><div class="proj-val">$${Math.round(p.quota/1000)}K</div></div>
+      <div class="proj-row"><div class="proj-label">${t('projected_finish')}</div><div class="proj-val" style="color:${p.qProjPct>=100?'var(--green)':p.qProjPct>=85?'var(--amber)':'var(--red)'}">$${Math.round(p.qProj/1000)}K (${p.qProjPct}%)</div></div>
       <div class="proj-bar-bg"><div class="proj-bar-fill" style="width:${Math.min(p.qProjPct,100)}%;background:${p.qProjPct>=100?'var(--green)':p.qProjPct>=85?'var(--amber)':'var(--red)'}"></div></div>
-      <div style="font-size:11px;color:var(--t3);margin-top:8px;line-height:1.5;">Based on ${p.gl.length}-week rolling average. ${p.qProjPct>=100?'On track to exceed quota.':p.qProjPct>=85?'Within striking distance. Needs a strong close.':'At risk of missing. Intervention recommended.'}</div>
+      <div style="font-size:11px;color:var(--t3);margin-top:8px;line-height:1.5;">${t('based_on_rolling', {n: p.gl.length})} ${p.qProjPct>=100?t('on_track'):p.qProjPct>=85?t('within_striking'):t('at_risk')}</div>
     </div>
   `;
 
   // Gamelog
   document.getElementById('cpGamelog').innerHTML=`
-    <div class="sh"><div class="sh-t">Game Log</div></div>
+    <div class="sh"><div class="sh-t">${t('game_log')}</div></div>
     <div class="gl-table">
-      <div class="gl-h"><span>Week</span><span>Deals</span><span>Rev</span><span>Pipe</span><span>Score</span></div>
+      <div class="gl-h"><span>${t('gl_week')}</span><span>${t('gl_deals')}</span><span>${t('gl_rev')}</span><span>${t('gl_pipe')}</span><span>${t('gl_score')}</span></div>
       ${p.gl.map(g=>`<div class="gl-r"><span>${g.w}</span><span>${g.d}</span><span>${g.r}</span><span>${g.p}</span><span>${g.s}</span></div>`).join('')}
     </div>
   `;
 
   // Coaching
+  const outlookText = lang === 'jp' ? p.outlookJp : p.outlook;
+  const agendaItems = lang === 'jp' ? p.agendaJp : p.agenda;
   document.getElementById('cpOutlook').innerHTML=`
-    <div class="sh"><div class="sh-t">Outlook</div></div>
-    <div class="outlook"><div class="outlook-txt">${p.outlook}</div></div>
+    <div class="sh"><div class="sh-t">${t('outlook')}</div></div>
+    <div class="outlook"><div class="outlook-txt">${outlookText}</div></div>
   `;
   document.getElementById('cpAgenda').innerHTML=`
-    <div class="sh"><div class="sh-t">Coaching Playbook</div></div>
+    <div class="sh"><div class="sh-t">${t('coaching_playbook_header')}</div></div>
     <div class="ag-card">
-      <div class="ag-hdr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg><div class="ag-title">1-on-1 Prep: ${p.f}</div></div>
-      ${p.agenda.map(a=>`<div class="ag-item"><div class="ag-topic">${a.topic}</div><div class="ag-detail">${a.d}</div><div class="ag-say">${a.s}</div></div>`).join('')}
+      <div class="ag-hdr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg><div class="ag-title">${t('one_on_one_prep')}: ${p.f}</div></div>
+      ${agendaItems.map(a=>`<div class="ag-item"><div class="ag-topic">${a.topic}</div><div class="ag-detail">${a.d}</div><div class="ag-say">${a.s}</div></div>`).join('')}
     </div>
-    <button class="cta-btn" onclick="openMsg(${i})" style="margin-bottom:20px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>Message ${p.f}</button>
+    <button class="cta-btn" onclick="openMsg(${i})" style="margin-bottom:20px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>${t('message_prefix')} ${p.f}</button>
   `;
 
   cPanel('overview');
@@ -963,27 +1488,29 @@ function setMU(a,b,el){
   document.querySelectorAll('.mu-pill').forEach(p=>p.classList.remove('on'));
   if(el)el.classList.add('on');
 
+  const catLabels = [t('mu_deals_closed'), t('mu_revenue'), t('mu_pipeline_created'), t('mu_close_rate'), t('mu_overall_score')];
   const cats=[
-    {l:'Deals Closed',vA:pA.stats.d,vB:pB.stats.d},
-    {l:'Revenue',vA:pA.stats.r,vB:pB.stats.r},
-    {l:'Pipeline Created',vA:pA.stats.p,vB:pB.stats.p},
-    {l:'Close Rate',vA:pA.stats.c,vB:pB.stats.c},
-    {l:'Overall Score',vA:pA.score,vB:pB.score}
+    {l:catLabels[0],vA:pA.stats.d,vB:pB.stats.d},
+    {l:catLabels[1],vA:pA.stats.r,vB:pB.stats.r},
+    {l:catLabels[2],vA:pA.stats.p,vB:pB.stats.p},
+    {l:catLabels[3],vA:pA.stats.c,vB:pB.stats.c},
+    {l:catLabels[4],vA:pA.score,vB:pB.score}
   ];
   const pv=v=>typeof v==='string'?parseFloat(v.replace(/[$K%,]/g,'')):v;
   const aW=pA.score>pB.score;
+  const winCount = cats.filter(c=>{const vA2=pv(c.vA),vB2=pv(c.vB);return aW?vA2>vB2:vB2>vA2;}).length;
 
   document.getElementById('muContent').innerHTML=`
     <div class="mu-vs">
       <div class="mu-side">
         <div class="mu-side-photo"><img src="${pA.img}"></div>
         <div class="mu-side-name">${pA.sh}</div>
-        <div class="mu-side-role">${pA.role}</div>
+        <div class="mu-side-role">${tRole(pA.role)}</div>
       </div>
       <div class="mu-center">
         <div class="mu-sc-row">
           <div class="mu-sc ${aW?'win':'lose'}">${pA.score}</div>
-          <div class="mu-vs-txt">VS</div>
+          <div class="mu-vs-txt">${t('mu_vs')}</div>
           <div class="mu-sc ${!aW?'win':'lose'}">${pB.score}</div>
         </div>
         <div class="mu-winner-bar" style="background:${aW?'var(--green)':'var(--red)'};"></div>
@@ -991,17 +1518,17 @@ function setMU(a,b,el){
       <div class="mu-side">
         <div class="mu-side-photo"><img src="${pB.img}"></div>
         <div class="mu-side-name">${pB.sh}</div>
-        <div class="mu-side-role">${pB.role}</div>
+        <div class="mu-side-role">${tRole(pB.role)}</div>
       </div>
     </div>
     <div class="mu-winner">
       <div class="mu-winner-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8m-4-4v4m-5.2-4h10.4c1.7 0 2.5 0 3.1-.3a3 3 0 001.3-1.3c.4-.6.4-1.4.4-3.1V7.8c0-1.7 0-2.5-.3-3.1a3 3 0 00-1.3-1.3C16.7 3 15.9 3 14.2 3H9.8c-1.7 0-2.5 0-3.1.3a3 3 0 00-1.3 1.3C5 5.3 5 6.1 5 7.8v4.4c0 1.7 0 2.5.3 3.1.3.6.7 1 1.3 1.3.6.4 1.4.4 3.1.4z"/></svg></div>
       <div class="mu-winner-info">
-        <div class="mu-winner-name">${aW?pA.sh:pB.sh} Leads</div>
-        <div class="mu-winner-sub">Winning ${cats.filter(c=>{const vA2=pv(c.vA),vB2=pv(c.vB);return aW?vA2>vB2:vB2>vA2;}).length} of ${cats.length} categories</div>
+        <div class="mu-winner-name">${aW?pA.sh:pB.sh} ${t('mu_leads')}</div>
+        <div class="mu-winner-sub">${t('mu_winning_x_of_y', {x: winCount, y: cats.length})}</div>
       </div>
     </div>
-    <div class="sh"><div class="sh-t">Category Breakdown</div></div>
+    <div class="sh"><div class="sh-t">${t('mu_category_breakdown')}</div></div>
     <div class="mu-cats">
       ${cats.map(c=>{
         const vA=pv(c.vA),vB=pv(c.vB);
@@ -1025,6 +1552,7 @@ function setMU(a,b,el){
 
 // ===== THE TAKE =====
 function renderTK(idx){
+  currentTkIdx = idx;
   const p=D[idx];
   document.getElementById('tkPills').innerHTML=D.map((pl,i)=>`
     <div class="tk-pill ${i===idx?'on':''}" onclick="renderTK(${i})">
@@ -1033,28 +1561,33 @@ function renderTK(idx){
     </div>
   `).join('');
 
+  const agendaItems = lang === 'jp' ? p.agendaJp : p.agenda;
+  const smsMsg = t('sms_pulse_check_msg', {name: p.f});
+  const smsReply = p.fb.t.replace(/"/g,'');
+  const smsThanks = t('sms_thanks');
+
   document.getElementById('tkContent').innerHTML=`
-    <div class="sh"><div class="sh-t">Rep's Mindset</div></div>
+    <div class="sh"><div class="sh-t">${t('reps_mindset')}</div></div>
     <div class="fb-card">
-      <div class="fb-hdr"><div class="fb-lbl">Self-Report via Agent</div><div class="fb-time">${p.fb.time}</div></div>
+      <div class="fb-hdr"><div class="fb-lbl">${t('self_report_via_agent')}</div><div class="fb-time">${p.fb.time}</div></div>
       <div class="fb-body"><div class="fb-txt">${p.fb.t}</div></div>
     </div>
-    <div class="sh"><div class="sh-t">Coaching Playbook</div></div>
+    <div class="sh"><div class="sh-t">${t('coaching_playbook')}</div></div>
     <div class="ag-card">
-      <div class="ag-hdr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg><div class="ag-title">Game Plan: ${p.f}</div></div>
-      ${p.agenda.map(a=>`<div class="ag-item"><div class="ag-topic">${a.topic}</div><div class="ag-detail">${a.d}</div><div class="ag-say">${a.s}</div></div>`).join('')}
+      <div class="ag-hdr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg><div class="ag-title">${t('game_plan')}: ${p.f}</div></div>
+      ${agendaItems.map(a=>`<div class="ag-item"><div class="ag-topic">${a.topic}</div><div class="ag-detail">${a.d}</div><div class="ag-say">${a.s}</div></div>`).join('')}
     </div>
-    <div class="sh"><div class="sh-t">Agent SMS Thread</div></div>
+    <div class="sh"><div class="sh-t">${t('agent_sms_thread')}</div></div>
     <div class="sms-card">
-      <div class="sms-hdr">SalesComp Agent &harr; ${p.f}</div>
+      <div class="sms-hdr">${t('salescomp_agent')} &harr; ${p.f}</div>
       <div class="sms-thread">
-        <div class="sms-time">Friday, Apr 11</div>
-        <div class="sms-bubble sms-out">Hey ${p.f}, quick pulse check before your Monday 1:1. How are you feeling about your pipeline heading into next week? Anything you want to make sure gets covered?</div>
-        <div class="sms-bubble sms-in">${p.fb.t.replace(/"/g,'')}</div>
-        <div class="sms-bubble sms-out">Thanks for sharing. I've flagged this for your manager. Looking forward to a productive conversation Monday.</div>
+        <div class="sms-time">${t('sms_date')}</div>
+        <div class="sms-bubble sms-out">${smsMsg}</div>
+        <div class="sms-bubble sms-in">${smsReply}</div>
+        <div class="sms-bubble sms-out">${smsThanks}</div>
       </div>
     </div>
-    <button class="cta-btn" onclick="openMsg(${idx})" style="margin-bottom:20px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>Message ${p.f}</button>
+    <button class="cta-btn" onclick="openMsg(${idx})" style="margin-bottom:20px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>${t('message_prefix')} ${p.f}</button>
   `;
 }
 
@@ -1073,20 +1606,30 @@ function go(id){
 }
 
 // ===== MODAL =====
+function renderMsgChips() {
+  document.getElementById('msgChips').innerHTML = `
+    <div class="m-chip" onclick="fMsg('${lang==='jp'?T.jp.msg_momentum:T.en.msg_momentum}')">${t('chip_momentum')}</div>
+    <div class="m-chip" onclick="fMsg('${lang==='jp'?T.jp.msg_followup:T.en.msg_followup}')">${t('chip_followup')}</div>
+    <div class="m-chip" onclick="fMsg('${lang==='jp'?T.jp.msg_target_push:T.en.msg_target_push}')">${t('chip_target_push')}</div>
+    <div class="m-chip" onclick="fMsg('${lang==='jp'?T.jp.msg_pulse_check:T.en.msg_pulse_check}')">${t('chip_pulse_check')}</div>
+  `;
+}
+
 function openMsg(i){
   cur=i;const p=D[i];
-  document.getElementById('mmTitle').textContent='Message '+p.f;
-  document.getElementById('mmSub').textContent='Send via the SalesComp agent to '+p.name+'.';
+  document.getElementById('mmTitle').textContent=t('message_prefix')+' '+p.f;
+  document.getElementById('mmSub').textContent=t('send_via_desc_prefix')+' '+p.name+'.';
   document.getElementById('msgTA').value='';
+  renderMsgChips();
   document.getElementById('msgModal').classList.add('on');
 }
-function fMsg(t){document.getElementById('msgTA').value=t;}
+function fMsg(txt){document.getElementById('msgTA').value=txt;}
 function sendM(){
   document.getElementById('msgModal').classList.remove('on');
-  const t=document.getElementById('toast');
-  t.textContent='Message sent to '+D[cur].f;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2200);
+  const toastEl=document.getElementById('toast');
+  toastEl.textContent=t('message_sent_to', {name: D[cur].f});
+  toastEl.classList.add('show');
+  setTimeout(()=>toastEl.classList.remove('show'),2200);
 }
 document.getElementById('msgModal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
 
@@ -1096,24 +1639,197 @@ function renderBrief(){
   if(!el)return;
   el.innerHTML=D.map((p,i)=>{
     const qColor=p.qPct>=90?'var(--green)':p.qPct>=70?'var(--amber)':'var(--red)';
+    const agendaItems = lang === 'jp' ? p.agendaJp : p.agenda;
     return `<div class="brief-card" onclick="renderTK(${i})">
       <div class="brief-top">
         <div class="brief-photo"><img src="${p.img}"></div>
         <div class="brief-info">
           <div class="brief-name">${p.sh}</div>
-          <div class="brief-time">${p.meetTime} &middot; ${p.role}</div>
+          <div class="brief-time">${p.meetTime} &middot; ${tRole(p.role)}</div>
         </div>
         <div class="brief-quota">${quotaRingSVG(p.qPct,36,qColor)}</div>
       </div>
       <div class="brief-bottom">
-        <div class="brief-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>${p.agenda[0]?p.agenda[0].topic:''}</div>
+        <div class="brief-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>${agendaItems[0]?agendaItems[0].topic:''}</div>
       </div>
     </div>`;
   }).join('');
 }
 
+// ===== GUIDED TOUR =====
+const tourSteps = {
+  en: [
+    { target: '.team-card', title: 'Your Team at a Glance', desc: 'Revenue, pipeline, quota progress, and close rate. One card tells you if your team is winning or falling behind.', arrow: 'top', tab: 'roster' },
+    { target: '.focus-cards', title: 'AI-Powered Focus Alerts', desc: 'Every Monday, the AI flags who needs your attention and why. Red means intervention. Green means opportunity. No more guessing.', arrow: 'top', tab: 'roster' },
+    { target: '#rosterList', title: 'Your Roster, Scored Like Athletes', desc: 'Every rep gets a weekly performance score based on revenue, pipeline, activity, and efficiency. Sparklines show their trend. Tap any rep for the full scouting report.', arrow: 'top', tab: 'roster' },
+    { target: '.mu-banner', title: 'Head-to-Head Matchups', desc: 'Compare any two reps across every category. Drives healthy competition and makes performance gaps visible at a glance.', arrow: 'top', tab: 'matchup' },
+    { target: '#briefCards', title: 'Monday Morning Prep', desc: 'Your 1-on-1 schedule with each rep\'s top coaching priority. Tap any card to see the full playbook, including exactly what to say.', arrow: 'top', tab: 'take' },
+    { target: '.tk-hdr', title: 'The Coaching Playbook', desc: 'AI writes your 1-on-1 agenda, talking points, and scripts from CRM data and rep self-reports. Walk into every meeting prepared.', arrow: 'top', tab: 'take' }
+  ],
+  jp: [
+    { target: '.team-card', title: 'チーム概況', desc: '売上、パイプライン、目標達成率、成約率。一つのカードでチームの状況が一目で分かります。', arrow: 'top', tab: 'roster' },
+    { target: '.focus-cards', title: 'AI注目アラート', desc: '毎週月曜日、AIが注目すべき担当者とその理由を提示します。赤は要介入、緑は機会。もう推測は不要です。', arrow: 'top', tab: 'roster' },
+    { target: '#rosterList', title: 'スコア化されたチーム一覧', desc: '各担当者は売上・パイプライン・活動量・効率性に基づく週間スコアで評価されます。スパークラインでトレンドを表示。タップで詳細レポートへ。', arrow: 'top', tab: 'roster' },
+    { target: '.mu-banner', title: 'パフォーマンス比較', desc: '任意の2名を全カテゴリーで比較。健全な競争意識を促進し、パフォーマンスの差を可視化します。', arrow: 'top', tab: 'matchup' },
+    { target: '#briefCards', title: '月曜ミーティング準備', desc: '各担当者との1on1スケジュールと最優先のコーチングポイント。カードをタップすると、具体的な会話スクリプトを含む完全なプレイブックが表示されます。', arrow: 'top', tab: 'take' },
+    { target: '.tk-hdr', title: 'コーチング・プレイブック', desc: 'AIがCRMデータと担当者の自己報告から1on1のアジェンダ、論点、スクリプトを自動作成。すべてのミーティングに万全の準備で臨めます。', arrow: 'top', tab: 'take' }
+  ]
+};
+
+const tourWelcomeText = {
+  en: { title: 'Welcome to SalesComp', sub: 'Your sales team, scored like athletes. AI-powered coaching for every 1-on-1. Let\'s show you around.', start: 'Take the Tour', dismiss: 'Skip for now' },
+  jp: { title: 'SalesCompへようこそ', sub: '営業チームをアスリートのようにスコア化。AIが全ての1on1をサポートします。機能をご紹介します。', start: 'ツアーを開始', dismiss: 'スキップ' }
+};
+
+let tourIdx = -1;
+let tourActive = false;
+
+function tourUpdateWelcomeText() {
+  const tw = tourWelcomeText[lang];
+  document.getElementById('twTitle').textContent = tw.title;
+  document.getElementById('twSub').textContent = tw.sub;
+  document.getElementById('twStart').textContent = tw.start;
+  document.getElementById('twDismiss').textContent = tw.dismiss;
+}
+
+function tourStart() {
+  document.getElementById('tourWelcome').classList.remove('on');
+  document.getElementById('tourOverlay').classList.add('on');
+  tourActive = true;
+  tourIdx = 0;
+  tourShow();
+}
+
+function tourShow() {
+  const steps = tourSteps[lang];
+  if (tourIdx >= steps.length) { tourEnd(); return; }
+  const step = steps[tourIdx];
+
+  // Switch to the right tab if needed
+  if (step.tab) {
+    go(step.tab);
+    // Small delay to let content render
+    setTimeout(() => tourPosition(step, steps), 80);
+  } else {
+    tourPosition(step, steps);
+  }
+}
+
+function tourPosition(step, steps) {
+  const el = document.querySelector(step.target);
+  if (!el) { tourIdx++; tourShow(); return; }
+
+  // Scroll element to top of viewport first, then position
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  setTimeout(() => {
+    const rect = el.getBoundingClientRect();
+    const spot = document.getElementById('tourSpot');
+    const tip = document.getElementById('tourTip');
+    const pad = 8;
+
+    // Cap spotlight height so tall elements (like roster list) don't take up the whole screen
+    const maxSpotH = Math.min(rect.height, window.innerHeight * 0.35);
+
+    spot.style.top = (rect.top - pad) + 'px';
+    spot.style.left = (rect.left - pad) + 'px';
+    spot.style.width = (rect.width + pad * 2) + 'px';
+    spot.style.height = (maxSpotH + pad * 2) + 'px';
+
+    // Use the capped rect for tooltip positioning
+    const spotRect = { top: rect.top, left: rect.left, right: rect.right, width: rect.width, bottom: rect.top + maxSpotH, height: maxSpotH };
+    positionTooltip(spotRect, tip, step);
+  }, 350);
+
+  // Content
+  document.getElementById('tourTitle').textContent = step.title;
+  document.getElementById('tourDesc').textContent = step.desc;
+  document.getElementById('tourStepLabel').textContent = lang === 'jp' ? `${tourIdx + 1} / ${steps.length}` : `Step ${tourIdx + 1} of ${steps.length}`;
+  document.getElementById('tourNextBtn').textContent = tourIdx === steps.length - 1 ? (lang === 'jp' ? '始めましょう' : 'Get Started') : (lang === 'jp' ? '次へ' : 'Next');
+  document.querySelector('.tour-skip').textContent = lang === 'jp' ? 'スキップ' : 'Skip';
+
+  // Dots
+  const dotsHtml = steps.map((_, i) => `<span class="${i === tourIdx ? 'on' : ''}"></span>`).join('');
+  document.getElementById('tourDots').innerHTML = dotsHtml;
+
+  // Re-trigger animation
+  tip.style.animation = 'none';
+  tip.offsetHeight;
+  tip.style.animation = '';
+}
+
+function positionTooltip(rect, tip, step) {
+  tip.className = 'tour-tooltip';
+  const appEl = document.querySelector('.app');
+  const appRect = appEl.getBoundingClientRect();
+  const tipWidth = 320;
+  const tipEstHeight = 180; // approximate tooltip height
+
+  // Center tooltip horizontally within app bounds
+  let left = Math.max(appRect.left + 16, rect.left);
+  left = Math.min(left, appRect.right - tipWidth - 16);
+
+  const arrowOffset = Math.max(20, Math.min(rect.left + rect.width / 2 - left - 6, tipWidth - 30));
+  tip.style.setProperty('--arrow-left', arrowOffset + 'px');
+
+  // Check if tooltip would overflow below the viewport
+  const wouldOverflowBelow = (rect.bottom + 16 + tipEstHeight) > window.innerHeight;
+  const hasRoomAbove = rect.top > tipEstHeight + 16;
+
+  if (step.arrow === 'top' && !wouldOverflowBelow) {
+    // Place below the spotlight
+    tip.style.top = (rect.bottom + 16) + 'px';
+    tip.style.bottom = 'auto';
+    tip.classList.add('arrow-top');
+  } else {
+    // Place above the spotlight
+    tip.style.top = 'auto';
+    tip.style.bottom = (window.innerHeight - rect.top + 16) + 'px';
+    tip.classList.add('arrow-bottom');
+  }
+  tip.style.left = left + 'px';
+}
+
+function tourNext() {
+  if (!tourActive) return;
+  tourIdx++;
+  const steps = tourSteps[lang];
+  if (tourIdx >= steps.length) {
+    tourEnd();
+  } else {
+    tourShow();
+  }
+}
+
+function tourEnd() {
+  tourActive = false;
+  tourIdx = -1;
+  document.getElementById('tourWelcome').classList.remove('on');
+  document.getElementById('tourOverlay').classList.remove('on');
+  document.getElementById('tourRestartBtn').classList.add('show');
+  go('roster');
+}
+
+function tourRestart() {
+  tourIdx = -1;
+  tourActive = false;
+  tourUpdateWelcomeText();
+  document.getElementById('tourWelcome').classList.add('on');
+  document.getElementById('tourOverlay').classList.remove('on');
+}
+
+// Update welcome text when language changes
+const origSetLang = setLang;
+setLang = function(l) {
+  origSetLang(l);
+  tourUpdateWelcomeText();
+};
+
 // Init
+renderFocusCards();
+renderActivityFeed();
 renderRoster();
+tourUpdateWelcomeText();
 </script>
 </body>
 </html>
