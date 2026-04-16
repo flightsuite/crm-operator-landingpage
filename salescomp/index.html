@@ -91,7 +91,6 @@
 .brief-info{flex:1;min-width:0;}
 .brief-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;}
 .brief-time{font-size:11px;color:var(--t3);}
-.brief-quota{flex-shrink:0;}
 .brief-bottom{padding:10px 16px;border-top:1px solid var(--border);background:var(--surface);}
 .brief-point{font-size:12px;color:var(--t2);line-height:1.4;display:flex;align-items:flex-start;gap:6px;}
 .brief-point svg{width:14px;height:14px;flex-shrink:0;margin-top:1px;color:var(--t3);}
@@ -555,6 +554,269 @@ body{
 .tour-restart.show{display:flex;}
 .tour-restart svg{width:17px;height:17px;color:var(--t2);}
 .tour-restart:active{background:var(--hover);}
+
+/* ===== V7: VIEW MODE TOGGLE ===== */
+.view-toggle {
+  display: flex;
+  margin: 0 16px 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 3px;
+}
+.view-opt {
+  flex: 1;
+  padding: 10px 0;
+  text-align: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: var(--t3);
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all .2s;
+}
+.view-opt.on {
+  background: var(--white);
+  color: var(--bg);
+}
+
+/* ===== V7: DEAL CARDS ===== */
+.deal-list { padding: 0 16px 16px; }
+.deal-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 8px;
+}
+.deal-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.deal-name { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; }
+.deal-amount { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 800; }
+.deal-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 6px; }
+.deal-stage {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+.deal-prob { font-size: 11px; color: var(--t3); }
+.deal-days { font-size: 11px; color: var(--t4); }
+.deal-next { font-size: 12px; color: var(--t2); line-height: 1.4; }
+.deal-note { font-size: 11px; color: var(--t3); margin-top: 6px; font-style: italic; }
+.deal-private {
+  margin-top: 8px;
+  padding: 10px 12px;
+  background: rgba(255,149,0,0.05);
+  border: 1px solid rgba(255,149,0,0.15);
+  border-radius: 8px;
+}
+.deal-private-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.deal-private-text { font-size: 12px; color: var(--t2); line-height: 1.5; }
+
+/* ===== V7: AI PARTNER CHAT ===== */
+.ai-chat { padding: 16px; }
+.ai-chat-intro {
+  text-align: center;
+  padding: 16px 0 20px;
+}
+.ai-chat-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  margin: 0 auto 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.ai-chat-icon img { width: 100%; height: 100%; object-fit: cover; }
+.ai-chat-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.ai-chat-sub { font-size: 12px; color: var(--t3); margin-top: 2px; }
+.ai-msg {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+.ai-msg.from-rep { flex-direction: row-reverse; }
+.ai-msg-avi {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--elevated);
+}
+.ai-msg-avi img { width: 100%; height: 100%; object-fit: cover; }
+.ai-msg-bubble {
+  max-width: 80%;
+  padding: 12px 14px;
+  border-radius: 16px;
+  font-size: 13px;
+  line-height: 1.55;
+  animation: bubbleIn .3s ease both;
+}
+.ai-msg.from-ai .ai-msg-bubble {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--t1);
+  border-bottom-left-radius: 4px;
+}
+.ai-msg.from-rep .ai-msg-bubble {
+  background: var(--white);
+  color: var(--bg);
+  border-bottom-right-radius: 4px;
+  font-weight: 500;
+}
+.ai-msg-tag {
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+.ai-msg-tag.private { background: rgba(255,149,0,0.1); color: var(--amber); }
+.ai-msg-tag.shared { background: rgba(0,122,255,0.1); color: var(--blue); }
+
+/* ===== V7: AI ABSTRACTED INSIGHTS (Manager View) ===== */
+.ai-insights {
+  margin: 0 16px 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.ai-insights-hdr {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ai-insights-icon {
+  width: 26px; height: 26px;
+  background: linear-gradient(135deg, var(--blue), #5856D6);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ai-insights-icon svg { width: 14px; height: 14px; color: white; }
+.ai-insights-lbl {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.ai-insight-item {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--t2);
+  line-height: 1.6;
+}
+.ai-insight-item:last-child { border-bottom: none; }
+.ai-insights-bridge {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 12px;
+  color: var(--blue);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.ai-insights-bridge:active { opacity: .7; }
+
+/* ===== V7: REP VIEW SPECIFIC ===== */
+.rep-hero-card {
+  margin: 14px 16px 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 20px;
+}
+.rep-hero-top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.rep-hero-photo { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--border-l); background: var(--elevated); }
+.rep-hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.rep-hero-info { flex: 1; }
+.rep-hero-name { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 800; text-transform: uppercase; }
+.rep-hero-sub { font-size: 12px; color: var(--t3); margin-top: 2px; }
+
+.rep-improve-card {
+  margin: 12px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+.rep-improve-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--t3);
+  margin-bottom: 10px;
+}
+.rep-improve-item {
+  font-size: 13px;
+  color: var(--t2);
+  line-height: 1.6;
+  padding: 6px 0;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.rep-improve-bullet {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+/* Manager sees note */
+.manager-sees-note {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: rgba(0,122,255,0.05);
+  border: 1px solid rgba(0,122,255,0.15);
+  border-radius: 8px;
+  font-size: 11px;
+  color: var(--t3);
+  line-height: 1.5;
+}
+.manager-sees-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 3px;
+}
 </style>
 </head>
 <body>
@@ -578,71 +840,87 @@ body{
   </div>
 </div>
 
+<!-- V7: View Mode Toggle -->
+<div class="view-toggle" id="viewToggle">
+  <div class="view-opt on" onclick="setViewMode('manager')" id="vmMgr">Manager View</div>
+  <div class="view-opt" onclick="setViewMode('rep')" id="vmRep">Rep View</div>
+</div>
+
 <!-- Top Nav -->
-<div class="tnav">
+<div class="tnav" id="topNav">
   <div class="tnav-i on" onclick="go('roster')" data-i18n="nav_roster">Roster</div>
   <div class="tnav-i" onclick="go('matchup')" data-i18n="nav_matchup">Matchup</div>
   <div class="tnav-i" onclick="go('take')" data-i18n="nav_take">The Take</div>
 </div>
 
-<!-- ===== ROSTER ===== -->
-<div class="scr on" id="scr-roster">
-  <div class="team-card">
-    <div class="tc-top">
-      <div class="tc-info"><div class="tc-name">Apex Solutions</div><div class="tc-mgr" data-i18n="team_mgr">Managed by Fitz Light</div></div>
-      <div class="tc-score"><div class="tc-score-val" style="color:var(--green)">72</div><div class="tc-score-lbl" data-i18n="team_score">Team Score</div><div class="tc-trend up" data-i18n="team_trend">+5 vs last week</div></div>
+<!-- ===== MANAGER VIEW SCREENS ===== -->
+<div id="managerScreens">
+  <!-- ===== ROSTER ===== -->
+  <div class="scr on" id="scr-roster">
+    <div class="team-card">
+      <div class="tc-top">
+        <div class="tc-info"><div class="tc-name">Apex Solutions</div><div class="tc-mgr" data-i18n="team_mgr">Managed by Fitz Light</div></div>
+        <div class="tc-score"><div class="tc-score-val" style="color:var(--green)">72</div><div class="tc-score-lbl" data-i18n="team_score">Team Score</div><div class="tc-trend up" data-i18n="team_trend">+5 vs last week</div></div>
+      </div>
+      <div class="tc-stats">
+        <div class="tc-stat"><div class="tc-sv">$334K</div><div class="tc-sl" data-i18n="stat_revenue">Revenue</div></div>
+        <div class="tc-stat"><div class="tc-sv">78%</div><div class="tc-sl" data-i18n="stat_to_quota">To Quota</div></div>
+        <div class="tc-stat"><div class="tc-sv">$478K</div><div class="tc-sl" data-i18n="stat_pipeline">Pipeline</div></div>
+        <div class="tc-stat"><div class="tc-sv">31%</div><div class="tc-sl" data-i18n="stat_close_rate">Close Rate</div></div>
+      </div>
     </div>
-    <div class="tc-stats">
-      <div class="tc-stat"><div class="tc-sv">$334K</div><div class="tc-sl" data-i18n="stat_revenue">Revenue</div></div>
-      <div class="tc-stat"><div class="tc-sv">78%</div><div class="tc-sl" data-i18n="stat_to_quota">To Quota</div></div>
-      <div class="tc-stat"><div class="tc-sv">$478K</div><div class="tc-sl" data-i18n="stat_pipeline">Pipeline</div></div>
-      <div class="tc-stat"><div class="tc-sv">31%</div><div class="tc-sl" data-i18n="stat_close_rate">Close Rate</div></div>
-    </div>
+
+    <!-- Focus This Week -->
+    <div class="sh"><div class="sh-t" data-i18n="focus_this_week">Focus This Week</div></div>
+    <div class="focus-cards" id="focusCards"></div>
+
+    <!-- Activity Feed -->
+    <div class="sh"><div class="sh-t" data-i18n="recent_activity">Recent Activity</div><div class="sh-a" data-i18n="view_all">View All</div></div>
+    <div class="feed" id="activityFeed"></div>
+
+    <div class="sh"><div class="sh-t" data-i18n="your_roster">Your Roster</div><div class="sh-a" data-i18n="sort">Sort</div></div>
+    <div class="p-list" id="rosterList"></div>
   </div>
 
-  <!-- Focus This Week -->
-  <div class="sh"><div class="sh-t" data-i18n="focus_this_week">Focus This Week</div></div>
-  <div class="focus-cards" id="focusCards"></div>
+  <!-- ===== MATCHUP ===== -->
+  <div class="scr" id="scr-matchup">
+    <div class="mu-banner">
+      <div class="mu-label" data-i18n="mu_label">Head to Head</div>
+      <div class="mu-title" data-i18n="mu_title">Weekly Rep Matchup</div>
+      <div class="mu-period">Apr 7 - Apr 13, 2026</div>
+    </div>
+    <div class="mu-weeks">
+      <div class="mu-week">Wk 11</div>
+      <div class="mu-week">Wk 12</div>
+      <div class="mu-week">Wk 13</div>
+      <div class="mu-week on">Wk 14</div>
+    </div>
+    <div class="mu-pills" id="muPills"></div>
+    <div id="muContent"></div>
+  </div>
 
-  <!-- Activity Feed -->
-  <div class="sh"><div class="sh-t" data-i18n="recent_activity">Recent Activity</div><div class="sh-a" data-i18n="view_all">View All</div></div>
-  <div class="feed" id="activityFeed"></div>
+  <!-- ===== THE TAKE ===== -->
+  <div class="scr" id="scr-take">
+    <div class="tk-hdr">
+      <div class="tk-title" data-i18n="tk_title">The Take</div>
+      <div class="tk-sub" data-i18n="tk_sub">Your 1-on-1 coaching playbook. Built from CRM data, rep feedback, and performance trends.</div>
+    </div>
 
-  <div class="sh"><div class="sh-t" data-i18n="your_roster">Your Roster</div><div class="sh-a" data-i18n="sort">Sort</div></div>
-  <div class="p-list" id="rosterList"></div>
+    <!-- Monday Morning Brief -->
+    <div class="sh"><div class="sh-t" data-i18n="todays_1on1s">Today's 1-on-1s</div><div class="sh-a">Monday, Apr 14</div></div>
+    <div id="briefCards"></div>
+
+    <div class="sh" style="margin-top:8px;"><div class="sh-t" data-i18n="deep_dive">Deep Dive</div></div>
+    <div class="tk-pills" id="tkPills"></div>
+    <div id="tkContent"></div>
+  </div>
 </div>
 
-<!-- ===== MATCHUP ===== -->
-<div class="scr" id="scr-matchup">
-  <div class="mu-banner">
-    <div class="mu-label" data-i18n="mu_label">Head to Head</div>
-    <div class="mu-title" data-i18n="mu_title">Weekly Rep Matchup</div>
-    <div class="mu-period">Apr 7 - Apr 13, 2026</div>
-  </div>
-  <div class="mu-weeks">
-    <div class="mu-week">Wk 11</div>
-    <div class="mu-week">Wk 12</div>
-    <div class="mu-week">Wk 13</div>
-    <div class="mu-week on">Wk 14</div>
-  </div>
-  <div class="mu-pills" id="muPills"></div>
-  <div id="muContent"></div>
-</div>
-
-<!-- ===== THE TAKE ===== -->
-<div class="scr" id="scr-take">
-  <div class="tk-hdr">
-    <div class="tk-title" data-i18n="tk_title">The Take</div>
-    <div class="tk-sub" data-i18n="tk_sub">Your 1-on-1 coaching playbook. Built from CRM data, rep feedback, and performance trends.</div>
-  </div>
-
-  <!-- Monday Morning Brief -->
-  <div class="sh"><div class="sh-t" data-i18n="todays_1on1s">Today's 1-on-1s</div><div class="sh-a">Monday, Apr 14</div></div>
-  <div id="briefCards"></div>
-
-  <div class="sh" style="margin-top:8px;"><div class="sh-t" data-i18n="deep_dive">Deep Dive</div></div>
-  <div class="tk-pills" id="tkPills"></div>
-  <div id="tkContent"></div>
+<!-- ===== REP VIEW SCREENS ===== -->
+<div id="repScreens" style="display:none;">
+  <div class="scr on" id="scr-rep-dashboard"></div>
+  <div class="scr" id="scr-rep-deals"></div>
+  <div class="scr" id="scr-rep-ai"></div>
 </div>
 
 <!-- ===== PLAYER CARD MODAL ===== -->
@@ -661,7 +939,7 @@ body{
       <div class="cm-nav-i" onclick="cPanel('gamelog')" data-i18n="card_gamelog">Game Log</div>
       <div class="cm-nav-i" onclick="cPanel('coaching')" data-i18n="card_coaching">Coaching</div>
     </div>
-    <div class="cm-panel on" id="cp-overview"><div id="cpRadar"></div><div id="cpTake"></div><div id="cpCta"></div></div>
+    <div class="cm-panel on" id="cp-overview"><div id="cpRadar"></div><div id="cpDeals"></div><div id="cpTake"></div><div id="cpInsights"></div><div id="cpCta"></div></div>
     <div class="cm-panel" id="cp-stats"><div id="cpSkills"></div></div>
     <div class="cm-panel" id="cp-gamelog"><div id="cpGamelog"></div></div>
     <div class="cm-panel" id="cp-coaching"><div id="cpOutlook"></div><div id="cpAgenda"></div></div>
@@ -709,7 +987,7 @@ body{
 </div>
 
 <!-- Bottom Tab Bar -->
-<div class="tbar">
+<div class="tbar" id="bottomBar">
   <div class="tbar-i on" onclick="go('roster')">
     <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
     <span class="tbar-l" data-i18n="nav_roster">Roster</span>
@@ -729,6 +1007,8 @@ body{
 <script>
 // ===== i18n SYSTEM =====
 let lang = 'en';
+let viewMode = 'manager';
+let selectedRepIdx = 0;
 
 const T = {
   en: {
@@ -881,8 +1161,39 @@ const T = {
     sms_thanks: 'Thanks for sharing. I\'ve flagged this for your manager. Looking forward to a productive conversation Monday.',
     sms_date: 'Friday, Apr 11',
 
-    // Agenda topics (per rep, stored in data)
-    // (These are stored directly in the D array and toggled via jp-specific versions below)
+    // V7: View Mode
+    view_manager: 'Manager View',
+    view_rep: 'Rep View',
+
+    // V7: Deal labels
+    pipeline_deals: 'Pipeline Deals',
+    stage_closed_won: 'Closed Won',
+    stage_closing: 'Closing',
+    stage_negotiation: 'Negotiation',
+    stage_proposal: 'Proposal',
+    stage_discovery: 'Discovery',
+    next_action: 'Next Action',
+    days_in_stage: 'days in stage',
+    probability: 'Probability',
+
+    // V7: AI Insights
+    ai_abstracted_insights: 'AI Abstracted Insights',
+    see_rep_view: 'See what {name} sees',
+
+    // V7: Rep View
+    rep_my_dashboard: 'My Dashboard',
+    rep_my_deals: 'My Deals',
+    rep_ai_partner: 'AI Partner',
+    rep_my_score: 'My Score',
+    rep_how_to_improve: 'How to Improve',
+    rep_your_personal_advisor: 'Your personal sales advisor',
+    rep_private_note: 'Private Note',
+    rep_private_only: 'Only visible to you and your AI partner',
+    rep_kept_private: 'Kept private',
+    rep_kept_private_tag: 'Kept Private',
+    rep_shared_as_insight: 'Shared as Insight',
+    rep_manager_sees: 'Your manager sees',
+    rep_switch_to_rep: 'Switch to Rep View to see the other side',
   },
   jp: {
     // Nav
@@ -1033,6 +1344,40 @@ const T = {
     sms_pulse_check_msg: '{name}さん、月曜の1on1前に簡単な状況確認です。来週に向けてパイプラインの調子はいかがですか？話しておきたいことがあればお聞かせください。',
     sms_thanks: 'ご報告ありがとうございます。マネージャーに共有しました。月曜日の有意義な対話を楽しみにしています。',
     sms_date: '4月11日（金）',
+
+    // V7: View Mode
+    view_manager: 'マネージャービュー',
+    view_rep: '担当者ビュー',
+
+    // V7: Deal labels
+    pipeline_deals: 'パイプライン案件',
+    stage_closed_won: '成約済',
+    stage_closing: 'クロージング中',
+    stage_negotiation: '交渉中',
+    stage_proposal: '提案中',
+    stage_discovery: '発掘中',
+    next_action: '次のアクション',
+    days_in_stage: '日経過',
+    probability: '確度',
+
+    // V7: AI Insights
+    ai_abstracted_insights: 'AI分析インサイト',
+    see_rep_view: '{name}の画面を見る',
+
+    // V7: Rep View
+    rep_my_dashboard: 'マイダッシュボード',
+    rep_my_deals: 'マイ案件',
+    rep_ai_partner: 'AIパートナー',
+    rep_my_score: 'マイスコア',
+    rep_how_to_improve: '改善ポイント',
+    rep_your_personal_advisor: 'あなた専属のセールスアドバイザー',
+    rep_private_note: 'プライベートノート',
+    rep_private_only: 'あなたとAIパートナーのみ閲覧可能',
+    rep_kept_private: '非公開',
+    rep_kept_private_tag: '非公開',
+    rep_shared_as_insight: 'インサイトとして共有',
+    rep_manager_sees: 'マネージャーに表示される内容',
+    rep_switch_to_rep: '担当者ビューに切り替えて裏側を見る',
   }
 };
 
@@ -1063,6 +1408,15 @@ const statusMap = {
   'Questionable': 'questionable'
 };
 
+// Stage translation mapping
+const stageMap = {
+  'Closed Won': 'stage_closed_won',
+  'Closing': 'stage_closing',
+  'Negotiation': 'stage_negotiation',
+  'Proposal': 'stage_proposal',
+  'Discovery': 'stage_discovery'
+};
+
 function t(key, replacements) {
   let str = T[lang][key] || T['en'][key] || key;
   if (replacements) {
@@ -1085,6 +1439,10 @@ function tSkill(label) {
   return skillLabelMap[label] ? t(skillLabelMap[label]) : label;
 }
 
+function tStage(stage) {
+  return stageMap[stage] ? t(stageMap[stage]) : stage;
+}
+
 function applyStaticI18n() {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
@@ -1101,6 +1459,9 @@ function setLang(l) {
   document.querySelectorAll('.lang-opt').forEach(opt => {
     opt.classList.toggle('on', opt.getAttribute('data-lang') === l);
   });
+  // Update view toggle text
+  document.getElementById('vmMgr').textContent = t('view_manager');
+  document.getElementById('vmRep').textContent = t('view_rep');
   // Apply static i18n
   applyStaticI18n();
   // Re-render dynamic content
@@ -1108,13 +1469,19 @@ function setLang(l) {
   renderActivityFeed();
   renderRoster();
   // Re-render current screen-specific content
-  const activeScr = document.querySelector('.scr.on');
-  if (activeScr && activeScr.id === 'scr-matchup') renderMU();
-  if (activeScr && activeScr.id === 'scr-take') { renderBrief(); renderTK(currentTkIdx || 0); }
-  // Re-render player card if open
-  if (document.getElementById('cardModal').classList.contains('on')) {
-    openCard(cur);
+  if (viewMode === 'manager') {
+    const activeScr = document.querySelector('#managerScreens .scr.on');
+    if (activeScr && activeScr.id === 'scr-matchup') renderMU();
+    if (activeScr && activeScr.id === 'scr-take') { renderBrief(); renderTK(currentTkIdx || 0); }
+    // Re-render player card if open
+    if (document.getElementById('cardModal').classList.contains('on')) {
+      openCard(cur);
+    }
+  } else {
+    renderRepView();
   }
+  // Update top nav labels
+  updateNavLabels();
 }
 
 let currentTkIdx = 0;
@@ -1132,7 +1499,25 @@ outlookJp:'キャリアベストの四半期を予測。最終段階の3件（�
 fb:{t:'"Feeling really good about Q2. Got 3 deals closing this week. Meridian went dark after the proposal though. Also want to talk about getting more enterprise leads."',time:'Apr 11, 2:14 PM'},
 agenda:[{topic:'1. Open With the Win',d:'Marcus is projecting 3 closes this week ($87K combined). His confidence is high. Start here.',s:'"Walk me through what clicked with Henderson. That was a tough one and you made it look easy."'},{topic:'2. Meridian Silence',d:'Went dark 9 days post-proposal ($45K). Contact opened proposal 3x but hasn\'t responded.',s:'"You mentioned Meridian. I see they\'ve opened your proposal three times. What do you think that tells us?"'},{topic:'3. Enterprise Stretch',d:'He wants bigger deals. Data supports it: 38% close rate on $30K+ vs 28% team avg.',s:'"Your numbers above $30K are stronger than mid-market. Let\'s pick one enterprise account to test."'},{topic:'4. Prospecting Gap',d:'22% below team average on outbound. Layer this in after the wins.',s:'"If we bump your outbound by even 20%, the math says another $40-50K this quarter."'}],
 agendaJp:[{topic:'1. 成功の共有から',d:'今週3件のクロージングを予測（合計$87K）。自信に満ちている。ここから始めましょう。',s:'"ヘンダーソンの案件、見事でした。成功のポイントを教えていただけますか？"'},{topic:'2. メリディアンの状況',d:'提案後9日間の沈黙（$45K）。担当者は提案書を3回開封しているが未返信。',s:'"メリディアンの件ですが、提案書を3回開封されているようです。どう解釈されますか？"'},{topic:'3. エンタープライズへの挑戦',d:'より大きな案件を希望。データも後押し：$30K超で38%の成約率（チーム平均28%）。',s:'"$30K以上の案件での成約率がミッドマーケットより高いですね。一緒にエンタープライズ案件を一つ選んでみましょう。"'},{topic:'4. 見込み客開拓の強化',d:'アウトバウンドがチーム平均を22%下回っている。成功の後にこの話題を。',s:'"アウトバウンドを20%増やすだけで、今四半期さらに$40-50Kの上積みが見込めます。一緒に取り組みましょう。"'}],
-gl:[{w:'Wk 14',d:7,r:'$142K',p:'$89K',s:91},{w:'Wk 13',d:5,r:'$98K',p:'$112K',s:86},{w:'Wk 12',d:6,r:'$118K',p:'$67K',s:88},{w:'Wk 11',d:4,r:'$76K',p:'$95K',s:78},{w:'Wk 10',d:5,r:'$102K',p:'$78K',s:84}]},
+gl:[{w:'Wk 14',d:7,r:'$142K',p:'$89K',s:91},{w:'Wk 13',d:5,r:'$98K',p:'$112K',s:86},{w:'Wk 12',d:6,r:'$118K',p:'$67K',s:88},{w:'Wk 11',d:4,r:'$76K',p:'$95K',s:78},{w:'Wk 10',d:5,r:'$102K',p:'$78K',s:84}],
+deals:[
+  { name: 'Henderson Corp', amount: '$45K', stage: 'Closed Won', prob: 100, next: 'Signed', days: 0, note: 'Closed this week' },
+  { name: 'Meridian Systems', amount: '$45K', stage: 'Proposal', prob: 40, next: 'Follow up on silence', days: 9, note: 'Opened proposal 3x, no response', privateNote: 'Contact\'s daughter is going through mental health treatment. He\'s distracted and risk-averse right now. Don\'t push.', privateNoteJp: '担当者の娘さんがメンタルヘルスの治療中。気が散っており、リスク回避的になっている。プッシュしないこと。' },
+  { name: 'Vertex Analytics', amount: '$32K', stage: 'Negotiation', prob: 75, next: 'Final pricing call Thu', days: 4 },
+  { name: 'Pinnacle Group', amount: '$28K', stage: 'Discovery', prob: 25, next: 'Second meeting scheduled', days: 2 },
+  { name: 'Orion Partners', amount: '$18K', stage: 'Closing', prob: 85, next: 'Contract sent, awaiting signature', days: 3 }
+],
+aiInsights: [
+  'Meridian contact may be navigating personal priorities. Recommend patience-based follow-up rather than urgency tactics.',
+  'High confidence on Vertex and Orion. Marcus is in peak closing rhythm.'
+],
+aiInsightsJp: [
+  'メリディアンの担当者は個人的な優先事項に直面している可能性があります。緊急性よりも忍耐に基づくフォローアップを推奨します。',
+  'VertexとOrionに高い確信度。Marcusは最高のクロージングリズムにあります。'
+],
+improveEn: ['Add 5 more outbound touches per week to close your prospecting gap.', 'Consider a softer re-engagement approach for Meridian rather than standard follow-up.', 'Leverage your enterprise close rate to pursue larger accounts.'],
+improveJp: ['見込み客開拓のギャップを埋めるため、週5件のアウトバウンドを追加しましょう。', 'メリディアンには標準的なフォローアップではなく、より柔らかい再エンゲージメントを検討してください。', 'エンタープライズの成約率を活かして、より大きな案件を追求しましょう。']
+},
 {id:1,name:'Sarah Chen',sh:'S. Chen',f:'Sarah',img:'assets/sarah-chen.png',role:'Pipeline Builder',ten:'2yr',co:'Apex Solutions',score:82,avg:74,szn:76,tr:'+6',td:'up',st:'Streak',sc:'b-str',dot:'var(--amber)',sub:'$178K new pipeline',
 scoreBreakdown:{rev:62,pipe:96,activity:92,efficiency:68},
 stats:{d:3,r:'$48K',p:'$178K',c:'24%'},
@@ -1144,7 +1529,24 @@ outlookJp:'4週連続のスコア上昇中。パイプライン創出はシー�
 fb:{t:'"Pipeline is looking strong. I\'m worried about my close rate though. Deals stall when pricing comes up. Can we role play some pricing conversations?"',time:'Apr 11, 3:22 PM'},
 agenda:[{topic:'1. Celebrate the Streak',d:'4-week scoring streak. Pipeline 34% above average.',s:'"$210K in new pipeline this month. That\'s elite. Let\'s talk about how we turn more of that into closed revenue."'},{topic:'2. Pricing Role Play',d:'She flagged pricing as a sticking point. Close rate improving but below team avg.',s:'"Let\'s do a quick role play. I\'ll be the prospect. Hit me with the pricing conversation from the Vertex deal."'},{topic:'3. Co-Sell With Marcus',d:'Pair her with Marcus on a larger deal for closing exposure.',s:'"What if you and Marcus co-sold the Pinnacle account? You build, he closes. You\'d see his process up close."'}],
 agendaJp:[{topic:'1. 成果の承認',d:'4週連続のスコア上昇。パイプライン創出は平均を34%上回る。',s:'"今月$210Kの新規パイプライン、素晴らしい成果です。これをさらに成約に繋げる方法を一緒に考えましょう。"'},{topic:'2. 価格交渉のロールプレイ',d:'価格が課題と本人が認識。成約率は改善中だがチーム平均以下。',s:'"簡単なロールプレイをしましょう。私が見込み客役をやります。Vertexの案件での価格提示を再現してみてください。"'},{topic:'3. Marcusとの共同セリング',d:'より大きな案件でMarcusとペアを組み、クロージングの経験を積む。',s:'"Pinnacleの案件をMarcusと一緒に進めてみてはどうですか？構築はあなた、クロージングはMarcus。近くでプロセスを学べます。"'}],
-gl:[{w:'Wk 14',d:3,r:'$48K',p:'$178K',s:82},{w:'Wk 13',d:2,r:'$31K',p:'$156K',s:76},{w:'Wk 12',d:4,r:'$62K',p:'$142K',s:80},{w:'Wk 11',d:2,r:'$28K',p:'$168K',s:72},{w:'Wk 10',d:3,r:'$44K',p:'$132K',s:70}]},
+gl:[{w:'Wk 14',d:3,r:'$48K',p:'$178K',s:82},{w:'Wk 13',d:2,r:'$31K',p:'$156K',s:76},{w:'Wk 12',d:4,r:'$62K',p:'$142K',s:80},{w:'Wk 11',d:2,r:'$28K',p:'$168K',s:72},{w:'Wk 10',d:3,r:'$44K',p:'$132K',s:70}],
+deals:[
+  { name: 'NovaTech Solutions', amount: '$62K', stage: 'Discovery', prob: 20, next: 'Demo scheduled for Monday', days: 3 },
+  { name: 'Quantum Digital', amount: '$48K', stage: 'Proposal', prob: 45, next: 'Pricing review call', days: 5, privateNote: 'Procurement lead is going through a divorce. Emotional, making impulsive decisions. Could work in our favor but need to be careful.', privateNoteJp: '調達担当者が離婚中。感情的で衝動的な決断をしている。有利に働く可能性があるが慎重に。' },
+  { name: 'Atlas Industries', amount: '$38K', stage: 'Discovery', prob: 15, next: 'Initial outreach sent', days: 1 },
+  { name: 'Summit Corp', amount: '$30K', stage: 'Negotiation', prob: 60, next: 'Awaiting procurement approval', days: 7 }
+],
+aiInsights: [
+  'Quantum Digital decision-maker showing signs of accelerated timeline. Opportunity for faster close if pricing is right.',
+  'Strong pipeline building momentum. Close rate improving with experience.'
+],
+aiInsightsJp: [
+  'Quantum Digitalの意思決定者がタイムライン加速の兆候を示しています。適切な価格設定で早期成約の機会あり。',
+  'パイプライン構築の勢いが強い。経験とともに成約率が改善中。'
+],
+improveEn: ['Practice pricing objection handling. Consider role-playing with Marcus.', 'Focus on moving Discovery deals to Proposal stage faster.', 'Your pipeline volume is elite. Now focus on conversion quality.'],
+improveJp: ['価格異議への対応を練習しましょう。Marcusとのロールプレイを検討してください。', '発掘段階の案件を提案段階により早く進めることに注力しましょう。', 'パイプラインの量はエリート級です。次はコンバージョンの質に注力しましょう。']
+},
 {id:2,name:'Jake Rivera',sh:'J. Rivera',f:'Jake',img:'assets/jake-rivera.png',role:'Account Manager',ten:'4yr',co:'Apex Solutions',score:75,avg:72,szn:73,tr:'+3',td:'up',st:null,sc:null,dot:null,sub:'94% account retention',
 scoreBreakdown:{rev:78,pipe:70,activity:72,efficiency:80},
 stats:{d:4,r:'$82K',p:'$65K',c:'32%'},
@@ -1156,7 +1558,23 @@ outlookJp:'12週連続で150超え。アカウント維持率94%はチーム最�
 fb:{t:'"Solid week. Got the Apex renewal done. Comfortable with my book but wondering about a path to team lead. Can we talk career growth?"',time:'Apr 11, 4:01 PM'},
 agenda:[{topic:'1. The Apex Renewal',d:'Key account closed. 94% retention is best on team.',s:'"The Apex renewal was huge. Walk me through how you handled the pricing pushback."'},{topic:'2. Career Growth',d:'He asked about team lead path. Tenure + relationship skills. Retention conversation.',s:'"What does team lead look like to you? Let me share what I\'d need to see to advocate for that."'},{topic:'3. Push Past Comfortable',d:'12 straight weeks above 150 but zero breakouts. Coasting.',s:'"Your consistency is rare. But your ceiling is higher. What if we targeted one net-new enterprise account?"'}],
 agendaJp:[{topic:'1. Apex更新の成果',d:'主要アカウントの更新完了。94%の維持率はチーム最高。',s:'"Apexの更新、大きな成果です。価格面での交渉をどう乗り越えたか、教えていただけますか？"'},{topic:'2. キャリア成長',d:'チームリーダーへのパスについて質問あり。在籍年数と関係構築力が武器。',s:'"チームリーダーの役割について、どのようなイメージをお持ちですか？私から見て必要なことを共有させてください。"'},{topic:'3. 次のステージへ',d:'12週連続150超えだがブレイクスルーはゼロ。安定圏に留まっている。',s:'"この安定感は素晴らしいです。でも、まだ伸びしろがあると思います。新規エンタープライズ案件を一つ、一緒に狙ってみませんか？"'}],
-gl:[{w:'Wk 14',d:4,r:'$82K',p:'$65K',s:75},{w:'Wk 13',d:4,r:'$78K',p:'$58K',s:73},{w:'Wk 12',d:3,r:'$71K',p:'$72K',s:72},{w:'Wk 11',d:4,r:'$80K',p:'$54K',s:74},{w:'Wk 10',d:3,r:'$68K',p:'$62K',s:70}]},
+gl:[{w:'Wk 14',d:4,r:'$82K',p:'$65K',s:75},{w:'Wk 13',d:4,r:'$78K',p:'$58K',s:73},{w:'Wk 12',d:3,r:'$71K',p:'$72K',s:72},{w:'Wk 11',d:4,r:'$80K',p:'$54K',s:74},{w:'Wk 10',d:3,r:'$68K',p:'$62K',s:70}],
+deals:[
+  { name: 'Apex Solutions', amount: '$52K', stage: 'Negotiation', prob: 80, next: 'Renewal terms finalized', days: 3, note: 'Existing client renewal', privateNote: 'CTO confided he\'s interviewing for a new role. If he leaves, this renewal could stall.', privateNoteJp: 'CTOが転職活動中と打ち明けた。彼が退職すれば、この更新は停滞する可能性がある。' },
+  { name: 'Beacon Ltd', amount: '$22K', stage: 'Closing', prob: 90, next: 'Final sign-off pending', days: 2 },
+  { name: 'Crestview Partners', amount: '$18K', stage: 'Discovery', prob: 20, next: 'Intro call next week', days: 1 }
+],
+aiInsights: [
+  'Apex renewal has emerging stakeholder risk. Recommend expanding contacts.',
+  'Consistent performer seeking growth. Career development conversation recommended.'
+],
+aiInsightsJp: [
+  'Apex更新にステークホルダーリスクが浮上。コンタクト先の拡大を推奨。',
+  '安定したパフォーマーで成長を求めている。キャリア開発の対話を推奨。'
+],
+improveEn: ['Pursue one net-new enterprise account to stretch beyond your comfort zone.', 'Expand stakeholder relationships at Apex to reduce single-point-of-failure risk.', 'Your relationship skills are elite. Apply them to new business, not just renewals.'],
+improveJp: ['新規エンタープライズ案件を一つ追求し、コンフォートゾーンを超えましょう。', 'Apexのステークホルダー関係を拡大し、単一障害点リスクを軽減しましょう。', '関係構築スキルはエリート級です。更新だけでなく新規ビジネスにも活かしましょう。']
+},
 {id:3,name:'DeAndra Williams',sh:'D. Williams',f:'DeAndra',img:'assets/deandra-williams.png',role:'SDR',ten:'6mo',co:'Apex Solutions',score:64,avg:52,szn:55,tr:'+12',td:'up',st:'Questionable',sc:'b-q',dot:'var(--amber)',sub:'3 deals in late stage',
 scoreBreakdown:{rev:42,pipe:78,activity:88,efficiency:38},
 stats:{d:2,r:'$24K',p:'$134K',c:'18%'},
@@ -1168,7 +1586,24 @@ outlookJp:'チーム内で最も期待できる成長曲線。第8週の92から
 fb:{t:'"The closing part is still intimidating. I book tons of meetings but freeze up when it\'s time to ask. Is there a way to shadow Marcus on a close?"',time:'Apr 11, 5:45 PM'},
 agenda:[{topic:'1. Name the Growth',d:'92 to 148 in 6 weeks. That trajectory deserves recognition.',s:'"You\'ve nearly doubled your score in 6 weeks. That\'s not luck. That\'s work. I see it."'},{topic:'2. Close Confidence',d:'She flagged being intimidated. Activity is elite but needs a closing framework.',s:'"Closing isn\'t about being pushy. It\'s about earning the right to ask. Let\'s practice together."'},{topic:'3. Shadow Marcus',d:'She asked for it. High-leverage development play.',s:'"I\'m pairing you with Marcus on his next close. Observe. Then we debrief."'},{topic:'4. The 3 Late-Stage Deals',d:'3 deals that could go either way. Maximum coaching leverage.',s:'"Walk me through each one. What\'s the single thing between each deal and a close?"'}],
 agendaJp:[{topic:'1. 成長の承認',d:'6週間で92から148へ。この軌道は認められるべき。',s:'"6週間でスコアがほぼ倍になりました。これは運ではなく、努力の結果です。私はそれをしっかり見ています。"'},{topic:'2. クロージングへの自信',d:'本人が不安を感じていると報告。活動量はエリート級だがクロージングの型が必要。',s:'"クロージングは信頼の積み重ねです。一緒に練習しましょう。"'},{topic:'3. Marcusのシャドーイング',d:'本人から希望あり。高いレバレッジの育成施策。',s:'"Marcusの次のクロージングに同席してもらいます。観察して、その後一緒に振り返りましょう。"'},{topic:'4. 最終段階の3件',d:'どちらにも転ぶ3件の案件。コーチングの最大レバレッジポイント。',s:'"一件ずつ見ていきましょう。成約までの最大の障壁は何だと思いますか？"'}],
-gl:[{w:'Wk 14',d:2,r:'$24K',p:'$134K',s:64},{w:'Wk 13',d:1,r:'$12K',p:'$118K',s:56},{w:'Wk 12',d:2,r:'$28K',p:'$98K',s:58},{w:'Wk 11',d:1,r:'$15K',p:'$142K',s:50},{w:'Wk 10',d:1,r:'$10K',p:'$108K',s:44}]},
+gl:[{w:'Wk 14',d:2,r:'$24K',p:'$134K',s:64},{w:'Wk 13',d:1,r:'$12K',p:'$118K',s:56},{w:'Wk 12',d:2,r:'$28K',p:'$98K',s:58},{w:'Wk 11',d:1,r:'$15K',p:'$142K',s:50},{w:'Wk 10',d:1,r:'$10K',p:'$108K',s:44}],
+deals:[
+  { name: 'Silverline Tech', amount: '$34K', stage: 'Negotiation', prob: 55, next: 'Pricing objection to address', days: 6, note: 'Stalling on price', privateNote: 'Champion is worried about layoffs at their company. Pricing sensitivity is personal, not just budget.', privateNoteJp: '推進者が自社のリストラを心配している。価格への敏感さは予算だけでなく個人的な事情による。' },
+  { name: 'Redwood Analytics', amount: '$28K', stage: 'Proposal', prob: 40, next: 'Follow-up demo requested', days: 4 },
+  { name: 'Cascade Group', amount: '$24K', stage: 'Closing', prob: 70, next: 'Decision this week', days: 3 },
+  { name: 'Ironclad Systems', amount: '$48K', stage: 'Discovery', prob: 15, next: 'First meeting booked', days: 1 }
+],
+aiInsights: [
+  'Silverline pricing sensitivity may be driven by internal company pressures, not budget. Consider value-based framing.',
+  'Rapid improvement trajectory. Needs closing framework support.'
+],
+aiInsightsJp: [
+  'Silverlineの価格感度は予算ではなく社内のプレッシャーが原因の可能性。バリューベースのフレーミングを検討してください。',
+  '急速な改善軌道。クロージングフレームワークのサポートが必要。'
+],
+improveEn: ['Practice the "ask" in closing. Shadow Marcus on his next deal.', 'Build a framework for second meetings to move past discovery.', 'Your prospecting is elite. Convert that energy into closing confidence.'],
+improveJp: ['クロージングの「お願い」を練習しましょう。Marcusの次の案件に同席してください。', '2回目の商談のフレームワークを作り、発掘段階を突破しましょう。', '見込み客開拓はエリート級。そのエネルギーをクロージングの自信に変換しましょう。']
+},
 {id:4,name:'Tyler Brooks',sh:'T. Brooks',f:'Tyler',img:'assets/tyler-brooks.png',role:'Veteran',ten:'7yr',co:'Apex Solutions',score:48,avg:62,szn:58,tr:'-14',td:'down',st:'Cold',sc:'b-cold',dot:'var(--red)',sub:'CRM 3 weeks behind',
 scoreBreakdown:{rev:55,pipe:32,activity:28,efficiency:72},
 stats:{d:2,r:'$38K',p:'$12K',c:'25%'},
@@ -1180,8 +1615,105 @@ outlookJp:'岐路に立っている。既存顧客からの評価は高い（NPS
 fb:{t:'"I know my numbers aren\'t where they should be. The CRM stuff is busy work. My clients trust me. But I\'m open to hearing what the data says. Happy to mentor the new rep if useful."',time:'Apr 12, 9:15 AM'},
 agenda:[{topic:'1. Acknowledge It Directly',d:'Tyler knows. He said so. Don\'t dance around it. He respects directness.',s:'"You said your numbers aren\'t where they should be. I agree. Let\'s look at why together."'},{topic:'2. CRM Reality',d:'3 weeks behind. Frame as visibility, not compliance.',s:'"When I can\'t see your pipeline, I can\'t go to bat for you on resource decisions. Let\'s get current this week."'},{topic:'3. Mentorship Play',d:'He offered to mentor DeAndra. Take him up on it.',s:'"DeAndra asked to learn from you. Your relationship skills are the best on the team. Would you take her under your wing?"'},{topic:'4. The Standard',d:'3 more weeks of decline means a roster conversation. Be honest.',s:'"I believe in you. But numbers don\'t grade on tenure. I need an uptick in 3 weeks. What do you need from me?"'}],
 agendaJp:[{topic:'1. 率直な対話',d:'Tyler自身が認識している。遠回しにしない。率直さを尊重する人。',s:'"データを一緒に確認して、改善の道筋を考えましょう。率直にお話しさせてください。"'},{topic:'2. CRMの重要性',d:'3週間の遅れ。コンプライアンスではなく「可視性」としてフレーム。',s:'"パイプラインが見えないと、リソース配分であなたのために動くことができません。今週中に追いつきましょう。"'},{topic:'3. メンタリングの提案',d:'DeAndraのメンターを本人から申し出。受け入れましょう。',s:'"DeAndraがあなたから学びたいと言っています。関係構築のスキルはチーム一です。彼女を指導していただけますか？"'},{topic:'4. 期待の明確化',d:'さらに3週間の下降はロスター見直しの対話につながる。正直に。',s:'"あなたの力を信じています。しかし、数字は在籍年数では評価されません。3週間以内の改善を一緒に目指しましょう。必要なサポートは何ですか？"'}],
-gl:[{w:'Wk 14',d:2,r:'$38K',p:'$12K',s:48},{w:'Wk 13',d:2,r:'$42K',p:'$18K',s:54},{w:'Wk 12',d:3,r:'$56K',p:'$22K',s:62},{w:'Wk 11',d:3,r:'$48K',p:'$28K',s:60},{w:'Wk 10',d:3,r:'$52K',p:'$30K',s:64}]}
+gl:[{w:'Wk 14',d:2,r:'$38K',p:'$12K',s:48},{w:'Wk 13',d:2,r:'$42K',p:'$18K',s:54},{w:'Wk 12',d:3,r:'$56K',p:'$22K',s:62},{w:'Wk 11',d:3,r:'$48K',p:'$28K',s:60},{w:'Wk 10',d:3,r:'$52K',p:'$30K',s:64}],
+deals:[
+  { name: 'Oakmont Industries', amount: '$28K', stage: 'Negotiation', prob: 50, next: 'Budget approval pending', days: 12, note: 'Stalled', privateNote: 'Decision maker\'s wife just got diagnosed with cancer. He\'s barely at work. Timeline is shot.', privateNoteJp: '意思決定者の奥さんが最近がんと診断された。彼はほとんど出社していない。タイムラインは崩壊。' },
+  { name: 'Keystone Corp', amount: '$10K', stage: 'Closing', prob: 75, next: 'Verbal yes, sending contract', days: 5 }
+],
+aiInsights: [
+  'Oakmont timeline likely extended due to decision-maker availability. Reduce pressure, maintain relationship.',
+  'Engagement improving through mentorship role. Leverage for re-motivation.'
+],
+aiInsightsJp: [
+  'Oakmontのタイムラインは意思決定者の都合により延長の可能性。プレッシャーを減らし、関係を維持。',
+  'メンタリング役割を通じてエンゲージメントが改善。再モチベーションに活用。'
+],
+improveEn: ['Get CRM current this week. Visibility enables your manager to support you.', 'Lean into the mentorship role with DeAndra. It re-engages your best skills.', 'Target 3 new outbound touches per day to rebuild pipeline.'],
+improveJp: ['今週中にCRMを最新にしましょう。可視性があればマネージャーがサポートできます。', 'DeAndraのメンタリングに力を入れましょう。あなたの最高のスキルを再活性化します。', '1日3件の新規アウトバウンドを目標にパイプラインを再構築しましょう。']
+}
 ];
+
+// V7: AI Chat conversations
+const aiChats = {
+  en: {
+    0: [ // Marcus
+      { from: 'ai', text: 'Good morning Marcus. You have 5 active deals this week. Meridian has been silent for 9 days. Want to talk through your approach?' },
+      { from: 'rep', text: 'Yeah, I\'m worried about Meridian. The contact, his daughter is dealing with some mental health stuff. I don\'t think he\'s ghosting us, I think he\'s just overwhelmed right now.' },
+      { from: 'ai', text: 'That\'s important context. I\'ll keep this private. It won\'t appear in any team reports. Based on this, I\'d suggest a softer follow-up. Something like: "Hi David, no rush on the proposal. Just wanted to check in and see how you\'re doing. Happy to pick this back up whenever timing works."', tag: 'private' },
+      { from: 'ai', text: 'I\'ve updated your manager\'s view with an abstracted insight: "Meridian contact may be navigating personal priorities. Recommend patience-based follow-up rather than urgency tactics." Your manager won\'t see the personal details.', tag: 'shared' },
+      { from: 'rep', text: 'Perfect. What about the Henderson close. Anything I should prep for?' },
+      { from: 'ai', text: 'Henderson is done. Congrats on the $45K. For your 1-on-1 Monday, your manager will likely start here. I\'d suggest leading with what made it click. Your discovery approach was strong and it\'s a good coaching moment for the team.' }
+    ],
+    1: [ // Sarah
+      { from: 'ai', text: 'Hi Sarah. Your pipeline is looking incredible this week. $178K in new opportunities. Let\'s make sure we convert more of it.' },
+      { from: 'rep', text: 'Thanks! I\'m honestly struggling with the pricing conversations though. Quantum Digital keeps pushing back on numbers.' },
+      { from: 'ai', text: 'I understand. The Quantum procurement lead seems to be making faster decisions than usual. This could actually be an advantage if you frame the pricing confidently. Would you like me to draft some talking points?', tag: 'shared' },
+      { from: 'rep', text: 'Yes please. Also, I heard the procurement lead is going through some personal stuff. A divorce. He seems emotional.' },
+      { from: 'ai', text: 'Got it. I\'ll keep that private. It does explain the faster decision-making. My advice: be empathetic but professional. Don\'t exploit the situation. Present clear value and let him feel in control of the decision.', tag: 'private' }
+    ],
+    2: [ // Jake
+      { from: 'ai', text: 'Good morning Jake. Solid week with the Apex renewal. Your retention numbers are best on team. Let\'s talk about what\'s next.' },
+      { from: 'rep', text: 'Thanks. I want to talk about the team lead path. Also, the Apex CTO mentioned something confidentially. He\'s interviewing elsewhere.' },
+      { from: 'ai', text: 'That\'s critical intel. I\'ll keep this strictly between us. If the CTO leaves, the renewal could be at risk. I\'d recommend building relationships with other stakeholders there now, while things are stable.', tag: 'private' },
+      { from: 'ai', text: 'For your manager\'s view, I\'ve noted: "Apex renewal has emerging stakeholder risk. Recommend expanding contacts." No personal details shared.', tag: 'shared' }
+    ],
+    3: [ // DeAndra
+      { from: 'ai', text: 'Hi DeAndra! Your growth this quarter has been amazing. 92 to 148 in 6 weeks. Let\'s keep that momentum going.' },
+      { from: 'rep', text: 'Thanks! I\'m nervous about the Silverline deal though. The champion seems really stressed about pricing and I don\'t think it\'s just about budget.' },
+      { from: 'ai', text: 'Trust your instinct. Can you tell me more about what you\'re sensing?' },
+      { from: 'rep', text: 'She mentioned worrying about layoffs at her company. I think the pricing sensitivity is personal. She\'s afraid of making a big purchase and then losing her job.' },
+      { from: 'ai', text: 'That\'s a really perceptive read. I\'ll keep this private. My suggestion: reframe the conversation around ROI and job security. Show her that this purchase makes her look smart and makes the company money. Make her the hero, not the risk-taker.', tag: 'private' },
+      { from: 'ai', text: 'For your manager, I\'ve shared: "Silverline pricing sensitivity may be driven by internal company pressures, not budget. Consider value-based framing."', tag: 'shared' }
+    ],
+    4: [ // Tyler
+      { from: 'ai', text: 'Morning Tyler. I know things have been tough the past few weeks. Let\'s figure out a path forward together.' },
+      { from: 'rep', text: 'Yeah, I know my numbers are down. Oakmont is stuck because the decision maker, his wife just got a cancer diagnosis. He\'s barely at work.' },
+      { from: 'ai', text: 'I\'m sorry to hear that. That\'s incredibly difficult for everyone involved. I\'ll keep this completely private. For Oakmont, I\'d recommend maintaining a gentle, human connection. No business pressure. A simple "thinking of you" note goes further than any follow-up.', tag: 'private' },
+      { from: 'ai', text: 'For your manager, I\'ve noted: "Oakmont timeline likely extended due to decision-maker availability. Reduce pressure, maintain relationship." The personal details stay between us.', tag: 'shared' },
+      { from: 'rep', text: 'Thanks for that. I do want to help with DeAndra\'s mentoring. It\'s actually re-energizing me.' },
+      { from: 'ai', text: 'That\'s great to hear. Your relationship skills are genuinely the best on the team. Mentoring DeAndra is a win for everyone. I\'ve flagged this positively in your manager\'s view.', tag: 'shared' }
+    ]
+  },
+  jp: {
+    0: [ // Marcus
+      { from: 'ai', text: 'おはようございます、Marcus。今週5件のアクティブ案件があります。メリディアンが9日間沈黙しています。アプローチについて話しましょうか？' },
+      { from: 'rep', text: 'はい、メリディアンが心配です。担当者の娘さんがメンタルヘルスの問題を抱えているんです。無視されているのではなく、今は圧倒されているだけだと思います。' },
+      { from: 'ai', text: '重要な情報です。これは非公開にします。チームレポートには表示されません。これを踏まえて、より柔らかいフォローアップを提案します。例えば：「David様、提案書の件、急ぎません。お元気でお過ごしか確認したかっただけです。タイミングが合う時にいつでも再開しましょう。」', tag: 'private' },
+      { from: 'ai', text: 'マネージャーのビューに抽象化されたインサイトを更新しました：「メリディアンの担当者は個人的な優先事項に直面している可能性。緊急性よりも忍耐に基づくフォローアップを推奨。」個人的な詳細はマネージャーには表示されません。', tag: 'shared' },
+      { from: 'rep', text: '完璧です。ヘンダーソンのクロージングについては？何か準備すべきことはありますか？' },
+      { from: 'ai', text: 'ヘンダーソンは完了です。$45Kおめでとうございます。月曜の1on1では、マネージャーはここから始めるでしょう。何がうまくいったかを主導して話すことをお勧めします。ディスカバリーのアプローチが強かったので、チームにとって良いコーチングの瞬間です。' }
+    ],
+    1: [ // Sarah
+      { from: 'ai', text: 'こんにちは、Sarah。今週のパイプラインは素晴らしいです。$178Kの新規機会。さらに多く成約に繋げましょう。' },
+      { from: 'rep', text: 'ありがとうございます！正直、価格交渉に苦戦しています。Quantum Digitalが数字に反発し続けています。' },
+      { from: 'ai', text: '分かります。Quantumの調達担当者は通常より早い意思決定をしているようです。自信を持って価格を提示すれば、実はこれが有利に働く可能性があります。トーキングポイントを作成しましょうか？', tag: 'shared' },
+      { from: 'rep', text: 'お願いします。また、調達担当者が個人的に大変な状況と聞きました。離婚中とのことです。感情的になっているようです。' },
+      { from: 'ai', text: '了解しました。これは非公開にします。早い意思決定の説明がつきます。アドバイス：共感的でありつつプロフェッショナルに。状況を利用しないでください。明確な価値を提示し、彼が決定をコントロールしていると感じられるようにしましょう。', tag: 'private' }
+    ],
+    2: [ // Jake
+      { from: 'ai', text: 'おはようございます、Jake。Apex更新で堅実な週でした。維持率はチームトップです。次について話しましょう。' },
+      { from: 'rep', text: 'ありがとうございます。チームリーダーへの道について話したいです。また、ApexのCTOが内密に教えてくれたのですが、転職活動中だそうです。' },
+      { from: 'ai', text: '重要な情報です。これは厳密に二人の間だけにします。CTOが退職すれば、更新がリスクにさらされます。今のうちに他のステークホルダーとの関係を構築することをお勧めします。', tag: 'private' },
+      { from: 'ai', text: 'マネージャーのビューには「Apex更新にステークホルダーリスクが浮上。コンタクト先の拡大を推奨。」と記載しました。個人的な詳細は共有していません。', tag: 'shared' }
+    ],
+    3: [ // DeAndra
+      { from: 'ai', text: 'こんにちは、DeAndra！今四半期の成長は素晴らしいです。6週間で92から148へ。この勢いを維持しましょう。' },
+      { from: 'rep', text: 'ありがとうございます！でもSilverlineの案件が不安です。推進者が価格について本当にストレスを感じているようで、予算だけの問題ではないと思います。' },
+      { from: 'ai', text: '直感を信じてください。何を感じ取っているか、もう少し教えていただけますか？' },
+      { from: 'rep', text: '彼女が自社のリストラを心配していると言っていました。価格への敏感さは個人的なものだと思います。大きな購入をして、その後解雇されることを恐れているのだと思います。' },
+      { from: 'ai', text: 'とても鋭い洞察です。これは非公開にします。提案：ROIと雇用の安定性を軸に会話をリフレーミングしましょう。この購入が彼女を賢く見せ、会社に利益をもたらすことを示してください。リスクテイカーではなく、ヒーローにしましょう。', tag: 'private' },
+      { from: 'ai', text: 'マネージャーには「Silverlineの価格感度は予算ではなく社内のプレッシャーが原因の可能性。バリューベースのフレーミングを検討。」と共有しました。', tag: 'shared' }
+    ],
+    4: [ // Tyler
+      { from: 'ai', text: 'おはようございます、Tyler。ここ数週間大変だったと思います。一緒に前に進む道を見つけましょう。' },
+      { from: 'rep', text: 'ええ、数字が下がっているのは分かっています。Oakmontが止まっているのは、意思決定者の奥さんが最近がんと診断されたからです。彼はほとんど出社していません。' },
+      { from: 'ai', text: 'それは大変な状況です。関係者全員にとって辛いことですね。これは完全に非公開にします。Oakmontについては、穏やかで人間的なつながりを維持することをお勧めします。ビジネスのプレッシャーはなし。シンプルな「お気持ちをお察しします」というメモの方が、どんなフォローアップよりも効果的です。', tag: 'private' },
+      { from: 'ai', text: 'マネージャーには「Oakmontのタイムラインは意思決定者の都合により延長の可能性。プレッシャーを減らし、関係を維持。」と記載しました。個人的な詳細は二人の間だけです。', tag: 'shared' },
+      { from: 'rep', text: 'ありがとうございます。DeAndraのメンタリングを手伝いたいと思っています。実は自分も元気が出てきました。' },
+      { from: 'ai', text: 'それは嬉しいです。あなたの関係構築スキルは本当にチームで一番です。DeAndraのメンタリングは全員にとってプラスです。マネージャーのビューにポジティブに記載しました。', tag: 'shared' }
+    ]
+  }
+};
 
 // V3: Quota & projection data
 D.forEach(p=>{
@@ -1200,6 +1732,300 @@ D.forEach(p=>{
 });
 
 let cur=0;
+
+// ===== STAGE COLORS =====
+function stageColor(stage) {
+  switch(stage) {
+    case 'Closed Won': return { bg: 'var(--green-bg)', color: 'var(--green)' };
+    case 'Closing': return { bg: 'rgba(0,200,83,0.08)', color: '#34C759' };
+    case 'Negotiation': return { bg: 'var(--blue-bg)', color: 'var(--blue)' };
+    case 'Proposal': return { bg: 'var(--amber-bg)', color: 'var(--amber)' };
+    case 'Discovery': return { bg: 'rgba(68,68,68,0.2)', color: 'var(--t3)' };
+    default: return { bg: 'var(--elevated)', color: 'var(--t3)' };
+  }
+}
+
+// ===== RENDER DEAL CARDS =====
+function renderDealCards(deals, showPrivate) {
+  return deals.map(deal => {
+    const sc = stageColor(deal.stage);
+    const privateNoteText = lang === 'jp' ? deal.privateNoteJp : deal.privateNote;
+    return `<div class="deal-card">
+      <div class="deal-top">
+        <div class="deal-name">${deal.name}</div>
+        <div class="deal-amount">${deal.amount}</div>
+      </div>
+      <div class="deal-meta">
+        <span class="deal-stage" style="background:${sc.bg};color:${sc.color};">${tStage(deal.stage)}</span>
+        <span class="deal-prob">${t('probability')}: ${deal.prob}%</span>
+        <span class="deal-days">${deal.days} ${t('days_in_stage')}</span>
+      </div>
+      <div class="deal-next">${t('next_action')}: ${deal.next}</div>
+      ${deal.note ? `<div class="deal-note">${deal.note}</div>` : ''}
+      ${showPrivate && privateNoteText ? `
+        <div class="deal-private">
+          <div class="deal-private-label"><span>&#128274;</span> ${t('rep_private_note')}</div>
+          <div class="deal-private-text">${privateNoteText}</div>
+          <div style="font-size:10px;color:var(--t4);margin-top:6px;">${t('rep_private_only')}</div>
+        </div>
+      ` : ''}
+    </div>`;
+  }).join('');
+}
+
+// ===== VIEW MODE =====
+function setViewMode(mode) {
+  viewMode = mode;
+  document.getElementById('vmMgr').classList.toggle('on', mode === 'manager');
+  document.getElementById('vmRep').classList.toggle('on', mode === 'rep');
+
+  if (mode === 'manager') {
+    document.getElementById('managerScreens').style.display = '';
+    document.getElementById('repScreens').style.display = 'none';
+    updateNavLabels();
+    renderManagerBottomBar();
+    go('roster');
+  } else {
+    document.getElementById('managerScreens').style.display = 'none';
+    document.getElementById('repScreens').style.display = '';
+    updateNavLabels();
+    renderRepBottomBar();
+    renderRepView();
+    goRep('rep-dashboard');
+  }
+}
+
+function updateNavLabels() {
+  const nav = document.getElementById('topNav');
+  if (viewMode === 'manager') {
+    nav.innerHTML = `
+      <div class="tnav-i on" onclick="go('roster')" data-i18n="nav_roster">${t('nav_roster')}</div>
+      <div class="tnav-i" onclick="go('matchup')" data-i18n="nav_matchup">${t('nav_matchup')}</div>
+      <div class="tnav-i" onclick="go('take')" data-i18n="nav_take">${t('nav_take')}</div>
+    `;
+  } else {
+    nav.innerHTML = `
+      <div class="tnav-i on" onclick="goRep('rep-dashboard')">${t('rep_my_dashboard')}</div>
+      <div class="tnav-i" onclick="goRep('rep-deals')">${t('rep_my_deals')}</div>
+      <div class="tnav-i" onclick="goRep('rep-ai')">${t('rep_ai_partner')}</div>
+    `;
+  }
+}
+
+function renderManagerBottomBar() {
+  document.getElementById('bottomBar').innerHTML = `
+    <div class="tbar-i on" onclick="go('roster')">
+      <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      <span class="tbar-l">${t('nav_roster')}</span>
+    </div>
+    <div class="tbar-i" onclick="go('matchup')">
+      <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+      <span class="tbar-l">${t('nav_matchup')}</span>
+    </div>
+    <div class="tbar-i" onclick="go('take')">
+      <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+      <span class="tbar-l">${t('nav_take')}</span>
+    </div>
+  `;
+}
+
+function renderRepBottomBar() {
+  document.getElementById('bottomBar').innerHTML = `
+    <div class="tbar-i on" onclick="goRep('rep-dashboard')">
+      <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      <span class="tbar-l">${t('rep_my_dashboard')}</span>
+    </div>
+    <div class="tbar-i" onclick="goRep('rep-deals')">
+      <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+      <span class="tbar-l">${t('rep_my_deals')}</span>
+    </div>
+    <div class="tbar-i" onclick="goRep('rep-ai')">
+      <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      <span class="tbar-l">${t('rep_ai_partner')}</span>
+    </div>
+  `;
+}
+
+// ===== REP VIEW NAV =====
+function goRep(id) {
+  document.querySelectorAll('#repScreens .scr').forEach(s => s.classList.remove('on'));
+  document.getElementById('scr-' + id).classList.add('on');
+
+  // Update top nav
+  const navItems = document.querySelectorAll('#topNav .tnav-i');
+  navItems.forEach(n => n.classList.remove('on'));
+  const m = {'rep-dashboard': 0, 'rep-deals': 1, 'rep-ai': 2};
+  if (navItems[m[id]]) navItems[m[id]].classList.add('on');
+
+  // Update bottom bar
+  const barItems = document.querySelectorAll('#bottomBar .tbar-i');
+  barItems.forEach(t => t.classList.remove('on'));
+  if (barItems[m[id]]) barItems[m[id]].classList.add('on');
+
+  window.scrollTo(0, 0);
+}
+
+// ===== REP VIEW RENDER =====
+function renderRepView() {
+  renderRepDashboard();
+  renderRepDeals();
+  renderRepAI();
+}
+
+function repPillSelector() {
+  return `<div style="display:flex;gap:6px;padding:12px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;">
+    ${D.map((p, i) => `
+      <div class="mu-pill ${i === selectedRepIdx ? 'on' : ''}" onclick="selectRep(${i})">
+        <div class="mu-pill-img"><img src="${p.img}"></div>
+        <span class="mu-pill-n">${p.f}</span>
+      </div>
+    `).join('')}
+  </div>`;
+}
+
+function selectRep(idx) {
+  selectedRepIdx = idx;
+  renderRepView();
+  // Maintain current rep screen
+  const activeScr = document.querySelector('#repScreens .scr.on');
+  if (activeScr) {
+    const id = activeScr.id.replace('scr-', '');
+    goRep(id);
+  }
+}
+
+function renderRepDashboard() {
+  const p = D[selectedRepIdx];
+  const sColor = v => v >= 80 ? 'var(--green)' : v >= 60 ? 'var(--amber)' : 'var(--red)';
+  const qColor = p.qPct >= 90 ? 'var(--green)' : p.qPct >= 70 ? 'var(--amber)' : 'var(--red)';
+  const sb = p.scoreBreakdown;
+  const improveItems = lang === 'jp' ? p.improveJp : p.improveEn;
+
+  document.getElementById('scr-rep-dashboard').innerHTML = `
+    ${repPillSelector()}
+    <div class="rep-hero-card">
+      <div class="rep-hero-top">
+        <div class="rep-hero-photo"><img src="${p.img}" alt="${p.name}"></div>
+        <div class="rep-hero-info">
+          <div class="rep-hero-name">${p.name}</div>
+          <div class="rep-hero-sub">${tRole(p.role)} &middot; ${p.ten}</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:${sColor(p.score)};line-height:1;">${p.score}</div>
+          <div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;">${t('rep_my_score')}</div>
+          <div class="p-trend ${p.td}" style="font-size:12px;">${p.tr} ${t('pts')}</div>
+        </div>
+      </div>
+      <!-- Quota progress -->
+      <div style="margin-top:8px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <span style="font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;">${t('quarter_quota_progress')}</span>
+          <span style="font-size:12px;font-weight:700;color:${qColor}">$${Math.round(p.qActual/1000)}K / $${Math.round(p.quota/1000)}K</span>
+        </div>
+        <div class="proj-bar-bg"><div class="proj-bar-fill" style="width:${Math.min(p.qPct,100)}%;background:${qColor};"></div></div>
+      </div>
+    </div>
+
+    <!-- Score breakdown -->
+    <div class="sh"><div class="sh-t">${t('perf_score_breakdown')}</div></div>
+    <div style="margin:0 16px 16px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;">
+      <div class="sk-list" style="padding:0;">
+        <div class="sk-row"><div class="sk-lbl">${t('revenue_30')}</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.rev}%;background:${sColor(sb.rev)}"></div></div><div class="sk-val" style="color:${sColor(sb.rev)}">${sb.rev}</div></div>
+        <div class="sk-row"><div class="sk-lbl">${t('pipeline_25')}</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.pipe}%;background:${sColor(sb.pipe)}"></div></div><div class="sk-val" style="color:${sColor(sb.pipe)}">${sb.pipe}</div></div>
+        <div class="sk-row"><div class="sk-lbl">${t('activity_25')}</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.activity}%;background:${sColor(sb.activity)}"></div></div><div class="sk-val" style="color:${sColor(sb.activity)}">${sb.activity}</div></div>
+        <div class="sk-row"><div class="sk-lbl">${t('efficiency_20')}</div><div class="sk-trk"><div class="sk-fill" style="width:${sb.efficiency}%;background:${sColor(sb.efficiency)}"></div></div><div class="sk-val" style="color:${sColor(sb.efficiency)}">${sb.efficiency}</div></div>
+      </div>
+    </div>
+
+    <!-- Skills radar -->
+    <div class="radar-wrap">
+      <div class="radar-title">${t('skills_assessment')}</div>
+      ${radarSVG(p.skills)}
+    </div>
+
+    <!-- How to improve -->
+    <div class="rep-improve-card">
+      <div class="rep-improve-title">${t('rep_how_to_improve')}</div>
+      ${improveItems.map(item => `
+        <div class="rep-improve-item">
+          <div class="rep-improve-bullet"></div>
+          <div>${item}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderRepDeals() {
+  const p = D[selectedRepIdx];
+  document.getElementById('scr-rep-deals').innerHTML = `
+    ${repPillSelector()}
+    <div class="sh"><div class="sh-t">${t('pipeline_deals')}</div><div class="sh-a">${p.deals.length} ${lang === 'jp' ? '件' : 'deals'}</div></div>
+    <div class="deal-list">
+      ${p.deals.map(deal => {
+        const sc = stageColor(deal.stage);
+        const privateNoteText = lang === 'jp' ? deal.privateNoteJp : deal.privateNote;
+        // Find matching AI insight for the manager sees note
+        const insights = lang === 'jp' ? p.aiInsightsJp : p.aiInsights;
+        const matchingInsight = privateNoteText ? insights[0] : null;
+        return `<div class="deal-card">
+          <div class="deal-top">
+            <div class="deal-name">${deal.name}</div>
+            <div class="deal-amount">${deal.amount}</div>
+          </div>
+          <div class="deal-meta">
+            <span class="deal-stage" style="background:${sc.bg};color:${sc.color};">${tStage(deal.stage)}</span>
+            <span class="deal-prob">${t('probability')}: ${deal.prob}%</span>
+            <span class="deal-days">${deal.days} ${t('days_in_stage')}</span>
+          </div>
+          <div class="deal-next">${t('next_action')}: ${deal.next}</div>
+          ${deal.note ? `<div class="deal-note">${deal.note}</div>` : ''}
+          ${privateNoteText ? `
+            <div class="deal-private">
+              <div class="deal-private-label"><span>&#128274;</span> ${t('rep_private_note')}</div>
+              <div class="deal-private-text">${privateNoteText}</div>
+              <div style="font-size:10px;color:var(--t4);margin-top:6px;">${t('rep_private_only')}</div>
+            </div>
+            ${matchingInsight ? `
+              <div class="manager-sees-note">
+                <div class="manager-sees-label">${t('rep_manager_sees')}:</div>
+                <div>"${matchingInsight}"</div>
+              </div>
+            ` : ''}
+          ` : ''}
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+}
+
+function renderRepAI() {
+  const p = D[selectedRepIdx];
+  const chat = aiChats[lang][selectedRepIdx] || aiChats['en'][selectedRepIdx] || [];
+
+  document.getElementById('scr-rep-ai').innerHTML = `
+    ${repPillSelector()}
+    <div class="ai-chat">
+      <div class="ai-chat-intro">
+        <div class="ai-chat-icon"><img src="assets/salescomp-icon.png" alt="AI"></div>
+        <div class="ai-chat-name">${t('rep_ai_partner')}</div>
+        <div class="ai-chat-sub">${t('rep_your_personal_advisor')}</div>
+      </div>
+      ${chat.map((msg, i) => `
+        <div class="ai-msg from-${msg.from}" style="animation-delay:${i * 0.1}s;">
+          <div class="ai-msg-avi">
+            <img src="${msg.from === 'ai' ? 'assets/salescomp-icon.png' : p.img}" alt="">
+          </div>
+          <div>
+            <div class="ai-msg-bubble">${msg.text}</div>
+            ${msg.tag === 'private' ? `<div class="ai-msg-tag private">&#128274; ${t('rep_kept_private_tag')}</div>` : ''}
+            ${msg.tag === 'shared' ? `<div class="ai-msg-tag shared">&#128202; ${t('rep_shared_as_insight')}</div>` : ''}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
 
 // ===== RENDER FOCUS CARDS =====
 function renderFocusCards() {
@@ -1357,7 +2183,7 @@ function openCard(i){
     </div>
   `;
 
-  // Overview: Score Breakdown + Radar + Take + CTA
+  // Overview: Score Breakdown + Radar + Deals + Take + AI Insights + CTA
   const sb=p.scoreBreakdown;
   const sColor=v=>v>=80?'var(--green)':v>=60?'var(--amber)':'var(--red)';
   document.getElementById('cpRadar').innerHTML=`
@@ -1380,6 +2206,14 @@ function openCard(i){
     </div>
   `;
 
+  // V7: Pipeline Deals section in player card
+  document.getElementById('cpDeals').innerHTML=`
+    <div class="sh"><div class="sh-t">${t('pipeline_deals')}</div><div class="sh-a">${p.deals.length} ${lang === 'jp' ? '件' : 'deals'}</div></div>
+    <div class="deal-list">
+      ${renderDealCards(p.deals, false)}
+    </div>
+  `;
+
   const takeText = lang === 'jp' ? p.takeJp : p.take;
   document.getElementById('cpTake').innerHTML=`
     <div class="take-box">
@@ -1390,6 +2224,22 @@ function openCard(i){
       <div class="take-box-body"><div class="take-box-txt">${takeText}</div></div>
     </div>
   `;
+
+  // V7: AI Abstracted Insights
+  const insights = lang === 'jp' ? p.aiInsightsJp : p.aiInsights;
+  document.getElementById('cpInsights').innerHTML=`
+    <div class="ai-insights">
+      <div class="ai-insights-hdr">
+        <div class="ai-insights-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 2.4-1.2 4.5-3 5.7V17a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2.3C6.2 13.5 5 11.4 5 9a7 7 0 017-7z"/><path d="M9 21h6M10 17v4M14 17v4"/></svg></div>
+        <div class="ai-insights-lbl">${t('ai_abstracted_insights')}</div>
+      </div>
+      ${insights.map(ins => `<div class="ai-insight-item">${ins}</div>`).join('')}
+      <div class="ai-insights-bridge" onclick="closeCard();selectedRepIdx=${i};setViewMode('rep');goRep('rep-ai');">
+        ${t('see_rep_view', {name: p.f})} &rarr;
+      </div>
+    </div>
+  `;
+
   document.getElementById('cpCta').innerHTML=`
     <button class="cta-btn" onclick="openMsg(${i})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>${t('send_accountability_msg')}</button>
   `;
@@ -1593,13 +2443,16 @@ function renderTK(idx){
 
 // ===== NAV =====
 function go(id){
-  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  if (viewMode !== 'manager') return;
+  document.querySelectorAll('#managerScreens .scr').forEach(s=>s.classList.remove('on'));
   document.getElementById('scr-'+id).classList.add('on');
-  document.querySelectorAll('.tnav-i').forEach(n=>n.classList.remove('on'));
-  document.querySelectorAll('.tbar-i').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('#topNav .tnav-i').forEach(n=>n.classList.remove('on'));
+  document.querySelectorAll('#bottomBar .tbar-i').forEach(t=>t.classList.remove('on'));
   const m={roster:0,matchup:1,take:2};
-  document.querySelectorAll('.tnav-i')[m[id]].classList.add('on');
-  document.querySelectorAll('.tbar-i')[m[id]].classList.add('on');
+  const navItems = document.querySelectorAll('#topNav .tnav-i');
+  const barItems = document.querySelectorAll('#bottomBar .tbar-i');
+  if (navItems[m[id]]) navItems[m[id]].classList.add('on');
+  if (barItems[m[id]]) barItems[m[id]].classList.add('on');
   if(id==='matchup')renderMU();
   if(id==='take'){renderBrief();renderTK(0);}
   window.scrollTo(0,0);
@@ -1693,6 +2546,8 @@ function tourUpdateWelcomeText() {
 }
 
 function tourStart() {
+  // Ensure manager view for tour
+  if (viewMode !== 'manager') setViewMode('manager');
   document.getElementById('tourWelcome').classList.remove('on');
   document.getElementById('tourOverlay').classList.add('on');
   tourActive = true;
@@ -1745,8 +2600,14 @@ function tourPosition(step, steps) {
   document.getElementById('tourTitle').textContent = step.title;
   document.getElementById('tourDesc').textContent = step.desc;
   document.getElementById('tourStepLabel').textContent = lang === 'jp' ? `${tourIdx + 1} / ${steps.length}` : `Step ${tourIdx + 1} of ${steps.length}`;
-  document.getElementById('tourNextBtn').textContent = tourIdx === steps.length - 1 ? (lang === 'jp' ? '始めましょう' : 'Get Started') : (lang === 'jp' ? '次へ' : 'Next');
-  document.querySelector('.tour-skip').textContent = lang === 'jp' ? 'スキップ' : 'Skip';
+
+  // V7: Last step shows "Switch to Rep View" instead of "Get Started"
+  if (tourIdx === steps.length - 1) {
+    document.getElementById('tourNextBtn').textContent = lang === 'jp' ? t('rep_switch_to_rep') : t('rep_switch_to_rep');
+  } else {
+    document.getElementById('tourNextBtn').textContent = lang === 'jp' ? '\u6B21\u3078' : 'Next';
+  }
+  document.querySelector('.tour-skip').textContent = lang === 'jp' ? '\u30B9\u30AD\u30C3\u30D7' : 'Skip';
 
   // Dots
   const dotsHtml = steps.map((_, i) => `<span class="${i === tourIdx ? 'on' : ''}"></span>`).join('');
@@ -1763,26 +2624,22 @@ function positionTooltip(rect, tip, step) {
   const appEl = document.querySelector('.app');
   const appRect = appEl.getBoundingClientRect();
   const tipWidth = 320;
-  const tipEstHeight = 180; // approximate tooltip height
+  const tipEstHeight = 180;
 
-  // Center tooltip horizontally within app bounds
   let left = Math.max(appRect.left + 16, rect.left);
   left = Math.min(left, appRect.right - tipWidth - 16);
 
   const arrowOffset = Math.max(20, Math.min(rect.left + rect.width / 2 - left - 6, tipWidth - 30));
   tip.style.setProperty('--arrow-left', arrowOffset + 'px');
 
-  // Check if tooltip would overflow below the viewport
   const wouldOverflowBelow = (rect.bottom + 16 + tipEstHeight) > window.innerHeight;
   const hasRoomAbove = rect.top > tipEstHeight + 16;
 
   if (step.arrow === 'top' && !wouldOverflowBelow) {
-    // Place below the spotlight
     tip.style.top = (rect.bottom + 16) + 'px';
     tip.style.bottom = 'auto';
     tip.classList.add('arrow-top');
   } else {
-    // Place above the spotlight
     tip.style.top = 'auto';
     tip.style.bottom = (window.innerHeight - rect.top + 16) + 'px';
     tip.classList.add('arrow-bottom');
@@ -1795,7 +2652,9 @@ function tourNext() {
   tourIdx++;
   const steps = tourSteps[lang];
   if (tourIdx >= steps.length) {
+    // V7: Switch to rep view on tour end
     tourEnd();
+    setViewMode('rep');
   } else {
     tourShow();
   }
@@ -1807,7 +2666,7 @@ function tourEnd() {
   document.getElementById('tourWelcome').classList.remove('on');
   document.getElementById('tourOverlay').classList.remove('on');
   document.getElementById('tourRestartBtn').classList.add('show');
-  go('roster');
+  if (viewMode === 'manager') go('roster');
 }
 
 function tourRestart() {
@@ -1826,10 +2685,11 @@ setLang = function(l) {
 };
 
 // Init
+document.getElementById('vmMgr').textContent = t('view_manager');
+document.getElementById('vmRep').textContent = t('view_rep');
 renderFocusCards();
 renderActivityFeed();
 renderRoster();
 tourUpdateWelcomeText();
 </script>
-</body>
-</html>
+</body></html>
