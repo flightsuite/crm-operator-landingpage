@@ -214,6 +214,7 @@ html.light .ai-insights-icon { background: linear-gradient(135deg, #007AFF, #585
 .p-row{padding:12px 0;}
 
 /* Larger matchup photos */
+.mu-side-photo-wrap{width:80px;height:80px;}
 .mu-side-photo{width:80px;height:80px;border-width:3px;}
 .mu-sc{font-size:44px;}
 .mu-vs{padding:28px 16px 20px;}
@@ -506,9 +507,11 @@ body{
 .mu-picks-label{padding:0 16px 6px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--t4);}
 .mu-side-clickable{cursor:pointer;transition:transform .15s;}
 .mu-side-clickable:active{transform:scale(.96);}
-.mu-side-clickable .mu-side-photo{position:relative;}
-.mu-side-edit{position:absolute;bottom:-2px;right:-2px;width:22px;height:22px;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;border:2px solid var(--bg);box-shadow:0 2px 6px rgba(0,0,0,0.4);}
-.mu-side-edit svg{width:11px;height:11px;color:var(--bg);}
+.mu-side-photo-wrap{position:relative;width:72px;height:72px;margin:0 auto 8px;}
+.mu-side-clickable .mu-side-photo{margin:0;width:100%;height:100%;}
+.mu-side-edit{position:absolute;bottom:-4px;right:-4px;width:28px;height:28px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;border:3px solid var(--bg);box-shadow:0 3px 10px rgba(0,0,0,0.5);z-index:2;}
+.mu-side-edit svg{width:14px;height:14px;color:#0a0a0a;}
+.mu-side-clickable:active .mu-side-edit{transform:scale(.9);}
 .mu-swap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(84px,1fr));gap:10px;padding:4px 0 12px;}
 .mu-swap-cell{padding:10px 6px;border-radius:12px;border:1px solid var(--border);background:var(--card);text-align:center;cursor:pointer;transition:transform .1s,border-color .15s;position:relative;}
 .mu-swap-cell:active{transform:scale(.97);}
@@ -845,6 +848,103 @@ body{
 .ai-insights-bridge:active { opacity: .7; }
 
 /* ===== V7: REP VIEW SPECIFIC ===== */
+/* ===== REP: PLAYBOOKS ===== */
+.pb-hero{padding:20px 16px 10px;}
+.pb-hero-title{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:var(--white);}
+.pb-hero-sub{font-size:13px;color:var(--t3);margin-top:4px;line-height:1.55;}
+.pb-list{display:flex;flex-direction:column;gap:10px;padding:0 16px 20px;}
+.pb-card{display:flex;align-items:center;gap:14px;padding:16px 14px;background:var(--card);border:1px solid var(--border);border-radius:14px;cursor:pointer;transition:transform .1s,border-color .15s;}
+.pb-card:active{transform:scale(.99);}
+.pb-card:hover{border-color:var(--border-l);}
+.pb-card-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pb-card-icon svg{width:22px;height:22px;}
+.pb-ic-meeting.pb-card-icon,.pb-ic-meeting.pb-detail-icon{background:rgba(0,122,255,0.12);color:var(--blue);}
+.pb-ic-sql.pb-card-icon,.pb-ic-sql.pb-detail-icon{background:rgba(255,149,0,0.12);color:var(--amber);}
+.pb-ic-deal.pb-card-icon,.pb-ic-deal.pb-detail-icon{background:rgba(0,200,83,0.12);color:var(--green);}
+.pb-ic-proposal.pb-card-icon,.pb-ic-proposal.pb-detail-icon{background:rgba(255,59,48,0.12);color:var(--red);}
+.pb-detail-hero.pb-ic-meeting{border-left-color:var(--blue);}
+.pb-detail-hero.pb-ic-sql{border-left-color:var(--amber);}
+.pb-detail-hero.pb-ic-deal{border-left-color:var(--green);}
+.pb-detail-hero.pb-ic-proposal{border-left-color:var(--red);}
+.pb-card-body{flex:1;min-width:0;}
+.pb-card-title{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--white);}
+.pb-card-sub{font-size:12px;color:var(--t3);margin-top:3px;line-height:1.4;}
+.pb-card-meta{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.pb-card-count{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:var(--t4);letter-spacing:.3px;background:var(--elevated);padding:3px 8px;border-radius:10px;}
+.pb-card-chev{width:16px;height:16px;color:var(--t4);}
+
+.pb-detail-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 8px;}
+.pb-back{display:flex;align-items:center;gap:4px;color:var(--t2);font-size:14px;font-weight:600;cursor:pointer;}
+.pb-back svg{width:20px;height:20px;}
+.pb-back:active{opacity:.6;}
+.pb-progress{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--t3);}
+
+.pb-detail-hero{margin:4px 16px 14px;padding:14px;background:var(--card);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:14px;display:flex;align-items:center;gap:12px;}
+.pb-detail-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:10px;}
+.pb-detail-icon svg{width:22px;height:22px;}
+.pb-detail-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;text-transform:uppercase;letter-spacing:.4px;color:var(--white);}
+.pb-detail-sub{font-size:12px;color:var(--t3);margin-top:2px;}
+
+.pb-questions{display:flex;flex-direction:column;gap:10px;padding:0 16px 16px;}
+.pb-q{padding:14px;background:var(--card);border:1px solid var(--border);border-radius:14px;transition:border-color .2s;}
+.pb-q.done{border-color:rgba(0,200,83,0.3);}
+.pb-q.rec{border-color:var(--amber);}
+.pb-q-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.pb-q-num{width:24px;height:24px;border-radius:50%;background:var(--elevated);color:var(--t2);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.pb-q.done .pb-q-num{background:var(--green);color:#000;}
+.pb-q-text-wrap{flex:1;min-width:0;}
+.pb-q-text{font-size:14px;font-weight:700;color:var(--white);line-height:1.4;}
+.pb-q-hint{font-size:11px;font-style:italic;color:var(--t3);margin-top:4px;line-height:1.45;border-left:2px solid var(--border-l);padding-left:8px;}
+.pb-q-actions{display:flex;align-items:center;gap:12px;}
+.pb-q-mic{width:44px;height:44px;border-radius:50%;border:none;background:linear-gradient(135deg,#FF9500,#FF6B00);color:#0a0a0a;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;box-shadow:0 3px 12px rgba(255,149,0,0.3);transition:transform .1s;}
+.pb-q-mic svg{width:20px;height:20px;}
+.pb-q-mic:active{transform:scale(.94);}
+.pb-q-mic.rec{background:linear-gradient(135deg,#FF3B30,#C8102E);box-shadow:0 3px 14px rgba(255,59,48,0.45);animation:rpPulse 1.2s infinite;}
+.pb-q-mic.done{background:linear-gradient(135deg,#00C853,#00A843);box-shadow:0 3px 12px rgba(0,200,83,0.3);}
+.pb-q-status-wrap{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;}
+.pb-q-status{font-size:12px;font-weight:700;color:var(--t2);letter-spacing:.2px;line-height:1.3;}
+.pb-q-timehint{font-size:10px;font-weight:600;color:var(--t4);letter-spacing:.3px;text-transform:uppercase;}
+.pb-q.rec .pb-q-status{color:var(--amber);text-transform:uppercase;letter-spacing:.8px;}
+.pb-q-answer{margin-top:10px;padding:10px 12px;background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.15);border-radius:10px;font-size:13px;color:var(--t2);line-height:1.55;}
+.pb-q-note{margin-top:6px;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--green);}
+.pb-q-note svg{width:10px;height:10px;}
+
+.pb-detail-footer{padding:0 16px 24px;}
+.pb-save{width:100%;padding:14px;border-radius:12px;border:none;background:var(--white);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .1s;}
+.pb-save svg{width:16px;height:16px;}
+.pb-save:active{transform:scale(.98);}
+.pb-save:disabled{opacity:.35;cursor:not-allowed;}
+.pb-save-hint{font-size:11px;color:var(--amber);margin-top:8px;text-align:center;font-weight:600;}
+
+.pb-deal{margin:0 16px 14px;display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border:1px dashed var(--border-l);border-radius:14px;cursor:pointer;transition:border-color .15s,background .15s;}
+.pb-deal:active{opacity:.8;}
+.pb-deal.on{border-style:solid;border-color:var(--amber);background:rgba(255,149,0,0.06);}
+.pb-deal-icon{width:32px;height:32px;border-radius:10px;background:var(--elevated);color:var(--t3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pb-deal.on .pb-deal-icon{background:rgba(255,149,0,0.15);color:var(--amber);}
+.pb-deal-icon svg{width:16px;height:16px;}
+.pb-deal-body{flex:1;min-width:0;}
+.pb-deal-label{font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.8px;margin-bottom:2px;}
+.pb-deal-value{font-size:14px;font-weight:700;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pb-deal-chev{width:18px;height:18px;color:var(--t4);flex-shrink:0;}
+
+.pb-deal-list{display:flex;flex-direction:column;gap:8px;margin:12px 0;max-height:300px;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.pb-deal-opt{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--elevated);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:border-color .15s;}
+.pb-deal-opt:active{opacity:.8;}
+.pb-deal-opt.on{border-color:var(--amber);background:rgba(255,149,0,0.08);}
+.pb-deal-opt-main{min-width:0;flex:1;}
+.pb-deal-opt-name{font-size:14px;font-weight:700;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pb-deal-opt-meta{font-size:11px;color:var(--t3);margin-top:2px;}
+.pb-deal-opt-check{width:18px;height:18px;color:var(--amber);flex-shrink:0;margin-left:10px;}
+
+.pb-new-deal{padding-top:14px;border-top:1px solid var(--border);margin-top:4px;}
+.pb-new-deal-label{font-size:11px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;}
+.pb-new-deal-row{display:flex;gap:8px;}
+.pb-new-deal-row input{flex:1;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:var(--elevated);color:var(--white);font-size:14px;font-family:inherit;outline:none;transition:border-color .15s;}
+.pb-new-deal-row input:focus{border-color:var(--amber);}
+.pb-new-deal-row input::placeholder{color:var(--t4);}
+.pb-new-deal-row button{padding:0 18px;border-radius:10px;border:none;background:var(--amber);color:#0a0a0a;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;cursor:pointer;transition:transform .1s;}
+.pb-new-deal-row button:active{transform:scale(.96);}
+
 /* ===== REP: MY WEEK ===== */
 .rp-hero{margin:12px 16px 14px;padding:18px 18px 16px;background:linear-gradient(135deg,#1a1a2e 0%,#0d0d16 100%);border:1px solid var(--border);border-radius:16px;position:relative;overflow:hidden;}
 .rp-hero::before{content:'';position:absolute;top:-30px;right:-30px;width:160px;height:160px;background:radial-gradient(circle,rgba(255,149,0,0.08) 0%,transparent 70%);pointer-events:none;}
@@ -1101,7 +1201,7 @@ body{
 <!-- ===== REP VIEW SCREENS ===== -->
 <div id="repScreens" style="display:none;">
   <div class="scr on" id="scr-rep-plan"></div>
-  <div class="scr" id="scr-rep-dashboard"></div>
+  <div class="scr" id="scr-rep-playbooks"></div>
   <div class="scr" id="scr-rep-deals"></div>
   <div class="scr" id="scr-rep-ai"></div>
 </div>
@@ -1147,6 +1247,22 @@ body{
     <div class="m-title" id="muSwapTitle" data-i18n="swap_title">Replace rep</div>
     <div class="m-sub" id="muSwapSub" data-i18n="swap_sub">Pick who you want in this matchup.</div>
     <div class="mu-swap-grid" id="muSwapGrid"></div>
+  </div>
+</div>
+
+<div class="m-overlay" id="pbDealModal">
+  <div class="m-sheet">
+    <div class="m-handle"></div>
+    <div class="m-title" data-i18n="pb_deal_modal_title">Which deal is this for?</div>
+    <div class="m-sub" data-i18n="pb_deal_modal_sub">Pick an active deal so this logs to the right account.</div>
+    <div class="pb-deal-list" id="pbDealList"></div>
+    <div class="pb-new-deal">
+      <div class="pb-new-deal-label" data-i18n="pb_new_deal_label">Or add a new company / lead</div>
+      <div class="pb-new-deal-row">
+        <input type="text" id="pbNewDealInput" placeholder="New company or deal name" autocomplete="off">
+        <button onclick="pbAddNewDeal()" data-i18n="pb_add">Add</button>
+      </div>
+    </div>
   </div>
 </div>
 <div class="toast" id="toast"></div>
@@ -1418,6 +1534,82 @@ const T = {
     rp_logged: 'Logged',
     rp_synced_crm: 'Synced to Salesforce',
     rp_todays_focus: 'Today\'s focus',
+
+    // Playbooks
+    rep_playbooks: 'Playbooks',
+    pb_title: 'Playbooks',
+    pb_sub: 'Pick a moment. Answer like I\'m your coach. SalesComp handles the CRM fields and shares the right notes with me.',
+    pb_back: 'Back',
+    pb_captured: 'captured',
+    pb_listening: 'Listening...',
+    pb_coach_prompt: 'Talk to me like I\'m your coach',
+    pb_time_hint: '~30 sec',
+    pb_recapture: 'Tap to re-record',
+    pb_coach_note_good: 'Good — specific',
+    pb_save_to_crm: 'Save to CRM',
+    pb_saved_toast_prefix: 'Saved:',
+    pb_deal_label: 'For which deal?',
+    pb_deal_placeholder: 'Pick or add',
+    pb_deal_modal_title: 'Which deal is this for?',
+    pb_deal_modal_sub: 'Pick an active deal so this logs to the right account.',
+    pb_new_deal_label: 'Or add a new company / lead',
+    pb_add: 'Add',
+    pb_pick_deal_first: 'Pick a deal to save this playbook.',
+
+    // Coach me up (post-call)
+    pb_meeting_title: 'Coach me up',
+    pb_meeting_sub: 'Right after a call. Talk to your coach, not the CRM.',
+    pb_meeting_q0: 'What\'s the one thing you learned about them you didn\'t know before?',
+    pb_meeting_h0: 'If nothing, that wasn\'t a discovery. Say that.',
+    pb_meeting_a0: 'Their ops lead is 90 days from a board review. That\'s why they\'re suddenly shopping for efficiency.',
+    pb_meeting_q1: 'In their exact words: what do THEY have to solve to buy?',
+    pb_meeting_h1: 'Their words, not your pitch.',
+    pb_meeting_a1: 'Her line was "we can\'t keep manually reconciling handoffs between ops and finance."',
+    pb_meeting_q2: 'Next action, by what day?',
+    pb_meeting_h2: 'Not "follow up soon." Verb and date.',
+    pb_meeting_a2: 'Send the NetSuite integration spec by Friday, book a 30-minute technical call for Tuesday.',
+    pb_meeting_q3: 'Where did you get stuck?',
+    pb_meeting_h3: 'This is your coaching ask, not a confession.',
+    pb_meeting_a3: 'Couldn\'t answer their Okta SSO question. Need product\'s help before the tech call.',
+
+    // Raise the flag (qualify)
+    pb_sql_title: 'Raise the flag',
+    pb_sql_sub: 'Qualified lead. Prove it.',
+    pb_sql_q0: 'In one sentence: why is this real NOW?',
+    pb_sql_h0: 'A compelling event, not a wish. If you can\'t name it, they\'re not qualified.',
+    pb_sql_a0: 'They just lost their biggest client. COO has 60 days to prove operational wins to the board.',
+    pb_sql_q1: 'Who signs the check, and have you met them?',
+    pb_sql_h1: 'If you haven\'t, that\'s your next step.',
+    pb_sql_a1: 'CFO Jennifer Walsh signs. Haven\'t met her yet. Marcus is teeing up an intro next week.',
+    pb_sql_q2: 'Single biggest thing that could kill this?',
+    pb_sql_h2: 'Every deal has one. Name yours before I do.',
+    pb_sql_a2: 'Their incumbent auto-renews in 5 weeks. Miss that window, we\'re locked out for a year.',
+
+    // Put it on the board (new deal)
+    pb_deal_title: 'Put it on the board',
+    pb_deal_sub: 'New deal. Commit to a week.',
+    pb_deal_q0: 'What week do you see this closing? Commit.',
+    pb_deal_h0: 'If you can\'t pick a week, it\'s a lead, not a deal.',
+    pb_deal_a0: 'Week of May 18. Legal starts May 4, two weeks gets us through.',
+    pb_deal_q1: 'Why YOU, why NOW, in one line?',
+    pb_deal_h1: '"Our features" doesn\'t count. Dig deeper.',
+    pb_deal_a1: 'Their RevOps lead used us at his last company and wants to rehire what worked.',
+    pb_deal_q2: 'What needs to be true in the next 7 days for this to move?',
+    pb_deal_h2: 'One specific thing. That\'s your play this week.',
+    pb_deal_a2: 'CFO needs our ROI model against their actual hours-saved. Getting the number from Marcus by Wednesday.',
+
+    // Pre-mortem (before proposal)
+    pb_proposal_title: 'Pre-mortem',
+    pb_proposal_sub: 'Before you send. Name what could kill it.',
+    pb_proposal_q0: 'Pretend they just said no. What\'s the reason?',
+    pb_proposal_h0: 'Name the objection before they do.',
+    pb_proposal_a0: 'Setup fee. They\'ll say "we didn\'t budget for that this quarter" and push to Q3.',
+    pb_proposal_q1: 'Smallest version of this they\'d say yes to today?',
+    pb_proposal_h1: 'Anchor vs. decoy is fine. Just know which.',
+    pb_proposal_a1: '3-user pilot at 8K for 90 days with a convert-to-full-seat option. Keeps them in the water.',
+    pb_proposal_q2: 'Who else reads this on their side, and what do THEY care about?',
+    pb_proposal_h2: 'Each reader has a different job. Don\'t write one-size-fits-all.',
+    pb_proposal_a2: 'COO cares about implementation risk. Finance cares about the setup-fee amortization. VP Sales already wants it.',
     rep_my_score: 'My Score',
     rep_how_to_improve: 'How to Improve',
     rep_your_personal_advisor: 'Your personal sales advisor',
@@ -1644,6 +1836,82 @@ const T = {
     rp_logged: '記録済',
     rp_synced_crm: 'Salesforceに同期済',
     rp_todays_focus: '今日のフォーカス',
+
+    // Playbooks
+    rep_playbooks: 'プレイブック',
+    pb_title: 'プレイブック',
+    pb_sub: 'タイミングを選び、コーチに話すように答える。SalesCompがCRMを更新し、マネージャーに必要なメモを共有します。',
+    pb_back: '戻る',
+    pb_captured: '記録済',
+    pb_listening: '録音中...',
+    pb_coach_prompt: 'コーチに話すように答える',
+    pb_time_hint: '約30秒',
+    pb_recapture: 'タップで再録音',
+    pb_coach_note_good: '良い — 具体的',
+    pb_save_to_crm: 'CRMに保存',
+    pb_saved_toast_prefix: '保存：',
+    pb_deal_label: 'どの案件？',
+    pb_deal_placeholder: '選択または追加',
+    pb_deal_modal_title: 'どの案件向け？',
+    pb_deal_modal_sub: '適切な取引先にログされるよう、既存の案件を選んでください。',
+    pb_new_deal_label: '新しい会社 / リードを追加',
+    pb_add: '追加',
+    pb_pick_deal_first: 'プレイブックを保存するには案件を選択してください。',
+
+    // Coach me up (post-call)
+    pb_meeting_title: 'コーチアップ',
+    pb_meeting_sub: '通話直後。CRMではなく、コーチに話す。',
+    pb_meeting_q0: '今日の会話で新たに分かったことは何ですか？',
+    pb_meeting_h0: '何もなければ、それは発見の会話ではなかった。そう言ってください。',
+    pb_meeting_a0: '先方の運営責任者は90日後にボードレビューを控えている。だから急に効率化を検討している。',
+    pb_meeting_q1: '先方の言葉そのままで、何を解決すれば購入しますか？',
+    pb_meeting_h1: '自分の売り文句ではなく、先方の言葉で。',
+    pb_meeting_a1: '彼女の言葉：「運営と財務の間の引き継ぎを手作業で調整し続けるのは無理」。',
+    pb_meeting_q2: '次のアクションと期日は？',
+    pb_meeting_h2: '「近々フォロー」ではなく、動詞と日付で。',
+    pb_meeting_a2: '金曜までにNetSuite連携仕様書を送付、火曜に30分の技術ミーティングを設定。',
+    pb_meeting_q3: 'どこで行き詰まりましたか？',
+    pb_meeting_h3: 'これは告白ではなく、コーチへの相談事項。',
+    pb_meeting_a3: 'Okta SSOの質問に答えられなかった。技術ミーティングの前にプロダクトの協力が必要。',
+
+    // Raise the flag (qualify)
+    pb_sql_title: '旗を立てる',
+    pb_sql_sub: '有望リード。それを証明する。',
+    pb_sql_q0: '一文で：なぜ今この案件がリアルなのか？',
+    pb_sql_h0: '願望ではなく、コンペリングイベントを。名指しできなければ、まだ有望ではない。',
+    pb_sql_a0: '最大顧客を失ったばかり。COOは60日以内にボードに業務改善を示す必要がある。',
+    pb_sql_q1: '決裁者は誰で、もう会いましたか？',
+    pb_sql_h1: '会っていなければ、それが次のステップ。',
+    pb_sql_a1: 'CFOのJennifer Walshが決裁。まだ会っていない。Marcusが来週紹介を設定中。',
+    pb_sql_q2: 'この案件を潰しうる最大の要因は？',
+    pb_sql_h2: 'どの案件にも一つある。自分で名指しして。',
+    pb_sql_a2: '既存ベンダーが5週間後に自動更新。その窓を逃すと1年間ロックアウトされる。',
+
+    // Put it on the board (new deal)
+    pb_deal_title: 'スコアボードに載せる',
+    pb_deal_sub: '新規案件。クロージング週にコミット。',
+    pb_deal_q0: 'クロージング週はいつですか？コミットしてください。',
+    pb_deal_h0: '週を選べないなら、案件ではなくリード。',
+    pb_deal_a0: '5月18日の週。5月4日から法務レビュー、2週間あれば間に合う。',
+    pb_deal_q1: 'なぜあなた、なぜ今か。一文で。',
+    pb_deal_h1: '「うちの機能」では不十分。もっと深掘りを。',
+    pb_deal_a1: '先方のRevOpsリードが前職で当社を使っており、うまくいったものを再採用したい。',
+    pb_deal_q2: '次の7日間で何が真であればこの案件は動きますか？',
+    pb_deal_h2: '具体的に一つ。それが今週のプレー。',
+    pb_deal_a2: 'CFOに実際の時短実績に基づいたROIモデルを見せる必要あり。水曜までにMarcusから数字を入手。',
+
+    // Pre-mortem (before proposal)
+    pb_proposal_title: 'プリモーテム',
+    pb_proposal_sub: '送付前に、失敗要因を自分で名指しする。',
+    pb_proposal_q0: '先方が「ノー」と言ったと仮定。その理由は？',
+    pb_proposal_h0: '先方が口にする前に、その反論を名指しする。',
+    pb_proposal_a0: '初期費用。「今期の予算に入っていない」と言ってQ3に押し戻そうとする。',
+    pb_proposal_q1: '今日「イエス」と言える最小バージョンは？',
+    pb_proposal_h1: 'アンカーでもおとりでも構わない。ただ、どちらか自覚して。',
+    pb_proposal_a1: '3ユーザーの90日パイロット8K。フルシート転換オプション付き。関係を継続させる。',
+    pb_proposal_q2: '先方で他に読む人は誰で、その人は何を気にしますか？',
+    pb_proposal_h2: '読み手ごとに役割が違う。画一的な提案書は書かないこと。',
+    pb_proposal_a2: 'COOは導入リスク。財務は初期費用の償却。営業VPはすでに乗り気。',
     rep_my_score: 'マイスコア',
     rep_how_to_improve: '改善ポイント',
     rep_your_personal_advisor: 'あなた専属のセールスアドバイザー',
@@ -2101,7 +2369,7 @@ function updateNavLabels() {
   } else {
     nav.innerHTML = `
       <div class="tnav-i on" onclick="goRep('rep-plan')">${t('rep_my_week')}</div>
-      <div class="tnav-i" onclick="goRep('rep-dashboard')">${t('rep_my_dashboard')}</div>
+      <div class="tnav-i" onclick="goRep('rep-playbooks')">${t('rep_playbooks')}</div>
       <div class="tnav-i" onclick="goRep('rep-deals')">${t('rep_my_deals')}</div>
       <div class="tnav-i" onclick="goRep('rep-ai')">${t('rep_ai_partner')}</div>
     `;
@@ -2131,9 +2399,9 @@ function renderRepBottomBar() {
       <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
       <span class="tbar-l">${t('rep_my_week')}</span>
     </div>
-    <div class="tbar-i" onclick="goRep('rep-dashboard')">
-      <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-      <span class="tbar-l">${t('rep_my_dashboard')}</span>
+    <div class="tbar-i" onclick="goRep('rep-playbooks')">
+      <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      <span class="tbar-l">${t('rep_playbooks')}</span>
     </div>
     <div class="tbar-i" onclick="goRep('rep-deals')">
       <svg class="tbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
@@ -2154,7 +2422,7 @@ function goRep(id) {
   // Update top nav
   const navItems = document.querySelectorAll('#topNav .tnav-i');
   navItems.forEach(n => n.classList.remove('on'));
-  const m = {'rep-plan': 0, 'rep-dashboard': 1, 'rep-deals': 2, 'rep-ai': 3};
+  const m = {'rep-plan': 0, 'rep-playbooks': 1, 'rep-deals': 2, 'rep-ai': 3};
   if (navItems[m[id]]) navItems[m[id]].classList.add('on');
 
   // Update bottom bar
@@ -2168,7 +2436,7 @@ function goRep(id) {
 // ===== REP VIEW RENDER =====
 function renderRepView() {
   renderRepPlan();
-  renderRepDashboard();
+  renderRepPlaybooks();
   renderRepDeals();
   renderRepAI();
 }
@@ -2285,6 +2553,228 @@ function renderRepPlan() {
       </div>
     ` : ''}
   `;
+}
+
+// ===== PLAYBOOKS (rep) =====
+// Questions, hints, and sample answers live in i18n (pb_<id>_q#, pb_<id>_h#, pb_<id>_a#).
+const playbooks = {
+  meeting:  { count: 4, icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>' },
+  sql:      { count: 3, icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>' },
+  deal:     { count: 3, icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><polyline points="7 14 11 10 15 14 21 8"/></svg>' },
+  proposal: { count: 3, icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>' }
+};
+
+let pbState = { view: 'list', id: null, captured: {}, recording: null, deal: null };
+
+function pbEnsureBucket(id) {
+  if (!pbState.captured[id]) pbState.captured[id] = Array(playbooks[id].count).fill(null);
+}
+
+function renderRepPlaybooks() {
+  const el = document.getElementById('scr-rep-playbooks');
+  if (!el) return;
+  if (pbState.view === 'detail' && pbState.id) {
+    renderPlaybookDetail(el);
+  } else {
+    renderPlaybookList(el);
+  }
+}
+
+function renderPlaybookList(el) {
+  const order = ['meeting','sql','deal','proposal'];
+  el.innerHTML = `
+    ${repPillSelector()}
+    <div class="pb-hero">
+      <div class="pb-hero-title">${t('pb_title')}</div>
+      <div class="pb-hero-sub">${t('pb_sub')}</div>
+    </div>
+    <div class="pb-list">
+      ${order.map(id => {
+        pbEnsureBucket(id);
+        const filled = pbState.captured[id].filter(Boolean).length;
+        const total = playbooks[id].count;
+        const pb = playbooks[id];
+        return `
+          <div class="pb-card" onclick="pbOpen('${id}')">
+            <div class="pb-card-icon pb-ic-${id}">${pb.icon}</div>
+            <div class="pb-card-body">
+              <div class="pb-card-title">${t('pb_'+id+'_title')}</div>
+              <div class="pb-card-sub">${t('pb_'+id+'_sub')}</div>
+            </div>
+            <div class="pb-card-meta">
+              <div class="pb-card-count">${filled}/${total}</div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pb-card-chev"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+function renderPlaybookDetail(el) {
+  const id = pbState.id;
+  const pb = playbooks[id];
+  pbEnsureBucket(id);
+  const answers = pbState.captured[id];
+  const total = pb.count;
+  const filled = answers.filter(Boolean).length;
+
+  const qItems = [];
+  for (let i = 0; i < total; i++) {
+    const captured = answers[i];
+    const isRec = pbState.recording === i;
+    qItems.push(`
+      <div class="pb-q pb-ic-${id} ${captured ? 'done' : ''} ${isRec ? 'rec' : ''}">
+        <div class="pb-q-top">
+          <div class="pb-q-num">${i + 1}</div>
+          <div class="pb-q-text-wrap">
+            <div class="pb-q-text">${t('pb_'+id+'_q'+i)}</div>
+            <div class="pb-q-hint">${t('pb_'+id+'_h'+i)}</div>
+          </div>
+        </div>
+        <div class="pb-q-actions">
+          <button class="pb-q-mic ${isRec ? 'rec' : ''} ${captured ? 'done' : ''}" onclick="pbRecord('${id}', ${i})" aria-label="Record answer">
+            ${captured && !isRec
+              ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`
+              : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>`
+            }
+          </button>
+          <div class="pb-q-status-wrap">
+            <div class="pb-q-status">${isRec ? t('pb_listening') : (captured ? t('pb_recapture') : t('pb_coach_prompt'))}</div>
+            ${!captured && !isRec ? `<div class="pb-q-timehint">${t('pb_time_hint')}</div>` : ''}
+          </div>
+        </div>
+        ${captured ? `
+          <div class="pb-q-answer">${captured}</div>
+          <div class="pb-q-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>${t('pb_coach_note_good')}</div>
+        ` : ''}
+      </div>
+    `);
+  }
+
+  const dealSelected = !!pbState.deal;
+  const dealLabel = dealSelected
+    ? pbState.deal.name + (pbState.deal.amount ? ' · ' + pbState.deal.amount : '')
+    : t('pb_deal_placeholder');
+  const canSave = filled > 0 && dealSelected;
+
+  el.innerHTML = `
+    <div class="pb-detail-bar">
+      <div class="pb-back" onclick="pbBack()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>${t('pb_back')}</span>
+      </div>
+      <div class="pb-progress">${filled}/${total} ${t('pb_captured')}</div>
+    </div>
+    <div class="pb-detail-hero pb-ic-${id}">
+      <div class="pb-detail-icon">${pb.icon}</div>
+      <div>
+        <div class="pb-detail-title">${t('pb_'+id+'_title')}</div>
+        <div class="pb-detail-sub">${t('pb_'+id+'_sub')}</div>
+      </div>
+    </div>
+    <div class="pb-deal ${dealSelected ? 'on' : ''}" onclick="pbOpenDealPicker()">
+      <div class="pb-deal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+      </div>
+      <div class="pb-deal-body">
+        <div class="pb-deal-label">${t('pb_deal_label')}</div>
+        <div class="pb-deal-value">${dealLabel}</div>
+      </div>
+      <svg class="pb-deal-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+    <div class="pb-questions">${qItems.join('')}</div>
+    <div class="pb-detail-footer">
+      <button class="pb-save" onclick="pbSave()" ${canSave ? '' : 'disabled'}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        ${t('pb_save_to_crm')}
+      </button>
+      ${!dealSelected && filled > 0 ? `<div class="pb-save-hint">${t('pb_pick_deal_first')}</div>` : ''}
+    </div>
+  `;
+}
+
+function pbOpenDealPicker() {
+  const modal = document.getElementById('pbDealModal');
+  const list = document.getElementById('pbDealList');
+  const rep = D[selectedRepIdx];
+  const deals = rep.deals || [];
+  list.innerHTML = deals.map((d, i) => {
+    const isActive = pbState.deal && pbState.deal.id === i;
+    return `
+      <div class="pb-deal-opt ${isActive ? 'on' : ''}" onclick="pbPickDeal(${i})">
+        <div class="pb-deal-opt-main">
+          <div class="pb-deal-opt-name">${d.name}</div>
+          <div class="pb-deal-opt-meta">${d.amount} &middot; ${tStage(d.stage)}</div>
+        </div>
+        ${isActive ? `<svg class="pb-deal-opt-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>` : ''}
+      </div>
+    `;
+  }).join('');
+  document.getElementById('pbNewDealInput').value = '';
+  modal.classList.add('on');
+}
+
+function pbPickDeal(i) {
+  const d = D[selectedRepIdx].deals[i];
+  pbState.deal = { id: i, name: d.name, amount: d.amount };
+  pbCloseDealPicker();
+  renderRepPlaybooks();
+}
+
+function pbAddNewDeal() {
+  const input = document.getElementById('pbNewDealInput');
+  const v = input.value.trim();
+  if (!v) return;
+  pbState.deal = { id: 'new', name: v, amount: '' };
+  input.value = '';
+  pbCloseDealPicker();
+  renderRepPlaybooks();
+}
+
+function pbCloseDealPicker() {
+  document.getElementById('pbDealModal').classList.remove('on');
+}
+
+function pbOpen(id) {
+  pbState.view = 'detail';
+  pbState.id = id;
+  renderRepPlaybooks();
+  window.scrollTo(0, 0);
+}
+
+function pbBack() {
+  pbState.view = 'list';
+  pbState.id = null;
+  pbState.recording = null;
+  pbState.deal = null;
+  renderRepPlaybooks();
+  window.scrollTo(0, 0);
+}
+
+function pbRecord(id, idx) {
+  if (pbState.recording !== null) return;
+  pbState.recording = idx;
+  renderRepPlaybooks();
+  setTimeout(() => {
+    pbState.captured[id][idx] = t('pb_'+id+'_a'+idx);
+    pbState.recording = null;
+    renderRepPlaybooks();
+  }, 1600);
+}
+
+function pbSave() {
+  if (!pbState.id || !pbState.deal) return;
+  const id = pbState.id;
+  const dealName = pbState.deal.name;
+  pbBack();
+  const toastEl = document.getElementById('toast');
+  if (toastEl) {
+    toastEl.textContent = t('pb_saved_toast_prefix') + ' ' + t('pb_'+id+'_title') + ' — ' + dealName;
+    toastEl.classList.add('show');
+    setTimeout(() => toastEl.classList.remove('show'), 2400);
+  }
 }
 
 // ===== VOICE LOG (sketch) =====
@@ -2942,7 +3432,10 @@ function setMU(a,b,el){
   document.getElementById('muContent').innerHTML=`
     <div class="mu-vs">
       <div class="mu-side mu-side-clickable" onclick="openMUSwap('A')" title="${t('swap_hint')}">
-        <div class="mu-side-photo"><img src="${pA.img}"><div class="mu-side-edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg></div></div>
+        <div class="mu-side-photo-wrap">
+          <div class="mu-side-photo"><img src="${pA.img}"></div>
+          <div class="mu-side-edit" aria-label="Swap rep"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg></div>
+        </div>
         <div class="mu-side-name">${pA.sh}</div>
         <div class="mu-side-role">${tRole(pA.role)}</div>
       </div>
@@ -2955,7 +3448,10 @@ function setMU(a,b,el){
         <div class="mu-winner-bar" style="background:${aW?'var(--green)':'var(--red)'};"></div>
       </div>
       <div class="mu-side mu-side-clickable" onclick="openMUSwap('B')" title="${t('swap_hint')}">
-        <div class="mu-side-photo"><img src="${pB.img}"><div class="mu-side-edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg></div></div>
+        <div class="mu-side-photo-wrap">
+          <div class="mu-side-photo"><img src="${pB.img}"></div>
+          <div class="mu-side-edit" aria-label="Swap rep"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg></div>
+        </div>
         <div class="mu-side-name">${pB.sh}</div>
         <div class="mu-side-role">${tRole(pB.role)}</div>
       </div>
@@ -3076,6 +3572,7 @@ function sendM(){
 }
 document.getElementById('msgModal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
 document.getElementById('muSwapModal').addEventListener('click',function(e){if(e.target===this)closeMUSwap();});
+document.getElementById('pbDealModal').addEventListener('click',function(e){if(e.target===this)pbCloseDealPicker();});
 
 // ===== MONDAY BRIEF =====
 function renderBrief(){
