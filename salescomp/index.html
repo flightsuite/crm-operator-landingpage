@@ -47,6 +47,64 @@
   --blue-bg: rgba(0,122,255,0.10);
 }
 
+/* Light Mode */
+html.light {
+  --bg: #F2F2F7;
+  --card: #FFFFFF;
+  --surface: #F8F8FA;
+  --elevated: #E8E8ED;
+  --hover: #DDDDE2;
+  --border: #D1D1D6;
+  --border-l: #C7C7CC;
+
+  --white: #000000;
+  --t1: #1C1C1E;
+  --t2: #3A3A3C;
+  --t3: #8E8E93;
+  --t4: #AEAEB2;
+
+  --green: #34C759;
+  --green-bg: rgba(52,199,89,0.12);
+  --red: #FF3B30;
+  --red-bg: rgba(255,59,48,0.12);
+  --amber: #FF9500;
+  --amber-bg: rgba(255,149,0,0.12);
+  --blue: #007AFF;
+  --blue-bg: rgba(0,122,255,0.12);
+}
+html.light body { background: var(--bg); }
+html.light .tbar { background: rgba(242,242,247,0.95); }
+html.light .hdr-mark { background: #000; border-radius: 7px; }
+html.light .hdr-mark img { filter: invert(1); }
+html.light .tour-tooltip { background: linear-gradient(135deg,#fff,#f8f8fa); border-color: #d1d1d6; }
+html.light .tour-tooltip::before { background: #fff; border-color: #d1d1d6; }
+html.light .tour-welcome { background: rgba(255,255,255,0.95); }
+html.light .tour-spotlight { box-shadow: 0 0 0 9999px rgba(255,255,255,0.88); }
+html.light .tour-backdrop { background: transparent; }
+html.light .cm-hero-bg { background: linear-gradient(180deg,#e8e8ed 0%,var(--bg) 100%); }
+html.light .sms-out { background: #007AFF; color: #fff; }
+html.light .ai-msg.from-rep .ai-msg-bubble { background: #007AFF; color: #fff; }
+html.light .cta-btn { background: #000; color: #fff; }
+html.light .m-send { background: #000; color: #fff; }
+html.light .view-opt.on { background: #000; color: #fff; }
+html.light .tnav-i.on { color: #000; border-bottom-color: #000; }
+html.light .tbar-i.on .tbar-icon { color: #000; }
+html.light .tbar-i.on .tbar-l { color: #000; }
+html.light .mu-week.on { background: #000; border-color: #000; color: #fff; }
+html.light .mu-pill.on { background: #000; border-color: #000; }
+html.light .mu-pill.on .mu-pill-n { color: #fff; }
+html.light .tk-pill.on { background: #000; border-color: #000; }
+html.light .tk-pill.on .tk-pill-n { color: #fff; }
+html.light .lang-opt.on { background: #000; color: #fff; }
+html.light .take-box-icon { background: #000; }
+html.light .take-box-icon svg { stroke: #fff; }
+html.light .ag-say { background: #f0f0f2; border-left-color: #8e8e93; }
+html.light .card-modal { background: var(--bg); }
+html.light .p-photo { border-color: #d1d1d6; }
+html.light .mu-side-photo { border-color: #d1d1d6; }
+html.light .cm-hero-photo { border-color: #d1d1d6; }
+html.light .ai-insights-icon { background: linear-gradient(135deg, #007AFF, #5856D6); }
+
 /* ===== V3 ADDITIONS ===== */
 
 /* Focus Cards */
@@ -831,6 +889,7 @@ body{
     <div class="hdr-name">SalesComp</div>
   </div>
   <div class="hdr-actions">
+    <div class="hdr-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle light/dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
     <div class="lang-toggle" id="langToggle">
       <div class="lang-opt on" data-lang="en" onclick="setLang('en')">EN</div>
       <div class="lang-opt" data-lang="jp" onclick="setLang('jp')">JP</div>
@@ -1438,6 +1497,19 @@ function tStatus(st) {
 
 function tSkill(label) {
   return skillLabelMap[label] ? t(skillLabelMap[label]) : label;
+}
+
+// ===== THEME TOGGLE =====
+let isDark = true;
+function toggleTheme() {
+  isDark = !isDark;
+  document.documentElement.classList.toggle('light', !isDark);
+  const btn = document.getElementById('themeBtn');
+  if (isDark) {
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  } else {
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
+  }
 }
 
 function tStage(stage) {
@@ -2515,18 +2587,18 @@ const tourSteps = {
   en: [
     { target: '.team-card', title: 'Your Team at a Glance', desc: 'Revenue, pipeline, quota progress, and close rate. One card tells you if your team is winning or falling behind.', arrow: 'top', tab: 'roster' },
     { target: '.focus-cards', title: 'AI-Powered Focus Alerts', desc: 'Every Monday, the AI flags who needs your attention and why. Red means intervention. Green means opportunity. No more guessing.', arrow: 'top', tab: 'roster' },
-    { target: '#rosterList', title: 'Your Roster, Scored Like Athletes', desc: 'Every rep gets a weekly performance score based on revenue, pipeline, activity, and efficiency. Sparklines show their trend. Tap any rep for the full scouting report.', arrow: 'top', tab: 'roster' },
-    { target: '.mu-banner', title: 'Head-to-Head Matchups', desc: 'Compare any two reps across every category. Drives healthy competition and makes performance gaps visible at a glance.', arrow: 'top', tab: 'matchup' },
-    { target: '#briefCards', title: 'Monday Morning Prep', desc: 'Your 1-on-1 schedule with each rep\'s top coaching priority. Tap any card to see the full playbook, including exactly what to say.', arrow: 'top', tab: 'take' },
-    { target: '.tk-hdr', title: 'The Coaching Playbook', desc: 'AI writes your 1-on-1 agenda, talking points, and scripts from CRM data and rep self-reports. Walk into every meeting prepared.', arrow: 'top', tab: 'take' }
+    { target: '#rosterList', title: 'Your Roster, Scored Like Athletes', desc: 'Every rep gets a weekly performance score based on revenue, pipeline, activity, and efficiency. Sparklines show their trend. Tap any rep for the full scouting report.', arrow: 'bottom', tab: 'roster' },
+    { target: '#scr-matchup', title: 'Head-to-Head Matchups', desc: 'Compare any two reps across every category. Drives healthy competition and makes performance gaps visible at a glance.', arrow: 'bottom', tab: 'matchup', spotMax: 0.65 },
+    { target: '#scr-take', title: 'Monday Morning Prep', desc: 'Your 1-on-1 schedule with each rep\'s top coaching priority. Tap any card to see the full playbook, including exactly what to say.', arrow: 'bottom', tab: 'take', spotMax: 0.7 },
+    { target: '#scr-take', title: 'The Coaching Playbook', desc: 'AI writes your 1-on-1 agenda, talking points, and scripts from CRM data and rep self-reports. Walk into every meeting prepared.', arrow: 'bottom', tab: 'take', spotMax: 0.75 }
   ],
   jp: [
     { target: '.team-card', title: 'チーム概況', desc: '売上、パイプライン、目標達成率、成約率。一つのカードでチームの状況が一目で分かります。', arrow: 'top', tab: 'roster' },
     { target: '.focus-cards', title: 'AI注目アラート', desc: '毎週月曜日、AIが注目すべき担当者とその理由を提示します。赤は要介入、緑は機会。もう推測は不要です。', arrow: 'top', tab: 'roster' },
-    { target: '#rosterList', title: 'スコア化されたチーム一覧', desc: '各担当者は売上・パイプライン・活動量・効率性に基づく週間スコアで評価されます。スパークラインでトレンドを表示。タップで詳細レポートへ。', arrow: 'top', tab: 'roster' },
-    { target: '.mu-banner', title: 'パフォーマンス比較', desc: '任意の2名を全カテゴリーで比較。健全な競争意識を促進し、パフォーマンスの差を可視化します。', arrow: 'top', tab: 'matchup' },
-    { target: '#briefCards', title: '月曜ミーティング準備', desc: '各担当者との1on1スケジュールと最優先のコーチングポイント。カードをタップすると、具体的な会話スクリプトを含む完全なプレイブックが表示されます。', arrow: 'top', tab: 'take' },
-    { target: '.tk-hdr', title: 'コーチング・プレイブック', desc: 'AIがCRMデータと担当者の自己報告から1on1のアジェンダ、論点、スクリプトを自動作成。すべてのミーティングに万全の準備で臨めます。', arrow: 'top', tab: 'take' }
+    { target: '#rosterList', title: 'スコア化されたチーム一覧', desc: '各担当者は売上・パイプライン・活動量・効率性に基づく週間スコアで評価されます。スパークラインでトレンドを表示。タップで詳細レポートへ。', arrow: 'bottom', tab: 'roster' },
+    { target: '#scr-matchup', title: 'パフォーマンス比較', desc: '任意の2名を全カテゴリーで比較。健全な競争意識を促進し、パフォーマンスの差を可視化します。', arrow: 'bottom', tab: 'matchup', spotMax: 0.65 },
+    { target: '#scr-take', title: '月曜ミーティング準備', desc: '各担当者との1on1スケジュールと最優先のコーチングポイント。カードをタップすると、具体的な会話スクリプトを含む完全なプレイブックが表示されます。', arrow: 'bottom', tab: 'take', spotMax: 0.7 },
+    { target: '#scr-take', title: 'コーチング・プレイブック', desc: 'AIがCRMデータと担当者の自己報告から1on1のアジェンダ、論点、スクリプトを自動作成。すべてのミーティングに万全の準備で臨めます。', arrow: 'bottom', tab: 'take', spotMax: 0.75 }
   ]
 };
 
@@ -2575,8 +2647,8 @@ function tourPosition(step, steps) {
   const el = document.querySelector(step.target);
   if (!el) { tourIdx++; tourShow(); return; }
 
-  // Scroll element to top of viewport first, then position
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Scroll element into view - use 'start' for top-arrow steps, 'center' for bottom-arrow
+  el.scrollIntoView({ behavior: 'smooth', block: step.arrow === 'bottom' ? 'start' : 'start' });
 
   setTimeout(() => {
     const rect = el.getBoundingClientRect();
@@ -2584,8 +2656,9 @@ function tourPosition(step, steps) {
     const tip = document.getElementById('tourTip');
     const pad = 8;
 
-    // Cap spotlight height so tall elements (like roster list) don't take up the whole screen
-    const maxSpotH = Math.min(rect.height, window.innerHeight * 0.35);
+    // Per-step spotMax or default 35%
+    const maxFraction = step.spotMax || 0.35;
+    const maxSpotH = Math.min(rect.height, window.innerHeight * maxFraction);
 
     spot.style.top = (rect.top - pad) + 'px';
     spot.style.left = (rect.left - pad) + 'px';
