@@ -858,6 +858,23 @@ body{
 }
 
 /* Manager sees note */
+/* ===== DYNAMIC DUOS ===== */
+.duo-section{padding:0 16px;}
+.duo-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;cursor:pointer;}
+.duo-card:active{opacity:.7;}
+.duo-photos{display:flex;align-items:center;flex-shrink:0;}
+.duo-photo{width:40px;height:40px;border-radius:50%;overflow:hidden;border:2px solid var(--border-l);background:var(--elevated);}
+.duo-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.duo-photo:last-child{margin-left:-12px;}
+.duo-info{flex:1;min-width:0;}
+.duo-names{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;}
+.duo-role{font-size:11px;color:var(--t3);margin-top:1px;}
+.duo-stats{display:flex;gap:10px;margin-top:6px;}
+.duo-stat{font-size:11px;color:var(--t2);}
+.duo-stat strong{color:var(--t1);font-weight:700;}
+.duo-badge{flex-shrink:0;padding:4px 10px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;}
+.assist-tag{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:3px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;background:rgba(0,122,255,0.1);color:var(--blue);}
+
 .manager-sees-note {
   margin-top: 8px;
   padding: 8px 12px;
@@ -933,6 +950,10 @@ body{
     <!-- Focus This Week -->
     <div class="sh"><div class="sh-t" data-i18n="focus_this_week">Focus This Week</div></div>
     <div class="focus-cards" id="focusCards"></div>
+
+    <!-- Dynamic Duos -->
+    <div class="sh"><div class="sh-t" data-i18n="dynamic_duos">Dynamic Duos</div></div>
+    <div class="duo-section" id="duoSection"></div>
 
     <!-- Activity Feed -->
     <div class="sh"><div class="sh-t" data-i18n="recent_activity">Recent Activity</div><div class="sh-a" data-i18n="view_all">View All</div></div>
@@ -1118,9 +1139,27 @@ const T = {
     activity_deandra: 'has 3 deals in late stage that need attention',
     activity_tyler: 'hasn\'t updated CRM in 5 days',
     activity_sarah: 'created $62K in new pipeline this week',
+    activity_assist_sarah: 'assisted on Marcus\'s Henderson close ($45K)',
+    activity_assist_deandra: 'sourced the Vertex lead that Marcus is closing ($32K)',
+    time_30m: '30m ago',
     time_2h: '2h ago',
     time_4h: '4h ago',
     time_1d: '1d ago',
+
+    // Assists & Duos
+    dynamic_duos: 'Dynamic Duos',
+    assists: 'Assists',
+    ast: 'AST',
+    duo_builder_closer: 'Builder + Closer',
+    duo_builder_mgr: 'Builder + Account Mgr',
+    duo_sdr_closer: 'SDR + Closer',
+    duo_deals_together: 'deals together',
+    duo_best_pairing: 'Top Duo',
+    duo_assisted_rev: 'Assisted Rev',
+    assist_given: 'Assists Given',
+    assist_received: 'Assists Received',
+    assist_partner: 'Top Partner',
+    sourced_by: 'Sourced by',
 
     // Matchup
     mu_label: 'Head to Head',
@@ -1302,9 +1341,27 @@ const T = {
     activity_deandra: '最終段階の3件の案件に注目が必要',
     activity_tyler: '5日間CRM未更新',
     activity_sarah: '今週$62Kの新規パイプラインを創出',
+    activity_assist_sarah: 'Marcusのヘンダーソン成約をアシスト ($45K)',
+    activity_assist_deandra: 'Marcusがクロージング中のVertex案件を発掘 ($32K)',
+    time_30m: '30分前',
     time_2h: '2時間前',
     time_4h: '4時間前',
     time_1d: '1日前',
+
+    // Assists & Duos
+    dynamic_duos: 'ダイナミック・デュオ',
+    assists: 'アシスト',
+    ast: 'AST',
+    duo_builder_closer: 'ビルダー + クローザー',
+    duo_builder_mgr: 'ビルダー + アカウントMgr',
+    duo_sdr_closer: 'SDR + クローザー',
+    duo_deals_together: '件の共同案件',
+    duo_best_pairing: 'トップデュオ',
+    duo_assisted_rev: 'アシスト売上',
+    assist_given: 'アシスト提供',
+    assist_received: 'アシスト受領',
+    assist_partner: 'トップパートナー',
+    sourced_by: '発掘者:',
 
     // Matchup
     mu_label: '比較分析',
@@ -1540,6 +1597,7 @@ function setLang(l) {
   // Re-render dynamic content
   renderFocusCards();
   renderActivityFeed();
+  renderDuos();
   renderRoster();
   // Re-render current screen-specific content
   if (viewMode === 'manager') {
@@ -1562,6 +1620,7 @@ let currentTkIdx = 0;
 // ===== DATA =====
 const D=[
 {id:0,name:'Marcus Thompson',sh:'M. Thompson',f:'Marcus',img:'assets/marcus-thompson.png',role:'Closer',ten:'3yr',co:'Apex Solutions',score:91,avg:84,szn:87,tr:'+8',td:'up',st:'Hot',sc:'b-hot',dot:'var(--green)',sub:'7 deals this week',
+assists:2,assistsFrom:[{id:1,deals:1,rev:'$48K'},{id:3,deals:1,rev:'$34K'}],
 scoreBreakdown:{rev:95,pipe:72,activity:88,efficiency:96},
 stats:{d:7,r:'$142K',p:'$89K',c:'38%'},
 skills:[{l:'Closing',v:92,c:'var(--green)'},{l:'Negotiation',v:88,c:'var(--green)'},{l:'Relationships',v:78,c:'var(--blue)'},{l:'Pipeline Mgmt',v:65,c:'var(--amber)'},{l:'Prospecting',v:48,c:'var(--red)'},{l:'CRM Discipline',v:72,c:'var(--blue)'}],
@@ -1592,6 +1651,7 @@ improveEn: ['Add 5 more outbound touches per week to close your prospecting gap.
 improveJp: ['見込み客開拓のギャップを埋めるため、週5件のアウトバウンドを追加しましょう。', 'メリディアンには標準的なフォローアップではなく、より柔らかい再エンゲージメントを検討してください。', 'エンタープライズの成約率を活かして、より大きな案件を追求しましょう。']
 },
 {id:1,name:'Sarah Chen',sh:'S. Chen',f:'Sarah',img:'assets/sarah-chen.png',role:'Pipeline Builder',ten:'2yr',co:'Apex Solutions',score:82,avg:74,szn:76,tr:'+6',td:'up',st:'Streak',sc:'b-str',dot:'var(--amber)',sub:'$178K new pipeline',
+assists:5,assistsTo:[{id:0,deals:3,rev:'$125K'},{id:2,deals:2,rev:'$44K'}],
 scoreBreakdown:{rev:62,pipe:96,activity:92,efficiency:68},
 stats:{d:3,r:'$48K',p:'$178K',c:'24%'},
 skills:[{l:'Closing',v:55,c:'var(--amber)'},{l:'Negotiation',v:62,c:'var(--amber)'},{l:'Relationships',v:74,c:'var(--blue)'},{l:'Pipeline Mgmt',v:94,c:'var(--green)'},{l:'Prospecting',v:91,c:'var(--green)'},{l:'CRM Discipline',v:88,c:'var(--green)'}],
@@ -1621,6 +1681,7 @@ improveEn: ['Practice pricing objection handling. Consider role-playing with Mar
 improveJp: ['価格異議への対応を練習しましょう。Marcusとのロールプレイを検討してください。', '発掘段階の案件を提案段階により早く進めることに注力しましょう。', 'パイプラインの量はエリート級です。次はコンバージョンの質に注力しましょう。']
 },
 {id:2,name:'Jake Rivera',sh:'J. Rivera',f:'Jake',img:'assets/jake-rivera.png',role:'Account Manager',ten:'4yr',co:'Apex Solutions',score:75,avg:72,szn:73,tr:'+3',td:'up',st:null,sc:null,dot:null,sub:'94% account retention',
+assists:1,assistsTo:[{id:0,deals:1,rev:'$32K'}],
 scoreBreakdown:{rev:78,pipe:70,activity:72,efficiency:80},
 stats:{d:4,r:'$82K',p:'$65K',c:'32%'},
 skills:[{l:'Closing',v:72,c:'var(--blue)'},{l:'Negotiation',v:70,c:'var(--blue)'},{l:'Relationships',v:85,c:'var(--green)'},{l:'Pipeline Mgmt',v:75,c:'var(--blue)'},{l:'Prospecting',v:68,c:'var(--blue)'},{l:'CRM Discipline',v:80,c:'var(--green)'}],
@@ -1649,6 +1710,7 @@ improveEn: ['Pursue one net-new enterprise account to stretch beyond your comfor
 improveJp: ['新規エンタープライズ案件を一つ追求し、コンフォートゾーンを超えましょう。', 'Apexのステークホルダー関係を拡大し、単一障害点リスクを軽減しましょう。', '関係構築スキルはエリート級です。更新だけでなく新規ビジネスにも活かしましょう。']
 },
 {id:3,name:'DeAndra Williams',sh:'D. Williams',f:'DeAndra',img:'assets/deandra-williams.png',role:'SDR',ten:'6mo',co:'Apex Solutions',score:64,avg:52,szn:55,tr:'+12',td:'up',st:'Questionable',sc:'b-q',dot:'var(--amber)',sub:'3 deals in late stage',
+assists:3,assistsTo:[{id:0,deals:2,rev:'$73K'},{id:2,deals:1,rev:'$18K'}],
 scoreBreakdown:{rev:42,pipe:78,activity:88,efficiency:38},
 stats:{d:2,r:'$24K',p:'$134K',c:'18%'},
 skills:[{l:'Closing',v:42,c:'var(--red)'},{l:'Negotiation',v:38,c:'var(--red)'},{l:'Relationships',v:58,c:'var(--amber)'},{l:'Pipeline Mgmt',v:55,c:'var(--amber)'},{l:'Prospecting',v:85,c:'var(--green)'},{l:'CRM Discipline',v:70,c:'var(--blue)'}],
@@ -1678,6 +1740,7 @@ improveEn: ['Practice the "ask" in closing. Shadow Marcus on his next deal.', 'B
 improveJp: ['クロージングの「お願い」を練習しましょう。Marcusの次の案件に同席してください。', '2回目の商談のフレームワークを作り、発掘段階を突破しましょう。', '見込み客開拓はエリート級。そのエネルギーをクロージングの自信に変換しましょう。']
 },
 {id:4,name:'Tyler Brooks',sh:'T. Brooks',f:'Tyler',img:'assets/tyler-brooks.png',role:'Veteran',ten:'7yr',co:'Apex Solutions',score:48,avg:62,szn:58,tr:'-14',td:'down',st:'Cold',sc:'b-cold',dot:'var(--red)',sub:'CRM 3 weeks behind',
+assists:0,assistsTo:[],
 scoreBreakdown:{rev:55,pipe:32,activity:28,efficiency:72},
 stats:{d:2,r:'$38K',p:'$12K',c:'25%'},
 skills:[{l:'Closing',v:68,c:'var(--blue)'},{l:'Negotiation',v:82,c:'var(--green)'},{l:'Relationships',v:90,c:'var(--green)'},{l:'Pipeline Mgmt',v:45,c:'var(--red)'},{l:'Prospecting',v:32,c:'var(--red)'},{l:'CRM Discipline',v:28,c:'var(--red)'}],
@@ -2122,11 +2185,41 @@ function renderFocusCards() {
   `;
 }
 
+// ===== RENDER DYNAMIC DUOS =====
+function renderDuos() {
+  const duos = [
+    { a: 1, b: 0, type: 'duo_builder_closer', deals: 3, rev: '$125K', revNum: 125 },
+    { a: 3, b: 0, type: 'duo_sdr_closer', deals: 2, rev: '$73K', revNum: 73 },
+    { a: 1, b: 2, type: 'duo_builder_mgr', deals: 2, rev: '$44K', revNum: 44 }
+  ];
+  document.getElementById('duoSection').innerHTML = duos.map((duo, i) => {
+    const pA = D[duo.a], pB = D[duo.b];
+    const isBest = i === 0;
+    return `<div class="duo-card" onclick="openCard(${duo.b})">
+      <div class="duo-photos">
+        <div class="duo-photo"><img src="${pA.img}"></div>
+        <div class="duo-photo"><img src="${pB.img}"></div>
+      </div>
+      <div class="duo-info">
+        <div class="duo-names">${pA.f} + ${pB.f}</div>
+        <div class="duo-role">${t(duo.type)}</div>
+        <div class="duo-stats">
+          <div class="duo-stat"><strong>${duo.rev}</strong> ${t('duo_assisted_rev')}</div>
+          <div class="duo-stat"><strong>${duo.deals}</strong> ${t('duo_deals_together')}</div>
+        </div>
+      </div>
+      ${isBest ? `<div class="duo-badge" style="background:var(--green-bg);color:var(--green);">${t('duo_best_pairing')}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
 // ===== RENDER ACTIVITY FEED =====
 function renderActivityFeed() {
   document.getElementById('activityFeed').innerHTML = `
     <div class="feed-item"><div class="feed-dot" style="background:var(--green)"></div><div class="feed-text"><strong>Marcus Thompson</strong> ${t('activity_marcus')}</div><div class="feed-time">${t('time_2h')}</div></div>
+    <div class="feed-item"><div class="feed-dot" style="background:var(--blue)"></div><div class="feed-text"><strong>Sarah Chen</strong> ${t('activity_assist_sarah')} <span class="assist-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg> ${t('ast')}</span></div><div class="feed-time">${t('time_30m')}</div></div>
     <div class="feed-item"><div class="feed-dot" style="background:var(--amber)"></div><div class="feed-text"><strong>DeAndra Williams</strong> ${t('activity_deandra')}</div><div class="feed-time">${t('time_4h')}</div></div>
+    <div class="feed-item"><div class="feed-dot" style="background:var(--blue)"></div><div class="feed-text"><strong>DeAndra Williams</strong> ${t('activity_assist_deandra')} <span class="assist-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg> ${t('ast')}</span></div><div class="feed-time">${t('time_1d')}</div></div>
     <div class="feed-item"><div class="feed-dot" style="background:var(--red)"></div><div class="feed-text"><strong>Tyler Brooks</strong> ${t('activity_tyler')}</div><div class="feed-time">${t('time_1d')}</div></div>
     <div class="feed-item"><div class="feed-dot" style="background:var(--green)"></div><div class="feed-text"><strong>Sarah Chen</strong> ${t('activity_sarah')}</div><div class="feed-time">${t('time_1d')}</div></div>
   `;
@@ -2164,7 +2257,7 @@ function renderRoster(){
           <span class="p-name">${p.sh}</span>
           ${statusTxt?`<span class="p-badge ${p.sc}">${statusTxt}</span>`:''}
         </div>
-        <div class="p-sub">${roleTxt} &middot; ${p.ten} &middot; ${p.qPct}% ${t('to_quota').toLowerCase()}</div>
+        <div class="p-sub">${roleTxt} &middot; ${p.ten} &middot; ${p.qPct}% ${t('to_quota').toLowerCase()}${p.assists > 0 ? ` &middot; ${p.assists} ${t('ast')}` : ''}</div>
       </div>
       <div class="p-nums" style="display:flex;align-items:center;gap:8px;">
         ${sparkSVG(p.spark)}
@@ -2238,6 +2331,7 @@ function openCard(i){
       <div class="cm-qs"><div class="cm-qs-v">${p.avg}</div><div class="cm-qs-l">${t('avg_score')}</div><div class="cm-qs-d" style="color:var(--t3)">${t('team_colon')} 68</div></div>
       <div class="cm-qs"><div class="cm-qs-v">${p.qPct}%</div><div class="cm-qs-l">${t('to_quota')}</div><div class="cm-qs-d" style="color:${qColor}">${p.qPct>=100?t('on_target'):'$'+(Math.round((p.quota-p.qActual)/1000))+'K '+t('remaining')}</div></div>
       <div class="cm-qs"><div class="cm-qs-v">${p.stats.c}</div><div class="cm-qs-l">${t('close_rate_label')}</div></div>
+      <div class="cm-qs"><div class="cm-qs-v" style="color:var(--blue)">${p.assists}</div><div class="cm-qs-l">${t('ast')}</div></div>
     </div>
   `;
 
@@ -2763,6 +2857,7 @@ document.getElementById('vmMgr').textContent = t('view_manager');
 document.getElementById('vmRep').textContent = t('view_rep');
 renderFocusCards();
 renderActivityFeed();
+renderDuos();
 renderRoster();
 tourUpdateWelcomeText();
 </script>
