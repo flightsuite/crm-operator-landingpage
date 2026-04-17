@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlightSuite — Pitchbook</title>
+<meta name="description" content="FlightSuite is the operating system for sales managers. Run your team like a pro GM.">
+<link rel="icon" href="assets/salescomp-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #111;
+    --card: #141414;
+    --card-2: #1a1a1a;
+    --border: #2a2a2a;
+    --border-l: #3a3a3a;
+    --amber: #FF9500;
+    --amber-2: #FF6B00;
+    --green: #00C853;
+    --blue: #007AFF;
+    --red: #FF3B30;
+    --t1: #fff;
+    --t2: #cfcfcf;
+    --t3: #888;
+    --t4: #555;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--t1);
+    font-family: 'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+  body { overflow-x: hidden; }
+
+  .slide {
+    min-height: 100vh;
+    padding: 80px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-bottom: 1px solid #111;
+  }
+  .slide-inner {
+    max-width: 1200px;
+    width: 100%;
+  }
+  .kicker {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--amber);
+    margin-bottom: 14px;
+  }
+  .h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(48px, 6vw, 84px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 0.98;
+    margin-bottom: 24px;
+  }
+  .h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(36px, 4.2vw, 56px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.05;
+    margin-bottom: 18px;
+  }
+  .lede {
+    font-size: clamp(17px, 1.4vw, 22px);
+    line-height: 1.5;
+    color: var(--t2);
+    margin-bottom: 22px;
+    max-width: 720px;
+  }
+  .body {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--t2);
+  }
+  .body strong { color: var(--t1); font-weight: 600; }
+
+  /* Cover */
+  .cover {
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255,149,0,0.14), transparent 55%),
+      radial-gradient(circle at 70% 70%, rgba(0,122,255,0.06), transparent 55%),
+      #0a0a0a;
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .cover-logo {
+    width: 104px; height: 104px; border-radius: 24px;
+    overflow: hidden;
+    margin: 0 auto 32px;
+    box-shadow: 0 20px 60px rgba(255,149,0,0.25), 0 0 0 1px #333;
+  }
+  .cover-logo img { width: 100%; height: 100%; object-fit: cover; }
+  .cover .h1 { font-size: clamp(56px, 7vw, 96px); }
+  .cover-lede {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(20px, 2vw, 28px);
+    font-weight: 500;
+    color: var(--t2);
+    max-width: 720px;
+    margin: 0 auto 48px;
+    letter-spacing: 0.4px;
+  }
+  .cover-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--t3);
+  }
+  .cover-contact .sep { color: var(--border-l); }
+  .cover-scroll {
+    position: absolute; bottom: 40px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--t4);
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* Problem */
+  .problem-quote {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(40px, 5.5vw, 72px);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: 0.5px;
+    max-width: 1100px;
+    margin: 0 auto 56px;
+    text-align: center;
+  }
+  .problem-quote .em { color: var(--amber); }
+  .problem-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 24px;
+  }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(40px, 4vw, 56px);
+    font-weight: 900;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .stat-lbl { font-size: 14px; color: var(--t2); line-height: 1.55; }
+
+  /* Feature slide with device */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 430px;
+    gap: 60px;
+    align-items: center;
+  }
+  .two-col.flip {
+    grid-template-columns: 430px 1fr;
+  }
+  .feature-list { list-style: none; padding: 0; margin-top: 22px; }
+  .feature-list li {
+    padding: 8px 0;
+    color: var(--t2);
+    font-size: 17px;
+    display: flex;
+    gap: 14px;
+    line-height: 1.5;
+  }
+  .feature-list li::before {
+    content: '';
+    width: 8px; height: 8px; min-width: 8px;
+    background: var(--amber);
+    border-radius: 50%;
+    margin-top: 10px;
+  }
+
+  /* Device / phone frame */
+  .device {
+    width: 430px;
+    height: 820px;
+    background: #000;
+    border: 3px solid #1c1c1c;
+    border-radius: 44px;
+    padding: 6px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,149,0,0.08);
+    flex-shrink: 0;
+    position: relative;
+  }
+  .device::before {
+    content: '';
+    position: absolute;
+    top: 14px; left: 50%;
+    transform: translateX(-50%);
+    width: 110px; height: 26px;
+    background: #000;
+    border-radius: 14px;
+    z-index: 2;
+  }
+  .device-screen {
+    width: 100%; height: 100%;
+    border-radius: 38px;
+    overflow: hidden;
+    background: #000;
+    position: relative;
+  }
+  .device iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #000;
+  }
+  .device-caption {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--t4);
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  /* Why now */
+  .whynow-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin-top: 40px;
+  }
+  .whynow-stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 24px;
+  }
+  .whynow-stat .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--amber);
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .whynow-stat .desc { font-size: 15px; color: var(--t2); line-height: 1.55; }
+
+  /* Final */
+  .final {
+    text-align: center;
+    background:
+      radial-gradient(circle at 50% 40%, rgba(255,149,0,0.12), transparent 55%),
+      #0a0a0a;
+  }
+  .final .h1 { max-width: 1000px; margin: 0 auto 28px; }
+
+  /* Side nav */
+  .nav {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 50;
+  }
+  .nav a {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #333;
+    transition: background .15s, transform .15s;
+  }
+  .nav a:hover { background: var(--amber); transform: scale(1.3); }
+
+  @media (max-width: 960px) {
+    .slide { padding: 60px 24px; }
+    .two-col, .two-col.flip { grid-template-columns: 1fr; gap: 40px; }
+    .device { width: 100%; max-width: 400px; height: 760px; margin: 0 auto; }
+    .problem-stats, .whynow-grid { grid-template-columns: 1fr; }
+    .nav { display: none; }
+  }
+
+  @media print {
+    .nav, .cover-scroll { display: none; }
+    .slide { min-height: auto; page-break-after: always; padding: 40px; }
+    .device { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#cover" title="Cover"></a>
+  <a href="#problem" title="Problem"></a>
+  <a href="#solution" title="Solution"></a>
+  <a href="#scouting" title="Scouting"></a>
+  <a href="#matchup" title="Matchups"></a>
+  <a href="#coach" title="Coaching"></a>
+  <a href="#playbooks" title="Playbooks"></a>
+  <a href="#whynow" title="Why Now"></a>
+  <a href="#ask" title="Ask"></a>
+</nav>
+
+<!-- 1. COVER -->
+<section class="slide cover" id="cover">
+  <div class="slide-inner">
+    <div class="cover-logo"><img src="assets/salescomp-icon.png" alt="FlightSuite"></div>
+    <div class="h1">FlightSuite</div>
+    <div class="cover-lede">Run your sales team like a pro GM.</div>
+    <div class="cover-contact">
+      <span>fitz@flightsuite.ai</span>
+      <span class="sep">/</span>
+      <span>flightsuite.ai</span>
+      <span class="sep">/</span>
+      <span>April 2026</span>
+    </div>
+  </div>
+  <div class="cover-scroll">Scroll</div>
+</section>
+
+<!-- 2. PROBLEM -->
+<section class="slide" id="problem">
+  <div class="slide-inner">
+    <div class="kicker" style="text-align:center;">The problem</div>
+    <div class="problem-quote">
+      Sales teams are run like <span class="em">fantasy football leagues</span> and coached like <span class="em">spreadsheets</span>.
+    </div>
+    <div class="problem-stats">
+      <div class="stat">
+        <div class="stat-num">10+ hrs</div>
+        <div class="stat-lbl">Manager time lost per week to CRM cleanup and reporting, instead of coaching.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Most reps</div>
+        <div class="stat-lbl">Skip CRM updates because typing feels slower than the actual sale.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Every 1:1</div>
+        <div class="stat-lbl">Is where revenue actually moves — and where most managers show up cold.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. SOLUTION -->
+<section class="slide" id="solution">
+  <div class="slide-inner">
+    <div class="kicker">The solution</div>
+    <div class="h1">The operating system<br>for sales managers.</div>
+    <div class="lede">
+      FlightSuite is the sales-team OS that lets managers run their team like a pro GM.
+      Weekly <strong>scouting reports</strong>, <strong>skills ratings</strong>, and exact <strong>coaching scripts</strong> for every 1-on-1.
+      Reps voice-log meetings and deals through guided playbooks, so CRM typing disappears.
+    </div>
+    <ul class="feature-list">
+      <li><strong>CRM-agnostic.</strong> Salesforce, HubSpot, or CSV for pilot. Implementation in a day.</li>
+      <li><strong>Saves managers 10 hours a week</strong> on reporting and data hygiene.</li>
+      <li><strong>Gives every team the analytical brain of a VP of Sales</strong> at a fraction of the cost.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. SCOUTING REPORTS -->
+<section class="slide" id="scouting">
+  <div class="slide-inner two-col">
+    <div>
+      <div class="kicker">Weekly scouting reports</div>
+      <div class="h2">Every rep<br>scored like<br>an athlete.</div>
+      <div class="body">
+        Each Monday, every rep gets a composite performance score, a <strong>skills radar</strong>, a sparkline trend, and a manager's Take written by the AI. Tap any rep to open the full scouting card — deals, coaching history, AI insights, private notes.
+        <br><br>
+        The front-office view of your team, refreshed while you sleep.
+      </div>
+    </div>
+    <div>
+      <div class="device">
+        <div class="device-screen">
+          <iframe src="./#scout-0" title="Scouting Report" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="device-caption">Live from the app · tap to interact</div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. MATCHUPS -->
+<section class="slide" id="matchup">
+  <div class="slide-inner two-col flip">
+    <div>
+      <div class="device">
+        <div class="device-screen">
+          <iframe src="./#matchup" title="Head-to-Head Matchup" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="device-caption">Live from the app · tap to interact</div>
+    </div>
+    <div>
+      <div class="kicker">Head-to-head matchups</div>
+      <div class="h2">Competition,<br>made visible.</div>
+      <div class="body">
+        Pick any two reps. See who wins on revenue, pipeline, close rate, and overall score for any week — with a <strong>trend line</strong> to spot who's heating up and who's cooling.
+        <br><br>
+        Turns your pipeline dashboard into a leaderboard your reps actually want to check. Healthy competition, built in.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. COACHING -->
+<section class="slide" id="coach">
+  <div class="slide-inner two-col">
+    <div>
+      <div class="kicker">The Take · coaching playbook</div>
+      <div class="h2">The coaching<br>script writes<br>itself.</div>
+      <div class="body">
+        For every 1-on-1, the AI builds the agenda: what to praise, what to push, and the <strong>exact words to say</strong>. Built from CRM activity, rep self-reports, and the team scoreboard.
+        <br><br>
+        Walk in prepared. Walk out aligned. No more one-on-ones that feel like status meetings.
+      </div>
+    </div>
+    <div>
+      <div class="device">
+        <div class="device-screen">
+          <iframe src="./#coach-0" title="Coaching Playbook" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="device-caption">Live from the app · tap to interact</div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. PLAYBOOKS (rep) -->
+<section class="slide" id="playbooks">
+  <div class="slide-inner two-col flip">
+    <div>
+      <div class="device">
+        <div class="device-screen">
+          <iframe src="./#pb-meeting" title="Playbook: Coach me up" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="device-caption">Live from the app · tap the mic</div>
+    </div>
+    <div>
+      <div class="kicker">Guided playbooks · rep side</div>
+      <div class="h2">Reps talk.<br>CRM updates<br>itself.</div>
+      <div class="body">
+        Four guided playbooks — <strong>Coach me up</strong>, <strong>Raise the flag</strong>, <strong>Put it on the board</strong>, <strong>Pre-mortem</strong> — turn 30 seconds of voice into clean CRM fields, manager notes, and a self-coaching rehearsal.
+        <br><br>
+        Each question comes with a coach-voice hint that forces a <strong>specific answer</strong>. This is how CRM finally gets filled.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. WHY NOW / ICP -->
+<section class="slide" id="whynow">
+  <div class="slide-inner">
+    <div class="kicker">Why now / who we help</div>
+    <div class="h2">The coaches<br>were athletes first.</div>
+    <div class="body" style="max-width: 820px; margin-bottom: 8px;">
+      EY/espnW research finds <strong>94% of women in C-suite roles played competitive sports</strong>, and similar numbers hold for Fortune 500 CEOs. The sales managers we sell to over-index on the same archetype — they already think in stats, scoreboards, and game film. FlightSuite gives them the tools their analog heroes have always had.
+    </div>
+    <div class="whynow-grid">
+      <div class="whynow-stat">
+        <div class="label">ICP</div>
+        <div class="desc">Sales managers at 10–30-person teams with an active CRM. Competitive culture, former-athlete mindset.</div>
+      </div>
+      <div class="whynow-stat">
+        <div class="label">Why now</div>
+        <div class="desc">AI is finally good enough to synthesize CRM activity, voice notes, and meeting context in real time. The unlock is here.</div>
+      </div>
+      <div class="whynow-stat">
+        <div class="label">The wedge</div>
+        <div class="desc">Voice-log playbooks. Reps adopt because typing disappears. Managers adopt because the data gets clean.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. ASK -->
+<section class="slide final" id="ask">
+  <div class="slide-inner">
+    <div class="kicker" style="text-align:center;">The ask</div>
+    <div class="h1">Every sales manager has a scoreboard.<br>We built the operating system.</div>
+    <div class="cover-lede">
+      Seeking the network, capital, and coaching to ship FlightSuite to its first ten teams and validate the voice-log wedge end-to-end.
+    </div>
+    <div class="cover-contact">
+      <span>fitz@flightsuite.ai</span>
+      <span class="sep">/</span>
+      <span>flightsuite.ai/salescomp</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

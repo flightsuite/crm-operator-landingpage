@@ -3820,5 +3820,40 @@ renderActivityFeed();
 renderDuos();
 renderRoster();
 tourUpdateWelcomeText();
+
+// Deep-link routing for embeds/pitchbook iframes.
+(function() {
+  function applyHash() {
+    const h = (location.hash || '').replace(/^#/, '');
+    if (!h) return;
+    const mgrRoutes = { 'roster': 1, 'matchup': 1, 'take': 1 };
+    const repRoutes = { 'rep-plan': 1, 'rep-playbooks': 1, 'rep-deals': 1, 'rep-ai': 1 };
+    const welcome = document.getElementById('tourWelcome');
+    if (welcome) { welcome.classList.remove('on'); welcome.style.display = 'none'; }
+    if (h in mgrRoutes) {
+      if (viewMode !== 'manager') setViewMode('manager'); else go(h);
+    } else if (h in repRoutes) {
+      if (viewMode !== 'rep') setViewMode('rep');
+      goRep(h);
+    } else if (h.startsWith('scout')) {
+      if (viewMode !== 'manager') setViewMode('manager');
+      go('roster');
+      const idx = parseInt(h.split('-')[1] || '0', 10) || 0;
+      setTimeout(function() { openCard(idx); }, 120);
+    } else if (h.startsWith('coach')) {
+      if (viewMode !== 'manager') setViewMode('manager');
+      go('roster');
+      const idx = parseInt(h.split('-')[1] || '0', 10) || 0;
+      setTimeout(function() { openCard(idx); cPanel('coaching'); }, 120);
+    } else if (h.startsWith('pb-')) {
+      if (viewMode !== 'rep') setViewMode('rep');
+      goRep('rep-playbooks');
+      const pbId = h.slice(3);
+      if (playbooks[pbId]) setTimeout(function() { pbOpen(pbId); }, 120);
+    }
+  }
+  applyHash();
+  window.addEventListener('hashchange', applyHash);
+})();
 </script>
 </body></html>
