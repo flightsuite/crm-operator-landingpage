@@ -605,6 +605,466 @@ html.light .cb-action { background: rgba(0,0,0,0.04); }
 html.light .cb-action.cb-action-profile { background: rgba(255,149,0,0.08); }
 html.light .cb-action.cb-action-crm { background: rgba(59,130,246,0.06); }
 
+/* ===== DEAL BRIEF MODAL (db-) ===== */
+.db-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 350;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.db-backdrop.on { opacity: 1; pointer-events: auto; }
+
+.db-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 351;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: #111;
+  border-radius: 22px 22px 0 0;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-bottom: none;
+  overflow: hidden;
+  transform: translateY(100%);
+  transition: transform 0.25s cubic-bezier(0.22,1,0.36,1);
+  max-height: 92vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.db-sheet.on { transform: translateY(0); }
+html.light .db-sheet {
+  background: #fafafa;
+  border-color: rgba(0,0,0,0.08);
+}
+
+.db-handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.18);
+  margin: 10px auto 0;
+  flex-shrink: 0;
+}
+html.light .db-handle { background: rgba(0,0,0,0.14); }
+
+/* Header */
+.db-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px 10px;
+}
+.db-header-info { flex: 1; min-width: 0; }
+.db-deal-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--t1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.1;
+}
+.db-deal-amount {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--amber);
+  margin-top: 2px;
+}
+.db-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+.db-stage-chip {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.db-prob {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--t3);
+}
+.db-days {
+  font-size: 11px;
+  color: var(--t4);
+}
+.db-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--t2);
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.db-close:hover { background: rgba(255,255,255,0.14); }
+html.light .db-close { background: rgba(0,0,0,0.06); }
+html.light .db-close:hover { background: rgba(0,0,0,0.12); }
+
+/* Section divider */
+.db-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 16px 14px;
+}
+
+/* AI Synthesis block */
+.db-synthesis {
+  margin: 0 16px 14px;
+}
+.db-section-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--amber);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.db-synthesis-text {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--t2);
+}
+html.light .db-synthesis-text { color: #444; }
+
+/* Key data grid */
+.db-grid {
+  margin: 0 16px 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.db-grid-cell {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+html.light .db-grid-cell { background: rgba(0,0,0,0.03); }
+.db-grid-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--t4);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 4px;
+}
+.db-grid-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--t1);
+  line-height: 1.35;
+}
+.db-grid-value.mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+.db-competitor-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: rgba(255,149,0,0.12);
+  color: var(--amber);
+  border: 1px solid rgba(255,149,0,0.3);
+}
+
+/* Risk and signals */
+.db-risks {
+  margin: 0 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.db-risk-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+html.light .db-risk-card { background: rgba(0,0,0,0.03); }
+.db-health-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.db-health-chip.red { background: rgba(255,59,48,0.12); color: var(--red); }
+.db-health-chip.amber { background: rgba(255,149,0,0.12); color: var(--amber); }
+.db-health-chip.green { background: rgba(0,200,83,0.12); color: var(--green); }
+.db-signal-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--t2);
+}
+html.light .db-signal-row { color: #444; }
+.db-signal-row i { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.db-signal-row.risk i { color: var(--red); }
+.db-signal-row.positive i { color: var(--green); }
+
+/* Suggested actions */
+.db-actions-block {
+  margin: 0 16px 14px;
+}
+.db-next-move {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--t1);
+  line-height: 1.5;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.db-next-move i { color: var(--amber); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.db-script-block {
+  background: linear-gradient(135deg, rgba(255,149,0,0.12) 0%, rgba(255,149,0,0.06) 100%);
+  border: 1px solid rgba(255,149,0,0.28);
+  border-radius: 14px;
+  overflow: hidden;
+}
+html.light .db-script-block {
+  background: linear-gradient(135deg, rgba(255,149,0,0.1) 0%, rgba(255,149,0,0.04) 100%);
+  border-color: rgba(255,149,0,0.35);
+}
+.db-script-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--amber);
+  padding: 10px 14px 4px;
+}
+.db-script-text {
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--t1);
+  padding: 0 14px 12px;
+}
+html.light .db-script-text { color: #222; }
+
+/* AI Chat section */
+.db-chat {
+  margin: 0 16px 14px;
+}
+.db-chat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.db-chip {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--elevated);
+  color: var(--t2);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.db-chip:hover, .db-chip:active { border-color: var(--amber); background: var(--amber-bg); color: var(--amber); }
+html.light .db-chip { background: rgba(0,0,0,0.04); }
+.db-messages {
+  min-height: 64px;
+  max-height: 260px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.db-msg {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.db-msg.user { flex-direction: row-reverse; }
+.db-msg-avi {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--elevated);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--t3);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.db-msg-avi.ai-avi { background: var(--amber-bg); color: var(--amber); border-color: rgba(255,149,0,0.3); }
+.db-bubble {
+  max-width: 78%;
+  padding: 9px 12px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.db-msg.ai .db-bubble {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--t1);
+  border-bottom-left-radius: 4px;
+}
+.db-msg.user .db-bubble {
+  background: var(--amber-bg);
+  border: 1px solid rgba(255,149,0,0.28);
+  color: var(--t1);
+  border-bottom-right-radius: 4px;
+  text-align: right;
+}
+html.light .db-msg.ai .db-bubble { background: rgba(0,0,0,0.04); }
+html.light .db-msg.user .db-bubble { background: rgba(255,149,0,0.1); }
+.db-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.db-input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--elevated);
+  color: var(--white);
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.db-input:focus { border-color: var(--amber); }
+.db-input::placeholder { color: var(--t4); }
+html.light .db-input { color: #111; background: rgba(0,0,0,0.04); }
+.db-send {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  background: var(--amber);
+  color: #0a0a0a;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.1s;
+}
+.db-send:active { transform: scale(0.93); }
+
+/* DB empty chat state */
+.db-chat-empty {
+  text-align: center;
+  padding: 16px 0 8px;
+  color: var(--t4);
+  font-size: 12px;
+}
+
+/* Footer */
+.db-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px 16px;
+  border-top: 1px solid var(--border);
+  padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  flex-shrink: 0;
+}
+.db-footer-btn {
+  flex: 1;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--elevated);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--t2);
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s;
+}
+.db-footer-btn:active { opacity: 0.7; }
+.db-footer-btn.primary {
+  background: var(--amber-bg);
+  border-color: rgba(255,149,0,0.3);
+  color: var(--amber);
+}
+html.light .db-footer-btn { background: rgba(0,0,0,0.04); }
+html.light .db-footer-btn.primary { background: rgba(255,149,0,0.1); }
+
+/* Deal card tappable affordance */
+.deal-card.tappable {
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.deal-card.tappable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+.deal-card.tappable:active { transform: scale(0.98); }
+.deal-card-chev {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 14px;
+  color: var(--t4);
+  pointer-events: none;
+}
+
 /* CRM deal modal */
 .crm-deal-modal {
   display: none;
@@ -4049,6 +4509,13 @@ html.light .cci-mini-card { background: var(--surface); }
   </div>
 </div>
 
+<!-- Deal Brief Modal -->
+<div class="db-backdrop" id="dbBackdrop" onclick="closeDealBrief()"></div>
+<div class="db-sheet" id="dbSheet" role="dialog" aria-modal="true" aria-label="Deal Brief">
+  <div class="db-handle"></div>
+  <div id="dbContent"><!-- filled by openDealBrief --></div>
+</div>
+
 <!-- Modal -->
 <div class="m-overlay" id="msgModal">
   <div class="m-sheet">
@@ -5499,11 +5966,86 @@ agenda:[{topic:'1. Put the Win on the Scoreboard',d:'Henderson is closed. Three 
 agendaJp:[{topic:'1. スコアボードに勝ち星を',d:'ヘンダーソンがクローズ。今週さらに3件見込み（合計$87K）。まずは小さな勝利を称えることから。リズムが続きます。',s:'"ヘンダーソンはスコアボードに載りました。何がうまくいったのか聞かせてください。チーム全員に共有したいプレーです。"'},{topic:'2. メリディアン：過干渉を避ける',d:'提案後9日沈黙（$45K）、ただし担当者は提案書を3回開封。これはリード指標。彼は去ったのではなく、気を取られているだけ。押さないこと。',s:'"3回開封して返信なし。冷めたのではなく、気が散っているサインです。次の一手はどうするのが正解だと思いますか？"'},{topic:'3. 的を大きく',d:'彼は大きな試合を望んでいる。データも裏付け：$30K超で成約率38%（チーム平均28%）。追いかける価値のあるターゲットを。',s:'"$30K超での成約率はチームより10ポイント高い。エンタープライズ案件を1件選びましょう。スコアボードに載せます。"'},{topic:'4. 彼に欠けているリード指標',d:'売上は遅行指標。アウトバウンドの接触回数は先行指標。彼はチーム平均を22%下回っている。インプットを直せば、スコアボードは自然と動く。',s:'"クロージングは勝っています。今週動かせる唯一のリード指標はアウトバウンドの量。週5件追加するだけで、モデルでは今四半期+$40-50K。それがスコアボードを動かす一手です。"'}],
 gl:[{w:'Wk 14',d:7,r:'$142K',p:'$89K',s:91},{w:'Wk 13',d:5,r:'$98K',p:'$112K',s:86},{w:'Wk 12',d:6,r:'$118K',p:'$67K',s:88},{w:'Wk 11',d:4,r:'$76K',p:'$95K',s:78},{w:'Wk 10',d:5,r:'$102K',p:'$78K',s:84}],
 deals:[
-  { name: 'Henderson Corp', amount: '$45K', stage: 'Closed Won', prob: 100, next: 'Signed', days: 0, note: 'Closed this week' },
-  { name: 'Meridian Systems', amount: '$45K', stage: 'Proposal', prob: 40, next: 'Follow up on silence', days: 9, note: 'Opened proposal 3x, no response', privateNote: 'Contact\'s daughter is going through mental health treatment. He\'s distracted and risk-averse right now. Don\'t push.', privateNoteJp: '担当者の娘さんがメンタルヘルスの治療中。気が散っており、リスク回避的になっている。プッシュしないこと。' },
-  { name: 'Vertex Analytics', amount: '$32K', stage: 'Negotiation', prob: 75, next: 'Final pricing call Thu', days: 4 },
-  { name: 'Pinnacle Group', amount: '$28K', stage: 'Discovery', prob: 25, next: 'Second meeting scheduled', days: 2 },
-  { name: 'Orion Partners', amount: '$18K', stage: 'Closing', prob: 85, next: 'Contract sent, awaiting signature', days: 3 }
+  { name: 'Henderson Corp', amount: '$45K', stage: 'Closed Won', prob: 100, next: 'Signed', days: 0, note: 'Closed this week',
+    synthesis: 'Henderson Corp closed this week at $45K. Contract was countersigned Monday and kickoff is scheduled Friday with their ops lead. This is a clean win. Use it to ask for a referral to their VP of Sales before the relationship goes warm.',
+    contacts: [{name:'Tom Henderson',title:'CEO',role:'Economic Buyer'},{name:'Lisa Park',title:'Ops Lead',role:'Kickoff Contact'},{name:'Brian Wu',title:'Procurement',role:'Contract Signer'}],
+    lastActivity: {type:'Contract Signed',date:'Apr 14',detail:'Countersigned. Kickoff locked.'},
+    nextMilestone: 'Kickoff call Apr 18',
+    competitor: null,
+    risk: {level:'low',label:'Clean Close',bullets:[]},
+    signals: [{type:'positive',text:'Contract fully executed, no open items.'},{type:'positive',text:'Ops lead engaged for kickoff immediately.'}],
+    script: 'Tom, I want to make sure you get a flawless start. One ask before we kick off Friday: is there another team at Henderson who might benefit from what we built for you?',
+    chatCanned: {
+      competitor: 'No active competitor threat. The deal closed cleanly. Best use of this context is to secure a reference or referral before the account relationship cools.',
+      engage: 'Kickoff is Friday with Lisa Park in ops. The relationship-building window is wide open. Engage proactively and make the first 30 days remarkable.',
+      stalling: 'This deal is not stalling. It is closed. If anything has slipped post-signature, a quick call to Lisa Park will surface it in under five minutes.',
+      unblock: 'No active blocker. Use the momentum to request a referral to another team or contact at Henderson within the next week while the win is fresh.'
+    }
+  },
+  { name: 'Meridian Systems', amount: '$45K', stage: 'Proposal', prob: 40, next: 'Follow up on silence', days: 9, note: 'Opened proposal 3x, no response', privateNote: 'Contact\'s daughter is going through mental health treatment. He\'s distracted and risk-averse right now. Don\'t push.', privateNoteJp: '担当者の娘さんがメンタルヘルスの治療中。気が散っており、リスク回避的になっている。プッシュしないこと。',
+    synthesis: 'Meridian is a $45K deal stuck in Proposal for 9 days. The contact has opened the proposal three times but has not replied to two outbound emails. Private context shows a serious personal distraction on his side. This is not a cold deal. It is a waiting deal. Probability shows 40% but the real blocker is human, not commercial.',
+    contacts: [{name:'David Chu',title:'VP Sales',role:'Champion'},{name:'Rachel Torres',title:'CFO',role:'Economic Buyer'},{name:'Mark Inglis',title:'IT Director',role:'Evaluator'}],
+    lastActivity: {type:'Proposal Viewed',date:'Apr 13',detail:'Opened 3x, zero replies to follow-up.'},
+    nextMilestone: 'TBD, awaiting re-engagement',
+    competitor: null,
+    risk: {level:'high',label:'Champion Distracted',bullets:['Contact is personally preoccupied. Standard urgency tactics will backfire.','Nine days of silence after three proposal opens signals distraction, not disinterest.']},
+    signals: [{type:'positive',text:'Proposal opened three times indicates genuine interest.'},{type:'risk',text:'No economic buyer contact established yet.'}],
+    script: 'David, no ask here. Just checking in as a person. Hope things are settling down on your end. I\'m here whenever you\'re ready to pick this back up.',
+    chatCanned: {
+      competitor: 'No competitor flag in this deal. The risk is internal distraction, not a competing vendor. Pushing harder will not solve a personal blocker.',
+      engage: 'Engage with a brief, no-ask message. A voice note or short text, not an email. Make it human. The goal is to keep the relationship warm, not to advance the deal right now.',
+      stalling: 'The deal is stalling because the champion is personally preoccupied, not because the value proposition failed. Do not increase pressure. Send one brief human touchpoint and let it breathe for another five to seven days.',
+      unblock: 'The unblock here is not a sales move. It is a human one. A short note acknowledging that you know he is busy, with zero ask attached, is the highest-leverage action available right now.'
+    }
+  },
+  { name: 'Vertex Analytics', amount: '$32K', stage: 'Negotiation', prob: 75, next: 'Final pricing call Thu', days: 4,
+    synthesis: 'Vertex Analytics is a $32K deal in Negotiation with a final pricing call confirmed for Thursday. Discovery surfaced real ROI math and the champion is aligned. The last gate is CFO sign-off, and that CFO is risk-averse. Bring concrete hours-saved numbers tied to their actual baseline, not generic benchmarks.',
+    contacts: [{name:'Priya Nair',title:'Head of Revenue Ops',role:'Champion'},{name:'Greg Steele',title:'CFO',role:'Economic Buyer'},{name:'Jon Kaplan',title:'VP Sales',role:'Sponsor'}],
+    lastActivity: {type:'Discovery Call',date:'Apr 11',detail:'ROI math confirmed. CFO approval is final gate.'},
+    nextMilestone: 'Pricing call Thu Apr 17',
+    competitor: null,
+    risk: {level:'med',label:'CFO Risk-Averse',bullets:['CFO has not been in any prior meeting. Cold introduction on a pricing call is high-risk.','Generic ROI benchmarks will not move a risk-averse CFO. Needs their specific numbers.']},
+    signals: [{type:'positive',text:'Champion fully aligned and actively preparing CFO for the call.'},{type:'positive',text:'ROI case is built on real data from discovery.'}],
+    script: 'Priya, before Thursday: what number does Greg care most about? If I walk in with the hours-saved figure tied to your actual headcount, I can make this easy for him to say yes.',
+    chatCanned: {
+      competitor: 'No active competitor logged on this deal. The primary risk is internal, not external. A risk-averse CFO is the final gate and needs to feel the ROI is airtight before signing.',
+      engage: 'Your next contact should be with Priya today to get the baseline numbers before the Thursday call. Do not cold-introduce the CFO to a generic pitch. Walk in with his specific ROI math already done.',
+      stalling: 'This deal is not stalling yet, but it will if Thursday becomes a general demo replay. Sharpen the agenda to CFO-specific financial impact and nothing else.',
+      unblock: 'Get Priya to send you one number before the call: current hours spent per week on the process you are solving. Build the ROI around that single figure. That is what unlocks a risk-averse CFO.'
+    }
+  },
+  { name: 'Pinnacle Group', amount: '$28K', stage: 'Discovery', prob: 25, next: 'Second meeting scheduled', days: 2,
+    synthesis: 'Pinnacle Group is at $28K in Discovery, second meeting scheduled. The first meeting went well but no economic buyer was in the room. The VP of Sales is a champion but not the decider. This deal cannot advance without getting the COO or finance lead engaged. Real stage is Qualification, not Discovery.',
+    contacts: [{name:'Sandra Lee',title:'VP Sales',role:'Champion'},{name:'Kevin Moss',title:'COO',role:'Economic Buyer (unmet)'},{name:'Amy Chen',title:'Finance Director',role:'Evaluator (unmet)'}],
+    lastActivity: {type:'Discovery Meeting',date:'Apr 15',detail:'Good engagement. No economic buyer present.'},
+    nextMilestone: 'Second meeting Apr 21',
+    competitor: null,
+    risk: {level:'med',label:'No Economic Buyer',bullets:['Economic buyer has not been identified or met.','Advancing without CFO or COO contact will likely hit a wall at proposal stage.']},
+    signals: [{type:'positive',text:'Champion Sandra Lee is highly engaged and responsive.'},{type:'risk',text:'Deal is logged as Discovery but no pain has been explicitly named yet.'}],
+    script: 'Sandra, I want to make sure our next meeting is worth everyone\'s time. Would it make sense to have your COO or finance lead on the call so we can address the business case directly? Happy to prepare a short agenda.',
+    chatCanned: {
+      competitor: 'No competitor has surfaced yet. At the Discovery stage, the competitive risk is that a competitor gets to the economic buyer before you do. Prioritize getting to the COO.',
+      engage: 'The next engagement move is to ask Sandra directly for an introduction to the COO or finance lead before the second meeting. Frame it as wanting to make the meeting more useful for everyone, not as escalating over her head.',
+      stalling: 'This deal will stall the moment you try to advance it without an economic buyer. The second meeting needs either the COO or finance director in the room, or a confirmed path to get there.',
+      unblock: 'The single unblock is economic buyer access. Ask Sandra: who else needs to say yes for this to move forward? Get that name, then get in the room with them.'
+    }
+  },
+  { name: 'Orion Partners', amount: '$18K', stage: 'Closing', prob: 85, next: 'Contract sent, awaiting signature', days: 3,
+    synthesis: 'Orion Partners is at $18K in Closing with a contract sent Monday. The champion confirmed legal review is underway and signature is expected mid-week. This is a heating close. Only risk is a delay if legal review runs long. A Wednesday check-in if no signature is the right move.',
+    contacts: [{name:'Carlos Reyes',title:'Dir. of Operations',role:'Champion'},{name:'Beth Holt',title:'General Counsel',role:'Legal Review'},{name:'Marcus Odum',title:'CEO',role:'Final Signer'}],
+    lastActivity: {type:'Contract Sent',date:'Apr 14',detail:'Legal review underway per champion.'},
+    nextMilestone: 'Signature expected Apr 16-17',
+    competitor: null,
+    risk: {level:'low',label:'Heating Close',bullets:['Only risk is a slow legal review cycle.']},
+    signals: [{type:'positive',text:'Champion confirmed legal review is in progress.'},{type:'positive',text:'No pricing or scope objections outstanding.'}],
+    script: 'Carlos, just a quick check-in. Any feedback from legal? Happy to jump on a call if they have questions so we can keep this moving.',
+    chatCanned: {
+      competitor: 'No competitor present. This deal is in legal review with no active competition. The risk is delay, not displacement.',
+      engage: 'A brief Wednesday check-in with Carlos is the right next touch. Not pushy, just keeping the door open in case legal has questions you can answer quickly.',
+      stalling: 'If no signature arrives by Wednesday, a direct call to Carlos asking if legal has any questions is the right move. Offer to join a quick call with their counsel to accelerate.',
+      unblock: 'If this stalls, the unblock is offering to answer legal questions directly. A 15-minute call with their GC can turn a one-week review into a same-day signature.'
+    }
+  }
 ],
 aiInsights: [
   'Meridian contact may be navigating personal priorities. Recommend patience-based follow-up rather than urgency tactics.',
@@ -5540,10 +6082,70 @@ agenda:[{topic:'1. Celebrate the Streak',d:'4-week scoring streak. Pipeline 34% 
 agendaJp:[{topic:'1. 成果の承認',d:'4週連続のスコア上昇。パイプライン創出は平均を34%上回る。',s:'"今月$210Kの新規パイプライン、素晴らしい成果です。これをさらに成約に繋げる方法を一緒に考えましょう。"'},{topic:'2. 価格交渉のロールプレイ',d:'価格が課題と本人が認識。成約率は改善中だがチーム平均以下。',s:'"簡単なロールプレイをしましょう。私が見込み客役をやります。Vertexの案件での価格提示を再現してみてください。"'},{topic:'3. Marcusとの共同セリング',d:'より大きな案件でMarcusとペアを組み、クロージングの経験を積む。',s:'"Pinnacleの案件をMarcusと一緒に進めてみてはどうですか？構築はあなた、クロージングはMarcus。近くでプロセスを学べます。"'}],
 gl:[{w:'Wk 14',d:3,r:'$48K',p:'$178K',s:82},{w:'Wk 13',d:2,r:'$31K',p:'$156K',s:76},{w:'Wk 12',d:4,r:'$62K',p:'$142K',s:80},{w:'Wk 11',d:2,r:'$28K',p:'$168K',s:72},{w:'Wk 10',d:3,r:'$44K',p:'$132K',s:70}],
 deals:[
-  { name: 'NovaTech Solutions', amount: '$62K', stage: 'Discovery', prob: 20, next: 'Demo scheduled for Monday', days: 3 },
-  { name: 'Quantum Digital', amount: '$48K', stage: 'Proposal', prob: 45, next: 'Pricing review call', days: 5, privateNote: 'Procurement lead is going through a divorce. Emotional, making impulsive decisions. Could work in our favor but need to be careful.', privateNoteJp: '調達担当者が離婚中。感情的で衝動的な決断をしている。有利に働く可能性があるが慎重に。' },
-  { name: 'Atlas Industries', amount: '$38K', stage: 'Discovery', prob: 15, next: 'Initial outreach sent', days: 1 },
-  { name: 'Summit Corp', amount: '$30K', stage: 'Negotiation', prob: 60, next: 'Awaiting procurement approval', days: 7 }
+  { name: 'NovaTech Solutions', amount: '$62K', stage: 'Discovery', prob: 20, next: 'Demo scheduled for Monday', days: 3,
+    synthesis: 'NovaTech Solutions is a $62K deal with a demo booked for Monday. No pain has been surfaced yet. Calendar engagement exists but this is still in Qualification, not true Discovery. The demo will not advance this deal unless Sarah surfaces a specific problem before she walks in. One pain-probe email sent pre-demo changes the whole conversation.',
+    contacts: [{name:'Ryan Foley',title:'VP of Revenue',role:'Sponsor'},{name:'Jen Park',title:'Sales Ops Manager',role:'Champion'},{name:'Unknown',title:'Economic Buyer',role:'Not yet identified'}],
+    lastActivity: {type:'Demo Booked',date:'Apr 15',detail:'Calendar confirmed. No pre-meeting pain discovery done.'},
+    nextMilestone: 'Demo Monday Apr 21',
+    competitor: 'Gong',
+    risk: {level:'med',label:'No Pain Surfaced',bullets:['Demo is booked but no pain has been named. A demo without a problem to solve is a product tour, not a sales call.','Gong is the known incumbent in this space and likely already has a presence here.']},
+    signals: [{type:'positive',text:'$62K is a significant deal size. High upside if discovery goes well.'},{type:'risk',text:'Prospect reached out via inbound but has not named a specific problem.'}],
+    script: 'Jen, before Monday I want to make the demo as relevant as possible for your team. One question: what is the single biggest gap in how your reps currently log and review calls? Just a sentence is enough. I will build the demo around that.',
+    chatCanned: {
+      competitor: 'Gong is flagged as a known competitor. At the Discovery stage, the play is not to attack Gong directly. Surface what NovaTech is not getting from their current setup and let them name the gap themselves.',
+      engage: 'Send a one-question pain-probe email today before the Monday demo. Make it conversational, not a form. Ask what one problem they most want solved. That answer shapes the entire demo.',
+      stalling: 'This deal has not stalled yet, but it will if the Monday demo is a generic product walkthrough. The stall prevention move is surfacing pain before walking in.',
+      unblock: 'The unblock is one pre-demo question that forces the prospect to name their problem. Once they name it, the demo becomes a solution presentation instead of a product tour.'
+    }
+  },
+  { name: 'Quantum Digital', amount: '$48K', stage: 'Proposal', prob: 45, next: 'Pricing review call', days: 5, privateNote: 'Procurement lead is going through a divorce. Emotional, making impulsive decisions. Could work in our favor but need to be careful.', privateNoteJp: '調達担当者が離婚中。感情的で衝動的な決断をしている。有利に働く可能性があるが慎重に。',
+    synthesis: 'Quantum Digital is at $48K in Proposal with a pricing review call requested by the prospect. Procurement lead is directly engaged and emotionally elevated per private context. This is a sensitive close. Do not anchor to a single number. Walk in with a flexible pricing range and let them feel like they chose the tier. Probability is 45% but the deal can accelerate quickly if the pricing call goes well.',
+    contacts: [{name:'Alex Wu',title:'Procurement Director',role:'Economic Buyer'},{name:'Dana Kim',title:'Dir. of Sales Enablement',role:'Champion'},{name:'Marcus Field',title:'CFO',role:'Final Approver'}],
+    lastActivity: {type:'Pricing Request',date:'Apr 13',detail:'Prospect initiated the pricing review. Procurement lead engaging directly.'},
+    nextMilestone: 'Pricing call this week',
+    competitor: null,
+    risk: {level:'med',label:'Pricing Sensitivity',bullets:['Procurement lead is emotionally elevated. Anchoring to a single price number risks triggering an impulsive rejection.','No CFO alignment confirmed yet before the pricing call.']},
+    signals: [{type:'positive',text:'Prospect requested the pricing call, indicating genuine buying intent.'},{type:'positive',text:'Champion Dana Kim is internally sponsoring the deal.'}],
+    script: 'Dana, before the pricing call, help me understand what budget range Alex has been discussing internally. I want to walk in with the right options and not waste anyone\'s time.',
+    chatCanned: {
+      competitor: 'No competitor flagged. The risk in this deal is internal pricing sensitivity, not a competing vendor. Focus on how you structure the pricing offer, not on beating a competitor.',
+      engage: 'Get Dana on the phone before the pricing call to understand the internal budget conversation. Know the number before you walk in. Do not let the first time you hear a budget be on the call itself.',
+      stalling: 'If the pricing call stalls, it will be because the number surprised someone in the room. Pre-align with Dana on budget range today so there are no surprises during the call.',
+      unblock: 'Walk into the pricing call with three tiers, not one number. Give them the agency to choose. That removes the anchor effect and reduces the chance of an impulsive rejection from the procurement lead.'
+    }
+  },
+  { name: 'Atlas Industries', amount: '$38K', stage: 'Discovery', prob: 15, next: 'Initial outreach sent', days: 1,
+    synthesis: 'Atlas Industries is a $38K early-stage deal. Initial outreach was sent yesterday with no reply yet. This is too early to assess. Probability at 15% reflects the uncertainty of cold outreach. The job right now is simply to get a response and book a first conversation. No blocker has surfaced because the conversation has not started.',
+    contacts: [{name:'Unknown',title:'Unknown',role:'Target contact unidentified'},{name:'LinkedIn Search',title:'N/A',role:'Research in progress'}],
+    lastActivity: {type:'Initial Outreach',date:'Apr 14',detail:'First email sent. No reply yet.'},
+    nextMilestone: 'Follow-up if no response by Apr 18',
+    competitor: null,
+    risk: {level:'low',label:'Early Discovery',bullets:['No response to initial outreach yet. Follow-up is the entire job.']},
+    signals: [{type:'positive',text:'Inbound signal or referral prompted initial outreach.'}],
+    script: 'Following up on my note from yesterday. Happy to keep this short. Is a 15-minute intro call worth your time this week? No agenda, just want to understand what you\'re working with.',
+    chatCanned: {
+      competitor: 'No competitor information available yet. This deal is too early to assess competitive positioning. Get the first conversation booked before assessing any competitive threat.',
+      engage: 'Send a short follow-up today if no reply by end of day. Keep it under three sentences. The goal is a calendar hold, not a pitch.',
+      stalling: 'This deal is not stalling yet. It has not started. One follow-up touch by Friday is appropriate. After two unanswered touches, reassess whether this is the right contact.',
+      unblock: 'The only unblock available right now is a second outreach attempt. Keep it brief and specific. A generic follow-up will not perform better than the first email.'
+    }
+  },
+  { name: 'Summit Corp', amount: '$30K', stage: 'Negotiation', prob: 60, next: 'Awaiting procurement approval', days: 7,
+    synthesis: 'Summit Corp is at $30K and has been stuck at procurement approval for seven days. The deal itself is not in danger but the timeline is out of Sarah\'s control. Listed as Negotiation but the real stage is Procurement, and the job is administrative, not sales. Getting the procurement lead on a direct call this week can compress a week-long wait into a same-day answer.',
+    contacts: [{name:'Tanya Ross',title:'VP of Operations',role:'Champion'},{name:'Derek Huang',title:'Procurement Lead',role:'Approver (gating)'},{name:'COO',title:'Unknown',role:'Final Signatory'}],
+    lastActivity: {type:'Procurement Submitted',date:'Apr 8',detail:'Awaiting approval. No movement in 7 days.'},
+    nextMilestone: 'Procurement approval TBD',
+    competitor: null,
+    risk: {level:'med',label:'Procurement Bottleneck',bullets:['Seven days in procurement with no signal. Could be normal cycle time or a quiet stall.','Sarah has no direct line to the procurement lead.']},
+    signals: [{type:'positive',text:'Champion Tanya Ross confirmed the deal is moving through normal process.'},{type:'risk',text:'No estimated approval timeline was given.'}],
+    script: 'Tanya, I want to make sure this does not slow down on our end. Is it worth getting Derek on a quick call so I can answer any questions procurement might have directly?',
+    chatCanned: {
+      competitor: 'No competitor flagged in this deal. The risk is procurement delay, not a competing vendor stepping in. Keep the champion engaged while procurement moves.',
+      engage: 'Ask Tanya to introduce you to Derek in procurement this week. A direct line to the approver is the fastest way to compress the timeline. Most procurement delays are just unanswered questions.',
+      stalling: 'Seven days with no movement in procurement is not unusual, but it needs a check-in. Ask Tanya for a status update and whether there are any outstanding questions you can answer to speed things along.',
+      unblock: 'The unblock is a 15-minute call with the procurement lead. Most approvals stall because of one unanswered question that no one thought to ask. Get on the phone and ask directly what they need.'
+    }
+  }
 ],
 aiInsights: [
   'Quantum Digital decision-maker showing signs of accelerated timeline. Opportunity for faster close if pricing is right.',
@@ -5580,9 +6182,54 @@ agenda:[{topic:'1. The Apex Renewal',d:'Key account closed. 94% retention is bes
 agendaJp:[{topic:'1. Apex更新の成果',d:'主要アカウントの更新完了。94%の維持率はチーム最高。',s:'"Apexの更新、大きな成果です。価格面での交渉をどう乗り越えたか、教えていただけますか？"'},{topic:'2. キャリア成長',d:'チームリーダーへのパスについて質問あり。在籍年数と関係構築力が武器。',s:'"チームリーダーの役割について、どのようなイメージをお持ちですか？私から見て必要なことを共有させてください。"'},{topic:'3. 次のステージへ',d:'12週連続150超えだがブレイクスルーはゼロ。安定圏に留まっている。',s:'"この安定感は素晴らしいです。でも、まだ伸びしろがあると思います。新規エンタープライズ案件を一つ、一緒に狙ってみませんか？"'}],
 gl:[{w:'Wk 14',d:4,r:'$82K',p:'$65K',s:75},{w:'Wk 13',d:4,r:'$78K',p:'$58K',s:73},{w:'Wk 12',d:3,r:'$71K',p:'$72K',s:72},{w:'Wk 11',d:4,r:'$80K',p:'$54K',s:74},{w:'Wk 10',d:3,r:'$68K',p:'$62K',s:70}],
 deals:[
-  { name: 'Apex Solutions', amount: '$52K', stage: 'Negotiation', prob: 80, next: 'Renewal terms finalized', days: 3, note: 'Existing client renewal', privateNote: 'CTO confided he\'s interviewing for a new role. If he leaves, this renewal could stall.', privateNoteJp: 'CTOが転職活動中と打ち明けた。彼が退職すれば、この更新は停滞する可能性がある。' },
-  { name: 'Beacon Ltd', amount: '$22K', stage: 'Closing', prob: 90, next: 'Final sign-off pending', days: 2 },
-  { name: 'Crestview Partners', amount: '$18K', stage: 'Discovery', prob: 20, next: 'Intro call next week', days: 1 }
+  { name: 'Apex Solutions', amount: '$52K', stage: 'Negotiation', prob: 80, next: 'Renewal terms finalized', days: 3, note: 'Existing client renewal', privateNote: 'CTO confided he\'s interviewing for a new role. If he leaves, this renewal could stall.', privateNoteJp: 'CTOが転職活動中と打ち明けた。彼が退職すれば、この更新は停滞する可能性がある。',
+    synthesis: 'Apex Solutions is a $52K renewal in Negotiation. Terms were finalized this week and probability shows 80%. However, the CTO privately mentioned he is interviewing elsewhere. This is a champion-risk situation. Real probability is closer to 40-50% if the CTO transitions before signature. Jake needs two backup stakeholders at Apex engaged before this closes.',
+    contacts: [{name:'David Park',title:'CTO',role:'Champion (at-risk)'},{name:'Maria Santos',title:'COO',role:'Target Backup'},{name:'Jim Torres',title:'VP Engineering',role:'Target Backup'}],
+    lastActivity: {type:'Terms Finalized',date:'Apr 15',detail:'Renewal terms agreed. CTO is primary signer.'},
+    nextMilestone: 'Signature pending. Champion risk.',
+    competitor: null,
+    risk: {level:'high',label:'Champion Risk',bullets:['CTO is the primary champion and is actively interviewing for a new role.','No secondary stakeholder relationship exists at Apex to buffer a transition.']},
+    signals: [{type:'positive',text:'Terms were finalized without pricing pushback.'},{type:'risk',text:'Deal depends entirely on one stakeholder who may leave before signature.'}],
+    script: 'David, the terms look great. Before we get to signatures, I want to make sure we have the right people in the loop on both sides. Is it worth a brief intro with your COO or VP of Engineering so the handoff is seamless on your end?',
+    chatCanned: {
+      competitor: 'No competitor logged. The risk here is purely internal. Champion departure is more dangerous than any competitor right now.',
+      engage: 'Get Jake to identify two stakeholders at Apex today who could carry this renewal if the CTO transitions. Maria Santos (COO) and Jim Torres (VP Eng) are the targets. One brief intro email through the CTO is the play.',
+      stalling: 'This deal will stall the moment the CTO announces his departure if Jake has no other contacts at Apex. Do not wait. The window to expand stakeholder relationships is right now, while the CTO is still an ally.',
+      unblock: 'The unblock is multi-threading. Jake needs two names at Apex who know about this renewal and would champion it if the CTO leaves. One intro meeting this week is the highest-leverage action available.'
+    }
+  },
+  { name: 'Beacon Ltd', amount: '$22K', stage: 'Closing', prob: 90, next: 'Final sign-off pending', days: 2,
+    synthesis: 'Beacon Ltd is a $22K deal in Closing with final sign-off pending. Champion confirmed the signature is coming this week. Probability at 90% is accurate. The best move now is to get the post-signature onboarding plan in the champion\'s hands proactively, which signals professionalism and accelerates the execution relationship.',
+    contacts: [{name:'Chris Hammond',title:'VP of Sales',role:'Champion'},{name:'Lisa Chung',title:'CEO',role:'Final Signer'}],
+    lastActivity: {type:'Verbal Commitment',date:'Apr 14',detail:'Champion confirmed signature is coming this week.'},
+    nextMilestone: 'Signature this week',
+    competitor: null,
+    risk: {level:'low',label:'Heating Close',bullets:['Only risk is an administrative delay on signature routing.']},
+    signals: [{type:'positive',text:'Champion gave explicit verbal commitment that signature is imminent.'},{type:'positive',text:'No outstanding objections or open commercial issues.'}],
+    script: 'Chris, great news on the timeline. I have already put together a quick onboarding outline so your team can hit the ground running from day one. Want me to send it over now so you have it ready?',
+    chatCanned: {
+      competitor: 'No competitor present. This deal is effectively closed pending paperwork. No competitive action needed.',
+      engage: 'Send Chris the post-signature onboarding outline today. It signals that you are already thinking about their success and keeps the relationship momentum going through the administrative close.',
+      stalling: 'If no signature arrives by Friday, a single check-in call to Chris is appropriate. Ask if there is anything you can do to make the process smoother on the CEO\'s end.',
+      unblock: 'At 90% probability with a verbal yes, the only remaining unblock is making the paperwork frictionless. Offer to help Chris prepare anything the CEO needs to sign off without a meeting.'
+    }
+  },
+  { name: 'Crestview Partners', amount: '$18K', stage: 'Discovery', prob: 20, next: 'Intro call next week', days: 1,
+    synthesis: 'Crestview Partners is a $18K inbound deal with an intro call booked for next week. This is the very beginning of the relationship. Probability at 20% reflects how early this is. The entire job for Jake on this call is to surface one named pain point. Everything else is secondary.',
+    contacts: [{name:'Patricia Cole',title:'CEO',role:'Initial Contact'},{name:'Unknown',title:'N/A',role:'Additional stakeholders unknown'}],
+    lastActivity: {type:'Intro Call Booked',date:'Apr 15',detail:'Inbound lead booked the call directly. First conversation.'},
+    nextMilestone: 'Intro call week of Apr 21',
+    competitor: null,
+    risk: {level:'low',label:'Early Discovery',bullets:['Too early to assess meaningful risk. Discovery is the entire job.']},
+    signals: [{type:'positive',text:'Inbound lead. They came to Jake, not the other way around.'}],
+    script: 'Patricia, I am really looking forward to the call next week. One thing that helps me prepare: can you share what prompted you to reach out now? Even a line or two helps me come in ready.',
+    chatCanned: {
+      competitor: 'Too early to identify competitive threats. The first call should surface what they are currently using and whether they are actively evaluating alternatives.',
+      engage: 'Send Patricia a short pre-call note asking what prompted the inbound inquiry. That one question, answered honestly, often tells you more than the entire first call.',
+      stalling: 'This deal has not started yet. Focus entirely on making the intro call great. Surface one pain. Book a second meeting.',
+      unblock: 'The only thing to unlock at this stage is a clear named problem. Ask open-ended questions and stay curious. A rep who listens well on the first call earns the second.'
+    }
+  }
 ],
 aiInsights: [
   'Apex renewal has emerging stakeholder risk. Recommend expanding contacts.',
@@ -5619,10 +6266,70 @@ agenda:[{topic:'1. Name the Growth',d:'92 to 148 in 6 weeks. That trajectory des
 agendaJp:[{topic:'1. 成長の承認',d:'6週間で92から148へ。この軌道は認められるべき。',s:'"6週間でスコアがほぼ倍になりました。これは運ではなく、努力の結果です。私はそれをしっかり見ています。"'},{topic:'2. クロージングへの自信',d:'本人が不安を感じていると報告。活動量はエリート級だがクロージングの型が必要。',s:'"クロージングは信頼の積み重ねです。一緒に練習しましょう。"'},{topic:'3. Marcusのシャドーイング',d:'本人から希望あり。高いレバレッジの育成施策。',s:'"Marcusの次のクロージングに同席してもらいます。観察して、その後一緒に振り返りましょう。"'},{topic:'4. 最終段階の3件',d:'どちらにも転ぶ3件の案件。コーチングの最大レバレッジポイント。',s:'"一件ずつ見ていきましょう。成約までの最大の障壁は何だと思いますか？"'}],
 gl:[{w:'Wk 14',d:2,r:'$24K',p:'$134K',s:64},{w:'Wk 13',d:1,r:'$12K',p:'$118K',s:56},{w:'Wk 12',d:2,r:'$28K',p:'$98K',s:58},{w:'Wk 11',d:1,r:'$15K',p:'$142K',s:50},{w:'Wk 10',d:1,r:'$10K',p:'$108K',s:44}],
 deals:[
-  { name: 'Silverline Tech', amount: '$34K', stage: 'Negotiation', prob: 55, next: 'Pricing objection to address', days: 6, note: 'Stalling on price', privateNote: 'Champion is worried about layoffs at their company. Pricing sensitivity is personal, not just budget.', privateNoteJp: '推進者が自社のリストラを心配している。価格への敏感さは予算だけでなく個人的な事情による。' },
-  { name: 'Redwood Analytics', amount: '$28K', stage: 'Proposal', prob: 40, next: 'Follow-up demo requested', days: 4 },
-  { name: 'Cascade Group', amount: '$24K', stage: 'Closing', prob: 70, next: 'Decision this week', days: 3 },
-  { name: 'Ironclad Systems', amount: '$48K', stage: 'Discovery', prob: 15, next: 'First meeting booked', days: 1 }
+  { name: 'Silverline Tech', amount: '$34K', stage: 'Negotiation', prob: 55, next: 'Pricing objection to address', days: 6, note: 'Stalling on price', privateNote: 'Champion is worried about layoffs at their company. Pricing sensitivity is personal, not just budget.', privateNoteJp: '推進者が自社のリストラを心配している。価格への敏感さは予算だけでなく個人的な事情による。',
+    synthesis: 'Silverline Tech is a $34K deal stalling in Negotiation for 6 days on a pricing objection. The champion has flagged layoff anxiety on their side. The pricing resistance is personal job-security fear, not a budget constraint. A discount will not solve this. Reframing the ROI per quarter, specifically how this helps the champion look good during a tough period, is the real unlock.',
+    contacts: [{name:'James Porter',title:'Dir. of Revenue Ops',role:'Champion (anxious)'},{name:'VP Finance',title:'Unknown',role:'Budget Holder'},{name:'CEO',title:'Unknown',role:'Final Decision'}],
+    lastActivity: {type:'Pricing Call',date:'Apr 10',detail:'Pricing objection raised. Stalled since.'},
+    nextMilestone: 'Follow-up to address pricing objection',
+    competitor: 'Clari',
+    risk: {level:'high',label:'Pricing Sensitivity',bullets:['Pricing resistance is driven by personal job-security fear, not budget. A straight discount may not resolve it.','Clari is a competing solution that may be positioned as safer or more established.']},
+    signals: [{type:'positive',text:'Champion is still engaged and has not gone dark despite the stall.'},{type:'risk',text:'Six days since the pricing objection with no forward movement.'}],
+    script: 'James, I hear you on the pricing concern. Can I share how other ops directors in similar situations have framed the ROI to their leadership? I want to make it easier for you to make the case internally.',
+    chatCanned: {
+      competitor: 'Clari is the active competitor. The play is not to attack Clari directly. Instead, anchor the conversation on what specifically Clari does not do that Silverline\'s ops team actually needs. Let the champion name the gap.',
+      engage: 'Do not re-pitch the price. Reframe it as quarterly ROI. Help DeAndra send James a one-page summary showing what the investment returns per quarter. Make him the hero with his leadership.',
+      stalling: 'This deal is stalling because the champion is personally anxious about his own job security. A price reduction alone will not unblock it. The champion needs to feel confident that championing this deal makes him look smart, not risky.',
+      unblock: 'Reframe the entire value conversation around what this does for James personally. How does this make him look good to leadership during a tough period? That is the emotional unlock for a fear-driven stall.'
+    }
+  },
+  { name: 'Redwood Analytics', amount: '$28K', stage: 'Proposal', prob: 40, next: 'Follow-up demo requested', days: 4,
+    synthesis: 'Redwood Analytics is a $28K deal in Proposal with a follow-up demo requested by the prospect. Engagement is strong. The risk is that DeAndra does not have a tight second-meeting framework and this becomes a re-run of the first demo instead of a progress step. The second meeting needs a clear agenda: pain summary, solution mapping, next step ask.',
+    contacts: [{name:'Rachel Kim',title:'VP of Sales',role:'Champion'},{name:'Tom Walsh',title:'CFO',role:'Economic Buyer'},{name:'Brian Lee',title:'Ops Director',role:'Evaluator'}],
+    lastActivity: {type:'Demo Completed',date:'Apr 12',detail:'Strong engagement. Follow-up demo requested by prospect.'},
+    nextMilestone: 'Follow-up demo this week',
+    competitor: null,
+    risk: {level:'med',label:'Second-Meeting Framework',bullets:['Second-meeting skills are still developing. Without a tight agenda, this demo risks becoming a replay with no forward movement.','CFO has not been engaged yet.']},
+    signals: [{type:'positive',text:'Prospect proactively requested the follow-up demo, strong buying signal.'},{type:'positive',text:'VP of Sales Rachel Kim is actively championing internally.'}],
+    script: 'Rachel, my plan for the follow-up is: quick recap of what we heard last time, show exactly how we solve those three things, then close with a clear next step. Does that agenda work for you?',
+    chatCanned: {
+      competitor: 'No competitor flagged yet. The second demo is the time to ask indirectly: are you evaluating any other solutions in parallel? Get that information now before it surfaces at the proposal stage.',
+      engage: 'Before the follow-up demo, send Rachel a one-line agenda so she knows what to expect. Prepared champions make better advocates when the economic buyer is in the room.',
+      stalling: 'This deal will stall if the follow-up demo is a generic replay. It needs a tight structure: pain recap, solution proof, next step ask. Those three elements make the meeting close-worthy.',
+      unblock: 'Ask Rachel to bring the CFO to the follow-up demo. Frame it as making the business case easier. Getting the economic buyer in the room during a strong momentum moment is the highest-leverage action available.'
+    }
+  },
+  { name: 'Cascade Group', amount: '$24K', stage: 'Closing', prob: 70, next: 'Decision this week', days: 3,
+    synthesis: 'Cascade Group is at $24K in Closing with a decision expected this week. The champion gave a green light pending final exec review. Risk is that someone unexpected shows up in that review and raises new objections DeAndra has not prepared for. She needs to know exactly who is in that room before the meeting.',
+    contacts: [{name:'Sarah Reyes',title:'Dir. of Sales Ops',role:'Champion'},{name:'Unknown Exec',title:'C-Suite',role:'Final Reviewer (identity unconfirmed)'}],
+    lastActivity: {type:'Champion Confirmed',date:'Apr 13',detail:'Green light from champion. Exec review is final gate.'},
+    nextMilestone: 'Exec review decision this week',
+    competitor: null,
+    risk: {level:'med',label:'Exec Review Risk',bullets:['Unknown who will be in the exec review. A surprise participant with undisclosed objections could derail a deal that looks ready to close.']},
+    signals: [{type:'positive',text:'Champion explicitly said we want to move forward.'},{type:'positive',text:'No commercial objections outstanding.'}],
+    script: 'Sarah, one quick question before the review: who else will be in the room? I want to be prepared to answer any questions so we do not need a follow-up call.',
+    chatCanned: {
+      competitor: 'No competitor flagged. The risk in this deal is not external. An unknown exec with undisclosed objections is more dangerous than any competitor right now.',
+      engage: 'Call Sarah today and ask specifically who will be in the exec review. Get the names. If there is a new participant, prepare a brief for that person so DeAndra can address them directly.',
+      stalling: 'If the exec review does not happen this week, get a new date locked immediately. Do not let this float into next week without a calendar commitment.',
+      unblock: 'The unblock is a five-minute call with Sarah to get the names of everyone in the exec review. Once you know who is in the room, you can prepare for every possible objection before it becomes a surprise.'
+    }
+  },
+  { name: 'Ironclad Systems', amount: '$48K', stage: 'Discovery', prob: 15, next: 'First meeting booked', days: 1,
+    synthesis: 'Ironclad Systems is a $48K early-stage deal with a first meeting booked. No discovery has happened yet. This is the highest-value deal in DeAndra\'s pipeline. Using the Coach Me Up playbook immediately after the first call will help her process the discovery and identify the right next move before momentum fades.',
+    contacts: [{name:'Unknown',title:'Unknown',role:'Initial Contact'},{name:'CRO',title:'Unknown',role:'Target Economic Buyer'}],
+    lastActivity: {type:'First Meeting Booked',date:'Apr 15',detail:'Calendar confirmed. No prior contact.'},
+    nextMilestone: 'First meeting this week',
+    competitor: 'Salesloft',
+    risk: {level:'low',label:'Early Discovery',bullets:['Too early to assess. Salesloft is a known player in this space and may already have a presence at Ironclad.']},
+    signals: [{type:'positive',text:'$48K is the largest deal in DeAndra\'s current pipeline. High-impact opportunity.'}],
+    script: 'Before the call, one question: what is the biggest gap between how your sales team currently operates and how you would want it running six months from now?',
+    chatCanned: {
+      competitor: 'Salesloft is flagged as a potential competitor. On the first call, ask what tools the team currently uses. If Salesloft comes up, let them describe what they like and do not like. That is the differentiation roadmap.',
+      engage: 'Prepare three discovery questions before the first meeting. Focus on outcomes, not features. Good questions on the first call earn the second meeting.',
+      stalling: 'This deal has not started yet. The entire focus is on making the first meeting exceptional. A great first call with strong discovery creates momentum that carries the deal forward naturally.',
+      unblock: 'The only unlock at this stage is an excellent first meeting. Prepare questions, listen more than you talk, and close the call with a specific next step agreed before hanging up.'
+    }
+  }
 ],
 aiInsights: [
   'Silverline pricing sensitivity may be driven by internal company pressures, not budget. Consider value-based framing.',
@@ -5659,8 +6366,38 @@ agenda:[{topic:'1. Acknowledge It Directly',d:'Tyler knows. He said so. Don\'t d
 agendaJp:[{topic:'1. 率直な対話',d:'Tyler自身が認識している。遠回しにしない。率直さを尊重する人。',s:'"データを一緒に確認して、改善の道筋を考えましょう。率直にお話しさせてください。"'},{topic:'2. CRMの重要性',d:'3週間の遅れ。コンプライアンスではなく「可視性」としてフレーム。',s:'"パイプラインが見えないと、リソース配分であなたのために動くことができません。今週中に追いつきましょう。"'},{topic:'3. メンタリングの提案',d:'DeAndraのメンターを本人から申し出。受け入れましょう。',s:'"DeAndraがあなたから学びたいと言っています。関係構築のスキルはチーム一です。彼女を指導していただけますか？"'},{topic:'4. 期待の明確化',d:'さらに3週間の下降はロスター見直しの対話につながる。正直に。',s:'"あなたの力を信じています。しかし、数字は在籍年数では評価されません。3週間以内の改善を一緒に目指しましょう。必要なサポートは何ですか？"'}],
 gl:[{w:'Wk 14',d:2,r:'$38K',p:'$12K',s:48},{w:'Wk 13',d:2,r:'$42K',p:'$18K',s:54},{w:'Wk 12',d:3,r:'$56K',p:'$22K',s:62},{w:'Wk 11',d:3,r:'$48K',p:'$28K',s:60},{w:'Wk 10',d:3,r:'$52K',p:'$30K',s:64}],
 deals:[
-  { name: 'Oakmont Industries', amount: '$28K', stage: 'Negotiation', prob: 50, next: 'Budget approval pending', days: 12, note: 'Stalled', privateNote: 'Decision maker\'s wife just got diagnosed with cancer. He\'s barely at work. Timeline is shot.', privateNoteJp: '意思決定者の奥さんが最近がんと診断された。彼はほとんど出社していない。タイムラインは崩壊。' },
-  { name: 'Keystone Corp', amount: '$10K', stage: 'Closing', prob: 75, next: 'Verbal yes, sending contract', days: 5 }
+  { name: 'Oakmont Industries', amount: '$28K', stage: 'Negotiation', prob: 50, next: 'Budget approval pending', days: 12, note: 'Stalled', privateNote: 'Decision maker\'s wife just got diagnosed with cancer. He\'s barely at work. Timeline is shot.', privateNoteJp: '意思決定者の奥さんが最近がんと診断された。彼はほとんど出社していない。タイムラインは崩壊。',
+    synthesis: 'Oakmont Industries is a $28K deal stalled for 12 days. The decision-maker is essentially unreachable due to a serious personal family situation. The timeline has collapsed, but the deal itself has not. The right play is a low-pressure relationship note every three weeks. No pitch, no ask. Preserve the relationship for when he returns.',
+    contacts: [{name:'Frank Oakmont',title:'CEO',role:'Decision-Maker (unavailable)'},{name:'Helen Marsh',title:'VP Operations',role:'Possible Internal Advocate'}],
+    lastActivity: {type:'Last Contact',date:'Apr 3',detail:'Decision-maker has been largely unreachable. Personal family emergency ongoing.'},
+    nextMilestone: 'TBD. Resume when DM returns.',
+    competitor: null,
+    risk: {level:'high',label:'DM Unavailable',bullets:['Decision-maker is not at work and not reachable. This is not a sales problem.','No secondary contact established who could carry this internally.']},
+    signals: [{type:'positive',text:'The deal was progressing well before the personal emergency. Interest and budget were real.'},{type:'risk',text:'12 days of silence with no alternative contact at the account.'}],
+    script: 'Frank, no agenda here. Just wanted you to know we are thinking of you and there is absolutely no rush on our end. Whenever you are ready to reconnect, we will be here.',
+    chatCanned: {
+      competitor: 'No competitor logged. The risk here is purely timing. A competitor who is also waiting will have the same disadvantage. Maintain the relationship without pressure and you stay ahead.',
+      engage: 'The engagement strategy is minimal: one brief, human, no-ask note every three weeks. The goal is to keep Tyler in Frank\'s mind as a trusted partner who respected his space when it mattered.',
+      stalling: 'This deal is not stalling in the commercial sense. The decision-maker is dealing with a family crisis. Do not attempt to accelerate. Resume normal cadence when he returns.',
+      unblock: 'There is no commercial unblock available right now. The only action is to identify Helen Marsh in ops as a potential internal contact and send Tyler a note to connect with her gently, without mentioning Frank\'s situation.'
+    }
+  },
+  { name: 'Keystone Corp', amount: '$10K', stage: 'Closing', prob: 75, next: 'Verbal yes, sending contract', days: 5,
+    synthesis: 'Keystone Corp is a $10K deal with a verbal yes in hand and contract being prepared. Tyler\'s relationship skills closed this one. Probability at 75% reflects the gap between verbal commitment and signature. Get the contract out today and follow up by Friday if no response. This is a clean close in progress.',
+    contacts: [{name:'William Reyes',title:'COO',role:'Decision-Maker'},{name:'Procurement',title:'N/A',role:'Contract Processing'}],
+    lastActivity: {type:'Verbal Yes',date:'Apr 11',detail:'COO gave verbal approval. Contract preparation underway.'},
+    nextMilestone: 'Signature by Apr 18',
+    competitor: null,
+    risk: {level:'low',label:'Contract Pending',bullets:['Only risk is administrative delay between verbal yes and signature.']},
+    signals: [{type:'positive',text:'Decision-maker gave an explicit verbal yes with no conditions.'},{type:'positive',text:'Tyler\'s long-term relationship with this account drove the close.'}],
+    script: 'William, great to have your go-ahead. I am getting the contract finalized now. You should have it in your inbox by end of day. Any questions before I send it over?',
+    chatCanned: {
+      competitor: 'No competitor present. This deal is essentially closed pending signature. Competitive risk is negligible at this stage.',
+      engage: 'Send the contract today. A same-day turnaround after a verbal yes signals professionalism and keeps the momentum alive. Do not let administrative delay cool a warm decision.',
+      stalling: 'If no signature by Friday, a single phone call to William asking if there is anything he needs is the right move. Keep it brief and warm.',
+      unblock: 'At 75% probability with a verbal yes, the contract delivery speed is the unblock. Send it today and follow up Friday. That is the entire remaining job.'
+    }
+  }
 ],
 aiInsights: [
   'Oakmont timeline likely extended due to decision-maker availability. Reduce pressure, maintain relationship.',
@@ -6104,7 +6841,10 @@ function renderDealCards(deals, showPrivate) {
       : heat === 'down'
       ? '<i class="ph-bold ph-caret-down"></i>'
       : '<i class="ph-bold ph-minus"></i>';
-    return `<div class="deal-card ${isFocused ? 'focused' : ''}">
+    const hasBrief = !!deal.synthesis;
+    const safeName = hasBrief ? deal.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'") : null;
+    return `<div class="deal-card ${isFocused ? 'focused' : ''} ${hasBrief ? 'tappable' : ''}" ${hasBrief ? `onclick="openDealBriefByName(event,'${safeName}')"` : ''}>
+      ${hasBrief ? `<i class="deal-card-chev ph-bold ph-caret-right"></i>` : ''}
       ${isFocused ? `<div class="deal-focus-tag">${t('flagged_for_coaching')}</div>` : ''}
       <div class="deal-top">
         <div class="deal-name">${deal.name}</div>
@@ -7577,6 +8317,250 @@ function _openFullCard(i){
 }
 
 function closeCard(){document.getElementById('cardModal').classList.remove('on');cardFocusDeals=null;}
+
+// ===== DEAL BRIEF MODAL =====
+let dbChatMessages = [];
+let dbCurrentDeal = null;
+
+function openDealBriefByName(evt, dealName) {
+  evt.stopPropagation();
+  if (cur === null || cur === undefined) return;
+  const rep = D[cur];
+  if (!rep || !rep.deals) return;
+  const deal = rep.deals.find(function(d){ return d.name === dealName; });
+  if (!deal) return;
+  openDealBrief(evt, deal);
+}
+
+function openDealBrief(evt, deal) {
+  if (evt) evt.stopPropagation();
+  dbCurrentDeal = deal;
+  dbChatMessages = [];
+  _renderDealBrief();
+  document.getElementById('dbBackdrop').classList.add('on');
+  setTimeout(function() { document.getElementById('dbSheet').classList.add('on'); }, 10);
+  document.addEventListener('keydown', _dbEscHandler);
+}
+
+function closeDealBrief() {
+  document.getElementById('dbSheet').classList.remove('on');
+  document.getElementById('dbBackdrop').classList.remove('on');
+  document.removeEventListener('keydown', _dbEscHandler);
+  dbCurrentDeal = null;
+  dbChatMessages = [];
+}
+
+function _dbEscHandler(e) {
+  if (e.key === 'Escape') closeDealBrief();
+}
+
+function _renderDealBrief() {
+  const deal = dbCurrentDeal;
+  if (!deal) return;
+  const sc = stageColor(deal.stage);
+
+  // Health chip class
+  const riskLevelClass = deal.risk ? deal.risk.level : 'low';
+  const riskLabel = deal.risk ? deal.risk.label : 'Unknown';
+  const riskBullets = (deal.risk && deal.risk.bullets) ? deal.risk.bullets : [];
+  const signals = deal.signals || [];
+
+  // Key data grid
+  const primaryContact = deal.contacts && deal.contacts[0] ? deal.contacts[0] : null;
+  const supportContacts = deal.contacts ? deal.contacts.slice(1, 3) : [];
+
+  // Chat messages html
+  const msgHtml = dbChatMessages.length === 0
+    ? `<div class="db-chat-empty"><i class="ph-bold ph-chat-dots" style="font-size:20px;display:block;margin-bottom:6px;color:var(--amber);"></i>Tap a chip to ask, or type your question.</div>`
+    : dbChatMessages.map(m => `
+      <div class="db-msg ${m.from}">
+        <div class="db-msg-avi ${m.from === 'ai' ? 'ai-avi' : ''}">
+          ${m.from === 'ai' ? '<i class="ph-bold ph-compass"></i>' : '<i class="ph-bold ph-user"></i>'}
+        </div>
+        <div class="db-bubble">${m.text}</div>
+      </div>
+    `).join('');
+
+  // Framework context for chat
+  const fw = aipFrameworks.find(f => f.id === aipSelectedFramework) || aipFrameworks[0];
+
+  document.getElementById('dbContent').innerHTML = `
+    <div class="db-header">
+      <div class="db-header-info">
+        <div class="db-deal-name">${deal.name}</div>
+        <div class="db-deal-amount">${deal.amount}</div>
+        <div class="db-meta-row">
+          <span class="db-stage-chip" style="background:${sc.bg};color:${sc.color};">${tStage(deal.stage)}</span>
+          <span class="db-prob">${deal.prob}%</span>
+          <span class="db-days">${deal.days}d in stage</span>
+        </div>
+      </div>
+      <button class="db-close" onclick="closeDealBrief()" aria-label="Close"><i class="ph-bold ph-x" style="font-size:13px;"></i></button>
+    </div>
+
+    <div class="db-divider"></div>
+
+    <div class="db-synthesis">
+      <div class="db-section-label"><i class="ph-bold ph-brain"></i> AI Synthesis</div>
+      <div class="db-synthesis-text">${deal.synthesis}</div>
+    </div>
+
+    <div class="db-divider"></div>
+
+    <div class="db-section-label" style="margin:0 16px 10px;"><i class="ph-bold ph-table"></i> Key Data</div>
+    <div class="db-grid">
+      <div class="db-grid-cell">
+        <div class="db-grid-label">Primary Contact</div>
+        <div class="db-grid-value">${primaryContact ? primaryContact.name : 'Unknown'}</div>
+        ${primaryContact ? `<div class="db-grid-label" style="margin-top:2px;">${primaryContact.title}</div>` : ''}
+      </div>
+      <div class="db-grid-cell">
+        <div class="db-grid-label">Supporting</div>
+        <div class="db-grid-value" style="font-size:12px;">${supportContacts.map(c => c.name).join(', ') || 'None identified'}</div>
+      </div>
+      <div class="db-grid-cell">
+        <div class="db-grid-label">Last Activity</div>
+        <div class="db-grid-value">${deal.lastActivity ? deal.lastActivity.type : 'Unknown'}</div>
+        <div class="db-grid-label" style="margin-top:2px;">${deal.lastActivity ? deal.lastActivity.date : ''}</div>
+      </div>
+      <div class="db-grid-cell">
+        <div class="db-grid-label">Next Milestone</div>
+        <div class="db-grid-value" style="font-size:12px;">${deal.nextMilestone || 'TBD'}</div>
+      </div>
+      <div class="db-grid-cell">
+        <div class="db-grid-label">Owner</div>
+        <div class="db-grid-value">${D[cur] ? D[cur].f : 'Rep'}</div>
+      </div>
+      <div class="db-grid-cell">
+        <div class="db-grid-label">Competitor</div>
+        <div class="db-grid-value">${deal.competitor
+          ? `<span class="db-competitor-chip"><i class="ph-bold ph-warning"></i>${deal.competitor}</span>`
+          : '<span style="color:var(--t4);font-size:12px;">None flagged</span>'
+        }</div>
+      </div>
+    </div>
+
+    <div class="db-divider" style="margin-top:6px;"></div>
+
+    <div class="db-section-label" style="margin:0 16px 10px;"><i class="ph-bold ph-shield-warning"></i> Risk &amp; Signals</div>
+    <div class="db-risks">
+      <div class="db-risk-card">
+        <div class="db-health-chip ${riskLevelClass}"><i class="ph-bold ${riskLevelClass === 'high' ? 'ph-warning' : riskLevelClass === 'med' ? 'ph-warning-circle' : 'ph-check-circle'}"></i>${riskLabel}</div>
+        ${riskBullets.map(b => `<div class="db-signal-row risk"><i class="ph-bold ph-warning-circle"></i><span>${b}</span></div>`).join('')}
+        ${signals.map(s => `<div class="db-signal-row ${s.type}"><i class="ph-bold ${s.type === 'positive' ? 'ph-check-circle' : 'ph-x-circle'}"></i><span>${s.text}</span></div>`).join('')}
+      </div>
+    </div>
+
+    <div class="db-divider"></div>
+
+    <div class="db-section-label" style="margin:0 16px 10px;"><i class="ph-bold ph-lightning"></i> Suggested Actions</div>
+    <div class="db-actions-block">
+      ${deal.next ? `<div class="db-next-move"><i class="ph-bold ph-arrow-right"></i><span>${deal.next}</span></div>` : ''}
+      ${deal.script ? `
+        <div class="db-script-block">
+          <div class="db-script-label">Say this</div>
+          <div class="db-script-text">"${deal.script}"</div>
+        </div>
+      ` : ''}
+    </div>
+
+    <div class="db-divider"></div>
+
+    <div class="db-chat">
+      <div class="db-section-label"><i class="ph-bold ph-chat-teardrop-dots"></i> Ask Anything About This Deal</div>
+      <div style="font-size:10px;color:var(--t4);margin:-4px 0 10px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.8px;">Via ${fw.name} framework</div>
+      <div class="db-chat-chips">
+        <div class="db-chip" onclick="dbChipTap('competitor')">What\'s the competitor situation?</div>
+        <div class="db-chip" onclick="dbChipTap('engage')">Who else should I engage?</div>
+        <div class="db-chip" onclick="dbChipTap('stalling')">Why is this stalling?</div>
+        <div class="db-chip" onclick="dbChipTap('unblock')">What would unblock this?</div>
+      </div>
+      <div class="db-messages" id="dbMessages">${msgHtml}</div>
+      <div class="db-input-row">
+        <input class="db-input" id="dbInput" type="text" placeholder="Ask about this deal..." onkeydown="dbInputKey(event)">
+        <button class="db-send" onclick="dbSend()"><i class="ph-bold ph-paper-plane-tilt"></i></button>
+      </div>
+    </div>
+
+    <div class="db-footer">
+      <div class="db-footer-btn primary" onclick="closeDealBrief()"><i class="ph-bold ph-arrow-square-out"></i>View in CRM</div>
+      <div class="db-footer-btn" onclick="closeDealBrief()"><i class="ph-bold ph-x"></i>Close</div>
+    </div>
+  `;
+
+  // Scroll to top
+  document.getElementById('dbSheet').scrollTop = 0;
+}
+
+function dbChipTap(chipKey) {
+  const deal = dbCurrentDeal;
+  if (!deal || !deal.chatCanned) return;
+  const canned = deal.chatCanned[chipKey];
+  if (!canned) return;
+
+  // Map chip keys to readable questions
+  const chipLabels = {
+    competitor: "What's the competitor situation?",
+    engage: "Who else should I engage?",
+    stalling: "Why is this stalling?",
+    unblock: "What would unblock this?"
+  };
+
+  // Build framework-flavored prefix
+  const fw = aipFrameworks.find(f => f.id === aipSelectedFramework) || aipFrameworks[0];
+  const fwPrefixes = {
+    challenger: 'Challenger lens: ',
+    meddic: 'MEDDIC lens: ',
+    bant: 'BANT lens: ',
+    spin: 'SPIN lens: ',
+    pr: 'P&R lens: '
+  };
+  const prefix = fwPrefixes[aipSelectedFramework] || '';
+
+  dbChatMessages = [
+    { from: 'user', text: chipLabels[chipKey] || chipKey },
+    { from: 'ai', text: prefix + canned }
+  ];
+  _renderDealBrief();
+  setTimeout(function() {
+    const msgs = document.getElementById('dbMessages');
+    if (msgs) msgs.scrollTop = msgs.scrollHeight;
+  }, 80);
+}
+
+function dbSend() {
+  const input = document.getElementById('dbInput');
+  if (!input) return;
+  const v = input.value.trim();
+  if (!v) return;
+  input.value = '';
+  dbChatMessages.push({ from: 'user', text: v });
+
+  // Generic framework-aware canned reply
+  const fw = aipFrameworks.find(f => f.id === aipSelectedFramework) || aipFrameworks[0];
+  const genericReplies = {
+    challenger: 'Pulling context from your CRM. Based on the Challenger framework: before answering, consider what assumption this prospect holds that you can challenge. Lead with a commercial insight, not a direct answer.',
+    meddic: 'Pulling context from your CRM. MEDDIC check: map this question to the weakest MEDDIC element in this deal. Is it Metrics, Economic Buyer access, Decision criteria, Process, Pain, or Champion strength? That is your real answer.',
+    bant: 'Pulling context from your CRM. BANT filter: does the answer to this question tie back to Budget, Authority, Need, or Timeline? Name the weakest BANT element and that is where your energy goes.',
+    spin: 'Pulling context from your CRM. SPIN framing: the most useful response here is probably an Implication question. Instead of answering directly, ask the prospect a question that makes them feel the cost of inaction.',
+    pr: 'Pulling context from your CRM. P&R approach: go back to the pain first. Does this person still feel the urgency of the problem? If not, the answer to your question will not land regardless of how good it is.'
+  };
+
+  const reply = genericReplies[aipSelectedFramework] || genericReplies['challenger'];
+
+  setTimeout(function() {
+    dbChatMessages.push({ from: 'ai', text: reply });
+    _renderDealBrief();
+    setTimeout(function() {
+      const msgs = document.getElementById('dbMessages');
+      if (msgs) msgs.scrollTop = msgs.scrollHeight;
+    }, 80);
+  }, 600);
+}
+
+function dbInputKey(e) {
+  if (e.key === 'Enter') dbSend();
+}
 
 function cPanel(id){
   document.querySelectorAll('.cm-panel').forEach(p=>p.classList.remove('on'));
